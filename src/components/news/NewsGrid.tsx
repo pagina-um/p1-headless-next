@@ -28,7 +28,7 @@ export function NewsGrid({
   }
 
   return (
-    <div className="layout grid grid-cols-6 grid-rows-12">
+    <div className="layout grid grid-cols-6 grid-auto-rows-[200px]">
       {Object.values(stories).map((story) => (
         <div
           key={story.id}
