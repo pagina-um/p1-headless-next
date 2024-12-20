@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Source+Serif+Pro:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #cf2e2e;
+    --color-primary-dark: #b22828;
+  }
+
+  body {
+    @apply antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  .headline {
+    @apply font-serif text-4xl font-bold leading-tight;
+  }
+  
+  .subheadline {
+    @apply font-serif text-xl font-medium leading-snug;
+  }
+
+  .article-title {
+    @apply font-serif text-2xl font-bold hover:text-primary transition-colors;
+  }
+
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-dark text-white font-medium px-4 py-2 rounded-lg transition-colors;
+  }
+
+  /* React Grid Layout styles */
+  .react-grid-item {
+    @apply transition-[transform,opacity] duration-200 ease-in-out;
+  }
+
+  .react-grid-item.react-draggable-dragging {
+    @apply shadow-xl z-50;
+  }
+
+  .react-grid-item.react-grid-placeholder {
+    @apply bg-blue-200/50 border-2 border-dashed border-blue-400 rounded-lg;
+  }
+
+  .react-resizable-handle {
+    @apply opacity-0 group-hover:opacity-100 transition-opacity duration-200;
+  }
+
+  .drag-handle {
+    @apply absolute top-2 left-2 p-2 bg-white/90 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-sm cursor-move z-10;
+  }
+
+  .block-controls {
+    @apply opacity-0 group-hover:opacity-100 transition-opacity duration-200;
+  }
+
+  /* Preserve 3D transforms for block flipping */
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  /* Prevent text selection in blocks */
+  .block-content {
+    @apply select-none;
+  }
+
+  /* Allow text selection in form controls */
+  .block-content input,
+  .block-content textarea,
+  .block-content [contenteditable="true"] {
+    @apply select-text;
+  }
+
+  /* Allow text selection in settings panel */
+  .block-settings {
+    @apply select-text;
+  }
+
+  /* Mobile menu transition */
+  .mobile-menu-enter {
+    @apply translate-x-full;
+  }
+  
+  .mobile-menu-enter-active {
+    @apply translate-x-0 transition-transform duration-300 ease-in-out;
+  }
+  
+  .mobile-menu-exit {
+    @apply translate-x-0;
+  }
+  
+  .mobile-menu-exit-active {
+    @apply translate-x-full transition-transform duration-300 ease-in-out;
+  }
+
+  /* Responsive grid adjustments */
+  @media (max-width: 768px) {
+    .react-grid-item {
+      @apply !transition-none;
+    }
+    
+    .headline {
+      @apply text-2xl;
+    }
+    
+    .subheadline {
+      @apply text-lg;
+    }
+  }
+}

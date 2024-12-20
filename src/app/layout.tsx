@@ -1,0 +1,23 @@
+import type { Metadata } from 'next';
+import { Header } from '@/components/layout/Header';
+import '@/styles/globals.css';
+
+export const metadata: Metadata = {
+  title: 'News Grid',
+  description: 'A modern news grid layout built with Next.js',
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" className="h-full">
+      <body className="min-h-screen bg-gray-100">
+        <Header />
+        {children}
+      </body>
+    </html>
+  );
+}
