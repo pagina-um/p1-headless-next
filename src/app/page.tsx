@@ -23,7 +23,7 @@ export default async function HomePage() {
       </main>
     );
   }
-
+  console.log(initialState.gridConfig.stories);
   return (
     <main className="max-w-7xl mx-auto pb-8">
       <NewsGrid
