@@ -17,7 +17,6 @@ export function useGridState() {
       handleStateLoaded(savedState);
     }
     setHasTriedToLoad(true);
-    console.log(savedState?.categoryBlocks);
   }, []);
 
   const handleStateLoaded = useCallback((state: GridState) => {
