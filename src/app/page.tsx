@@ -13,7 +13,7 @@ export default function AdminPage() {
     hasTriedToLoad,
   } = useGridState();
   return (
-    <main className="max-w-7xl mx-auto px-4 py-8">
+    <main className="max-w-7xl mx-auto pb-8">
       {hasTriedToLoad && (
         <NewsGrid
           categoryBlocks={categoryBlocks}

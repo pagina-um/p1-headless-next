@@ -8,7 +8,7 @@ interface NewsStoryProps {
 
 export function NewsStory({ story }: NewsStoryProps) {
   return (
-    <div className="relative h-full overflow-hidden rounded-lg shadow-lg group">
+    <div className="relative h-full overflow-hidden  shadow-lg group">
       <img
         src={story.imageUrl}
         alt={story.title}

@@ -1,25 +1,25 @@
-import React from 'react';
-import { GridConfig } from '../../types';
-import { BlocksTabs } from './BlocksTabs';
+import React from "react";
+import { GridConfig } from "../../types";
+import { BlocksTabs } from "./BlocksTabs";
 
 interface GridConfigSectionProps {
   config: GridConfig;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onCreateCategoryBlock: (categoryId: number, title: string) => void;
-  onCreateStaticBlock: (block: { title: string, content: string }) => void;
+  onCreateStaticBlock: (block: { title: string; content: string }) => void;
 }
 
-export function GridConfigSection({ 
-  config, 
+export function GridConfigSection({
+  config,
   onChange,
   onCreateCategoryBlock,
-  onCreateStaticBlock
+  onCreateStaticBlock,
 }: GridConfigSectionProps) {
   return (
     <div className="space-y-6">
       <div>
         <h2 className="text-lg font-semibold mb-3">Configuração da Grelha</h2>
-        <div className="flex gap-4 items-center bg-gray-50 p-3 rounded-lg">
+        <div className="flex gap-4 items-center bg-gray-50 p-3 ">
           <div className="w-24">
             <label className="block text-xs font-medium text-gray-600 mb-1">
               Colunas
@@ -52,7 +52,7 @@ export function GridConfigSection({
       </div>
 
       <div className="pt-6 border-t">
-        <BlocksTabs 
+        <BlocksTabs
           onCreateCategoryBlock={onCreateCategoryBlock}
           onCreateStaticBlock={onCreateStaticBlock}
         />

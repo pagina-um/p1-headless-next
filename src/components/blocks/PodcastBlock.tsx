@@ -44,7 +44,7 @@ export function PodcastBlock({ title, episodes }: PodcastBlockProps) {
           {episodes.map((episode) => (
             <div
               key={episode.id}
-              className={`p-4 rounded-lg transition-colors ${
+              className={`p-4  transition-colors ${
                 activeEpisode?.id === episode.id
                   ? "bg-primary/5 border-primary/10"
                   : "hover:bg-gray-50"

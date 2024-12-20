@@ -1,5 +1,5 @@
-import React from 'react';
-import { MoreVertical, X, ArrowLeft, Trash2 } from 'lucide-react';
+import React from "react";
+import { MoreVertical, X, ArrowLeft, Trash2 } from "lucide-react";
 
 interface BlockSettingsProps {
   title: string;
@@ -8,9 +8,14 @@ interface BlockSettingsProps {
   children: React.ReactNode;
 }
 
-export function BlockSettings({ title, onClose, onDelete, children }: BlockSettingsProps) {
+export function BlockSettings({
+  title,
+  onClose,
+  onDelete,
+  children,
+}: BlockSettingsProps) {
   return (
-    <div className="absolute inset-0 bg-white rounded-lg shadow-lg p-6">
+    <div className="absolute inset-0 bg-white  shadow-lg p-6">
       <div className="flex items-center justify-between mb-4 pb-2 border-b">
         <h3 className="font-semibold flex items-center gap-2">
           <ArrowLeft className="w-4 h-4" />
@@ -32,9 +37,7 @@ export function BlockSettings({ title, onClose, onDelete, children }: BlockSetti
           </button>
         </div>
       </div>
-      <div className="space-y-4">
-        {children}
-      </div>
+      <div className="space-y-4">{children}</div>
     </div>
   );
 }

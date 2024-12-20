@@ -20,14 +20,14 @@ export function StaticBlock({ block }: StaticBlockProps) {
   if (isNewsletterBlock) {
     return (
       <div
-        className="h-full p-8 bg-primary rounded-lg shadow-sm block-content"
+        className="h-full p-8 bg-primary  shadow-sm block-content"
         style={gridStyles}
       >
         <div className="flex flex-col items-center text-center text-white h-full justify-center">
           <Mail className="w-12 h-12 mb-4" />
           <h2 className="font-serif text-2xl font-bold mb-2">{block.title}</h2>
           <p className="mb-6 text-white/90">{block.content}</p>
-          <button className="px-6 py-3 bg-white text-primary font-semibold rounded-lg hover:bg-gray-100 transition-colors select-text">
+          <button className="px-6 py-3 bg-white text-primary font-semibold  hover:bg-gray-100 transition-colors select-text">
             Subscrever
           </button>
         </div>
@@ -38,7 +38,7 @@ export function StaticBlock({ block }: StaticBlockProps) {
   if (isPodcastBlock) {
     return (
       <div
-        className="h-full p-6 bg-white rounded-lg shadow-sm border border-gray-100 block-content"
+        className="h-full p-6 bg-white  shadow-sm border border-gray-100 block-content"
         style={gridStyles}
       >
         <PodcastBlock
@@ -51,7 +51,7 @@ export function StaticBlock({ block }: StaticBlockProps) {
 
   return (
     <div
-      className="h-full p-6 bg-white rounded-lg shadow-sm border border-gray-100 block-content"
+      className="h-full p-6 bg-white  shadow-sm border border-gray-100 block-content"
       style={gridStyles}
     >
       <div className="flex items-center justify-between mb-6 pb-3 border-b border-gray-200">

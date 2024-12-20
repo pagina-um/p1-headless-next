@@ -71,7 +71,7 @@ export function GridLayout({
 
   return (
     <ReactGridLayout
-      className="layout bg-gray-50 p-4 rounded-lg"
+      className="layout bg-gray-50 p-4 "
       layout={layout}
       cols={columns}
       rowHeight={200}
@@ -96,7 +96,7 @@ export function GridLayout({
             title={story.title}
             onDelete={() => onDeleteStory(story.id)}
           >
-            <div className="relative overflow-hidden rounded-lg shadow-lg h-full">
+            <div className="relative overflow-hidden  shadow-lg h-full">
               <div className="drag-handle">
                 <GripVertical className="w-4 h-4" />
               </div>

@@ -44,7 +44,7 @@ export function TabsList({
   setActiveTab,
 }: TabsListProps) {
   return (
-    <div className={`flex gap-1 p-1 bg-gray-100 rounded-lg ${className}`}>
+    <div className={`flex gap-1 p-1 bg-gray-100  ${className}`}>
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
           return React.cloneElement(child, { activeTab, setActiveTab } as any);

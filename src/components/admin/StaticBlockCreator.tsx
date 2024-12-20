@@ -1,6 +1,6 @@
-import React from 'react';
-import { Layout, Mail, Plus } from 'lucide-react';
-import { STATIC_BLOCKS } from '../../constants/blocks';
+import React from "react";
+import { Layout, Mail, Plus } from "lucide-react";
+import { STATIC_BLOCKS } from "../../constants/blocks";
 
 interface StaticBlockCreatorProps {
   onCreateBlock: (block: { title: string; content: string }) => void;
@@ -15,14 +15,14 @@ export function StaticBlockCreator({ onCreateBlock }: StaticBlockCreatorProps) {
       </h3>
 
       <div className="grid gap-3">
-        {Object.values(STATIC_BLOCKS).map(block => (
+        {Object.values(STATIC_BLOCKS).map((block) => (
           <button
             key={block.id}
             onClick={() => onCreateBlock(block)}
-            className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-left group"
+            className="flex items-start gap-4 p-4 bg-gray-50  hover:bg-gray-100 transition-colors text-left group"
           >
             <div className="mt-1">
-              {block.id === 'newsletter' ? (
+              {block.id === "newsletter" ? (
                 <Mail className="w-5 h-5 text-primary" />
               ) : (
                 <Layout className="w-5 h-5 text-gray-500" />
@@ -36,9 +36,7 @@ export function StaticBlockCreator({ onCreateBlock }: StaticBlockCreatorProps) {
                   Adicionar
                 </span>
               </div>
-              <p className="text-sm text-gray-600 mt-1">
-                {block.content}
-              </p>
+              <p className="text-sm text-gray-600 mt-1">{block.content}</p>
             </div>
           </button>
         ))}

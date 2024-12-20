@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { BlockSettings, BlockSettingsButton } from '../ui/BlockSettings';
-import { CategoryBlock } from '../../types';
+import React, { useState } from "react";
+import { BlockSettings, BlockSettingsButton } from "../ui/BlockSettings";
+import { CategoryBlock } from "../../types";
 
 interface BlockWrapperProps {
   children: React.ReactNode;
@@ -11,16 +11,18 @@ interface BlockWrapperProps {
   onUpdateBlock?: (block: CategoryBlock) => void;
 }
 
-export function BlockWrapper({ 
-  children, 
-  title, 
-  onDelete, 
+export function BlockWrapper({
+  children,
+  title,
+  onDelete,
   gridPosition,
   block,
-  onUpdateBlock 
+  onUpdateBlock,
 }: BlockWrapperProps) {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [tempPostsPerPage, setTempPostsPerPage] = useState(block?.postsPerPage || 5);
+  const [tempPostsPerPage, setTempPostsPerPage] = useState(
+    block?.postsPerPage || 5
+  );
 
   const handlePostsPerPageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value) || 5;
@@ -31,7 +33,7 @@ export function BlockWrapper({
     if (block && onUpdateBlock && tempPostsPerPage !== block.postsPerPage) {
       onUpdateBlock({
         ...block,
-        postsPerPage: tempPostsPerPage
+        postsPerPage: tempPostsPerPage,
       });
     }
     setIsFlipped(false);
@@ -43,7 +45,7 @@ export function BlockWrapper({
       style={{
         gridColumn: `span ${gridPosition?.width || 1}`,
         gridRow: `span ${gridPosition?.height || 1}`,
-        transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0)',
+        transform: isFlipped ? "rotateY(180deg)" : "rotateY(0)",
       }}
     >
       {/* Front side */}
@@ -55,15 +57,11 @@ export function BlockWrapper({
       </div>
 
       {/* Back side */}
-      <div 
+      <div
         className="absolute inset-0 backface-hidden block-settings"
-        style={{ transform: 'rotateY(180deg)' }}
+        style={{ transform: "rotateY(180deg)" }}
       >
-        <BlockSettings 
-          title={title} 
-          onClose={handleClose}
-          onDelete={onDelete}
-        >
+        <BlockSettings title={title} onClose={handleClose} onDelete={onDelete}>
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -71,13 +69,13 @@ export function BlockWrapper({
               </label>
               <input
                 type="text"
-                className="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                 value={title}
                 onChange={() => {}}
                 disabled
               />
             </div>
-            
+
             {block && (
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -87,7 +85,7 @@ export function BlockWrapper({
                   type="number"
                   min="1"
                   max="20"
-                  className="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                  className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                   value={tempPostsPerPage}
                   onChange={handlePostsPerPageChange}
                 />
@@ -101,8 +99,8 @@ export function BlockWrapper({
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Estilo
               </label>
-              <select 
-                className="w-full rounded-lg border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+              <select
+                className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                 disabled
               >
                 <option>Padrão</option>

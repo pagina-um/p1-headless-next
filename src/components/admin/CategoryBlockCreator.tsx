@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { Tag, Loader } from 'lucide-react';
-import { getCategories } from '../../services/wordpress';
-import type { WPCategory } from '../../types/wordpress';
+import React, { useState, useEffect } from "react";
+import { Tag, Loader } from "lucide-react";
+import { getCategories } from "../../services/wordpress";
+import type { WPCategory } from "../../types/wordpress";
 
 interface CategoryBlockCreatorProps {
   onCreateBlock: (categoryId: number, title: string) => void;
 }
 
-export function CategoryBlockCreator({ onCreateBlock }: CategoryBlockCreatorProps) {
+export function CategoryBlockCreator({
+  onCreateBlock,
+}: CategoryBlockCreatorProps) {
   const [categories, setCategories] = useState<WPCategory[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -18,7 +20,7 @@ export function CategoryBlockCreator({ onCreateBlock }: CategoryBlockCreatorProp
         const wpCategories = await getCategories();
         setCategories(wpCategories);
       } catch (err) {
-        setError('Falha ao carregar categorias');
+        setError("Falha ao carregar categorias");
       } finally {
         setLoading(false);
       }
@@ -53,11 +55,11 @@ export function CategoryBlockCreator({ onCreateBlock }: CategoryBlockCreatorProp
         Blocos de Categoria
       </h3>
       <div className="max-h-[200px] overflow-y-auto pr-2 -mr-2 grid grid-cols-2 gap-2">
-        {categories.map(category => (
+        {categories.map((category) => (
           <button
             key={category.id}
             onClick={() => onCreateBlock(category.id, category.name)}
-            className="px-3 py-2 bg-gray-100 rounded-lg text-sm capitalize hover:bg-gray-200 transition-colors flex items-center justify-between group"
+            className="px-3 py-2 bg-gray-100  text-sm capitalize hover:bg-gray-200 transition-colors flex items-center justify-between group"
           >
             <span>{category.name}</span>
             <span className="text-xs text-gray-500 group-hover:text-gray-700">

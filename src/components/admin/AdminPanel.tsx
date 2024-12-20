@@ -48,14 +48,14 @@ export function AdminPanel({
 
   return (
     <div className="space-y-6">
-      <div className="bg-white rounded-lg shadow-lg p-6">
+      <div className="bg-white  shadow-lg p-6">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-bold flex items-center gap-2">
             <Settings className="w-6 h-6" />
             Painel de Administração
           </h1>
           <button
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700 transition-colors"
+            className="bg-blue-600 text-white px-4 py-2  flex items-center gap-2 hover:bg-blue-700 transition-colors"
             onClick={handleSave}
           >
             <Save className="w-4 h-4" />

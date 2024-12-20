@@ -1,6 +1,6 @@
-import React from 'react';
-import { WPPost } from '../../types/wordpress';
-import { Plus } from 'lucide-react';
+import React from "react";
+import { WPPost } from "../../types/wordpress";
+import { Plus } from "lucide-react";
 
 interface WPPostsListProps {
   posts: WPPost[];
@@ -10,15 +10,15 @@ interface WPPostsListProps {
 export function WPPostsList({ posts, onSelectPost }: WPPostsListProps) {
   return (
     <div className="space-y-2">
-      {posts.map(post => (
+      {posts.map((post) => (
         <div
           key={post.id}
-          className="p-3 border rounded-lg hover:bg-gray-50 transition-colors"
+          className="p-3 border  hover:bg-gray-50 transition-colors"
         >
           <div className="flex items-center justify-between gap-2">
-            <h3 
-              className="font-medium text-sm line-clamp-2" 
-              dangerouslySetInnerHTML={{ __html: post.title.rendered }} 
+            <h3
+              className="font-medium text-sm line-clamp-2"
+              dangerouslySetInnerHTML={{ __html: post.title.rendered }}
             />
             <button
               onClick={() => onSelectPost(post)}
