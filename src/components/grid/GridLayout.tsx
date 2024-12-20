@@ -1,11 +1,11 @@
-import React from 'react';
-import RGL, { WidthProvider } from 'react-grid-layout';
-import 'react-grid-layout/css/styles.css';
-import { Story, CategoryBlock, StaticBlock } from '../../types';
-import { BlockWrapper } from '../admin/BlockWrapper';
-import { CategoryBlock as CategoryBlockComponent } from '../blocks/CategoryBlock';
-import { StaticBlock as StaticBlockComponent } from '../blocks/StaticBlock';
-import { GripVertical } from 'lucide-react';
+import React from "react";
+import RGL, { WidthProvider } from "react-grid-layout";
+import "react-grid-layout/css/styles.css";
+import { Story, CategoryBlock, StaticBlock } from "../../types";
+import { BlockWrapper } from "../admin/BlockWrapper";
+import { CategoryBlock as CategoryBlockComponent } from "../blocks/CategoryBlock";
+import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
+import { GripVertical } from "lucide-react";
 
 const ReactGridLayout = WidthProvider(RGL);
 
@@ -34,7 +34,7 @@ export function GridLayout({
 }: GridLayoutProps) {
   // Convert grid positions to layout items
   const layout = [
-    ...Object.values(stories).map(story => ({
+    ...Object.values(stories).map((story) => ({
       i: story.id,
       x: story.gridPosition?.x || 0,
       y: story.gridPosition?.y || 0,
@@ -45,7 +45,7 @@ export function GridLayout({
       minH: 1,
       maxH: 4,
     })),
-    ...categoryBlocks.map(block => ({
+    ...categoryBlocks.map((block) => ({
       i: block.id,
       x: block.gridPosition?.x || 0,
       y: block.gridPosition?.y || 0,
@@ -56,7 +56,7 @@ export function GridLayout({
       minH: 1,
       maxH: 4,
     })),
-    ...staticBlocks.map(block => ({
+    ...staticBlocks.map((block) => ({
       i: block.id,
       x: block.gridPosition?.x || 0,
       y: block.gridPosition?.y || 0,
@@ -81,17 +81,16 @@ export function GridLayout({
       preventCollision={true}
       onLayoutChange={onLayoutChange}
       draggableHandle=".drag-handle"
-      resizeHandles={['se', 'sw', 'ne', 'nw']}
+      resizeHandles={["se", "sw", "ne", "nw"]}
       isBounded
       // Improve dragging behavior
       isDroppable={false}
       useCSSTransforms={true}
       transformScale={1}
-      droppingItem={{ i: '__dropping-elem__', w: 2, h: 2 }}
+      droppingItem={{ i: "__dropping-elem__", w: 2, h: 2 }}
       // Add delay before drag starts
-      dragEnabled={true}
     >
-      {Object.values(stories).map(story => (
+      {Object.values(stories).map((story) => (
         <div key={story.id} className="group">
           <BlockWrapper
             title={story.title}
@@ -108,7 +107,9 @@ export function GridLayout({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
                 <div className="absolute bottom-0 p-6 text-white">
-                  <h2 className="font-serif text-2xl font-bold mb-2">{story.title}</h2>
+                  <h2 className="font-serif text-2xl font-bold mb-2">
+                    {story.title}
+                  </h2>
                 </div>
               </div>
             </div>
@@ -116,7 +117,7 @@ export function GridLayout({
         </div>
       ))}
 
-      {categoryBlocks.map(block => (
+      {categoryBlocks.map((block) => (
         <div key={block.id} className="group">
           <BlockWrapper
             title={block.title}
@@ -134,7 +135,7 @@ export function GridLayout({
         </div>
       ))}
 
-      {staticBlocks.map(block => (
+      {staticBlocks.map((block) => (
         <div key={block.id} className="group">
           <BlockWrapper
             title={block.title}

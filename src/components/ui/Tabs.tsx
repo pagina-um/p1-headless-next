@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface TabsProps {
   defaultValue: string;
@@ -6,20 +6,23 @@ interface TabsProps {
   className?: string;
 }
 
-export function Tabs({ defaultValue, children, className = '' }: TabsProps) {
+export function Tabs({ defaultValue, children, className = "" }: TabsProps) {
   const [activeTab, setActiveTab] = React.useState(defaultValue);
 
   // Create context to pass down the active tab state
-  const contextValue = React.useMemo(() => ({
-    activeTab,
-    setActiveTab
-  }), [activeTab]);
+  const contextValue = React.useMemo(
+    () => ({
+      activeTab,
+      setActiveTab,
+    }),
+    [activeTab]
+  );
 
   return (
     <div className={className}>
-      {React.Children.map(children, child => {
+      {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(child, { activeTab, setActiveTab });
+          return React.cloneElement(child, { activeTab, setActiveTab } as any);
         }
         return child;
       })}
@@ -34,12 +37,17 @@ interface TabsListProps {
   setActiveTab?: (value: string) => void;
 }
 
-export function TabsList({ children, className = '', activeTab, setActiveTab }: TabsListProps) {
+export function TabsList({
+  children,
+  className = "",
+  activeTab,
+  setActiveTab,
+}: TabsListProps) {
   return (
     <div className={`flex gap-1 p-1 bg-gray-100 rounded-lg ${className}`}>
-      {React.Children.map(children, child => {
+      {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(child, { activeTab, setActiveTab });
+          return React.cloneElement(child, { activeTab, setActiveTab } as any);
         }
         return child;
       })}
@@ -54,16 +62,22 @@ interface TabsTriggerProps {
   setActiveTab?: (value: string) => void;
 }
 
-export function TabsTrigger({ value, children, activeTab, setActiveTab }: TabsTriggerProps) {
+export function TabsTrigger({
+  value,
+  children,
+  activeTab,
+  setActiveTab,
+}: TabsTriggerProps) {
   const isActive = activeTab === value;
-  
+
   return (
     <button
       onClick={() => setActiveTab?.(value)}
       className={`px-4 py-2 text-sm font-medium rounded-md transition-colors
-        ${isActive 
-          ? 'bg-white text-primary shadow-sm' 
-          : 'text-gray-600 hover:text-gray-900 hover:bg-white/50'
+        ${
+          isActive
+            ? "bg-white text-primary shadow-sm"
+            : "text-gray-600 hover:text-gray-900 hover:bg-white/50"
         }`}
     >
       {children}
