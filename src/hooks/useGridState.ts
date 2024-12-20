@@ -3,43 +3,57 @@
 import { useState, useCallback, useEffect } from "react";
 import { GridConfig, CategoryBlock, StaticBlock, GridState } from "@/types";
 import { DEFAULT_GRID_CONFIG } from "@/constants/grid";
-import { loadState, saveState, useGridPersistence } from "./useGridPersistence";
+import { loadGridState, saveGridState } from "../services/jsonbin";
 
 export function useGridState() {
   const [gridConfig, setGridConfig] = useState<GridConfig>(DEFAULT_GRID_CONFIG);
   const [categoryBlocks, setCategoryBlocks] = useState<CategoryBlock[]>([]);
   const [staticBlocks, setStaticBlocks] = useState<StaticBlock[]>([]);
   const [hasTriedToLoad, setHasTriedToLoad] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(true);
 
+  // Load initial state
   useEffect(() => {
-    const savedState = loadState();
-    if (savedState) {
-      handleStateLoaded(savedState);
+    async function loadState() {
+      try {
+        const savedState = await loadGridState();
+        if (savedState) {
+          setGridConfig(savedState.gridConfig);
+          setCategoryBlocks(savedState.categoryBlocks);
+          setStaticBlocks(savedState.staticBlocks);
+        }
+      } catch (error) {
+        console.error("Failed to load grid state:", error);
+      } finally {
+        setHasTriedToLoad(true);
+        setIsLoading(false);
+      }
     }
-    setHasTriedToLoad(true);
-  }, []);
 
-  const handleStateLoaded = useCallback((state: GridState) => {
-    setGridConfig(state.gridConfig);
-    setCategoryBlocks(state.categoryBlocks);
-    setStaticBlocks(state.staticBlocks);
+    loadState();
   }, []);
 
   const handleSaveLayout = useCallback(
-    (
+    async (
       newConfig: GridConfig,
       newCategoryBlocks: CategoryBlock[],
       newStaticBlocks: StaticBlock[]
     ) => {
-      setGridConfig(newConfig);
-      setCategoryBlocks(newCategoryBlocks);
-      setStaticBlocks(newStaticBlocks);
-      saveState({
-        gridConfig: newConfig,
-        categoryBlocks: newCategoryBlocks,
-        lastUpdated: new Date().toString(),
-        staticBlocks: newStaticBlocks,
-      });
+      try {
+        setGridConfig(newConfig);
+        setCategoryBlocks(newCategoryBlocks);
+        setStaticBlocks(newStaticBlocks);
+
+        await saveGridState({
+          gridConfig: newConfig,
+          categoryBlocks: newCategoryBlocks,
+          staticBlocks: newStaticBlocks,
+          lastUpdated: new Date().toISOString(),
+        });
+      } catch (error) {
+        console.error("Failed to save grid state:", error);
+        // You might want to show a user-friendly error message here
+      }
     },
     []
   );
@@ -50,5 +64,6 @@ export function useGridState() {
     staticBlocks,
     handleSaveLayout,
     hasTriedToLoad,
+    isLoading,
   };
 }
