@@ -9,7 +9,11 @@ interface NewsStoryProps {
 
 export function NewsStory({ story }: NewsStoryProps) {
   return (
-    <Link href={story.imageUrl}>
+    <Link
+      href={
+        "/2024/09/04/homens-do-psd-da-misericordia-do-porto-em-desastre-financeiro-recebem-bonus-de-montenegro/"
+      }
+    >
       <div className="relative h-full overflow-hidden  shadow-lg group">
         <img
           src={story.imageUrl}

@@ -1,4 +1,3 @@
-"use client";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import { Story, CategoryBlock, StaticBlock } from "@/types";
 import { NewsStory } from "./NewsStory";
@@ -7,8 +6,6 @@ import { EmptyState } from "../ui/EmptyState";
 import { generateLayouts, BREAKPOINTS, COLS } from "@/utils/gridLayoutUtils";
 import "react-grid-layout/css/styles.css";
 import { CategoryBlockServer } from "../blocks/CategoryBlock";
-
-const ResponsiveGridLayout = WidthProvider(Responsive);
 
 interface NewsGridProps {
   stories: Record<string, Story>;
@@ -30,37 +27,74 @@ export function NewsGrid({
     return <EmptyState message="No content has been added to the grid yet." />;
   }
 
-  const layouts = generateLayouts(stories, categoryBlocks, staticBlocks);
-
   return (
-    <ResponsiveGridLayout
-      className="layout"
-      layouts={layouts}
-      breakpoints={BREAKPOINTS}
-      cols={COLS}
-      rowHeight={200}
-      isDraggable={false}
-      isResizable={false}
-      containerPadding={[16, 16]}
-      margin={[16, 16]}
-      compactType="vertical"
-      useCSSTransforms
-    >
+    <div className="layout grid grid-cols-6 grid-rows-12">
       {Object.values(stories).map((story) => (
-        <div key={story.id}>
+        <div
+          key={story.id}
+          className={getGridSpan(
+            story.gridPosition?.width,
+            story.gridPosition?.height
+          )}
+        >
           <NewsStory story={story} />
         </div>
       ))}
       {categoryBlocks.map((block) => (
-        <div key={block.id}>
+        <div
+          key={block.id}
+          className={getGridSpan(
+            block.gridPosition?.width,
+            block.gridPosition?.height
+          )}
+        >
           <CategoryBlockServer block={block} />
         </div>
       ))}
       {staticBlocks.map((block) => (
-        <div key={block.id}>
+        <div
+          key={block.id}
+          className={getGridSpan(
+            block.gridPosition?.width,
+            block.gridPosition?.height
+          )}
+        >
           <StaticBlockComponent block={block} />
         </div>
       ))}
-    </ResponsiveGridLayout>
+    </div>
   );
+}
+
+const GRID_SPANS = {
+  col: {
+    1: "col-span-1",
+    2: "col-span-2",
+    3: "col-span-3",
+    4: "col-span-4",
+    5: "col-span-5",
+    6: "col-span-6",
+  },
+  row: {
+    1: "row-span-1",
+    2: "row-span-2",
+    3: "row-span-3",
+    4: "row-span-4",
+    5: "row-span-5",
+    6: "row-span-6",
+  },
+} as const;
+
+function getGridSpan(width?: number, height?: number) {
+  const colSpan =
+    !width || width < 1 || width > 6
+      ? GRID_SPANS.col[1]
+      : GRID_SPANS.col[width as keyof typeof GRID_SPANS.col];
+
+  const rowSpan =
+    !height || height < 1 || height > 6
+      ? GRID_SPANS.row[1]
+      : GRID_SPANS.row[height as keyof typeof GRID_SPANS.row];
+
+  return `${colSpan} ${rowSpan}`;
 }
