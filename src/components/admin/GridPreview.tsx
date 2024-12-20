@@ -1,6 +1,6 @@
 import React from "react";
 import { Story, CategoryBlock, StaticBlock } from "../../types";
-import { CategoryBlock as CategoryBlockComponent } from "../blocks/CategoryBlock";
+import { CategoryBlockClient as CategoryBlockComponent } from "../blocks/CategoryBlock.client";
 import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
 import { BlockWrapper } from "./BlockWrapper";
 

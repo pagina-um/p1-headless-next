@@ -3,7 +3,7 @@ import RGL, { WidthProvider } from "react-grid-layout";
 import "react-grid-layout/css/styles.css";
 import { Story, CategoryBlock, StaticBlock } from "../../types";
 import { BlockWrapper } from "../admin/BlockWrapper";
-import { CategoryBlock as CategoryBlockComponent } from "../blocks/CategoryBlock";
+import { CategoryBlockClient as CategoryBlockComponent } from "../blocks/CategoryBlock.client";
 import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
 import { GripVertical } from "lucide-react";
 

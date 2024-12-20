@@ -2,11 +2,11 @@
 import { Responsive, WidthProvider } from "react-grid-layout";
 import { Story, CategoryBlock, StaticBlock } from "@/types";
 import { NewsStory } from "./NewsStory";
-import { CategoryBlock as CategoryBlockComponent } from "../blocks/CategoryBlock";
 import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
 import { EmptyState } from "../ui/EmptyState";
 import { generateLayouts, BREAKPOINTS, COLS } from "@/utils/gridLayoutUtils";
 import "react-grid-layout/css/styles.css";
+import { CategoryBlockServer } from "../blocks/CategoryBlock";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -53,7 +53,7 @@ export function NewsGrid({
       ))}
       {categoryBlocks.map((block) => (
         <div key={block.id}>
-          <CategoryBlockComponent block={block} />
+          <CategoryBlockServer block={block} />
         </div>
       ))}
       {staticBlocks.map((block) => (

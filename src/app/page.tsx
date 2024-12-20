@@ -1,26 +1,36 @@
-"use client";
-
-import { AdminPanel } from "@/components/admin/AdminPanel";
+import { loadGridState } from "@/services/jsonbin";
 import { NewsGrid } from "@/components/news/NewsGrid";
-import { useGridState } from "@/hooks/useGridState";
+import { GridState } from "@/types";
 
-export default function AdminPage() {
-  const {
-    gridConfig,
-    categoryBlocks,
-    staticBlocks,
-    handleSaveLayout,
-    hasTriedToLoad,
-  } = useGridState();
+async function getInitialState(): Promise<GridState | null> {
+  try {
+    return await loadGridState();
+  } catch (error) {
+    console.error("Failed to load initial grid state:", error);
+    return null;
+  }
+}
+
+export default async function HomePage() {
+  const initialState = await getInitialState();
+
+  if (!initialState) {
+    return (
+      <main className="max-w-7xl mx-auto pb-8">
+        <div className="p-8 text-center text-gray-500">
+          <p>Failed to load content. Please try again later.</p>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main className="max-w-7xl mx-auto pb-8">
-      {hasTriedToLoad && (
-        <NewsGrid
-          categoryBlocks={categoryBlocks}
-          staticBlocks={staticBlocks}
-          stories={gridConfig.stories}
-        />
-      )}
+      <NewsGrid
+        stories={initialState.gridConfig.stories}
+        categoryBlocks={initialState.categoryBlocks}
+        staticBlocks={initialState.staticBlocks}
+      />
     </main>
   );
 }
