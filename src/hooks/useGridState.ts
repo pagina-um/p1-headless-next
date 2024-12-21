@@ -50,6 +50,7 @@ export function useGridState() {
           staticBlocks: newStaticBlocks,
           lastUpdated: new Date().toISOString(),
         });
+        await fetch("/api/revalidate", { method: "POST" });
       } catch (error) {
         console.error("Failed to save grid state:", error);
         // You might want to show a user-friendly error message here

@@ -2,7 +2,6 @@ import { WPPost, WPCategory } from "../types/wordpress";
 import { Story, Category } from "../types";
 
 export function convertWPPostToStory(post: WPPost): Story {
-  console.log(post);
   // Get the featured image URL from the _embedded data
   const featuredImage = post._embedded?.["wp:featuredmedia"]?.[0];
   const imageUrl =

@@ -53,7 +53,9 @@ export function Header() {
                   }
                 `}
               >
-                <Logo />
+                <Link href={"/"}>
+                  <Logo />
+                </Link>
               </div>
             </div>
 

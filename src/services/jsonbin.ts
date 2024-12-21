@@ -33,6 +33,7 @@ export async function loadGridState(): Promise<GridState | null> {
       headers: {
         "X-Master-Key": API_KEY,
       },
+      next: { tags: ["homepage-grid"] },
     });
 
     if (!response.ok) {

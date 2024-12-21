@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { PostHeader } from "@/components/post/PostHeader";
 import { PostContent } from "@/components/post/PostContent";
 import { PostFooter } from "@/components/post/PostFooter";
-import { getPost, getPostPaths } from "@/services/wordpress";
+import { getPostBySlug, getPostPaths } from "@/services/wordpress";
 import type { WPPost } from "@/types/wordpress";
 
 interface PostPageProps {
@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 
 async function getPostData(slug: string): Promise<WPPost | null> {
   try {
-    return await getPost(slug);
+    return await getPostBySlug(slug);
   } catch (error) {
     console.error("Error fetching post:", error);
     return null;

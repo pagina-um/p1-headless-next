@@ -18,8 +18,8 @@ export interface WPLinks {
   collection: WPLink[];
   about: WPLink[];
   replies?: WPLink[];
-  'version-history'?: Array<WPLink & { count: number }>;
-  'predecessor-version'?: Array<WPLink & { id: number }>;
+  "version-history"?: Array<WPLink & { count: number }>;
+  "predecessor-version"?: Array<WPLink & { id: number }>;
   curies: Array<{
     name: string;
     href: string;
@@ -138,7 +138,68 @@ export interface WPPost {
   _links: WPLinks;
   _embedded?: {
     author?: WPAuthor[];
-    'wp:featuredmedia'?: WPMedia[];
+    "wp:featuredmedia"?: WPMedia[];
+  };
+}
+
+export interface WPPostById {
+  id: number;
+  date: string;
+  date_gmt: string;
+  guid: {
+    rendered: string;
+  };
+  modified: string;
+  modified_gmt: string;
+  slug: string;
+  status: string;
+  type: string;
+  link: string;
+  title: {
+    rendered: string;
+  };
+  content: {
+    rendered: string;
+    protected: boolean;
+  };
+  excerpt: {
+    rendered: string;
+    protected: boolean;
+  };
+  author: number;
+  featured_media: number;
+  comment_status: string;
+  ping_status: string;
+  sticky: boolean;
+  template: string;
+  format: string;
+  meta: {
+    _seopress_robots_primary_cat: string;
+    _seopress_titles_title: string;
+    _seopress_titles_desc: string;
+    _seopress_robots_index: string;
+    footnotes: string;
+    [key: string]: string; // For any additional meta fields
+  };
+  categories: number[];
+  tags: number[];
+  class_list: string[];
+  _links: {
+    self: Array<{
+      href?: string;
+      [key: string]: any;
+    }>;
+    collection: Array<any>;
+    about: Array<any>;
+    author: Array<any>;
+    replies: Array<any>;
+    "version-history": Array<any>;
+    "predecessor-version": Array<any>;
+    "wp:featuredmedia": Array<any>;
+    "wp:attachment": Array<any>;
+    "wp:term": Array<any>;
+    curies: Array<any>;
+    [key: string]: Array<any>;
   };
 }
 

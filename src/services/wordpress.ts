@@ -1,8 +1,8 @@
-import { WPCategory, WPPost } from "../types/wordpress";
+import { WPCategory, WPPost, WPPostById } from "../types/wordpress";
 
 const API_BASE_URL = "https://p1-git.local/wp-json/wp/v2";
 
-export async function getPost(slug: string): Promise<WPPost | null> {
+export async function getPostBySlug(slug: string): Promise<WPPost | null> {
   try {
     const response = await fetch(`${API_BASE_URL}/posts?slug=${slug}&_embed`, {
       next: { revalidate: 3600 },
@@ -14,6 +14,27 @@ export async function getPost(slug: string): Promise<WPPost | null> {
 
     const posts = await response.json();
     return posts[0] || null;
+  } catch (error) {
+    console.error("Error fetching post:", error);
+    return null;
+  }
+}
+
+export async function getPostById(id: string): Promise<WPPostById | null> {
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/posts/${id.split("wp-")[1]}`,
+      {
+        cache: "no-store",
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch post: ${response.statusText}`);
+    }
+
+    const post = await response.json();
+    return post || null;
   } catch (error) {
     console.error("Error fetching post:", error);
     return null;

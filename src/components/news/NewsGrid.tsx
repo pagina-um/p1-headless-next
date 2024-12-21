@@ -26,20 +26,21 @@ export function NewsGrid({
   if (!hasContent) {
     return <EmptyState message="No content has been added to the grid yet." />;
   }
-
   return (
     <div className="layout grid grid-cols-6 grid-auto-rows-[200px]">
-      {Object.values(stories).map((story) => (
-        <div
-          key={story.id}
-          className={getGridSpan(
-            story.gridPosition?.width,
-            story.gridPosition?.height
-          )}
-        >
-          <NewsStory story={story} />
-        </div>
-      ))}
+      {Object.values(stories).map((story) => {
+        return (
+          <div
+            key={story.id}
+            className={getGridSpan(
+              story.gridPosition?.width,
+              story.gridPosition?.height
+            )}
+          >
+            <NewsStory id={story.id} />
+          </div>
+        );
+      })}
       {categoryBlocks.map((block) => (
         <div
           key={block.id}
