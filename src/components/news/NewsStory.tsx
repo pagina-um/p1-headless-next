@@ -1,55 +1,52 @@
 import React from "react";
-import { Story } from "../../types";
 import { User, Calendar } from "lucide-react";
 import Link from "next/link";
-import { getPostById, getPostBySlug } from "@/services/wordpress";
-import { WPPost, WPPostById } from "@/types/wordpress";
-import { notFound } from "next/navigation";
+
+import { getClient, GET_POST_BY_ID } from "@/services/experiment";
 
 interface NewsStoryProps {
   id: string;
 }
-async function getPostData(id: string): Promise<WPPostById | null> {
-  try {
-    return await getPostById(id);
-  } catch (error) {
-    console.error("Error fetching post:", error);
-    return null;
-  }
-}
 
 export async function NewsStory({ id }: NewsStoryProps) {
-  const story = await getPostData(id);
-  const relativeLink = new URL(story?.link || "https://www.paginaum.pt")
-    .pathname;
+  const { data, error } = await getClient().query(GET_POST_BY_ID, {
+    id: id.split("-")[1],
+  });
 
-  if (!story) {
+  if (!data?.post || error) {
+    console.error(error, id);
     return "Conteúdo não encontrado.";
   }
-  const image = story._links["wp:featuredmedia"];
-  console.log(image);
+  const {
+    post: { author, featuredImage, uri, title, date },
+  } = data;
+
   return (
-    <Link href={relativeLink}>
+    <Link href={uri || ""} passHref>
       <div className="relative h-full overflow-hidden  shadow-lg group">
-        <img
-          src={"https://p1-git.local/wp-content/uploads/2024/09/1_01.jpg"}
-          alt={"story.title"}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-        />
+        {featuredImage && (
+          <img
+            src={featuredImage?.node.sourceUrl || ""}
+            alt={featuredImage?.node.altText || ""}
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
           <div className="absolute bottom-0 p-6 text-white">
             <h2 className="font-serif text-2xl md:text-3xl font-bold mb-3 leading-tight">
-              {story.title.rendered}
+              {title}
             </h2>
             <div className="flex items-center gap-4 text-sm text-gray-300">
               <span className="flex items-center gap-1">
                 <User className="w-4 h-4" />
-                {story.author}
+                {author?.node.name}
               </span>
-              <span className="flex items-center gap-1">
-                <Calendar className="w-4 h-4" />
-                {new Date(story.date).toLocaleDateString("pt-PT")}
-              </span>
+              {date && (
+                <span className="flex items-center gap-1">
+                  <Calendar className="w-4 h-4" />
+                  {new Date(date).toLocaleDateString("pt-PT")}
+                </span>
+              )}
             </div>
           </div>
         </div>
