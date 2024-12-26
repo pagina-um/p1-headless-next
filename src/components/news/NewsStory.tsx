@@ -3,14 +3,17 @@ import { User, Calendar } from "lucide-react";
 import Link from "next/link";
 
 import { getClient, GET_POST_BY_ID } from "@/services/experiment";
+import { StoryBlock } from "@/types";
 
 interface NewsStoryProps {
-  id: string;
+  story: StoryBlock;
 }
 
-export async function NewsStory({ id }: NewsStoryProps) {
+export async function NewsStory({ story }: NewsStoryProps) {
+  const { id } = story;
+
   const { data, error } = await getClient().query(GET_POST_BY_ID, {
-    id: id.split("-")[1],
+    id: id.toString(),
   });
 
   if (!data?.post || error) {
@@ -54,5 +57,3 @@ export async function NewsStory({ id }: NewsStoryProps) {
     </Link>
   );
 }
-
-/*   */

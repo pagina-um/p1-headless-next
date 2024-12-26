@@ -41,6 +41,7 @@ export async function loadGridState(): Promise<GridState | null> {
     }
 
     const data = await response.json();
+    console.log("asd", data.record);
     return data.record as GridState;
   } catch (err) {
     console.error("Error loading grid state:", err);

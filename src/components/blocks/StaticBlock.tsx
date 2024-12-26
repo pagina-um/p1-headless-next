@@ -9,8 +9,8 @@ interface StaticBlockProps {
 }
 
 export function StaticBlock({ block }: StaticBlockProps) {
-  const isNewsletterBlock = block.id.includes("newsletter");
-  const isPodcastBlock = block.id.includes("podcast");
+  const isNewsletterBlock = block.title.includes("newsletter");
+  const isPodcastBlock = block.title.includes("podcast");
 
   const gridStyles = {
     gridColumn: `span ${block.gridPosition?.width || 1}`,

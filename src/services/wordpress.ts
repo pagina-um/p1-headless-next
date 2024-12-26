@@ -1,6 +1,7 @@
 import { WPCategory, WPPost, WPPostById } from "../types/wordpress";
 
 const API_BASE_URL = "https://p1-git.local/wp-json/wp/v2";
+export const GQL_URL = "https://p1-git.local/graphql";
 
 export async function getPostBySlug(slug: string): Promise<WPPost | null> {
   try {

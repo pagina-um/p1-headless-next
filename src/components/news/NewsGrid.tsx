@@ -1,66 +1,38 @@
 import { Responsive, WidthProvider } from "react-grid-layout";
-import { Story, CategoryBlock, StaticBlock } from "@/types";
+import { CategoryBlock, StaticBlock, StoryBlock } from "@/types";
 import { NewsStory } from "./NewsStory";
 import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
 import { EmptyState } from "../ui/EmptyState";
-import { generateLayouts, BREAKPOINTS, COLS } from "@/utils/gridLayoutUtils";
 import "react-grid-layout/css/styles.css";
 import { CategoryBlockServer } from "../blocks/CategoryBlock";
 
 interface NewsGridProps {
-  stories: Record<string, Story>;
-  categoryBlocks: CategoryBlock[];
-  staticBlocks: StaticBlock[];
+  blocks: (CategoryBlock | StaticBlock | StoryBlock)[];
 }
 
-export function NewsGrid({
-  stories = {},
-  categoryBlocks = [],
-  staticBlocks = [],
-}: NewsGridProps) {
-  const hasContent =
-    Object.keys(stories).length > 0 ||
-    categoryBlocks.length > 0 ||
-    staticBlocks.length > 0;
+export function NewsGrid({ blocks }: NewsGridProps) {
+  const hasContent = blocks.length > 0;
 
   if (!hasContent) {
     return <EmptyState message="No content has been added to the grid yet." />;
   }
   return (
     <div className="layout grid grid-cols-6 grid-auto-rows-[200px]">
-      {Object.values(stories).map((story) => {
-        return (
-          <div
-            key={story.id}
-            className={getGridSpan(
-              story.gridPosition?.width,
-              story.gridPosition?.height
-            )}
-          >
-            <NewsStory id={story.id} />
-          </div>
-        );
-      })}
-      {categoryBlocks.map((block) => (
+      {blocks.map((block) => (
         <div
-          key={block.id}
+          key={block.blockType === "story" ? block.id : block.blockType}
           className={getGridSpan(
             block.gridPosition?.width,
             block.gridPosition?.height
           )}
         >
-          <CategoryBlockServer block={block} />
-        </div>
-      ))}
-      {staticBlocks.map((block) => (
-        <div
-          key={block.id}
-          className={getGridSpan(
-            block.gridPosition?.width,
-            block.gridPosition?.height
+          {block.blockType === "story" ? (
+            <NewsStory story={block} />
+          ) : block.blockType === "category" ? (
+            <CategoryBlockServer block={block} />
+          ) : (
+            <StaticBlockComponent block={block} />
           )}
-        >
-          <StaticBlockComponent block={block} />
         </div>
       ))}
     </div>

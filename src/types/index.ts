@@ -1,24 +1,5 @@
 export type Category = string;
 
-export interface GridState {
-  gridConfig: GridConfig;
-  categoryBlocks: CategoryBlock[];
-  staticBlocks: StaticBlock[];
-  lastUpdated: string;
-}
-
-export interface Story {
-  id: string;
-  title: string;
-  content: string;
-  excerpt: string;
-  imageUrl: string;
-  author: string;
-  publishedAt: string;
-  category: Category;
-  gridPosition?: GridPosition;
-}
-
 export interface GridPosition {
   x: number;
   y: number;
@@ -26,23 +7,28 @@ export interface GridPosition {
   height: number;
 }
 
-export interface GridConfig {
-  columns: number;
-  rows: number;
-  stories: Record<string, Story>;
+export interface StoryBlock {
+  blockType: "story";
+  id: number;
+  gridPosition: GridPosition;
 }
 
 export interface CategoryBlock {
-  id: string;
+  blockType: "category";
   categoryId: number;
-  title: string;
-  postsPerPage?: number;
-  gridPosition?: GridPosition;
+  postsPerPage: number;
+  gridPosition: GridPosition;
 }
 
 export interface StaticBlock {
-  id: string;
+  blockType: "static";
+  id: number;
   title: string;
   content: string;
-  gridPosition?: GridPosition;
+  gridPosition: GridPosition;
+}
+
+export interface GridState {
+  blocks: (CategoryBlock | StaticBlock | StaticBlock)[];
+  createdAt: string;
 }

@@ -1,50 +1,15 @@
 import React, { useState } from "react";
 import { Settings, Save } from "lucide-react";
-import { GridConfig, CategoryBlock, StaticBlock } from "../../types";
 import { StoriesList } from "./StoriesList";
 import { BlocksTabs } from "./BlocksTabs";
-import { GridLayout } from "../grid/GridLayout";
+import { EditableGrid } from "../grid/EditableGrid";
 import { Toast } from "../ui/Toast";
-import { useGridLayout } from "../../hooks/useGridLayout";
 import { GRID_COLUMNS } from "../../constants/grid";
 
-interface AdminPanelProps {
-  initialConfig: GridConfig;
-  initialCategoryBlocks: CategoryBlock[];
-  initialStaticBlocks: StaticBlock[];
-  onSaveLayout: (
-    config: GridConfig,
-    categoryBlocks: CategoryBlock[],
-    staticBlocks: StaticBlock[]
-  ) => void;
-}
+interface AdminPanelProps {}
 
-export function AdminPanel({
-  initialConfig,
-  initialCategoryBlocks,
-  initialStaticBlocks,
-  onSaveLayout,
-}: AdminPanelProps) {
+export function AdminPanel({}: AdminPanelProps) {
   const [showToast, setShowToast] = useState(false);
-
-  const {
-    gridConfig,
-    categoryBlocks,
-    staticBlocks,
-    handleLayoutChange,
-    addStory,
-    handleCreateCategoryBlock,
-    handleCreateStaticBlock,
-    handleDeleteStory,
-    handleDeleteCategoryBlock,
-    handleDeleteStaticBlock,
-    handleUpdateCategoryBlock,
-  } = useGridLayout(initialConfig, initialCategoryBlocks, initialStaticBlocks);
-
-  const handleSave = () => {
-    onSaveLayout(gridConfig, categoryBlocks, staticBlocks);
-    setShowToast(true);
-  };
 
   return (
     <div className="space-y-6">
@@ -56,7 +21,7 @@ export function AdminPanel({
           </h1>
           <button
             className="bg-blue-600 text-white px-4 py-2  flex items-center gap-2 hover:bg-blue-700 transition-colors"
-            onClick={handleSave}
+            onClick={placeHolder}
           >
             <Save className="w-4 h-4" />
             Guardar Layout
@@ -66,24 +31,19 @@ export function AdminPanel({
         <div className="grid grid-cols-2 gap-6">
           <div className="space-y-6">
             <BlocksTabs
-              onCreateCategoryBlock={handleCreateCategoryBlock}
-              onCreateStaticBlock={handleCreateStaticBlock}
+              onCreateCategoryBlock={placeHolder}
+              onCreateStaticBlock={placeHolder}
             />
           </div>
-          <StoriesList onSelectPost={addStory} />
+          <StoriesList onSelectPost={placeHolder} />
         </div>
       </div>
 
-      <GridLayout
+      <EditableGrid
         columns={GRID_COLUMNS}
-        stories={gridConfig.stories}
-        categoryBlocks={categoryBlocks}
-        staticBlocks={staticBlocks}
-        onLayoutChange={handleLayoutChange}
-        onDeleteStory={handleDeleteStory}
-        onDeleteCategoryBlock={handleDeleteCategoryBlock}
-        onDeleteStaticBlock={handleDeleteStaticBlock}
-        onUpdateCategoryBlock={handleUpdateCategoryBlock}
+        blocks={[]}
+        onLayoutChange={placeHolder}
+        onDeleteBlock={placeHolder}
       />
 
       <Toast
@@ -93,4 +53,10 @@ export function AdminPanel({
       />
     </div>
   );
+}
+
+export function placeHolder(): any {
+  return () => {
+    return;
+  };
 }

@@ -1,26 +1,37 @@
 "use client";
 
-import { AdminPanel } from "@/components/admin/AdminPanel";
-import { useGridState } from "@/hooks/useGridState";
+import { AdminPanel, placeHolder } from "@/components/admin/AdminPanel";
+import { GQL_URL } from "@/services/wordpress";
+import {
+  UrqlProvider,
+  ssrExchange,
+  cacheExchange,
+  fetchExchange,
+  createClient,
+} from "@urql/next";
+import { Suspense, useMemo } from "react";
 
 export default function AdminPage() {
-  const {
-    gridConfig,
-    categoryBlocks,
-    staticBlocks,
-    handleSaveLayout,
-    hasTriedToLoad,
-  } = useGridState();
+  const [client, ssr] = useMemo(() => {
+    const ssr = ssrExchange({
+      isClient: typeof window !== "undefined",
+    });
+    const client = createClient({
+      url: GQL_URL,
+      exchanges: [cacheExchange, ssr, fetchExchange],
+      suspense: true,
+    });
+
+    return [client, ssr];
+  }, []);
+
   return (
-    <main className="max-w-7xl mx-auto px-4 py-8">
-      {hasTriedToLoad && (
-        <AdminPanel
-          initialConfig={gridConfig}
-          initialCategoryBlocks={categoryBlocks}
-          initialStaticBlocks={staticBlocks}
-          onSaveLayout={handleSaveLayout}
-        />
-      )}
-    </main>
+    <UrqlProvider client={client} ssr={ssr}>
+      <main className="max-w-7xl mx-auto px-4 py-8">
+        <Suspense fallback={<div>Loading...</div>}>
+          <AdminPanel />
+        </Suspense>
+      </main>
+    </UrqlProvider>
   );
 }

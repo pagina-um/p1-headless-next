@@ -25,11 +25,7 @@ export default async function HomePage() {
   }
   return (
     <main className="max-w-7xl mx-auto pb-8">
-      <NewsGrid
-        stories={initialState.gridConfig.stories}
-        categoryBlocks={initialState.categoryBlocks}
-        staticBlocks={initialState.staticBlocks}
-      />
+      <NewsGrid blocks={[]} />
     </main>
   );
 }

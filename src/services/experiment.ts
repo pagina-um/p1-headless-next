@@ -1,10 +1,11 @@
 import { graphql } from "gql.tada";
 import { cacheExchange, createClient, fetchExchange } from "@urql/core";
 import { registerUrql } from "@urql/next/rsc";
+import { GQL_URL } from "./wordpress";
 
 export const makeClient = () => {
   return createClient({
-    url: "https://p1-git.local/graphql",
+    url: GQL_URL,
     exchanges: [cacheExchange, fetchExchange],
   });
 };
@@ -79,6 +80,25 @@ export const GET_POST_BY_ID = graphql(`
         node {
           sourceUrl
           altText
+        }
+      }
+    }
+  }
+`);
+
+export const GET_LATEST_POSTS = graphql(`
+  query GetLatestPosts {
+    posts(first: 10) {
+      nodes {
+        databaseId
+        title
+        date
+        slug
+        categories {
+          nodes {
+            id
+            name
+          }
         }
       }
     }
