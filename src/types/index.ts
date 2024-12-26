@@ -9,26 +9,28 @@ export interface GridPosition {
 
 export interface StoryBlock {
   blockType: "story";
-  id: number;
+  wpPostId: number;
   gridPosition: GridPosition;
+  uId: string;
 }
 
 export interface CategoryBlock {
   blockType: "category";
-  categoryId: number;
+  wpCategoryId: number;
   postsPerPage: number;
   gridPosition: GridPosition;
+  uId: string;
 }
 
 export interface StaticBlock {
   blockType: "static";
-  id: number;
+  uId: string;
   title: string;
   content: string;
   gridPosition: GridPosition;
 }
 
 export interface GridState {
-  blocks: (CategoryBlock | StaticBlock | StaticBlock)[];
+  blocks: (CategoryBlock | StoryBlock | StaticBlock)[];
   createdAt: string;
 }

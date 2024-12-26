@@ -2,9 +2,10 @@ import React from "react";
 import { WPPostsList } from "./WPPostsList";
 import { useQuery } from "@urql/next";
 import { GET_LATEST_POSTS } from "@/services/experiment";
+import { StoryBlock } from "@/types";
 
 interface StoriesListProps {
-  onSelectPost: (post: number) => void;
+  onSelectPost: (wpPostId: number) => void;
 }
 
 export function StoriesList({ onSelectPost }: StoriesListProps) {

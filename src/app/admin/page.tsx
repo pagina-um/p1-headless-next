@@ -1,6 +1,6 @@
 "use client";
 
-import { AdminPanel, placeHolder } from "@/components/admin/AdminPanel";
+import { AdminPanel } from "@/components/admin/AdminPanel";
 import { GQL_URL } from "@/services/wordpress";
 import {
   UrqlProvider,

@@ -5,6 +5,8 @@ import { CategoryBlock, StaticBlock, StoryBlock } from "../../types";
 import { BlockWrapper } from "../admin/BlockWrapper";
 import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
 import { GripVertical } from "lucide-react";
+import { NewsStory } from "../news/NewsStory";
+import { CategoryBlockClient } from "../blocks/CategoryBlock.client";
 
 const ReactGridLayout = WidthProvider(RGL);
 
@@ -12,7 +14,7 @@ interface EditableGridProps {
   columns: number;
   blocks: (CategoryBlock | StaticBlock | StoryBlock)[];
   onLayoutChange: (layout: RGL.Layout[]) => void;
-  onDeleteBlock: (id: number) => void;
+  onDeleteBlock: (uId: string) => void;
   onUpdateCategoryBlock?: (block: CategoryBlock) => void;
 }
 
@@ -45,25 +47,23 @@ export function EditableGrid({
       droppingItem={{ i: "__dropping-elem__", w: 2, h: 2 }}
       // Add delay before drag starts
     >
-      {[
-        {
-          title: "Category Block",
-          blockType: "static",
-          id: 2,
-          content: "hey",
-          gridPosition: { x: 0, y: 0, width: 2, height: 2 },
-        } as StaticBlock,
-      ].map((block) => (
-        <div key={block.id} className="group">
+      {blocks.map((block) => (
+        <div key={block.uId} className="group">
           <BlockWrapper
-            title={block.title}
-            onDelete={() => onDeleteBlock(block.id)}
+            title={block.blockType}
+            onDelete={() => onDeleteBlock(block.uId)}
           >
             <div className="relative h-full">
               <div className="drag-handle">
                 <GripVertical className="w-4 h-4" />
               </div>
-              <StaticBlockComponent block={block} />
+              {block.blockType === "category" ? (
+                <CategoryBlockClient block={block} />
+              ) : block.blockType === "static" ? (
+                <StaticBlockComponent block={block} />
+              ) : (
+                <NewsStory story={block} />
+              )}
             </div>
           </BlockWrapper>
         </div>

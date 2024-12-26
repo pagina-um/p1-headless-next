@@ -10,14 +10,14 @@ interface NewsStoryProps {
 }
 
 export async function NewsStory({ story }: NewsStoryProps) {
-  const { id } = story;
+  const { wpPostId } = story;
 
   const { data, error } = await getClient().query(GET_POST_BY_ID, {
-    id: id.toString(),
+    id: wpPostId.toString(),
   });
 
   if (!data?.post || error) {
-    console.error(error, id);
+    console.error(error, wpPostId);
     return "Conteúdo não encontrado.";
   }
   const {
