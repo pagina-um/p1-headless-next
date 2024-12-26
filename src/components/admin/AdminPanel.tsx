@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Settings, Save } from "lucide-react";
 import { StoriesList } from "./StoriesList";
 import { BlocksTabs } from "./BlocksTabs";
@@ -6,6 +6,7 @@ import { EditableGrid } from "../grid/EditableGrid";
 import { Toast } from "../ui/Toast";
 import { GRID_COLUMNS } from "../../constants/grid";
 import { GridState } from "@/types";
+import { Layout } from "react-grid-layout";
 
 interface AdminPanelProps {}
 
@@ -59,7 +60,27 @@ export function AdminPanel({}: AdminPanelProps) {
 export function useGrid() {
   const [gridState, setGridState] = useState<GridState>();
 
-  const onLayoutChange = (layout: any) => {};
+  const handleLayoutChange = useCallback((layout: Layout[]) => {
+    const positions = updateGridPositionFromLayout(layout);
+
+    // Update stories
+
+    // Update category blocks
+    setCategoryBlocks((prev) =>
+      prev.map((block) => ({
+        ...block,
+        gridPosition: positions[block.id] || block.gridPosition,
+      }))
+    );
+
+    // Update static blocks
+    setStaticBlocks((prev) =>
+      prev.map((block) => ({
+        ...block,
+        gridPosition: positions[block.id] || block.gridPosition,
+      }))
+    );
+  }, []);
 }
 
 export function placeHolder(): any {
