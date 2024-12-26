@@ -35,3 +35,5 @@ export default function AdminPage() {
     </UrqlProvider>
   );
 }
+
+// TODO: any nav away from this page should prompt the user to save their changes

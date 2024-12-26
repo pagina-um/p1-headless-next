@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Settings, Save } from "lucide-react";
 import { StoriesList } from "./StoriesList";
 import { BlocksTabs } from "./BlocksTabs";
 import { EditableGrid } from "../grid/EditableGrid";
 import { Toast } from "../ui/Toast";
 import { GRID_COLUMNS } from "../../constants/grid";
+import { GridState } from "@/types";
 
 interface AdminPanelProps {}
 
@@ -53,6 +54,12 @@ export function AdminPanel({}: AdminPanelProps) {
       />
     </div>
   );
+}
+
+export function useGrid() {
+  const [gridState, setGridState] = useState<GridState>();
+
+  const onLayoutChange = (layout: any) => {};
 }
 
 export function placeHolder(): any {
