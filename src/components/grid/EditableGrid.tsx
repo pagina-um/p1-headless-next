@@ -26,9 +26,21 @@ export function EditableGrid({
   onUpdateCategoryBlock,
 }: EditableGridProps) {
   // Convert grid positions to layout items
+  const layout = blocks.map((block) => ({
+    i: block.uId,
+    x: block.gridPosition?.x || 0,
+    y: block.gridPosition?.y || 0,
+    w: block.gridPosition?.width || 2,
+    h: block.gridPosition?.height || 2,
+    minW: 2,
+    maxW: columns,
+    minH: 1,
+    maxH: 4,
+  }));
 
   return (
     <ReactGridLayout
+      layout={layout}
       className="layout bg-gray-50 p-4 "
       cols={columns}
       rowHeight={200}
