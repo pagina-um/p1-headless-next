@@ -21,27 +21,6 @@ export async function getPostBySlug(slug: string): Promise<WPPost | null> {
   }
 }
 
-export async function getPostById(id: string): Promise<WPPostById | null> {
-  try {
-    const response = await fetch(
-      `${API_BASE_URL}/posts/${id.split("wp-")[1]}`,
-      {
-        cache: "no-store",
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch post: ${response.statusText}`);
-    }
-
-    const post = await response.json();
-    return post || null;
-  } catch (error) {
-    console.error("Error fetching post:", error);
-    return null;
-  }
-}
-
 export async function getPostPaths() {
   try {
     const response = await fetch(
@@ -84,21 +63,6 @@ export async function getCategories(): Promise<WPCategory[]> {
     return handleResponse<WPCategory[]>(response);
   } catch (error) {
     console.error("Error fetching categories:", error);
-    return [];
-  }
-}
-
-export async function getLatestPosts(
-  page: number = 1,
-  perPage: number = 10
-): Promise<WPPost[]> {
-  try {
-    const response = await fetch(
-      `${API_BASE_URL}/posts?page=${page}&per_page=${perPage}&_embed`
-    );
-    return handleResponse<WPPost[]>(response);
-  } catch (error) {
-    console.error("Error fetching latest posts:", error);
     return [];
   }
 }

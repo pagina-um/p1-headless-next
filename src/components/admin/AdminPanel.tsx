@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Settings, Save } from "lucide-react";
+import React, { Suspense } from "react";
+import { Settings, Save, Loader } from "lucide-react";
 import { EditableGrid } from "../grid/EditableGrid";
 import { Toast } from "../ui/Toast";
 import { BlocksTabs } from "./BlocksTabs";
@@ -20,6 +20,7 @@ export function AdminPanel({}: AdminPanelProps) {
     handleSave,
     setShowToast,
     showToast,
+    isSaving,
   } = useGrid();
 
   return (
@@ -31,10 +32,15 @@ export function AdminPanel({}: AdminPanelProps) {
             Painel de Administração
           </h1>
           <button
-            className="bg-blue-600 text-white px-4 py-2 flex items-center gap-2 hover:bg-blue-700 transition-colors"
+            disabled={isSaving}
+            className="bg-blue-600 text-white px-4 py-2 flex items-center gap-2 hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
             onClick={handleSave}
           >
-            <Save className="w-4 h-4" />
+            {!isSaving ? (
+              <Save className="w-4 h-4" />
+            ) : (
+              <Loader className="w-4 h-4 animate-spin" />
+            )}
             Guardar Layout
           </button>
         </div>
@@ -46,18 +52,21 @@ export function AdminPanel({}: AdminPanelProps) {
               onCreateStaticBlock={handleCreateStaticBlock}
             />
           </div>
+
           <StoriesList onSelectPost={handleCreateStoryBlock} />
         </div>
       </div>
 
-      {gridState && (
-        <EditableGrid
-          columns={GRID_COLUMNS}
-          blocks={gridState.blocks}
-          onLayoutChange={handleLayoutChange}
-          onDeleteBlock={handleDeleteBlock}
-        />
-      )}
+      <Suspense>
+        {gridState && (
+          <EditableGrid
+            columns={GRID_COLUMNS}
+            blocks={gridState.blocks}
+            onLayoutChange={handleLayoutChange}
+            onDeleteBlock={handleDeleteBlock}
+          />
+        )}
+      </Suspense>
 
       <Toast
         show={showToast}

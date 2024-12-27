@@ -32,7 +32,11 @@ export async function CategoryBlockServer({ block }: CategoryBlockProps) {
 
       <div className="space-y-4 overflow-auto h-[calc(100%-4rem)]">
         {posts.length > 0 ? (
-          <CategoryPostList posts={posts} categoryId={block.wpCategoryId} />
+          <CategoryPostList
+            posts={posts}
+            categoryId={block.wpCategoryId}
+            shouldLink={true}
+          />
         ) : (
           <p className="text-gray-500 italic font-body-serif">
             Ainda não existem artigos nesta categoria

@@ -64,6 +64,8 @@ export function EditableGrid({
           <BlockWrapper
             title={block.blockType}
             onDelete={() => onDeleteBlock(block.uId)}
+            onUpdateBlock={onUpdateCategoryBlock}
+            block={block.blockType === "category" ? block : undefined}
           >
             <div className="relative h-full">
               <div className="drag-handle">

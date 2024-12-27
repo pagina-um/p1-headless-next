@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 export const useGrid = () => {
   const [gridState, setGridState] = useState<GridState>();
-
+  const [isSaving, setIsSaving] = useState(false);
   useEffect(() => {
     const fetchGridState = async () => {
       const gridState = await loadGridState();
@@ -53,10 +53,13 @@ export const useGrid = () => {
   const handleSave = async () => {
     if (!gridState) return;
     try {
+      setIsSaving(true);
       await saveGridState(gridState);
       await fetch("/api/revalidate", { method: "POST" });
       setShowToast(true);
+      setIsSaving(false);
     } catch (error) {
+      setIsSaving(false);
       console.error("Failed to save grid state:", error);
     }
   };
@@ -116,5 +119,6 @@ export const useGrid = () => {
     handleCreateStoryBlock,
     showToast,
     setShowToast,
+    isSaving,
   };
 };

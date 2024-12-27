@@ -9,28 +9,24 @@ import {
   fetchExchange,
   createClient,
 } from "@urql/next";
-import { Suspense, useMemo } from "react";
+import { Suspense } from "react";
+
+// Move client creation outside component
+const ssr = ssrExchange({
+  isClient: typeof window !== "undefined",
+});
+
+const client = createClient({
+  url: GQL_URL,
+  exchanges: [cacheExchange, ssr, fetchExchange],
+  suspense: true,
+});
 
 export default function AdminPage() {
-  const [client, ssr] = useMemo(() => {
-    const ssr = ssrExchange({
-      isClient: typeof window !== "undefined",
-    });
-    const client = createClient({
-      url: GQL_URL,
-      exchanges: [cacheExchange, ssr, fetchExchange],
-      suspense: true,
-    });
-
-    return [client, ssr];
-  }, []);
-
   return (
     <UrqlProvider client={client} ssr={ssr}>
       <main className="max-w-7xl mx-auto px-4 py-8">
-        <Suspense fallback={<div>Loading...</div>}>
-          <AdminPanel />
-        </Suspense>
+        <AdminPanel />
       </main>
     </UrqlProvider>
   );
