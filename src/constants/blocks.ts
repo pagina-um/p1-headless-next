@@ -1,13 +1,13 @@
 export const STATIC_BLOCKS = {
   newsletter: {
-    id: "newsletter",
+    id: "newsletter" as const,
     title: "Newsletter Subscription",
     content:
       "Stay updated with our latest news and stories delivered directly to your inbox.",
     defaultSize: { width: 3, height: 1 },
   },
   podcast: {
-    id: "podcast",
+    id: "podcast" as const,
     title: "Latest Podcasts",
     content:
       "Listen to our latest episodes discussing current events and in-depth stories.",

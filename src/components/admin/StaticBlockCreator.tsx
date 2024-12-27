@@ -3,7 +3,7 @@ import { Layout, Mail, Plus } from "lucide-react";
 import { STATIC_BLOCKS } from "../../constants/blocks";
 
 interface StaticBlockCreatorProps {
-  onCreateBlock: (block: { title: string; content: string }) => void;
+  onCreateBlock: (title: "newsletter" | "podcast") => void;
 }
 
 export function StaticBlockCreator({ onCreateBlock }: StaticBlockCreatorProps) {
@@ -18,7 +18,7 @@ export function StaticBlockCreator({ onCreateBlock }: StaticBlockCreatorProps) {
         {Object.values(STATIC_BLOCKS).map((block) => (
           <button
             key={block.id}
-            onClick={() => onCreateBlock(block)}
+            onClick={() => onCreateBlock(block.id)}
             className="flex items-start gap-4 p-4 bg-gray-50  hover:bg-gray-100 transition-colors text-left group"
           >
             <div className="mt-1">

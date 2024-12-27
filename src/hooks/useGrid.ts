@@ -86,12 +86,12 @@ export const useGrid = () => {
     });
   };
 
-  const handleCreateStaticBlock = () => {
+  const handleCreateStaticBlock = (title: "newsletter" | "podcast") => {
     if (!gridState) return;
     const newBlock: StaticBlock = {
       uId: Date.now().toString(),
       blockType: "static",
-      title: "New Static Block",
+      title,
       gridPosition: { x: 0, y: 0, width: 2, height: 2 },
       content: "Static content",
     };
