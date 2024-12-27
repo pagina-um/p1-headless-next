@@ -4,7 +4,7 @@ import "react-grid-layout/css/styles.css";
 import { CategoryBlock, StaticBlock, StoryBlock } from "../../types";
 import { BlockWrapper } from "../admin/BlockWrapper";
 import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
-import { GripVertical } from "lucide-react";
+import { GripVertical, Loader } from "lucide-react";
 import { CategoryBlockClient } from "../blocks/CategoryBlock.client";
 import { NewsStoryClient } from "../blocks/NewsStory.client";
 
@@ -76,13 +76,17 @@ export function EditableGrid({
                 <GripVertical className="w-4 h-4" />
               </div>
               {block.blockType === "category" ? (
-                <Suspense>
+                <Suspense
+                  fallback={<Loader className="w-8 h-8 animate-spin mx-auto" />}
+                >
                   <CategoryBlockClient block={block} />
                 </Suspense>
               ) : block.blockType === "static" ? (
                 <StaticBlockComponent block={block} />
               ) : (
-                <Suspense>
+                <Suspense
+                  fallback={<Loader className="w-8 h-8 animate-spin mx-auto" />}
+                >
                   <NewsStoryClient story={block} />
                 </Suspense>
               )}
