@@ -20,7 +20,7 @@ export function NewsGrid({ blocks }: NewsGridProps) {
     <div className="layout grid grid-cols-6 grid-auto-rows-[200px]">
       {blocks.map((block) => (
         <div
-          key={block.blockType === "story" ? block.id : block.blockType}
+          key={block.uId}
           className={getGridSpan(
             block.gridPosition?.width,
             block.gridPosition?.height
