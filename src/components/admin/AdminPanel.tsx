@@ -10,8 +10,6 @@ import { useGrid } from "@/hooks/useGrid";
 interface AdminPanelProps {}
 
 export function AdminPanel({}: AdminPanelProps) {
-  const [showToast, setShowToast] = useState(false);
-
   const {
     handleCreateCategoryBlock,
     gridState,
@@ -20,6 +18,8 @@ export function AdminPanel({}: AdminPanelProps) {
     handleDeleteBlock,
     handleLayoutChange,
     handleSave,
+    setShowToast,
+    showToast,
   } = useGrid();
 
   return (

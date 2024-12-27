@@ -54,7 +54,7 @@ export const useGrid = () => {
     if (!gridState) return;
     try {
       await saveGridState(gridState);
-      await revalidateTag("homepage-grid");
+      await fetch("/api/revalidate", { method: "POST" });
       setShowToast(true);
     } catch (error) {
       console.error("Failed to save grid state:", error);
@@ -114,5 +114,7 @@ export const useGrid = () => {
     handleCreateCategoryBlock,
     handleCreateStaticBlock,
     handleCreateStoryBlock,
+    showToast,
+    setShowToast,
   };
 };
