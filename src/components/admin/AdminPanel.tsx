@@ -12,14 +12,12 @@ import RGL from "react-grid-layout";
 interface AdminPanelProps {}
 
 export function AdminPanel({}: AdminPanelProps) {
-  debugger;
   const [gridState, setGridState] = useState<GridState>();
 
   useEffect(() => {
     const fetchGridState = async () => {
       const gridState = await loadGridState();
       if (gridState) {
-        console.log("admin", gridState.blocks);
         setGridState(gridState);
       }
     };
@@ -30,7 +28,6 @@ export function AdminPanel({}: AdminPanelProps) {
   const [showToast, setShowToast] = useState(false);
 
   const handleLayoutChange = (layout: RGL.Layout[]) => {
-    debugger;
     if (!gridState) return;
 
     const updatedBlocks = gridState.blocks.map((block) => {

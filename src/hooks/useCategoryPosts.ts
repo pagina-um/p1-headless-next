@@ -1,45 +1,13 @@
-import { useState, useEffect } from 'react';
-import { WPPost } from '../types/wordpress';
-import { getPostsByCategory } from '../services/wordpress';
+import { useQuery } from "@urql/next";
+import { GET_POSTS_BY_CATEGORY } from "@/services/experiment";
 
 export function useCategoryPosts(categoryId: number, postsPerPage: number = 5) {
-  const [posts, setPosts] = useState<WPPost[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let mounted = true;
-
-    const fetchPosts = async () => {
-      if (!categoryId) {
-        setLoading(false);
-        return;
-      }
-
-      try {
-        setLoading(true);
-        setError(null);
-        const categoryPosts = await getPostsByCategory(categoryId, postsPerPage);
-        
-        if (mounted) {
-          setPosts(categoryPosts);
-          setLoading(false);
-        }
-      } catch (err) {
-        console.error('Error in useCategoryPosts:', err);
-        if (mounted) {
-          setError('Failed to load category posts');
-          setLoading(false);
-        }
-      }
-    };
-
-    fetchPosts();
-
-    return () => {
-      mounted = false;
-    };
-  }, [categoryId, postsPerPage]);
-
-  return { posts, loading, error };
+  const [{ fetching, error, data }] = useQuery({
+    query: GET_POSTS_BY_CATEGORY,
+    variables: {
+      categoryId: categoryId,
+      postsPerPage,
+    },
+  });
+  return { fetching, error, data };
 }

@@ -19,10 +19,13 @@ export function CategoryBlockClient({ block }: CategoryBlockProps) {
     setCurrentPostsPerPage(block.postsPerPage || 5);
   }, [block.postsPerPage]);
 
-  const { posts, loading, error } = useCategoryPosts(
-    block.wpCategoryId,
-    currentPostsPerPage
-  );
+  const {
+    data,
+    fetching: loading,
+    error,
+  } = useCategoryPosts(block.wpCategoryId, currentPostsPerPage);
+
+  const posts = data?.posts?.nodes || [];
 
   if (!block.wpCategoryId) {
     return (
@@ -46,7 +49,11 @@ export function CategoryBlockClient({ block }: CategoryBlockProps) {
         ) : error ? (
           <ErrorMessage message="Não foi possível carregar os artigos desta categoria." />
         ) : posts.length > 0 ? (
-          <CategoryPostList posts={posts} categoryId={block.wpCategoryId} />
+          <CategoryPostList
+            posts={posts}
+            categoryId={block.wpCategoryId}
+            shouldLink={false}
+          />
         ) : (
           <p className="text-gray-500 italic font-body-serif">
             Ainda não existem artigos nesta categoria

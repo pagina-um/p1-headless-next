@@ -88,29 +88,6 @@ export async function getCategories(): Promise<WPCategory[]> {
   }
 }
 
-export async function getPostsByCategory(
-  categoryId: number,
-  postsPerPage: number = 5
-): Promise<WPPost[]> {
-  if (!categoryId) {
-    console.error("Invalid category ID:", categoryId);
-    return [];
-  }
-
-  try {
-    console.log(`Fetching ${postsPerPage} posts for category ${categoryId}`);
-    const response = await fetch(
-      `${API_BASE_URL}/posts?categories=${categoryId}&per_page=${postsPerPage}&_embed`
-    );
-    const posts = await handleResponse<WPPost[]>(response);
-    console.log(`Received ${posts.length} posts for category ${categoryId}`);
-    return posts;
-  } catch (error) {
-    console.error(`Error fetching posts for category ${categoryId}:`, error);
-    return [];
-  }
-}
-
 export async function getLatestPosts(
   page: number = 1,
   perPage: number = 10

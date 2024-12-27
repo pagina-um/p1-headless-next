@@ -2,17 +2,19 @@ import React from "react";
 import { CategoryBlock as CategoryBlockType } from "../../types";
 import { CategoryBlockHeader } from "./CategoryBlockHeader";
 import { CategoryPostList } from "./CategoryPostList";
-import { getPostsByCategory } from "@/services/wordpress";
+import { GET_POSTS_BY_CATEGORY, getClient } from "@/services/experiment";
 
 export interface CategoryBlockProps {
   block: CategoryBlockType;
 }
 
 export async function CategoryBlockServer({ block }: CategoryBlockProps) {
-  const posts = await getPostsByCategory(
-    block.wpCategoryId,
-    block.postsPerPage
-  );
+  const { data, error } = await getClient().query(GET_POSTS_BY_CATEGORY, {
+    categoryId: block.wpCategoryId,
+    postsPerPage: block.postsPerPage,
+  });
+
+  const posts = data?.posts?.nodes || [];
 
   if (!block.wpCategoryId) {
     return (
@@ -26,7 +28,7 @@ export async function CategoryBlockServer({ block }: CategoryBlockProps) {
 
   return (
     <div className="h-full p-6 bg-white  shadow-sm border border-gray-100 block-content">
-      <CategoryBlockHeader title={block.blockType} />
+      <CategoryBlockHeader title={block.wpCategoryName} />
 
       <div className="space-y-4 overflow-auto h-[calc(100%-4rem)]">
         {posts.length > 0 ? (

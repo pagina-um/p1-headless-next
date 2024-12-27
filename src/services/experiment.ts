@@ -25,8 +25,8 @@ export const GET_CATEGORIES = graphql(`
   }
 `);
 
-const GET_POSTS_BY_CATEGORY = graphql(`
-  query GetPostsByCategory($categoryId: ID!, $postsPerPage: Int!) {
+export const GET_POSTS_BY_CATEGORY = graphql(`
+  query GetPostsByCategory($categoryId: Int!, $postsPerPage: Int!) {
     posts(where: { categoryId: $categoryId }, first: $postsPerPage) {
       nodes {
         id
@@ -35,6 +35,7 @@ const GET_POSTS_BY_CATEGORY = graphql(`
         excerpt
         date
         slug
+        uri
         categories {
           nodes {
             id
