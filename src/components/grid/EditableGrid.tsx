@@ -76,7 +76,9 @@ export function EditableGrid({
                 <GripVertical className="w-4 h-4" />
               </div>
               {block.blockType === "category" ? (
-                <CategoryBlockClient block={block} />
+                <Suspense>
+                  <CategoryBlockClient block={block} />
+                </Suspense>
               ) : block.blockType === "static" ? (
                 <StaticBlockComponent block={block} />
               ) : (
