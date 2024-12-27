@@ -5,8 +5,8 @@ import { CategoryBlock, StaticBlock, StoryBlock } from "../../types";
 import { BlockWrapper } from "../admin/BlockWrapper";
 import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
 import { GripVertical } from "lucide-react";
-import { NewsStory } from "../blocks/NewsStory";
 import { CategoryBlockClient } from "../blocks/CategoryBlock.client";
+import { NewsStoryClient } from "../blocks/NewsStory.client";
 
 const ReactGridLayout = WidthProvider(RGL);
 
@@ -81,7 +81,7 @@ export function EditableGrid({
                 <StaticBlockComponent block={block} />
               ) : (
                 <Suspense>
-                  <NewsStory story={block} />
+                  <NewsStoryClient story={block} />
                 </Suspense>
               )}
             </div>
