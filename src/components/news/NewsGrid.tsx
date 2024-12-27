@@ -1,6 +1,6 @@
 import { Responsive, WidthProvider } from "react-grid-layout";
 import { CategoryBlock, StaticBlock, StoryBlock } from "@/types";
-import { NewsStory } from "./NewsStory";
+import { NewsStory } from "../blocks/NewsStory";
 import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
 import { EmptyState } from "../ui/EmptyState";
 import "react-grid-layout/css/styles.css";

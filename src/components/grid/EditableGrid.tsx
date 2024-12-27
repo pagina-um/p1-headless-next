@@ -5,7 +5,7 @@ import { CategoryBlock, StaticBlock, StoryBlock } from "../../types";
 import { BlockWrapper } from "../admin/BlockWrapper";
 import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
 import { GripVertical } from "lucide-react";
-import { NewsStory } from "../news/NewsStory";
+import { NewsStory } from "../blocks/NewsStory";
 import { CategoryBlockClient } from "../blocks/CategoryBlock.client";
 
 const ReactGridLayout = WidthProvider(RGL);
