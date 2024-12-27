@@ -17,7 +17,7 @@ export function NewsGrid({ blocks }: NewsGridProps) {
     return <EmptyState message="No content has been added to the grid yet." />;
   }
   return (
-    <div className="layout grid grid-cols-6 grid-auto-rows-[200px]">
+    <div className="layout grid grid-cols-6 grid-auto-rows-[200px] gap-2 mt-2">
       {blocks.map((block) => (
         <div
           key={block.uId}

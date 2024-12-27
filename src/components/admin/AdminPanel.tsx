@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Settings, Save, Loader } from "lucide-react";
+import { Settings, Save, Loader, Delete, Trash } from "lucide-react";
 import { EditableGrid } from "../grid/EditableGrid";
 import { Toast } from "../ui/Toast";
 import { BlocksTabs } from "./BlocksTabs";
@@ -21,6 +21,7 @@ export function AdminPanel({}: AdminPanelProps) {
     setShowToast,
     showToast,
     isSaving,
+    handleClearLayout,
   } = useGrid();
 
   return (
@@ -31,18 +32,32 @@ export function AdminPanel({}: AdminPanelProps) {
             <Settings className="w-6 h-6" />
             Painel de Administração
           </h1>
-          <button
-            disabled={isSaving}
-            className="bg-blue-600 text-white px-4 py-2 flex items-center gap-2 hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
-            onClick={handleSave}
-          >
-            {!isSaving ? (
-              <Save className="w-4 h-4" />
-            ) : (
-              <Loader className="w-4 h-4 animate-spin" />
-            )}
-            Guardar Layout
-          </button>
+          <div className="flex gap-4">
+            <button
+              disabled={isSaving}
+              className="bg-red-600 text-white px-4 py-2 flex items-center gap-2 hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+              onClick={handleClearLayout}
+            >
+              {!isSaving ? (
+                <Trash className="w-4 h-4" />
+              ) : (
+                <Loader className="w-4 h-4 animate-spin" />
+              )}
+              Apagar Layout
+            </button>
+            <button
+              disabled={isSaving}
+              className="bg-blue-600 text-white px-4 py-2 flex items-center gap-2 hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+              onClick={handleSave}
+            >
+              {!isSaving ? (
+                <Save className="w-4 h-4" />
+              ) : (
+                <Loader className="w-4 h-4 animate-spin" />
+              )}
+              Guardar Layout
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 gap-6">

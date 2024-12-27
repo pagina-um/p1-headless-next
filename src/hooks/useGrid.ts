@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 export const useGrid = () => {
   const [gridState, setGridState] = useState<GridState>();
   const [isSaving, setIsSaving] = useState(false);
+
   useEffect(() => {
     const fetchGridState = async () => {
       const gridState = await loadGridState();
@@ -19,6 +20,11 @@ export const useGrid = () => {
   }, []);
 
   const [showToast, setShowToast] = useState(false);
+
+  const handleClearLayout = () => {
+    if (!gridState) return;
+    setGridState({ ...gridState, blocks: [] });
+  };
 
   const handleLayoutChange = (layout: RGL.Layout[]) => {
     if (!gridState) return;
@@ -103,9 +109,12 @@ export const useGrid = () => {
       gridPosition: { x: 0, y: 0, width: 2, height: 2 },
       wpPostId,
     };
-    setGridState({
-      ...gridState,
-      blocks: [...gridState.blocks, newBlock],
+    setGridState((prevState: any) => {
+      const updatedState = {
+        ...prevState,
+        blocks: [...prevState.blocks, newBlock],
+      };
+      return updatedState;
     });
   };
 
@@ -120,5 +129,6 @@ export const useGrid = () => {
     showToast,
     setShowToast,
     isSaving,
+    handleClearLayout,
   };
 };
