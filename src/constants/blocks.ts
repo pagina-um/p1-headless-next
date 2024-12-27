@@ -43,11 +43,3 @@ export const STATIC_BLOCKS = {
     ],
   },
 };
-
-// Update default sizes for the 6-column grid
-export const BLOCK_DEFAULT_SIZES = {
-  story: { width: 2, height: 1 }, // Default story takes 2 columns
-  category: { width: 3, height: 2 }, // Category blocks take half the grid width
-  newsletter: { width: 3, height: 1 }, // Newsletter takes half width, single height
-  podcast: { width: 3, height: 2 }, // Podcast takes half width, double height
-} as const;

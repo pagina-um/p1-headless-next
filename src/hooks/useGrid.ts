@@ -76,7 +76,7 @@ export const useGrid = () => {
       wpCategoryId: id,
       wpCategoryName: name,
       blockType: "category",
-      gridPosition: { x: 0, y: 0, width: 2, height: 2 },
+      gridPosition: { x: 0, y: 0, width: 2, height: 1 },
       uId: Date.now().toString(),
       postsPerPage: 5,
     };
@@ -92,7 +92,7 @@ export const useGrid = () => {
       uId: Date.now().toString(),
       blockType: "static",
       title,
-      gridPosition: { x: 0, y: 0, width: 2, height: 2 },
+      gridPosition: { x: 0, y: 0, width: 2, height: 1 },
       content: "Static content",
     };
     setGridState({
@@ -106,7 +106,7 @@ export const useGrid = () => {
     const newBlock: StoryBlock = {
       uId: Date.now().toString(),
       blockType: "story",
-      gridPosition: { x: 0, y: 0, width: 2, height: 2 },
+      gridPosition: { x: 0, y: 0, width: 2, height: 1 },
       wpPostId,
     };
     setGridState((prevState: any) => {
