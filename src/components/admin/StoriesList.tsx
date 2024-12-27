@@ -15,7 +15,7 @@ export function StoriesList({ onSelectPost }: StoriesListProps) {
       <h2 className="text-lg font-semibold mb-3">Notícias</h2>
       <div className="max-h-[400px] overflow-y-auto pr-2 -mr-2">
         <WPPostsList
-          posts={result.data?.posts || []}
+          posts={(result.data?.posts as any) || []}
           onSelectPost={onSelectPost}
         />
       </div>

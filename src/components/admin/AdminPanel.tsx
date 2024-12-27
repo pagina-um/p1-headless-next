@@ -7,6 +7,7 @@ import { GridState, CategoryBlock, StaticBlock, StoryBlock } from "@/types";
 import { BlocksTabs } from "./BlocksTabs";
 import { StoriesList } from "./StoriesList";
 import { GRID_COLUMNS } from "../../constants/grid";
+import RGL from "react-grid-layout";
 
 interface AdminPanelProps {}
 

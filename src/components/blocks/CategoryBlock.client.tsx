@@ -20,11 +20,11 @@ export function CategoryBlockClient({ block }: CategoryBlockProps) {
   }, [block.postsPerPage]);
 
   const { posts, loading, error } = useCategoryPosts(
-    block.categoryId,
+    block.wpCategoryId,
     currentPostsPerPage
   );
 
-  if (!block.categoryId) {
+  if (!block.wpCategoryId) {
     return (
       <div className="h-full p-6 bg-white  shadow-sm border border-gray-100">
         <p className="text-gray-500 italic font-body-serif">
@@ -46,7 +46,7 @@ export function CategoryBlockClient({ block }: CategoryBlockProps) {
         ) : error ? (
           <ErrorMessage message="Não foi possível carregar os artigos desta categoria." />
         ) : posts.length > 0 ? (
-          <CategoryPostList posts={posts} categoryId={block.categoryId} />
+          <CategoryPostList posts={posts} categoryId={block.wpCategoryId} />
         ) : (
           <p className="text-gray-500 italic font-body-serif">
             Ainda não existem artigos nesta categoria
