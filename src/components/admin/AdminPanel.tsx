@@ -57,7 +57,7 @@ export function AdminPanel({}: AdminPanelProps) {
         </div>
       </div>
 
-      <Suspense>
+      <Suspense fallback={<Loader className="w-8 h-8 animate-spin mx-auto" />}>
         {gridState && (
           <EditableGrid
             columns={GRID_COLUMNS}

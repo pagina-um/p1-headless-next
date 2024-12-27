@@ -54,7 +54,7 @@ export function CategoryBlockCreator({
         <Tag className="w-5 h-5" />
         Blocos de Categoria
       </h3>
-      <div className="max-h-[200px] overflow-y-auto pr-2 -mr-2 grid grid-cols-2 gap-2">
+      <div className="max-h-[300px] overflow-y-auto pr-2 -mr-2 grid grid-cols-2 gap-2">
         {categories.map((category) => (
           <button
             key={category.id}
