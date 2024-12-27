@@ -17,6 +17,7 @@ export interface StoryBlock {
 export interface CategoryBlock {
   blockType: "category";
   wpCategoryId: number;
+  wpCategoryName: string;
   postsPerPage: number;
   gridPosition: GridPosition;
   uId: string;

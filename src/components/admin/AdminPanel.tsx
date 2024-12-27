@@ -12,12 +12,14 @@ import RGL from "react-grid-layout";
 interface AdminPanelProps {}
 
 export function AdminPanel({}: AdminPanelProps) {
+  debugger;
   const [gridState, setGridState] = useState<GridState>();
 
   useEffect(() => {
     const fetchGridState = async () => {
       const gridState = await loadGridState();
       if (gridState) {
+        console.log("admin", gridState.blocks);
         setGridState(gridState);
       }
     };
@@ -25,10 +27,10 @@ export function AdminPanel({}: AdminPanelProps) {
     fetchGridState();
   }, []);
 
-  console.log(gridState);
   const [showToast, setShowToast] = useState(false);
 
   const handleLayoutChange = (layout: RGL.Layout[]) => {
+    debugger;
     if (!gridState) return;
 
     const updatedBlocks = gridState.blocks.map((block) => {
@@ -68,10 +70,11 @@ export function AdminPanel({}: AdminPanelProps) {
     }
   };
 
-  const handleCreateCategoryBlock = () => {
+  const handleCreateCategoryBlock = (id: number, name: string) => {
     if (!gridState) return;
     const newBlock: CategoryBlock = {
-      wpCategoryId: 79,
+      wpCategoryId: id,
+      wpCategoryName: name,
       blockType: "category",
       gridPosition: { x: 0, y: 0, width: 2, height: 2 },
       uId: Date.now().toString(),

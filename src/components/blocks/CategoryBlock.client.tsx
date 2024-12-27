@@ -36,7 +36,7 @@ export function CategoryBlockClient({ block }: CategoryBlockProps) {
 
   return (
     <div className="h-full p-6 bg-white  shadow-sm border border-gray-100 block-content">
-      <CategoryBlockHeader title={"sasd"} />
+      <CategoryBlockHeader title={block.wpCategoryName} />
 
       <div className="space-y-4 overflow-auto h-[calc(100%-4rem)]">
         {loading ? (
