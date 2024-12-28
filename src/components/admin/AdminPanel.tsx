@@ -4,8 +4,8 @@ import { EditableGrid } from "../grid/EditableGrid";
 import { Toast } from "../ui/Toast";
 import { BlocksTabs } from "./BlocksTabs";
 import { StoriesList } from "./StoriesList";
-import { GRID_COLUMNS } from "../../constants/grid";
 import { useGrid } from "@/hooks/useGrid";
+import { GRID_COLUMNS } from "@/constants/blocks";
 
 interface AdminPanelProps {}
 

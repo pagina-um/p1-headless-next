@@ -43,3 +43,53 @@ export const STATIC_BLOCKS = {
     ],
   },
 };
+
+export const GRID_COLUMNS = 6;
+
+export const GRID_SPANS = {
+  // Column spans for tablet (2-column layout)
+  tabletCol: {
+    1: "sm:col-span-1",
+    2: "sm:col-span-2",
+    3: "sm:col-span-2",
+    4: "sm:col-span-2",
+    5: "sm:col-span-2",
+    6: "sm:col-span-2",
+  },
+  // Column spans for desktop (6-column layout)
+  desktopCol: {
+    1: "lg:col-span-1",
+    2: "lg:col-span-2",
+    3: "lg:col-span-3",
+    4: "lg:col-span-4",
+    5: "lg:col-span-5",
+    6: "lg:col-span-6",
+  },
+  row: {
+    1: "row-span-1",
+    2: "sm:row-span-2",
+    3: "sm:row-span-3",
+    4: "sm:row-span-4",
+    5: "sm:row-span-5",
+    6: "sm:row-span-6",
+  },
+  // Column start positions only apply on desktop
+  colStart: {
+    0: "lg:col-start-1",
+    1: "lg:col-start-2",
+    2: "lg:col-start-3",
+    3: "lg:col-start-4",
+    4: "lg:col-start-5",
+    5: "lg:col-start-6",
+    6: "lg:col-start-7",
+  },
+  rowStart: {
+    0: "sm:row-start-1",
+    1: "sm:row-start-2",
+    2: "sm:row-start-3",
+    3: "sm:row-start-4",
+    4: "sm:row-start-5",
+    5: "sm:row-start-6",
+    6: "sm:row-start-7",
+  },
+} as const;
