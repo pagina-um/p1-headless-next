@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Tag, Loader } from "lucide-react";
-import { getCategories } from "../../services/wordpress";
-import type { WPCategory } from "../../types/wordpress";
+import { useQuery } from "@urql/next";
+import { GET_CATEGORIES } from "@/services/experiment";
 
 interface CategoryBlockCreatorProps {
   onCreateBlock: (categoryId: number, title: string) => void;
@@ -10,24 +10,11 @@ interface CategoryBlockCreatorProps {
 export function CategoryBlockCreator({
   onCreateBlock,
 }: CategoryBlockCreatorProps) {
-  const [categories, setCategories] = useState<WPCategory[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [{ data, error, fetching: loading }] = useQuery({
+    query: GET_CATEGORIES,
+  });
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const wpCategories = await getCategories();
-        setCategories(wpCategories);
-      } catch (err) {
-        setError("Falha ao carregar categorias");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCategories();
-  }, []);
+  const categories = data?.categories?.nodes;
 
   if (loading) {
     return (
@@ -43,11 +30,10 @@ export function CategoryBlockCreator({
   if (error) {
     return (
       <div className="border-t mt-4 pt-4">
-        <p className="text-red-500">{error}</p>
+        <p className="text-red-500">{error.message}</p>
       </div>
     );
   }
-
   return (
     <div>
       <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
@@ -55,10 +41,10 @@ export function CategoryBlockCreator({
         Blocos de Categoria
       </h3>
       <div className="max-h-[300px] overflow-y-auto pr-2 -mr-2 grid grid-cols-2 gap-2">
-        {categories.map((category) => (
+        {categories?.map((category) => (
           <button
             key={category.id}
-            onClick={() => onCreateBlock(category.id, category.name)}
+            onClick={() => onCreateBlock(category.databaseId, category.name!)}
             className="px-3 py-2 bg-gray-100  text-sm capitalize hover:bg-gray-200 transition-colors flex items-center justify-between group"
           >
             <span>{category.name}</span>

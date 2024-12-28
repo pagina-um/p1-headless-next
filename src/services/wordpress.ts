@@ -47,22 +47,3 @@ export async function getPostPaths() {
     return [];
   }
 }
-
-const handleResponse = async <T>(response: Response): Promise<T> => {
-  if (!response.ok) {
-    const error = await response.text();
-    console.error("API Error:", error);
-    throw new Error(`API error: ${response.status}`);
-  }
-  return response.json();
-};
-
-export async function getCategories(): Promise<WPCategory[]> {
-  try {
-    const response = await fetch(`${API_BASE_URL}/categories?per_page=100`);
-    return handleResponse<WPCategory[]>(response);
-  } catch (error) {
-    console.error("Error fetching categories:", error);
-    return [];
-  }
-}
