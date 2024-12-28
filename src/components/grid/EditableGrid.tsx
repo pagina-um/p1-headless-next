@@ -15,7 +15,7 @@ interface EditableGridProps {
   blocks: (CategoryBlock | StaticBlock | StoryBlock)[];
   onLayoutChange: (layout: RGL.Layout[]) => void;
   onDeleteBlock: (uId: string) => void;
-  onUpdateCategoryBlock?: (block: CategoryBlock) => void;
+  onUpdateCategoryBlock: (block: CategoryBlock) => void;
 }
 
 export function EditableGrid({

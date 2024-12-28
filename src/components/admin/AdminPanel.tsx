@@ -15,6 +15,7 @@ export function AdminPanel({}: AdminPanelProps) {
     gridState,
     handleCreateStaticBlock,
     handleCreateStoryBlock,
+    handleUpdateCategoryBlock,
     handleDeleteBlock,
     handleLayoutChange,
     handleSave,
@@ -79,6 +80,7 @@ export function AdminPanel({}: AdminPanelProps) {
             blocks={gridState.blocks}
             onLayoutChange={handleLayoutChange}
             onDeleteBlock={handleDeleteBlock}
+            onUpdateCategoryBlock={handleUpdateCategoryBlock}
           />
         )}
       </Suspense>

@@ -118,12 +118,22 @@ export const useGrid = () => {
     });
   };
 
+  const handleUpdateCategoryBlock = (block: CategoryBlock) => {
+    setGridState((prevState: any) => {
+      const updatedBlocks = prevState.blocks.map((b: any) =>
+        b.uId === block.uId ? block : b
+      );
+      return { ...prevState, blocks: updatedBlocks };
+    });
+  };
+
   return {
     gridState,
     handleLayoutChange,
     handleDeleteBlock,
     handleSave,
     handleCreateCategoryBlock,
+    handleUpdateCategoryBlock,
     handleCreateStaticBlock,
     handleCreateStoryBlock,
     showToast,
