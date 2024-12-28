@@ -3,6 +3,7 @@ import { loadGridState, saveGridState } from "@/services/jsonbin";
 import { GridState, CategoryBlock, StaticBlock, StoryBlock } from "@/types";
 import { revalidateTag } from "next/cache";
 import { useState, useEffect } from "react";
+import * as RGL from "react-grid-layout";
 
 export const useGrid = () => {
   const [gridState, setGridState] = useState<GridState>();

@@ -50,7 +50,6 @@ export function EditableGrid({
       rowHeight={200}
       containerPadding={[0, 0]}
       margin={[16, 16]}
-      compactType={null}
       preventCollision={true}
       onLayoutChange={onLayoutChange}
       draggableHandle=".drag-handle"
