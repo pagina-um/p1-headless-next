@@ -11,7 +11,7 @@ interface NewsStoryProps {
 }
 
 export function NewsStoryClient({ story }: NewsStoryProps) {
-  const { wpPostId, style = "moderno" } = story;
+  const { wpPostId } = story;
 
   const [{ data, error }] = useQuery({
     query: GET_POST_BY_ID,
@@ -31,44 +31,9 @@ export function NewsStoryClient({ story }: NewsStoryProps) {
     post: { author, featuredImage, uri, title, date },
   } = data;
 
-  if (style === "classico") {
-    return (
-      <Link href={uri || ""} passHref>
-        <div className="h-full bg-white shadow-lg group overflow-hidden">
-          {featuredImage && (
-            <div className="aspect-video overflow-hidden">
-              <img
-                src={featuredImage?.node.sourceUrl || ""}
-                alt={featuredImage?.node.altText || ""}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-            </div>
-          )}
-          <div className="p-6">
-            <h2 className="font-serif text-2xl md:text-3xl font-bold mb-3 leading-tight group-hover:text-primary transition-colors">
-              {title}
-            </h2>
-            <div className="flex items-center gap-4 text-sm text-gray-500">
-              <span className="flex items-center gap-1">
-                <User className="w-4 h-4" />
-                {author?.node.name}
-              </span>
-              {date && (
-                <span className="flex items-center gap-1">
-                  <Calendar className="w-4 h-4" />
-                  {new Date(date).toLocaleDateString("pt-PT")}
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
-      </Link>
-    );
-  }
-
   return (
     <Link href={uri || ""} passHref>
-      <div className="relative h-full overflow-hidden shadow-lg group">
+      <div className="relative h-full overflow-hidden  shadow-lg group">
         {featuredImage && (
           <img
             src={featuredImage?.node.sourceUrl || ""}

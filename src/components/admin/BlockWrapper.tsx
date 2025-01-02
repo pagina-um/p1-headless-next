@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { BlockSettings, BlockSettingsButton } from "../ui/BlockSettings";
-import { CategoryBlock, StoryBlock } from "../../types";
+import { CategoryBlock } from "../../types";
 
 interface BlockWrapperProps {
   children: React.ReactNode;
   title: string;
   onDelete: () => void;
   gridPosition?: { width: number; height: number };
-  block?: CategoryBlock | StoryBlock;
-  onUpdateBlock?: (block: CategoryBlock | StoryBlock) => void;
+  block?: CategoryBlock;
+  onUpdateBlock?: (block: CategoryBlock) => void;
 }
 
 export function BlockWrapper({
@@ -21,10 +21,7 @@ export function BlockWrapper({
 }: BlockWrapperProps) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [tempPostsPerPage, setTempPostsPerPage] = useState(
-    (block as CategoryBlock)?.postsPerPage || 5
-  );
-  const [tempStyle, setTempStyle] = useState(
-    (block as StoryBlock)?.style || "moderno"
+    block?.postsPerPage || 5
   );
 
   const handlePostsPerPageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,23 +29,12 @@ export function BlockWrapper({
     setTempPostsPerPage(Math.max(1, Math.min(20, value)));
   };
 
-  const handleStyleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setTempStyle(e.target.value as "moderno" | "classico");
-  };
-
   const handleClose = () => {
-    if (block && onUpdateBlock) {
-      if (block.blockType === "category" && tempPostsPerPage !== (block as CategoryBlock).postsPerPage) {
-        onUpdateBlock({
-          ...block,
-          postsPerPage: tempPostsPerPage,
-        });
-      } else if (block.blockType === "story" && tempStyle !== (block as StoryBlock).style) {
-        onUpdateBlock({
-          ...block,
-          style: tempStyle as "moderno" | "classico",
-        });
-      }
+    if (block && onUpdateBlock && tempPostsPerPage !== block.postsPerPage) {
+      onUpdateBlock({
+        ...block,
+        postsPerPage: tempPostsPerPage,
+      });
     }
     setIsFlipped(false);
   };
@@ -83,14 +69,14 @@ export function BlockWrapper({
               </label>
               <input
                 type="text"
-                className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                 value={title}
                 onChange={() => {}}
                 disabled
               />
             </div>
 
-            {block?.blockType === "category" && (
+            {block && (
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Número de Artigos
@@ -99,7 +85,7 @@ export function BlockWrapper({
                   type="number"
                   min="1"
                   max="20"
-                  className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                  className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                   value={tempPostsPerPage}
                   onChange={handlePostsPerPageChange}
                 />
@@ -114,13 +100,12 @@ export function BlockWrapper({
                 Estilo
               </label>
               <select
-                className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                value={tempStyle}
-                onChange={handleStyleChange}
-                disabled={block?.blockType !== "story"}
+                className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                disabled
               >
-                <option value="moderno">Moderno</option>
-                <option value="classico">Clássico</option>
+                <option>Padrão</option>
+                <option>Compacto</option>
+                <option>Destacado</option>
               </select>
             </div>
           </div>

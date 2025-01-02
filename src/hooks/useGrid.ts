@@ -145,7 +145,6 @@ export const useGrid = () => {
       blockType: "story",
       gridPosition: { x: 0, y: 0, width: 2, height: 1 },
       wpPostId,
-      style: "moderno",
     };
     setGridState((prevState: any) => {
       const updatedState = {
@@ -156,7 +155,7 @@ export const useGrid = () => {
     });
   };
 
-  const handleUpdateBlock = (block: CategoryBlock | StoryBlock) => {
+  const handleUpdateCategoryBlock = (block: CategoryBlock) => {
     setGridState((prevState: any) => {
       const updatedBlocks = prevState.blocks.map((b: any) =>
         b.uId === block.uId ? block : b
@@ -171,7 +170,7 @@ export const useGrid = () => {
     handleDeleteBlock,
     handleSave,
     handleCreateCategoryBlock,
-    handleUpdateBlock,
+    handleUpdateCategoryBlock,
     handleCreateStaticBlock,
     handleCreateStoryBlock,
     showToast,
