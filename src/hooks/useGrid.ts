@@ -143,6 +143,7 @@ export const useGrid = () => {
     const newBlock: StoryBlock = {
       uId: Date.now().toString(),
       blockType: "story",
+      style: "modern",
       gridPosition: { x: 0, y: 0, width: 2, height: 1 },
       wpPostId,
     };
@@ -163,6 +164,15 @@ export const useGrid = () => {
       return { ...prevState, blocks: updatedBlocks };
     });
   };
+  const handleUpdateStoryBlock = (block: StoryBlock) => {
+    console.log("handleUpdateStoryBlock", block);
+    setGridState((prevState: any) => {
+      const updatedBlocks = prevState.blocks.map((b: any) =>
+        b.uId === block.uId ? block : b
+      );
+      return { ...prevState, blocks: updatedBlocks };
+    });
+  };
 
   return {
     gridState,
@@ -171,6 +181,7 @@ export const useGrid = () => {
     handleSave,
     handleCreateCategoryBlock,
     handleUpdateCategoryBlock,
+    handleUpdateStoryBlock,
     handleCreateStaticBlock,
     handleCreateStoryBlock,
     showToast,

@@ -6,7 +6,7 @@ import { BlockWrapper } from "../admin/BlockWrapper";
 import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
 import { GripVertical, Loader } from "lucide-react";
 import { CategoryBlockClient } from "../blocks/CategoryBlock.client";
-import { NewsStoryClient } from "../blocks/NewsStory.client";
+import { NewsStoryClient } from "../blocks/NewsStory/NewsStory.client";
 
 const ReactGridLayout = WidthProvider(RGL);
 
@@ -16,6 +16,7 @@ interface EditableGridProps {
   onLayoutChange: (layout: RGL.Layout[]) => void;
   onDeleteBlock: (uId: string) => void;
   onUpdateCategoryBlock: (block: CategoryBlock) => void;
+  onUpdateStoryBlock: (block: StoryBlock) => void;
 }
 
 export function EditableGrid({
@@ -24,6 +25,7 @@ export function EditableGrid({
   blocks,
   onDeleteBlock,
   onUpdateCategoryBlock,
+  onUpdateStoryBlock,
 }: EditableGridProps) {
   // Convert grid positions to layout items
   const layout = useMemo(
@@ -67,8 +69,18 @@ export function EditableGrid({
           <BlockWrapper
             title={block.blockType}
             onDelete={() => onDeleteBlock(block.uId)}
-            onUpdateBlock={onUpdateCategoryBlock}
-            block={block.blockType === "category" ? block : undefined}
+            onUpdateBlock={(b: CategoryBlock | StoryBlock) => {
+              block.blockType === "category"
+                ? onUpdateCategoryBlock(b as CategoryBlock)
+                : block.blockType === "story"
+                ? onUpdateStoryBlock(b as StoryBlock)
+                : undefined;
+            }}
+            block={
+              block.blockType === "category" || block.blockType === "story"
+                ? block
+                : undefined
+            }
           >
             <div className="relative h-full">
               <div className="drag-handle">

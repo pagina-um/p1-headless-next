@@ -1,5 +1,5 @@
 import { CategoryBlock, StaticBlock, StoryBlock } from "@/types";
-import { NewsStory } from "../blocks/NewsStory";
+import { NewsStory } from "../blocks/NewsStory/NewsStory";
 import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
 import { EmptyState } from "../ui/EmptyState";
 import { CategoryBlockServer } from "../blocks/CategoryBlock";

@@ -37,6 +37,7 @@ export function AdminPanel({}: AdminPanelProps) {
     handleCreateStaticBlock,
     handleCreateStoryBlock,
     handleUpdateCategoryBlock,
+    handleUpdateStoryBlock,
     handleDeleteBlock,
     handleLayoutChange,
     handleSave,
@@ -118,6 +119,7 @@ export function AdminPanel({}: AdminPanelProps) {
               onLayoutChange={handleLayoutChange}
               onDeleteBlock={handleDeleteBlock}
               onUpdateCategoryBlock={handleUpdateCategoryBlock}
+              onUpdateStoryBlock={handleUpdateStoryBlock}
             />
           )}
         </Suspense>

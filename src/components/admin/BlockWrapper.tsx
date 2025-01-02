@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { BlockSettings, BlockSettingsButton } from "../ui/BlockSettings";
-import { CategoryBlock } from "../../types";
+import { CategoryBlock, StoryBlock } from "../../types";
 
 interface BlockWrapperProps {
   children: React.ReactNode;
   title: string;
   onDelete: () => void;
   gridPosition?: { width: number; height: number };
-  block?: CategoryBlock;
-  onUpdateBlock?: (block: CategoryBlock) => void;
+  block?: CategoryBlock | StoryBlock | any; // TODO: remove any
+  onUpdateBlock?: (block: CategoryBlock | StoryBlock) => void;
 }
 
 export function BlockWrapper({
@@ -20,20 +20,45 @@ export function BlockWrapper({
   onUpdateBlock,
 }: BlockWrapperProps) {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [tempPostsPerPage, setTempPostsPerPage] = useState(
+  const [localPostsPerPage, setLocalPostsPerPage] = useState(
     block?.postsPerPage || 5
+  );
+
+  const [localStoryStyle, setLocalStoryStyle] = useState(
+    block?.style || "modern"
   );
 
   const handlePostsPerPageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value) || 5;
-    setTempPostsPerPage(Math.max(1, Math.min(20, value)));
+    setLocalPostsPerPage(Math.max(1, Math.min(20, value)));
+  };
+
+  const handleChangeStoryStyle = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setLocalStoryStyle(e.target.value);
   };
 
   const handleClose = () => {
-    if (block && onUpdateBlock && tempPostsPerPage !== block.postsPerPage) {
+    debugger;
+    if (
+      block &&
+      block?.blockType === "category" &&
+      onUpdateBlock &&
+      localPostsPerPage !== block.postsPerPage
+    ) {
       onUpdateBlock({
         ...block,
-        postsPerPage: tempPostsPerPage,
+        postsPerPage: localPostsPerPage,
+      });
+    }
+    if (
+      block &&
+      block?.blockType === "story" &&
+      onUpdateBlock &&
+      localStoryStyle !== block.style
+    ) {
+      onUpdateBlock({
+        ...block,
+        style: localStoryStyle,
       });
     }
     setIsFlipped(false);
@@ -86,7 +111,7 @@ export function BlockWrapper({
                   min="1"
                   max="20"
                   className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                  value={tempPostsPerPage}
+                  value={localPostsPerPage}
                   onChange={handlePostsPerPageChange}
                 />
                 <p className="mt-1 text-xs text-gray-500">
@@ -100,12 +125,12 @@ export function BlockWrapper({
                 Estilo
               </label>
               <select
+                value={localStoryStyle}
                 className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                disabled
+                onChange={handleChangeStoryStyle}
               >
-                <option>Padrão</option>
-                <option>Compacto</option>
-                <option>Destacado</option>
+                <option value={"classic"}>Clássico</option>
+                <option value={"modern"}>Moderno</option>
               </select>
             </div>
           </div>
