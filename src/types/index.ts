@@ -12,6 +12,7 @@ export interface StoryBlock {
   wpPostId: number;
   gridPosition: GridPosition;
   uId: string;
+  style?: "moderno" | "classico"; // Add style option
 }
 
 export interface CategoryBlock {
