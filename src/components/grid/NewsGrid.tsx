@@ -16,7 +16,7 @@ export function NewsGrid({ blocks }: NewsGridProps) {
   }
 
   return (
-    <div className="layout grid grid-cols-1 lg:grid-cols-6 auto-rows-auto lg:auto-rows-[200px] gap-4 lg:mt-4">
+    <div className="layout grid grid-cols-1 lg:grid-cols-6 auto-rows-auto lg:auto-rows-[100px] gap-4 lg:mt-4">
       {blocks.map((block) => (
         <div
           key={block.uId}

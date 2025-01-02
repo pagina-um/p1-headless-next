@@ -1,6 +1,7 @@
 import { loadGridState } from "@/services/jsonbin";
 import { NewsGrid } from "@/components/grid/NewsGrid";
 import { GridState } from "@/types";
+import { PostFooter } from "@/components/post/PostFooter";
 
 async function getInitialState(): Promise<GridState | null> {
   try {
@@ -24,8 +25,11 @@ export default async function HomePage() {
     );
   }
   return (
-    <main className="max-w-7xl mx-auto pb-8">
-      <NewsGrid blocks={initialState.blocks} />
-    </main>
+    <>
+      <main className="max-w-7xl mx-auto pb-8">
+        <NewsGrid blocks={initialState.blocks} />
+      </main>
+      <PostFooter />
+    </>
   );
 }

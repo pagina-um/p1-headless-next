@@ -1,7 +1,7 @@
 import { customPostFields } from "@/types";
 import { Square } from "lucide-react";
 
-export const MIN_BLOCK_AREA_FOR_EXTRA_CONTENT = 6;
+export const MIN_BLOCK_AREA_FOR_EXTRA_CONTENT = 12;
 
 export function ClassicStoryLayout({
   blockSize,
@@ -22,26 +22,22 @@ export function ClassicStoryLayout({
 }) {
   const blockArea = blockSize[0] * blockSize[1] * 1.5;
   const isLargeBlock = blockArea >= MIN_BLOCK_AREA_FOR_EXTRA_CONTENT;
-  const isLandscape = blockSize[0] > blockSize[1] * 1.4;
-  console.log("isLandscape", isLandscape);
-
+  const isLandscape = blockSize[0] > blockSize[1] * 0.9;
   return (
-    <div className="@container group">
+    <div className="@container group h-full ">
       <div
-        className={`flex gap-4 h-full items-center ${
-          isLandscape ? "flex-row" : "flex-col"
-        }`}
+        className={`flex gap-4 h-full ${isLandscape ? "flex-row" : "flex-col"}`}
       >
         {featuredImageUrl && isLargeBlock && (
-          <div className={isLandscape ? "w-1/2" : "h-1/2"}>
+          <div className={`relative ${isLandscape ? "w-1/2" : "h-1/2"}`}>
             <img
               src={featuredImageUrl || ""}
               alt={featuredImageAlt || ""}
-              className={`object-cover `}
+              className="object-cover w-full h-full absolute inset-0"
             />
           </div>
         )}
-        <div className={"flex-1"}>
+        <div className="flex-1 flex flex-col justify-center">
           {postFields.antetitulo && (
             <p className="text-balance text-gray-600 font-medium underline underline-offset-2">
               <Square className="w-2 h-2 bg-primary stroke-primary inline mr-2 mb-1" />
@@ -49,23 +45,12 @@ export function ClassicStoryLayout({
             </p>
           )}
 
-          <h2 className="font-serif text-2xl md:text-3xl font-bold mb-3 leading-tight group-hover:underline">
+          <h2 className="font-serif text-2xl md:text-3xl font-bold mb-3 leading-tight group-hover:underline text-balance">
             {title}
           </h2>
-          {postFields.chamadaDestaque && <p>{postFields.chamadaDestaque}</p>}
-
-          {/* <div className="flex items-center gap-4 text-sm text-gray-600">
-         <span className="flex items-center gap-1">
-           <User className="w-4 h-4" />
-           {author?.node.name}
-         </span>
-         {date && (
-           <span className="flex items-center gap-1">
-             <Calendar className="w-4 h-4" />
-             {new Date(date).toLocaleDateString("pt-PT")}
-           </span>
-         )}
-       </div> */}
+          {postFields.chamadaDestaque && (
+            <p className="text-gray-600">{postFields.chamadaDestaque}</p>
+          )}
         </div>
       </div>
     </div>

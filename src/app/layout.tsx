@@ -23,7 +23,6 @@ export default function RootLayout({
       <body className="min-h-screen bg-gray-100">
         <Header />
         {children}
-        <PostFooter />
       </body>
     </html>
   );

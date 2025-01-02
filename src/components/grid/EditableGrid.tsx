@@ -39,7 +39,7 @@ export function EditableGrid({
         minW: 2,
         maxW: columns,
         minH: 1,
-        maxH: 4,
+        maxH: 8,
       })),
     [blocks, columns]
   );
@@ -49,7 +49,7 @@ export function EditableGrid({
       layout={layout}
       className="layout bg-gray-50 p-4 "
       cols={columns}
-      rowHeight={200}
+      rowHeight={100}
       containerPadding={[0, 0]}
       margin={[16, 16]}
       preventCollision={true}
@@ -62,6 +62,8 @@ export function EditableGrid({
       useCSSTransforms={true}
       transformScale={1}
       droppingItem={{ i: "__dropping-elem__", w: 2, h: 2 }}
+      allowOverlap={false}
+
       // Add delay before drag starts
     >
       {blocks.map((block) => (
