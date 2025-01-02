@@ -1,7 +1,7 @@
 import { customPostFields } from "@/types";
 import { Square } from "lucide-react";
 
-export const MIN_BLOCK_AREA_FOR_EXTRA_CONTENT = 5;
+export const MIN_BLOCK_AREA_FOR_EXTRA_CONTENT = 6;
 
 export function ClassicStoryLayout({
   blockSize,
@@ -22,7 +22,8 @@ export function ClassicStoryLayout({
 }) {
   const blockArea = blockSize[0] * blockSize[1] * 1.5;
   const isLargeBlock = blockArea >= MIN_BLOCK_AREA_FOR_EXTRA_CONTENT;
-  const isLandscape = blockSize[0] > blockSize[1] * 1.5;
+  const isLandscape = blockSize[0] > blockSize[1] * 1.4;
+  console.log("isLandscape", isLandscape);
 
   return (
     <div className="@container">
@@ -32,13 +33,15 @@ export function ClassicStoryLayout({
         }`}
       >
         {featuredImageUrl && isLargeBlock && (
-          <img
-            src={featuredImageUrl || ""}
-            alt={featuredImageAlt || ""}
-            className={`object-cover ${isLandscape ? "w-1/2" : "h-1/2"}`}
-          />
+          <div className={isLandscape ? "w-1/2" : "h-1/2"}>
+            <img
+              src={featuredImageUrl || ""}
+              alt={featuredImageAlt || ""}
+              className={`object-cover `}
+            />
+          </div>
         )}
-        <div className="">
+        <div className={"flex-1"}>
           {postFields.antetitulo && (
             <p className="text-balance text-gray-600 font-medium underline underline-offset-2">
               <Square className="w-2 h-2 bg-primary stroke-primary inline mr-2 mb-1" />
