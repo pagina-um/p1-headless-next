@@ -1,5 +1,6 @@
 import { Calendar, User } from "lucide-react";
 import { PostBySlugData } from "@/app/[year]/[month]/[day]/[slug]/page";
+import { formatDate } from "@/utils/categoryUtils";
 
 interface PostHeaderProps {
   post: PostBySlugData["data"];
@@ -23,7 +24,7 @@ export function PostHeader({ post }: PostHeaderProps) {
         </span>
         <span className="flex items-center gap-1">
           <Calendar className="w-4 h-4" />
-          asd
+          {formatDate(post?.postBy?.date || "")}
         </span>
       </div>
 

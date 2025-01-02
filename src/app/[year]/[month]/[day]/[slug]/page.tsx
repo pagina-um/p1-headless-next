@@ -67,10 +67,11 @@ async function PostComponent({ slug }: { slug: string }) {
   }
 
   return (
-    <article className="max-w-4xl mx-auto px-4 py-12">
-      <PostHeader post={data} />
-      <PostContent content={data.postBy?.content || ""} />
-      <PostFooter post={data} />
+    <article>
+      <div className="max-w-4xl mx-auto px-4 py-12">
+        <PostHeader post={data} />
+        <PostContent content={data.postBy?.content || ""} />
+      </div>
     </article>
   );
 }

@@ -26,7 +26,7 @@ export function ClassicStoryLayout({
   console.log("isLandscape", isLandscape);
 
   return (
-    <div className="@container">
+    <div className="@container group">
       <div
         className={`flex gap-4 h-full items-center ${
           isLandscape ? "flex-row" : "flex-col"
@@ -49,7 +49,7 @@ export function ClassicStoryLayout({
             </p>
           )}
 
-          <h2 className="font-serif text-2xl md:text-3xl font-bold mb-3 leading-tight">
+          <h2 className="font-serif text-2xl md:text-3xl font-bold mb-3 leading-tight group-hover:underline">
             {title}
           </h2>
           {postFields.chamadaDestaque && <p>{postFields.chamadaDestaque}</p>}

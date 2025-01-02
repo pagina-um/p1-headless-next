@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import "@/styles/globals.css";
+import { PostFooter } from "@/components/post/PostFooter";
 
 export const metadata: Metadata = {
   title: "News Grid",
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-gray-100">
         <Header />
         {children}
+        <PostFooter />
       </body>
     </html>
   );
