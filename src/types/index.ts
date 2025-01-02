@@ -35,3 +35,9 @@ export interface GridState {
   blocks: (CategoryBlock | StoryBlock | StaticBlock)[];
   createdAt: string;
 }
+
+export interface customPostFields {
+  antetitulo?: string;
+  chamadaDestaque?: string;
+  chamadaManchete?: string;
+}

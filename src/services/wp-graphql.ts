@@ -66,6 +66,11 @@ export const GET_POST_BY_ID = graphql(`
       excerpt
       date
       slug
+      postFields {
+        antetitulo
+        chamadaDestaque
+        chamadaManchete
+      }
       categories {
         nodes {
           id

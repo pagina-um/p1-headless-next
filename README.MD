@@ -4,7 +4,7 @@ A modern blog application built with Next.js 14+, using WordPress as a headless 
 
 ## Prerequisites
 
-- Node.js 16.8.0 or newer
+- Node.js 18.17.0 or newer
 - npm or yarn package manager
 - A WordPress instance with GraphQL enabled
 
