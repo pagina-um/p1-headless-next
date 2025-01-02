@@ -1,7 +1,7 @@
 import { PostBySlugData } from "@/app/[year]/[month]/[day]/[slug]/page";
 import { Logo } from "../ui/Logo";
 import Link from "next/link";
-import { CopyrightIcon } from "lucide-react";
+import { CopyrightIcon, Handshake, Mail } from "lucide-react";
 
 export function PostFooter() {
   return (
@@ -27,12 +27,14 @@ export function PostFooter() {
           href={"#"}
           className="py-3 bg-primary rounded-md flex items-center px-8 flex-1 justify-center text-center text-white font-sans font-bold text-xl hover:bg-primary-dark transition-colors duration-200"
         >
+          <Handshake className="inline mb-0.5 h-6 mr-2" />
           Contribuir
         </Link>
         <Link
           href={"#"}
           className="py-3 bg-primary rounded-md flex items-center px-8 flex-1 justify-center text-center text-white font-sans  font-bold text-xl hover:bg-primary-dark transition-colors duration-200"
         >
+          <Mail className="inline mb-0.5 h-6 mr-2" />
           Subscrever a newsletter
         </Link>
       </div>

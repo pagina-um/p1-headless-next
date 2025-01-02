@@ -50,7 +50,7 @@ export function EditableGrid({
       className="layout bg-gray-50 p-4 "
       cols={columns}
       rowHeight={100}
-      containerPadding={[0, 0]}
+      containerPadding={[0, 64]}
       margin={[16, 16]}
       preventCollision={true}
       onLayoutChange={onLayoutChange}
