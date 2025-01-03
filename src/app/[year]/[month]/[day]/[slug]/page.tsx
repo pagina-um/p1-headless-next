@@ -1,6 +1,6 @@
-// app/[year]/[month]/[day]/[slug]/page.tsx
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 import { PostHeader } from "@/components/post/PostHeader";
 import { PostFooter } from "@/components/post/PostFooter";
 import { PostLoadingUI } from "@/components/post/PostLoadingUi";
@@ -10,6 +10,7 @@ import {
   getClient,
 } from "@/services/wp-graphql";
 import { PostContent } from "@/components/post/PostContent";
+import { defaultMetadata, makeMetadataObject } from "@/utils/metadata";
 
 interface PostPageProps {
   params: {
@@ -20,7 +21,30 @@ interface PostPageProps {
   };
 }
 
-// Validate and generate static paths
+async function getPostBySlug(slug: string) {
+  const { data, error } = await getClient().query(GET_POST_BY_SLUG, {
+    slug,
+  });
+  return { data, error };
+}
+
+export type PostBySlugData = NonNullable<
+  Awaited<ReturnType<typeof getPostBySlug>>
+>;
+
+// Metadata generation for the post
+export async function generateMetadata({
+  params,
+}: PostPageProps): Promise<Metadata> {
+  const { data, error } = await getPostBySlug(params.slug);
+
+  if (!data?.postBy || !data?.postBy.title || error) {
+    return defaultMetadata;
+  }
+
+  return makeMetadataObject({ data, error }, params);
+}
+
 export async function generateStaticParams() {
   const { data, error } = await getClient().query(
     GET_LATEST_POSTS_FOR_STATIC_GENERATION,
@@ -29,12 +53,9 @@ export async function generateStaticParams() {
 
   if (error || !data?.posts) {
     console.log("Error fetching posts:", error);
-    // Note: In Next.js 13+/14, we just return an empty array instead of the old
-    // { paths: [], fallback: true } format
     return [];
   }
 
-  // Map the posts data to the format Next.js expects
   return data.posts.edges.map((edge) => {
     if (!edge.node.date) {
       return null;
@@ -48,17 +69,6 @@ export async function generateStaticParams() {
     };
   });
 }
-
-async function getPostBySlug(slug: string) {
-  const { data, error } = await getClient().query(GET_POST_BY_SLUG, {
-    slug,
-  });
-  return { data, error };
-}
-
-export type PostBySlugData = NonNullable<
-  Awaited<ReturnType<typeof getPostBySlug>>
->;
 
 async function PostComponent({ slug }: { slug: string }) {
   const { data, error } = await getPostBySlug(slug);

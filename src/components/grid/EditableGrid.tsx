@@ -51,7 +51,7 @@ export function EditableGrid({
       className="layout bg-gray-50 p-4 "
       cols={columns}
       rowHeight={ROW_HEIGHT}
-      containerPadding={[0, 64]}
+      containerPadding={[0, 0]}
       margin={[16, 16]}
       preventCollision={true}
       onLayoutChange={onLayoutChange}
@@ -64,7 +64,6 @@ export function EditableGrid({
       transformScale={1}
       droppingItem={{ i: "__dropping-elem__", w: 2, h: 2 }}
       allowOverlap={false}
-
       // Add delay before drag starts
     >
       {blocks.map((block) => (

@@ -120,6 +120,7 @@ export const GET_POST_BY_SLUG = graphql(`
       date
       slug
       uri
+      modified
       categories {
         nodes {
           id
