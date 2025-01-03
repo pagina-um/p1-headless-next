@@ -3,6 +3,7 @@ import { NewsStory } from "../blocks/NewsStory/NewsStory";
 import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
 import { EmptyState } from "../ui/EmptyState";
 import { CategoryBlockServer } from "../blocks/CategoryBlock";
+import { ROW_HEIGHT } from "@/constants/blocks";
 
 interface NewsGridProps {
   blocks: (CategoryBlock | StaticBlock | StoryBlock)[];
@@ -14,9 +15,14 @@ export function NewsGrid({ blocks }: NewsGridProps) {
   if (!hasContent) {
     return <EmptyState message="No content has been added to the grid yet." />;
   }
-
+  const rowHeightClass = ` lg:auto-rows-[${ROW_HEIGHT}px]`;
   return (
-    <div className="layout grid grid-cols-1 lg:grid-cols-6 auto-rows-auto lg:auto-rows-[100px] gap-4 lg:mt-4">
+    <div
+      className={
+        "layout grid grid-cols-1 lg:grid-cols-6 auto-rows-auto gap-4 lg:mt-4" +
+        rowHeightClass
+      }
+    >
       {blocks.map((block) => (
         <div
           key={block.uId}

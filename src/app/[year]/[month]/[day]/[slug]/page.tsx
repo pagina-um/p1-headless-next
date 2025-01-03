@@ -24,7 +24,7 @@ interface PostPageProps {
 export async function generateStaticParams() {
   const { data, error } = await getClient().query(
     GET_LATEST_POSTS_FOR_STATIC_GENERATION,
-    {}
+    { first: 50 }
   );
 
   if (error || !data?.posts) {

@@ -7,6 +7,7 @@ import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
 import { GripVertical, Loader } from "lucide-react";
 import { CategoryBlockClient } from "../blocks/CategoryBlock.client";
 import { NewsStoryClient } from "../blocks/NewsStory/NewsStory.client";
+import { ROW_HEIGHT } from "@/constants/blocks";
 
 const ReactGridLayout = WidthProvider(RGL);
 
@@ -49,7 +50,7 @@ export function EditableGrid({
       layout={layout}
       className="layout bg-gray-50 p-4 "
       cols={columns}
-      rowHeight={100}
+      rowHeight={ROW_HEIGHT}
       containerPadding={[0, 64]}
       margin={[16, 16]}
       preventCollision={true}

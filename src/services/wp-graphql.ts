@@ -142,15 +142,16 @@ export const GET_POST_BY_SLUG = graphql(`
 `);
 
 export const GET_LATEST_POSTS_FOR_STATIC_GENERATION = graphql(`
-  query GetFirstThousandPosts {
+  query GetFirstThousandPosts($first: Int!) {
     posts(
-      first: 30
+      first: $first
       where: { status: PUBLISH, orderby: { field: DATE, order: DESC } }
     ) {
       edges {
         node {
           slug
           date
+          modified
         }
       }
     }
