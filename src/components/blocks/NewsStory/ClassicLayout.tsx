@@ -1,4 +1,5 @@
 import { customPostFields } from "@/types";
+import { Maybe } from "graphql/jsutils/Maybe";
 import { Square } from "lucide-react";
 
 export const MIN_BLOCK_AREA_FOR_EXTRA_CONTENT = 12;
@@ -7,6 +8,7 @@ export function ClassicStoryLayout({
   blockSize,
   featuredImageUrl,
   featuredImageAlt,
+  featuredImageSrcSet,
   postFields,
   title,
   author,
@@ -14,6 +16,7 @@ export function ClassicStoryLayout({
 }: {
   blockSize: [number, number];
   featuredImageUrl: string;
+  featuredImageSrcSet?: Maybe<string>;
   featuredImageAlt: string;
   postFields: customPostFields;
   title: string;
@@ -32,6 +35,7 @@ export function ClassicStoryLayout({
           <div className={`relative ${isLandscape ? "w-1/2" : "h-1/2"}`}>
             <img
               src={featuredImageUrl || ""}
+              srcSet={featuredImageSrcSet || undefined}
               alt={featuredImageAlt || ""}
               className="object-cover w-full h-full absolute inset-0"
             />

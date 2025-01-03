@@ -30,7 +30,7 @@ export default async function sitemap({
       const month = (date.getMonth() + 1).toString().padStart(2, "0");
       const day = date.getDate().toString().padStart(2, "0");
       const slug = edge.node.slug;
-      const BASE_URL = "https://example.com";
+      const BASE_URL = "https://www.paginaum.pt";
 
       return {
         url: `${BASE_URL}/${year}/${month}/${day}/${slug}`,

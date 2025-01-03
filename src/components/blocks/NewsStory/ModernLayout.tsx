@@ -1,9 +1,11 @@
 import { customPostFields } from "@/types";
+import { Maybe } from "graphql/jsutils/Maybe";
 import { User, Calendar } from "lucide-react";
 
 export function ModernStoryLayout({
   featuredImageUrl,
   featuredImageAlt,
+  featuredImageSrcSet,
   postFields,
   title,
   author,
@@ -11,6 +13,7 @@ export function ModernStoryLayout({
 }: {
   featuredImageUrl: string;
   featuredImageAlt: string;
+  featuredImageSrcSet: Maybe<string>;
   postFields: customPostFields;
   title: string;
   author: any;
@@ -21,6 +24,7 @@ export function ModernStoryLayout({
       {featuredImageUrl && (
         <img
           src={featuredImageUrl || ""}
+          srcSet={featuredImageSrcSet || undefined}
           alt={featuredImageAlt || ""}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />

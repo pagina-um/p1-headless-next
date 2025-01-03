@@ -36,6 +36,7 @@ export async function NewsStory({ story }: NewsStoryProps) {
         <ModernStoryLayout
           featuredImageUrl={featuredImage?.node?.sourceUrl || ""}
           featuredImageAlt={featuredImage?.node?.altText || ""}
+          featuredImageSrcSet={featuredImage?.node?.srcSet}
           postFields={postFields}
           title={title || ""}
           author={author}
@@ -46,6 +47,7 @@ export async function NewsStory({ story }: NewsStoryProps) {
           blockSize={[story.gridPosition.width, story.gridPosition.height]}
           featuredImageUrl={featuredImage?.node?.sourceUrl || ""}
           featuredImageAlt={featuredImage?.node?.altText || ""}
+          featuredImageSrcSet={featuredImage?.node?.srcSet}
           postFields={postFields}
           title={title || ""}
           author={author}

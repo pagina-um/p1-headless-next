@@ -61,6 +61,7 @@ const ArticleContent = ({
     {post.featuredImage?.node.sourceUrl && (
       <img
         src={post.featuredImage?.node.sourceUrl}
+        srcSet={post.featuredImage.node.srcSet || undefined}
         alt={post.title || ""}
         className="aspect-video object-cover hidden @3xl:block"
       />

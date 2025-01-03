@@ -12,7 +12,7 @@ import {
 import { PostContent } from "@/components/post/PostContent";
 import { defaultMetadata, makeMetadataObject } from "@/utils/metadata";
 
-interface PostPageProps {
+export interface PostPageProps {
   params: {
     year: string;
     month: string;
@@ -42,7 +42,7 @@ export async function generateMetadata({
     return defaultMetadata;
   }
 
-  return makeMetadataObject({ data, error }, params);
+  return makeMetadataObject(data, params);
 }
 
 export async function generateStaticParams() {

@@ -1,5 +1,9 @@
 // lib/metadata.ts
-import { PostBySlugData } from "@/app/[year]/[month]/[day]/[slug]/page";
+import {
+  PostBySlugData,
+  PostPageProps,
+} from "@/app/[year]/[month]/[day]/[slug]/page";
+import { customPostFields } from "@/types";
 import { Metadata } from "next";
 
 export interface SEOData {
@@ -55,40 +59,50 @@ export const metadata: Metadata = {
 };
 
 export const makeMetadataObject = (
-  data: PostBySlugData,
-  params: PostPageProps
-) => ({
-  title: data.postBy.title,
-  description: "excerpt",
-  openGraph: {
-    title: data.postBy.title,
-    description: "excerpt",
-    type: "article",
-    publishedTime: data.postBy.date || new Date().toISOString(),
-    modifiedTime: data.postBy.modified || new Date().toISOString(),
-    authors: data.postBy.author?.node?.name
-      ? [data.postBy.author.node.name]
-      : undefined,
-    images: ogImage
-      ? [
-          {
-            url: ogImage,
-            width: 1200,
-            height: 630,
-            alt: data.postBy.title,
-          },
-        ]
-      : undefined,
-    url: `https://yoursite.com/${params.year}/${params.month}/${params.day}/${params.slug}`,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: data.postBy.title,
-    description: "excerpt",
-    images: ogImage ? [ogImage] : undefined,
-  },
-  // Add schema.org structured data
-  alternates: {
-    canonical: `https://yoursite.com/${params.year}/${params.month}/${params.day}/${params.slug}`,
-  },
-});
+  data: PostBySlugData["data"],
+  params: PostPageProps["params"]
+) => {
+  const { title, author, modified, date, featuredImage, postFields } =
+    data?.postBy || {};
+
+  const { antetitulo, chamadaDestaque, chamadaManchete } =
+    postFields as customPostFields;
+
+  return {
+    title: data?.postBy?.title || "Página Um",
+    description:
+      chamadaDestaque || "O jornalismo independente depende dos leitores.",
+    openGraph: {
+      title: title || "Página Um",
+      description:
+        chamadaDestaque || "O jornalismo independente depende dos leitores.",
+      type: "article",
+      publishedTime: date || new Date().toISOString(),
+      modifiedTime: modified || new Date().toISOString(),
+      authors: author?.node?.name ? [author.node.name] : undefined,
+      images: featuredImage?.node?.sourceUrl
+        ? [
+            {
+              url: featuredImage?.node?.sourceUrl,
+              width: 1200,
+              height: 630,
+              alt: featuredImage?.node?.altText || title || "Página Um",
+            },
+          ]
+        : undefined,
+      url: `https://www.paginaum.pt/${params.year}/${params.month}/${params.day}/${params.slug}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: title || "Página Um",
+      description: "excerpt",
+      images: featuredImage?.node?.sourceUrl
+        ? [featuredImage?.node?.sourceUrl]
+        : undefined,
+    },
+    // Add schema.org structured data
+    alternates: {
+      canonical: `https://yoursite.com/${params.year}/${params.month}/${params.day}/${params.slug}`,
+    },
+  };
+};

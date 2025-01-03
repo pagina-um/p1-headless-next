@@ -40,6 +40,7 @@ export function NewsStoryClient({ story }: NewsStoryProps) {
     <ModernStoryLayout
       featuredImageUrl={featuredImage?.node?.sourceUrl || ""}
       featuredImageAlt={featuredImage?.node?.altText || ""}
+      featuredImageSrcSet={featuredImage?.node?.srcSet}
       postFields={postFields}
       title={title || ""}
       author={author}
@@ -49,6 +50,7 @@ export function NewsStoryClient({ story }: NewsStoryProps) {
     <ClassicStoryLayout
       blockSize={[story.gridPosition.width, story.gridPosition.height]}
       featuredImageUrl={featuredImage?.node?.sourceUrl || ""}
+      featuredImageSrcSet={featuredImage?.node?.srcSet}
       featuredImageAlt={featuredImage?.node?.altText || ""}
       postFields={postFields}
       title={title || ""}

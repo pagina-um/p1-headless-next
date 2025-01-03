@@ -32,6 +32,7 @@ export function PostHeader({ post }: PostHeaderProps) {
         <div className="aspect-video relative overflow-hidden rounded-lg mb-8">
           <img
             src={featuredImage.sourceUrl}
+            srcSet={featuredImage.srcSet || undefined}
             alt={featuredImage.altText || undefined}
             className="object-cover w-full h-full"
           />

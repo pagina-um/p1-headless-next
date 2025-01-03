@@ -50,6 +50,8 @@ export const GET_POSTS_BY_CATEGORY = graphql(`
         featuredImage {
           node {
             sourceUrl
+            srcSet
+            altText
           }
         }
       }
@@ -86,6 +88,7 @@ export const GET_POST_BY_ID = graphql(`
         node {
           sourceUrl
           altText
+          srcSet
         }
       }
     }
@@ -132,9 +135,15 @@ export const GET_POST_BY_SLUG = graphql(`
           name
         }
       }
+      postFields {
+        antetitulo
+        chamadaDestaque
+        chamadaManchete
+      }
       featuredImage {
         node {
           sourceUrl
+          srcSet
           altText
         }
       }
