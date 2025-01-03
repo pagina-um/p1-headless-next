@@ -5,12 +5,11 @@ import { CopyrightIcon, Handshake, Mail } from "lucide-react";
 
 export function PostFooter() {
   return (
-    <footer className="mt-12 pt-3  pb-2 px-8 justify-between bg-slate-200">
-      <div className="flex gap-x-4 mb-4">
-        <p className="flex-1 text-right mt-3">
-          Fazemos jornalismo sem medos nem concessões. Não dependemos de grupos
-          económicos nem do Estado. Não temos publicidade. Não temos dívidas.
-          Não fazemos fretes. Fazemos jornalismo para os leitores,{" "}
+    <footer className="pb-6 px-8 justify-between bg-slate-200 pt-8">
+      <div className="flex gap-x-4 mb-4 flex-row-reverse items-end">
+        <p className="flex-1 text-right flex-col items-end justify-end">
+          Não dependemos de grupos económicos nem do Estado. Não fazemos fretes.
+          Fazemos jornalismo para os leitores,{" "}
           <strong>mas só sobreviveremos com o seu apoio financeiro.</strong>
         </p>
         <div className="flex-1 flex flex-col items-start justify-end">
