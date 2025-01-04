@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Source+Serif+Pro:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Source+Serif+Pro:wght@400;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -14,8 +14,13 @@
     @apply antialiased;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Playfair Display", serif;
   }
 }
 
@@ -23,7 +28,7 @@
   .headline {
     @apply font-serif text-4xl font-bold leading-tight;
   }
-  
+
   .subheadline {
     @apply font-serif text-xl font-medium leading-snug;
   }
@@ -81,5 +86,12 @@
 
   .block-settings {
     @apply select-text;
+  }
+
+  /* Grid Layout styles */
+  @media (min-width: 1024px) {
+    .layout {
+      grid-auto-rows: 100px;
+    }
   }
 }
