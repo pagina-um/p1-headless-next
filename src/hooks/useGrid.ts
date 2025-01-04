@@ -157,16 +157,7 @@ export const useGrid = () => {
     });
   };
 
-  const handleUpdateCategoryBlock = (block: CategoryBlock) => {
-    setGridState((prevState: any) => {
-      const updatedBlocks = prevState.blocks.map((b: any) =>
-        b.uId === block.uId ? block : b
-      );
-      return { ...prevState, blocks: updatedBlocks };
-    });
-  };
-  const handleUpdateStoryBlock = (block: StoryBlock) => {
-    console.log("handleUpdateStoryBlock", block);
+  const handleUpdateBlockSettings = (block: CategoryBlock | StoryBlock) => {
     setGridState((prevState: any) => {
       const updatedBlocks = prevState.blocks.map((b: any) =>
         b.uId === block.uId ? block : b
@@ -181,8 +172,7 @@ export const useGrid = () => {
     handleDeleteBlock,
     handleSave,
     handleCreateCategoryBlock,
-    handleUpdateCategoryBlock,
-    handleUpdateStoryBlock,
+    handleUpdateBlockSettings,
     handleCreateStaticBlock,
     handleCreateStoryBlock,
     showToast,

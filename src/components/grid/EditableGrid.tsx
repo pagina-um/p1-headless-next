@@ -16,8 +16,7 @@ interface EditableGridProps {
   blocks: (CategoryBlock | StaticBlock | StoryBlock)[];
   onLayoutChange: (layout: RGL.Layout[]) => void;
   onDeleteBlock: (uId: string) => void;
-  onUpdateCategoryBlock: (block: CategoryBlock) => void;
-  onUpdateStoryBlock: (block: StoryBlock) => void;
+  onUpdateBlockSettings: (block: StoryBlock | CategoryBlock) => void;
 }
 
 export function EditableGrid({
@@ -25,8 +24,7 @@ export function EditableGrid({
   onLayoutChange,
   blocks,
   onDeleteBlock,
-  onUpdateCategoryBlock,
-  onUpdateStoryBlock,
+  onUpdateBlockSettings,
 }: EditableGridProps) {
   // Convert grid positions to layout items
   const layout = useMemo(
@@ -71,13 +69,7 @@ export function EditableGrid({
           <BlockWrapper
             title={block.blockType}
             onDelete={() => onDeleteBlock(block.uId)}
-            onUpdateBlock={(b: CategoryBlock | StoryBlock) => {
-              block.blockType === "category"
-                ? onUpdateCategoryBlock(b as CategoryBlock)
-                : block.blockType === "story"
-                ? onUpdateStoryBlock(b as StoryBlock)
-                : undefined;
-            }}
+            onUpdateBlock={onUpdateBlockSettings}
             block={
               block.blockType === "category" || block.blockType === "story"
                 ? block

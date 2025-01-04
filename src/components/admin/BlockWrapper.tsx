@@ -38,7 +38,6 @@ export function BlockWrapper({
   };
 
   const handleClose = () => {
-    debugger;
     if (
       block &&
       block?.blockType === "category" &&
