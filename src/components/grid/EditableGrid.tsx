@@ -39,7 +39,7 @@ export function EditableGrid({
         h: block.gridPosition?.height || 2,
         minW: 2,
         maxW: columns,
-        minH: 1,
+        minH: 2,
         maxH: 8,
       })),
     [blocks, columns]

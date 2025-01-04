@@ -1,3 +1,4 @@
+import { BLOCK_MIN_ROWS } from "@/constants/blocks";
 import { loadGridState, saveGridState } from "@/services/jsonbin";
 import { GridState, CategoryBlock, StaticBlock, StoryBlock } from "@/types";
 import { useState, useEffect, useRef } from "react";
@@ -113,7 +114,7 @@ export const useGrid = () => {
       wpCategoryId: id,
       wpCategoryName: name,
       blockType: "category",
-      gridPosition: { x: 0, y: 0, width: 2, height: 1 },
+      gridPosition: { x: 0, y: 0, width: 2, height: BLOCK_MIN_ROWS },
       uId: Date.now().toString(),
       postsPerPage: 3,
     };
@@ -129,7 +130,7 @@ export const useGrid = () => {
       uId: Date.now().toString(),
       blockType: "static",
       title,
-      gridPosition: { x: 0, y: 0, width: 2, height: 1 },
+      gridPosition: { x: 0, y: 0, width: 2, height: BLOCK_MIN_ROWS },
       content: "Static content",
     };
     setGridState({
@@ -144,7 +145,7 @@ export const useGrid = () => {
       uId: Date.now().toString(),
       blockType: "story",
       style: "modern",
-      gridPosition: { x: 0, y: 0, width: 2, height: 1 },
+      gridPosition: { x: 0, y: 0, width: 2, height: BLOCK_MIN_ROWS },
       wpPostId,
     };
     setGridState((prevState: any) => {
@@ -209,7 +210,10 @@ const sortAndNormalizeBlocks = (blocks: any[]) => {
 
 const getPostsPerPageForBlockHeight = (height: number) => {
   if (height === 1) return 1;
-  if (height === 2) return 3;
-  if (height === 3) return 5;
-  return 5;
+  if (height === 2) return 1;
+  if (height === 3) return 2;
+  if (height === 4) return 3;
+  if (height === 5) return 4;
+  if (height === 6) return 5;
+  return 6;
 };

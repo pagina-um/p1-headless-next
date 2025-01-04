@@ -100,8 +100,19 @@ export function BlockWrapper({
                 disabled
               />
             </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Posição na grelha MOBILE
+              </label>
+              <input
+                type="number"
+                className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                value={title}
+                onChange={() => {}}
+              />
+            </div>
 
-            {block && (
+            {block && block.blockType === "category" && (
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Número de Artigos
@@ -120,19 +131,21 @@ export function BlockWrapper({
               </div>
             )}
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Estilo
-              </label>
-              <select
-                value={localStoryStyle}
-                className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                onChange={handleChangeStoryStyle}
-              >
-                <option value={"classic"}>Clássico</option>
-                <option value={"modern"}>Moderno</option>
-              </select>
-            </div>
+            {block && block.blockType === "story" && (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Estilo
+                </label>
+                <select
+                  value={localStoryStyle}
+                  className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                  onChange={handleChangeStoryStyle}
+                >
+                  <option value={"classic"}>Clássico</option>
+                  <option value={"modern"}>Moderno</option>
+                </select>
+              </div>
+            )}
           </div>
         </BlockSettings>
       </div>
