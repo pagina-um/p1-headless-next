@@ -7,7 +7,7 @@ interface BlockWrapperProps {
   title: string;
   onDelete: () => void;
   gridPosition?: { width: number; height: number };
-  block: CategoryBlock | StoryBlock | StaticBlock; // TODO: remove any
+  block: any; // TODO: remove any
   onUpdateBlock: (block: CategoryBlock | StoryBlock) => void;
 }
 

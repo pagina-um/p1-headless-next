@@ -117,6 +117,7 @@ export const useGrid = () => {
       gridPosition: { x: 0, y: 0, width: 2, height: BLOCK_MIN_ROWS },
       uId: Date.now().toString(),
       postsPerPage: 3,
+      mobilePriority: null,
     };
     setGridState({
       ...gridState,
@@ -132,6 +133,7 @@ export const useGrid = () => {
       title,
       gridPosition: { x: 0, y: 0, width: 2, height: BLOCK_MIN_ROWS },
       content: "Static content",
+      mobilePriority: null,
     };
     setGridState({
       ...gridState,
@@ -147,6 +149,7 @@ export const useGrid = () => {
       style: "modern",
       gridPosition: { x: 0, y: 0, width: 2, height: BLOCK_MIN_ROWS },
       wpPostId,
+      mobilePriority: null,
     };
     setGridState((prevState: any) => {
       const updatedState = {
