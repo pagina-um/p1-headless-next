@@ -13,6 +13,7 @@ export interface StoryBlock {
   gridPosition: GridPosition;
   uId: string;
   style: "classic" | "modern";
+  mobilePriority: number | null;
 }
 
 export interface CategoryBlock {
@@ -22,6 +23,7 @@ export interface CategoryBlock {
   postsPerPage: number;
   gridPosition: GridPosition;
   uId: string;
+  mobilePriority: number | null;
 }
 
 export interface StaticBlock {
@@ -30,6 +32,7 @@ export interface StaticBlock {
   title: string;
   content: string;
   gridPosition: GridPosition;
+  mobilePriority: number | null;
 }
 
 export interface GridState {

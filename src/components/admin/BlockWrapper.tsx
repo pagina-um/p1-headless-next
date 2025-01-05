@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { BlockSettings, BlockSettingsButton } from "../ui/BlockSettings";
-import { CategoryBlock, StoryBlock } from "../../types";
+import { CategoryBlock, StaticBlock, StoryBlock } from "../../types";
 
 interface BlockWrapperProps {
   children: React.ReactNode;
   title: string;
   onDelete: () => void;
   gridPosition?: { width: number; height: number };
-  block?: CategoryBlock | StoryBlock | any; // TODO: remove any
-  onUpdateBlock?: (block: CategoryBlock | StoryBlock) => void;
+  block: CategoryBlock | StoryBlock | StaticBlock; // TODO: remove any
+  onUpdateBlock: (block: CategoryBlock | StoryBlock) => void;
 }
 
 export function BlockWrapper({
@@ -21,11 +21,15 @@ export function BlockWrapper({
 }: BlockWrapperProps) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [localPostsPerPage, setLocalPostsPerPage] = useState(
-    block?.postsPerPage || 5
+    block.postsPerPage || 5
   );
 
   const [localStoryStyle, setLocalStoryStyle] = useState(
-    block?.style || "modern"
+    block.style || "modern"
+  );
+
+  const [localMobilePriority, setLocalMobilePriority] = useState<number | null>(
+    block.mobilePriority || null
   );
 
   const handlePostsPerPageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,29 +41,20 @@ export function BlockWrapper({
     setLocalStoryStyle(e.target.value);
   };
 
+  const handleChangeMobilePosition = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = parseInt(e.target.value) || null;
+    setLocalMobilePriority(value);
+  };
+
   const handleClose = () => {
-    if (
-      block &&
-      block?.blockType === "category" &&
-      onUpdateBlock &&
-      localPostsPerPage !== block.postsPerPage
-    ) {
-      onUpdateBlock({
-        ...block,
-        postsPerPage: localPostsPerPage,
-      });
-    }
-    if (
-      block &&
-      block?.blockType === "story" &&
-      onUpdateBlock &&
-      localStoryStyle !== block.style
-    ) {
-      onUpdateBlock({
-        ...block,
-        style: localStoryStyle,
-      });
-    }
+    onUpdateBlock({
+      ...block,
+      postsPerPage: localPostsPerPage,
+      style: localStoryStyle,
+      mobilePriority: localMobilePriority,
+    });
     setIsFlipped(false);
   };
 
@@ -99,52 +94,50 @@ export function BlockWrapper({
                 disabled
               />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Posição na grelha MOBILE
-              </label>
-              <input
-                type="number"
-                className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                value={title}
-                onChange={() => {}}
-              />
-            </div>
-
-            {block && block.blockType === "category" && (
-              <div>
+            <div className="flex gap-2">
+              <div className="flex-1">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Número de Artigos
+                  Prioridade telemóvel
                 </label>
                 <input
+                  value={localMobilePriority || ""}
                   type="number"
-                  min="1"
-                  max="20"
-                  className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                  value={localPostsPerPage}
-                  onChange={handlePostsPerPageChange}
+                  className="text-center w-full  border-gray-300 border focus:border-primary focus:ring-primary"
+                  onChange={handleChangeMobilePosition}
                 />
-                <p className="mt-1 text-xs text-gray-500">
-                  Mínimo: 1, Máximo: 20
-                </p>
               </div>
-            )}
+              {block.blockType === "category" && (
+                <div className="flex-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Número de Artigos
+                  </label>
+                  <input
+                    type="number"
+                    min="1"
+                    max="20"
+                    className="text-center w-full  border-gray-300 border focus:border-primary focus:ring-primary"
+                    value={localPostsPerPage}
+                    onChange={handlePostsPerPageChange}
+                  />
+                </div>
+              )}
 
-            {block && block.blockType === "story" && (
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Estilo
-                </label>
-                <select
-                  value={localStoryStyle}
-                  className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                  onChange={handleChangeStoryStyle}
-                >
-                  <option value={"classic"}>Clássico</option>
-                  <option value={"modern"}>Moderno</option>
-                </select>
-              </div>
-            )}
+              {block.blockType === "story" && (
+                <div className="flex-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Estilo
+                  </label>
+                  <select
+                    value={localStoryStyle}
+                    className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                    onChange={handleChangeStoryStyle}
+                  >
+                    <option value={"classic"}>Clássico</option>
+                    <option value={"modern"}>Moderno</option>
+                  </select>
+                </div>
+              )}
+            </div>
           </div>
         </BlockSettings>
       </div>

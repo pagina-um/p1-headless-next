@@ -10,10 +10,14 @@ module.exports = {
       colors: {
         primary: "var(--color-primary)",
         "primary-dark": "var(--color-primary-dark)",
+        "primary-light": "color-mix(in srgb, var(--color-primary) 50%, white)", // 50% lighter
+        "primary-lighter":
+          "color-mix(in srgb, var(--color-primary) 25%, white)", // 75% lighter
+        "primary-lightest":
+          "color-mix(in srgb, var(--color-primary) 10%, white)", // 90% lighter
       },
       fontFamily: {
         serif: ["Playfair Display", "serif"],
-        "body-serif": ["Source Serif Pro", "serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.3s ease-in-out",
