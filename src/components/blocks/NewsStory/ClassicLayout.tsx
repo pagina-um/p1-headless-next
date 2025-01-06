@@ -43,17 +43,19 @@ export function ClassicStoryLayout({
         )}
         <div className="flex-1 flex flex-col justify-center">
           {postFields.antetitulo && (
-            <p className="text-balance text-gray-600 font-medium underline underline-offset-2">
+            <p className="text-balance text-gray-600 font-medium underline underline-offset-2 text-sm">
               <Square className="w-2 h-2 bg-primary stroke-primary inline mr-2 mb-1" />
               {postFields.antetitulo}
             </p>
           )}
 
-          <h2 className="font-serif text-2xl md:text-3xl font-bold mb-3 leading-tight group-hover:underline text-balance">
+          <h2 className="font-serif text-2xl font-bold mb-3 leading-tight group-hover:underline text-balance">
             {title}
           </h2>
           {postFields.chamadaDestaque && (
-            <p className="text-gray-600">{postFields.chamadaDestaque}</p>
+            <p className="text-gray-600 text-sm">
+              {postFields.chamadaDestaque}
+            </p>
           )}
         </div>
       </div>
