@@ -27,7 +27,7 @@ export function ClassicStoryLayout({
   const isLargeBlock = blockArea >= MIN_BLOCK_AREA_FOR_EXTRA_CONTENT;
   const isLandscape = blockSize[0] > blockSize[1] * 0.9;
   return (
-    <div className="@container group h-full ">
+    <div className="@container group h-full px-4">
       <div
         className={`flex gap-4 h-full ${isLandscape ? "flex-row" : "flex-col"}`}
       >
