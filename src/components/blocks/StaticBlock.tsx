@@ -41,10 +41,7 @@ export function StaticBlock({ block }: StaticBlockProps) {
         className="h-full p-6 bg-white  shadow-sm border border-gray-100 block-content"
         style={gridStyles}
       >
-        <PodcastBlock
-          title={block.title}
-          episodes={STATIC_BLOCKS.podcast.episodes}
-        />
+        <PodcastBlock />
       </div>
     );
   }

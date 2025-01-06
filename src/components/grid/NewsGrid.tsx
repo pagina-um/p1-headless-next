@@ -4,6 +4,7 @@ import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
 import { EmptyState } from "../ui/EmptyState";
 import { CategoryBlockServer } from "../blocks/CategoryBlock";
 import { sortBlocksZigzagThenMobilePriority } from "@/utils/sorting";
+import { useMemo } from "react";
 
 interface NewsGridProps {
   blocks: (CategoryBlock | StaticBlock | StoryBlock)[];
@@ -20,25 +21,29 @@ export function NewsGrid({ blocks }: NewsGridProps) {
 
   return (
     <div className="layout grid grid-cols-1 lg:grid-cols-6 gap-4 mt-4">
-      {sortedBlocks.map((block) => (
-        <div
-          key={block.uId}
-          className={getGridClasses(
-            block.gridPosition?.x,
-            block.gridPosition?.y,
-            block.gridPosition?.width,
-            block.gridPosition?.height
-          )}
-        >
-          {block.blockType === "story" ? (
-            <NewsStory story={block} />
-          ) : block.blockType === "category" ? (
-            <CategoryBlockServer block={block} />
-          ) : (
-            <StaticBlockComponent block={block} />
-          )}
-        </div>
-      ))}
+      {sortedBlocks.map((block) => {
+        const gridClasses = useMemo(
+          () =>
+            getGridClasses(
+              block.gridPosition?.x,
+              block.gridPosition?.y,
+              block.gridPosition?.width,
+              block.gridPosition?.height
+            ),
+          [block.gridPosition]
+        );
+        return (
+          <div key={block.uId} className={gridClasses}>
+            {block.blockType === "story" ? (
+              <NewsStory story={block} />
+            ) : block.blockType === "category" ? (
+              <CategoryBlockServer block={block} />
+            ) : (
+              <StaticBlockComponent block={block} />
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
