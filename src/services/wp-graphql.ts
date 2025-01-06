@@ -52,6 +52,9 @@ export const GET_POSTS_BY_CATEGORY = graphql(`
         author {
           node {
             name
+            avatar {
+              url
+            }
           }
         }
         featuredImage {

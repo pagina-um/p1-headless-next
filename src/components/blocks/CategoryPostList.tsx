@@ -58,22 +58,22 @@ const ArticleContent = ({
     key={post.id}
     className="group cursor-pointer pb-4 border-b border-gray-100 last:border-0 flex-1 @3xl:border-none"
   >
-    {post.featuredImage?.node.sourceUrl && (
-      <img
-        src={post.featuredImage?.node.sourceUrl}
-        srcSet={post.featuredImage.node.srcSet || undefined}
-        alt={post.title || ""}
-        className="aspect-video object-cover hidden @3xl:block"
-      />
-    )}
     <h3 className="font-serif text-lg font-semibold group-hover:text-primary transition-colors line-clamp-2 @3xl:line-clamp-3">
       {post.title}
     </h3>
     <div className="flex items-center gap-3 text-sm text-gray-500 mt-2 font-body-serif">
       {showAuthor && (
-        <span className="flex items-center gap-1">
-          <User className="w-4 h-4" />
+        <span className="flex items-center gap-3 flex-1 justify-end">
           {post.author?.node.name}
+          {post.author?.node.avatar?.url ? (
+            <img
+              src={post.author?.node.avatar?.url}
+              alt={post.author?.node.name || ""}
+              className="w-6 h-6 rounded-full"
+            />
+          ) : (
+            <User className="w-4 h-4" />
+          )}
         </span>
       )}
       {showDate && post.date && (
