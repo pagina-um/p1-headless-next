@@ -1,4 +1,4 @@
-export interface Episode {
+interface Episode {
   title: string | null;
   description: string | null;
   pubDate: string | null;
@@ -17,7 +17,7 @@ export interface Episode {
   image: string | null;
 }
 
-export interface PodcastFeed {
+interface PodcastFeed {
   title: string | null;
   description: string | null;
   author: string | null;
@@ -36,6 +36,91 @@ interface ParseResult {
   error?: string;
 }
 
+function getElementByTagNameNS(
+  element: Element,
+  namespace: string,
+  localName: string
+): Element | null {
+  const elements = element.getElementsByTagNameNS(namespace, localName);
+  return elements.length > 0 ? elements[0] : null;
+}
+
+function getTextContentNS(
+  element: Element,
+  namespace: string,
+  localName: string
+): string | null {
+  const node = getElementByTagNameNS(element, namespace, localName);
+  return node?.textContent ?? null;
+}
+
+function parsePodcastFeed(xmlString: string): PodcastFeed {
+  const parser = new DOMParser();
+  const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+  // Define namespaces
+  const ITUNES_NS = "http://www.itunes.com/dtds/podcast-1.0.dtd";
+  const DEFAULT_NS = ""; // For standard RSS elements
+
+  const channel = xmlDoc.getElementsByTagName("channel")[0];
+  if (!channel) {
+    throw new Error("Invalid podcast feed: missing channel element");
+  }
+
+  const podcastInfo: PodcastFeed = {
+    title: getTextContent(channel, "title"),
+    description: getTextContent(channel, "description"),
+    author: getTextContentNS(channel, ITUNES_NS, "author"),
+    language: getTextContent(channel, "language"),
+    link: getTextContent(channel, "link"),
+    image:
+      getTextContentNS(channel, ITUNES_NS, "image") ??
+      getTextContent(channel, "image url"),
+    copyright: getTextContent(channel, "copyright"),
+    lastBuildDate: getTextContent(channel, "lastBuildDate"),
+    categories: Array.from(
+      channel.getElementsByTagNameNS(ITUNES_NS, "category")
+    )
+      .map((category) => category.getAttribute("text") ?? "")
+      .filter(Boolean),
+    episodes: [],
+  };
+
+  const items = channel.getElementsByTagName("item");
+  podcastInfo.episodes = Array.from(items).map((item) => {
+    // Helper function to get iTunes namespaced content for this item
+    const getItunesContent = (localName: string) => {
+      const elements = item.getElementsByTagNameNS(ITUNES_NS, localName);
+      return elements.length > 0 ? elements[0].textContent : null;
+    };
+
+    return {
+      title: getTextContent(item, "title"),
+      description: getTextContent(item, "description"),
+      pubDate: getTextContent(item, "pubDate"),
+      duration: getItunesContent("duration"),
+      explicit: getItunesContent("explicit"),
+      episode: getItunesContent("episode"),
+      season: getItunesContent("season"),
+      episodeType: getItunesContent("episodeType"),
+      enclosure: {
+        url: getAttribute(item, "enclosure", "url"),
+        length: getAttribute(item, "enclosure", "length"),
+        type: getAttribute(item, "enclosure", "type"),
+      },
+      guid: getTextContent(item, "guid"),
+      link: getTextContent(item, "link"),
+      image:
+        item
+          .getElementsByTagNameNS(ITUNES_NS, "image")[0]
+          ?.getAttribute("href") ?? null,
+    };
+  });
+
+  return podcastInfo;
+}
+
+// Keep the original getTextContent for non-namespaced elements
 function getTextContent(element: Element, selector: string): string | null {
   const node = element.querySelector(selector);
   return node?.textContent ?? null;
@@ -50,56 +135,7 @@ function getAttribute(
   return node?.getAttribute(attr) ?? null;
 }
 
-function parsePodcastFeed(xmlString: string): PodcastFeed {
-  const parser = new DOMParser();
-  const xmlDoc = parser.parseFromString(xmlString, "text/xml");
-
-  const channel = xmlDoc.querySelector("channel");
-  if (!channel) {
-    throw new Error("Invalid podcast feed: missing channel element");
-  }
-
-  const podcastInfo: PodcastFeed = {
-    title: getTextContent(channel, "title"),
-    description: getTextContent(channel, "description"),
-    author: getTextContent(channel, "itunes\\:author"),
-    language: getTextContent(channel, "language"),
-    link: getTextContent(channel, "link"),
-    image:
-      getAttribute(channel, "itunes\\:image", "href") ??
-      getTextContent(channel, "image url"),
-    copyright: getTextContent(channel, "copyright"),
-    lastBuildDate: getTextContent(channel, "lastBuildDate"),
-    categories: Array.from(channel.querySelectorAll("itunes\\:category")).map(
-      (category) => category.getAttribute("text") ?? ""
-    ),
-    episodes: [],
-  };
-
-  const items = channel.querySelectorAll("item");
-  podcastInfo.episodes = Array.from(items).map((item) => ({
-    title: getTextContent(item, "title"),
-    description: getTextContent(item, "description"),
-    pubDate: getTextContent(item, "pubDate"),
-    duration: getTextContent(item, "itunes\\:duration"),
-    explicit: getTextContent(item, "itunes\\:explicit"),
-    episode: getTextContent(item, "itunes\\:episode"),
-    season: getTextContent(item, "itunes\\:season"),
-    episodeType: getTextContent(item, "itunes\\:episodeType"),
-    enclosure: {
-      url: getAttribute(item, "enclosure", "url"),
-      length: getAttribute(item, "enclosure", "length"),
-      type: getAttribute(item, "enclosure", "type"),
-    },
-    guid: getTextContent(item, "guid"),
-    link: getTextContent(item, "link"),
-    image: getAttribute(item, "itunes\\:image", "href"),
-  }));
-
-  return podcastInfo;
-}
-
-export function safeParsePodcastFeed(xmlString: string): ParseResult {
+function safeParsePodcastFeed(xmlString: string): ParseResult {
   try {
     const result = parsePodcastFeed(xmlString);
 
@@ -121,23 +157,5 @@ export function safeParsePodcastFeed(xmlString: string): ParseResult {
   }
 }
 
-// Usage example:
-/*
-  const xmlString = `<?xml version="1.0" encoding="UTF-8"?>
-  <rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
-    <!-- your feed content -->
-  </rss>`;
-  
-  const result = safeParsePodcastFeed(xmlString);
-  
-  if (result.success && result.data) {
-    // TypeScript knows result.data is PodcastFeed here
-    console.log(result.data.title);
-    const firstEpisode = result.data.episodes[0];
-    if (firstEpisode) {
-      console.log(firstEpisode.enclosure.url);
-    }
-  } else {
-    console.error('Failed to parse feed:', result.error);
-  }
-  */
+export type { Episode, PodcastFeed, ParseResult };
+export { safeParsePodcastFeed };
