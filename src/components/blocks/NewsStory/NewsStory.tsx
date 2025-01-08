@@ -52,6 +52,7 @@ export async function NewsStory({ story }: NewsStoryProps) {
           title={title || ""}
           author={author}
           date={date || ""}
+          isAdmin={false}
         />
       )}
     </Link>

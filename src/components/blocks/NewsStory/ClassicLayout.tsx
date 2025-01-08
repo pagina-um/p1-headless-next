@@ -1,6 +1,7 @@
 import { customPostFields } from "@/types";
 import { Maybe } from "graphql/jsutils/Maybe";
 import { Square } from "lucide-react";
+import { twMerge } from "tailwind-merge";
 
 export const MIN_BLOCK_AREA_FOR_EXTRA_CONTENT = 12;
 
@@ -13,6 +14,7 @@ export function ClassicStoryLayout({
   title,
   author,
   date,
+  isAdmin,
 }: {
   blockSize: [number, number];
   featuredImageUrl: string;
@@ -22,6 +24,7 @@ export function ClassicStoryLayout({
   title: string;
   author: any;
   date: string;
+  isAdmin: boolean;
 }) {
   const blockArea = blockSize[0] * blockSize[1] * 1.5;
   const isLargeBlock = blockArea >= MIN_BLOCK_AREA_FOR_EXTRA_CONTENT;
@@ -49,7 +52,12 @@ export function ClassicStoryLayout({
             </p>
           )}
 
-          <h2 className="font-serif text-2xl font-bold mb-3 leading-tight group-hover:underline text-balance">
+          <h2
+            className={twMerge(
+              "font-serif text-2xl font-bold mb-3 leading-tight text-balance",
+              !isAdmin && "group-hover:underline"
+            )}
+          >
             {title}
           </h2>
           {postFields.chamadaDestaque && (

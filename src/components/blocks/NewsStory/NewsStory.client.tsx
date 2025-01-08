@@ -56,6 +56,7 @@ export function NewsStoryClient({ story }: NewsStoryProps) {
       title={title || ""}
       author={author}
       date={date || ""}
+      isAdmin={true}
     />
   );
 }
