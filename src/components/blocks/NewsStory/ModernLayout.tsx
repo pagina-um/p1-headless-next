@@ -1,4 +1,4 @@
-import { customPostFields } from "@/types";
+import { CustomPostFields } from "@/types";
 import { Maybe } from "graphql/jsutils/Maybe";
 import { User, Calendar } from "lucide-react";
 
@@ -14,7 +14,7 @@ export function ModernStoryLayout({
   featuredImageUrl: string;
   featuredImageAlt: string;
   featuredImageSrcSet: Maybe<string>;
-  postFields: customPostFields;
+  postFields: CustomPostFields;
   title: string;
   author: any;
   date: string;

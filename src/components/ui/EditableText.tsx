@@ -1,11 +1,22 @@
 "use client";
 
+import { CustomPostFields, OverridableField } from "@/types";
 import { useState, useEffect, useRef } from "react";
+import { useGrid } from "./GridContext";
 
-export function EditableText({ originalText }: { originalText: string }) {
+export function EditableText({
+  originalText,
+  fieldName,
+  blockUid,
+}: {
+  originalText: string;
+  fieldName: OverridableField;
+  blockUid: string;
+}) {
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState(originalText);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const { handleOverrideStoryBlockField } = useGrid();
 
   // Auto-adjust height and focus when editing starts
   useEffect(() => {
@@ -39,6 +50,7 @@ export function EditableText({ originalText }: { originalText: string }) {
             setText(e.target.value);
           }}
           onBlur={() => {
+            handleOverrideStoryBlockField(blockUid, fieldName, text);
             setIsEditing(false);
           }}
           // Prevent enter from creating new lines

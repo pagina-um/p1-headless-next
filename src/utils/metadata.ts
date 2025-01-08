@@ -3,7 +3,7 @@ import {
   PostBySlugData,
   PostPageProps,
 } from "@/app/[year]/[month]/[day]/[slug]/page";
-import { customPostFields } from "@/types";
+import { CustomPostFields } from "@/types";
 import { Metadata } from "next";
 
 export interface SEOData {
@@ -66,7 +66,7 @@ export const makeMetadataObject = (
     data?.postBy || {};
 
   const { antetitulo, chamadaDestaque, chamadaManchete } =
-    postFields as customPostFields;
+    postFields as CustomPostFields;
 
   return {
     title: data?.postBy?.title || "Página Um",

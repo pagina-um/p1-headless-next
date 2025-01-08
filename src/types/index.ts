@@ -7,13 +7,14 @@ export interface GridPosition {
   height: number;
 }
 
-export interface StoryBlock {
+export interface StoryBlock extends CustomPostFields {
   blockType: "story";
   wpPostId: number;
   gridPosition: GridPosition;
   uId: string;
   style: "classic" | "modern";
   mobilePriority: number | null;
+  title?: string;
 }
 
 export interface CategoryBlock {
@@ -40,8 +41,10 @@ export interface GridState {
   createdAt: string;
 }
 
-export interface customPostFields {
+export interface CustomPostFields {
   antetitulo?: string;
   chamadaDestaque?: string;
   chamadaManchete?: string;
 }
+
+export type OverridableField = "title" | keyof CustomPostFields;

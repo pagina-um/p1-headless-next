@@ -2,7 +2,13 @@
 
 import { createContext, useContext, useState, useEffect, useRef } from "react";
 import { BLOCK_MIN_ROWS } from "@/constants/blocks";
-import { GridState, CategoryBlock, StaticBlock, StoryBlock } from "@/types";
+import {
+  GridState,
+  CategoryBlock,
+  StaticBlock,
+  StoryBlock,
+  OverridableField,
+} from "@/types";
 import * as RGL from "react-grid-layout";
 
 type GridContextType = {
@@ -19,6 +25,11 @@ type GridContextType = {
   handleCreateStaticBlock: (title: "newsletter" | "podcast") => void;
   handleCreateStoryBlock: (wpPostId: number) => void;
   handleClearLayout: () => void;
+  handleOverrideStoryBlockField: (
+    blockUid: string,
+    fieldName: OverridableField,
+    fieldText: string
+  ) => void;
 };
 
 const GridContext = createContext<GridContextType | undefined>(undefined);
@@ -184,6 +195,19 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
     });
   };
 
+  const handleOverrideStoryBlockField = (
+    blockUid: string,
+    fieldName: OverridableField,
+    fieldText: string
+  ) => {
+    setGridState((prevState: any) => {
+      const updatedBlocks = prevState.blocks.map((b: any) =>
+        b.uId === blockUid ? { ...b, [fieldName]: fieldText } : b
+      );
+      return { ...prevState, blocks: updatedBlocks };
+    });
+  };
+
   const value = {
     gridState,
     isSaving,
@@ -198,6 +222,7 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
     handleCreateStaticBlock,
     handleCreateStoryBlock,
     handleClearLayout,
+    handleOverrideStoryBlockField,
   };
 
   return <GridContext.Provider value={value}>{children}</GridContext.Provider>;

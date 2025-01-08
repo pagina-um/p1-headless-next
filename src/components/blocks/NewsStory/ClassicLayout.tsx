@@ -1,5 +1,5 @@
 import { EditableText } from "@/components/ui/EditableText";
-import { customPostFields } from "@/types";
+import { CustomPostFields } from "@/types";
 import { Maybe } from "graphql/jsutils/Maybe";
 import { Square } from "lucide-react";
 import { twMerge } from "tailwind-merge";
@@ -16,16 +16,18 @@ export function ClassicStoryLayout({
   author,
   date,
   isAdmin,
+  blockUid,
 }: {
   blockSize: [number, number];
   featuredImageUrl: string;
   featuredImageSrcSet?: Maybe<string>;
   featuredImageAlt: string;
-  postFields: customPostFields;
+  postFields: CustomPostFields;
   title: string;
   author: any;
   date: string;
   isAdmin: boolean;
+  blockUid: string;
 }) {
   const blockArea = blockSize[0] * blockSize[1] * 1.5;
   const isLargeBlock = blockArea >= MIN_BLOCK_AREA_FOR_EXTRA_CONTENT;
@@ -49,7 +51,15 @@ export function ClassicStoryLayout({
           {postFields.antetitulo && (
             <p className="text-balance text-gray-600 font-medium underline underline-offset-2 text-sm">
               <Square className="w-2 h-2 bg-primary stroke-primary inline mr-2 mb-1" />
-              {postFields.antetitulo}
+              {isAdmin ? (
+                <EditableText
+                  blockUid={blockUid}
+                  originalText={postFields.antetitulo}
+                  fieldName="antetitulo"
+                />
+              ) : (
+                postFields.antetitulo
+              )}
             </p>
           )}
 
@@ -59,12 +69,24 @@ export function ClassicStoryLayout({
               !isAdmin && "group-hover:underline"
             )}
           >
-            {title}
+            {isAdmin ? (
+              <EditableText
+                blockUid={blockUid}
+                originalText={title}
+                fieldName="title"
+              />
+            ) : (
+              title
+            )}
           </h2>
           {postFields.chamadaDestaque && (
             <p className="text-gray-600 text-sm">
               {isAdmin ? (
-                <EditableText originalText={postFields.chamadaDestaque} />
+                <EditableText
+                  blockUid={blockUid}
+                  originalText={postFields.chamadaDestaque}
+                  fieldName="chamadaDestaque"
+                />
               ) : (
                 postFields.chamadaDestaque
               )}
