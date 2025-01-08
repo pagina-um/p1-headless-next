@@ -1,3 +1,4 @@
+import { EditableText } from "@/components/ui/EditableText";
 import { customPostFields } from "@/types";
 import { Maybe } from "graphql/jsutils/Maybe";
 import { Square } from "lucide-react";
@@ -62,7 +63,11 @@ export function ClassicStoryLayout({
           </h2>
           {postFields.chamadaDestaque && (
             <p className="text-gray-600 text-sm">
-              {postFields.chamadaDestaque}
+              {isAdmin ? (
+                <EditableText originalText={postFields.chamadaDestaque} />
+              ) : (
+                postFields.chamadaDestaque
+              )}
             </p>
           )}
         </div>
