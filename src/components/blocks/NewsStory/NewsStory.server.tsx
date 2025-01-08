@@ -16,5 +16,7 @@ export async function NewsStoryServer({ story }: NewsStoryProps) {
     id: wpPostId.toString(),
   });
 
-  return <NewsStoryCommon story={story} data={data} error={error} />;
+  return (
+    <NewsStoryCommon story={story} data={data} error={error} isAdmin={false} />
+  );
 }

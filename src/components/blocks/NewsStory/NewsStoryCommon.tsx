@@ -10,10 +10,12 @@ export function NewsStoryCommon({
   story,
   data,
   error,
+  isAdmin,
 }: {
   story: StoryBlock;
   data: ResultOf<typeof GET_POST_BY_ID> | undefined;
   error: any;
+  isAdmin: boolean;
 }) {
   if (!data?.post || error) {
     console.error(error);
@@ -36,6 +38,8 @@ export function NewsStoryCommon({
       title={finalTitle || ""}
       author={author}
       date={date || ""}
+      blockUid={story.uId}
+      isAdmin={isAdmin}
     />
   ) : (
     <ClassicStoryLayout
@@ -47,8 +51,8 @@ export function NewsStoryCommon({
       title={finalTitle || ""}
       author={author}
       date={date || ""}
-      isAdmin={true}
       blockUid={story.uId}
+      isAdmin={isAdmin}
     />
   );
 }

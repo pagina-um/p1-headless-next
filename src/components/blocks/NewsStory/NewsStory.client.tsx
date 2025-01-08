@@ -16,5 +16,7 @@ export function NewsStoryClient({ story }: NewsStoryProps) {
     query: GET_POST_BY_ID,
     variables: { id: wpPostId.toString() },
   });
-  return <NewsStoryCommon story={story} data={data} error={error} />;
+  return (
+    <NewsStoryCommon story={story} data={data} error={error} isAdmin={true} />
+  );
 }
