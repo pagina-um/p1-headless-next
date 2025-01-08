@@ -5,6 +5,7 @@ import { ClassicStoryLayout } from "./ClassicLayout";
 import { ModernStoryLayout } from "./ModernLayout";
 import { GET_POST_BY_ID } from "@/services/wp-graphql";
 import { ResultOf } from "gql.tada";
+import Link from "next/link";
 
 export function NewsStoryCommon({
   story,
@@ -26,33 +27,47 @@ export function NewsStoryCommon({
       </div>
     );
   }
-  const { finalTitle, featuredImage, overridePostFields, author, date } =
+  const { finalTitle, featuredImage, overridePostFields, author, date, uri } =
     extractStoryData(data, story);
 
-  return story.style === "modern" ? (
-    <ModernStoryLayout
-      featuredImageUrl={featuredImage?.node?.sourceUrl || ""}
-      featuredImageAlt={featuredImage?.node?.altText || ""}
-      featuredImageSrcSet={featuredImage?.node?.srcSet}
-      postFields={overridePostFields}
-      title={finalTitle || ""}
-      author={author}
-      date={date || ""}
-      blockUid={story.uId}
-      isAdmin={isAdmin}
-    />
-  ) : (
-    <ClassicStoryLayout
-      blockSize={[story.gridPosition.width, story.gridPosition.height]}
-      featuredImageUrl={featuredImage?.node?.sourceUrl || ""}
-      featuredImageSrcSet={featuredImage?.node?.srcSet}
-      featuredImageAlt={featuredImage?.node?.altText || ""}
-      postFields={overridePostFields}
-      title={finalTitle || ""}
-      author={author}
-      date={date || ""}
-      blockUid={story.uId}
-      isAdmin={isAdmin}
-    />
+  return (
+    <ConditionalLinkWrapper href={isAdmin ? undefined : uri}>
+      {story.style === "modern" ? (
+        <ModernStoryLayout
+          featuredImageUrl={featuredImage?.node?.sourceUrl || ""}
+          featuredImageAlt={featuredImage?.node?.altText || ""}
+          featuredImageSrcSet={featuredImage?.node?.srcSet}
+          postFields={overridePostFields}
+          title={finalTitle || ""}
+          author={author}
+          date={date || ""}
+          blockUid={story.uId}
+          isAdmin={isAdmin}
+        />
+      ) : (
+        <ClassicStoryLayout
+          blockSize={[story.gridPosition.width, story.gridPosition.height]}
+          featuredImageUrl={featuredImage?.node?.sourceUrl || ""}
+          featuredImageSrcSet={featuredImage?.node?.srcSet}
+          featuredImageAlt={featuredImage?.node?.altText || ""}
+          postFields={overridePostFields}
+          title={finalTitle || ""}
+          author={author}
+          date={date || ""}
+          blockUid={story.uId}
+          isAdmin={isAdmin}
+        />
+      )}
+    </ConditionalLinkWrapper>
   );
+}
+
+function ConditionalLinkWrapper({
+  children,
+  href,
+}: {
+  children: React.ReactNode;
+  href?: string;
+}) {
+  return href ? <Link href={href}>{children}</Link> : <>{children}</>;
 }
