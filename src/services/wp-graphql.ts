@@ -1,4 +1,4 @@
-import { graphql } from "gql.tada";
+import { graphql, ResultOf } from "gql.tada";
 import { cacheExchange, createClient, fetchExchange } from "@urql/core";
 import { registerUrql } from "@urql/next/rsc";
 

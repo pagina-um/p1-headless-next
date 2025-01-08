@@ -1,5 +1,5 @@
 import { CategoryBlock, GridPosition, StaticBlock, StoryBlock } from "@/types";
-import { NewsStory } from "../blocks/NewsStory/NewsStory";
+import { NewsStoryServer } from "../blocks/NewsStory/NewsStory.server";
 import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
 import { EmptyState } from "../ui/EmptyState";
 import { CategoryBlockServer } from "../blocks/CategoryBlock";
@@ -35,7 +35,7 @@ export function NewsGrid({ blocks }: NewsGridProps) {
         return (
           <div key={block.uId} className={gridClasses}>
             {block.blockType === "story" ? (
-              <NewsStory story={block} />
+              <NewsStoryServer story={block} />
             ) : block.blockType === "category" ? (
               <CategoryBlockServer block={block} />
             ) : (
