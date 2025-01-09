@@ -45,7 +45,6 @@ export default async function CategoryPage({
           basePath={`/cat/${params.slug}`}
           startCursor={pageInfo.startCursor}
           endCursor={pageInfo.endCursor}
-          itemsPerPage={postsPerPage}
         />
       )}
     </div>
