@@ -1,12 +1,12 @@
+import { Block } from "@/types";
 import {
   zigZagSortingFunction,
   sortBlocksZigzagThenMobilePriority,
-  BlockArray,
 } from "./sorting";
 
 describe("zigZagSortingFunction", () => {
   it("sorts blocks by row-major order (y, x)", () => {
-    const blocks: BlockArray = [
+    const blocks: Block[] = [
       {
         uId: "c",
         gridPosition: { x: 2, y: 0, height: 1, width: 1 },
@@ -52,7 +52,7 @@ describe("zigZagSortingFunction", () => {
 
 describe("sortBlocksZigzagThenMobilePriority", () => {
   it("keeps normal zigzag order when mobilePriority is undefined or 0", () => {
-    const blocks: BlockArray = [
+    const blocks: Block[] = [
       {
         uId: "1",
         gridPosition: { x: 0, y: 0, width: 1, height: 1 },
@@ -85,7 +85,7 @@ describe("sortBlocksZigzagThenMobilePriority", () => {
   });
 
   it("moves a block up by the amount of mobilePriority", () => {
-    const blocks: BlockArray = [
+    const blocks: Block[] = [
       {
         uId: "1",
         gridPosition: { x: 0, y: 0, width: 1, height: 1 },

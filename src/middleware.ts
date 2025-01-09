@@ -39,7 +39,7 @@ export function middleware(request: NextRequest) {
           "WWW-Authenticate": 'Basic realm="Admin Area"',
         },
       });
-    } catch (error) {
+    } catch (_e) {
       // Error parsing credentials, return 401
       return new NextResponse(null, {
         status: 401,

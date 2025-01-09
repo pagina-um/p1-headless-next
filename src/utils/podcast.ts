@@ -60,7 +60,6 @@ function parsePodcastFeed(xmlString: string): PodcastFeed {
 
   // Define namespaces
   const ITUNES_NS = "http://www.itunes.com/dtds/podcast-1.0.dtd";
-  const DEFAULT_NS = ""; // For standard RSS elements
 
   const channel = xmlDoc.getElementsByTagName("channel")[0];
   if (!channel) {
