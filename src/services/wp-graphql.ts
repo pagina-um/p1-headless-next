@@ -32,6 +32,64 @@ export const GET_CATEGORIES = graphql(`
   }
 `);
 
+export const GET_POSTS_BY_CATEGORY_SLUG = graphql(`
+  query GetPostsByCategorySlug(
+    $slug: String!
+    $postsPerPage: Int!
+    $after: String
+  ) {
+    categories(where: { slug: [$slug] }) {
+      nodes {
+        name
+      }
+    }
+
+    posts(where: { categoryName: $slug }, first: $postsPerPage, after: $after) {
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+      nodes {
+        id
+        title
+        content
+        excerpt
+        date
+        slug
+        uri
+        postFields {
+          antetitulo
+          chamadaDestaque
+          chamadaManchete
+        }
+        categories {
+          nodes {
+            id
+            name
+          }
+        }
+        author {
+          node {
+            name
+            avatar {
+              url
+            }
+          }
+        }
+        featuredImage {
+          node {
+            sourceUrl
+            srcSet
+            altText
+          }
+        }
+      }
+    }
+  }
+`);
+
 export const GET_POSTS_BY_CATEGORY = graphql(`
   query GetPostsByCategory($categoryId: Int!, $postsPerPage: Int!) {
     posts(where: { categoryId: $categoryId }, first: $postsPerPage) {
