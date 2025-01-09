@@ -1,7 +1,9 @@
 import { EditableText } from "@/components/ui/EditableText";
-import { CustomPostFields } from "@/types";
+import { CustomPostFields, ObjectPosition } from "@/types";
+import { positionMap } from "@/utils/categoryUtils";
 import { Maybe } from "graphql/jsutils/Maybe";
 import { User, Calendar } from "lucide-react";
+import { twMerge } from "tailwind-merge";
 
 export function ModernStoryLayout({
   featuredImageUrl,
@@ -13,6 +15,7 @@ export function ModernStoryLayout({
   date,
   isAdmin,
   blockUid,
+  objectPosition,
 }: {
   featuredImageUrl: string;
   featuredImageAlt: string;
@@ -23,6 +26,7 @@ export function ModernStoryLayout({
   date: string;
   isAdmin: boolean;
   blockUid: string;
+  objectPosition: ObjectPosition;
 }) {
   return (
     <div className="relative h-full overflow-hidden  shadow-lg group">
@@ -31,7 +35,10 @@ export function ModernStoryLayout({
           src={featuredImageUrl || ""}
           srcSet={featuredImageSrcSet || undefined}
           alt={featuredImageAlt || ""}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          className={twMerge(
+            "w-full h-full object-cover group-hover:scale-105 transition-transform duration-300",
+            positionMap[objectPosition]
+          )}
         />
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent">

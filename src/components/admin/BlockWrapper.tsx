@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { BlockSettings, BlockSettingsButton } from "../ui/BlockSettings";
-import { CategoryBlock, StaticBlock, StoryBlock } from "../../types";
+import {
+  CategoryBlock,
+  objecPositions as objectPositions,
+  ObjectPosition,
+  StaticBlock,
+  StoryBlock,
+} from "../../types";
 
 interface BlockWrapperProps {
   children: React.ReactNode;
@@ -36,6 +42,9 @@ export function BlockWrapper({
     block.mobilePriority || null
   );
 
+  const [localObjectPosition, setLocalObjectPosition] =
+    useState<ObjectPosition>(block.objectPosition || "center");
+
   const handlePostsPerPageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value) || 5;
     setLocalPostsPerPage(Math.max(1, Math.min(20, value)));
@@ -54,6 +63,14 @@ export function BlockWrapper({
     }
   };
 
+  const handleChangeObjectPosition = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    if (objectPositions.includes(e.target.value as any)) {
+      setLocalObjectPosition(e.target.value as any);
+    }
+  };
+
   const handleChangeMobilePosition = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -68,6 +85,7 @@ export function BlockWrapper({
       style: localStoryStyle,
       mobilePriority: localMobilePriority,
       orientation: localOrientation,
+      objectPosition: localObjectPosition,
     });
     setIsFlipped(false);
   };
@@ -151,6 +169,24 @@ export function BlockWrapper({
                   >
                     <option value={"vertical"}>Vertical</option>
                     <option value={"horizontal"}>Horizontal</option>
+                  </select>
+                </div>
+              )}
+              {block.blockType === "story" && (
+                <div className="flex-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Posição da imagem
+                  </label>
+                  <select
+                    value={localObjectPosition}
+                    className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                    onChange={handleChangeObjectPosition}
+                  >
+                    {objectPositions.map((position) => (
+                      <option key={position} value={position}>
+                        {position}
+                      </option>
+                    ))}
                   </select>
                 </div>
               )}

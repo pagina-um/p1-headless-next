@@ -49,3 +49,11 @@ export function extractStoryData(data: any, story: StoryBlock) {
     finalTitle,
   };
 }
+
+export const positionMap = {
+  top: "object-top",
+  bottom: "object-bottom",
+  center: "object-center",
+  left: "object-left",
+  right: "object-right",
+} as const;

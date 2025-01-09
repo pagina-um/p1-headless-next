@@ -180,6 +180,7 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
       wpPostId,
       mobilePriority: null,
       orientation: "vertical",
+      objectPosition: "center",
     };
     setGridState((prevState: any) => ({
       ...prevState,
@@ -188,7 +189,6 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
   };
 
   const handleUpdateBlockSettings = (block: CategoryBlock | StoryBlock) => {
-    console.log(block);
     setGridState((prevState: any) => {
       const updatedBlocks = prevState.blocks.map((b: any) =>
         b.uId === block.uId ? block : b

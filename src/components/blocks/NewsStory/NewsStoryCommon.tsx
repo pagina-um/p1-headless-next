@@ -43,6 +43,7 @@ export function NewsStoryCommon({
           date={date || ""}
           blockUid={story.uId}
           isAdmin={isAdmin}
+          objectPosition={story.objectPosition}
         />
       ) : (
         <ClassicStoryLayout
@@ -57,6 +58,7 @@ export function NewsStoryCommon({
           blockUid={story.uId}
           isAdmin={isAdmin}
           orientation={story.orientation}
+          objectPosition={story.objectPosition}
         />
       )}
     </ConditionalLinkWrapper>

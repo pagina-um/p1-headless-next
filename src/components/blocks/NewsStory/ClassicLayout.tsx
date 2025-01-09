@@ -1,5 +1,6 @@
 import { EditableText } from "@/components/ui/EditableText";
-import { CustomPostFields } from "@/types";
+import { CustomPostFields, ObjectPosition } from "@/types";
+import { positionMap } from "@/utils/categoryUtils";
 import { Maybe } from "graphql/jsutils/Maybe";
 import { Square } from "lucide-react";
 import { twMerge } from "tailwind-merge";
@@ -18,6 +19,7 @@ export function ClassicStoryLayout({
   isAdmin,
   blockUid,
   orientation,
+  objectPosition,
 }: {
   blockSize: [number, number];
   featuredImageUrl: string;
@@ -30,6 +32,7 @@ export function ClassicStoryLayout({
   isAdmin: boolean;
   blockUid: string;
   orientation: "horizontal" | "vertical";
+  objectPosition: ObjectPosition;
 }) {
   const isLandscape = orientation === "horizontal";
   const displayImage = true;
@@ -44,13 +47,16 @@ export function ClassicStoryLayout({
               src={featuredImageUrl || ""}
               srcSet={featuredImageSrcSet || undefined}
               alt={featuredImageAlt || ""}
-              className="object-cover w-full h-full absolute inset-0"
+              className={twMerge(
+                "object-cover w-full h-full absolute inset-0",
+                positionMap[objectPosition]
+              )}
             />
           </div>
         )}
         <div className="flex-1 flex flex-col justify-center">
           {postFields.antetitulo && (
-            <p className="flex items-center text-balance text-gray-600 font-medium underline underline-offset-2 text-sm">
+            <p className="flex items-center text-pretty text-gray-600 font-medium underline underline-offset-2 text-sm">
               <Square className="w-2 h-2 bg-primary stroke-primary inline mr-2" />
               {isAdmin ? (
                 <EditableText
@@ -66,7 +72,7 @@ export function ClassicStoryLayout({
 
           <h2
             className={twMerge(
-              "font-serif text-2xl font-bold mb-3 leading-tight text-balance",
+              "font-serif text-2xl font-bold mb-3 leading-tight text-pretty",
               !isAdmin && "group-hover:underline"
             )}
           >

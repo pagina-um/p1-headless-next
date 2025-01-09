@@ -6,7 +6,15 @@ export interface GridPosition {
   width: number;
   height: number;
 }
+export const objecPositions = [
+  "top",
+  "bottom",
+  "center",
+  "left",
+  "right",
+] as const;
 
+export type ObjectPosition = (typeof objecPositions)[number];
 export interface StoryBlock extends CustomPostFields {
   blockType: "story";
   wpPostId: number;
@@ -16,6 +24,7 @@ export interface StoryBlock extends CustomPostFields {
   mobilePriority: number | null;
   title?: string;
   orientation: "horizontal" | "vertical";
+  objectPosition: ObjectPosition;
 }
 
 export interface CategoryBlock {
