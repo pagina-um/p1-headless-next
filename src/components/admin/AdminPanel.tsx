@@ -17,9 +17,6 @@ export function AdminPanel({}: AdminPanelProps) {
     gridState,
     handleCreateStaticBlock,
     handleCreateStoryBlock,
-    handleUpdateBlockSettings,
-    handleDeleteBlock,
-    handleLayoutChange,
     handleSave,
     setShowToast,
     showToast,
@@ -88,15 +85,7 @@ export function AdminPanel({}: AdminPanelProps) {
       </div>
 
       <Suspense fallback={<Loader className="w-8 h-8 animate-spin mx-auto" />}>
-        {gridState && (
-          <EditableGrid
-            columns={GRID_COLUMNS}
-            blocks={gridState.blocks}
-            onLayoutChange={handleLayoutChange}
-            onDeleteBlock={handleDeleteBlock}
-            onUpdateBlockSettings={handleUpdateBlockSettings}
-          />
-        )}
+        {gridState && <EditableGrid columns={GRID_COLUMNS} />}
       </Suspense>
 
       <Toast

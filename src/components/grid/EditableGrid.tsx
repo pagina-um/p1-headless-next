@@ -8,24 +8,19 @@ import { GripVertical, Loader } from "lucide-react";
 import { CategoryBlockClient } from "../blocks/CategoryBlock.client";
 import { NewsStoryClient } from "../blocks/NewsStory/NewsStory.client";
 import { ROW_HEIGHT } from "@/constants/blocks";
+import { useGrid } from "@/components/ui/GridContext";
 
 const ReactGridLayout = WidthProvider(RGL);
 
 interface EditableGridProps {
   columns: number;
-  blocks: (CategoryBlock | StaticBlock | StoryBlock)[];
-  onLayoutChange: (layout: RGL.Layout[]) => void;
-  onDeleteBlock: (uId: string) => void;
-  onUpdateBlockSettings: (block: StoryBlock | CategoryBlock) => void;
 }
 
-export function EditableGrid({
-  columns,
-  onLayoutChange,
-  blocks,
-  onDeleteBlock,
-  onUpdateBlockSettings,
-}: EditableGridProps) {
+export function EditableGrid({ columns }: EditableGridProps) {
+  const { gridState, handleLayoutChange } = useGrid();
+
+  const { blocks } = gridState || { blocks: [] };
+
   // Convert grid positions to layout items
   const layout = useMemo(
     () =>
@@ -52,7 +47,7 @@ export function EditableGrid({
       containerPadding={[0, 0]}
       margin={[16, 16]}
       preventCollision={true}
-      onLayoutChange={onLayoutChange}
+      onLayoutChange={handleLayoutChange}
       draggableHandle=".drag-handle"
       resizeHandles={["se", "sw", "ne", "nw"]}
       isBounded
@@ -67,12 +62,7 @@ export function EditableGrid({
     >
       {blocks.map((block) => (
         <div key={block.uId} className="group">
-          <BlockWrapper
-            title={block.blockType}
-            onDelete={() => onDeleteBlock(block.uId)}
-            onUpdateBlock={onUpdateBlockSettings}
-            block={block}
-          >
+          <BlockWrapper title={block.blockType} block={block}>
             <div className="relative h-full">
               <div className="drag-handle">
                 <GripVertical className="w-4 h-4" />

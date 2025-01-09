@@ -21,7 +21,9 @@ type GridContextType = {
   handleDeleteBlock: (uId: string) => void;
   handleSave: () => Promise<void>;
   handleCreateCategoryBlock: (id: number, name: string) => void;
-  handleUpdateBlockSettings: (block: CategoryBlock | StoryBlock) => void;
+  handleUpdateBlockSettings: (
+    block: CategoryBlock | StoryBlock | StaticBlock
+  ) => void;
   handleCreateStaticBlock: (title: "newsletter" | "podcast") => void;
   handleCreateStoryBlock: (wpPostId: number) => void;
   handleClearLayout: () => void;
@@ -188,7 +190,9 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
     }));
   };
 
-  const handleUpdateBlockSettings = (block: CategoryBlock | StoryBlock) => {
+  const handleUpdateBlockSettings = (
+    block: CategoryBlock | StoryBlock | StaticBlock
+  ) => {
     setGridState((prevState: any) => {
       const updatedBlocks = prevState.blocks.map((b: any) =>
         b.uId === block.uId ? block : b

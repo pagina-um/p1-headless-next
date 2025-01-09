@@ -1,91 +1,127 @@
 import React, { useState } from "react";
 import { BlockSettings, BlockSettingsButton } from "../ui/BlockSettings";
 import {
-  CategoryBlock,
-  objecPositions as objectPositions,
   ObjectPosition,
-  StaticBlock,
+  objectPositions,
   StoryBlock,
+  CategoryBlock,
+  StaticBlock,
+  GridPosition,
 } from "../../types";
+import { useGrid } from "../ui/GridContext";
 
-interface BlockWrapperProps {
+type BlockType = StoryBlock | CategoryBlock | StaticBlock;
+
+// Using Pick to define local states from block types
+type LocalState<T extends BlockType> = T extends StoryBlock
+  ? Pick<
+      StoryBlock,
+      "mobilePriority" | "style" | "orientation" | "objectPosition"
+    >
+  : T extends CategoryBlock
+  ? Pick<CategoryBlock, "mobilePriority" | "postsPerPage">
+  : T extends StaticBlock
+  ? Pick<StaticBlock, "mobilePriority">
+  : never;
+
+interface BlockWrapperProps<T extends BlockType> {
   children: React.ReactNode;
   title: string;
-  onDelete: () => void;
-  gridPosition?: { width: number; height: number };
-  block: any; // TODO: important to remove this any
-  onUpdateBlock: (block: CategoryBlock | StoryBlock) => void;
+  gridPosition?: GridPosition;
+  block: T;
 }
 
-export function BlockWrapper({
+export function BlockWrapper<T extends BlockType>({
   children,
   title,
-  onDelete,
   gridPosition,
   block,
-  onUpdateBlock,
-}: BlockWrapperProps) {
+}: BlockWrapperProps<T>) {
+  const { handleUpdateBlockSettings, handleDeleteBlock } = useGrid();
   const [isFlipped, setIsFlipped] = useState(false);
-  const [localPostsPerPage, setLocalPostsPerPage] = useState(
-    block.postsPerPage || 5
-  );
 
-  const [localStoryStyle, setLocalStoryStyle] = useState(
-    block.style || "modern"
-  );
+  // Initialize state based on block type
+  const [localState, setLocalState] = useState<LocalState<T>>(() => {
+    switch (block.blockType) {
+      case "story":
+        return {
+          mobilePriority: block.mobilePriority,
+          style: block.style,
+          orientation: block.orientation,
+          objectPosition: block.objectPosition,
+        } as LocalState<T>;
+      case "category":
+        return {
+          mobilePriority: block.mobilePriority,
+          postsPerPage: block.postsPerPage,
+        } as LocalState<T>;
+      case "static":
+        return {
+          mobilePriority: block.mobilePriority,
+        } as LocalState<T>;
+      default:
+        throw new Error(
+          `Unsupported block type: ${(block as BlockType).blockType}`
+        );
+    }
+  });
 
-  const [localOrientation, setLocalOrientation] = useState<
-    "horizontal" | "vertical"
-  >(block.orientation || "vertical");
-
-  const [localMobilePriority, setLocalMobilePriority] = useState<number | null>(
-    block.mobilePriority || null
-  );
-
-  const [localObjectPosition, setLocalObjectPosition] =
-    useState<ObjectPosition>(block.objectPosition || "center");
+  const handleChangeMobilePosition = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = parseInt(e.target.value) || null;
+    setLocalState((prev) => ({
+      ...prev,
+      mobilePriority: value,
+    }));
+  };
 
   const handlePostsPerPageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value) || 5;
-    setLocalPostsPerPage(Math.max(1, Math.min(20, value)));
+    if (block.blockType === "category") {
+      const value = parseInt(e.target.value) || 5;
+      setLocalState((prev) => ({
+        ...prev,
+        postsPerPage: Math.max(1, Math.min(20, value)),
+      }));
+    }
   };
 
   const handleChangeStoryStyle = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setLocalStoryStyle(e.target.value);
+    if (block.blockType === "story") {
+      setLocalState((prev) => ({
+        ...prev,
+        style: e.target.value as "classic" | "modern",
+      }));
+    }
   };
 
   const handleChangeOrientation = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (e.target.value === "horizontal") {
-      setLocalOrientation("horizontal");
-    }
-    if (e.target.value === "vertical") {
-      setLocalOrientation("vertical");
+    if (block.blockType === "story") {
+      setLocalState((prev) => ({
+        ...prev,
+        orientation: e.target.value as "horizontal" | "vertical",
+      }));
     }
   };
 
   const handleChangeObjectPosition = (
     e: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    if (objectPositions.includes(e.target.value as any)) {
-      setLocalObjectPosition(e.target.value as any);
+    if (
+      block.blockType === "story" &&
+      objectPositions.includes(e.target.value as ObjectPosition)
+    ) {
+      setLocalState((prev) => ({
+        ...prev,
+        objectPosition: e.target.value as ObjectPosition,
+      }));
     }
   };
 
-  const handleChangeMobilePosition = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const value = parseInt(e.target.value) || null;
-    setLocalMobilePriority(value);
-  };
-
   const handleClose = () => {
-    onUpdateBlock({
+    handleUpdateBlockSettings({
       ...block,
-      postsPerPage: localPostsPerPage,
-      style: localStoryStyle,
-      mobilePriority: localMobilePriority,
-      orientation: localOrientation,
-      objectPosition: localObjectPosition,
+      ...localState,
     });
     setIsFlipped(false);
   };
@@ -112,7 +148,11 @@ export function BlockWrapper({
         className="absolute inset-0 backface-hidden block-settings"
         style={{ transform: "rotateY(180deg)" }}
       >
-        <BlockSettings title={title} onClose={handleClose} onDelete={onDelete}>
+        <BlockSettings
+          title={title}
+          onClose={handleClose}
+          onDelete={() => handleDeleteBlock(block.uId)}
+        >
           <div className="space-y-4">
             <div className="flex gap-2">
               <div className="flex-1">
@@ -120,12 +160,13 @@ export function BlockWrapper({
                   Prioridade telemóvel
                 </label>
                 <input
-                  value={localMobilePriority || ""}
+                  value={localState.mobilePriority || ""}
                   type="number"
-                  className="text-center w-full  border-gray-300 border focus:border-primary focus:ring-primary"
+                  className="text-center w-full border-gray-300 border focus:border-primary focus:ring-primary"
                   onChange={handleChangeMobilePosition}
                 />
               </div>
+
               {block.blockType === "category" && (
                 <div className="flex-1">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -135,60 +176,69 @@ export function BlockWrapper({
                     type="number"
                     min="1"
                     max="20"
-                    className="text-center w-full  border-gray-300 border focus:border-primary focus:ring-primary"
-                    value={localPostsPerPage}
+                    className="text-center w-full border-gray-300 border focus:border-primary focus:ring-primary"
+                    value={
+                      (localState as LocalState<CategoryBlock>).postsPerPage
+                    }
                     onChange={handlePostsPerPageChange}
                   />
                 </div>
               )}
 
               {block.blockType === "story" && (
-                <div className="flex-1">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Estilo
-                  </label>
-                  <select
-                    value={localStoryStyle}
-                    className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                    onChange={handleChangeStoryStyle}
-                  >
-                    <option value={"classic"}>Clássico</option>
-                    <option value={"modern"}>Moderno</option>
-                  </select>
-                </div>
-              )}
-              {block.blockType === "story" && block.style === "classic" && (
-                <div className="flex-1">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Divisão
-                  </label>
-                  <select
-                    value={localOrientation}
-                    className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                    onChange={handleChangeOrientation}
-                  >
-                    <option value={"vertical"}>Vertical</option>
-                    <option value={"horizontal"}>Horizontal</option>
-                  </select>
-                </div>
-              )}
-              {block.blockType === "story" && (
-                <div className="flex-1">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Posição da imagem
-                  </label>
-                  <select
-                    value={localObjectPosition}
-                    className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                    onChange={handleChangeObjectPosition}
-                  >
-                    {objectPositions.map((position) => (
-                      <option key={position} value={position}>
-                        {position}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                <>
+                  <div className="flex-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Estilo
+                    </label>
+                    <select
+                      value={(localState as LocalState<StoryBlock>).style}
+                      className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                      onChange={handleChangeStoryStyle}
+                    >
+                      <option value="classic">Clássico</option>
+                      <option value="modern">Moderno</option>
+                    </select>
+                  </div>
+
+                  {(localState as LocalState<StoryBlock>).style ===
+                    "classic" && (
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Divisão
+                      </label>
+                      <select
+                        value={
+                          (localState as LocalState<StoryBlock>).orientation
+                        }
+                        className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                        onChange={handleChangeOrientation}
+                      >
+                        <option value="vertical">Vertical</option>
+                        <option value="horizontal">Horizontal</option>
+                      </select>
+                    </div>
+                  )}
+
+                  <div className="flex-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Posição da imagem
+                    </label>
+                    <select
+                      value={
+                        (localState as LocalState<StoryBlock>).objectPosition
+                      }
+                      className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                      onChange={handleChangeObjectPosition}
+                    >
+                      {objectPositions.map((position) => (
+                        <option key={position} value={position}>
+                          {position}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </>
               )}
             </div>
           </div>

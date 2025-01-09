@@ -1,4 +1,4 @@
-import { CustomPostFields, StoryBlock } from "@/types";
+import { CustomPostFields, ObjectPosition, StoryBlock } from "@/types";
 import { SPECIAL_CATEGORIES } from "../constants/categories";
 
 export function shouldShowAuthor(categoryId: number): boolean {
@@ -57,3 +57,5 @@ export const positionMap = {
   left: "object-left",
   right: "object-right",
 } as const;
+
+export const objectPositions = Object.keys(positionMap) as ObjectPosition[];

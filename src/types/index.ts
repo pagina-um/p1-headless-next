@@ -6,7 +6,7 @@ export interface GridPosition {
   width: number;
   height: number;
 }
-export const objecPositions = [
+export const objectPositions = [
   "top",
   "bottom",
   "center",
@@ -14,7 +14,7 @@ export const objecPositions = [
   "right",
 ] as const;
 
-export type ObjectPosition = (typeof objecPositions)[number];
+export type ObjectPosition = (typeof objectPositions)[number];
 export interface StoryBlock extends CustomPostFields {
   blockType: "story";
   wpPostId: number;
