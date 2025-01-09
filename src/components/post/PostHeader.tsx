@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { PostBySlugData } from "@/app/[year]/[month]/[day]/[slug]/page";
 import { formatDate } from "@/utils/categoryUtils";
-import { SocialShare } from "./SocialShare";
+import SocialShare from "./SocialShare";
 
 interface PostHeaderProps {
   post: PostBySlugData["data"];
@@ -37,7 +37,11 @@ export function PostHeader({ post }: PostHeaderProps) {
             {formatDate(post?.postBy?.date || "")}
           </span>
         </div>
-        <SocialShare />
+        <SocialShare
+          url={"http://www.paginaum.pt" + (post?.postBy?.uri || "")}
+          description=""
+          title={post?.postBy?.title || ""}
+        />
       </div>
 
       {featuredImage?.sourceUrl && (

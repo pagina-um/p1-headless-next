@@ -35,9 +35,9 @@ export function EditableGrid({
         y: block.gridPosition?.y || 0,
         w: block.gridPosition?.width || 2,
         h: block.gridPosition?.height || 2,
-        minW: 2,
+        minW: 1,
         maxW: columns,
-        minH: 2,
+        minH: 1,
         maxH: 8,
       })),
     [blocks, columns]
@@ -62,6 +62,7 @@ export function EditableGrid({
       transformScale={1}
       droppingItem={{ i: "__dropping-elem__", w: 2, h: 2 }}
       allowOverlap={false}
+      compactType={null}
       // Add delay before drag starts
     >
       {blocks.map((block) => (

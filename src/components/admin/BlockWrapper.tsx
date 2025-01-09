@@ -7,7 +7,7 @@ interface BlockWrapperProps {
   title: string;
   onDelete: () => void;
   gridPosition?: { width: number; height: number };
-  block: any; // TODO: remove any
+  block: any; // TODO: important to remove this any
   onUpdateBlock: (block: CategoryBlock | StoryBlock) => void;
 }
 
@@ -28,6 +28,10 @@ export function BlockWrapper({
     block.style || "modern"
   );
 
+  const [localOrientation, setLocalOrientation] = useState<
+    "horizontal" | "vertical"
+  >(block.orientation || "vertical");
+
   const [localMobilePriority, setLocalMobilePriority] = useState<number | null>(
     block.mobilePriority || null
   );
@@ -39,6 +43,15 @@ export function BlockWrapper({
 
   const handleChangeStoryStyle = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setLocalStoryStyle(e.target.value);
+  };
+
+  const handleChangeOrientation = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (e.target.value === "horizontal") {
+      setLocalOrientation("horizontal");
+    }
+    if (e.target.value === "vertical") {
+      setLocalOrientation("vertical");
+    }
   };
 
   const handleChangeMobilePosition = (
@@ -54,6 +67,7 @@ export function BlockWrapper({
       postsPerPage: localPostsPerPage,
       style: localStoryStyle,
       mobilePriority: localMobilePriority,
+      orientation: localOrientation,
     });
     setIsFlipped(false);
   };
@@ -122,6 +136,21 @@ export function BlockWrapper({
                   >
                     <option value={"classic"}>Clássico</option>
                     <option value={"modern"}>Moderno</option>
+                  </select>
+                </div>
+              )}
+              {block.blockType === "story" && (
+                <div className="flex-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Divisão
+                  </label>
+                  <select
+                    value={localOrientation}
+                    className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                    onChange={handleChangeOrientation}
+                  >
+                    <option value={"vertical"}>Vertical</option>
+                    <option value={"horizontal"}>Horizontal</option>
                   </select>
                 </div>
               )}

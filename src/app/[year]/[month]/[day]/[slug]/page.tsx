@@ -11,6 +11,7 @@ import {
 } from "@/services/wp-graphql";
 import { PostContent } from "@/components/post/PostContent";
 import { defaultMetadata, makeMetadataObject } from "@/utils/metadata";
+import SocialShare from "@/components/post/SocialShare";
 
 export interface PostPageProps {
   params: {
@@ -82,6 +83,15 @@ async function PostComponent({ slug }: { slug: string }) {
         <div className="max-w-4xl mx-auto px-4 py-12">
           <PostHeader post={data} />
           <PostContent content={data.postBy?.content || ""} />
+          <div className="mt-8 flex justify-center flex-col mx-auto text-center items-center gap-y-2">
+            {" "}
+            Partilhe esta notícia nas redes sociais.{" "}
+            <SocialShare
+              url={"http://www.paginaum.pt" + (data.postBy.uri || "")}
+              description=""
+              title={data.postBy.title || ""}
+            />
+          </div>
         </div>
       </article>
       <PostFooter />

@@ -56,6 +56,7 @@ export function NewsStoryCommon({
           date={date || ""}
           blockUid={story.uId}
           isAdmin={isAdmin}
+          orientation={story.orientation}
         />
       )}
     </ConditionalLinkWrapper>

@@ -15,6 +15,7 @@ export interface StoryBlock extends CustomPostFields {
   style: "classic" | "modern";
   mobilePriority: number | null;
   title?: string;
+  orientation: "horizontal" | "vertical";
 }
 
 export interface CategoryBlock {

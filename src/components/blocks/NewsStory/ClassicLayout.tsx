@@ -17,6 +17,7 @@ export function ClassicStoryLayout({
   date,
   isAdmin,
   blockUid,
+  orientation,
 }: {
   blockSize: [number, number];
   featuredImageUrl: string;
@@ -28,17 +29,17 @@ export function ClassicStoryLayout({
   date: string;
   isAdmin: boolean;
   blockUid: string;
+  orientation: "horizontal" | "vertical";
 }) {
-  const blockArea = blockSize[0] * blockSize[1] * 1.5;
-  const isLargeBlock = blockArea >= MIN_BLOCK_AREA_FOR_EXTRA_CONTENT;
-  const isLandscape = blockSize[0] > blockSize[1] * 0.9;
+  const isLandscape = orientation === "horizontal";
+  const displayImage = true;
   return (
-    <div className="@container group h-full px-4">
+    <div className="@container group h-full px-4 lg:px-0">
       <div
         className={`flex gap-4 h-full ${isLandscape ? "flex-row" : "flex-col"}`}
       >
-        {featuredImageUrl && isLargeBlock && (
-          <div className={`relative ${isLandscape ? "w-1/2" : "h-1/2"}`}>
+        {featuredImageUrl && displayImage && (
+          <div className={`relative ${isLandscape ? "w-1/2" : "h-full"}`}>
             <img
               src={featuredImageUrl || ""}
               srcSet={featuredImageSrcSet || undefined}
@@ -49,8 +50,8 @@ export function ClassicStoryLayout({
         )}
         <div className="flex-1 flex flex-col justify-center">
           {postFields.antetitulo && (
-            <p className="text-balance text-gray-600 font-medium underline underline-offset-2 text-sm">
-              <Square className="w-2 h-2 bg-primary stroke-primary inline mr-2 mb-1" />
+            <p className="flex items-center text-balance text-gray-600 font-medium underline underline-offset-2 text-sm">
+              <Square className="w-2 h-2 bg-primary stroke-primary inline mr-2" />
               {isAdmin ? (
                 <EditableText
                   blockUid={blockUid}
