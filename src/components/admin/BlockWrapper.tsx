@@ -82,18 +82,6 @@ export function BlockWrapper({
       >
         <BlockSettings title={title} onClose={handleClose} onDelete={onDelete}>
           <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Título
-              </label>
-              <input
-                type="text"
-                className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                value={title}
-                onChange={() => {}}
-                disabled
-              />
-            </div>
             <div className="flex gap-2">
               <div className="flex-1">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
