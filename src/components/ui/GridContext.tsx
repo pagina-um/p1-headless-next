@@ -8,6 +8,7 @@ import {
   StaticBlock,
   StoryBlock,
   OverridableField,
+  Block,
 } from "@/types";
 import * as RGL from "react-grid-layout";
 
@@ -21,9 +22,7 @@ type GridContextType = {
   handleDeleteBlock: (uId: string) => void;
   handleSave: () => Promise<void>;
   handleCreateCategoryBlock: (id: number, name: string) => void;
-  handleUpdateBlockSettings: (
-    block: CategoryBlock | StoryBlock | StaticBlock
-  ) => void;
+  handleUpdateBlockSettings: (block: Block) => void;
   handleCreateStaticBlock: (title: "newsletter" | "podcast") => void;
   handleCreateStoryBlock: (wpPostId: number) => void;
   handleClearLayout: () => void;
@@ -36,8 +35,13 @@ type GridContextType = {
 
 const GridContext = createContext<GridContextType | undefined>(undefined);
 
+const initialGridState: GridState = {
+  blocks: [],
+  createdAt: "",
+};
+
 export function GridProvider({ children }: { children: React.ReactNode }) {
-  const [gridState, setGridState] = useState<GridState>();
+  const [gridState, setGridState] = useState<GridState>(initialGridState);
   const [isSaving, setIsSaving] = useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [showToast, setShowToast] = useState(false);
@@ -83,7 +87,7 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
     if (!gridState) return;
 
     const updatedBlocks = gridState.blocks.map(
-      <T extends CategoryBlock | StoryBlock | StaticBlock>(block: T): T => {
+      <T extends Block>(block: T): T => {
         const layoutItem = layout.find((item) => item.i === block.uId);
         if (layoutItem) {
           const baseUpdate = {
@@ -184,17 +188,15 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
       orientation: "vertical",
       objectPosition: "center",
     };
-    setGridState((prevState: any) => ({
+    setGridState((prevState: GridState) => ({
       ...prevState,
       blocks: [...prevState.blocks, newBlock],
     }));
   };
 
-  const handleUpdateBlockSettings = (
-    block: CategoryBlock | StoryBlock | StaticBlock
-  ) => {
+  const handleUpdateBlockSettings = (block: Block) => {
     setGridState((prevState: any) => {
-      const updatedBlocks = prevState.blocks.map((b: any) =>
+      const updatedBlocks = prevState.blocks.map((b: Block) =>
         b.uId === block.uId ? block : b
       );
       return { ...prevState, blocks: updatedBlocks };

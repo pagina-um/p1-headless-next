@@ -1,4 +1,10 @@
-import { CategoryBlock, GridPosition, StaticBlock, StoryBlock } from "@/types";
+import {
+  Block,
+  CategoryBlock,
+  GridPosition,
+  StaticBlock,
+  StoryBlock,
+} from "@/types";
 import { NewsStoryServer } from "../blocks/NewsStory/NewsStory.server";
 import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
 import { EmptyState } from "../ui/EmptyState";
@@ -7,7 +13,7 @@ import { sortBlocksZigzagThenMobilePriority } from "@/utils/sorting";
 import { useMemo } from "react";
 
 interface NewsGridProps {
-  blocks: (CategoryBlock | StaticBlock | StoryBlock)[];
+  blocks: Block[];
 }
 
 export function NewsGrid({ blocks }: NewsGridProps) {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BlockSettings, BlockSettingsButton } from "../ui/BlockSettings";
+import { BlockSettingsPanel, BlockSettingsButton } from "../ui/BlockSettings";
 import {
   ObjectPosition,
   objectPositions,
@@ -7,31 +7,19 @@ import {
   CategoryBlock,
   StaticBlock,
   GridPosition,
+  Block,
+  BlockSettings,
 } from "../../types";
 import { useGrid } from "../ui/GridContext";
 
-type BlockType = StoryBlock | CategoryBlock | StaticBlock;
-
-// Using Pick to define local states from block types
-type LocalState<T extends BlockType> = T extends StoryBlock
-  ? Pick<
-      StoryBlock,
-      "mobilePriority" | "style" | "orientation" | "objectPosition"
-    >
-  : T extends CategoryBlock
-  ? Pick<CategoryBlock, "mobilePriority" | "postsPerPage">
-  : T extends StaticBlock
-  ? Pick<StaticBlock, "mobilePriority">
-  : never;
-
-interface BlockWrapperProps<T extends BlockType> {
+interface BlockWrapperProps<T extends Block> {
   children: React.ReactNode;
   title: string;
   gridPosition?: GridPosition;
   block: T;
 }
 
-export function BlockWrapper<T extends BlockType>({
+export function BlockWrapper<T extends Block>({
   children,
   title,
   gridPosition,
@@ -41,7 +29,7 @@ export function BlockWrapper<T extends BlockType>({
   const [isFlipped, setIsFlipped] = useState(false);
 
   // Initialize state based on block type
-  const [localState, setLocalState] = useState<LocalState<T>>(() => {
+  const [blockSettings, setBlockSettings] = useState<BlockSettings<T>>(() => {
     switch (block.blockType) {
       case "story":
         return {
@@ -49,19 +37,19 @@ export function BlockWrapper<T extends BlockType>({
           style: block.style,
           orientation: block.orientation,
           objectPosition: block.objectPosition,
-        } as LocalState<T>;
+        } as BlockSettings<T>;
       case "category":
         return {
           mobilePriority: block.mobilePriority,
           postsPerPage: block.postsPerPage,
-        } as LocalState<T>;
+        } as BlockSettings<T>;
       case "static":
         return {
           mobilePriority: block.mobilePriority,
-        } as LocalState<T>;
+        } as BlockSettings<T>;
       default:
         throw new Error(
-          `Unsupported block type: ${(block as BlockType).blockType}`
+          `Unsupported block type: ${(block as Block).blockType}`
         );
     }
   });
@@ -70,7 +58,7 @@ export function BlockWrapper<T extends BlockType>({
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     const value = parseInt(e.target.value) || null;
-    setLocalState((prev) => ({
+    setBlockSettings((prev) => ({
       ...prev,
       mobilePriority: value,
     }));
@@ -79,7 +67,7 @@ export function BlockWrapper<T extends BlockType>({
   const handlePostsPerPageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (block.blockType === "category") {
       const value = parseInt(e.target.value) || 5;
-      setLocalState((prev) => ({
+      setBlockSettings((prev) => ({
         ...prev,
         postsPerPage: Math.max(1, Math.min(20, value)),
       }));
@@ -88,7 +76,7 @@ export function BlockWrapper<T extends BlockType>({
 
   const handleChangeStoryStyle = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (block.blockType === "story") {
-      setLocalState((prev) => ({
+      setBlockSettings((prev) => ({
         ...prev,
         style: e.target.value as "classic" | "modern",
       }));
@@ -97,7 +85,7 @@ export function BlockWrapper<T extends BlockType>({
 
   const handleChangeOrientation = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (block.blockType === "story") {
-      setLocalState((prev) => ({
+      setBlockSettings((prev) => ({
         ...prev,
         orientation: e.target.value as "horizontal" | "vertical",
       }));
@@ -111,7 +99,7 @@ export function BlockWrapper<T extends BlockType>({
       block.blockType === "story" &&
       objectPositions.includes(e.target.value as ObjectPosition)
     ) {
-      setLocalState((prev) => ({
+      setBlockSettings((prev) => ({
         ...prev,
         objectPosition: e.target.value as ObjectPosition,
       }));
@@ -121,7 +109,7 @@ export function BlockWrapper<T extends BlockType>({
   const handleClose = () => {
     handleUpdateBlockSettings({
       ...block,
-      ...localState,
+      ...blockSettings,
     });
     setIsFlipped(false);
   };
@@ -135,6 +123,7 @@ export function BlockWrapper<T extends BlockType>({
         transform: isFlipped ? "rotateY(180deg)" : "rotateY(0)",
       }}
     >
+      {block.blockType === "story" && <div>{blockSettings.mobilePriority}</div>}
       {/* Front side */}
       <div className="absolute inset-0 backface-hidden">
         <div className="relative h-full group block-content">
@@ -148,7 +137,7 @@ export function BlockWrapper<T extends BlockType>({
         className="absolute inset-0 backface-hidden block-settings"
         style={{ transform: "rotateY(180deg)" }}
       >
-        <BlockSettings
+        <BlockSettingsPanel
           title={title}
           onClose={handleClose}
           onDelete={() => handleDeleteBlock(block.uId)}
@@ -160,7 +149,7 @@ export function BlockWrapper<T extends BlockType>({
                   Prioridade telemóvel
                 </label>
                 <input
-                  value={localState.mobilePriority || ""}
+                  value={blockSettings.mobilePriority || ""}
                   type="number"
                   className="text-center w-full border-gray-300 border focus:border-primary focus:ring-primary"
                   onChange={handleChangeMobilePosition}
@@ -178,7 +167,8 @@ export function BlockWrapper<T extends BlockType>({
                     max="20"
                     className="text-center w-full border-gray-300 border focus:border-primary focus:ring-primary"
                     value={
-                      (localState as LocalState<CategoryBlock>).postsPerPage
+                      (blockSettings as BlockSettings<CategoryBlock>)
+                        .postsPerPage
                     }
                     onChange={handlePostsPerPageChange}
                   />
@@ -192,7 +182,7 @@ export function BlockWrapper<T extends BlockType>({
                       Estilo
                     </label>
                     <select
-                      value={(localState as LocalState<StoryBlock>).style}
+                      value={(blockSettings as BlockSettings<StoryBlock>).style}
                       className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                       onChange={handleChangeStoryStyle}
                     >
@@ -201,7 +191,7 @@ export function BlockWrapper<T extends BlockType>({
                     </select>
                   </div>
 
-                  {(localState as LocalState<StoryBlock>).style ===
+                  {(blockSettings as BlockSettings<StoryBlock>).style ===
                     "classic" && (
                     <div className="flex-1">
                       <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -209,7 +199,8 @@ export function BlockWrapper<T extends BlockType>({
                       </label>
                       <select
                         value={
-                          (localState as LocalState<StoryBlock>).orientation
+                          (blockSettings as BlockSettings<StoryBlock>)
+                            .orientation
                         }
                         className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                         onChange={handleChangeOrientation}
@@ -226,7 +217,8 @@ export function BlockWrapper<T extends BlockType>({
                     </label>
                     <select
                       value={
-                        (localState as LocalState<StoryBlock>).objectPosition
+                        (blockSettings as BlockSettings<StoryBlock>)
+                          .objectPosition
                       }
                       className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                       onChange={handleChangeObjectPosition}
@@ -242,7 +234,7 @@ export function BlockWrapper<T extends BlockType>({
               )}
             </div>
           </div>
-        </BlockSettings>
+        </BlockSettingsPanel>
       </div>
     </div>
   );

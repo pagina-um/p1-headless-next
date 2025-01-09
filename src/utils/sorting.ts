@@ -1,5 +1,5 @@
 // utils/sorting.ts
-import { CategoryBlock, GridPosition, StoryBlock, StaticBlock } from "@/types";
+import { Block } from "@/types";
 
 /**
  * 1) Sorts blocks by zigzag (row-major) order using (y, x)
@@ -8,11 +8,10 @@ import { CategoryBlock, GridPosition, StoryBlock, StaticBlock } from "@/types";
  *    mobilePriority as a tiebreaker if final positions are the same.
  */
 
-export type BlockArray = Array<CategoryBlock | StaticBlock | StoryBlock>;
 export function sortBlocksZigzagThenMobilePriority(
-  blocks: BlockArray,
+  blocks: Block[],
   gridWidth = 6
-): BlockArray {
+): Block[] {
   // 1) Sort by zigzag
   const zigzagSorted = [...blocks].sort((a, b) =>
     zigZagSortingFunction(a, b, gridWidth)
@@ -52,8 +51,8 @@ export function sortBlocksZigzagThenMobilePriority(
  * @returns negative if a < b, 0 if tie, positive if a > b
  */
 export function zigZagSortingFunction(
-  a: CategoryBlock | StaticBlock | StoryBlock,
-  b: CategoryBlock | StaticBlock | StoryBlock,
+  a: Block,
+  b: Block,
   gridWidth = 6
 ): number {
   const aIndex = a.gridPosition.y * gridWidth + a.gridPosition.x;
