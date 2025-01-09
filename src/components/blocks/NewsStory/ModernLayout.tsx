@@ -36,7 +36,7 @@ export function ModernStoryLayout({
           srcSet={featuredImageSrcSet || undefined}
           alt={featuredImageAlt || ""}
           className={twMerge(
-            "w-full h-full object-cover group-hover:scale-105 transition-transform duration-300",
+            "w-full h-full object-cover lg:group-hover:scale-105 transition-transform duration-300",
             positionMap[objectPosition]
           )}
         />

@@ -39,7 +39,9 @@ export function ClassicStoryLayout({
   return (
     <div className="@container group h-full px-4 lg:px-0">
       <div
-        className={`flex gap-4 h-full ${isLandscape ? "flex-row" : "flex-col"}`}
+        className={`flex gap-4 h-full flex-col ${
+          isLandscape ? "lg:flex-row" : "lg:flex-col"
+        }`}
       >
         {featuredImageUrl && displayImage && (
           <div className={`relative ${isLandscape ? "w-1/2" : "h-full"}`}>
@@ -56,8 +58,8 @@ export function ClassicStoryLayout({
         )}
         <div className="flex-1 flex flex-col justify-center">
           {postFields.antetitulo && (
-            <p className="flex items-center text-pretty text-gray-600 font-medium underline underline-offset-2 text-sm">
-              <Square className="w-2 h-2 bg-primary stroke-primary inline mr-2" />
+            <p className="flex items-start text-pretty text-gray-600 font-medium underline underline-offset-2 text-sm">
+              <Square className="w-2 h-2 bg-primary stroke-primary inline mr-2 mt-1.5" />
               {isAdmin ? (
                 <EditableText
                   blockUid={blockUid}

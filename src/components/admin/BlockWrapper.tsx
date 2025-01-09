@@ -157,7 +157,7 @@ export function BlockWrapper({
                   </select>
                 </div>
               )}
-              {block.blockType === "story" && (
+              {block.blockType === "story" && block.style === "classic" && (
                 <div className="flex-1">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Divisão
