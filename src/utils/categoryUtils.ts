@@ -1,3 +1,4 @@
+import { CustomPostFields, ObjectPosition, StoryBlock } from "@/types";
 import { SPECIAL_CATEGORIES } from "../constants/categories";
 
 export function shouldShowAuthor(categoryId: number): boolean {
@@ -11,3 +12,50 @@ export function shouldShowDate(categoryId: number): boolean {
 export function formatDate(dateString: string): string {
   return new Date(dateString).toLocaleDateString("pt-PT");
 }
+
+export function or<T>(a: T | null | undefined, b: T): T {
+  if (a === null || a === undefined) return b;
+  if (typeof a === "string") return a;
+  return a || b;
+}
+
+export function extractStoryData(data: any, story: StoryBlock) {
+  const {
+    title: overrideTitle,
+    chamadaDestaque: overrideChamadaDestaque,
+    chamadaManchete: overrideChamadaManchete,
+    antetitulo: overrideAntetitulo,
+  } = story;
+  const {
+    post: { author, featuredImage, uri, title, date },
+  } = data;
+
+  const postFields: CustomPostFields = data.post
+    ?.postFields as CustomPostFields;
+
+  const overridePostFields = {
+    antetitulo: or(overrideAntetitulo, postFields.antetitulo),
+    chamadaDestaque: or(overrideChamadaDestaque, postFields.chamadaDestaque),
+    chamadaManchete: or(overrideChamadaManchete, postFields.chamadaManchete),
+  };
+
+  const finalTitle = or(overrideTitle, title);
+  return {
+    date,
+    overridePostFields,
+    author,
+    featuredImage,
+    uri,
+    finalTitle,
+  };
+}
+
+export const positionMap = {
+  top: "object-top",
+  bottom: "object-bottom",
+  center: "object-center",
+  left: "object-left",
+  right: "object-right",
+} as const;
+
+export const objectPositions = Object.keys(positionMap) as ObjectPosition[];

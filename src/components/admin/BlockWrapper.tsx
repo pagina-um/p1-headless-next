@@ -1,59 +1,115 @@
 import React, { useState } from "react";
-import { BlockSettings, BlockSettingsButton } from "../ui/BlockSettings";
-import { CategoryBlock, StaticBlock, StoryBlock } from "../../types";
+import { BlockSettingsPanel, BlockSettingsButton } from "../ui/BlockSettings";
+import {
+  ObjectPosition,
+  objectPositions,
+  StoryBlock,
+  CategoryBlock,
+  StaticBlock,
+  GridPosition,
+  Block,
+  BlockSettings,
+} from "../../types";
+import { useGrid } from "../ui/GridContext";
 
-interface BlockWrapperProps {
+interface BlockWrapperProps<T extends Block> {
   children: React.ReactNode;
   title: string;
-  onDelete: () => void;
-  gridPosition?: { width: number; height: number };
-  block: any; // TODO: remove any
-  onUpdateBlock: (block: CategoryBlock | StoryBlock) => void;
+  gridPosition?: GridPosition;
+  block: T;
 }
 
-export function BlockWrapper({
+export function BlockWrapper<T extends Block>({
   children,
   title,
-  onDelete,
   gridPosition,
   block,
-  onUpdateBlock,
-}: BlockWrapperProps) {
+}: BlockWrapperProps<T>) {
+  const { handleUpdateBlockSettings, handleDeleteBlock } = useGrid();
   const [isFlipped, setIsFlipped] = useState(false);
-  const [localPostsPerPage, setLocalPostsPerPage] = useState(
-    block.postsPerPage || 5
-  );
 
-  const [localStoryStyle, setLocalStoryStyle] = useState(
-    block.style || "modern"
-  );
-
-  const [localMobilePriority, setLocalMobilePriority] = useState<number | null>(
-    block.mobilePriority || null
-  );
-
-  const handlePostsPerPageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value) || 5;
-    setLocalPostsPerPage(Math.max(1, Math.min(20, value)));
-  };
-
-  const handleChangeStoryStyle = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setLocalStoryStyle(e.target.value);
-  };
+  // Initialize state based on block type
+  const [blockSettings, setBlockSettings] = useState<BlockSettings<T>>(() => {
+    switch (block.blockType) {
+      case "story":
+        return {
+          mobilePriority: block.mobilePriority,
+          style: block.style,
+          orientation: block.orientation,
+          objectPosition: block.objectPosition,
+        } as BlockSettings<T>;
+      case "category":
+        return {
+          mobilePriority: block.mobilePriority,
+          postsPerPage: block.postsPerPage,
+        } as BlockSettings<T>;
+      case "static":
+        return {
+          mobilePriority: block.mobilePriority,
+        } as BlockSettings<T>;
+      default:
+        throw new Error(
+          `Unsupported block type: ${(block as Block).blockType}`
+        );
+    }
+  });
 
   const handleChangeMobilePosition = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     const value = parseInt(e.target.value) || null;
-    setLocalMobilePriority(value);
+    setBlockSettings((prev) => ({
+      ...prev,
+      mobilePriority: value,
+    }));
+  };
+
+  const handlePostsPerPageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (block.blockType === "category") {
+      const value = parseInt(e.target.value) || 5;
+      setBlockSettings((prev) => ({
+        ...prev,
+        postsPerPage: Math.max(1, Math.min(20, value)),
+      }));
+    }
+  };
+
+  const handleChangeStoryStyle = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (block.blockType === "story") {
+      setBlockSettings((prev) => ({
+        ...prev,
+        style: e.target.value as "classic" | "modern",
+      }));
+    }
+  };
+
+  const handleChangeOrientation = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (block.blockType === "story") {
+      setBlockSettings((prev) => ({
+        ...prev,
+        orientation: e.target.value as "horizontal" | "vertical",
+      }));
+    }
+  };
+
+  const handleChangeObjectPosition = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    if (
+      block.blockType === "story" &&
+      objectPositions.includes(e.target.value as ObjectPosition)
+    ) {
+      setBlockSettings((prev) => ({
+        ...prev,
+        objectPosition: e.target.value as ObjectPosition,
+      }));
+    }
   };
 
   const handleClose = () => {
-    onUpdateBlock({
+    handleUpdateBlockSettings({
       ...block,
-      postsPerPage: localPostsPerPage,
-      style: localStoryStyle,
-      mobilePriority: localMobilePriority,
+      ...blockSettings,
     });
     setIsFlipped(false);
   };
@@ -67,6 +123,7 @@ export function BlockWrapper({
         transform: isFlipped ? "rotateY(180deg)" : "rotateY(0)",
       }}
     >
+      {block.blockType === "story" && <div>{blockSettings.mobilePriority}</div>}
       {/* Front side */}
       <div className="absolute inset-0 backface-hidden">
         <div className="relative h-full group block-content">
@@ -80,32 +137,25 @@ export function BlockWrapper({
         className="absolute inset-0 backface-hidden block-settings"
         style={{ transform: "rotateY(180deg)" }}
       >
-        <BlockSettings title={title} onClose={handleClose} onDelete={onDelete}>
+        <BlockSettingsPanel
+          title={title}
+          onClose={handleClose}
+          onDelete={() => handleDeleteBlock(block.uId)}
+        >
           <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Título
-              </label>
-              <input
-                type="text"
-                className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                value={title}
-                onChange={() => {}}
-                disabled
-              />
-            </div>
             <div className="flex gap-2">
               <div className="flex-1">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Prioridade telemóvel
                 </label>
                 <input
-                  value={localMobilePriority || ""}
+                  value={blockSettings.mobilePriority || ""}
                   type="number"
-                  className="text-center w-full  border-gray-300 border focus:border-primary focus:ring-primary"
+                  className="text-center w-full border-gray-300 border focus:border-primary focus:ring-primary"
                   onChange={handleChangeMobilePosition}
                 />
               </div>
+
               {block.blockType === "category" && (
                 <div className="flex-1">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -115,31 +165,76 @@ export function BlockWrapper({
                     type="number"
                     min="1"
                     max="20"
-                    className="text-center w-full  border-gray-300 border focus:border-primary focus:ring-primary"
-                    value={localPostsPerPage}
+                    className="text-center w-full border-gray-300 border focus:border-primary focus:ring-primary"
+                    value={
+                      (blockSettings as BlockSettings<CategoryBlock>)
+                        .postsPerPage
+                    }
                     onChange={handlePostsPerPageChange}
                   />
                 </div>
               )}
 
               {block.blockType === "story" && (
-                <div className="flex-1">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Estilo
-                  </label>
-                  <select
-                    value={localStoryStyle}
-                    className="w-full  border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                    onChange={handleChangeStoryStyle}
-                  >
-                    <option value={"classic"}>Clássico</option>
-                    <option value={"modern"}>Moderno</option>
-                  </select>
-                </div>
+                <>
+                  <div className="flex-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Estilo
+                    </label>
+                    <select
+                      value={(blockSettings as BlockSettings<StoryBlock>).style}
+                      className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                      onChange={handleChangeStoryStyle}
+                    >
+                      <option value="classic">Clássico</option>
+                      <option value="modern">Moderno</option>
+                    </select>
+                  </div>
+
+                  {(blockSettings as BlockSettings<StoryBlock>).style ===
+                    "classic" && (
+                    <div className="flex-1">
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Divisão
+                      </label>
+                      <select
+                        value={
+                          (blockSettings as BlockSettings<StoryBlock>)
+                            .orientation
+                        }
+                        className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                        onChange={handleChangeOrientation}
+                      >
+                        <option value="vertical">Vertical</option>
+                        <option value="horizontal">Horizontal</option>
+                      </select>
+                    </div>
+                  )}
+
+                  <div className="flex-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Posição da imagem
+                    </label>
+                    <select
+                      value={
+                        (blockSettings as BlockSettings<StoryBlock>)
+                          .objectPosition
+                      }
+                      className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                      onChange={handleChangeObjectPosition}
+                    >
+                      {objectPositions.map((position) => (
+                        <option key={position} value={position}>
+                          {position}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </>
               )}
             </div>
           </div>
-        </BlockSettings>
+        </BlockSettingsPanel>
       </div>
     </div>
   );

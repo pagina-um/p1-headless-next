@@ -1,13 +1,50 @@
+"use client";
+
+import { createContext, useContext, useState, useEffect, useRef } from "react";
 import { BLOCK_MIN_ROWS } from "@/constants/blocks";
-import { loadGridState, saveGridState } from "@/services/jsonbin";
-import { GridState, CategoryBlock, StaticBlock, StoryBlock } from "@/types";
-import { useState, useEffect, useRef } from "react";
+import {
+  GridState,
+  CategoryBlock,
+  StaticBlock,
+  StoryBlock,
+  OverridableField,
+  Block,
+} from "@/types";
 import * as RGL from "react-grid-layout";
 
-export const useGrid = () => {
-  const [gridState, setGridState] = useState<GridState>();
+type GridContextType = {
+  gridState: GridState | undefined;
+  isSaving: boolean;
+  hasUnsavedChanges: boolean;
+  showToast: boolean;
+  setShowToast: (show: boolean) => void;
+  handleLayoutChange: (layout: RGL.Layout[]) => void;
+  handleDeleteBlock: (uId: string) => void;
+  handleSave: () => Promise<void>;
+  handleCreateCategoryBlock: (id: number, name: string) => void;
+  handleUpdateBlockSettings: (block: Block) => void;
+  handleCreateStaticBlock: (title: "newsletter" | "podcast") => void;
+  handleCreateStoryBlock: (wpPostId: number) => void;
+  handleClearLayout: () => void;
+  handleOverrideStoryBlockField: (
+    blockUid: string,
+    fieldName: OverridableField,
+    fieldText: string
+  ) => void;
+};
+
+const GridContext = createContext<GridContextType | undefined>(undefined);
+
+const initialGridState: GridState = {
+  blocks: [],
+  createdAt: "",
+};
+
+export function GridProvider({ children }: { children: React.ReactNode }) {
+  const [gridState, setGridState] = useState<GridState>(initialGridState);
   const [isSaving, setIsSaving] = useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const originalGridStateRef = useRef<GridState | null>(null);
 
   // Load initial grid state
@@ -41,8 +78,6 @@ export const useGrid = () => {
     setHasUnsavedChanges(hasChanges);
   }, [gridState]);
 
-  const [showToast, setShowToast] = useState(false);
-
   const handleClearLayout = () => {
     if (!gridState) return;
     setGridState({ ...gridState, blocks: [] });
@@ -52,7 +87,7 @@ export const useGrid = () => {
     if (!gridState) return;
 
     const updatedBlocks = gridState.blocks.map(
-      <T extends CategoryBlock | StoryBlock | StaticBlock>(block: T): T => {
+      <T extends Block>(block: T): T => {
         const layoutItem = layout.find((item) => item.i === block.uId);
         if (layoutItem) {
           const baseUpdate = {
@@ -150,27 +185,43 @@ export const useGrid = () => {
       gridPosition: { x: 0, y: 0, width: 2, height: BLOCK_MIN_ROWS },
       wpPostId,
       mobilePriority: null,
+      orientation: "vertical",
+      objectPosition: "center",
     };
-    setGridState((prevState: any) => {
-      const updatedState = {
-        ...prevState,
-        blocks: [...prevState.blocks, newBlock],
-      };
-      return updatedState;
-    });
+    setGridState((prevState: GridState) => ({
+      ...prevState,
+      blocks: [...prevState.blocks, newBlock],
+    }));
   };
 
-  const handleUpdateBlockSettings = (block: CategoryBlock | StoryBlock) => {
+  const handleUpdateBlockSettings = (block: Block) => {
     setGridState((prevState: any) => {
-      const updatedBlocks = prevState.blocks.map((b: any) =>
+      const updatedBlocks = prevState.blocks.map((b: Block) =>
         b.uId === block.uId ? block : b
       );
       return { ...prevState, blocks: updatedBlocks };
     });
   };
 
-  return {
+  const handleOverrideStoryBlockField = (
+    blockUid: string,
+    fieldName: OverridableField,
+    fieldText: string
+  ) => {
+    setGridState((prevState: any) => {
+      const updatedBlocks = prevState.blocks.map((b: any) =>
+        b.uId === blockUid ? { ...b, [fieldName]: fieldText } : b
+      );
+      return { ...prevState, blocks: updatedBlocks };
+    });
+  };
+
+  const value = {
     gridState,
+    isSaving,
+    hasUnsavedChanges,
+    showToast,
+    setShowToast,
     handleLayoutChange,
     handleDeleteBlock,
     handleSave,
@@ -178,14 +229,23 @@ export const useGrid = () => {
     handleUpdateBlockSettings,
     handleCreateStaticBlock,
     handleCreateStoryBlock,
-    showToast,
-    setShowToast,
-    isSaving,
     handleClearLayout,
-    hasUnsavedChanges,
+    handleOverrideStoryBlockField,
   };
-};
 
+  return <GridContext.Provider value={value}>{children}</GridContext.Provider>;
+}
+
+// Helper hook for using the context
+export function useGrid() {
+  const context = useContext(GridContext);
+  if (context === undefined) {
+    throw new Error("useGrid must be used within a GridProvider");
+  }
+  return context;
+}
+
+// Helper functions
 const sortAndNormalizeBlocks = (blocks: any[]) => {
   return blocks
     .slice()

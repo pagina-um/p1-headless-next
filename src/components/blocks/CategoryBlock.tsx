@@ -13,7 +13,6 @@ export async function CategoryBlockServer({ block }: CategoryBlockProps) {
     categoryId: block.wpCategoryId,
     postsPerPage: block.postsPerPage,
   });
-
   const posts = data?.posts?.nodes || [];
 
   if (!block.wpCategoryId) {

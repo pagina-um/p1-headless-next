@@ -1,6 +1,9 @@
-import { customPostFields } from "@/types";
+import { EditableText } from "@/components/ui/EditableText";
+import { CustomPostFields, ObjectPosition } from "@/types";
 import { Maybe } from "graphql/jsutils/Maybe";
 import { Square } from "lucide-react";
+import { twMerge } from "tailwind-merge";
+import { positionMap } from "@/utils/categoryUtils";
 
 export const MIN_BLOCK_AREA_FOR_EXTRA_CONTENT = 12;
 export interface StoryLayoutProps {
@@ -8,12 +11,17 @@ export interface StoryLayoutProps {
   featuredImageUrl: string;
   featuredImageSrcSet?: Maybe<string>;
   featuredImageAlt: string;
-  postFields: customPostFields;
+  postFields: CustomPostFields;
   title: string;
   author: any;
   date: string;
   tags: any;
+  orientation: "horizontal" | "vertical";
+  objectPosition: ObjectPosition;
+  isAdmin: boolean;
+  blockUid: string;
 }
+
 export function ClassicStoryLayout({
   blockSize,
   featuredImageUrl,
@@ -22,31 +30,50 @@ export function ClassicStoryLayout({
   postFields,
   title,
   tags,
+  orientation,
+  isAdmin,
+  blockUid,
+  objectPosition,
 }: StoryLayoutProps) {
   const blockArea = blockSize[0] * blockSize[1] * 1.5;
   const isLargeBlock = blockArea >= MIN_BLOCK_AREA_FOR_EXTRA_CONTENT;
-  const isLandscape = blockSize[0] > blockSize[1] * 0.9;
   const hasTagsToShow = tags.nodes.length > 0;
+
+  const isLandscape = orientation === "horizontal";
+  const displayImage = true;
   return (
-    <div className="@container group h-full ">
+    <div className="@container group h-full px-4 lg:px-0">
       <div
-        className={`flex gap-4 h-full ${isLandscape ? "flex-row" : "flex-col"}`}
+        className={`flex gap-4 h-full flex-col ${
+          isLandscape ? "lg:flex-row" : "lg:flex-col"
+        }`}
       >
-        {featuredImageUrl && isLargeBlock && (
-          <div className={`relative ${isLandscape ? "w-1/2" : "h-1/2"}`}>
+        {featuredImageUrl && displayImage && (
+          <div className={`relative ${isLandscape ? "w-1/2" : "h-full"}`}>
             <img
               src={featuredImageUrl || ""}
               srcSet={featuredImageSrcSet || undefined}
               alt={featuredImageAlt || ""}
-              className="object-cover w-full h-full absolute inset-0"
+              className={twMerge(
+                "object-cover w-full h-full absolute inset-0",
+                positionMap[objectPosition]
+              )}
             />
           </div>
         )}
         <div className="flex-1 flex flex-col justify-center">
           {postFields.antetitulo && (
-            <p className="text-balance text-gray-600 font-medium underline underline-offset-2">
-              <Square className="w-2 h-2 bg-primary stroke-primary inline mr-2 mb-1" />
-              {postFields.antetitulo}
+            <p className="flex items-start text-pretty text-gray-600 font-medium underline underline-offset-2 text-sm">
+              <Square className="w-2 h-2 bg-primary stroke-primary inline mr-2 mt-1.5" />
+              {isAdmin ? (
+                <EditableText
+                  blockUid={blockUid}
+                  originalText={postFields.antetitulo}
+                  fieldName="antetitulo"
+                />
+              ) : (
+                postFields.antetitulo
+              )}
             </p>
           )}
           {!postFields.antetitulo && hasTagsToShow && (
@@ -62,12 +89,42 @@ export function ClassicStoryLayout({
             </div>
           )}
 
-          <h2 className="font-serif text-2xl md:text-3xl font-bold mb-3 leading-tight group-hover:underline text-balance">
-            {title}
+          <h2
+            className={twMerge(
+              "font-serif text-2xl font-bold mb-3 leading-tight text-pretty",
+              !isAdmin && "group-hover:underline"
+            )}
+          >
+            {isAdmin ? (
+              <EditableText
+                blockUid={blockUid}
+                originalText={title}
+                fieldName="title"
+              />
+            ) : (
+              title
+            )}
           </h2>
-          {postFields.chamadaDestaque && (
-            <p className="text-gray-600">{postFields.chamadaDestaque}</p>
-          )}
+          {postFields.chamadaDestaque ||
+            (postFields.chamadaManchete && (
+              <p className="text-gray-600 text-sm">
+                {isAdmin ? (
+                  <EditableText
+                    blockUid={blockUid}
+                    originalText={
+                      postFields.chamadaDestaque || postFields.chamadaManchete
+                    }
+                    fieldName={
+                      postFields.chamadaDestaque
+                        ? "chamadaDestaque"
+                        : "chamadaManchete"
+                    }
+                  />
+                ) : (
+                  postFields.chamadaDestaque || postFields.chamadaManchete
+                )}
+              </p>
+            ))}
         </div>
       </div>
     </div>

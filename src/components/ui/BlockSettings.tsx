@@ -1,19 +1,19 @@
 import React from "react";
 import { MoreVertical, X, ArrowLeft, Trash2 } from "lucide-react";
 
-interface BlockSettingsProps {
+interface BlockSettingsPanelProps {
   title: string;
   onClose: () => void;
   onDelete: () => void;
   children: React.ReactNode;
 }
 
-export function BlockSettings({
+export function BlockSettingsPanel({
   title,
   onClose,
   onDelete,
   children,
-}: BlockSettingsProps) {
+}: BlockSettingsPanelProps) {
   return (
     <div className="absolute inset-0 bg-white  shadow-lg p-6">
       <div className="flex items-center justify-between mb-4 pb-2 border-b">

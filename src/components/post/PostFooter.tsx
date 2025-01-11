@@ -38,7 +38,7 @@ export function PostFooter() {
             <span className="text-xl font-bold text-white">Contribuir</span>
           </Link>
           <Link
-            href="#"
+            href="https://pagina-um.kit.com/53291313d7"
             className="group bg-primary hover:bg-primary-dark transition-all duration-300 rounded-lg p-4 text-center flex items-center justify-center space-x-3"
           >
             <Mail className="w-6 h-6 group-hover:scale-110 transition-transform duration-300 stroke-white" />
