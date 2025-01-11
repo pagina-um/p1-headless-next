@@ -30,7 +30,7 @@ export function NewsStoryClient({ story }: NewsStoryProps) {
     );
   }
   const {
-    post: { author, featuredImage, uri, title, date },
+    post: { author, featuredImage, uri, title, date, categories, tags },
   } = data;
 
   const postFields: customPostFields = data.post
@@ -45,6 +45,8 @@ export function NewsStoryClient({ story }: NewsStoryProps) {
       title={title || ""}
       author={author}
       date={date || ""}
+      tags={tags}
+      blockSize={[story.gridPosition.width, story.gridPosition.height]}
     />
   ) : (
     <ClassicStoryLayout
@@ -56,6 +58,7 @@ export function NewsStoryClient({ story }: NewsStoryProps) {
       title={title || ""}
       author={author}
       date={date || ""}
+      tags={tags}
     />
   );
 }

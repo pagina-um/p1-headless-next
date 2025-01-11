@@ -73,6 +73,12 @@ export const GET_POST_BY_ID = graphql(`
         chamadaDestaque
         chamadaManchete
       }
+      tags {
+        nodes {
+          id
+          name
+        }
+      }
       categories {
         nodes {
           id

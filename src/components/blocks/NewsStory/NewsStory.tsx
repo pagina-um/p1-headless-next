@@ -23,7 +23,7 @@ export async function NewsStory({ story }: NewsStoryProps) {
     return "Conteúdo não encontrado.";
   }
   const {
-    post: { author, featuredImage, uri, title, date, excerpt },
+    post: { author, featuredImage, uri, title, date, excerpt, tags },
   } = data;
 
   const postFields: customPostFields = data.post
@@ -41,17 +41,20 @@ export async function NewsStory({ story }: NewsStoryProps) {
           title={title || ""}
           author={author}
           date={date || ""}
+          tags={tags}
+          blockSize={[story.gridPosition.width, story.gridPosition.height]}
         />
       ) : (
         <ClassicStoryLayout
           blockSize={[story.gridPosition.width, story.gridPosition.height]}
           featuredImageUrl={featuredImage?.node?.sourceUrl || ""}
-          featuredImageAlt={featuredImage?.node?.altText || ""}
           featuredImageSrcSet={featuredImage?.node?.srcSet}
+          featuredImageAlt={featuredImage?.node?.altText || ""}
           postFields={postFields}
           title={title || ""}
           author={author}
           date={date || ""}
+          tags={tags}
         />
       )}
     </Link>
