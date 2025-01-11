@@ -88,19 +88,26 @@ export function ClassicStoryLayout({
               title
             )}
           </h2>
-          {postFields.chamadaDestaque && (
-            <p className="text-gray-600 text-sm">
-              {isAdmin ? (
-                <EditableText
-                  blockUid={blockUid}
-                  originalText={postFields.chamadaDestaque}
-                  fieldName="chamadaDestaque"
-                />
-              ) : (
-                postFields.chamadaDestaque
-              )}
-            </p>
-          )}
+          {postFields.chamadaDestaque ||
+            (postFields.chamadaManchete && (
+              <p className="text-gray-600 text-sm">
+                {isAdmin ? (
+                  <EditableText
+                    blockUid={blockUid}
+                    originalText={
+                      postFields.chamadaDestaque || postFields.chamadaManchete
+                    }
+                    fieldName={
+                      postFields.chamadaDestaque
+                        ? "chamadaDestaque"
+                        : "chamadaManchete"
+                    }
+                  />
+                ) : (
+                  postFields.chamadaDestaque || postFields.chamadaManchete
+                )}
+              </p>
+            ))}
         </div>
       </div>
     </div>
