@@ -1,26 +1,12 @@
 import { EditableText } from "@/components/ui/EditableText";
 import { CustomPostFields, ObjectPosition } from "@/types";
-import { positionMap } from "@/utils/categoryUtils";
 import { Maybe } from "graphql/jsutils/Maybe";
 import { Square } from "lucide-react";
 import { twMerge } from "tailwind-merge";
+import { positionMap } from "@/utils/categoryUtils";
 
 export const MIN_BLOCK_AREA_FOR_EXTRA_CONTENT = 12;
-
-export function ClassicStoryLayout({
-  blockSize,
-  featuredImageUrl,
-  featuredImageAlt,
-  featuredImageSrcSet,
-  postFields,
-  title,
-  author,
-  date,
-  isAdmin,
-  blockUid,
-  orientation,
-  objectPosition,
-}: {
+export interface StoryLayoutProps {
   blockSize: [number, number];
   featuredImageUrl: string;
   featuredImageSrcSet?: Maybe<string>;
@@ -29,11 +15,30 @@ export function ClassicStoryLayout({
   title: string;
   author: any;
   date: string;
-  isAdmin: boolean;
-  blockUid: string;
+  tags: any;
   orientation: "horizontal" | "vertical";
   objectPosition: ObjectPosition;
-}) {
+  isAdmin: boolean;
+  blockUid: string;
+}
+
+export function ClassicStoryLayout({
+  blockSize,
+  featuredImageUrl,
+  featuredImageAlt,
+  featuredImageSrcSet,
+  postFields,
+  title,
+  tags,
+  orientation,
+  isAdmin,
+  blockUid,
+  objectPosition,
+}: StoryLayoutProps) {
+  const blockArea = blockSize[0] * blockSize[1] * 1.5;
+  const isLargeBlock = blockArea >= MIN_BLOCK_AREA_FOR_EXTRA_CONTENT;
+  const hasTagsToShow = tags.nodes.length > 0;
+
   const isLandscape = orientation === "horizontal";
   const displayImage = true;
   return (
@@ -70,6 +75,18 @@ export function ClassicStoryLayout({
                 postFields.antetitulo
               )}
             </p>
+          )}
+          {!postFields.antetitulo && hasTagsToShow && (
+            <div className="flex gap-2 text-balance text-gray-600 font-medium underline-offset-2">
+              {tags.nodes.map((tag: any) => (
+                <div
+                  className="bg-slate-400 text-white uppercase font-medium text-xs px-2 py-1"
+                  key={tag.id}
+                >
+                  {tag.name}
+                </div>
+              ))}
+            </div>
           )}
 
           <h2
