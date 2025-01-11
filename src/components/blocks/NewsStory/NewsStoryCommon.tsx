@@ -44,6 +44,9 @@ export function NewsStoryCommon({
           blockUid={story.uId}
           isAdmin={isAdmin}
           objectPosition={story.objectPosition}
+          tags={data.post.tags}
+          blockSize={[story.gridPosition.width, story.gridPosition.height]}
+          orientation="vertical"
         />
       ) : (
         <ClassicStoryLayout
@@ -59,6 +62,7 @@ export function NewsStoryCommon({
           isAdmin={isAdmin}
           orientation={story.orientation}
           objectPosition={story.objectPosition}
+          tags={data.post.tags}
         />
       )}
     </ConditionalLinkWrapper>
