@@ -25,8 +25,12 @@ export function StaticBlock({ block }: StaticBlockProps) {
       >
         <div className="flex flex-col items-center text-center text-white h-full justify-center">
           <Mail className="w-12 h-12 mb-4" />
-          <h2 className="font-serif text-2xl font-bold mb-2">{block.title}</h2>
-          <p className="mb-6 text-white/90">{block.content}</p>
+          <h2 className="font-serif text-2xl font-bold mb-2">
+            Subscreva a nossa newsletter
+          </h2>
+          <p className="mb-6 text-white/90">
+            Antecipe as notícias que vão sair no P1.
+          </p>
           <button className="px-6 py-3 bg-white text-primary font-semibold  hover:bg-gray-100 transition-colors select-text">
             Subscrever
           </button>

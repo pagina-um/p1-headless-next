@@ -143,8 +143,8 @@ export function BlockWrapper<T extends Block>({
           onDelete={() => handleDeleteBlock(block.uId)}
         >
           <div className="space-y-4">
-            <div className="flex gap-2">
-              <div className="flex-1">
+            <div className="flex gap-2 flex-wrap">
+              <div className="">
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Prioridade telemóvel
                 </label>
@@ -157,7 +157,7 @@ export function BlockWrapper<T extends Block>({
               </div>
 
               {block.blockType === "category" && (
-                <div className="flex-1">
+                <div className="">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Número de Artigos
                   </label>
@@ -177,7 +177,7 @@ export function BlockWrapper<T extends Block>({
 
               {block.blockType === "story" && (
                 <>
-                  <div className="flex-1">
+                  <div className="">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Estilo
                     </label>
@@ -193,7 +193,7 @@ export function BlockWrapper<T extends Block>({
 
                   {(blockSettings as BlockSettings<StoryBlock>).style ===
                     "classic" && (
-                    <div className="flex-1">
+                    <div className="">
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Divisão
                       </label>
