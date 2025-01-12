@@ -123,6 +123,13 @@ export function BlockWrapper<T extends Block>({
     setIsFlipped(false);
   };
 
+  const handleHideImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setBlockSettings((prev) => ({
+      ...prev,
+      hideImage: e.target.checked,
+    }));
+  };
+
   return (
     <div
       className="relative h-full preserve-3d transition-transform duration-500"
@@ -234,6 +241,22 @@ export function BlockWrapper<T extends Block>({
                         }
                         className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                         onChange={handleCheckReverse}
+                      ></input>
+                    </div>
+                  )}
+                  {(blockSettings as BlockSettings<StoryBlock>).style ===
+                    "classic" && (
+                    <div className="">
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Esconder imagem
+                      </label>
+                      <input
+                        type="checkbox"
+                        checked={
+                          (blockSettings as BlockSettings<StoryBlock>).hideImage
+                        }
+                        className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                        onChange={handleHideImage}
                       ></input>
                     </div>
                   )}

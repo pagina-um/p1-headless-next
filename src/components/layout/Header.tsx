@@ -8,12 +8,10 @@ import { DesktopNav } from "./DesktopNav";
 import { MobileNav } from "./MobileNav";
 import { useScrollHeader } from "@/hooks/useScrollHeader";
 import Link from "next/link";
-import { twMerge } from "tailwind-merge";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isScrolled } = useScrollHeader();
-  const router = useRouter();
   const pathname = usePathname();
   const isAdmin = pathname === "/admin";
 
@@ -29,10 +27,11 @@ export function Header() {
       >
         <div className="max-w-7xl mx-auto px-4">
           <div
-            className={twMerge(
-              "flex items-center justify-between gap-8 transition-all duration-300 h-16 md:h-24",
-              isScrolled && "md:h-16"
-            )}
+            className={`
+              flex items-center justify-between gap-8
+              transition-all duration-300
+              ${isScrolled ? "h-16" : "h-24"}
+            `}
           >
             {/* Mobile menu button */}
             <button
@@ -45,8 +44,12 @@ export function Header() {
             <div className="flex-1 flex flex-col items-center md:items-start">
               <div
                 className={`
-                  transition-all duration-300 w-[160px]
-                  ${isScrolled ? " lg:w-[200px]" : "lg:w-[280px]"}
+                  transition-all duration-300
+                  ${
+                    isScrolled
+                      ? "w-[160px] md:w-[200px]"
+                      : "w-[200px] md:w-[280px]"
+                  }
                 `}
               >
                 <Link href={"/"}>
@@ -83,10 +86,9 @@ export function Header() {
       </header>
 
       <div
-        className={twMerge(
-          "h-16 lg:h-24 transition-all duration-300",
-          isScrolled && "lg:h-16"
-        )}
+        className={`h-24 transition-all duration-300 ${
+          isScrolled ? "h-16" : "h-24"
+        }`}
       />
 
       <MobileNav

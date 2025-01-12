@@ -51,11 +51,11 @@ export function extractStoryData(data: any, story: StoryBlock) {
 }
 
 export const positionMap = {
-  top: "object-top",
-  bottom: "object-bottom",
-  center: "object-center",
-  left: "object-left",
-  right: "object-right",
+  top: "top",
+  bottom: "bottom",
+  center: "center",
+  left: "left",
+  right: "right",
 } as const;
 
 export const objectPositions = Object.keys(positionMap) as ObjectPosition[];
