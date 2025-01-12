@@ -24,7 +24,7 @@ export function middleware(request: NextRequest) {
 
       // Replace these with your actual credentials
       // In production, use environment variables and secure storage
-      const ADMIN_USERNAME = "admin";
+      const ADMIN_USERNAME = process.env.ADMIN_USERNAME;
       const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
       if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {

@@ -43,6 +43,7 @@ export function ClassicStoryLayout({
   const displayImage = true;
   return (
     <div className="@container group h-full px-4 lg:px-0">
+      asd
       <div
         className={`flex gap-4 h-full flex-col ${
           isLandscape ? "lg:flex-row" : "lg:flex-col"
@@ -105,26 +106,25 @@ export function ClassicStoryLayout({
               title
             )}
           </h2>
-          {postFields.chamadaDestaque ||
-            (postFields.chamadaManchete && (
-              <p className="text-gray-600 text-sm">
-                {isAdmin ? (
-                  <EditableText
-                    blockUid={blockUid}
-                    originalText={
-                      postFields.chamadaDestaque || postFields.chamadaManchete
-                    }
-                    fieldName={
-                      postFields.chamadaDestaque
-                        ? "chamadaDestaque"
-                        : "chamadaManchete"
-                    }
-                  />
-                ) : (
-                  postFields.chamadaDestaque || postFields.chamadaManchete
-                )}
-              </p>
-            ))}
+          {(postFields.chamadaDestaque || postFields.chamadaManchete) && (
+            <p className="text-gray-600 text-sm">
+              {isAdmin ? (
+                <EditableText
+                  blockUid={blockUid}
+                  originalText={
+                    postFields.chamadaDestaque || postFields.chamadaManchete
+                  }
+                  fieldName={
+                    postFields.chamadaDestaque
+                      ? "chamadaDestaque"
+                      : "chamadaManchete"
+                  }
+                />
+              ) : (
+                postFields.chamadaDestaque || postFields.chamadaManchete
+              )}
+            </p>
+          )}
         </div>
       </div>
     </div>
