@@ -74,7 +74,7 @@ export function ModernStoryLayout({
           </h2>
 
           {(postFields.chamadaDestaque || postFields.chamadaManchete) && (
-            <p className={twMerge("text-white text-sm")}>
+            <p className={twMerge("text-gray-300 text-sm")}>
               {isAdmin ? (
                 <EditableText
                   blockUid={blockUid}
