@@ -43,7 +43,6 @@ export function ClassicStoryLayout({
   const displayImage = true;
   return (
     <div className="@container group h-full px-4 lg:px-0">
-      asd
       <div
         className={`flex gap-4 h-full flex-col ${
           isLandscape ? "lg:flex-row" : "lg:flex-col"
@@ -112,7 +111,8 @@ export function ClassicStoryLayout({
                 <EditableText
                   blockUid={blockUid}
                   originalText={
-                    postFields.chamadaDestaque || postFields.chamadaManchete
+                    (postFields.chamadaDestaque ||
+                      postFields.chamadaManchete) as string
                   }
                   fieldName={
                     postFields.chamadaDestaque
