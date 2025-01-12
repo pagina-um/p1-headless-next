@@ -7,6 +7,7 @@ import {
 } from "../../utils/categoryUtils";
 import Link from "next/link";
 import { CategoryPostNode } from "@/hooks/useCategoryPosts";
+import { twMerge } from "tailwind-merge";
 
 interface CategoryPostListProps {
   posts: CategoryPostNode[];
@@ -56,32 +57,42 @@ const ArticleContent = ({
 }) => (
   <article
     key={post.id}
-    className="group cursor-pointer pb-4 border-b border-gray-100 last:border-0 flex-1 @3xl:border-none"
+    className="group cursor-pointer pb-4 border-b border-gray-100 last:border-0 flex-1 @3xl:border-none flex justify-between items-center gap-2"
   >
-    <h3 className="font-serif text-lg font-semibold group-hover:text-primary transition-colors line-clamp-2 @3xl:line-clamp-3">
-      {post.title}
-    </h3>
-    <div className="flex items-center gap-3 text-sm text-gray-500 mt-2 font-body-serif">
+    <div>
+      {" "}
       {showAuthor && (
-        <span className="flex items-center gap-3 flex-1 justify-end">
-          {post.author?.node.name}
-          {post.author?.node.avatar?.url ? (
-            <img
-              src={post.author?.node.avatar?.url}
-              alt={post.author?.node.name || ""}
-              className="w-6 h-6 rounded-full"
-            />
-          ) : (
-            <User className="w-4 h-4" />
-          )}
-        </span>
+        <p className="font-thin text-lg"> {post.author?.node.name}</p>
       )}
-      {showDate && post.date && (
-        <span className="flex items-center gap-1 font-sans @3xl:hidden">
-          <Calendar className="w-4 h-4" />
-          {formatDate(post.date)}
-        </span>
-      )}
+      <h3
+        className={twMerge(
+          "font-serif text-lg font-semibold group-hover:text-primary transition-colors line-clamp-3 @3xl:line-clamp-3",
+          showAuthor && "text-xl italic"
+        )}
+      >
+        "{post.title}"
+      </h3>
+      <div className="flex items-center gap-3 text-sm text-gray-500 mt-2 font-body-serif">
+        {showDate && post.date && (
+          <span className="flex items-center gap-1 font-sans @3xl:hidden">
+            <Calendar className="w-4 h-4" />
+            {formatDate(post.date)}
+          </span>
+        )}
+      </div>
     </div>
+    {showAuthor && (
+      <div className="flex items-center gap-3 flex-shrink-0 justify-end font-thin text-md text-slate-900">
+        {post.author?.node.avatar?.url ? (
+          <img
+            src={post.author?.node.avatar?.url}
+            alt={post.author?.node.name || ""}
+            className="w-12 h-12 rounded-full border-2 border-primary-dark"
+          />
+        ) : (
+          <User className="w-4 h-4" />
+        )}
+      </div>
+    )}
   </article>
 );
