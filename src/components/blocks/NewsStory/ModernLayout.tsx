@@ -73,18 +73,26 @@ export function ModernStoryLayout({
             )}
           </h2>
 
-          <div className="flex items-center gap-4 text-sm text-gray-300">
-            <span className="flex items-center gap-1">
-              <User className="w-4 h-4" />
-              {author?.node.name}
-            </span>
-            {date && (
-              <span className="flex items-center gap-1">
-                <Calendar className="w-4 h-4" />
-                {new Date(date).toLocaleDateString("pt-PT")}
-              </span>
-            )}
-          </div>
+          {(postFields.chamadaDestaque || postFields.chamadaManchete) && (
+            <p className={twMerge("text-white text-sm")}>
+              {isAdmin ? (
+                <EditableText
+                  blockUid={blockUid}
+                  originalText={
+                    (postFields.chamadaDestaque ||
+                      postFields.chamadaManchete) as string
+                  }
+                  fieldName={
+                    postFields.chamadaDestaque
+                      ? "chamadaDestaque"
+                      : "chamadaManchete"
+                  }
+                />
+              ) : (
+                postFields.chamadaDestaque || postFields.chamadaManchete
+              )}
+            </p>
+          )}
         </div>
       </div>
     </div>
