@@ -41,6 +41,7 @@ export function ClassicStoryLayout({
   const hasTagsToShow = tags.nodes.length > 0;
   const displayImage = !hideImage;
   const isLandscape = orientation === "horizontal";
+  const shouldReverse = reverse && isLandscape;
   return (
     <div className="@container group h-full px-4 lg:px-0">
       <div
@@ -77,7 +78,7 @@ export function ClassicStoryLayout({
             <p
               className={twMerge(
                 "flex items-start text-pretty text-gray-600 font-medium underline underline-offset-2 text-sm  gap-x-1",
-                reverse && "flex-row-reverse"
+                shouldReverse && "flex-row-reverse"
               )}
             >
               <Square className="w-2 h-2 bg-primary stroke-primary inline mt-1.5" />
@@ -86,7 +87,7 @@ export function ClassicStoryLayout({
                   blockUid={blockUid}
                   originalText={postFields.antetitulo}
                   fieldName="antetitulo"
-                  textAlign={reverse ? "right" : "left"}
+                  textAlign={shouldReverse ? "right" : "left"}
                 />
               ) : (
                 postFields.antetitulo
@@ -110,7 +111,7 @@ export function ClassicStoryLayout({
             className={twMerge(
               "font-serif text-2xl font-bold mb-3 leading-tight text-pretty",
               !isAdmin && "group-hover:underline",
-              reverse && "text-right"
+              shouldReverse && "text-right"
             )}
           >
             {isAdmin ? (
@@ -118,7 +119,7 @@ export function ClassicStoryLayout({
                 blockUid={blockUid}
                 originalText={title}
                 fieldName="title"
-                textAlign={reverse ? "right" : "left"}
+                textAlign={shouldReverse ? "right" : "left"}
               />
             ) : (
               title
@@ -128,7 +129,7 @@ export function ClassicStoryLayout({
             <p
               className={twMerge(
                 "text-gray-600 text-sm",
-                reverse && "text-right"
+                shouldReverse && "text-right"
               )}
             >
               {isAdmin ? (
@@ -143,7 +144,7 @@ export function ClassicStoryLayout({
                       ? "chamadaDestaque"
                       : "chamadaManchete"
                   }
-                  textAlign={reverse ? "right" : "left"}
+                  textAlign={shouldReverse ? "right" : "left"}
                 />
               ) : (
                 postFields.chamadaDestaque || postFields.chamadaManchete
