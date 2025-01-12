@@ -171,7 +171,7 @@ export const GET_POST_BY_ID = graphql(`
 
 export const GET_LATEST_POSTS = graphql(`
   query GetLatestPosts {
-    posts(first: 10) {
+    posts(first: 20) {
       nodes {
         databaseId
         title
