@@ -37,6 +37,8 @@ export function BlockWrapper<T extends Block>({
           style: block.style,
           orientation: block.orientation,
           objectPosition: block.objectPosition,
+          hideImage: block.hideImage,
+          reverse: block.reverse,
         } as BlockSettings<T>;
       case "category":
         return {
@@ -104,6 +106,13 @@ export function BlockWrapper<T extends Block>({
         objectPosition: e.target.value as ObjectPosition,
       }));
     }
+  };
+
+  const handleCheckReverse = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setBlockSettings((prev) => ({
+      ...prev,
+      reverse: e.target.checked,
+    }));
   };
 
   const handleClose = () => {
@@ -211,9 +220,27 @@ export function BlockWrapper<T extends Block>({
                     </div>
                   )}
 
+                  {(blockSettings as BlockSettings<StoryBlock>).style ===
+                    "classic" && (
+                    <div className="">
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Invertido
+                      </label>
+                      <input
+                        type="checkbox"
+                        value={
+                          (blockSettings as BlockSettings<StoryBlock>)
+                            .orientation
+                        }
+                        className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                        onChange={handleCheckReverse}
+                      ></input>
+                    </div>
+                  )}
+
                   <div className="flex-1">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Posição da imagem
+                      Corte da imagem
                     </label>
                     <select
                       value={

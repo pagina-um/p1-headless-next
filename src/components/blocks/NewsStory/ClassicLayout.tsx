@@ -20,10 +20,11 @@ export interface StoryLayoutProps {
   objectPosition: ObjectPosition;
   isAdmin: boolean;
   blockUid: string;
+  reverse?: boolean;
+  hideImage?: boolean;
 }
 
 export function ClassicStoryLayout({
-  blockSize,
   featuredImageUrl,
   featuredImageAlt,
   featuredImageSrcSet,
@@ -34,22 +35,32 @@ export function ClassicStoryLayout({
   isAdmin,
   blockUid,
   objectPosition,
+  hideImage,
+  reverse,
 }: StoryLayoutProps) {
-  const blockArea = blockSize[0] * blockSize[1] * 1.5;
-  const isLargeBlock = blockArea >= MIN_BLOCK_AREA_FOR_EXTRA_CONTENT;
   const hasTagsToShow = tags.nodes.length > 0;
-
+  const displayImage = !hideImage;
   const isLandscape = orientation === "horizontal";
-  const displayImage = true;
   return (
     <div className="@container group h-full px-4 lg:px-0">
       <div
-        className={`flex gap-4 h-full flex-col ${
-          isLandscape ? "lg:flex-row" : "lg:flex-col"
-        }`}
+        className={twMerge(
+          "flex gap-4 h-full flex-col",
+          isLandscape
+            ? reverse
+              ? "lg:flex-row-reverse"
+              : "lg:flex-row"
+            : reverse
+            ? "lg:flex-col-reverse"
+            : "lg:flex-col"
+        )}
       >
         {featuredImageUrl && displayImage && (
-          <div className={`relative ${isLandscape ? "w-1/2" : "h-full"}`}>
+          <div
+            className={`relative ${
+              isLandscape ? "w-1/2" : "h-full"
+            } max-md:min-h-36`}
+          >
             <img
               src={featuredImageUrl || ""}
               srcSet={featuredImageSrcSet || undefined}
@@ -63,13 +74,19 @@ export function ClassicStoryLayout({
         )}
         <div className="flex-1 flex flex-col justify-center">
           {postFields.antetitulo && (
-            <p className="flex items-start text-pretty text-gray-600 font-medium underline underline-offset-2 text-sm">
-              <Square className="w-2 h-2 bg-primary stroke-primary inline mr-2 mt-1.5" />
+            <p
+              className={twMerge(
+                "flex items-start text-pretty text-gray-600 font-medium underline underline-offset-2 text-sm  gap-x-1",
+                reverse && "flex-row-reverse"
+              )}
+            >
+              <Square className="w-2 h-2 bg-primary stroke-primary inline mt-1.5" />
               {isAdmin ? (
                 <EditableText
                   blockUid={blockUid}
                   originalText={postFields.antetitulo}
                   fieldName="antetitulo"
+                  textAlign={reverse ? "right" : "left"}
                 />
               ) : (
                 postFields.antetitulo
@@ -92,7 +109,8 @@ export function ClassicStoryLayout({
           <h2
             className={twMerge(
               "font-serif text-2xl font-bold mb-3 leading-tight text-pretty",
-              !isAdmin && "group-hover:underline"
+              !isAdmin && "group-hover:underline",
+              reverse && "text-right"
             )}
           >
             {isAdmin ? (
@@ -100,13 +118,19 @@ export function ClassicStoryLayout({
                 blockUid={blockUid}
                 originalText={title}
                 fieldName="title"
+                textAlign={reverse ? "right" : "left"}
               />
             ) : (
               title
             )}
           </h2>
           {(postFields.chamadaDestaque || postFields.chamadaManchete) && (
-            <p className="text-gray-600 text-sm">
+            <p
+              className={twMerge(
+                "text-gray-600 text-sm",
+                reverse && "text-right"
+              )}
+            >
               {isAdmin ? (
                 <EditableText
                   blockUid={blockUid}
@@ -119,6 +143,7 @@ export function ClassicStoryLayout({
                       ? "chamadaDestaque"
                       : "chamadaManchete"
                   }
+                  textAlign={reverse ? "right" : "left"}
                 />
               ) : (
                 postFields.chamadaDestaque || postFields.chamadaManchete

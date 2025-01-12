@@ -38,6 +38,8 @@ export interface StoryBlock extends BaseBlock, CustomPostFields {
   style: "classic" | "modern";
   orientation: "horizontal" | "vertical";
   objectPosition: ObjectPosition;
+  hideImage: boolean;
+  reverse: boolean;
 }
 
 export interface CategoryBlock extends BaseBlock {
@@ -72,7 +74,12 @@ export type BlockType = Block["blockType"];
 export type BlockSettings<T extends Block> = T extends StoryBlock
   ? Pick<
       StoryBlock,
-      "mobilePriority" | "style" | "orientation" | "objectPosition"
+      | "mobilePriority"
+      | "style"
+      | "orientation"
+      | "objectPosition"
+      | "reverse"
+      | "hideImage"
     >
   : T extends CategoryBlock
   ? Pick<CategoryBlock, "mobilePriority" | "postsPerPage">

@@ -63,6 +63,8 @@ export function NewsStoryCommon({
           orientation={story.orientation}
           objectPosition={story.objectPosition}
           tags={data.post.tags}
+          hideImage={story.hideImage}
+          reverse={story.reverse}
         />
       )}
     </ConditionalLinkWrapper>

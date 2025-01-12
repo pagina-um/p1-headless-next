@@ -8,10 +8,12 @@ export function EditableText({
   originalText,
   fieldName,
   blockUid,
+  textAlign = "left",
 }: {
   originalText: string;
   fieldName: OverridableField;
   blockUid: string;
+  textAlign?: "left" | "center" | "right";
 }) {
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState(originalText);
@@ -32,7 +34,7 @@ export function EditableText({
 
   return (
     <button
-      className="focus:outline-none cursor-text text-left w-full"
+      className={`focus:outline-none cursor-text w-full text-${textAlign}`}
       onClick={() => {
         if (!isEditing) {
           setIsEditing(true);

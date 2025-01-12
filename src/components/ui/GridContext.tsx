@@ -187,6 +187,8 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
       mobilePriority: null,
       orientation: "vertical",
       objectPosition: "center",
+      hideImage: false,
+      reverse: false,
     };
     setGridState((prevState: GridState) => ({
       ...prevState,
