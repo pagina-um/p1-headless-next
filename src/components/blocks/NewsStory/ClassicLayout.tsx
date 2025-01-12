@@ -66,10 +66,8 @@ export function ClassicStoryLayout({
               src={featuredImageUrl || ""}
               srcSet={featuredImageSrcSet || undefined}
               alt={featuredImageAlt || ""}
-              className={twMerge(
-                "object-cover w-full h-full absolute inset-0",
-                positionMap[objectPosition]
-              )}
+              className={twMerge("object-cover w-full h-full absolute inset-0")}
+              style={{ objectPosition: positionMap[objectPosition] }}
             />
           </div>
         )}
