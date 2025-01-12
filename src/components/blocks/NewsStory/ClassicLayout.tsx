@@ -75,11 +75,11 @@ export function ClassicStoryLayout({
           {postFields.antetitulo && (
             <p
               className={twMerge(
-                "flex items-start text-pretty text-gray-600 font-medium underline underline-offset-2 text-sm  gap-x-1",
+                "flex items-start text-pretty text-gray-600 font-medium underline underline-offset-2 text-sm  gap-x-2",
                 shouldReverse && "flex-row-reverse"
               )}
             >
-              <Square className="w-2 h-2 bg-primary stroke-primary inline mt-1.5" />
+              <Square className="w-3 h-3 bg-primary-dark stroke-primary inline mt-1" />
               {isAdmin ? (
                 <EditableText
                   blockUid={blockUid}
@@ -93,10 +93,15 @@ export function ClassicStoryLayout({
             </p>
           )}
           {!postFields.antetitulo && hasTagsToShow && (
-            <div className="flex gap-2 text-balance text-gray-600 font-medium underline-offset-2">
+            <div
+              className={twMerge(
+                "flex gap-2 text-balance text-gray-600 font-medium underline-offset-2",
+                shouldReverse && "flex-row-reverse"
+              )}
+            >
               {tags.nodes.map((tag: any) => (
                 <div
-                  className="bg-slate-400 text-white uppercase font-medium text-xs px-2 py-1"
+                  className="bg-primary-dark text-white uppercase font-medium text-xs px-2 py-1"
                   key={tag.id}
                 >
                   {tag.name}
