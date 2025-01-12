@@ -3,6 +3,7 @@
 import { CustomPostFields, OverridableField } from "@/types";
 import { useState, useEffect, useRef } from "react";
 import { useGrid } from "./GridContext";
+import { twMerge } from "tailwind-merge";
 
 export function EditableText({
   originalText,
@@ -46,7 +47,14 @@ export function EditableText({
       ) : (
         <textarea
           ref={textareaRef}
-          className="bg-transparent resize-none w-full focus:outline-none overflow-hidden"
+          className={twMerge(
+            "bg-transparent resize-none w-full focus:outline-none overflow-hidden",
+            textAlign === "right"
+              ? "text-right"
+              : textAlign === "center"
+              ? "text-center"
+              : "text-left"
+          )}
           value={text}
           onChange={(e) => {
             setText(e.target.value);
