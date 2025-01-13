@@ -22,6 +22,7 @@ export interface StoryLayoutProps {
   blockUid: string;
   reverse?: boolean;
   hideImage?: boolean;
+  expandImage: boolean;
 }
 
 export function ClassicStoryLayout({
@@ -37,6 +38,7 @@ export function ClassicStoryLayout({
   objectPosition,
   hideImage,
   reverse,
+  expandImage,
 }: StoryLayoutProps) {
   const hasTagsToShow = tags.nodes.length > 0;
   const displayImage = !hideImage;
@@ -58,9 +60,11 @@ export function ClassicStoryLayout({
       >
         {featuredImageUrl && displayImage && (
           <div
-            className={`lg:flex-1 relative ${
-              isLandscape ? "w-1/2" : "h-full"
-            } max-md:min-h-36 max-md:w-full`}
+            className={twMerge(
+              "relative max-md:min-h-36 max-md:w-full",
+              isLandscape ? "w-1/2" : "h-full",
+              !expandImage && "lg:flex-1"
+            )}
           >
             <img
               src={featuredImageUrl || ""}

@@ -30,9 +30,10 @@ export function BlockWrapper<T extends Block>({
   const { handleUpdateBlockSettings, handleDeleteBlock } = useGrid();
   const [isFlipped, setIsFlipped] = useState(false);
 
-  // Initialize state based on block type
   const [blockSettings, setBlockSettings] = useState<BlockSettings<T>>(() => {
-    switch (block.blockType) {
+    switch (
+      block.blockType // TODO: better type inference
+    ) {
       case "story":
         return {
           mobilePriority: block.mobilePriority,
@@ -41,6 +42,7 @@ export function BlockWrapper<T extends Block>({
           objectPosition: block.objectPosition,
           hideImage: block.hideImage,
           reverse: block.reverse,
+          expandImage: block.expandImage,
         } as BlockSettings<T>;
       case "category":
         return {
@@ -129,6 +131,13 @@ export function BlockWrapper<T extends Block>({
     setBlockSettings((prev) => ({
       ...prev,
       hideImage: e.target.checked,
+    }));
+  };
+
+  const handleExpandImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setBlockSettings((prev) => ({
+      ...prev,
+      expandImage: e.target.checked,
     }));
   };
 
@@ -265,6 +274,23 @@ export function BlockWrapper<T extends Block>({
                         }
                         className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                         onChange={handleHideImage}
+                      ></input>
+                    </div>
+                  )}
+                  {(blockSettings as BlockSettings<StoryBlock>).style ===
+                    "classic" && (
+                    <div className="">
+                      <label className="block text-xs text-gray-600 mb-1">
+                        Expandir foto
+                      </label>
+                      <input
+                        type="checkbox"
+                        checked={
+                          (blockSettings as BlockSettings<StoryBlock>)
+                            .expandImage
+                        }
+                        className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                        onChange={handleExpandImage}
                       ></input>
                     </div>
                   )}
