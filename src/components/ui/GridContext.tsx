@@ -31,6 +31,7 @@ type GridContextType = {
     fieldName: OverridableField,
     fieldText: string
   ) => void;
+  handleResetChanges: () => void;
 };
 
 const GridContext = createContext<GridContextType | undefined>(undefined);
@@ -81,6 +82,12 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
   const handleClearLayout = () => {
     if (!gridState) return;
     setGridState({ ...gridState, blocks: [] });
+  };
+
+  const handleResetChanges = () => {
+    if (!originalGridStateRef.current) return;
+    setGridState(JSON.parse(JSON.stringify(originalGridStateRef.current)));
+    setHasUnsavedChanges(false);
   };
 
   const handleLayoutChange = (layout: RGL.Layout[]) => {
@@ -233,6 +240,7 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
     handleCreateStoryBlock,
     handleClearLayout,
     handleOverrideStoryBlockField,
+    handleResetChanges,
   };
 
   return <GridContext.Provider value={value}>{children}</GridContext.Provider>;

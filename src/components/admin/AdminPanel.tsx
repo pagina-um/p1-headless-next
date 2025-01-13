@@ -7,6 +7,7 @@ import { BlocksTabs } from "./BlocksTabs";
 import { StoriesList } from "./StoriesList";
 import { GRID_COLUMNS } from "@/constants/blocks";
 import { useGrid } from "@/components/ui/GridContext";
+import { RotateCcw } from "lucide-react";
 
 interface AdminPanelProps {}
 
@@ -23,6 +24,7 @@ export function AdminPanel({}: AdminPanelProps) {
     showToast,
     isSaving,
     handleClearLayout,
+    handleResetChanges,
     hasUnsavedChanges,
   } = useGrid();
 
@@ -68,6 +70,14 @@ export function AdminPanel({}: AdminPanelProps) {
                 <Loader className="w-4 h-4 animate-spin" />
               )}
               Apagar Layout
+            </button>
+            <button
+              disabled={isSaving || !hasUnsavedChanges}
+              className="bg-gray-600 text-white px-4 py-2 flex items-center gap-2 hover:bg-gray-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+              onClick={handleResetChanges}
+            >
+              <RotateCcw className="w-4 h-4" />
+              Anular Alterações
             </button>
             <button
               disabled={isSaving || !hasUnsavedChanges}
