@@ -166,30 +166,30 @@ export function BlockWrapper<T extends Block>({
           onClose={handleClose}
           onDelete={() => handleDeleteBlock(block.uId)}
         >
-          <div className="space-y-4">
-            <div className="flex gap-2 flex-wrap">
-              <div className="">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Prioridade telemóvel
+          <div className="space-y-2">
+            <div className="flex flex-wrap gap-x-4">
+              <div className="w-12">
+                <label className="block text-xs mb-1 text-gray-600">
+                  Prioridade
                 </label>
                 <input
                   value={blockSettings.mobilePriority || ""}
                   type="number"
-                  className="text-center w-full border-gray-300 border focus:border-primary focus:ring-primary"
+                  className="text-center text-xs w-full border-gray-300 border focus:border-primary focus:ring-primary"
                   onChange={handleChangeMobilePosition}
                 />
               </div>
 
               {block.blockType === "category" && (
                 <div className="">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-xs text-gray-600 mb-1">
                     Número de Artigos
                   </label>
                   <input
                     type="number"
                     min="1"
                     max="20"
-                    className="text-center w-full border-gray-300 border focus:border-primary focus:ring-primary"
+                    className="text-center w-full text-xs border-gray-300 border focus:border-primary focus:ring-primary"
                     value={
                       (blockSettings as BlockSettings<CategoryBlock>)
                         .postsPerPage
@@ -202,12 +202,12 @@ export function BlockWrapper<T extends Block>({
               {block.blockType === "story" && (
                 <>
                   <div className="">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-xs text-gray-600 mb-1">
                       Estilo
                     </label>
                     <select
                       value={(blockSettings as BlockSettings<StoryBlock>).style}
-                      className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                      className="w-full text-xs border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                       onChange={handleChangeStoryStyle}
                     >
                       <option value="classic">Clássico</option>
@@ -218,7 +218,7 @@ export function BlockWrapper<T extends Block>({
                   {(blockSettings as BlockSettings<StoryBlock>).style ===
                     "classic" && (
                     <div className="">
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-xs text-gray-600 mb-1">
                         Divisão
                       </label>
                       <select
@@ -226,7 +226,7 @@ export function BlockWrapper<T extends Block>({
                           (blockSettings as BlockSettings<StoryBlock>)
                             .orientation
                         }
-                        className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                        className="w-full text-xs border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                         onChange={handleChangeOrientation}
                       >
                         <option value="vertical">Vertical</option>
@@ -238,7 +238,7 @@ export function BlockWrapper<T extends Block>({
                   {(blockSettings as BlockSettings<StoryBlock>).style ===
                     "classic" && (
                     <div className="">
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-xs text-gray-600 mb-1">
                         Invertido
                       </label>
                       <input
@@ -255,8 +255,8 @@ export function BlockWrapper<T extends Block>({
                   {(blockSettings as BlockSettings<StoryBlock>).style ===
                     "classic" && (
                     <div className="">
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Esconder imagem
+                      <label className="block text-xs text-gray-600 mb-1">
+                        Esconder foto
                       </label>
                       <input
                         type="checkbox"
@@ -270,15 +270,15 @@ export function BlockWrapper<T extends Block>({
                   )}
 
                   <div className="flex-1">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Corte da imagem
+                    <label className="block text-xs text-gray-600 mb-1">
+                      Corte foto
                     </label>
                     <select
                       value={
                         (blockSettings as BlockSettings<StoryBlock>)
                           .objectPosition
                       }
-                      className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                      className="w-full text-xs border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                       onChange={handleChangeObjectPosition}
                     >
                       {objectPositions.map((position) => (

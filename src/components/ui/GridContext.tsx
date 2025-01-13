@@ -188,7 +188,7 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
     const newBlock: StoryBlock = {
       uId: Date.now().toString(),
       blockType: "story",
-      style: "modern",
+      style: "classic",
       gridPosition: { x: 0, y: 0, width: 2, height: BLOCK_MIN_ROWS },
       wpPostId,
       mobilePriority: null,

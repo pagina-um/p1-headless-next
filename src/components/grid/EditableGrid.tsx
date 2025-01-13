@@ -33,7 +33,7 @@ export function EditableGrid({ columns }: EditableGridProps) {
         minW: 1,
         maxW: columns,
         minH: 1,
-        maxH: 8,
+        maxH: 16,
       })),
     [blocks, columns]
   );
@@ -41,7 +41,7 @@ export function EditableGrid({ columns }: EditableGridProps) {
   return (
     <ReactGridLayout
       layout={layout}
-      className="layout bg-gray-50 p-4 "
+      className="layout bg-gray-50 p-4 border border-gray-200 rounded-md"
       cols={columns}
       rowHeight={ROW_HEIGHT}
       containerPadding={[0, 0]}
@@ -50,7 +50,6 @@ export function EditableGrid({ columns }: EditableGridProps) {
       onLayoutChange={handleLayoutChange}
       draggableHandle=".drag-handle"
       resizeHandles={["se", "sw", "ne", "nw"]}
-      isBounded
       // Improve dragging behavior
       isDroppable={false}
       useCSSTransforms={true}
