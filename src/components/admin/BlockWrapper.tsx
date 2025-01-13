@@ -11,6 +11,8 @@ import {
   BlockSettings,
 } from "../../types";
 import { useGrid } from "../ui/GridContext";
+import { GripVertical } from "lucide-react";
+import { twMerge } from "tailwind-merge";
 
 interface BlockWrapperProps<T extends Block> {
   children: React.ReactNode;
@@ -140,15 +142,21 @@ export function BlockWrapper<T extends Block>({
       }}
     >
       {block.blockType === "story" && <div>{blockSettings.mobilePriority}</div>}
-      {/* Front side */}
       <div className="absolute inset-0 backface-hidden">
         <div className="relative h-full group block-content">
+          <div
+            className={twMerge(
+              "drag-handle backface-hidden",
+              isFlipped && "pointer-events-none"
+            )}
+          >
+            <GripVertical className="w-4 h-4" />
+          </div>
           {children}
           <BlockSettingsButton onClick={() => setIsFlipped(true)} />
         </div>
       </div>
 
-      {/* Back side */}
       <div
         className="absolute inset-0 backface-hidden block-settings"
         style={{ transform: "rotateY(180deg)" }}

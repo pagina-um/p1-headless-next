@@ -64,9 +64,6 @@ export function EditableGrid({ columns }: EditableGridProps) {
         <div key={block.uId} className="group">
           <BlockWrapper title={block.blockType} block={block}>
             <div className="relative h-full">
-              <div className="drag-handle">
-                <GripVertical className="w-4 h-4" />
-              </div>
               {block.blockType === "category" ? (
                 <Suspense
                   fallback={<Loader className="w-8 h-8 animate-spin mx-auto" />}
