@@ -46,7 +46,7 @@ export function ClassicStoryLayout({
     <div className="@container group h-full px-4 lg:px-0">
       <div
         className={twMerge(
-          "flex gap-4 h-full flex-col",
+          "flex gap-x-4 gap-y-1 h-full flex-col",
           isLandscape
             ? reverse
               ? "lg:flex-row-reverse"
@@ -58,7 +58,7 @@ export function ClassicStoryLayout({
       >
         {featuredImageUrl && displayImage && (
           <div
-            className={`relative ${
+            className={`flex-1 relative ${
               isLandscape ? "w-1/2" : "h-full"
             } max-md:min-h-36 max-md:w-full`}
           >
