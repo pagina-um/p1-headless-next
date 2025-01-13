@@ -44,7 +44,7 @@ export const STATIC_BLOCKS = {
   },
 };
 
-export const GRID_COLUMNS = 6;
+export const GRID_COLUMNS = 10;
 
 export const ROW_HEIGHT = 100;
 
