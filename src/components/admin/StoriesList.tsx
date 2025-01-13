@@ -9,7 +9,6 @@ interface StoriesListProps {
 }
 
 export function StoriesList({ onSelectPost }: StoriesListProps) {
-  console.log("here");
   const [result] = useQuery({ query: GET_LATEST_POSTS });
   return (
     <div>

@@ -64,7 +64,7 @@ export function ClassicStoryLayout({
             className={twMerge(
               "relative max-md:min-h-36 max-md:w-full",
               isLandscape ? "w-1/2" : "h-full",
-              !expandImage && "lg:flex-1"
+              !expandImage && !isLandscape && "lg:flex-1"
             )}
           >
             <img
