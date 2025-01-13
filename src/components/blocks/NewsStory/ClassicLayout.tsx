@@ -60,7 +60,7 @@ export function ClassicStoryLayout({
           <div
             className={`relative ${
               isLandscape ? "w-1/2" : "h-full"
-            } max-md:min-h-36`}
+            } max-md:min-h-36 max-md:w-full`}
           >
             <img
               src={featuredImageUrl || ""}
@@ -71,7 +71,7 @@ export function ClassicStoryLayout({
             />
           </div>
         )}
-        <div className="flex-1 flex flex-col justify-center">
+        <div className="flex-1 flex flex-col justify-start">
           {postFields.antetitulo && (
             <p
               className={twMerge(

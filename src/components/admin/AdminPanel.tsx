@@ -7,6 +7,7 @@ import { BlocksTabs } from "./BlocksTabs";
 import { StoriesList } from "./StoriesList";
 import { GRID_COLUMNS } from "@/constants/blocks";
 import { useGrid } from "@/components/ui/GridContext";
+
 interface AdminPanelProps {}
 
 export function AdminPanel({}: AdminPanelProps) {
@@ -24,6 +25,22 @@ export function AdminPanel({}: AdminPanelProps) {
     handleClearLayout,
     hasUnsavedChanges,
   } = useGrid();
+
+  const handleSaveWithConfirmation = () => {
+    if (window.confirm("Tem certeza que deseja guardar o layout?")) {
+      handleSave();
+    }
+  };
+
+  const handleClearWithConfirmation = () => {
+    if (
+      window.confirm(
+        "Tem certeza que deseja apagar o layout? Esta ação não pode ser desfeita."
+      )
+    ) {
+      handleClearLayout();
+    }
+  };
 
   return (
     <div className="space-y-6 relative">
@@ -43,7 +60,7 @@ export function AdminPanel({}: AdminPanelProps) {
             <button
               disabled={isSaving}
               className="bg-red-600 text-white px-4 py-2 flex items-center gap-2 hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
-              onClick={handleClearLayout}
+              onClick={handleClearWithConfirmation}
             >
               {!isSaving ? (
                 <Trash className="w-4 h-4" />
@@ -55,7 +72,7 @@ export function AdminPanel({}: AdminPanelProps) {
             <button
               disabled={isSaving || !hasUnsavedChanges}
               className="bg-blue-600 text-white px-4 py-2 flex items-center gap-2 hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
-              onClick={handleSave}
+              onClick={handleSaveWithConfirmation}
             >
               {!isSaving ? (
                 <Save className="w-4 h-4" />

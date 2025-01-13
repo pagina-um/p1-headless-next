@@ -62,7 +62,7 @@ const ArticleContent = ({
     <div>
       {" "}
       {showAuthor && (
-        <p className="font-sans text-sm uppercase font-[300] text-slate-900">
+        <p className="font-sans text-sm uppercase font-[300] text-gray-600">
           {" "}
           {post.author?.node.name}
         </p>
@@ -70,7 +70,7 @@ const ArticleContent = ({
       <h3
         className={twMerge(
           "font-serif text-lg font-semibold group-hover:text-primary transition-colors line-clamp-3 @3xl:line-clamp-3",
-          showAuthor && "text-xl italic"
+          showAuthor && "text-xl"
         )}
       >
         "{post.title}"
