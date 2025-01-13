@@ -44,7 +44,7 @@ export function EditableGrid({ columns }: EditableGridProps) {
       className="layout bg-gray-50 p-4 border border-gray-200 rounded-md"
       cols={columns}
       rowHeight={ROW_HEIGHT}
-      containerPadding={[0, 0]}
+      containerPadding={[0, 24]}
       margin={[16, 16]}
       preventCollision={true}
       onLayoutChange={handleLayoutChange}
