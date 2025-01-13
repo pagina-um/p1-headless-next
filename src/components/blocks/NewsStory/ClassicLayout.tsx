@@ -76,7 +76,7 @@ export function ClassicStoryLayout({
             <p
               className={twMerge(
                 "flex items-start text-pretty text-gray-600 font-medium underline underline-offset-2 text-sm  gap-x-2",
-                shouldReverse && "flex-row-reverse"
+                shouldReverse && "lg:flex-row-reverse"
               )}
             >
               <Square className="w-3 h-3 bg-primary-dark stroke-primary inline mt-1" />
@@ -96,7 +96,7 @@ export function ClassicStoryLayout({
             <div
               className={twMerge(
                 "flex gap-2 text-balance text-gray-600 font-medium underline-offset-2",
-                shouldReverse && "flex-row-reverse"
+                shouldReverse && "lg:flex-row-reverse"
               )}
             >
               {tags.nodes.map((tag: any) => (
@@ -114,7 +114,7 @@ export function ClassicStoryLayout({
             className={twMerge(
               "font-serif text-2xl font-bold mb-3 leading-tight text-pretty",
               !isAdmin && "group-hover:underline",
-              shouldReverse && "text-right"
+              shouldReverse && "lg:text-right"
             )}
           >
             {isAdmin ? (
@@ -132,7 +132,7 @@ export function ClassicStoryLayout({
             <p
               className={twMerge(
                 "text-gray-600 text-sm",
-                shouldReverse && "text-right"
+                shouldReverse && "lg:text-right"
               )}
             >
               {isAdmin ? (
