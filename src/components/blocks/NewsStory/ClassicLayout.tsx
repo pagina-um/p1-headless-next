@@ -47,7 +47,7 @@ export function ClassicStoryLayout({
   const isLandscape = orientation === "horizontal";
   const shouldReverse = reverse && isLandscape;
   return (
-    <div className="@container group h-full px-4 lg:px-0">
+    <div className="@container group h-full px-4 lg:px-0 ">
       <div
         className={twMerge(
           "flex gap-x-4 gap-y-1 h-full flex-col",
@@ -78,7 +78,7 @@ export function ClassicStoryLayout({
             />
           </div>
         )}
-        <div className="lg:flex-1 flex flex-col justify-start">
+        <div className="lg:flex-1 flex flex-col justify-start max-lg:border-b-2 max-lg:pb-4">
           {postFields.antetitulo && (
             <p
               className={twMerge(
