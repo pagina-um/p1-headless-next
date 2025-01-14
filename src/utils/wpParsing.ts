@@ -7,7 +7,7 @@ import parse, {
 } from "html-react-parser";
 
 const OLD_BASE_URL = "https://paginaumpt.wpcomstaging.com"; // Replace with your old domain
-const NEW_BASE_URL = "https://p1-headless-next.vercel.app"; // Replace with your new domain
+const NEW_BASE_URL = "/"; // Replace with your new domain
 
 // Function to transform URLs in HTML content
 export const transformContent = (content: string): string => {
