@@ -90,7 +90,7 @@ export const makeMetadataObject = (
             },
           ]
         : undefined,
-      url: `https://www.paginaum.pt/${params.year}/${params.month}/${params.day}/${params.slug}`,
+      url: `https://www.paginaum.pt/${params.yearOrSlug}/${params.month}/${params.day}/${params.slug}`,
     },
     twitter: {
       card: "summary_large_image",
@@ -102,7 +102,7 @@ export const makeMetadataObject = (
     },
     // Add schema.org structured data
     alternates: {
-      canonical: `https://yoursite.com/${params.year}/${params.month}/${params.day}/${params.slug}`,
+      canonical: `https://yoursite.com/${params.yearOrSlug}/${params.month}/${params.day}/${params.slug}`,
     },
   };
 };
