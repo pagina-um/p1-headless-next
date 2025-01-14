@@ -41,6 +41,7 @@ export interface StoryBlock extends BaseBlock, CustomPostFields {
   hideImage: boolean;
   reverse: boolean;
   expandImage: boolean;
+  extraBigTitle: boolean;
 }
 
 export interface CategoryBlock extends BaseBlock {
@@ -82,6 +83,7 @@ export type BlockSettings<T extends Block> = T extends StoryBlock
       | "reverse"
       | "hideImage"
       | "expandImage"
+      | "extraBigTitle"
     >
   : T extends CategoryBlock
   ? Pick<CategoryBlock, "mobilePriority" | "postsPerPage">

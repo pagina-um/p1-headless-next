@@ -197,6 +197,7 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
       hideImage: false,
       reverse: false,
       expandImage: false,
+      extraBigTitle: false,
     };
     setGridState((prevState: GridState) => ({
       ...prevState,

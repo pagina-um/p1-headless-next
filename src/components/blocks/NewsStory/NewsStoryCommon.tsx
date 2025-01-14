@@ -48,6 +48,7 @@ export function NewsStoryCommon({
           blockSize={[story.gridPosition.width, story.gridPosition.height]}
           orientation="vertical"
           expandImage={false}
+          extraBigTitle={false}
         />
       ) : (
         <ClassicStoryLayout
@@ -67,6 +68,7 @@ export function NewsStoryCommon({
           hideImage={story.hideImage}
           reverse={story.reverse}
           expandImage={story.expandImage}
+          extraBigTitle={story.extraBigTitle}
         />
       )}
     </ConditionalLinkWrapper>

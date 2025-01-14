@@ -141,6 +141,13 @@ export function BlockWrapper<T extends Block>({
     }));
   };
 
+  const handleExtraBigTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setBlockSettings((prev) => ({
+      ...prev,
+      extraBigTitle: e.target.checked,
+    }));
+  };
+
   return (
     <div
       className="relative h-full preserve-3d transition-transform duration-500"
@@ -291,6 +298,23 @@ export function BlockWrapper<T extends Block>({
                         }
                         className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                         onChange={handleExpandImage}
+                      ></input>
+                    </div>
+                  )}
+                  {(blockSettings as BlockSettings<StoryBlock>).style ===
+                    "classic" && (
+                    <div className="">
+                      <label className="block text-xs text-gray-600 mb-1">
+                        Título XL
+                      </label>
+                      <input
+                        type="checkbox"
+                        checked={
+                          (blockSettings as BlockSettings<StoryBlock>)
+                            .extraBigTitle
+                        }
+                        className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                        onChange={handleExtraBigTitle}
                       ></input>
                     </div>
                   )}
