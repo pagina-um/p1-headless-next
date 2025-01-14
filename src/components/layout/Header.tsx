@@ -21,16 +21,17 @@ export function Header() {
         className={`
           bg-white border-b border-gray-200 
           fixed top-0 left-0 right-0 z-40
-          transition-all duration-300
+          transition-all duration-300 max-lg:py-1
           ${isScrolled ? "shadow-md" : ""}
         `}
       >
         <div className="max-w-7xl mx-auto px-4">
           <div
             className={`
+             
               flex items-center justify-between gap-8
               transition-all duration-300
-              ${isScrolled ? "h-16" : "h-24"}
+              ${isScrolled ? "lg:h-16" : "lg:h-24"}
             `}
           >
             {/* Mobile menu button */}
@@ -44,12 +45,8 @@ export function Header() {
             <div className="flex-1 flex flex-col items-center md:items-start">
               <div
                 className={`
-                  transition-all duration-300
-                  ${
-                    isScrolled
-                      ? "w-[160px] md:w-[200px]"
-                      : "w-[200px] md:w-[280px]"
-                  }
+                  transition-all duration-300 w-[180px]
+                  ${isScrolled ? "lg:w-[200px]" : "lg:w-[280px]"}
                 `}
               >
                 <Link href={"/"}>
@@ -86,8 +83,8 @@ export function Header() {
       </header>
 
       <div
-        className={`h-24 transition-all duration-300 ${
-          isScrolled ? "h-16" : "h-24"
+        className={`h-12 transition-all duration-300 ${
+          isScrolled ? "h-16" : "lg:h-24"
         }`}
       />
 
