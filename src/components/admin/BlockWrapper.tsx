@@ -43,6 +43,7 @@ export function BlockWrapper<T extends Block>({
           hideImage: block.hideImage,
           reverse: block.reverse,
           expandImage: block.expandImage,
+          extraBigTitle: block.extraBigTitle,
         } as BlockSettings<T>;
       case "category":
         return {

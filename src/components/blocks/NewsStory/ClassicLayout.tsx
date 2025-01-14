@@ -122,7 +122,7 @@ export function ClassicStoryLayout({
               "font-serif text-2xl font-bold mb-3 leading-tight text-pretty",
               !isAdmin && "group-hover:underline",
               shouldReverse && "lg:text-right",
-              extraBigTitle && "text-4xl"
+              extraBigTitle && "text-3xl"
             )}
           >
             {isAdmin ? (
