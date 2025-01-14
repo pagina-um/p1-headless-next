@@ -11,6 +11,11 @@ import {
   Block,
 } from "@/types";
 import * as RGL from "react-grid-layout";
+import {
+  findEmptySpaces,
+  makeNewBlockOccupyFirstEmptySpace,
+  visualizeGrid,
+} from "@/utils/grid";
 
 type GridContextType = {
   gridState: GridState | undefined;
@@ -156,7 +161,7 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
       wpCategoryId: id,
       wpCategoryName: name,
       blockType: "category",
-      gridPosition: { x: 0, y: 0, width: 2, height: BLOCK_MIN_ROWS },
+      ...makeNewBlockOccupyFirstEmptySpace(gridState.blocks),
       uId: Date.now().toString(),
       postsPerPage: 3,
       mobilePriority: null,
@@ -173,7 +178,7 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
       uId: Date.now().toString(),
       blockType: "static",
       title,
-      gridPosition: { x: 0, y: 0, width: 2, height: BLOCK_MIN_ROWS },
+      ...makeNewBlockOccupyFirstEmptySpace(gridState.blocks),
       content: "Static content",
       mobilePriority: null,
     };
@@ -185,14 +190,14 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
 
   const handleCreateStoryBlock = (wpPostId: number) => {
     if (!gridState) return;
+
     const newBlock: StoryBlock = {
       uId: Date.now().toString(),
       blockType: "story",
       style: "classic",
-      gridPosition: { x: 0, y: 0, width: 2, height: BLOCK_MIN_ROWS },
       wpPostId,
       mobilePriority: null,
-      orientation: "vertical",
+      ...makeNewBlockOccupyFirstEmptySpace(gridState.blocks),
       objectPosition: "center",
       hideImage: false,
       reverse: false,
