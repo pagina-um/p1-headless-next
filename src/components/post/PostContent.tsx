@@ -1,5 +1,5 @@
-import SocialShare from "./SocialShare";
-
+import { parserOptions } from "@/utils/wpParsing";
+import parse from "html-react-parser";
 interface PostContentProps {
   content: string;
 }
@@ -11,10 +11,13 @@ export function PostContent({ content }: PostContentProps) {
 
   return (
     <>
-      <div
-        className="prose prose-lg max-w-none font-body-sans text-lg space-y-8 [&_figcaption]:text-sm [&_figcaption]:italic [&_a]:underline [&_a]:text-[var(--color-primary)] [&_hr]:last-of-type:hidden"
-        dangerouslySetInnerHTML={{ __html: contentWithoutManualFooter }}
-      />
+      <article
+        className="prose prose-lg max-w-none font-body-sans text-lg space-y-8
+        [&_figcaption]:text-sm [&_figcaption]:italic [&_a]:underline
+        [&_a]:text-[var(--color-primary)] [&_hr]:last-of-type:hidden"
+      >
+        {parse(contentWithoutManualFooter, parserOptions)}
+      </article>
     </>
   );
 }
