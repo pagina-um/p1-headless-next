@@ -1,16 +1,12 @@
 import {
   Block,
-  CategoryBlock,
-  GridPosition,
-  StaticBlock,
-  StoryBlock,
+
 } from "@/types";
 import { NewsStoryServer } from "../blocks/NewsStory/NewsStory.server";
 import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
 import { EmptyState } from "../ui/EmptyState";
 import { CategoryBlockServer } from "../blocks/CategoryBlock";
 import { sortBlocksZigzagThenMobilePriority } from "@/utils/sorting";
-import { useMemo } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface NewsGridProps {
@@ -27,7 +23,7 @@ export function NewsGrid({ blocks }: NewsGridProps) {
   const sortedBlocks = sortBlocksZigzagThenMobilePriority(blocks, 6);
 
   return (
-    <div className="layout grid grid-cols-1 lg:grid-cols-10 gap-4 mt-4">
+    <div className="layout grid grid-cols-1 lg:grid-cols-10 gap-4 lg:mt-4">
       {sortedBlocks.map((block) => {
         const gridClasses = getGridClasses(
           block.gridPosition?.x,
