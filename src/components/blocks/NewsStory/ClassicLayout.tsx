@@ -82,7 +82,7 @@ export function ClassicStoryLayout({
           {postFields.antetitulo && (
             <p
               className={twMerge(
-                "flex items-start text-pretty text-gray-600 font-medium underline underline-offset-2 text-sm  gap-x-2",
+                "flex items-start text-pretty text-gray-600 font-medium  underline-offset-2 text-sm  gap-x-2",
                 shouldReverse && "lg:flex-row-reverse"
               )}
             >
