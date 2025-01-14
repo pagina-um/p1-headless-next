@@ -15,7 +15,7 @@ import SocialShare from "@/components/post/SocialShare";
 
 export interface PostPageProps {
   params: {
-    year: string;
+    yearOrSlug: string;
     month: string;
     day: string;
     slug: string;

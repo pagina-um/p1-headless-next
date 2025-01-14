@@ -23,7 +23,7 @@ export function CategoryPostList({
   const showAuthor = shouldShowAuthor(categoryId);
   const showDate = shouldShowDate(categoryId);
   return (
-    <div className="h-full flex flex-col @3xl:flex-row justify-between gap-x-2 ">
+    <div className="h-full flex flex-col justify-between gap-x-2 ">
       {posts?.map((post) =>
         shouldLink ? (
           <Link href={post.uri || "#"} key={post.id} passHref>

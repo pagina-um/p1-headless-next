@@ -52,43 +52,43 @@ export function PostFooter() {
         <div className="pt-8 border-t border-slate-700">
           <nav className="grid grid-cols-2 md:grid-cols-4 lg:flex lg:flex-wrap lg:justify-center gap-4 lg:gap-3 mb-8">
             <Link
-              href="#"
+              href="/contactos"
               className="hover:text-primary transition-colors duration-200 text-sm uppercase tracking-wider text-slate-400"
             >
               Apoios e Contactos
             </Link>
             <Link
-              href="#"
+              href="/ficha-tecnica"
               className="hover:text-primary transition-colors duration-200 text-sm uppercase tracking-wider text-slate-400"
             >
               Ficha Técnica
             </Link>
             <Link
-              href="#"
+              href="/politica-de-privacidade"
               className="hover:text-primary transition-colors duration-200 text-sm uppercase tracking-wider text-slate-400"
             >
               Política de Privacidade
             </Link>
             <Link
-              href="#"
+              href="/estatuto-editorial"
               className="hover:text-primary transition-colors duration-200 text-sm uppercase tracking-wider text-slate-400"
             >
               Estatuto Editorial
             </Link>
             <Link
-              href="#"
+              href="/codigo-de-principios"
               className="hover:text-primary transition-colors duration-200 text-sm uppercase tracking-wider text-slate-400"
             >
               Código de Principios
             </Link>
             <Link
-              href="#"
+              href="/politica-de-correccoes"
               className="hover:text-primary transition-colors duration-200 text-sm uppercase tracking-wider text-slate-400"
             >
               Política de Correcções
             </Link>
             <Link
-              href="#"
+              href="/codigo-de-transparencia"
               className="hover:text-primary transition-colors duration-200 text-sm uppercase tracking-wider text-slate-400"
             >
               Declaração de transparência

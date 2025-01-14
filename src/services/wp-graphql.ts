@@ -241,3 +241,27 @@ export const GET_LATEST_POSTS_FOR_STATIC_GENERATION = graphql(`
     }
   }
 `);
+
+export const GET_ALL_PAGES = graphql(`
+  query GetAllPages {
+    pages(first: 100) {
+      nodes {
+        id
+        title
+        content
+        uri
+      }
+    }
+  }
+`);
+
+export const GET_PAGE_BY_SLUG = graphql(`
+  query GetPageBySlug($slug: String!) {
+    pageBy(uri: $slug) {
+      id
+      title
+      content
+      uri
+    }
+  }
+`);

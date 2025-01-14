@@ -7,7 +7,7 @@ import {
   User,
   X,
 } from "lucide-react";
-import { PostBySlugData } from "@/app/[year]/[month]/[day]/[slug]/page";
+import { PostBySlugData } from "@/app/[yearOrSlug]/[month]/[day]/[slug]/page";
 import { formatDate } from "@/utils/categoryUtils";
 import SocialShare from "./SocialShare";
 
