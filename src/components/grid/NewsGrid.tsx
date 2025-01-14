@@ -11,6 +11,7 @@ import { EmptyState } from "../ui/EmptyState";
 import { CategoryBlockServer } from "../blocks/CategoryBlock";
 import { sortBlocksZigzagThenMobilePriority } from "@/utils/sorting";
 import { useMemo } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface NewsGridProps {
   blocks: Block[];
@@ -28,18 +29,24 @@ export function NewsGrid({ blocks }: NewsGridProps) {
   return (
     <div className="layout grid grid-cols-1 lg:grid-cols-10 gap-4 mt-4">
       {sortedBlocks.map((block) => {
-        const gridClasses = useMemo(
-          () =>
-            getGridClasses(
-              block.gridPosition?.x,
-              block.gridPosition?.y,
-              block.gridPosition?.width,
-              block.gridPosition?.height
-            ),
-          [block.gridPosition]
+        const gridClasses = getGridClasses(
+          block.gridPosition?.x,
+          block.gridPosition?.y,
+          block.gridPosition?.width,
+          block.gridPosition?.height
         );
+
         return (
-          <div key={block.uId} className={gridClasses}>
+          <div
+            key={block.uId}
+            className={twMerge(
+              "col-span-1",
+              `lg:col-start-${block.gridPosition.x + 1}`,
+              `lg:col-span-${block.gridPosition.width}`,
+              `lg:row-start-${block.gridPosition.y + 1}`,
+              `lg:row-span-${block.gridPosition.height}`
+            )}
+          >
             {block.blockType === "story" ? (
               <NewsStoryServer story={block} />
             ) : block.blockType === "category" ? (
@@ -58,11 +65,11 @@ function getGridClasses(x: number, y: number, width: number, height: number) {
   const classes = ["col-span-1"];
 
   if (x !== undefined && x >= 0) {
-    classes.push(`lg-col-start-${x + 1}`);
+    classes.push(`lg:col-start-${x + 1}`);
   }
 
   if (y !== undefined && y >= 0) {
-    classes.push(`lg-row-start-${y + 1}`);
+    classes.push(`lg:row-start-${y + 1}`);
   }
 
   const colSpan =
@@ -72,6 +79,5 @@ function getGridClasses(x: number, y: number, width: number, height: number) {
     !height || height < 1 ? `lg:row-span-1` : `lg:row-span-${height}`;
 
   classes.push(colSpan, rowSpan);
-
   return classes.filter(Boolean).join(" ");
 }

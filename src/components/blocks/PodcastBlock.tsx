@@ -101,7 +101,7 @@ export function PodcastBlock() {
   };
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="max-lg:max-h-80 max-lg:overflow-scroll  lg:h-full flex flex-col">
       <div className="flex items-center justify-between mb-6 pb-3 border-b border-gray-200">
         <div className="flex items-center gap-2">
           <Mic className="w-5 h-5 text-primary" />

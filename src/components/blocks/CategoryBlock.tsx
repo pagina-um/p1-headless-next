@@ -14,7 +14,6 @@ export async function CategoryBlockServer({ block }: CategoryBlockProps) {
     postsPerPage: block.postsPerPage,
   });
   const posts = data?.posts?.nodes || [];
-  console.log(data?.posts?.nodes);
   if (!block.wpCategoryId) {
     return (
       <div className="h-full p-6 bg-white  shadow-sm border border-gray-100">

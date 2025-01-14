@@ -42,27 +42,11 @@ export function StaticBlock({ block }: StaticBlockProps) {
   if (isPodcastBlock) {
     return (
       <div
-        className="h-full p-6 bg-white  shadow-sm border border-gray-100 block-content"
+        className="lg:h-full p-6 bg-white shadow-sm border border-gray-100 block-content"
         style={gridStyles}
       >
         <PodcastBlock />
       </div>
     );
   }
-
-  return (
-    <div
-      className="h-full p-6 bg-white  shadow-sm border border-gray-100 block-content"
-      style={gridStyles}
-    >
-      <div className="flex items-center justify-between mb-6 pb-3 border-b border-gray-200">
-        <div className="flex items-center gap-2">
-          <Layout className="w-5 h-5 text-primary" />
-          <h2 className="font-serif text-2xl font-bold">{block.title}</h2>
-        </div>
-      </div>
-
-      <div className="prose prose-sm max-w-none">{block.content}</div>
-    </div>
-  );
 }

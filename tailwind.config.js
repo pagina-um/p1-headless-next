@@ -31,4 +31,22 @@ module.exports = {
     },
   },
   plugins: [require("@tailwindcss/container-queries")],
+  safelist: [
+    {
+      pattern: /col-start-[0-9]+/,
+      variants: ["lg"],
+    },
+    {
+      pattern: /col-span-[0-9]+/,
+      variants: ["lg"],
+    },
+    {
+      pattern: /row-start-[0-9]+/,
+      variants: ["lg"],
+    },
+    {
+      pattern: /row-span-[0-9]+/,
+      variants: ["lg"],
+    },
+  ],
 };
