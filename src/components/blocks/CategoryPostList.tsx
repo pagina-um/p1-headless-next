@@ -1,11 +1,6 @@
 import React from "react";
 import { Calendar, User } from "lucide-react";
-import {
-  formatDate,
-  shouldShowAuthor,
-  shouldShowDate,
-  shouldHaveDifferentStyles,
-} from "../../utils/categoryUtils";
+import { shouldHaveDifferentStyles } from "../../utils/categoryUtils";
 import Link from "next/link";
 import { CategoryPostNode } from "@/hooks/useCategoryPosts";
 import { twMerge } from "tailwind-merge";

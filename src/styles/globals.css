@@ -8,6 +8,7 @@
   :root {
     --color-primary: #cf2e2e;
     --color-primary-dark: #b22828;
+    --radius: 0.5rem;
   }
 
   body {
