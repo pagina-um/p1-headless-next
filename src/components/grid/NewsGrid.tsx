@@ -1,11 +1,8 @@
-import {
-  Block,
-
-} from "@/types";
+import { Block } from "@/types";
 import { NewsStoryServer } from "../blocks/NewsStory/NewsStory.server";
 import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
 import { EmptyState } from "../ui/EmptyState";
-import { CategoryBlockServer } from "../blocks/CategoryBlock";
+import { CategoryBlockServer } from "../blocks/CategoryBlock.server";
 import { sortBlocksZigzagThenMobilePriority } from "@/utils/sorting";
 import { twMerge } from "tailwind-merge";
 

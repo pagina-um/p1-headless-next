@@ -115,7 +115,10 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
           if (block.blockType === "category") {
             return {
               ...baseUpdate,
-              postsPerPage: getPostsPerPageForBlockHeight(layoutItem.h),
+              postsPerPage: getPostsPerPageForBlockArea(
+                layoutItem.h,
+                layoutItem.w
+              ),
             } as T;
           }
 
@@ -278,12 +281,11 @@ const sortAndNormalizeBlocks = (blocks: any[]) => {
     }));
 };
 
-const getPostsPerPageForBlockHeight = (height: number) => {
-  if (height === 1) return 1;
-  if (height === 2) return 1;
-  if (height === 3) return 2;
-  if (height === 4) return 3;
-  if (height === 5) return 4;
-  if (height === 6) return 5;
-  return 6;
+const getPostsPerPageForBlockArea = (height: number, width: number): number => {
+  const isLandscape = width * 1.5 > height;
+  if (isLandscape) {
+    const x = Math.floor(width / 2);
+    return x;
+  }
+  return height / 12;
 };
