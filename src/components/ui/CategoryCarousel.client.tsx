@@ -10,6 +10,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Loader } from "lucide-react";
+import { CategoryBlockHeader } from "../blocks/CategoryBlockHeader";
 
 interface CategoryCarouselProps {
   categorySlug: string;
@@ -80,6 +81,7 @@ export function CategoryCarouselClient({
 
   return (
     <div className={`relative ${className}`}>
+      <CategoryBlockHeader title="Opinião" />
       <Carousel
         opts={{
           align: "start",
@@ -105,7 +107,7 @@ export function CategoryCarouselClient({
               key={post.id}
               className={`pl-2 md:pl-4 basis-full md:basis-1/${cardsPerView}`}
             >
-              <div className="relative aspect-[16/10] overflow-hidden rounded-lg group">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-lg group">
                 {post.featuredImage?.node?.sourceUrl && (
                   <img
                     src={post.featuredImage.node.sourceUrl}

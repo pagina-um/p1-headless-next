@@ -29,7 +29,8 @@ export function NewsGrid({ blocks }: NewsGridProps) {
           block.gridPosition?.width,
           block.gridPosition?.height
         );
-
+        const isLandscape =
+          block.gridPosition.width * 1.5 > block.gridPosition.height;
         return (
           <div
             key={block.uId}
@@ -44,22 +45,22 @@ export function NewsGrid({ blocks }: NewsGridProps) {
             {block.blockType === "story" ? (
               <NewsStoryServer story={block} />
             ) : block.blockType === "category" ? (
-              <CategoryBlockServer block={block} />
+              isLandscape ? (
+                <CategoryCarouselServer
+                  categorySlug="opiniao" // Replace with your category slug
+                  postsPerPage={6} // Optional: number of posts to load per request
+                  cardsPerView={3} // Optional: number of cards visible at once
+                  className="mt-8" // Optional: additional styling
+                />
+              ) : (
+                <CategoryBlockServer block={block} />
+              )
             ) : (
               <StaticBlockComponent block={block} />
             )}
           </div>
         );
       })}
-      <div className="col-span-6 row-span-5">
-        {" "}
-        <CategoryCarouselServer
-          categorySlug="opiniao" // Replace with your category slug
-          postsPerPage={6} // Optional: number of posts to load per request
-          cardsPerView={3} // Optional: number of cards visible at once
-          className="mt-8" // Optional: additional styling
-        />
-      </div>
     </div>
   );
 }
