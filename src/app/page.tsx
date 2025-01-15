@@ -2,6 +2,12 @@ import { loadGridState } from "@/services/jsonbin";
 import { NewsGrid } from "@/components/grid/NewsGrid";
 import { GridState } from "@/types";
 import { PostFooter } from "@/components/post/PostFooter";
+import { Metadata } from "next";
+
+export const metatadata: Metadata = {
+  title: "Página UM",
+  description: "O jornalismo independente só depende dos leitores.",
+};
 
 async function getInitialState(): Promise<GridState | null> {
   try {

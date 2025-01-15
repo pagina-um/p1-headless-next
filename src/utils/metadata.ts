@@ -18,28 +18,28 @@ export interface SEOData {
 // Default metadata configuration
 export const defaultMetadata: Metadata = {
   title: {
-    default: "Your Site Name",
-    template: "%s | Your Site Name",
+    default: "Página UM",
+    template: "%s | Página UM",
   },
   description: "Your default site description",
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: "https://yoursite.com",
-    siteName: "Your Site Name",
+    locale: "pt_PT",
+    url: "https://www.paginaum.pt",
+    siteName: "Página UM",
     images: [
       {
         url: "/default-og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Your Site Name",
+        alt: "Página UM",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    site: "@yourtwitterhandle",
-    creator: "@yourtwitterhandle",
+    site: "https://www.paginaum.pt",
+    creator: "@PAG_UM",
   },
   robots: {
     index: true,
@@ -49,12 +49,12 @@ export const defaultMetadata: Metadata = {
 
 export const metadata: Metadata = {
   ...defaultMetadata,
-  title: "About Us",
-  description: "Learn more about our company and mission",
+  title: "Página Um",
+  description: "O Jornalismo independente só depende dos leitores.",
   openGraph: {
     ...defaultMetadata.openGraph,
     title: "About Us",
-    description: "Learn more about our company and mission",
+    description: "O Jornalismo independente só depende dos leitores.",
   },
 };
 
@@ -71,11 +71,11 @@ export const makeMetadataObject = (
   return {
     title: data?.postBy?.title || "Página Um",
     description:
-      chamadaDestaque || "O jornalismo independente depende dos leitores.",
+      chamadaDestaque || "O jornalismo independente só depende dos leitores.",
     openGraph: {
       title: title || "Página Um",
       description:
-        chamadaDestaque || "O jornalismo independente depende dos leitores.",
+        chamadaDestaque || "O jornalismo independente só depende dos leitores.",
       type: "article",
       publishedTime: date || new Date().toISOString(),
       modifiedTime: modified || new Date().toISOString(),
@@ -102,7 +102,7 @@ export const makeMetadataObject = (
     },
     // Add schema.org structured data
     alternates: {
-      canonical: `https://yoursite.com/${params.yearOrSlug}/${params.month}/${params.day}/${params.slug}`,
+      canonical: `https://www.paginaum.pt/${params.yearOrSlug}/${params.month}/${params.day}/${params.slug}`,
     },
   };
 };
