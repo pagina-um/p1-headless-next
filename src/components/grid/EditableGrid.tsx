@@ -9,6 +9,7 @@ import { CategoryBlockClient } from "../blocks/CategoryBlock.client";
 import { NewsStoryClient } from "../blocks/NewsStory/NewsStory.client";
 import { ROW_HEIGHT } from "@/constants/blocks";
 import { useGrid } from "@/components/ui/GridContext";
+import { CategoryCarouselClient } from "../ui/CategoryCarousel.client";
 
 const ReactGridLayout = WidthProvider(RGL);
 
@@ -59,29 +60,45 @@ export function EditableGrid({ columns }: EditableGridProps) {
       compactType={null}
       // Add delay before drag starts
     >
-      {blocks.map((block) => (
-        <div key={block.uId} className="group">
-          <BlockWrapper title={block.blockType} block={block}>
-            <div className="relative h-full">
-              {block.blockType === "category" ? (
-                <Suspense
-                  fallback={<Loader className="w-8 h-8 animate-spin mx-auto" />}
-                >
-                  <CategoryBlockClient block={block} />
-                </Suspense>
-              ) : block.blockType === "static" ? (
-                <StaticBlockComponent block={block} />
-              ) : (
-                <Suspense
-                  fallback={<Loader className="w-8 h-8 animate-spin mx-auto" />}
-                >
-                  <NewsStoryClient story={block} />
-                </Suspense>
-              )}
-            </div>
-          </BlockWrapper>
-        </div>
-      ))}
+      {blocks.map((block) => {
+        const isLandscape =
+          block.gridPosition.width * 1.5 > block.gridPosition.height;
+        return (
+          <div key={block.uId} className="group">
+            <BlockWrapper title={block.blockType} block={block}>
+              <div className="relative h-full">
+                {block.blockType === "category" ? (
+                  <Suspense
+                    fallback={
+                      <Loader className="w-8 h-8 animate-spin mx-auto" />
+                    }
+                  >
+                    {isLandscape ? (
+                      <CategoryCarouselClient
+                        categorySlug={"opiniao"}
+                        postsPerPage={12}
+                        cardsPerView={block.postsPerPage}
+                      />
+                    ) : (
+                      <CategoryBlockClient block={block} />
+                    )}
+                  </Suspense>
+                ) : block.blockType === "static" ? (
+                  <StaticBlockComponent block={block} />
+                ) : (
+                  <Suspense
+                    fallback={
+                      <Loader className="w-8 h-8 animate-spin mx-auto" />
+                    }
+                  >
+                    <NewsStoryClient story={block} />
+                  </Suspense>
+                )}
+              </div>
+            </BlockWrapper>
+          </div>
+        );
+      })}
     </ReactGridLayout>
   );
 }

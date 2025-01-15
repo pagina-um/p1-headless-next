@@ -5,6 +5,7 @@ import { EmptyState } from "../ui/EmptyState";
 import { CategoryBlockServer } from "../blocks/CategoryBlock.server";
 import { sortBlocksZigzagThenMobilePriority } from "@/utils/sorting";
 import { twMerge } from "tailwind-merge";
+import { CategoryCarouselServer } from "../ui/CategoryCarousel.server";
 
 interface NewsGridProps {
   blocks: Block[];
@@ -28,7 +29,8 @@ export function NewsGrid({ blocks }: NewsGridProps) {
           block.gridPosition?.width,
           block.gridPosition?.height
         );
-
+        const isLandscape =
+          block.gridPosition.width * 1.5 > block.gridPosition.height;
         return (
           <div
             key={block.uId}
@@ -43,7 +45,16 @@ export function NewsGrid({ blocks }: NewsGridProps) {
             {block.blockType === "story" ? (
               <NewsStoryServer story={block} />
             ) : block.blockType === "category" ? (
-              <CategoryBlockServer block={block} />
+              isLandscape ? (
+                <CategoryCarouselServer
+                  categorySlug="opiniao" // Replace with your category slug
+                  postsPerPage={12} // Optional: number of posts to load per request
+                  cardsPerView={block.postsPerPage} // Optional: number of cards visible at once
+                  className="mt-8" // Optional: additional styling
+                />
+              ) : (
+                <CategoryBlockServer block={block} />
+              )
             ) : (
               <StaticBlockComponent block={block} />
             )}
