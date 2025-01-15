@@ -5,8 +5,8 @@ import CookieConsent from "@/components/CookieConsent";
 import NextTopLoader from "nextjs-toploader";
 
 export const metadata: Metadata = {
-  title: "News Grid",
-  description: "A modern news grid layout built with Next.js",
+  title: "Página UM",
+  description: "O Jornalismo independente só depende dos leitores.",
   robots: {
     // TODO: remove when going live
     index: false,
