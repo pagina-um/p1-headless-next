@@ -12,8 +12,6 @@ export function ModernStoryLayout({
   featuredImageSrcSet,
   postFields,
   title,
-  author,
-  date,
   isAdmin,
   blockUid,
   objectPosition,

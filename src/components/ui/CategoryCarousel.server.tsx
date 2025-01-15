@@ -43,10 +43,10 @@ export async function CategoryCarouselServer({
       <CategoryBlockHeader title={block.wpCategoryName} />
       <Carousel
         opts={{
-          align: "start",
-          loop: false,
+          align: "center",
+          loop: true,
           skipSnaps: false,
-          slidesToScroll: cardsPerView,
+          slidesToScroll: 1,
         }}
         className="w-full"
       >
@@ -54,11 +54,12 @@ export async function CategoryCarouselServer({
           {posts.map((post) => (
             <CarouselItem
               key={post.id}
-              className={`pl-2 md:pl-4 basis-full md:basis-1/${cardsPerView}`}
+              className={`pl-2 md:pl-4 basis-1/2 md:basis-1/${cardsPerView}`}
             >
               <div className="relative aspect-[4/5] overflow-hidden rounded-lg group">
                 {post.featuredImage?.node?.sourceUrl && (
                   <img
+                    srcSet={post.featuredImage.node.srcSet || undefined}
                     src={post.featuredImage.node.sourceUrl}
                     alt={post.featuredImage.node.altText || ""}
                     className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
