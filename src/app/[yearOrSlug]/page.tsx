@@ -4,7 +4,7 @@ import {
   GET_ALL_PAGES,
   GET_PAGE_BY_SLUG,
 } from "@/services/wp-graphql";
-import { parserOptions, transformContent } from "@/utils/wpParsing";
+import { parserOptions } from "@/utils/wpParsing";
 import parse from "html-react-parser";
 
 import { notFound } from "next/navigation";
@@ -42,13 +42,11 @@ export default async function StaticPage({
     notFound();
   }
 
-  const transformedContent = transformContent(data.pageBy.content);
-
   return (
     <>
       <article className="wp-content">
         <h1>{data.pageBy.title}</h1>
-        {parse(transformedContent, parserOptions)}
+        {parse(data.pageBy.content, parserOptions)}
       </article>
       <PostFooter />
     </>

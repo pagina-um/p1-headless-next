@@ -7,7 +7,7 @@ interface PostContentProps {
 export function PostContent({ content }: PostContentProps) {
   const contentWithoutManualFooter = content.split(
     `<p><strong>PÁGINA UM &#8211; <em>O jornalismo independente (só) depende dos leitores.</em></strong></p>`
-  )[0];
+  )[0]; // TODO: bring this transformation to the parsing function
 
   return (
     <>
