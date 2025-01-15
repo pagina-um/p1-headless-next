@@ -5,6 +5,7 @@ import { EmptyState } from "../ui/EmptyState";
 import { CategoryBlockServer } from "../blocks/CategoryBlock.server";
 import { sortBlocksZigzagThenMobilePriority } from "@/utils/sorting";
 import { twMerge } from "tailwind-merge";
+import { CategoryCarouselServer } from "../ui/CategoryCarousel.server";
 
 interface NewsGridProps {
   blocks: Block[];
@@ -50,6 +51,15 @@ export function NewsGrid({ blocks }: NewsGridProps) {
           </div>
         );
       })}
+      <div className="col-span-6 row-span-5">
+        {" "}
+        <CategoryCarouselServer
+          categorySlug="opiniao" // Replace with your category slug
+          postsPerPage={6} // Optional: number of posts to load per request
+          cardsPerView={3} // Optional: number of cards visible at once
+          className="mt-8" // Optional: additional styling
+        />
+      </div>
     </div>
   );
 }

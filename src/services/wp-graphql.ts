@@ -70,6 +70,9 @@ export const GET_POSTS_BY_CATEGORY_SLUG = graphql(`
             name
           }
         }
+        postFields {
+          chamadaDestaque
+        }
         author {
           node {
             name
