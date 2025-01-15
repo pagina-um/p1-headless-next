@@ -38,10 +38,10 @@ export function CategoryBlockClient({ block }: CategoryBlockProps) {
   }
 
   return (
-    <div className="h-full p-6 bg-white  shadow-sm border border-gray-100 block-content">
+    <div className="h-full p-2 px-3 bg-white shadow-sm border border-gray-100 block-content">
       <CategoryBlockHeader title={block.wpCategoryName} />
 
-      <div className="space-y-4 overflow-auto h-[calc(100%-4rem)]">
+      <div className="space-y-4 overflow-auto h-[calc(100%-3rem)]">
         {loading ? (
           <div className="flex items-center justify-center py-8">
             <Loader className="w-6 h-6 animate-spin text-primary" />

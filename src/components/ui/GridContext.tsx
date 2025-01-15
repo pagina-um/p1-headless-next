@@ -284,8 +284,7 @@ const sortAndNormalizeBlocks = (blocks: any[]) => {
 const getPostsPerPageForBlockArea = (height: number, width: number): number => {
   const isLandscape = width * 1.5 > height;
   if (isLandscape) {
-    const x = Math.floor(width / 2);
-    return x;
+    return Math.floor(width / 2);
   }
-  return height / 12;
+  return Math.floor(height / 12) < 0 ? 1 : Math.floor(height / 12);
 };

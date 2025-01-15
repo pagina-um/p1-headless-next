@@ -1,8 +1,12 @@
 import { CustomPostFields, ObjectPosition, StoryBlock } from "@/types";
-import { SPECIAL_CATEGORIES } from "../constants/categories";
+import { SPECIAL_CATEGORIES, SPECIAL_STYLES } from "../constants/categories";
 
 export function shouldShowAuthor(categoryId: number): boolean {
   return categoryId === SPECIAL_CATEGORIES.OPINION;
+}
+
+export function shouldHaveDifferentStyles(categoryId: number): boolean {
+  return categoryId === SPECIAL_STYLES.INTERVIEW;
 }
 
 export function shouldShowDate(categoryId: number): boolean {

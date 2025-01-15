@@ -25,15 +25,15 @@ export async function CategoryBlockServer({ block }: CategoryBlockProps) {
   }
 
   return (
-    <div className="h-full p-6 bg-white  shadow-sm border border-gray-100 block-content">
+    <div className="h-full p-2 px-3 bg-white shadow-sm border border-gray-100 block-content">
       <CategoryBlockHeader title={block.wpCategoryName} />
 
-      <div className="space-y-4 overflow-clip h-[calc(100%-4rem)] @container">
+      <div className="space-y-4 overflow-clip h-[calc(100%-3rem)]">
         {posts.length > 0 ? (
           <CategoryPostList
             posts={posts}
             categoryId={block.wpCategoryId}
-            shouldLink={false}
+            shouldLink={true}
             isLandscape={
               block.gridPosition.width * 1.5 > block.gridPosition.height
             }

@@ -115,6 +115,11 @@ export const GET_POSTS_BY_CATEGORY = graphql(`
             }
           }
         }
+        postFields {
+          antetitulo
+          chamadaDestaque
+          chamadaManchete
+        }
         featuredImage {
           node {
             sourceUrl
