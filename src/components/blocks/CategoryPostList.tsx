@@ -62,7 +62,7 @@ const ArticleContent = ({
       <div className="h-full relative  overflow-hidden rounded-md">
         <div
           className={twMerge(
-            "absolute backdrop-blur-xl w-full text-white font-medium bg-primary-dark opacity-90 group-hover:opacity-100 transition-opacity duration-400 px-2 z-10 min-h-16 line-clamp-4 bottom-0 rounded-b-md text-center font-serif text-lg text-pretty border-white border-t-2",
+            "absolute backdrop-blur-xl w-full text-white font-medium bg-primary-dark opacity-90 group-hover:opacity-100 transition-opacity duration-400 px-2 z-10 min-h-16 line-clamp-3 bottom-0 rounded-b-md text-center font-serif text-lg text-pretty border-white border-t-2",
             isSpecialStyle && "bg-slate-800 text-right"
           )}
         >
