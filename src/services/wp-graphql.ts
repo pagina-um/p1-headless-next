@@ -94,8 +94,22 @@ export const GET_POSTS_BY_CATEGORY_SLUG = graphql(`
 `);
 
 export const GET_POSTS_BY_CATEGORY = graphql(`
-  query GetPostsByCategory($categoryId: Int!, $postsPerPage: Int!) {
-    posts(where: { categoryId: $categoryId }, first: $postsPerPage) {
+  query GetPostsByCategory(
+    $categoryId: Int!
+    $postsPerPage: Int!
+    $after: String
+  ) {
+    posts(
+      where: { categoryId: $categoryId }
+      first: $postsPerPage
+      after: $after
+    ) {
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
       nodes {
         id
         title

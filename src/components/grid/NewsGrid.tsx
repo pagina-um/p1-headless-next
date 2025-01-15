@@ -47,8 +47,7 @@ export function NewsGrid({ blocks }: NewsGridProps) {
             ) : block.blockType === "category" ? (
               isLandscape ? (
                 <CategoryCarouselServer
-                  categorySlug="opiniao" // Replace with your category slug
-                  postsPerPage={12} // Optional: number of posts to load per request
+                  block={block}
                   cardsPerView={block.postsPerPage} // Optional: number of cards visible at once
                   className="mt-8" // Optional: additional styling
                 />

@@ -1,4 +1,8 @@
-import { GET_POSTS_BY_CATEGORY_SLUG, getClient } from "@/services/wp-graphql";
+import {
+  GET_POSTS_BY_CATEGORY,
+  GET_POSTS_BY_CATEGORY_SLUG,
+  getClient,
+} from "@/services/wp-graphql";
 import {
   Carousel,
   CarouselContent,
@@ -6,19 +10,26 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "./carousel";
+import { CategoryBlockProps } from "../blocks/CategoryBlock.server";
+import { CategoryBlockHeader } from "../blocks/CategoryBlockHeader";
+
+export interface CategoryCarouselProps extends CategoryBlockProps {
+  cardsPerView?: number;
+  className?: string;
+  totalPosts?: number;
+}
 
 export async function CategoryCarouselServer({
-  categorySlug,
-  postsPerPage = 6,
+  block,
   cardsPerView = 3,
   className = "",
-}: any) {
-  const { data, error } = await getClient().query(GET_POSTS_BY_CATEGORY_SLUG, {
-    slug: categorySlug,
-    postsPerPage,
-    after: null,
+  totalPosts = 12,
+}: CategoryCarouselProps) {
+  const { data, error } = await getClient().query(GET_POSTS_BY_CATEGORY, {
+    categoryId: block.wpCategoryId,
+    postsPerPage: totalPosts,
   });
-
+  const posts = data?.posts?.nodes || [];
   if (error) {
     return (
       <div className="text-red-500 p-4">
@@ -27,10 +38,9 @@ export async function CategoryCarouselServer({
     );
   }
 
-  const posts = data?.posts?.nodes || [];
-
   return (
     <div className={`relative ${className}`}>
+      <CategoryBlockHeader title={block.wpCategoryName} />
       <Carousel
         opts={{
           align: "start",

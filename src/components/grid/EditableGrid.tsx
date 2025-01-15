@@ -75,8 +75,8 @@ export function EditableGrid({ columns }: EditableGridProps) {
                   >
                     {isLandscape ? (
                       <CategoryCarouselClient
-                        categorySlug={"opiniao"}
-                        postsPerPage={12}
+                        block={block as CategoryBlock}
+                        totalPosts={12}
                         cardsPerView={block.postsPerPage}
                       />
                     ) : (

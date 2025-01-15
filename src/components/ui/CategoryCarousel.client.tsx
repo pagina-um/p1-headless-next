@@ -1,7 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "urql";
-import { GET_POSTS_BY_CATEGORY_SLUG } from "@/services/wp-graphql";
+import {
+  GET_POSTS_BY_CATEGORY,
+  GET_POSTS_BY_CATEGORY_SLUG,
+} from "@/services/wp-graphql";
 import {
   Carousel,
   CarouselContent,
@@ -11,29 +14,23 @@ import {
 } from "@/components/ui/carousel";
 import { Loader } from "lucide-react";
 import { CategoryBlockHeader } from "../blocks/CategoryBlockHeader";
-
-interface CategoryCarouselProps {
-  categorySlug: string;
-  postsPerPage?: number;
-  cardsPerView?: number;
-  className?: string;
-}
+import { CategoryCarouselProps } from "./CategoryCarousel.server";
 
 export function CategoryCarouselClient({
-  categorySlug,
-  postsPerPage = 6,
+  block,
   cardsPerView = 3,
   className = "",
+  totalPosts = 12,
 }: CategoryCarouselProps) {
   const [allPosts, setAllPosts] = useState<any[]>([]);
   const [after, setAfter] = useState<string | null>(null);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   const [{ data, fetching, error }] = useQuery({
-    query: GET_POSTS_BY_CATEGORY_SLUG,
+    query: GET_POSTS_BY_CATEGORY,
     variables: {
-      slug: categorySlug,
-      postsPerPage,
+      categoryId: block.wpCategoryId,
+      postsPerPage: totalPosts,
       after: null,
     },
   });
@@ -49,9 +46,9 @@ export function CategoryCarouselClient({
     if (!after || isLoadingMore) return;
 
     setIsLoadingMore(true);
-
+    const categorySlug = "opiniao"; // TODO: make the load more work
     const result = await fetch(
-      `/api/posts?category=${categorySlug}&after=${after}&first=${postsPerPage}`
+      `/api/posts?category=${categorySlug}&after=${after}&first=${totalPosts}`
     );
     const newData = await result.json();
 
@@ -81,7 +78,7 @@ export function CategoryCarouselClient({
 
   return (
     <div className={`relative ${className}`}>
-      <CategoryBlockHeader title="Opinião" />
+      <CategoryBlockHeader title={block.wpCategoryName} />
       <Carousel
         opts={{
           align: "start",
