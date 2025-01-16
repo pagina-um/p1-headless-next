@@ -26,7 +26,7 @@ export function CategoryBlockClient({ block }: CategoryBlockProps) {
   } = useCategoryPosts(block.wpCategoryId, currentPostsPerPage);
 
   const posts = data?.posts?.nodes || [];
-
+  const category = data?.category;
   if (!block.wpCategoryId) {
     return (
       <div className="h-full p-6 bg-white  shadow-sm border border-gray-100">
@@ -39,7 +39,10 @@ export function CategoryBlockClient({ block }: CategoryBlockProps) {
 
   return (
     <div className="h-full p-2 px-3 bg-white shadow-sm border border-gray-100 block-content">
-      <CategoryBlockHeader title={block.wpCategoryName} />
+      <CategoryBlockHeader
+        title={block.wpCategoryName}
+        link={`/cat/${category?.slug}`}
+      />
 
       <div className="space-y-4 overflow-auto h-[calc(100%-3rem)]">
         {loading ? (

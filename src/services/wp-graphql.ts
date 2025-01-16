@@ -93,12 +93,72 @@ export const GET_POSTS_BY_CATEGORY_SLUG = graphql(`
   }
 `);
 
+export const GET_POSTS_BY_TAG_SLUG = graphql(`
+  query GetPostsByTagSlug($slug: String!, $postsPerPage: Int!, $after: String) {
+    tags(where: { slug: [$slug] }) {
+      nodes {
+        name
+      }
+    }
+
+    posts(where: { tag: $slug }, first: $postsPerPage, after: $after) {
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+      nodes {
+        id
+        title
+        content
+        excerpt
+        date
+        slug
+        uri
+        postFields {
+          antetitulo
+          chamadaDestaque
+          chamadaManchete
+        }
+        categories {
+          nodes {
+            id
+            name
+          }
+        }
+        author {
+          node {
+            name
+            avatar {
+              url
+            }
+          }
+        }
+        featuredImage {
+          node {
+            sourceUrl
+            srcSet
+            altText
+          }
+        }
+      }
+    }
+  }
+`);
+
 export const GET_POSTS_BY_CATEGORY = graphql(`
   query GetPostsByCategory(
-    $categoryId: Int!
+    $categoryId: Int
+    $sameCategoryIdAsString: ID!
     $postsPerPage: Int!
     $after: String
   ) {
+    category(id: $sameCategoryIdAsString, idType: DATABASE_ID) {
+      id
+      name
+      slug
+    }
     posts(
       where: { categoryId: $categoryId }
       first: $postsPerPage

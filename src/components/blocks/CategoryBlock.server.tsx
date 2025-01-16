@@ -11,10 +11,13 @@ export interface CategoryBlockProps {
 export async function CategoryBlockServer({ block }: CategoryBlockProps) {
   const { data, error } = await getClient().query(GET_POSTS_BY_CATEGORY, {
     categoryId: block.wpCategoryId,
+    sameCategoryIdAsString: block.wpCategoryId.toString(),
     postsPerPage: block.postsPerPage,
   });
   const posts = data?.posts?.nodes || [];
-  if (!block.wpCategoryId) {
+  const category = data?.category;
+
+  if (!block.wpCategoryId || error) {
     return (
       <div className="h-full p-6 bg-white  shadow-sm border border-gray-100">
         <p className="text-gray-500 italic font-body-serif">
@@ -26,8 +29,10 @@ export async function CategoryBlockServer({ block }: CategoryBlockProps) {
 
   return (
     <div className="h-full p-2 px-3 bg-white shadow-sm border border-gray-100 block-content">
-      <CategoryBlockHeader title={block.wpCategoryName} />
-
+      <CategoryBlockHeader
+        title={block.wpCategoryName}
+        link={`/cat/${category?.slug}`}
+      />
       <div className="space-y-4 overflow-clip h-[calc(100%-3rem)]">
         {posts.length > 0 ? (
           <CategoryPostList

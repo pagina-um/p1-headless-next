@@ -30,6 +30,7 @@ export function CategoryCarouselClient({
     query: GET_POSTS_BY_CATEGORY,
     variables: {
       categoryId: block.wpCategoryId,
+      sameCategoryIdAsString: block.wpCategoryId.toString(),
       postsPerPage: totalPosts,
       after: null,
     },
@@ -46,7 +47,7 @@ export function CategoryCarouselClient({
     if (!after || isLoadingMore) return;
 
     setIsLoadingMore(true);
-    const categorySlug = "opiniao"; // TODO: make the load more work
+    const categorySlug = "opiniao"; // TODO: make the "load more" work
     const result = await fetch(
       `/api/posts?category=${categorySlug}&after=${after}&first=${totalPosts}`
     );
@@ -75,10 +76,13 @@ export function CategoryCarouselClient({
       </div>
     );
   }
-
+  const category = data?.category;
   return (
     <div className={`relative ${className}`}>
-      <CategoryBlockHeader title={block.wpCategoryName} />
+      <CategoryBlockHeader
+        title={block.wpCategoryName}
+        link={`/cat/${category?.slug}`}
+      />
       <Carousel
         opts={{
           align: "center",
@@ -94,7 +98,7 @@ export function CategoryCarouselClient({
             lastVisibleIndex >= allPosts.length - cardsPerView &&
             data?.posts?.pageInfo?.hasNextPage
           ) {
-            loadMorePosts();
+            return; //  loadMorePosts(); TODO: make this work in the future
           }
         }}
       >

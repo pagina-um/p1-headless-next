@@ -20,12 +20,11 @@ export function PostHeader({ post }: PostHeaderProps) {
   const featuredImage = post?.postBy?.featuredImage?.node;
 
   return (
-    <header>
+    <header className="mb-8">
       <h1
         className="text-4xl md:text-5xl font-serif font-bold mb-4"
         dangerouslySetInnerHTML={{ __html: post?.postBy?.title || "" }}
       />
-
       <div className="flex items-center gap-4 text-gray-600 justify-between">
         <div className="inline-flex gap-4">
           <span className="flex items-center gap-1">

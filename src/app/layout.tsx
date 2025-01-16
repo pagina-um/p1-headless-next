@@ -12,6 +12,19 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
+  metadataBase: new URL("https://paginaum.pt"),
+  openGraph: {
+    type: "website",
+    locale: "pt_PT",
+    images: [
+      {
+        url: new URL("/icon.png", "https://paginaum.pt").toString(),
+        width: 512,
+        height: 512,
+        alt: "Página UM",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
