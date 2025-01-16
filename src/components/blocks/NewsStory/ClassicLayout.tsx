@@ -41,6 +41,7 @@ export function ClassicStoryLayout({
   reverse,
   expandImage,
   extraBigTitle,
+  blockSize,
 }: StoryLayoutProps) {
   const hasTagsToShow = tags.nodes.length > 0;
   const displayImage = !hideImage;
@@ -71,6 +72,7 @@ export function ClassicStoryLayout({
             <img
               src={featuredImageUrl || ""}
               srcSet={featuredImageSrcSet || undefined}
+              sizes={getSizesFromBlockArea(blockSize[0] * blockSize[1])}
               alt={featuredImageAlt || ""}
               className={twMerge("object-cover w-full h-full absolute inset-0")}
               style={{ objectPosition: positionMap[objectPosition] }}
@@ -165,4 +167,17 @@ export function ClassicStoryLayout({
       </div>
     </div>
   );
+}
+
+function getSizesFromBlockArea(blockArea: number) {
+  console.log("blockArea", blockArea);
+  if (blockArea >= 40) {
+    return "(min-width: 1024px) 100vw, 50vw";
+  } else if (blockArea >= 20) {
+    return "(min-width: 1024px) 30vw, 10vw";
+  } else if (blockArea >= 12) {
+    return "(min-width: 1024px) 33.333vw, 100vw";
+  } else {
+    return "(min-width: 1024px) 25vw, 100vw";
+  }
 }

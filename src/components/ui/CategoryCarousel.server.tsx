@@ -69,7 +69,7 @@ export async function CategoryCarouselServer({
                       alt={post.featuredImage.node.altText || ""}
                       sizes="(min-resolution: 2x) 600px, 300px"
                       className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
-                      loading="lazy" // Add this
+                      loading="lazy"
                       decoding="async"
                     />
                   )}

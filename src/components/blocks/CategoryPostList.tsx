@@ -88,6 +88,7 @@ const ArticleContent = ({
       <div className="flex items-center gap-3 flex-shrink-0 justify-end font-thin text-md text-slate-900">
         {post.author?.node.avatar?.url ? (
           <img
+            sizes="48px"
             src={post.author?.node.avatar?.url}
             alt={post.author?.node.name || ""}
             className="w-12 h-12 rounded-full border-2 border-primary-dark"
