@@ -3,7 +3,10 @@ import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
   // Check if the path starts with /admin
-  if (request.nextUrl.pathname.startsWith("/admin")) {
+  if (
+    request.nextUrl.pathname.startsWith("/admin") &&
+    process.env.NODE_ENV === "production"
+  ) {
     // Get the Authorization header
     const authHeader = request.headers.get("authorization");
 
