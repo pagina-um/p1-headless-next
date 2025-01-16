@@ -106,7 +106,7 @@ export function CategoryCarouselClient({
           {allPosts.map((post) => (
             <CarouselItem
               key={post.id}
-              className={`pl-2 md:pl-4 basis-full md:basis-1/${cardsPerView}`}
+              className={`pl-2 md:pl-4 basis-1/2 md:basis-1/${cardsPerView}`}
             >
               <div className="relative aspect-[4/5] overflow-hidden rounded-lg group">
                 {post.featuredImage?.node?.sourceUrl && (

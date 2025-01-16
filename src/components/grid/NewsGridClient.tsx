@@ -1,17 +1,20 @@
+"use client";
+
 import { Block } from "@/types";
-import { NewsStoryServer } from "../blocks/NewsStory/NewsStory.server";
+import { NewsStoryClient } from "../blocks/NewsStory/NewsStory.client";
 import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
 import { EmptyState } from "../ui/EmptyState";
-import { CategoryBlockServer } from "../blocks/CategoryBlock.server";
+import { CategoryBlockClient } from "../blocks/CategoryBlock.client";
 import { sortBlocksZigzagThenMobilePriority } from "@/utils/sorting";
 import { twMerge } from "tailwind-merge";
-import { CategoryCarouselServer } from "../ui/CategoryCarousel.server";
+import { CategoryCarouselClient } from "../ui/CategoryCarousel.client";
 
 interface NewsGridProps {
   blocks: Block[];
 }
 
-export function NewsGrid({ blocks }: NewsGridProps) {
+// only for the preview page
+export function NewsGridClient({ blocks }: NewsGridProps) {
   const hasContent = blocks.length > 0;
 
   if (!hasContent) {
@@ -37,16 +40,16 @@ export function NewsGrid({ blocks }: NewsGridProps) {
             )}
           >
             {block.blockType === "story" ? (
-              <NewsStoryServer story={block} />
+              <NewsStoryClient story={block} />
             ) : block.blockType === "category" ? (
               isLandscape ? (
-                <CategoryCarouselServer
+                <CategoryCarouselClient
                   block={block}
-                  cardsPerView={block.postsPerPage} // Optional: number of cards visible at once
-                  className="mt-8" // Optional: additional styling
+                  cardsPerView={block.postsPerPage}
+                  className="mt-8"
                 />
               ) : (
-                <CategoryBlockServer block={block} />
+                <CategoryBlockClient block={block} />
               )
             ) : (
               <StaticBlockComponent block={block} />
