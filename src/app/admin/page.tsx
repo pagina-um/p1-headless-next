@@ -23,13 +23,16 @@ function verifyBasicAuth() {
   const buffer = Buffer.from(encoded, "base64");
   const [username, password] = buffer.toString().split(":");
 
-  if (password !== process.env.ADMIN_PASSWORD) {
+  if (
+    password !== process.env.ADMIN_PASSWORD ||
+    username !== process.env.ADMIN_USERNAME
+  ) {
     return new Response("Invalid credentials", { status: 401 });
   }
 }
 
 export default function AdminPage() {
- if (process.env.NODE_ENV==="production") verifyBasicAuth();
+  if (process.env.NODE_ENV === "production") verifyBasicAuth();
   return (
     <main className="max-w-7xl mx-auto px-4 py-8">
       <AdminPanel />
