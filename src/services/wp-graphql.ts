@@ -38,7 +38,7 @@ export const GET_POSTS_BY_CATEGORY_SLUG = graphql(`
     $postsPerPage: Int!
     $after: String
   ) {
-    categories(where: { slug: [$slug], status: PUBLISH }) {
+    categories(where: { slug: [$slug] }) {
       nodes {
         name
       }
@@ -95,7 +95,7 @@ export const GET_POSTS_BY_CATEGORY_SLUG = graphql(`
 
 export const GET_POSTS_BY_TAG_SLUG = graphql(`
   query GetPostsByTagSlug($slug: String!, $postsPerPage: Int!, $after: String) {
-    tags(where: { slug: [$slug], status: PUBLISH }) {
+    tags(where: { slug: [$slug] }) {
       nodes {
         name
       }

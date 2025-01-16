@@ -37,13 +37,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body className="min-h-screen bg-gray-100">
-        {process.env.GOOGLE_ANALYTICS_ID && activateGA && (
-          <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID} />
-        )}
         <NextTopLoader color="#e10012" shadow={false} showSpinner={false} />
         <Header />
         {children}
-        <CookieConsent />
+        {process.env.GOOGLE_ANALYTICS_ID && activateGA && (
+          <CookieConsent gaId={process.env.GOOGLE_ANALYTICS_ID} />
+        )}
       </body>
     </html>
   );

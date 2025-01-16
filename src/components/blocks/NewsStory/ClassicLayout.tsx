@@ -170,7 +170,6 @@ export function ClassicStoryLayout({
 }
 
 function getSizesFromBlockArea(blockArea: number) {
-  console.log("blockArea", blockArea);
   if (blockArea >= 40) {
     return "(min-width: 1024px) 100vw, 50vw";
   } else if (blockArea >= 20) {
