@@ -17,6 +17,7 @@ export function CategoryPostList({ posts, categoryId }: CategoryPostListProps) {
     <div className={twMerge("h-full flex justify-between gap-x-2 flex-col")}>
       {posts?.map((post) => (
         <ArticleContent
+          key={post.id}
           post={post}
           isSpecialStyle={shouldHaveDifferentStyles(categoryId)}
         />
