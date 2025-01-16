@@ -30,7 +30,7 @@ export function Header() {
             className={`
               flex items-center justify-between gap-8
               transition-all duration-300
-              ${isScrolled ? "h-16" : "h-24"}
+              ${isScrolled ? "h-14 md:h-16" : "h-16 md:h-24"}
             `}
           >
             {/* Mobile menu button */}
@@ -47,8 +47,8 @@ export function Header() {
                   transition-all duration-300
                   ${
                     isScrolled
-                      ? "w-[160px] md:w-[200px]"
-                      : "w-[200px] md:w-[280px]"
+                      ? "w-[140px] md:w-[200px]"
+                      : "w-[160px] md:w-[280px]"
                   }
                 `}
               >
@@ -85,10 +85,12 @@ export function Header() {
         </div>
       </header>
 
+      {/* Spacer div that matches header height */}
       <div
-        className={`h-24 transition-all duration-300 ${
-          isScrolled ? "h-16" : "h-24"
-        }`}
+        className={`
+          transition-all duration-300
+          ${isScrolled ? "h-14 md:h-16" : "h-16 md:h-24"}
+        `}
       />
 
       <MobileNav
