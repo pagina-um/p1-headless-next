@@ -44,6 +44,8 @@ export default async function TagPage({
               {post.featuredImage?.node?.sourceUrl && (
                 <div className="relative aspect-[16/9] overflow-hidden">
                   <img
+                    srcSet={post.featuredImage.node.srcSet}
+                    sizes="(min-resolution: 2x) 600px, 300px"
                     src={post.featuredImage.node.sourceUrl}
                     alt={post.featuredImage.node.altText || post.title}
                     className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
