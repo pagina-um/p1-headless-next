@@ -1,6 +1,5 @@
 import { AdminPanel } from "@/components/admin/AdminPanel";
-import { cookies, headers } from "next/headers";
-import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 
 async function verifyBasicAuth() {
   const headersList = await headers();

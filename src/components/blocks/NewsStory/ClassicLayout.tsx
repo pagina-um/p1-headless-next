@@ -57,8 +57,7 @@ export function ClassicStoryLayout({
               : "lg:flex-row"
             : reverse
             ? "lg:flex-col-reverse"
-            : "lg:flex-col",
-          isAdmin && "bg-white"
+            : "lg:flex-col"
         )}
       >
         {featuredImageUrl && displayImage && (

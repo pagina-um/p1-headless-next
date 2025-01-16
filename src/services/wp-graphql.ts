@@ -1,4 +1,4 @@
-import { graphql, ResultOf } from "gql.tada";
+import { graphql } from "gql.tada";
 import { cacheExchange, createClient, fetchExchange } from "@urql/core";
 import { registerUrql } from "@urql/next/rsc";
 
@@ -38,7 +38,7 @@ export const GET_POSTS_BY_CATEGORY_SLUG = graphql(`
     $postsPerPage: Int!
     $after: String
   ) {
-    categories(where: { slug: [$slug] }) {
+    categories(where: { slug: [$slug], status: PUBLISH }) {
       nodes {
         name
       }
@@ -95,13 +95,17 @@ export const GET_POSTS_BY_CATEGORY_SLUG = graphql(`
 
 export const GET_POSTS_BY_TAG_SLUG = graphql(`
   query GetPostsByTagSlug($slug: String!, $postsPerPage: Int!, $after: String) {
-    tags(where: { slug: [$slug] }) {
+    tags(where: { slug: [$slug], status: PUBLISH }) {
       nodes {
         name
       }
     }
 
-    posts(where: { tag: $slug }, first: $postsPerPage, after: $after) {
+    posts(
+      where: { tag: $slug, status: PUBLISH }
+      first: $postsPerPage
+      after: $after
+    ) {
       pageInfo {
         endCursor
         hasNextPage
@@ -160,7 +164,7 @@ export const GET_POSTS_BY_CATEGORY = graphql(`
       slug
     }
     posts(
-      where: { categoryId: $categoryId }
+      where: { categoryId: $categoryId, status: PUBLISH }
       first: $postsPerPage
       after: $after
     ) {
@@ -253,7 +257,7 @@ export const GET_POST_BY_ID = graphql(`
 
 export const GET_LATEST_POSTS = graphql(`
   query GetLatestPosts {
-    posts(first: 40) {
+    posts(first: 40, where: { status: PUBLISH }) {
       nodes {
         databaseId
         title
