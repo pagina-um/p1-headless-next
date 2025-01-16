@@ -24,7 +24,13 @@
     font-family: "Playfair Display", serif;
   }
 }
-
+.aligncenter {
+  @apply flex justify-center;
+}
+.react-resizable-handle:after {
+  scale: 2;
+  border-color: #cf2e2e !important;
+}
 @layer components {
   .headline {
     @apply font-serif text-4xl font-bold leading-tight;

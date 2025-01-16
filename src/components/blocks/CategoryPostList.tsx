@@ -57,12 +57,12 @@ const ArticleContent = ({
 }) => (
   <article
     key={post.id}
-    className="group cursor-pointer pb-4 border-b border-gray-100 last:border-0 flex-1 @3xl:border-none flex justify-between items-center gap-2"
+    className="group cursor-pointer border-b border-gray-200  flex-1 flex justify-between items-center gap-2 last-of-type:border-none"
   >
     <div>
       {" "}
       {showAuthor && (
-        <p className="font-sans text-sm uppercase font-[300] text-gray-600">
+        <p className="font-sans text-sm  font-[300] text-gray-600">
           {" "}
           {post.author?.node.name}
         </p>

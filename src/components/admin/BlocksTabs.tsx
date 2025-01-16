@@ -5,7 +5,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "../ui/Tabs";
 
 interface BlocksTabsProps {
   onCreateCategoryBlock: (categoryId: number, title: string) => void;
-  onCreateStaticBlock: (title: "newsletter" | "podcast") => void;
+  onCreateStaticBlock: (title: "newsletter" | "podcast" | "divider") => void;
 }
 
 export function BlocksTabs({

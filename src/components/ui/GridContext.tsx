@@ -28,7 +28,9 @@ type GridContextType = {
   handleSave: () => Promise<void>;
   handleCreateCategoryBlock: (id: number, name: string) => void;
   handleUpdateBlockSettings: (block: Block) => void;
-  handleCreateStaticBlock: (title: "newsletter" | "podcast") => void;
+  handleCreateStaticBlock: (
+    title: "newsletter" | "podcast" | "divider"
+  ) => void;
   handleCreateStoryBlock: (wpPostId: number) => void;
   handleClearLayout: () => void;
   handleOverrideStoryBlockField: (
@@ -97,7 +99,6 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
 
   const handleLayoutChange = (layout: RGL.Layout[]) => {
     if (!gridState) return;
-
     const updatedBlocks = gridState.blocks.map(
       <T extends Block>(block: T): T => {
         const layoutItem = layout.find((item) => item.i === block.uId);
@@ -115,10 +116,9 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
           if (block.blockType === "category") {
             return {
               ...baseUpdate,
-              postsPerPage: getPostsPerPageForBlockArea(
-                layoutItem.h,
-                layoutItem.w
-              ),
+              postsPerPage: didBlockSizeChange(block, layoutItem)
+                ? getPostsPerPageForBlockArea(layoutItem.h, layoutItem.w)
+                : block.postsPerPage,
             } as T;
           }
 
@@ -175,7 +175,9 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
     });
   };
 
-  const handleCreateStaticBlock = (title: "newsletter" | "podcast") => {
+  const handleCreateStaticBlock = (
+    title: "newsletter" | "podcast" | "divider"
+  ) => {
     if (!gridState) return;
     const newBlock: StaticBlock = {
       uId: Date.now().toString(),
@@ -286,5 +288,15 @@ const getPostsPerPageForBlockArea = (height: number, width: number): number => {
   if (isLandscape) {
     return Math.floor(width / 2);
   }
-  return Math.floor(height / 12) < 0 ? 1 : Math.floor(height / 12);
+  return Math.floor(height / 2);
+};
+
+const didBlockSizeChange = (block: Block, layoutItem: RGL.Layout) => {
+  const blockSizeChanged =
+    block.gridPosition.width !== layoutItem.w ||
+    block.gridPosition.height !== layoutItem.h;
+  if (blockSizeChanged) {
+    console.log(block.blockType, "block size changed");
+  }
+  return blockSizeChanged;
 };

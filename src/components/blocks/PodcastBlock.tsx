@@ -101,11 +101,11 @@ export function PodcastBlock() {
   };
 
   return (
-    <div className="max-lg:max-h-80 max-lg:overflow-scroll  lg:h-full flex flex-col">
+    <div className="max-lg:max-h-80 max-lg:overflow-scroll  lg:h-full flex flex-col ">
       <div className="flex items-center justify-between mb-6 pb-3 border-b border-gray-200">
         <div className="flex items-center gap-2">
-          <Mic className="w-5 h-5 text-primary" />
-          <h2 className="font-serif text-2xl font-bold">{title}</h2>
+          <Mic className="w-5 h-5 text-white" />
+          <h2 className="font-serif text-2xl font-bold text-white">{title}</h2>
         </div>
       </div>
 
@@ -114,18 +114,18 @@ export function PodcastBlock() {
           {episodes.map((episode) => (
             <div
               key={episode.guid}
-              className={`p-4 transition-colors cursor-pointer ${
+              className={`p-4 transition-colors duration-200 cursor-pointer ${
                 activeEpisode?.guid === episode.guid
                   ? "bg-primary/5 border-primary/10"
-                  : "hover:bg-gray-50"
+                  : "hover:bg-stone-500"
               }`}
               onClick={() => handleEpisodeClick(episode)}
             >
               <div className="flex items-start gap-3">
                 <button
-                  className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
+                  className={`flex-shrink-0 w-10 h-10 bg-white rounded-full flex items-center justify-center transition-colors ${
                     activeEpisode?.guid === episode.guid
-                      ? "bg-primary text-white"
+                      ? "bg-primary text-primary"
                       : "bg-gray-100 text-gray-600 hover:bg-primary/10"
                   }`}
                 >
@@ -136,18 +136,18 @@ export function PodcastBlock() {
                   )}
                 </button>
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-lg leading-tight mb-1">
+                  <h3 className="font-semibold text-lg leading-tight mb-1 text-white">
                     {episode.title}
                   </h3>
-                  <p className="text-sm text-gray-600 mb-2 line-clamp-2">
+                  <p className="text-sm text-gray-900 mb-2 line-clamp-2">
                     {stripHtmlTags(episode.description)}
                   </p>
-                  <div className="flex items-center gap-4 text-sm text-gray-500">
+                  <div className="flex items-center gap-4 text-sm text-white">
                     <span className="flex items-center gap-1">
                       <Clock className="w-4 h-4" />
                       {episode.duration}
                     </span>
-                    <span className="flex items-center gap-1">
+                    <span className="flex items-center gap-1 text-white">
                       <Calendar className="w-4 h-4" />
                       {formatDate(episode.pubDate || "")}
                     </span>
@@ -174,7 +174,7 @@ export function PodcastBlock() {
               />
             </div>
             {/* Time display */}
-            <div className="flex justify-between text-sm text-gray-500">
+            <div className="flex justify-between text-sm text-black">
               <span>{formatTime(currentTime)}</span>
               <span>{formatTime(duration)}</span>
             </div>

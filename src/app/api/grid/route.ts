@@ -1,5 +1,4 @@
-import { revalidateTag } from "next/cache";
-import { purgePaths } from "@wpengine/edge-cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { loadGridState, saveGridState } from "@/services/jsonbin";
 
 export async function POST(request: Request) {
@@ -9,7 +8,7 @@ export async function POST(request: Request) {
   }
   await saveGridState(gridState);
   revalidateTag("homepage-grid"); // Revalidate all fetches with this tag
-  await purgePaths(["/"]); // Purge the homepage
+  revalidatePath("/");
   return Response.json({ revalidated: true });
 }
 

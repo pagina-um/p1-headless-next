@@ -12,6 +12,7 @@ import {
 } from "./carousel";
 import { CategoryBlockProps } from "../blocks/CategoryBlock.server";
 import { CategoryBlockHeader } from "../blocks/CategoryBlockHeader";
+import { CustomPostFields } from "@/types";
 
 export interface CategoryCarouselProps extends CategoryBlockProps {
   cardsPerView?: number;
@@ -47,20 +48,25 @@ export async function CategoryCarouselServer({
       />
       <Carousel
         opts={{
-          align: "center",
+          align: "start",
           loop: true,
           skipSnaps: false,
           slidesToScroll: 1,
+          breakpoints: {
+            "(max-width: 768px)": { align: "center" },
+          },
         }}
         className="w-full"
       >
         <CarouselContent className="-ml-2 md:-ml-4">
           {posts.map((post) => {
+            const { antetitulo }: CustomPostFields = post.postFields as any;
             return (
               <CarouselItem
                 key={post.id}
                 className={`pl-2 md:pl-4 basis-1/2 md:basis-1/${cardsPerView}`}
               >
+                {" "}
                 <div className="relative aspect-[4/5] overflow-hidden rounded-lg group">
                   {post.featuredImage?.node?.sourceUrl && (
                     <img
@@ -68,14 +74,19 @@ export async function CategoryCarouselServer({
                       src={post.featuredImage.node.sourceUrl}
                       alt={post.featuredImage.node.altText || ""}
                       sizes="(min-resolution: 2x) 600px, 300px"
-                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                      className="object-cover object-top w-full h-full group-hover:scale-105 transition-transform duration-300"
                       loading="lazy"
                       decoding="async"
                     />
                   )}
+                  <div className="absolute top-0 p-4 pt-0 text-white">
+                    <h3 className="font-serif text-lg  mb-2 line-clamp-5 leading-5">
+                      {antetitulo}
+                    </h3>
+                  </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
-                    <div className="absolute bottom-0 p-4 text-white">
-                      <h3 className="font-serif text-lg font-bold mb-2 line-clamp-2">
+                    <div className="absolute bottom-0 p-4 pt-0 text-white">
+                      <h3 className="font-serif text-lg  mb-2 line-clamp-5 leading-5">
                         {post.title}
                       </h3>
                     </div>

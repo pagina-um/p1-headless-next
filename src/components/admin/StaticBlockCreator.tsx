@@ -3,7 +3,7 @@ import { Layout, Mail, Plus } from "lucide-react";
 import { STATIC_BLOCKS } from "../../constants/blocks";
 
 interface StaticBlockCreatorProps {
-  onCreateBlock: (title: "newsletter" | "podcast") => void;
+  onCreateBlock: (title: "newsletter" | "podcast" | "divider") => void;
 }
 
 export function StaticBlockCreator({ onCreateBlock }: StaticBlockCreatorProps) {

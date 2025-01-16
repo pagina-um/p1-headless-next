@@ -2,7 +2,10 @@ import { CustomPostFields, ObjectPosition, StoryBlock } from "@/types";
 import { SPECIAL_CATEGORIES, SPECIAL_STYLES } from "../constants/categories";
 
 export function shouldShowAuthor(categoryId: number): boolean {
-  return categoryId === SPECIAL_CATEGORIES.OPINION;
+  return (
+    categoryId === SPECIAL_CATEGORIES.OPINION ||
+    categoryId === SPECIAL_CATEGORIES.CHRONICLE
+  );
 }
 
 export function shouldHaveDifferentStyles(categoryId: number): boolean {
@@ -10,7 +13,10 @@ export function shouldHaveDifferentStyles(categoryId: number): boolean {
 }
 
 export function shouldShowDate(categoryId: number): boolean {
-  return categoryId !== SPECIAL_CATEGORIES.OPINION;
+  return (
+    categoryId !== SPECIAL_CATEGORIES.OPINION &&
+    categoryId !== SPECIAL_CATEGORIES.CHRONICLE
+  );
 }
 
 export function formatDate(dateString: string): string {

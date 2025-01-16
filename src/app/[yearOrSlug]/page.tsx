@@ -9,7 +9,7 @@ import parse from "html-react-parser";
 
 import { notFound } from "next/navigation";
 
-export async function generateStaticParams() {
+/* export async function generateStaticParams() {
   const { data, error } = await getClient().query(GET_ALL_PAGES, {});
 
   if (error || !data?.pages) {
@@ -27,7 +27,7 @@ export async function generateStaticParams() {
       },
     };
   });
-}
+} */
 
 export default async function StaticPage({
   params,

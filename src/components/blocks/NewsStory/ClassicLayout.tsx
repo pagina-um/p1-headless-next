@@ -107,14 +107,16 @@ export function ClassicStoryLayout({
                 shouldReverse && "lg:flex-row-reverse"
               )}
             >
-              {tags.nodes.map((tag: any) => (
-                <div
-                  className="bg-primary-dark text-white uppercase font-medium text-xs px-2 py-1"
-                  key={tag.id}
-                >
-                  {tag.name}
-                </div>
-              ))}
+              {tags.nodes
+                .filter((tag: any) => !tag.name.includes("estaque"))
+                .map((tag: any) => (
+                  <div
+                    className="bg-primary-dark text-white uppercase font-medium text-xs px-2 py-1"
+                    key={tag.id}
+                  >
+                    {tag.name}
+                  </div>
+                ))}
             </div>
           )}
 

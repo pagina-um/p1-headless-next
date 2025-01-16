@@ -42,6 +42,12 @@ export const STATIC_BLOCKS = {
       },
     ],
   },
+  divider: {
+    id: "divider" as const,
+    title: "Divider",
+    content: "A simple divider to separate content.",
+    defaultSize: { width: 10, height: 1 },
+  },
 };
 
 export const GRID_COLUMNS = 10;

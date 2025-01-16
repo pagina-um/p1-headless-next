@@ -49,19 +49,10 @@ export default async function CategoryPage({
                 </div>
               )}
               <div className="p-6">
-                {post.postFields?.antetitulo && (
-                  <div className="text-primary text-sm font-medium mb-2">
-                    {post.postFields.antetitulo}
-                  </div>
-                )}
                 <h2 className="text-xl font-serif font-bold mb-3 group-hover:text-primary transition-colors">
                   {post.title}
                 </h2>
-                {post.postFields?.chamadaDestaque && (
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                    {post.postFields.chamadaDestaque}
-                  </p>
-                )}
+
                 <div className="flex items-center gap-4 text-sm text-gray-500">
                   {post.author?.node?.name && (
                     <span className="flex items-center gap-1">
