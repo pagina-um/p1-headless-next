@@ -2,8 +2,8 @@ import { AdminPanel } from "@/components/admin/AdminPanel";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 
-function verifyBasicAuth() {
-  const headersList = headers();
+async function verifyBasicAuth() {
+  const headersList = await headers();
   const authorization = headersList.get("authorization");
 
   if (!authorization) {
