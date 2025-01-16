@@ -56,9 +56,6 @@ export function CategoryBlockClient({ block }: CategoryBlockProps) {
             posts={posts}
             categoryId={block.wpCategoryId}
             shouldLink={false}
-            isLandscape={
-              block.gridPosition.width * 1.5 > block.gridPosition.height
-            }
           />
         ) : (
           <p className="text-gray-500 italic font-body-serif">
