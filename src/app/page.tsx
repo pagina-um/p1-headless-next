@@ -4,7 +4,7 @@ import { GridState } from "@/types";
 import { PostFooter } from "@/components/post/PostFooter";
 import { Metadata } from "next";
 
-export const metatadata: Metadata = {
+export const metadata: Metadata = {
   title: "Página UM",
   description: "O jornalismo independente só depende dos leitores.",
 };

@@ -37,7 +37,7 @@ export type PostBySlugData = NonNullable<
 export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
-  const { slug, day, month, yearOrSlug: year } = await params;
+  const { slug, day, month, yearOrSlug: year } = params;
   const { data, error } = await getPostBySlug(slug);
 
   if (!data?.postBy || !data?.postBy.title || error) {
@@ -101,7 +101,7 @@ async function PostComponent({ slug }: { slug: string }) {
 }
 
 export default async function PostPage({ params }: PostPageProps) {
-  const { slug } = await params;
+  const { slug } = params;
   return (
     <Suspense fallback={<PostLoadingUI />}>
       <PostComponent slug={slug} />
