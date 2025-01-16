@@ -60,7 +60,10 @@ export const metadata: Metadata = {
 
 export const makeMetadataObject = (
   data: PostBySlugData["data"],
-  params: PostPageProps["params"]
+  year: string,
+  month: string,
+  day: string,
+  slug: string
 ) => {
   const { title, author, modified, date, featuredImage, postFields } =
     data?.postBy || {};
@@ -90,7 +93,7 @@ export const makeMetadataObject = (
             },
           ]
         : undefined,
-      url: `https://www.paginaum.pt/${params.yearOrSlug}/${params.month}/${params.day}/${params.slug}`,
+      url: `https://www.paginaum.pt/${year}/${month}/${day}/${slug}`,
     },
     twitter: {
       card: "summary_large_image",
@@ -102,7 +105,7 @@ export const makeMetadataObject = (
     },
     // Add schema.org structured data
     alternates: {
-      canonical: `https://www.paginaum.pt/${params.yearOrSlug}/${params.month}/${params.day}/${params.slug}`,
+      canonical: `https://www.paginaum.pt/${year}/${month}/${day}/${slug}`,
     },
   };
 };

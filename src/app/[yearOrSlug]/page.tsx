@@ -34,8 +34,9 @@ export default async function StaticPage({
 }: {
   params: { yearOrSlug: string };
 }) {
+  const { yearOrSlug } = await params;
   const { data, error } = await getClient().query(GET_PAGE_BY_SLUG, {
-    slug: params.yearOrSlug,
+    slug: yearOrSlug,
   });
 
   if (error || !data?.pageBy?.content) {

@@ -37,13 +37,14 @@ export type PostBySlugData = NonNullable<
 export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
-  const { data, error } = await getPostBySlug(params.slug);
+  const { slug, day, month, yearOrSlug: year } = await params;
+  const { data, error } = await getPostBySlug(slug);
 
   if (!data?.postBy || !data?.postBy.title || error) {
     return defaultMetadata;
   }
 
-  return makeMetadataObject(data, params);
+  return makeMetadataObject(data, year, month, day, slug);
 }
 
 export async function generateStaticParams() {
@@ -99,10 +100,11 @@ async function PostComponent({ slug }: { slug: string }) {
   );
 }
 
-export default function PostPage({ params }: PostPageProps) {
+export default async function PostPage({ params }: PostPageProps) {
+  const { slug } = await params;
   return (
     <Suspense fallback={<PostLoadingUI />}>
-      <PostComponent slug={params.slug} />
+      <PostComponent slug={slug} />
     </Suspense>
   );
 }
