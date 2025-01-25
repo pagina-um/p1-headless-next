@@ -14,6 +14,7 @@ import { CategoryBlockProps } from "../blocks/CategoryBlock.server";
 import { CategoryBlockHeader } from "../blocks/CategoryBlockHeader";
 import { CustomPostFields } from "@/types";
 import Image from "next/image";
+import { titleCaseExceptForSomeWords } from "@/utils/utils";
 
 export interface CategoryCarouselProps extends CategoryBlockProps {
   cardsPerView?: number;
@@ -79,14 +80,14 @@ export async function CategoryCarouselServer({
                       priority={index < 2}
                     />
                   )}
-                  <div className="absolute top-0 p-4 pt-0 text-white">
-                    <h3 className="font-serif text-lg  mb-2 line-clamp-5 leading-5">
-                      {antetitulo}
+                  <div className="absolute top-3 pt-0 left-4 text-white">
+                    <h3 className="font-sans text-xl  mb-2 line-clamp-5 leading-[0.01rem]  inline  font-extrabold tracking-tighter  bg-primary-dark">
+                      {titleCaseExceptForSomeWords(antetitulo?.slice(0,39))}
                     </h3>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
                     <div className="absolute bottom-0 p-4 pt-0 text-white">
-                      <h3 className="font-serif text-lg  mb-2 line-clamp-5 leading-5">
+                      <h3 className="font-serif text-lg  mb-2 line-clamp-5 leading-5 ">
                         {post.title}
                       </h3>
                     </div>

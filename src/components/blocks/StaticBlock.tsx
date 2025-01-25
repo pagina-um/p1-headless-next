@@ -5,6 +5,7 @@ import { STATIC_BLOCKS } from "../../constants/blocks";
 import { PodcastBlock } from "./PodcastBlock";
 import { PostHeader } from "../post/PostHeader";
 import { CategoryBlockHeader } from "./CategoryBlockHeader";
+import { EditableText } from "../ui/EditableText";
 
 interface StaticBlockProps {
   block: StaticBlockType;
@@ -22,8 +23,8 @@ export function StaticBlock({ block }: StaticBlockProps) {
   if (isDivider) {
     return (
       <div className="flex items-center gap-2 border-b-primary border-b">
-        <Tag className="w-5 h-5 text-primary stroke-primary-dark" />
-        <h2 className="font-serif text-3xl font-bold text-primary-dark">
+        <Tag className="w-5 h-5 text-primary stroke-primary-dark mt-4" />
+        <h2 className="font-serif text-3xl font-bold text-primary-dark mt-4" >
           Cultura
         </h2>
       </div>

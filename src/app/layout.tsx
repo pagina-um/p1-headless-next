@@ -4,6 +4,9 @@ import "@/styles/globals.css";
 import CookieConsent from "@/components/CookieConsent";
 import NextTopLoader from "nextjs-toploader";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { GeistSans } from 'geist/font/sans';
+import { twMerge } from "tailwind-merge";
+
 
 export const metadata: Metadata = {
   title: "Página UM",
@@ -35,7 +38,7 @@ export default function RootLayout({
 }) {
   const activateGA = false; // TODO: remove when going live
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className={twMerge("h-full", GeistSans.className)}>
       <body className="min-h-screen bg-gray-100">
         <NextTopLoader color="#e10012" shadow={false} showSpinner={false} />
         <Header />

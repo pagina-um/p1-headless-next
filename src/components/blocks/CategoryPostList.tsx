@@ -19,29 +19,20 @@ interface CategoryPostListProps {
 export function CategoryPostList({
   posts,
   categoryId,
-  shouldLink,
 }: CategoryPostListProps) {
   const showAuthor = shouldShowAuthor(categoryId);
   const showDate = shouldShowDate(categoryId);
   return (
-    <div className="h-full flex flex-col @3xl:flex-row justify-between gap-x-2 ">
+    <div className="h-full flex flex-col @3xl:flex-row gap-y-3 divide-y overflow-clip">
       {posts?.map((post) =>
-        shouldLink ? (
-          <Link href={post.uri || "#"} key={post.id} passHref>
+          <Link href={post.uri || "#"} key={post.id} passHref className="">
             <ArticleContent
               post={post}
               showAuthor={showAuthor}
               showDate={showDate}
             />
           </Link>
-        ) : (
-          <ArticleContent
-            post={post}
-            showAuthor={showAuthor}
-            showDate={showDate}
-            key={post.id}
-          />
-        )
+       
       )}
     </div>
   );
@@ -58,7 +49,7 @@ const ArticleContent = ({
 }) => (
   <article
     key={post.id}
-    className="group cursor-pointer border-b border-gray-200  flex-1 flex justify-between items-center gap-2 last-of-type:border-none"
+    className="group cursor-pointer   flex-1 flex justify-between items-center gap-2 "
   >
     <div>
       {" "}
