@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
+const gqlUrl = new URL(process.env.NEXT_PUBLIC_GQL_URL);
+const domain = gqlUrl.hostname;
 const nextConfig = {
   images: {
-    domains: ["images.unsplash.com", "www.paginaum.pt", "srv700518.hstgr.cloud"],
+    domains: ["images.unsplash.com", "www.paginaum.pt", domain],
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200],
     imageSizes: [16, 32, 64, 96, 128, 256],
