@@ -81,7 +81,7 @@ export async function CategoryCarouselServer({
                     />
                   )}
                   <div className="absolute top-3 pt-0 left-4 text-white">
-                    <h3 className="font-sans text-xl  mb-2 line-clamp-5 leading-[0.01rem]  inline  font-extrabold tracking-tighter  bg-primary-dark">
+                    <h3 className="font-sans text-xl  mb-2 line-clamp-5 leading-[0.01rem]  inline  font-extrabold tracking-tighter  bg-primary-dark ">
                       {titleCaseExceptForSomeWords(antetitulo)}
                     </h3>
                   </div>
