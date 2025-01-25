@@ -22,9 +22,9 @@ export function StaticBlock({ block }: StaticBlockProps) {
 
   if (isDivider) {
     return (
-      <div className="flex items-center gap-2 border-b-primary border-b">
+      <div className="flex items-center gap-2 border-b-primary border-b max-sm:pl-3">
         <Tag className="w-5 h-5 text-primary stroke-primary-dark mt-4" />
-        <h2 className="font-serif text-3xl font-bold text-primary-dark mt-4" >
+        <h2 className="font-serif text-3xl font-bold text-primary-dark mt-4">
           Cultura
         </h2>
       </div>

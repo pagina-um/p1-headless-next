@@ -5,7 +5,6 @@ import { Maybe } from "graphql/jsutils/Maybe";
 import { User, Calendar } from "lucide-react";
 import { StoryLayoutProps } from "./ClassicLayout";
 import { twMerge } from "tailwind-merge";
-import Image from "next/image";
 
 export function ModernStoryLayout({
   featuredImageUrl,
@@ -22,19 +21,15 @@ export function ModernStoryLayout({
   return (
     <div className="relative h-full overflow-hidden  shadow-lg group">
       {featuredImageUrl && (
-        <div className="relative w-full h-full">
-          <Image
-            src={featuredImageUrl}
-            alt={featuredImageAlt || ""}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className={twMerge(
-              "object-cover lg:group-hover:scale-105 transition-transform duration-300",
-              positionMap[objectPosition]
-            )}
-            quality={75}
-          />
-        </div>
+        <img
+          src={featuredImageUrl || ""}
+          srcSet={featuredImageSrcSet || undefined}
+          alt={featuredImageAlt || ""}
+          className={twMerge(
+            "w-full h-full object-cover lg:group-hover:scale-105 transition-transform duration-300",
+            positionMap[objectPosition]
+          )}
+        />
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
         {!postFields.antetitulo && hasTagsToShow && (
