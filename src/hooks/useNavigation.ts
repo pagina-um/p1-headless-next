@@ -3,13 +3,13 @@ import { useMemo } from "react";
 export function useNavigation() {
   const links = useMemo(
     () => [
-      { href: "/tag/politica", label: "Política" },
-      { href: "/tag/sociedade", label: "Sociedade" },
+      { href: "/cat/politica", label: "Política" },
+      { href: "/cat/sociedade", label: "Sociedade" },
       { href: "/cat/imprensa", label: "Imprensa" },
-      { href: "/tag/economia", label: "Economia" },
-      { href: "/tag/opiniao", label: "Opinião" },
-      { href: "/tag/cronica", label: "Crónica" },
-      { href: "/tag/cultura", label: "Cultura" },
+      { href: "/cat/economia", label: "Economia" },
+      { href: "/cat/opiniao", label: "Opinião" },
+      { href: "/cat/cronica", label: "Crónica" },
+      { href: "/cat/cultura", label: "Cultura" },
     ],
     []
   );
