@@ -16,6 +16,8 @@ import { Loader } from "lucide-react";
 import { CategoryBlockHeader } from "../blocks/CategoryBlockHeader";
 import { CategoryCarouselProps } from "./CategoryCarousel.server";
 import { CustomPostFields } from "@/types";
+import Image from "next/image";
+import { titleCaseExceptForSomeWords } from "@/utils/utils";
 
 export function CategoryCarouselClient({
   block,
@@ -104,7 +106,7 @@ export function CategoryCarouselClient({
         }}
       >
         <CarouselContent className="-ml-2 md:-ml-4">
-          {allPosts.map((post) => {
+          {allPosts.map((post, index) => {
             const { antetitulo }: CustomPostFields = post.postFields as any;
             return (
               <CarouselItem
@@ -113,35 +115,28 @@ export function CategoryCarouselClient({
               >
                 <div className="relative aspect-[4/5] overflow-hidden rounded-lg group">
                   {post.featuredImage?.node?.sourceUrl && (
-                    <img
-                      srcSet={post.featuredImage.node.srcSet}
+                    <Image
                       src={post.featuredImage.node.sourceUrl}
                       alt={post.featuredImage.node.altText || ""}
-                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                      fill
+                      sizes={`(max-width: 768px) 50vw, ${100 / cardsPerView}vw`}
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      priority={index < 2}
                     />
                   )}
-                  <div className="absolute top-0 p-4 pt-0 text-white">
-                    <h3 className="font-serif text-lg  mb-2 line-clamp-5 leading-5">
-                      {antetitulo}
+                 <div className="absolute top-1 pt-0 left-2 text-white">
+                    <h3 className="font-sans text-xl  mb-2 line-clamp-5 leading-[0.01rem]  inline  font-extrabold tracking-tighter  bg-primary-dark">
+                      {titleCaseExceptForSomeWords(antetitulo?.slice(0,39))}
                     </h3>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
-                    <div className="absolute bottom-0 p-4 text-white">
-                      <h3 className="font-serif text-lg font-bold mb-2 line-clamp-2">
+                    <div className="absolute bottom-0 p-4 pt-0 text-white">
+                      <h3 className="font-serif text-lg  mb-2 line-clamp-5 leading-5 ">
                         {post.title}
                       </h3>
-                      {post.postFields?.chamadaDestaque && (
-                        <p className="text-sm text-gray-200 line-clamp-5">
-                          {post.postFields.chamadaDestaque}
-                        </p>
-                      )}
                     </div>
                   </div>
-                  <a
-                    href={post.uri}
-                    className="absolute inset-0"
-                    aria-label={post.title}
-                  />
+                  <a href={post.uri!} className="absolute inset-0" />
                 </div>
               </CarouselItem>
             );

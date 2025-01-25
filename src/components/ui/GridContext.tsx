@@ -288,7 +288,7 @@ const getPostsPerPageForBlockArea = (height: number, width: number): number => {
   if (isLandscape) {
     return Math.floor(width / 2);
   }
-  return Math.floor(height / 2);
+  return Math.floor(height / 1.5);
 };
 
 const didBlockSizeChange = (block: Block, layoutItem: RGL.Layout) => {

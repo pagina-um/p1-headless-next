@@ -1,5 +1,6 @@
 import { GET_POSTS_BY_TAG_SLUG, getClient } from "@/services/wp-graphql";
 import Link from "next/link";
+import Image from "next/image";
 import Pagination from "@/components/ui/Pagination";
 import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
@@ -35,7 +36,7 @@ export default async function TagPage({
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {posts?.map((post: any) => (
+        {posts?.map((post: any, index: number) => (
           <article
             key={post.slug}
             className="bg-white rounded-lg shadow-md overflow-hidden group hover:shadow-lg transition-shadow"
@@ -43,12 +44,13 @@ export default async function TagPage({
             <Link href={post.uri} className="block">
               {post.featuredImage?.node?.sourceUrl && (
                 <div className="relative aspect-[16/9] overflow-hidden">
-                  <img
-                    srcSet={post.featuredImage.node.srcSet}
-                    sizes="(min-resolution: 2x) 600px, 300px"
+                  <Image
                     src={post.featuredImage.node.sourceUrl}
-                    alt={post.featuredImage.node.altText || post.title}
-                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                    alt={post.featuredImage.node.altText || ""}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    priority={index < 2}
                   />
                 </div>
               )}

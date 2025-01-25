@@ -4,6 +4,7 @@ import { Maybe } from "graphql/jsutils/Maybe";
 import { Square } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 import { positionMap } from "@/utils/categoryUtils";
+import Image from "next/image";
 
 export const MIN_BLOCK_AREA_FOR_EXTRA_CONTENT = 12;
 export interface StoryLayoutProps {
@@ -69,13 +70,14 @@ export function ClassicStoryLayout({
               !expandImage && !isLandscape && "lg:flex-1"
             )}
           >
-            <img
-              src={featuredImageUrl || ""}
-              srcSet={featuredImageSrcSet || undefined}
-              sizes={getSizesFromBlockArea(blockSize[0] * blockSize[1])}
+            <Image
+              src={featuredImageUrl}
               alt={featuredImageAlt || ""}
-              className={twMerge("object-cover w-full h-full absolute inset-0")}
+              fill
+              sizes={getSizesFromBlockArea(blockSize[0] * blockSize[1])}
+              className={twMerge("object-cover")}
               style={{ objectPosition: positionMap[objectPosition] }}
+              quality={75}
             />
           </div>
         )}

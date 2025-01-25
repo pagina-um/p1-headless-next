@@ -6,6 +6,7 @@ import {
   shouldShowDate,
 } from "../../utils/categoryUtils";
 import Link from "next/link";
+import Image from "next/image";
 import { CategoryPostNode } from "@/hooks/useCategoryPosts";
 import { twMerge } from "tailwind-merge";
 
@@ -18,29 +19,20 @@ interface CategoryPostListProps {
 export function CategoryPostList({
   posts,
   categoryId,
-  shouldLink,
 }: CategoryPostListProps) {
   const showAuthor = shouldShowAuthor(categoryId);
   const showDate = shouldShowDate(categoryId);
   return (
-    <div className="h-full flex flex-col @3xl:flex-row justify-between gap-x-2 ">
+    <div className="h-full flex flex-col @3xl:flex-row gap-y-3 divide-y overflow-clip">
       {posts?.map((post) =>
-        shouldLink ? (
-          <Link href={post.uri || "#"} key={post.id} passHref>
+          <Link href={post.uri || "#"} key={post.id} passHref className="">
             <ArticleContent
               post={post}
               showAuthor={showAuthor}
               showDate={showDate}
             />
           </Link>
-        ) : (
-          <ArticleContent
-            post={post}
-            showAuthor={showAuthor}
-            showDate={showDate}
-            key={post.id}
-          />
-        )
+       
       )}
     </div>
   );
@@ -57,7 +49,7 @@ const ArticleContent = ({
 }) => (
   <article
     key={post.id}
-    className="group cursor-pointer border-b border-gray-200  flex-1 flex justify-between items-center gap-2 last-of-type:border-none"
+    className="group cursor-pointer   flex-1 flex justify-between items-center gap-2 "
   >
     <div>
       {" "}
@@ -87,12 +79,15 @@ const ArticleContent = ({
     {showAuthor && (
       <div className="flex items-center gap-3 flex-shrink-0 justify-end font-thin text-md text-slate-900">
         {post.author?.node.avatar?.url ? (
-          <img
-            sizes="48px"
-            src={post.author?.node.avatar?.url}
-            alt={post.author?.node.name || ""}
-            className="w-12 h-12 rounded-full border-2 border-primary-dark"
-          />
+          <div className="relative w-12 h-12">
+            <Image
+              src={post.author?.node.avatar?.url}
+              alt={post.author?.node.name || ""}
+              className="rounded-full border-2 border-primary-dark"
+              fill
+              sizes="48px"
+            />
+          </div>
         ) : (
           <User className="w-4 h-4" />
         )}
