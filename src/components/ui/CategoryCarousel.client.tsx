@@ -16,6 +16,7 @@ import { Loader } from "lucide-react";
 import { CategoryBlockHeader } from "../blocks/CategoryBlockHeader";
 import { CategoryCarouselProps } from "./CategoryCarousel.server";
 import { CustomPostFields } from "@/types";
+import Image from "next/image";
 
 export function CategoryCarouselClient({
   block,
@@ -104,7 +105,7 @@ export function CategoryCarouselClient({
         }}
       >
         <CarouselContent className="-ml-2 md:-ml-4">
-          {allPosts.map((post) => {
+          {allPosts.map((post, index) => {
             const { antetitulo }: CustomPostFields = post.postFields as any;
             return (
               <CarouselItem
@@ -113,11 +114,13 @@ export function CategoryCarouselClient({
               >
                 <div className="relative aspect-[4/5] overflow-hidden rounded-lg group">
                   {post.featuredImage?.node?.sourceUrl && (
-                    <img
-                      srcSet={post.featuredImage.node.srcSet}
+                    <Image
                       src={post.featuredImage.node.sourceUrl}
                       alt={post.featuredImage.node.altText || ""}
-                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                      fill
+                      sizes={`(max-width: 768px) 50vw, ${100 / cardsPerView}vw`}
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      priority={index < 2}
                     />
                   )}
                   <div className="absolute top-0 p-4 pt-0 text-white">

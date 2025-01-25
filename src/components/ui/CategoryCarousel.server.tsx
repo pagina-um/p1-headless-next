@@ -13,6 +13,7 @@ import {
 import { CategoryBlockProps } from "../blocks/CategoryBlock.server";
 import { CategoryBlockHeader } from "../blocks/CategoryBlockHeader";
 import { CustomPostFields } from "@/types";
+import Image from "next/image";
 
 export interface CategoryCarouselProps extends CategoryBlockProps {
   cardsPerView?: number;
@@ -59,7 +60,7 @@ export async function CategoryCarouselServer({
         className="w-full"
       >
         <CarouselContent className="-ml-2 md:-ml-4">
-          {posts.map((post) => {
+          {posts.map((post, index) => {
             const { antetitulo }: CustomPostFields = post.postFields as any;
             return (
               <CarouselItem
@@ -69,14 +70,13 @@ export async function CategoryCarouselServer({
                 {" "}
                 <div className="relative aspect-[4/5] overflow-hidden rounded-lg group">
                   {post.featuredImage?.node?.sourceUrl && (
-                    <img
-                      srcSet={post.featuredImage.node.srcSet || undefined}
+                    <Image
                       src={post.featuredImage.node.sourceUrl}
                       alt={post.featuredImage.node.altText || ""}
-                      sizes="(min-resolution: 2x) 600px, 300px"
-                      className="object-cover object-top w-full h-full group-hover:scale-105 transition-transform duration-300"
-                      loading="lazy"
-                      decoding="async"
+                      fill
+                      sizes={`(max-width: 768px) 50vw, ${100 / cardsPerView}vw`}
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      priority={index < 2}
                     />
                   )}
                   <div className="absolute top-0 p-4 pt-0 text-white">
