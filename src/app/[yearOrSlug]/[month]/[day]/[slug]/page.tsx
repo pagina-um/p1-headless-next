@@ -12,6 +12,7 @@ import {
 import { PostContent } from "@/components/post/PostContent";
 import { defaultMetadata, makeMetadataObject } from "@/utils/metadata";
 import SocialShare from "@/components/post/SocialShare";
+import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
 
 export interface PostPageProps {
   params: {
@@ -33,7 +34,6 @@ export type PostBySlugData = NonNullable<
   Awaited<ReturnType<typeof getPostBySlug>>
 >;
 
-// Metadata generation for the post
 export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
@@ -95,6 +95,7 @@ async function PostComponent({ slug }: { slug: string }) {
           </div>
         </div>
       </article>
+      <ArticleSupportModal />
       <PostFooter />
     </>
   );
