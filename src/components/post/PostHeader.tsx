@@ -17,7 +17,6 @@ interface PostHeaderProps {
 
 export function PostHeader({ post }: PostHeaderProps) {
   const author = post?.postBy?.author?.node.name || "Unknown Author";
-  const featuredImage = post?.postBy?.featuredImage?.node;
 
   return (
     <header className="mb-8">
@@ -25,7 +24,7 @@ export function PostHeader({ post }: PostHeaderProps) {
         className="text-4xl md:text-5xl font-serif font-bold mb-4"
         dangerouslySetInnerHTML={{ __html: post?.postBy?.title || "" }}
       />
-      <div className="flex items-center gap-4 text-gray-600 justify-between">
+      <div className="flex items-center gap-4 text-gray-600 justify-between flex-wrap">
         <div className="inline-flex gap-4">
           <span className="flex items-center gap-1">
             <User className="w-4 h-4" />
