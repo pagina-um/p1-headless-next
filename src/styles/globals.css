@@ -25,7 +25,7 @@
   }
 }
 .aligncenter {
-  @apply flex justify-center;
+  @apply flex flex-col justify-center text-center gap-y-2;
 }
 .react-resizable-handle:after {
   scale: 2;

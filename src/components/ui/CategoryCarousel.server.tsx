@@ -82,7 +82,7 @@ export async function CategoryCarouselServer({
                   )}
                   <div className="absolute top-3 pt-0 left-4 text-white">
                     <h3 className="font-sans text-xl  mb-2 line-clamp-5 leading-[0.01rem]  inline  font-extrabold tracking-tighter  bg-primary-dark">
-                      {titleCaseExceptForSomeWords(antetitulo?.slice(0,39))}
+                      {titleCaseExceptForSomeWords(antetitulo)}
                     </h3>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent">

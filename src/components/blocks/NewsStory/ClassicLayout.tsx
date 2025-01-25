@@ -77,7 +77,7 @@ export function ClassicStoryLayout({
               sizes={getSizesFromBlockArea(blockSize[0] * blockSize[1])}
               className={twMerge("object-cover")}
               style={{ objectPosition: positionMap[objectPosition] }}
-              quality={75}
+              quality={85}
             />
           </div>
         )}
@@ -173,14 +173,21 @@ export function ClassicStoryLayout({
   );
 }
 
-function getSizesFromBlockArea(blockArea: number) {
+export function getSizesFromBlockArea(blockArea: number) {
+  // For very large blocks, use full viewport width on mobile
   if (blockArea >= 40) {
-    return "(min-width: 1024px) 100vw, 50vw";
-  } else if (blockArea >= 20) {
-    return "(min-width: 1024px) 30vw, 10vw";
-  } else if (blockArea >= 12) {
-    return "(min-width: 1024px) 33.333vw, 100vw";
-  } else {
-    return "(min-width: 1024px) 25vw, 100vw";
+    return "(max-width: 768px) 100vw, 50vw";
+  }
+  // For medium blocks, use 80vw on mobile
+  else if (blockArea >= 20) {
+    return "(max-width: 768px) 80vw, 33vw";
+  }
+  // For smaller blocks, still maintain good quality on mobile
+  else if (blockArea >= 12) {
+    return "(max-width: 768px) 60vw, 33vw";
+  }
+  // For the smallest blocks
+  else {
+    return "(max-width: 768px) 50vw, 25vw";
   }
 }
