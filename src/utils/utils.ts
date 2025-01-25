@@ -1,17 +1,17 @@
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
-import { isString } from "util";
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 export function titleCaseExceptForSomeWords(str?: string) {
-  if (!isString(str)) return str;
+  if (!str) return "";
   return str
     .split(" ")
     .map((word) => {
-      if (["com", "de", "do", "da"].includes(word.toLowerCase())) return word.toLowerCase();
+      if (["com", "de", "do", "da"].includes(word.toLowerCase()))
+        return word.toLowerCase();
       return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
     })
     .join(" ");
