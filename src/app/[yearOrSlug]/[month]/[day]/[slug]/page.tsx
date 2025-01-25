@@ -47,7 +47,7 @@ export async function generateMetadata({
   return makeMetadataObject(data, year, month, day, slug);
 }
 
-/* export async function generateStaticParams() {
+export async function generateStaticParams() {
   const { data, error } = await getClient().query(
     GET_LATEST_POSTS_FOR_STATIC_GENERATION,
     { first: 50 }
@@ -70,7 +70,7 @@ export async function generateMetadata({
       slug: edge.node.slug,
     };
   });
-} */
+}
 
 async function PostComponent({ slug }: { slug: string }) {
   const { data, error } = await getPostBySlug(slug);
