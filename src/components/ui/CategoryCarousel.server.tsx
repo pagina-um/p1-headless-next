@@ -15,6 +15,7 @@ import { CategoryBlockHeader } from "../blocks/CategoryBlockHeader";
 import { CustomPostFields } from "@/types";
 import Image from "next/image";
 import { titleCaseExceptForSomeWords } from "@/utils/utils";
+import { twMerge } from "tailwind-merge";
 
 export interface CategoryCarouselProps extends CategoryBlockProps {
   cardsPerView?: number;
@@ -69,7 +70,17 @@ export async function CategoryCarouselServer({
                 className={`pl-2 md:pl-4 basis-1/2 md:basis-1/${cardsPerView}`}
               >
                 {" "}
-                <div className="relative aspect-[4/5] overflow-hidden rounded-lg group">
+                <div
+                  style={
+                    {
+                      minHeight: `${block.gridPosition.height * 48}px`,
+                      aspectRatio: "4/5",
+                    } as React.CSSProperties
+                  }
+                  className={twMerge(
+                    "relative overflow-hidden rounded-lg group"
+                  )}
+                >
                   {post.featuredImage?.node?.sourceUrl && (
                     <Image
                       src={post.featuredImage.node.sourceUrl}
@@ -104,3 +115,23 @@ export async function CategoryCarouselServer({
     </div>
   );
 }
+
+const getHeightClass = (height: number) => {
+  console.log(height);
+  // Map height values to Tailwind classes
+  const heightMap: Record<number, string> = {
+    1: "min-h-[48px]",
+    2: "min-h-[96px]",
+    3: "min-h-[144px]",
+    4: "min-h-[192px]",
+    5: "min-h-[240px]",
+    6: "min-h-[288px]",
+    7: "min-h-[336px]",
+    8: "min-h-[384px]",
+    9: "min-h-[432px]",
+    10: "min-h-[480px]",
+
+    // Add more mappings as needed
+  };
+  return heightMap[height] || "min-h-48"; // Default fallback
+};

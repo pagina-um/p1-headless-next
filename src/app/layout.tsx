@@ -3,8 +3,8 @@ import { Header } from "@/components/layout/Header";
 import "@/styles/globals.css";
 import CookieConsent from "@/components/CookieConsent";
 import NextTopLoader from "nextjs-toploader";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { twMerge } from "tailwind-merge";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Página UM",
@@ -38,6 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={twMerge("h-full")}>
       <body className="min-h-screen bg-gray-100">
+        <Analytics />
         <NextTopLoader color="#e10012" shadow={false} showSpinner={false} />
         <Header />
         {children}
