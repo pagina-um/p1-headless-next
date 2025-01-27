@@ -18,6 +18,7 @@ import { CategoryCarouselProps } from "./CategoryCarousel.server";
 import { CustomPostFields } from "@/types";
 import Image from "next/image";
 import { titleCaseExceptForSomeWords } from "@/utils/utils";
+import { twMerge } from "tailwind-merge";
 
 export function CategoryCarouselClient({
   block,
@@ -116,14 +117,23 @@ export function CategoryCarouselClient({
                 key={post.id}
                 className={`pl-2 md:pl-4 basis-1/2 md:basis-1/${cardsPerView}`}
               >
-                <div className="relative aspect-[4/5] overflow-hidden rounded-lg group">
+                <div
+                  style={
+                    {
+                      height: `${block.gridPosition.height * 60 - 40}px`,
+                    } as React.CSSProperties
+                  }
+                  className={twMerge(
+                    "relative overflow-hidden rounded-lg group"
+                  )}
+                >
                   {post.featuredImage?.node?.sourceUrl && (
                     <Image
                       src={post.featuredImage.node.sourceUrl}
                       alt={post.featuredImage.node.altText || ""}
                       fill
                       sizes={`(max-width: 768px) 50vw, ${100 / cardsPerView}vw`}
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="object-cover group-hover:scale-105 transition-transform duration-300 h-full"
                       priority={index < 2}
                     />
                   )}

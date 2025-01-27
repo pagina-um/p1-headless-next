@@ -73,8 +73,7 @@ export async function CategoryCarouselServer({
                 <div
                   style={
                     {
-                      minHeight: `${block.gridPosition.height * 48}px`,
-                      aspectRatio: "4/5",
+                      height: `${block.gridPosition.height * 60 - 40}px`,
                     } as React.CSSProperties
                   }
                   className={twMerge(
@@ -92,7 +91,7 @@ export async function CategoryCarouselServer({
                     />
                   )}
                   <div className="absolute top-3 pt-0 left-4 text-white">
-                    <h3 className="font-sans text-xl  mb-2 line-clamp-5 leading-[0.01rem]  inline  font-extrabold tracking-tighter  bg-primary-dark ">
+                    <h3 className="font-sans text-xl  mb-2 line-clamp-5 leading-[0.01rem]  inline  font-extrabold tracking-tighter  bg-primary-dark">
                       {titleCaseExceptForSomeWords(antetitulo)}
                     </h3>
                   </div>
@@ -115,23 +114,3 @@ export async function CategoryCarouselServer({
     </div>
   );
 }
-
-const getHeightClass = (height: number) => {
-  console.log(height);
-  // Map height values to Tailwind classes
-  const heightMap: Record<number, string> = {
-    1: "min-h-[48px]",
-    2: "min-h-[96px]",
-    3: "min-h-[144px]",
-    4: "min-h-[192px]",
-    5: "min-h-[240px]",
-    6: "min-h-[288px]",
-    7: "min-h-[336px]",
-    8: "min-h-[384px]",
-    9: "min-h-[432px]",
-    10: "min-h-[480px]",
-
-    // Add more mappings as needed
-  };
-  return heightMap[height] || "min-h-48"; // Default fallback
-};
