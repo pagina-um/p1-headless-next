@@ -21,7 +21,7 @@ export function NewsGrid({ blocks }: NewsGridProps) {
   const sortedBlocks = sortBlocksZigzagThenMobilePriority(blocks, 6);
 
   return (
-    <div className="layout grid grid-cols-1 lg:grid-cols-10 gap-4 lg:mt-4">
+    <div className="layout grid grid-cols-1 lg:grid-cols-10 gap-4 lg:mt-4 lg:mx-4">
       {sortedBlocks.map((block) => {
         const isLandscape =
           block.gridPosition.width * 1.5 > block.gridPosition.height;
@@ -43,7 +43,6 @@ export function NewsGrid({ blocks }: NewsGridProps) {
                 <CategoryCarouselServer
                   block={block}
                   cardsPerView={block.postsPerPage} // Optional: number of cards visible at once
-                  className="mt-8" // Optional: additional styling
                 />
               ) : (
                 <CategoryBlockServer block={block} />

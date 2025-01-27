@@ -92,6 +92,9 @@ export function CategoryCarouselClient({
           loop: true,
           skipSnaps: false,
           slidesToScroll: 1,
+          breakpoints: {
+            "(max-width: 768px)": { align: "center" },
+          },
         }}
         className="w-full"
         onSelect={(api) => {
