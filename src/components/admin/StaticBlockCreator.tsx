@@ -17,12 +17,12 @@ export function StaticBlockCreator({ onCreateBlock }: StaticBlockCreatorProps) {
       <div className="grid gap-3">
         {Object.values(STATIC_BLOCKS).map((block) => (
           <button
-            key={block.id}
-            onClick={() => onCreateBlock(block.id)}
+            key={block.type}
+            onClick={() => onCreateBlock(block.type)}
             className="flex items-start gap-4 p-4 bg-gray-50  hover:bg-gray-100 transition-colors text-left group"
           >
             <div className="mt-1">
-              {block.id === "newsletter" ? (
+              {block.type === "newsletter" ? (
                 <Mail className="w-5 h-5 text-primary" />
               ) : (
                 <Layout className="w-5 h-5 text-gray-500" />

@@ -9,12 +9,14 @@ import { EditableText } from "../ui/EditableText";
 
 interface StaticBlockProps {
   block: StaticBlockType;
+  isAdmin: boolean;
 }
 
-export function StaticBlock({ block }: StaticBlockProps) {
-  const isNewsletterBlock = block.title.includes("newsletter");
-  const isPodcastBlock = block.title.includes("podcast");
-  const isDivider = block.title.includes("divider");
+export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
+  const isNewsletterBlock = block.type === "newsletter";
+  const isPodcastBlock = block.type === "podcast";
+  const isDivider = block.type === "divider";
+
   const gridStyles = {
     gridColumn: `span ${block.gridPosition?.width || 1}`,
     gridRow: `span ${block.gridPosition?.height || 1}`,
@@ -22,10 +24,17 @@ export function StaticBlock({ block }: StaticBlockProps) {
 
   if (isDivider) {
     return (
-      <div className="flex items-center gap-2 border-b-primary border-b max-sm:pl-3">
-        <Tag className="w-5 h-5 text-primary stroke-primary-dark mt-4" />
-        <h2 className="font-serif text-3xl font-bold text-primary-dark mt-4">
-          Cultura
+      <div className="flex items-end gap-1 border-b-primary border-b max-sm:pl-3">
+        <h2 className="font-serif text-3xl font-bold text-primary-dark ">
+          {isAdmin ? (
+            <EditableText
+              blockUid={block.uId}
+              fieldName="title"
+              originalText={block.title}
+            />
+          ) : (
+            block.title
+          )}
         </h2>
       </div>
     );

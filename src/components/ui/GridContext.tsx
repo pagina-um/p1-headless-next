@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, useRef } from "react";
-import { BLOCK_MIN_ROWS } from "@/constants/blocks";
+import { BLOCK_MIN_ROWS, STATIC_BLOCKS } from "@/constants/blocks";
 import {
   GridState,
   CategoryBlock,
@@ -176,13 +176,14 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
   };
 
   const handleCreateStaticBlock = (
-    title: "newsletter" | "podcast" | "divider"
+    type: "newsletter" | "podcast" | "divider"
   ) => {
     if (!gridState) return;
     const newBlock: StaticBlock = {
       uId: Date.now().toString(),
+      title: STATIC_BLOCKS[type].title,
       blockType: "static",
-      title,
+      type,
       ...makeNewBlockOccupyFirstEmptySpace(gridState.blocks),
       content: "Static content",
       mobilePriority: null,

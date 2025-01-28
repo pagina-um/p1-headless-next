@@ -84,7 +84,7 @@ export function EditableGrid({ columns }: EditableGridProps) {
                     )}
                   </Suspense>
                 ) : block.blockType === "static" ? (
-                  <StaticBlockComponent block={block} />
+                  <StaticBlockComponent block={block} isAdmin={true} />
                 ) : (
                   <Suspense
                     fallback={

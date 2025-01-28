@@ -1,13 +1,13 @@
 export const STATIC_BLOCKS = {
   newsletter: {
-    id: "newsletter" as const,
+    type: "newsletter" as const,
     title: "Newsletter Subscription",
     content:
       "Stay updated with our latest news and stories delivered directly to your inbox.",
     defaultSize: { width: 3, height: 1 },
   },
   podcast: {
-    id: "podcast" as const,
+    type: "podcast" as const,
     title: "Latest Podcasts",
     content:
       "Listen to our latest episodes discussing current events and in-depth stories.",
@@ -43,7 +43,7 @@ export const STATIC_BLOCKS = {
     ],
   },
   divider: {
-    id: "divider" as const,
+    type: "divider" as const,
     title: "Divider",
     content: "A simple divider to separate content.",
     defaultSize: { width: 10, height: 1 },

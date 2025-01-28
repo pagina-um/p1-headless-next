@@ -52,7 +52,7 @@ export function NewsGridClient({ blocks }: NewsGridProps) {
                 <CategoryBlockClient block={block} />
               )
             ) : (
-              <StaticBlockComponent block={block} />
+              <StaticBlockComponent block={block} isAdmin={false} />
             )}
           </div>
         );

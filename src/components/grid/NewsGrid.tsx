@@ -48,7 +48,7 @@ export function NewsGrid({ blocks }: NewsGridProps) {
                 <CategoryBlockServer block={block} />
               )
             ) : (
-              <StaticBlockComponent block={block} />
+              <StaticBlockComponent block={block} isAdmin={false} />
             )}
           </div>
         );
