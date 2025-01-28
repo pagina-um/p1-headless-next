@@ -34,7 +34,7 @@ export function EditableGrid({ columns }: EditableGridProps) {
         minW: 1,
         maxW: columns,
         minH: 1,
-        maxH: 16,
+        maxH: 12,
       })),
     [blocks, columns]
   );
