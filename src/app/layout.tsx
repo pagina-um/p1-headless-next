@@ -10,9 +10,8 @@ export const metadata: Metadata = {
   title: "Página UM",
   description: "O Jornalismo independente só depende dos leitores.",
   robots: {
-    // TODO: remove when going live
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
   },
   metadataBase: new URL("https://paginaum.pt"),
   openGraph: {
@@ -34,7 +33,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const activateGA = false; // TODO: remove when going live
   return (
     <html lang="en" className={twMerge("h-full")}>
       <body className="min-h-screen bg-gray-100">
@@ -42,7 +40,7 @@ export default function RootLayout({
         <NextTopLoader color="#e10012" shadow={false} showSpinner={false} />
         <Header />
         {children}
-        {process.env.GOOGLE_ANALYTICS_ID && activateGA && (
+        {process.env.GOOGLE_ANALYTICS_ID && (
           <CookieConsent gaId={process.env.GOOGLE_ANALYTICS_ID} />
         )}
       </body>
