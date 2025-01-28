@@ -293,6 +293,11 @@ export const GET_POST_BY_SLUG = graphql(`
       author {
         node {
           name
+          avatar {
+            url
+            width
+            foundAvatar
+          }
         }
       }
       postFields {
