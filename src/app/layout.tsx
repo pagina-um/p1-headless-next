@@ -5,6 +5,7 @@ import CookieConsent from "@/components/CookieConsent";
 import NextTopLoader from "nextjs-toploader";
 import { twMerge } from "tailwind-merge";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Página UM",
@@ -36,6 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={twMerge("h-full")}>
       <body className="min-h-screen bg-gray-100">
+        <SpeedInsights />
         <Analytics />
         <NextTopLoader color="#e10012" shadow={false} showSpinner={false} />
         <Header />
