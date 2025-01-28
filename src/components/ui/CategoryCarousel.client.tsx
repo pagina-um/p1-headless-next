@@ -19,6 +19,7 @@ import { CustomPostFields } from "@/types";
 import Image from "next/image";
 import { titleCaseExceptForSomeWords } from "@/utils/utils";
 import { twMerge } from "tailwind-merge";
+import { GRID_COLUMNS } from "@/constants/blocks";
 
 export function CategoryCarouselClient({
   block,
@@ -162,8 +163,12 @@ export function CategoryCarouselClient({
             </CarouselItem>
           )}
         </CarouselContent>
-        <CarouselPrevious className="hidden md:flex" />
-        <CarouselNext className="hidden md:flex" />
+        {block.gridPosition.width === GRID_COLUMNS && (
+          <>
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </>
+        )}
       </Carousel>
     </div>
   );
