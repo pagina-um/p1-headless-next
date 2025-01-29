@@ -7,7 +7,6 @@ import {
   createClient,
   UrqlProvider,
 } from "@urql/next";
-import { Grid } from "lucide-react";
 
 // Move client creation outside component
 const ssr = ssrExchange({
@@ -15,7 +14,7 @@ const ssr = ssrExchange({
 });
 
 const client = createClient({
-  url: process.env.NEXT_PUBLIC_GQL_URL as string,
+  url: process.env.NEXT_PUBLIC_WP_URL as string,
   exchanges: [cacheExchange, ssr, fetchExchange],
   suspense: true,
   fetchOptions: {

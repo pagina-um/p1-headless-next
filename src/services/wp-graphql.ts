@@ -4,7 +4,7 @@ import { registerUrql } from "@urql/next/rsc";
 
 export const makeClient = () => {
   return createClient({
-    url: process.env.NEXT_PUBLIC_GQL_URL as string,
+    url: process.env.NEXT_PUBLIC_WP_URL as string,
     exchanges: [cacheExchange, fetchExchange],
     fetchOptions: {
       headers: {

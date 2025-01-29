@@ -1,6 +1,6 @@
 import { HTMLReactParserOptions } from "html-react-parser";
 
-const OLD_BASE_URL = "https://paginaumpt.wpcomstaging.com"; // Replace with your old domain
+const OLD_BASE_URL = process.env.NEXT_PUBLIC_WP_URL || ""; // Replace with your old domain
 const NEW_BASE_URL = ""; // become internal links
 
 // Function to transform URLs in HTML content

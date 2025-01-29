@@ -24,7 +24,7 @@ yarn install
 
 ```
 ADMIN_PASSWORD=your_admin_password
-NEXT_PUBLIC_GQL_URL=your_wordpress_graphql_url
+NEXT_PUBLIC_WP_URL=your_wordpress_graphql_url
 ```
 
 4. (Optional) Run a local instance of Wordpress with WPGraphQL plugin
