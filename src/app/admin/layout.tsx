@@ -14,7 +14,7 @@ const ssr = ssrExchange({
 });
 
 const client = createClient({
-  url: process.env.NEXT_PUBLIC_WP_URL as string,
+  url: (process.env.NEXT_PUBLIC_WP_URL + "graphql") as string,
   exchanges: [cacheExchange, ssr, fetchExchange],
   suspense: true,
   fetchOptions: {
