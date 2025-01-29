@@ -31,7 +31,7 @@ export const CookieConsent = ({ gaId }: { gaId: string }) => {
 
   return (
     <>
-      {analyticsEnabled && <GoogleAnalytics gaId={gaId} />}
+      <GoogleAnalytics gaId={gaId} />
       {isVisible && (
         <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg p-4 z-50">
           <div className="max-w-6xl mx-auto">
