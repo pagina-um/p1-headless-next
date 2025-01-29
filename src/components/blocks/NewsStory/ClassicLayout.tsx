@@ -125,7 +125,7 @@ export function ClassicStoryLayout({
           <h2
             className={twMerge(
               "font-serif text-2xl font-bold mb-3 leading-tight text-pretty",
-              !isAdmin && "group-hover:underline",
+              !isAdmin && "lg:group-hover:underline",
               shouldReverse && "lg:text-right",
               extraBigTitle && "text-3xl"
             )}
