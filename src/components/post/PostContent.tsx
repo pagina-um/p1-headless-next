@@ -14,7 +14,7 @@ export function PostContent({ content }: PostContentProps) {
       <article
         className="prose prose-lg max-w-none font-body-sans text-lg space-y-8
         [&_figcaption]:text-sm [&_figcaption]:italic [&_a]:underline
-        [&_a]:text-[var(--color-primary)] [&_hr]:last-of-type:hidden [&&_p]:first-of-type:mt-0"
+        [&_a]:text-[var(--color-primary)] [&_hr]:last-of-type:hidden [&_p]:mt-0"
       >
         {parse(contentWithoutManualFooter, parserOptions)}
       </article>
