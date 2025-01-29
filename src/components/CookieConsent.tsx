@@ -5,7 +5,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const CookieConsent = ({ gaId }: { gaId: string }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [analyticsEnabled, setAnalyticsEnabled] = useState(false);
+  //  const [analyticsEnabled, setAnalyticsEnabled] = useState(false);
 
   useEffect(() => {
     // Check if user has already made a choice
@@ -13,25 +13,25 @@ export const CookieConsent = ({ gaId }: { gaId: string }) => {
     if (!hasConsent) {
       setIsVisible(true);
     } else if (hasConsent === "accepted") {
-      setAnalyticsEnabled(true);
+      // setAnalyticsEnabled(true);
     }
   }, []);
 
   const handleAccept = () => {
     localStorage.setItem("cookieConsent", "accepted");
     setIsVisible(false);
-    setAnalyticsEnabled(true);
+    // setAnalyticsEnabled(true);
   };
 
   const handleReject = () => {
     localStorage.setItem("cookieConsent", "rejected");
     setIsVisible(false);
-    setAnalyticsEnabled(false);
+    // setAnalyticsEnabled(false);
   };
 
   return (
     <>
-      {analyticsEnabled && <GoogleAnalytics gaId={gaId} />}
+      <GoogleAnalytics gaId={gaId} />
       {isVisible && (
         <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg p-4 z-50">
           <div className="max-w-6xl mx-auto">
