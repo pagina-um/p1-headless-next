@@ -73,5 +73,6 @@ export const objectPositions = Object.keys(positionMap) as ObjectPosition[];
 export function getStoryPostsIds(blocks: Block[]): string[] {
   return blocks
     .filter((block) => block.blockType === "story")
-    .map((block) => block.postId);
+    .map((block) => block.postId)
+    .filter((postId) => postId);
 }

@@ -20,7 +20,6 @@ async function getInitialState(): Promise<GridState | null> {
 
 export default async function HomePage() {
   const initialState = await getInitialState();
-
   if (!initialState) {
     return (
       <main className="max-w-7xl mx-auto pb-8">
