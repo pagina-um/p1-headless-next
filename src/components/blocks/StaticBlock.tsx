@@ -54,9 +54,12 @@ export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
           <p className="mb-6 text-white/90">
             Antecipe as notícias que vão sair no P1.
           </p>
-          <button className="px-6 py-3 bg-white text-primary font-semibold  hover:bg-gray-100 transition-colors select-text">
+          <a
+            href="https://pagina-um.kit.com/53291313d7"
+            className="px-6 py-3 bg-white text-primary font-semibold  hover:bg-gray-100 transition-colors select-text"
+          >
             Subscrever
-          </button>
+          </a>
         </div>
       </div>
     );
