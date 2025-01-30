@@ -157,6 +157,7 @@ export const GET_POSTS_BY_CATEGORY = graphql(`
     $sameCategoryIdAsString: ID!
     $postsPerPage: Int!
     $after: String
+    $excludePostIds: [ID!]
   ) {
     category(id: $sameCategoryIdAsString, idType: DATABASE_ID) {
       id
@@ -164,7 +165,11 @@ export const GET_POSTS_BY_CATEGORY = graphql(`
       slug
     }
     posts(
-      where: { categoryId: $categoryId, status: PUBLISH }
+      where: {
+        categoryId: $categoryId
+        status: PUBLISH
+        notIn: $excludePostIds
+      }
       first: $postsPerPage
       after: $after
     ) {
@@ -259,6 +264,7 @@ export const GET_LATEST_POSTS = graphql(`
   query GetLatestPosts {
     posts(first: 40, where: { status: PUBLISH }) {
       nodes {
+        id
         databaseId
         title
         date

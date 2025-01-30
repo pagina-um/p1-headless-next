@@ -7,7 +7,7 @@ type Posts = ResultOf<typeof GET_LATEST_POSTS>["posts"];
 
 interface WPPostsListProps {
   posts: Posts;
-  onSelectPost: (postId: number) => void;
+  onSelectPost: (databaseId: number, postId: string) => void;
 }
 
 export function WPPostsList({ posts, onSelectPost }: WPPostsListProps) {
@@ -27,7 +27,7 @@ export function WPPostsList({ posts, onSelectPost }: WPPostsListProps) {
             />
             <button
               onClick={() => {
-                onSelectPost(post.databaseId);
+                onSelectPost(post.databaseId, post.id);
               }}
               className="text-xs px-2 py-1 bg-gray-100 rounded-full flex items-center gap-1 flex-shrink-0 hover:bg-blue-50 hover:text-blue-600 transition-colors"
             >

@@ -33,7 +33,8 @@ export interface CustomPostFields {
 // Specific block types
 export interface StoryBlock extends BaseBlock, CustomPostFields {
   blockType: "story";
-  wpPostId: number;
+  databaseId: number;
+  postId: string;
   title?: string;
   style: "classic" | "modern";
   orientation: "horizontal" | "vertical";

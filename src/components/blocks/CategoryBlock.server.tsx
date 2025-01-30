@@ -6,13 +6,18 @@ import { GET_POSTS_BY_CATEGORY, getClient } from "@/services/wp-graphql";
 
 export interface CategoryBlockProps {
   block: CategoryBlockType;
+  excludePostIds: string[];
 }
 
-export async function CategoryBlockServer({ block }: CategoryBlockProps) {
+export async function CategoryBlockServer({
+  block,
+  excludePostIds,
+}: CategoryBlockProps) {
   const { data, error } = await getClient().query(GET_POSTS_BY_CATEGORY, {
     categoryId: block.wpCategoryId,
     sameCategoryIdAsString: block.wpCategoryId.toString(),
     postsPerPage: block.postsPerPage,
+    excludePostIds,
   });
   const posts = data?.posts?.nodes || [];
   const category = data?.category;

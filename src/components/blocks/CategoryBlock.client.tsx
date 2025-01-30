@@ -7,8 +7,12 @@ import { CategoryBlockHeader } from "./CategoryBlockHeader";
 import { CategoryPostList } from "./CategoryPostList";
 import { ErrorMessage } from "../ui/ErrorMessage";
 import { CategoryBlockProps } from "./CategoryBlock.server";
+import { useGrid } from "../ui/GridContext";
 
-export function CategoryBlockClient({ block }: CategoryBlockProps) {
+export function CategoryBlockClient({
+  block,
+  excludePostIds,
+}: CategoryBlockProps) {
   // Keep track of the current postsPerPage value to avoid unnecessary refetches
   const [currentPostsPerPage, setCurrentPostsPerPage] = useState(
     block.postsPerPage || 5
@@ -23,7 +27,7 @@ export function CategoryBlockClient({ block }: CategoryBlockProps) {
     data,
     fetching: loading,
     error,
-  } = useCategoryPosts(block.wpCategoryId, currentPostsPerPage);
+  } = useCategoryPosts(block.wpCategoryId, currentPostsPerPage, excludePostIds);
 
   const posts = data?.posts?.nodes || [];
   const category = data?.category;

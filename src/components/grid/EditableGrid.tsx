@@ -18,7 +18,7 @@ interface EditableGridProps {
 }
 
 export function EditableGrid({ columns }: EditableGridProps) {
-  const { gridState, handleLayoutChange } = useGrid();
+  const { gridState, handleLayoutChange, allPostsIdsInStoryBlock } = useGrid();
 
   const { blocks } = gridState || { blocks: [] };
 
@@ -78,9 +78,13 @@ export function EditableGrid({ columns }: EditableGridProps) {
                         block={block as CategoryBlock}
                         totalPosts={12}
                         cardsPerView={block.postsPerPage}
+                        excludePostIds={allPostsIdsInStoryBlock}
                       />
                     ) : (
-                      <CategoryBlockClient block={block} />
+                      <CategoryBlockClient
+                        block={block}
+                        excludePostIds={allPostsIdsInStoryBlock}
+                      />
                     )}
                   </Suspense>
                 ) : block.blockType === "static" ? (

@@ -26,6 +26,7 @@ export function CategoryCarouselClient({
   cardsPerView = 3,
   className = "",
   totalPosts = 12,
+  excludePostIds = [],
 }: CategoryCarouselProps) {
   const [allPosts, setAllPosts] = useState<any[]>([]);
   const [after, setAfter] = useState<string | null>(null);
@@ -37,6 +38,7 @@ export function CategoryCarouselClient({
       categoryId: block.wpCategoryId,
       sameCategoryIdAsString: block.wpCategoryId.toString(),
       postsPerPage: totalPosts,
+      excludePostIds,
       after: null,
     },
   });

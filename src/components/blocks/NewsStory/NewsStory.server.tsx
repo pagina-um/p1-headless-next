@@ -10,10 +10,10 @@ interface NewsStoryProps {
 }
 
 export async function NewsStoryServer({ story }: NewsStoryProps) {
-  const { wpPostId } = story;
+  const { databaseId } = story;
 
   const { data, error } = await getClient().query(GET_POST_BY_ID, {
-    id: wpPostId.toString(),
+    id: databaseId.toString(),
   });
 
   return (

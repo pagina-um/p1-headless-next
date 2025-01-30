@@ -9,6 +9,7 @@ describe("zigZagSortingFunction", () => {
     const blocks: Block[] = [
       {
         uId: "c",
+        type: "newsletter",
         gridPosition: { x: 2, y: 0, height: 1, width: 1 },
         mobilePriority: null,
         blockType: "static",
@@ -22,6 +23,7 @@ describe("zigZagSortingFunction", () => {
         blockType: "static",
         content: "",
         title: "",
+        type: "divider",
       },
       {
         uId: "a",
@@ -30,6 +32,7 @@ describe("zigZagSortingFunction", () => {
         blockType: "static",
         content: "",
         title: "",
+        type: "podcast",
       },
       {
         uId: "d",
@@ -38,6 +41,7 @@ describe("zigZagSortingFunction", () => {
         blockType: "static",
         content: "",
         title: "",
+        type: "newsletter",
       },
     ];
 
@@ -60,6 +64,7 @@ describe("sortBlocksZigzagThenMobilePriority", () => {
         blockType: "static",
         content: "",
         title: "",
+        type: "newsletter",
       },
       {
         uId: "2",
@@ -68,6 +73,7 @@ describe("sortBlocksZigzagThenMobilePriority", () => {
         blockType: "static",
         content: "",
         title: "",
+        type: "newsletter",
       },
       {
         uId: "3",
@@ -76,6 +82,7 @@ describe("sortBlocksZigzagThenMobilePriority", () => {
         blockType: "static",
         content: "",
         title: "",
+        type: "newsletter",
       },
     ];
 
@@ -93,6 +100,7 @@ describe("sortBlocksZigzagThenMobilePriority", () => {
         blockType: "static",
         content: "",
         title: "",
+        type: "newsletter",
       },
       {
         uId: "2",
@@ -101,6 +109,7 @@ describe("sortBlocksZigzagThenMobilePriority", () => {
         blockType: "static",
         content: "",
         title: "",
+        type: "newsletter",
       },
       {
         uId: "3",
@@ -109,6 +118,7 @@ describe("sortBlocksZigzagThenMobilePriority", () => {
         blockType: "static",
         content: "",
         title: "",
+        type: "newsletter",
       },
       {
         uId: "4",
@@ -117,6 +127,7 @@ describe("sortBlocksZigzagThenMobilePriority", () => {
         blockType: "static",
         content: "",
         title: "",
+        type: "newsletter",
       },
     ];
 

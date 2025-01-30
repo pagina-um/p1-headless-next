@@ -8,6 +8,7 @@ import { CategoryBlockClient } from "../blocks/CategoryBlock.client";
 import { sortBlocksZigzagThenMobilePriority } from "@/utils/sorting";
 import { twMerge } from "tailwind-merge";
 import { CategoryCarouselClient } from "../ui/CategoryCarousel.client";
+import { useGrid } from "../ui/GridContext";
 
 interface NewsGridProps {
   blocks: Block[];
@@ -16,7 +17,7 @@ interface NewsGridProps {
 // only for the preview page
 export function NewsGridClient({ blocks }: NewsGridProps) {
   const hasContent = blocks.length > 0;
-
+  const { allPostsIdsInStoryBlock } = useGrid();
   if (!hasContent) {
     return <EmptyState message="No content has been added to the grid yet." />;
   }
@@ -47,9 +48,13 @@ export function NewsGridClient({ blocks }: NewsGridProps) {
                   block={block}
                   cardsPerView={block.postsPerPage}
                   className="mt-8"
+                  excludePostIds={allPostsIdsInStoryBlock}
                 />
               ) : (
-                <CategoryBlockClient block={block} />
+                <CategoryBlockClient
+                  block={block}
+                  excludePostIds={allPostsIdsInStoryBlock}
+                />
               )
             ) : (
               <StaticBlockComponent block={block} isAdmin={false} />

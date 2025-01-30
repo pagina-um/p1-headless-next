@@ -29,11 +29,13 @@ export async function CategoryCarouselServer({
   cardsPerView = 3,
   className = "",
   totalPosts = 12,
+  excludePostIds = [],
 }: CategoryCarouselProps) {
   const { data, error } = await getClient().query(GET_POSTS_BY_CATEGORY, {
     categoryId: block.wpCategoryId,
     sameCategoryIdAsString: block.wpCategoryId.toString(),
     postsPerPage: totalPosts,
+    excludePostIds,
   });
   const posts = data?.posts?.nodes || [];
   if (error) {

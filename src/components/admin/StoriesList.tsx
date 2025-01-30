@@ -5,7 +5,7 @@ import { GET_LATEST_POSTS } from "@/services/wp-graphql";
 import { StoryBlock } from "@/types";
 
 interface StoriesListProps {
-  onSelectPost: (wpPostId: number) => void;
+  onSelectPost: (databaseId: number, postId: string) => void;
 }
 
 export function StoriesList({ onSelectPost }: StoriesListProps) {

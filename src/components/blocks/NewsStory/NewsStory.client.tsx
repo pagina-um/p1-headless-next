@@ -10,11 +10,11 @@ interface NewsStoryProps {
 }
 
 export function NewsStoryClient({ story }: NewsStoryProps) {
-  const { wpPostId } = story;
+  const { databaseId } = story;
 
   const [{ data, error }] = useQuery({
     query: GET_POST_BY_ID,
-    variables: { id: wpPostId.toString() },
+    variables: { id: databaseId.toString() },
   });
   return (
     <NewsStoryCommon story={story} data={data} error={error} isAdmin={true} />

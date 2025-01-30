@@ -16,12 +16,14 @@ import {
   makeNewBlockOccupyFirstEmptySpace,
   visualizeGrid,
 } from "@/utils/grid";
+import { getStoryPostsIds } from "@/utils/categoryUtils";
 
 type GridContextType = {
   gridState: GridState | undefined;
   isSaving: boolean;
   hasUnsavedChanges: boolean;
   showToast: boolean;
+  allPostsIdsInStoryBlock: string[];
   setShowToast: (show: boolean) => void;
   handleLayoutChange: (layout: RGL.Layout[]) => void;
   handleDeleteBlock: (uId: string) => void;
@@ -31,7 +33,7 @@ type GridContextType = {
   handleCreateStaticBlock: (
     title: "newsletter" | "podcast" | "divider"
   ) => void;
-  handleCreateStoryBlock: (wpPostId: number) => void;
+  handleCreateStoryBlock: (databaseId: number, postId: string) => void;
   handleClearLayout: () => void;
   handleOverrideStoryBlockField: (
     blockUid: string,
@@ -194,14 +196,15 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
     });
   };
 
-  const handleCreateStoryBlock = (wpPostId: number) => {
+  const handleCreateStoryBlock = (databaseId: number, postId: string) => {
     if (!gridState) return;
 
     const newBlock: StoryBlock = {
       uId: Date.now().toString(),
       blockType: "story",
       style: "classic",
-      wpPostId,
+      databaseId,
+      postId,
       mobilePriority: null,
       ...makeNewBlockOccupyFirstEmptySpace(gridState.blocks),
       objectPosition: "center",
@@ -238,11 +241,15 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
     });
   };
 
+  const allPostsIdsInStoryBlock =
+    getStoryPostsIds(gridState?.blocks || []) || [];
+
   const value = {
     gridState,
     isSaving,
     hasUnsavedChanges,
     showToast,
+    allPostsIdsInStoryBlock,
     setShowToast,
     handleLayoutChange,
     handleDeleteBlock,

@@ -6,6 +6,7 @@ import { CategoryBlockServer } from "../blocks/CategoryBlock.server";
 import { sortBlocksZigzagThenMobilePriority } from "@/utils/sorting";
 import { twMerge } from "tailwind-merge";
 import { CategoryCarouselServer } from "../ui/CategoryCarousel.server";
+import { getStoryPostsIds } from "@/utils/categoryUtils";
 
 interface NewsGridProps {
   blocks: Block[];
@@ -23,6 +24,7 @@ export function NewsGrid({ blocks }: NewsGridProps) {
   return (
     <div className="layout grid grid-cols-1 lg:grid-cols-10 gap-4 lg:mt-4 lg:mx-4">
       {sortedBlocks.map((block) => {
+        const storyPostsIds = getStoryPostsIds(sortedBlocks);
         const isLandscape =
           block.gridPosition.width * 1.5 > block.gridPosition.height;
         return (
@@ -43,9 +45,13 @@ export function NewsGrid({ blocks }: NewsGridProps) {
                 <CategoryCarouselServer
                   block={block}
                   cardsPerView={block.postsPerPage} // Optional: number of cards visible at once
+                  excludePostIds={storyPostsIds}
                 />
               ) : (
-                <CategoryBlockServer block={block} />
+                <CategoryBlockServer
+                  block={block}
+                  excludePostIds={storyPostsIds}
+                />
               )
             ) : (
               <StaticBlockComponent block={block} isAdmin={false} />

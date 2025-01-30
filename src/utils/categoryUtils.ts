@@ -1,4 +1,4 @@
-import { CustomPostFields, ObjectPosition, StoryBlock } from "@/types";
+import { Block, CustomPostFields, ObjectPosition, StoryBlock } from "@/types";
 import { SPECIAL_CATEGORIES, SPECIAL_STYLES } from "../constants/categories";
 
 export function shouldShowAuthor(categoryId: number): boolean {
@@ -69,3 +69,9 @@ export const positionMap = {
 } as const;
 
 export const objectPositions = Object.keys(positionMap) as ObjectPosition[];
+
+export function getStoryPostsIds(blocks: Block[]): string[] {
+  return blocks
+    .filter((block) => block.blockType === "story")
+    .map((block) => block.postId);
+}
