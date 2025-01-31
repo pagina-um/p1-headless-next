@@ -27,6 +27,10 @@
 .aligncenter {
   @apply flex flex-col justify-center text-center gap-y-2;
 }
+
+.aligncenter > img {
+  @apply mx-auto;
+}
 .react-resizable-handle:after {
   scale: 2;
   border-color: #cf2e2e !important;
