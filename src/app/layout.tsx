@@ -38,7 +38,6 @@ export default function RootLayout({
     <html lang="en" className={twMerge("h-full")}>
       <body className="min-h-screen bg-gray-100">
         <SpeedInsights />
-        <Analytics />
         <NextTopLoader color="#e10012" shadow={false} showSpinner={false} />
         <Header />
         {children}
