@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Custom ACF Fields
+Plugin Name: Add Custom Fields
 Description: Registers custom ACF fields with GraphQL support
 Version: 1.0
 Author: Your Name
@@ -10,100 +10,88 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-add_action('acf/init', function() {
+function register_custom_acf_fields() {
     if (!function_exists('acf_add_local_field_group')) {
         return;
     }
 
-    acf_add_local_field_group(array(
+    acf_add_local_field_group([
         'key' => 'group_6782407139b91',
         'title' => 'postFields',
-        'fields' => array(
-            array(
+        'fields' => [
+            [
                 'key' => 'field_67824073f100a',
                 'label' => 'antetitulo',
                 'name' => 'antetitulo',
-                'aria-label' => '',
                 'type' => 'text',
                 'instructions' => '',
                 'required' => 0,
                 'conditional_logic' => 0,
-                'wrapper' => array(
+                'wrapper' => [
                     'width' => '',
                     'class' => '',
                     'id' => '',
-                ),
+                ],
                 'default_value' => '',
                 'maxlength' => '',
-                'allow_in_bindings' => 0,
                 'placeholder' => '',
                 'prepend' => '',
                 'append' => '',
                 'show_in_graphql' => 1,
-                'graphql_description' => '',
                 'graphql_field_name' => 'antetitulo',
-                'graphql_non_null' => 0,
-            ),
-            array(
+            ],
+            [
                 'key' => 'field_6782408cf100b',
                 'label' => 'chamada-manchete',
-                'name' => 'chamada-manchete',
-                'aria-label' => '',
+                'name' => 'chamada_manchete',
                 'type' => 'text',
                 'instructions' => '',
                 'required' => 0,
                 'conditional_logic' => 0,
-                'wrapper' => array(
+                'wrapper' => [
                     'width' => '',
                     'class' => '',
                     'id' => '',
-                ),
+                ],
                 'default_value' => '',
                 'maxlength' => 220,
-                'allow_in_bindings' => 0,
                 'placeholder' => '',
                 'prepend' => '',
                 'append' => '',
                 'show_in_graphql' => 1,
-                'graphql_description' => '',
                 'graphql_field_name' => 'chamadaManchete',
-                'graphql_non_null' => 0,
-            ),
-            array(
+            ],
+            [
                 'key' => 'field_6782409cf100c',
                 'label' => 'chamada-destaque',
-                'name' => 'chamada-destaque',
-                'aria-label' => '',
+                'name' => 'chamada_destaque',
                 'type' => 'text',
                 'instructions' => '',
                 'required' => 0,
                 'conditional_logic' => 0,
-                'wrapper' => array(
+                'wrapper' => [
                     'width' => '',
                     'class' => '',
                     'id' => '',
-                ),
+                ],
                 'default_value' => '',
                 'maxlength' => 220,
-                'allow_in_bindings' => 0,
                 'placeholder' => '',
                 'prepend' => '',
                 'append' => '',
                 'show_in_graphql' => 1,
-                'graphql_description' => '',
                 'graphql_field_name' => 'chamadaDestaque',
-                'graphql_non_null' => 0,
-            ),
-        ),
-        'location' => array(
-            array(
-                array(
+            ],
+        ],
+        'location' => [
+            [
+                [
                     'param' => 'post_type',
                     'operator' => '==',
                     'value' => 'post',
-                ),
-            ),
-        ),
+                ],
+            ],
+        ],
         'menu_order' => 0,
         'position' => 'normal',
         'style' => 'default',
@@ -112,10 +100,9 @@ add_action('acf/init', function() {
         'hide_on_screen' => '',
         'active' => true,
         'description' => '',
-        'show_in_rest' => 0,
         'show_in_graphql' => 1,
         'graphql_field_name' => 'postFields',
-        'map_graphql_types_from_location_rules' => 0,
-        'graphql_types' => '',
-    ));
-});
+    ]);
+}
+
+add_action('acf/include_fields', 'register_custom_acf_fields');
