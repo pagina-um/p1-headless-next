@@ -1,110 +1,121 @@
-add_action( 'acf/include_fields', function() {
-	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
-		return;
-	}
+<?php
+/*
+Plugin Name: Custom ACF Fields
+Description: Registers custom ACF fields with GraphQL support
+Version: 1.0
+Author: Your Name
+*/
 
-	acf_add_local_field_group( array(
-	'key' => 'group_6782407139b91',
-	'title' => 'postFields',
-	'fields' => array(
-		array(
-			'key' => 'field_67824073f100a',
-			'label' => 'antetitulo',
-			'name' => 'antetitulo',
-			'aria-label' => '',
-			'type' => 'text',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'default_value' => '',
-			'maxlength' => '',
-			'allow_in_bindings' => 0,
-			'placeholder' => '',
-			'prepend' => '',
-			'append' => '',
-			'show_in_graphql' => 1,
-			'graphql_description' => '',
-			'graphql_field_name' => 'antetitulo',
-			'graphql_non_null' => 0,
-		),
-		array(
-			'key' => 'field_6782408cf100b',
-			'label' => 'chamada-manchete',
-			'name' => 'chamada-manchete',
-			'aria-label' => '',
-			'type' => 'text',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'default_value' => '',
-			'maxlength' => 220,
-			'allow_in_bindings' => 0,
-			'placeholder' => '',
-			'prepend' => '',
-			'append' => '',
-			'show_in_graphql' => 1,
-			'graphql_description' => '',
-			'graphql_field_name' => 'chamadaManchete',
-			'graphql_non_null' => 0,
-		),
-		array(
-			'key' => 'field_6782409cf100c',
-			'label' => 'chamada-destaque',
-			'name' => 'chamada-destaque',
-			'aria-label' => '',
-			'type' => 'text',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'default_value' => '',
-			'maxlength' => 220,
-			'allow_in_bindings' => 0,
-			'placeholder' => '',
-			'prepend' => '',
-			'append' => '',
-			'show_in_graphql' => 1,
-			'graphql_description' => '',
-			'graphql_field_name' => 'chamadaDestaque',
-			'graphql_non_null' => 0,
-		),
-	),
-	'location' => array(
-		array(
-			array(
-				'param' => 'post_type',
-				'operator' => '==',
-				'value' => 'post',
-			),
-		),
-	),
-	'menu_order' => 0,
-	'position' => 'normal',
-	'style' => 'default',
-	'label_placement' => 'top',
-	'instruction_placement' => 'label',
-	'hide_on_screen' => '',
-	'active' => true,
-	'description' => '',
-	'show_in_rest' => 0,
-	'show_in_graphql' => 1,
-	'graphql_field_name' => 'postFields',
-	'map_graphql_types_from_location_rules' => 0,
-	'graphql_types' => '',
-) );
-} );
+if (!defined('ABSPATH')) {
+    exit;
+}
 
+add_action('acf/init', function() {
+    if (!function_exists('acf_add_local_field_group')) {
+        return;
+    }
+
+    acf_add_local_field_group(array(
+        'key' => 'group_6782407139b91',
+        'title' => 'postFields',
+        'fields' => array(
+            array(
+                'key' => 'field_67824073f100a',
+                'label' => 'antetitulo',
+                'name' => 'antetitulo',
+                'aria-label' => '',
+                'type' => 'text',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'maxlength' => '',
+                'allow_in_bindings' => 0,
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+                'show_in_graphql' => 1,
+                'graphql_description' => '',
+                'graphql_field_name' => 'antetitulo',
+                'graphql_non_null' => 0,
+            ),
+            array(
+                'key' => 'field_6782408cf100b',
+                'label' => 'chamada-manchete',
+                'name' => 'chamada-manchete',
+                'aria-label' => '',
+                'type' => 'text',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'maxlength' => 220,
+                'allow_in_bindings' => 0,
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+                'show_in_graphql' => 1,
+                'graphql_description' => '',
+                'graphql_field_name' => 'chamadaManchete',
+                'graphql_non_null' => 0,
+            ),
+            array(
+                'key' => 'field_6782409cf100c',
+                'label' => 'chamada-destaque',
+                'name' => 'chamada-destaque',
+                'aria-label' => '',
+                'type' => 'text',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'maxlength' => 220,
+                'allow_in_bindings' => 0,
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+                'show_in_graphql' => 1,
+                'graphql_description' => '',
+                'graphql_field_name' => 'chamadaDestaque',
+                'graphql_non_null' => 0,
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'post',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'hide_on_screen' => '',
+        'active' => true,
+        'description' => '',
+        'show_in_rest' => 0,
+        'show_in_graphql' => 1,
+        'graphql_field_name' => 'postFields',
+        'map_graphql_types_from_location_rules' => 0,
+        'graphql_types' => '',
+    ));
+});
