@@ -56,7 +56,7 @@ module.exports = {
       variants: ["lg"],
     },
     {
-      pattern: /row-start-[0-9]+/,
+      pattern: /row-start-[0-9]{1,2}/,
       variants: ["lg"],
     },
     {
