@@ -64,23 +64,19 @@ export function Header() {
               </div>
             )}
 
-            <Link
-              prefetch={false}
-              href={isAdmin ? "/" : "/admin"}
-              className="p-2 hover:bg-gray-100 rounded-full transition-colors flex items-center gap-2"
-              title={isAdmin ? "Back to Site" : "Admin Panel"}
-            >
-              {isAdmin ? (
-                <>
-                  <ArrowLeft className="w-6 h-6 text-gray-600" />
-                  <span className="text-sm font-medium text-gray-600 hidden sm:inline">
-                    Back to Site
-                  </span>
-                </>
-              ) : (
-                <Settings className="w-6 h-6 text-gray-600" />
-              )}
-            </Link>
+            {isAdmin && (
+              <Link
+                prefetch={false}
+                href={"/"}
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors flex items-center gap-2"
+                title={"Back to Site"}
+              >
+                <ArrowLeft className="w-6 h-6 text-gray-600" />
+                <span className="text-sm font-medium text-gray-600 hidden sm:inline">
+                  Back to Site
+                </span>
+              </Link>
+            )}
           </div>
         </div>
       </header>
