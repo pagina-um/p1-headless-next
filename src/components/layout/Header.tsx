@@ -64,6 +64,7 @@ export function Header() {
               </div>
             )}
 
+            {/* Admin settings button */}
             {isAdmin && (
               <Link
                 prefetch={false}
@@ -77,6 +78,7 @@ export function Header() {
                 </span>
               </Link>
             )}
+            {!isAdmin && <div className=" md:hidden w-10 h-full"></div>}
           </div>
         </div>
       </header>
