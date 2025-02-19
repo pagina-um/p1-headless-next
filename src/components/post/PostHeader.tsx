@@ -21,6 +21,7 @@ export function PostHeader({ post }: { post: PostBySlugData["data"] }) {
   return (
     <header className="mb-8">
       {/* Title */}
+      {`https://${process.env.VERCEL_URL}/` || ""}
       <h1
         className="text-4xl md:text-5xl font-serif font-bold mb-8"
         dangerouslySetInnerHTML={{ __html: post?.postBy?.title || "" }}
