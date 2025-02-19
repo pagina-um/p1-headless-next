@@ -1,7 +1,7 @@
 import { HTMLReactParserOptions } from "html-react-parser";
 
 const OLD_BASE_URL = process.env.NEXT_PUBLIC_WP_URL || "";
-const NEW_BASE_URL = `https://${process.env.VERCEL_URL}` || "";
+const NEW_BASE_URL = `https://${process.env.VERCEL_URL}/` || "";
 const OLD_MEDIA_PATH = `${OLD_BASE_URL}/wp-content/uploads/`;
 const NEW_MEDIA_PATH = `${NEW_BASE_URL}/media/`;
 
