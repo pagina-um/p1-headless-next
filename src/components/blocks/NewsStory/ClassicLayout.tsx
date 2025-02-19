@@ -25,6 +25,8 @@ export interface StoryLayoutProps {
   hideImage?: boolean;
   expandImage: boolean;
   extraBigTitle: boolean;
+  featuredImageWidth?: number;
+  featuredImageHeight?: number;
 }
 
 export function ClassicStoryLayout({

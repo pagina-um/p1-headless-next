@@ -1,10 +1,8 @@
 import { EditableText } from "@/components/ui/EditableText";
-import { CustomPostFields, ObjectPosition } from "@/types";
 import { positionMap } from "@/utils/categoryUtils";
-import { Maybe } from "graphql/jsutils/Maybe";
-import { User, Calendar } from "lucide-react";
 import { StoryLayoutProps } from "./ClassicLayout";
 import { twMerge } from "tailwind-merge";
+import Image from "next/image";
 
 export function ModernStoryLayout({
   featuredImageUrl,
@@ -16,19 +14,24 @@ export function ModernStoryLayout({
   blockUid,
   objectPosition,
   tags,
+  featuredImageHeight,
+  featuredImageWidth,
 }: StoryLayoutProps) {
+  // TODO: improve props typing
   const hasTagsToShow = tags.nodes.length > 0;
   return (
     <div className="relative h-full overflow-hidden  shadow-lg group">
       {featuredImageUrl && (
-        <img
+        <Image
           src={featuredImageUrl || ""}
-          srcSet={featuredImageSrcSet || undefined}
           alt={featuredImageAlt || ""}
           className={twMerge(
             "w-full h-full object-cover lg:group-hover:scale-105 transition-transform duration-300",
             positionMap[objectPosition]
           )}
+          width={featuredImageWidth || 1920}
+          height={featuredImageHeight || 1080}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent">

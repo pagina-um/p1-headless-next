@@ -34,6 +34,8 @@ export function NewsStoryCommon({
     <ConditionalLinkWrapper href={isAdmin ? undefined : uri}>
       {story.style === "modern" ? (
         <ModernStoryLayout
+          featuredImageWidth={featuredImage?.node?.mediaDetails?.width || 0}
+          featuredImageHeight={featuredImage?.node?.mediaDetails?.height || 0}
           featuredImageUrl={featuredImage?.node?.sourceUrl || ""}
           featuredImageAlt={featuredImage?.node?.altText || ""}
           featuredImageSrcSet={featuredImage?.node?.srcSet}
