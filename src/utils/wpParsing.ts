@@ -8,24 +8,32 @@ const NEW_MEDIA_PATH = `${NEW_BASE_URL}/media/`;
 export const parserOptions: HTMLReactParserOptions = {
   replace: (domNode) => {
     if ("attribs" in domNode) {
-      // Transform all links (both internal and to files)
-      if (domNode.name === "a" && domNode.attribs.href) {
-        // Check if it's a link to an upload
-        if (domNode.attribs.href.includes("/wp-content/uploads/")) {
-          domNode.attribs.href = domNode.attribs.href.replace(
+      // Transform links and downloads
+      if (domNode.name === "a") {
+        // Handle href
+        if (domNode.attribs.href) {
+          if (domNode.attribs.href.includes("/wp-content/uploads/")) {
+            domNode.attribs.href = domNode.attribs.href.replace(
+              new RegExp(OLD_MEDIA_PATH, "g"),
+              NEW_MEDIA_PATH
+            );
+          } else {
+            domNode.attribs.href = domNode.attribs.href.replace(
+              new RegExp(OLD_BASE_URL, "g"),
+              NEW_BASE_URL
+            );
+          }
+        }
+        // Handle download attribute if present
+        if (domNode.attribs.download) {
+          domNode.attribs.download = domNode.attribs.download.replace(
             new RegExp(OLD_MEDIA_PATH, "g"),
             NEW_MEDIA_PATH
-          );
-        } else {
-          // Regular internal link
-          domNode.attribs.href = domNode.attribs.href.replace(
-            new RegExp(OLD_BASE_URL, "g"),
-            NEW_BASE_URL
           );
         }
       }
 
-      // Handle images - just transform the src
+      // Handle images
       if (domNode.name === "img" && domNode.attribs.src) {
         domNode.attribs.src = domNode.attribs.src.replace(
           new RegExp(OLD_MEDIA_PATH, "g"),
@@ -33,7 +41,7 @@ export const parserOptions: HTMLReactParserOptions = {
         );
       }
 
-      // Handle srcset if present
+      // Handle srcset
       if (domNode.attribs.srcset) {
         domNode.attribs.srcset = domNode.attribs.srcset
           .split(",")
