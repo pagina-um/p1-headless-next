@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const gqlUrl = new URL(process.env.NEXT_PUBLIC_WP_URL);
 const domain = gqlUrl.hostname;
+
 const nextConfig = {
   images: {
     domains: ["images.unsplash.com", "www.paginaum.pt", domain],
@@ -11,6 +12,29 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+  },
+
+  async rewrites() {
+    return [
+      {
+        source: "/media/:path*",
+        destination: `${process.env.NEXT_PUBLIC_WP_URL}/wp-content/uploads/:path*`,
+      },
+    ];
+  },
+
+  async headers() {
+    return [
+      {
+        source: "/media/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+    ];
   },
 
   webpack: (config, { isServer }) => {
