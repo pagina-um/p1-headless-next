@@ -1,0 +1,61 @@
+{
+  "landingPage": "/wp-admin/",
+  "preferredVersions": {
+    "php": "8.2",
+    "wp": "latest"
+  },
+  "phpExtensionBundles": [
+    "kitchen-sink"
+  ],
+  "steps": [
+    {
+      "step": "defineWpConfigConsts",
+      "consts": {
+        "WP_DEBUG": true,
+        "WP_DEBUG_LOG": true
+      }
+    },
+    {
+      "step": "installPlugin",
+      "pluginZipFile": {
+        "resource": "wordpress.org/plugins",
+        "slug": "wp-graphql"
+      }
+    },
+    {
+      "step": "installPlugin",
+      "pluginZipFile": {
+        "resource": "wordpress.org/plugins",
+        "slug": "advanced-custom-fields"
+      }
+    },
+    {
+      "step": "installPlugin",
+      "pluginZipFile": {
+        "resource": "wordpress.org/plugins",
+        "slug": "wpgraphql-acf"
+      }
+    },
+    {
+      "step": "activatePlugin",
+      "pluginPath": "wp-graphql/wp-graphql.php"
+    },
+    {
+      "step": "activatePlugin",
+      "pluginPath": "advanced-custom-fields/acf.php"
+    },
+    {
+      "step": "activatePlugin",
+      "pluginPath": "wpgraphql-acf/wpgraphql-acf.php"
+    },
+    {
+      "step": "login",
+      "username": "admin",
+      "password": "password"
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php require_once '/wordpress/wp-load.php'; error_log('Starting setup'); error_log('WordPress loaded: ' . (defined('ABSPATH') ? 'Yes' : 'No')); error_log('ACF function exists: ' . (function_exists('acf_add_local_field_group') ? 'Yes' : 'No')); if (function_exists('acf_add_local_field_group')) { error_log('Creating ACF Field Group'); $field_group = ['key' => 'group_postFields', 'title' => 'Post Fields', 'fields' => [['key' => 'field_antetitulo', 'label' => 'Antetítulo', 'name' => 'antetitulo', 'type' => 'text'], ['key' => 'field_chamada_manchete', 'label' => 'Chamada Manchete', 'name' => 'chamada_manchete', 'type' => 'text'], ['key' => 'field_chamada_destaque', 'label' => 'Chamada Destaque', 'name' => 'chamada_destaque', 'type' => 'text']], 'location' => [[['param' => 'post_type', 'operator' => '==', 'value' => 'post']]], 'menu_order' => 0, 'position' => 'normal', 'style' => 'default', 'label_placement' => 'top', 'instruction_placement' => 'label']; acf_add_local_field_group($field_group); error_log('ACF Field Group created successfully'); if (function_exists('acf_import_field_group')) { acf_import_field_group($field_group); error_log('Field group imported to DB'); } error_log('Registered field groups: ' . (function_exists('acf_get_field_groups') ? json_encode(acf_get_field_groups()) : 'acf_get_field_groups not available')); } else { error_log('ACF not available, skipping field group creation'); } error_log('wp_insert_post exists: ' . (function_exists('wp_insert_post') ? 'Yes' : 'No')); if (function_exists('wp_insert_post')) { error_log('Creating demo posts'); $demo_posts = [['post_title' => 'Demo Post 1', 'post_content' => 'This is the first demo post content.', 'post_status' => 'publish', 'post_type' => 'post', 'meta_input' => ['antetitulo' => 'Breaking News', 'chamada_manchete' => 'Main Headline Example', 'chamada_destaque' => 'Featured Callout Text']], ['post_title' => 'Demo Post 2', 'post_content' => 'This is the second demo post content.', 'post_status' => 'publish', 'post_type' => 'post', 'meta_input' => ['antetitulo' => 'Latest Update', 'chamada_manchete' => 'Secondary Headline', 'chamada_destaque' => 'Another Featured Text']]]; foreach ($demo_posts as $post) { $post_id = wp_insert_post($post); error_log('Created post ID: ' . ($post_id ? $post_id : 'Failed')); } error_log('Posts creation completed'); } else { error_log('wp_insert_post not available, skipping post creation'); } error_log('Setup completed'); $log_file = '/wordpress/wp-content/debug.log'; if (file_exists($log_file)) { echo '<pre>Debug Log: ' . file_get_contents($log_file) . '</pre>'; } else { echo 'No debug log found'; } ?>"
+    }
+  ]
+}
