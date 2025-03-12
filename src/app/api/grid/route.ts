@@ -4,8 +4,8 @@ import {
   loadGridStateLocal,
   saveGridStateLocal,
 } from "@/services/local-storage";
+import { isDevelopment } from "@/services/config";
 
-const isDevelopment = process.env.NODE_ENV === "development";
 
 // Default empty grid state
 const DEFAULT_GRID_STATE = {

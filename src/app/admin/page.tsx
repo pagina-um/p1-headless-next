@@ -1,4 +1,5 @@
 import { AdminPanel } from "@/components/admin/AdminPanel";
+import { ADMIN_PASSWORD, ADMIN_USERNAME } from "@/services/config";
 import { headers } from "next/headers";
 
 async function verifyBasicAuth() {
@@ -22,10 +23,7 @@ async function verifyBasicAuth() {
   const buffer = Buffer.from(encoded, "base64");
   const [username, password] = buffer.toString().split(":");
 
-  if (
-    password !== process.env.ADMIN_PASSWORD ||
-    username !== process.env.ADMIN_USERNAME
-  ) {
+  if (password !== ADMIN_PASSWORD || username !== ADMIN_USERNAME) {
     return new Response("Invalid credentials", { status: 401 });
   }
 }

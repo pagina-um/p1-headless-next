@@ -4,8 +4,8 @@ import { GridState } from "@/types";
 import { PostFooter } from "@/components/post/PostFooter";
 import { Metadata } from "next";
 import { loadGridStateLocal } from "@/services/local-storage";
+import { isDevelopment } from "@/services/config";
 
-const isDevelopment = process.env.NODE_ENV === "development";
 
 export const metadata: Metadata = {
   title: "Página UM",

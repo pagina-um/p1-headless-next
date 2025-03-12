@@ -1,10 +1,11 @@
 import { graphql } from "gql.tada";
 import { cacheExchange, createClient, fetchExchange } from "@urql/core";
 import { registerUrql } from "@urql/next/rsc";
+import { WP_URL } from "./config";
 
 export const makeClient = () => {
   return createClient({
-    url: (process.env.NEXT_PUBLIC_WP_URL + "graphql") as string,
+    url: (WP_URL + "graphql") as string,
     exchanges: [cacheExchange, fetchExchange],
     fetchOptions: {
       headers: {
