@@ -1,5 +1,6 @@
 "use client";
 import { GridProvider } from "@/components/ui/GridContext";
+import { ADMIN_PASSWORD, ADMIN_USERNAME, WP_URL } from "@/services/config";
 import {
   ssrExchange,
   cacheExchange,
@@ -14,13 +15,13 @@ const ssr = ssrExchange({
 });
 
 const client = createClient({
-  url: (process.env.NEXT_PUBLIC_WP_URL + "graphql") as string,
+  url: (WP_URL + "graphql") as string,
   exchanges: [cacheExchange, ssr, fetchExchange],
   suspense: true,
   fetchOptions: {
     headers: {
       Authorization: `Basic ${Buffer.from(
-        `${process.env.NEXT_PUBLIC_HOST_USER}:${process.env.NEXT_PUBLIC_HOST_PASS}`
+        `${ADMIN_USERNAME}:${ADMIN_PASSWORD}`
       ).toString("base64")}`,
     },
   },
