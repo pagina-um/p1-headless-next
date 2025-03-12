@@ -6,6 +6,7 @@ import {
 } from "@/services/local-storage";
 import { isDevelopment } from "@/services/config";
 
+
 // Default empty grid state
 const DEFAULT_GRID_STATE = {
   blocks: [],

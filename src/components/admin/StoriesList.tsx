@@ -9,7 +9,10 @@ interface StoriesListProps {
 }
 
 export function StoriesList({ onSelectPost }: StoriesListProps) {
-  const [result] = useQuery({ query: GET_LATEST_POSTS });
+  const [result] = useQuery({
+    query: GET_LATEST_POSTS,
+    requestPolicy: "network-only",
+  });
   return (
     <div>
       <h2 className="text-lg font-semibold mb-3">Blocos individuais</h2>

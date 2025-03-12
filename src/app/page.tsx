@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import { loadGridStateLocal } from "@/services/local-storage";
 import { isDevelopment } from "@/services/config";
 
+
 export const metadata: Metadata = {
   title: "Página UM",
   description: "O jornalismo independente só depende dos leitores.",
