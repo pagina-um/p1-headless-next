@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { ADMIN_USERNAME, ADMIN_PASSWORD } from "./services/config";
 
 export function middleware(request: NextRequest) {
   // Check if the path starts with /admin
@@ -24,11 +25,6 @@ export function middleware(request: NextRequest) {
       // Get the credentials from the Authorization header
       const credentials = authHeader.split(" ")[1];
       const [username, password] = atob(credentials).split(":");
-
-      // Replace these with your actual credentials
-      // In production, use environment variables and secure storage
-      const ADMIN_USERNAME = process.env.ADMIN_USERNAME;
-      const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
       if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
         // Authentication successful, continue to the route

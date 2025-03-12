@@ -7,8 +7,7 @@ import { GET_POST_BY_ID } from "@/services/wp-graphql";
 import { ResultOf } from "gql.tada";
 import Link from "next/link";
 import { mockFeaturedImage } from "@/mocks/featuredImage";
-
-const isDevelopment = process.env.NODE_ENV === "development";
+import { isDevelopment } from "@/services/config";
 
 export function NewsStoryCommon({
   story,
