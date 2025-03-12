@@ -5,8 +5,6 @@
   "scripts": {
     "dev": "next dev",
     "dev:wp": "npx @wp-playground/cli server --blueprint=blueprint.json",
-    "dev:local": "node dev-server.js",
-    "dev:all": "concurrently \"npm run dev\" \"npm run dev:wp\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
