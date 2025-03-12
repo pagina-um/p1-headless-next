@@ -6,6 +6,9 @@ import { ModernStoryLayout } from "./ModernLayout";
 import { GET_POST_BY_ID } from "@/services/wp-graphql";
 import { ResultOf } from "gql.tada";
 import Link from "next/link";
+import { mockFeaturedImage } from "@/mocks/featuredImage";
+
+const isDevelopment = process.env.NODE_ENV === "development";
 
 export function NewsStoryCommon({
   story,
@@ -27,9 +30,11 @@ export function NewsStoryCommon({
       </div>
     );
   }
-  const { finalTitle, featuredImage, overridePostFields, author, date, uri } =
+  const { finalTitle, overridePostFields, author, date, uri } =
     extractStoryData(data, story);
 
+  const featuredImage: NonNullable<(typeof data)["post"]>["featuredImage"] =
+    !isDevelopment ? data.post?.featuredImage : mockFeaturedImage;
   return (
     <ConditionalLinkWrapper href={isAdmin ? undefined : uri}>
       {story.style === "modern" ? (

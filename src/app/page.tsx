@@ -3,6 +3,9 @@ import { NewsGrid } from "@/components/grid/NewsGrid";
 import { GridState } from "@/types";
 import { PostFooter } from "@/components/post/PostFooter";
 import { Metadata } from "next";
+import { loadGridStateLocal } from "@/services/local-storage";
+
+const isDevelopment = process.env.NODE_ENV === "development";
 
 export const metadata: Metadata = {
   title: "Página UM",
@@ -11,7 +14,11 @@ export const metadata: Metadata = {
 
 async function getInitialState(): Promise<GridState | null> {
   try {
-    return await loadGridState();
+    if (isDevelopment) {
+      return await loadGridStateLocal();
+    } else {
+      return await loadGridState();
+    }
   } catch (error) {
     console.error("Failed to load initial grid state:", error);
     return null;

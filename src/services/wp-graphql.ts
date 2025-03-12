@@ -254,6 +254,10 @@ export const GET_POST_BY_ID = graphql(`
           sourceUrl
           altText
           srcSet
+          mediaDetails {
+            height
+            width
+          }
         }
       }
     }

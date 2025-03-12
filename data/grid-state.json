@@ -1,0 +1,91 @@
+{
+  "blocks": [
+    {
+      "uId": "1741784702032",
+      "title": "Newsletter Subscription",
+      "blockType": "static",
+      "type": "newsletter",
+      "orientation": "vertical",
+      "gridPosition": {
+        "x": 7,
+        "y": 0,
+        "width": 3,
+        "height": 12
+      },
+      "content": "Static content",
+      "mobilePriority": null
+    },
+    {
+      "uId": "1741784703949",
+      "title": "Latest Podcasts",
+      "blockType": "static",
+      "type": "podcast",
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 2,
+        "y": 4,
+        "width": 5,
+        "height": 8
+      },
+      "content": "Static content",
+      "mobilePriority": null
+    },
+    {
+      "uId": "1741787090593",
+      "blockType": "story",
+      "style": "classic",
+      "databaseId": 9,
+      "postId": "cG9zdDo5",
+      "mobilePriority": null,
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 0,
+        "y": 0,
+        "width": 7,
+        "height": 4
+      },
+      "objectPosition": "center",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": false,
+      "extraBigTitle": true
+    },
+    {
+      "uId": "1741787091510",
+      "blockType": "story",
+      "style": "modern",
+      "databaseId": 8,
+      "postId": "cG9zdDo4",
+      "mobilePriority": null,
+      "orientation": "vertical",
+      "gridPosition": {
+        "x": 0,
+        "y": 4,
+        "width": 2,
+        "height": 4
+      },
+      "objectPosition": "center",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": false,
+      "extraBigTitle": false
+    },
+    {
+      "wpCategoryId": 1,
+      "wpCategoryName": "Uncategorized",
+      "blockType": "category",
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 0,
+        "y": 8,
+        "width": 2,
+        "height": 4
+      },
+      "uId": "1741787159694",
+      "postsPerPage": 2,
+      "mobilePriority": null
+    }
+  ],
+  "createdAt": "2025-03-09T22:55:42.709Z",
+  "lastUpdated": "2025-03-12T13:47:06.730Z"
+}
