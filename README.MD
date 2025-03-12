@@ -4,9 +4,8 @@ A modern blog application built with Next.js 14+, using WordPress as a headless 
 
 ## Prerequisites
 
-- Node.js 18.17.0 or newer
+- Node.js 20.x.x or newer
 - npm or yarn package manager
-- A WordPress instance with GraphQL enabled
 
 ## Getting Started
 
@@ -15,25 +14,20 @@ A modern blog application built with Next.js 14+, using WordPress as a headless 
 
 ```bash
 npm install
-# or
-yarn install
 
 ```
 
-3. Configure environment variables by creating a `.env.local` file
+3. Run the portable Wordpress app
 
+```bash
+npm run dev:wp
 ```
-ADMIN_PASSWORD=your_admin_password
-NEXT_PUBLIC_WP_URL=your_wordpress_graphql_url
-```
-
-4. (Optional) Run a local instance of Wordpress with WPGraphQL plugin
 
 5. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
 
 ```
+
+6. Visit both "/" and "/admin" routes !
