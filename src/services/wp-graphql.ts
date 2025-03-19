@@ -338,6 +338,7 @@ export const GET_LATEST_POSTS_FOR_STATIC_GENERATION = graphql(`
           slug
           date
           modified
+          title
         }
       }
     }
