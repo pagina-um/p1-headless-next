@@ -55,7 +55,16 @@ export const staticPages: MetadataRoute.Sitemap = [
   },
 ];
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export async function generateSitemaps() {
+  // Fetch the total number of products and calculate the number of sitemaps needed
+  return [{ id: 0 }, { id: 1 }];
+}
+
+export default async function sitemap({
+  id,
+}: {
+  id: number;
+}): Promise<MetadataRoute.Sitemap> {
   const BASE_URL = "https://www.paginaum.pt";
   let allPosts: MetadataRoute.Sitemap = [];
   let hasNextPage = true;
@@ -111,5 +120,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // Combine static pages and post entries
-  return [...staticPages, ...postEntries];
+  return id === 0
+    ? [...staticPages, ...postEntries]
+    : transformToGoogleNews(postEntries);
+}
+
+function transformToGoogleNews(posts: MetadataRoute.Sitemap) {
+  return posts.slice(0, 30).map((post: any) => ({
+    ...post,
+    news: {
+      publication: {
+        name: "Página Um",
+        language: "pt",
+      },
+      publication_date: new Date(post.lastModified).toISOString(),
+      title: post.title,
+    },
+  }));
 }
