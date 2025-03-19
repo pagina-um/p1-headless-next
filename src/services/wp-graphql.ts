@@ -328,12 +328,18 @@ export const GET_POST_BY_SLUG = graphql(`
 `);
 
 export const GET_LATEST_POSTS_FOR_STATIC_GENERATION = graphql(`
-  query GetFirstPosts($first: Int!) {
+  query GetFirstThousandPosts($first: Int!, $after: String) {
     posts(
       first: $first
+      after: $after
       where: { status: PUBLISH, orderby: { field: DATE, order: DESC } }
     ) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
       edges {
+        cursor
         node {
           slug
           date
