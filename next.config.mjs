@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const gqlUrl = new URL(process.env.NEXT_PUBLIC_WP_URL);
 const domain = gqlUrl.hostname;
-
+console.log("domain", domain);
 const nextConfig = {
   images: {
     domains: [
