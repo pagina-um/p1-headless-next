@@ -63,7 +63,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { requestPolicy: "cache-and-network" }
   );
 
-  console.log(data);
   const edges = data?.posts?.edges ?? [];
   const BASE_URL = "https://www.paginaum.pt";
   const allPosts = edges
