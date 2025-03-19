@@ -60,9 +60,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { data } = await getClient().query(
     GET_LATEST_POSTS_FOR_STATIC_GENERATION,
     { first: 3500 }, // seems like a reasonable number, way above the number of posts we have
-    { requestPolicy: "cache-and-network" }
+    { requestPolicy: "network-only" }
   );
-
   const edges = data?.posts?.edges ?? [];
   const BASE_URL = "https://www.paginaum.pt";
   const allPosts = edges
@@ -81,6 +80,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: edge.node.modified || "",
         changeFrequency: "never" as const,
         priority: 0.7,
+        title: edge.node.title,
       };
     })
     .filter((item) => item !== null);
@@ -90,7 +90,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: new Date(post.lastModified),
     changeFrequency: post.changeFrequency,
     priority: post.priority,
+    news: {
+      publication: {
+        name: "Página Um",
+        language: "pt",
+      },
+      publication_date: new Date(post.lastModified).toISOString(),
+      title: post.title,
+    },
   }));
-
   return [...staticPages, ...postEntries];
 }

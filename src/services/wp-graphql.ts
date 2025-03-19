@@ -328,7 +328,7 @@ export const GET_POST_BY_SLUG = graphql(`
 `);
 
 export const GET_LATEST_POSTS_FOR_STATIC_GENERATION = graphql(`
-  query GetFirstThousandPosts($first: Int!) {
+  query GetFirstPosts($first: Int!) {
     posts(
       first: $first
       where: { status: PUBLISH, orderby: { field: DATE, order: DESC } }
