@@ -57,37 +57,40 @@ export const staticPages: MetadataRoute.Sitemap = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Fetch all articles
-  const { data, error } = await getClient().query(
+  const { data } = await getClient().query(
     GET_LATEST_POSTS_FOR_STATIC_GENERATION,
     { first: 3500 }, // seems like a reasonable number, way above the number of posts we have
     { requestPolicy: "cache-and-network" }
   );
+
+  console.log(data);
   const edges = data?.posts?.edges ?? [];
+  const BASE_URL = "https://www.paginaum.pt";
   const allPosts = edges
     .map((edge) => {
       if (!edge.node.date) {
         return null;
       }
       const date = new Date(edge.node.date);
-
       const year = date.getFullYear().toString();
       const month = (date.getMonth() + 1).toString().padStart(2, "0");
       const day = date.getDate().toString().padStart(2, "0");
       const slug = edge.node.slug;
-      const BASE_URL = "https://www.paginaum.pt";
 
       return {
         url: `${BASE_URL}/${year}/${month}/${day}/${slug}`,
         lastModified: edge.node.modified || "",
-        slug: edge.node.slug,
+        changeFrequency: "never" as const,
+        priority: 0.7,
       };
     })
     .filter((item) => item !== null);
+
   const postEntries: MetadataRoute.Sitemap = allPosts.map((post) => ({
-    url: `https://www.paginaum.pt/${post.slug}`,
+    url: post.url,
     lastModified: new Date(post.lastModified),
-    changeFrequency: "never" as const,
-    priority: 0.7,
+    changeFrequency: post.changeFrequency,
+    priority: post.priority,
   }));
 
   return [...staticPages, ...postEntries];
