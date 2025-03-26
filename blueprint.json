@@ -47,6 +47,13 @@
       "pluginPath": "wpgraphql-acf/wpgraphql-acf.php"
     },
     {
+      "step": "importWxr",
+      "file": {
+        "resource": "url",
+        "url": "https://raw.githubusercontent.com/pagina-um/p1-headless-next/refs/heads/main/wp-p1-sample.xml"
+      }
+    },
+    {
       "step": "login",
       "username": "admin",
       "password": "password"
