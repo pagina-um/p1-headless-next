@@ -12,8 +12,8 @@ interface NewsGridProps {
   blocks: Block[];
 }
 
-export function NewsGrid({ blocks }: NewsGridProps) {
-  const hasContent = blocks.length > 0;
+export function NewsGrid({ blocks = [] }: NewsGridProps) {
+  const hasContent = blocks?.length > 0;
 
   if (!hasContent) {
     return <EmptyState message="No content has been added to the grid yet." />;

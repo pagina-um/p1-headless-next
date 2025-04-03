@@ -1,0 +1,666 @@
+{
+  "blocks": [
+    {
+      "wpCategoryId": 461,
+      "wpCategoryName": "Hora Política",
+      "blockType": "category",
+      "orientation": "vertical",
+      "gridPosition": {
+        "x": 0,
+        "y": 61,
+        "width": 10,
+        "height": 6
+      },
+      "uId": "1737048895746",
+      "postsPerPage": 5,
+      "mobilePriority": null
+    },
+    {
+      "wpCategoryId": 22,
+      "wpCategoryName": "Opinião",
+      "blockType": "category",
+      "orientation": "vertical",
+      "gridPosition": {
+        "x": 7,
+        "y": 24,
+        "width": 3,
+        "height": 8
+      },
+      "uId": "1737051996573",
+      "postsPerPage": 5,
+      "mobilePriority": null
+    },
+    {
+      "wpCategoryId": 588,
+      "wpCategoryName": "Biblioteca",
+      "blockType": "category",
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 0,
+        "y": 79,
+        "width": 10,
+        "height": 5
+      },
+      "uId": "1737832256808",
+      "postsPerPage": 5,
+      "mobilePriority": null
+    },
+    {
+      "wpCategoryId": 594,
+      "wpCategoryName": "Crónica",
+      "blockType": "category",
+      "orientation": "vertical",
+      "gridPosition": {
+        "x": 7,
+        "y": 32,
+        "width": 3,
+        "height": 8
+      },
+      "uId": "1737851072728",
+      "postsPerPage": 5,
+      "mobilePriority": null
+    },
+    {
+      "uId": "1737851278751",
+      "blockType": "story",
+      "style": "modern",
+      "databaseId": 108125,
+      "mobilePriority": null,
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 5,
+        "y": 84,
+        "width": 5,
+        "height": 4
+      },
+      "objectPosition": "center",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": false,
+      "extraBigTitle": false,
+      "chamadaDestaque": "MENDO CASTRO HENRIQUES - Quinto episódio",
+      "antetitulo": "NOVELAS IMPROVÁVEIS: ROMMEL EM JERUSALÉM"
+    },
+    {
+      "wpCategoryId": 595,
+      "wpCategoryName": "Destarte",
+      "blockType": "category",
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 0,
+        "y": 92,
+        "width": 10,
+        "height": 4
+      },
+      "uId": "1737852798737",
+      "postsPerPage": 5,
+      "mobilePriority": null
+    },
+    {
+      "wpCategoryId": 586,
+      "wpCategoryName": "Correio Mercantil",
+      "blockType": "category",
+      "orientation": "vertical",
+      "gridPosition": {
+        "x": 0,
+        "y": 73,
+        "width": 7,
+        "height": 5
+      },
+      "uId": "1738000502997",
+      "postsPerPage": 3,
+      "mobilePriority": null
+    },
+    {
+      "uId": "1738059472875",
+      "title": "Humor",
+      "blockType": "static",
+      "type": "divider",
+      "orientation": "vertical",
+      "gridPosition": {
+        "x": 0,
+        "y": 72,
+        "width": 10,
+        "height": 1
+      },
+      "content": "Static content",
+      "mobilePriority": null
+    },
+    {
+      "uId": "1738060544745",
+      "title": "Cultura",
+      "blockType": "static",
+      "type": "divider",
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 0,
+        "y": 78,
+        "width": 10,
+        "height": 1
+      },
+      "content": "Static content",
+      "mobilePriority": null
+    },
+    {
+      "uId": "1738879419778",
+      "title": "Memória de elefante",
+      "blockType": "static",
+      "type": "divider",
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 0,
+        "y": 51,
+        "width": 10,
+        "height": 1
+      },
+      "content": "Static content",
+      "mobilePriority": null
+    },
+    {
+      "wpCategoryId": 599,
+      "wpCategoryName": "Caderno dos Mundos",
+      "blockType": "category",
+      "orientation": "vertical",
+      "gridPosition": {
+        "x": 0,
+        "y": 67,
+        "width": 10,
+        "height": 5
+      },
+      "uId": "1738882725186",
+      "postsPerPage": 5,
+      "mobilePriority": null
+    },
+    {
+      "uId": "1738973596292",
+      "title": "Latest Podcasts",
+      "blockType": "static",
+      "type": "podcast",
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 7,
+        "y": 52,
+        "width": 3,
+        "height": 9
+      },
+      "content": "Static content",
+      "mobilePriority": null
+    },
+    {
+      "uId": "1738973731832",
+      "title": "Newsletter Subscription",
+      "blockType": "static",
+      "type": "newsletter",
+      "orientation": "vertical",
+      "gridPosition": {
+        "x": 7,
+        "y": 40,
+        "width": 3,
+        "height": 7
+      },
+      "content": "Static content",
+      "mobilePriority": null
+    },
+    {
+      "uId": "1739567380193",
+      "blockType": "story",
+      "style": "classic",
+      "databaseId": 109040,
+      "postId": "cG9zdDoxMDkwNDA=",
+      "mobilePriority": null,
+      "orientation": "vertical",
+      "gridPosition": {
+        "x": 0,
+        "y": 88,
+        "width": 3,
+        "height": 4
+      },
+      "objectPosition": "center",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": false,
+      "extraBigTitle": false,
+      "chamadaManchete": "Paulo Vero revisita memórias de uma infância e uma peculiar matrícula.",
+      "antetitulo": "REVÓLVER VACILANTE"
+    },
+    {
+      "uId": "1742154097059",
+      "blockType": "story",
+      "style": "classic",
+      "databaseId": 109998,
+      "postId": "cG9zdDoxMDk5OTg=",
+      "mobilePriority": null,
+      "orientation": "vertical",
+      "gridPosition": {
+        "x": 7,
+        "y": 20,
+        "width": 3,
+        "height": 4
+      },
+      "objectPosition": "center",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": false,
+      "extraBigTitle": false,
+      "chamadaManchete": "A Matemática pode não ser o forte de muitos jornalistas, mas na Lusa exagera-se e nem se consegue contar até 10 para imprimir rigor a uma notícia....",
+      "antetitulo": "ALTERAÇÕES MEDIÁTICAS"
+    },
+    {
+      "uId": "1742252928274",
+      "blockType": "story",
+      "style": "classic",
+      "databaseId": 110050,
+      "postId": "cG9zdDoxMTAwNTA=",
+      "mobilePriority": null,
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 0,
+        "y": 52,
+        "width": 7,
+        "height": 5
+      },
+      "objectPosition": "center",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": false,
+      "extraBigTitle": false,
+      "antetitulo": "32 MESES DE LUTA CONTRA O OBSCURANTISMO CIENTÍFICO",
+      "chamadaDestaque": "Foi preciso uma sentença, um acórdão e um pedido de aplicação de sanção pecuniária compulsória. O PÁGINA UM revela (e apresenta uma avaliação individual) dos 52 relatórios do Instituto Superior Técnico escondidos durante 32 meses pelo seu presidente, Rogério Colaço. ",
+      "title": "Pandemia: Consulte os famigerados ‘esboços embrionários’ do IST, agora postos a nu (e analisados)"
+    },
+    {
+      "uId": "1742323593353",
+      "blockType": "story",
+      "style": "classic",
+      "databaseId": 110191,
+      "postId": "cG9zdDoxMTAxOTE=",
+      "mobilePriority": 1,
+      "orientation": "vertical",
+      "gridPosition": {
+        "x": 0,
+        "y": 42,
+        "width": 7,
+        "height": 5
+      },
+      "objectPosition": "center",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": false,
+      "extraBigTitle": false,
+      "chamadaDestaque": "Foi a galinha de ovos de ouro, depois passou a ser a vaca que dava leite; agora mostra mais ser uma cabra vampirizada até à última gota de sangue – este pode bem ser um possível retrato alegórico da SIC, a empresa televisiva da Impresa, e a história de uma ‘mãe’ que está a matar a ‘filha’."
+    },
+    {
+      "uId": "1742424403551",
+      "blockType": "story",
+      "style": "classic",
+      "databaseId": 110214,
+      "postId": "cG9zdDoxMTAyMTQ=",
+      "mobilePriority": null,
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 0,
+        "y": 57,
+        "width": 7,
+        "height": 4
+      },
+      "objectPosition": "center",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": false,
+      "extraBigTitle": false,
+      "chamadaDestaque": "São centenas de dados eliminados em actas do Conselho Superior da Magistratura, segundo critérios incompreensíveis, usando, em muitos casos, o célebre 'XXX'. Nomes de juízes castigados, com más classificações ou com processos em atraso, são expurgados. "
+    },
+    {
+      "uId": "1742500250583",
+      "blockType": "story",
+      "style": "classic",
+      "databaseId": 110211,
+      "postId": "cG9zdDoxMTAyMTE=",
+      "mobilePriority": null,
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 0,
+        "y": 38,
+        "width": 7,
+        "height": 4
+      },
+      "objectPosition": "center",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": false,
+      "extraBigTitle": false,
+      "chamadaDestaque": "A Entidade Reguladora para a Comunicação Social (ERC) condenou a Impresa Publishing a uma coima de apenas 2.000 euros, mas dá 'dicas' aos media para continuaram a fazer publicidade travestida de notícias. ",
+      "antetitulo": "REGULADOR DOS MEDIA 'ENSINA' A FAZER NOTÍCIAS PAGAS SEM PROBLEMAS"
+    },
+    {
+      "uId": "1742572935043",
+      "blockType": "story",
+      "style": "classic",
+      "databaseId": 110315,
+      "postId": "cG9zdDoxMTAzMTU=",
+      "mobilePriority": 2,
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 0,
+        "y": 29,
+        "width": 7,
+        "height": 5
+      },
+      "objectPosition": "top",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": true,
+      "extraBigTitle": false,
+      "chamadaDestaque": "A associação Honrar Portugal parece tudo menos espontânea. Em poucos dias, fez um site, tem agenda de presenças de Gouveia e Melo, e os estatutos mostram ter sido pensada para recolher apoios financeiros para o antigo líder da Marinha, embora tenha sede numa espécie de 'albergue espanhol' empresarial.",
+      "antetitulo": "POLÍTICOS DE CENTRO-DIREITA EM PESO NUM MOVIMENTO QUE SE DIZ CÍVICO"
+    },
+    {
+      "wpCategoryId": 606,
+      "wpCategoryName": "Acta Diurna",
+      "blockType": "category",
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 0,
+        "y": 11,
+        "width": 10,
+        "height": 4
+      },
+      "uId": "1742587347540",
+      "postsPerPage": 5,
+      "mobilePriority": 1
+    },
+    {
+      "wpCategoryId": 608,
+      "wpCategoryName": "Língua na cama",
+      "blockType": "category",
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 0,
+        "y": 47,
+        "width": 10,
+        "height": 4
+      },
+      "uId": "1742592811375",
+      "postsPerPage": 5,
+      "mobilePriority": 2
+    },
+    {
+      "uId": "1742781741885",
+      "blockType": "story",
+      "style": "classic",
+      "databaseId": 109930,
+      "postId": "cG9zdDoxMDk5MzA=",
+      "mobilePriority": null,
+      "orientation": "vertical",
+      "gridPosition": {
+        "x": 7,
+        "y": 73,
+        "width": 3,
+        "height": 5
+      },
+      "objectPosition": "center",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": false,
+      "extraBigTitle": false
+    },
+    {
+      "uId": "1742852636209",
+      "blockType": "story",
+      "style": "classic",
+      "databaseId": 110487,
+      "postId": "cG9zdDoxMTA0ODc=",
+      "mobilePriority": 2,
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 0,
+        "y": 25,
+        "width": 7,
+        "height": 4
+      },
+      "objectPosition": "top",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": false,
+      "extraBigTitle": false,
+      "chamadaDestaque": "O Banco Português de Fomento recusa apresentar provas da execução de ajustes directos de consultoria e serviços jurídicos no valor de 2,3 milhões de euros, incluindo um que beneficiou a sociedade do actual primeiro-ministro. ",
+      "title": "Luís Montenegro: Banco Português de Fomento recusa mostrar provas de execução de contrato de 100 mil euros"
+    },
+    {
+      "uId": "1743020274662",
+      "blockType": "story",
+      "style": "classic",
+      "databaseId": 110429,
+      "postId": "cG9zdDoxMTA0Mjk=",
+      "mobilePriority": null,
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 0,
+        "y": 84,
+        "width": 5,
+        "height": 4
+      },
+      "objectPosition": "center",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": false,
+      "extraBigTitle": false
+    },
+    {
+      "uId": "1743020318365",
+      "blockType": "story",
+      "style": "classic",
+      "databaseId": 110470,
+      "postId": "cG9zdDoxMTA0NzA=",
+      "mobilePriority": null,
+      "orientation": "vertical",
+      "gridPosition": {
+        "x": 7,
+        "y": 15,
+        "width": 3,
+        "height": 5
+      },
+      "objectPosition": "center",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": false,
+      "extraBigTitle": false,
+      "chamadaDestaque": "Aparentemente, as unhas do Serafim nem 'desfiam' ninguém, desta vez; na verdade, até estamos perante, 'provavelmente', um elogio à qualidade da edição em papel do Expresso.",
+      "title": "Expresso, ‘provavelmente’ a melhor cama de gato"
+    },
+    {
+      "uId": "1743026018120",
+      "blockType": "story",
+      "style": "modern",
+      "databaseId": 110585,
+      "postId": "cG9zdDoxMTA1ODU=",
+      "mobilePriority": 5,
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 0,
+        "y": 34,
+        "width": 7,
+        "height": 4
+      },
+      "objectPosition": "top",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": false,
+      "extraBigTitle": false,
+      "chamadaManchete": "",
+      "title": "Carta em defesa das entrevistas (mesmo que parvas) do José Rodrigues dos Santos"
+    },
+    {
+      "uId": "1743112304482",
+      "blockType": "story",
+      "style": "classic",
+      "databaseId": 110627,
+      "postId": "cG9zdDoxMTA2Mjc=",
+      "mobilePriority": 1,
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 0,
+        "y": 20,
+        "width": 7,
+        "height": 5
+      },
+      "objectPosition": "top",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": false,
+      "extraBigTitle": false,
+      "title": "Tribunal Administrativo vai decidir se contratos do Banco Português de Fomento podem ‘vestir de preto’",
+      "chamadaDestaque": "Luís Montenegro é apenas um dos muitos sócios de sociedades de advogados que beneficiaram da liberalidade do Banco Português de Fomento (BPF), que distribuiu dezenas de ajustes directos para serviços jurídicos e de consultadoria. Perante a recusa do banco público em facultar provas da execução dos serviços, o PÁGINA UM intentou esta quinta-feira uma intimação junto do Tribunal Administrativo para apurar se existem ou não contratos fictícios com desvio de verbas públicas. "
+    },
+    {
+      "uId": "1743200808187",
+      "blockType": "story",
+      "style": "classic",
+      "databaseId": 110656,
+      "postId": "cG9zdDoxMTA2NTY=",
+      "mobilePriority": null,
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 0,
+        "y": 6,
+        "width": 7,
+        "height": 5
+      },
+      "objectPosition": "top",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": true,
+      "extraBigTitle": false,
+      "antetitulo": "BANDA BRITÂNICA JAMES APARECE DE SURPRESA E LEVA QUASE 200 MIL EUROS",
+      "chamadaDestaque": "Há duas semanas, o município de Vila Real, liderado pelo socialista Rui Santos, anunciou o programa de festas do centenário da elevação a cidade. Havia nomes sonantes da música portuguesa – Rui Veloso, Xutos & Pontapés ou a atracção do momento, Nininho Vaz Maia –, mas a autarquia \"esqueceu-se\" de revelar a banda britânica James, que vai receber um cachet de quase 200 mil euros. Sem ter sido anunciado um orçamento para a centena de eventos, a conta ultrapassará meio milhão de euros. "
+    },
+    {
+      "uId": "1743265234107",
+      "blockType": "story",
+      "style": "modern",
+      "databaseId": 110688,
+      "postId": "cG9zdDoxMTA2ODg=",
+      "mobilePriority": null,
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 7,
+        "y": 0,
+        "width": 3,
+        "height": 5
+      },
+      "objectPosition": "top",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": true,
+      "extraBigTitle": true,
+      "chamadaDestaque": "",
+      "title": "Sondagens e a asinina indigência aritmética da ERC"
+    },
+    {
+      "uId": "1743367328590",
+      "blockType": "story",
+      "style": "classic",
+      "databaseId": 110564,
+      "postId": "cG9zdDoxMTA1NjQ=",
+      "mobilePriority": null,
+      "orientation": "vertical",
+      "gridPosition": {
+        "x": 7,
+        "y": 88,
+        "width": 3,
+        "height": 4
+      },
+      "objectPosition": "center",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": false,
+      "extraBigTitle": false
+    },
+    {
+      "uId": "1743367376909",
+      "blockType": "story",
+      "style": "classic",
+      "databaseId": 110572,
+      "postId": "cG9zdDoxMTA1NzI=",
+      "mobilePriority": null,
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 3,
+        "y": 88,
+        "width": 4,
+        "height": 4
+      },
+      "objectPosition": "center",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": false,
+      "extraBigTitle": false,
+      "chamadaManchete": "Um conto do escritor brasileiro Lourenço Cazarré, sempre aos domingos, quinzenalmente."
+    },
+    {
+      "uId": "1743385222295",
+      "blockType": "story",
+      "style": "classic",
+      "databaseId": 110746,
+      "postId": "cG9zdDoxMTA3NDY=",
+      "mobilePriority": 3,
+      "orientation": "vertical",
+      "gridPosition": {
+        "x": 7,
+        "y": 5,
+        "width": 3,
+        "height": 6
+      },
+      "objectPosition": "top",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": false,
+      "extraBigTitle": false,
+      "title": "No fim, já cá não andarás, Moedas"
+    },
+    {
+      "uId": "1743456197106",
+      "blockType": "story",
+      "style": "classic",
+      "databaseId": 110793,
+      "postId": "cG9zdDoxMTA3OTM=",
+      "mobilePriority": 3,
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 0,
+        "y": 15,
+        "width": 7,
+        "height": 5
+      },
+      "objectPosition": "center",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": false,
+      "extraBigTitle": false,
+      "chamadaDestaque": "Em Outubro do ano passado, a saída de três membros da Comissão da Carteira Profissional de Jornalista (CCPJ) veio acompanhada de acusações de despesismo da presidente, Licínia Girão. As contas de 2024, entretanto reveladas, mostram uma gestão financeira desastrosa: a entidade de acreditação e disciplina dos jornalistas — que antes de Licínia Girão sempre apresentara lucros — registou o terceiro ano de prejuízos."
+    },
+    {
+      "uId": "1743623188889",
+      "blockType": "story",
+      "style": "classic",
+      "databaseId": 110822,
+      "postId": "cG9zdDoxMTA4MjI=",
+      "mobilePriority": 5,
+      "orientation": "horizontal",
+      "gridPosition": {
+        "x": 0,
+        "y": 0,
+        "width": 7,
+        "height": 6
+      },
+      "objectPosition": "center",
+      "hideImage": false,
+      "reverse": false,
+      "expandImage": true,
+      "extraBigTitle": true,
+      "chamadaDestaque": "São números avassaladores revelados num relatório publicado ontem por um investigador norte-americano. Desde Outubro de 2023, a retaliação de Israel na Faixa de Gaza tornou-se o conflito mais letal para os profissionais da imprensa, registando um recorde impressionante de 232 mortes em apenas um ano e meio. Numa região que é metade da ilha da Madeira, a carnificina atingiu quase apenas jornalistas palestinianos, e não tem comparação mesmo com as guerras mundiais."
+    }
+  ],
+  "createdAt": "Thu Dec 26 2024 21:07:31 GMT+0000 (Western European Standard Time)",
+  "lastUpdated": "2025-04-02T19:53:59.313Z"
+}
