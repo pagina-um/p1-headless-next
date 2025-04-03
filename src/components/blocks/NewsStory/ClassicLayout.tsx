@@ -66,7 +66,7 @@ export function ClassicStoryLayout({
     <div className="@container group h-full px-4 lg:px-0">
       <div
         className={twMerge(
-          "grid h-full",
+          "grid h-full gap-4",
           isLandscape
             ? "lg:grid-flow-col lg:auto-cols-fr"
             : "grid-flow-row auto-rows-fr"
