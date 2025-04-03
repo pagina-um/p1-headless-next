@@ -50,40 +50,68 @@ export function ClassicStoryLayout({
   const displayImage = !hideImage;
   const isLandscape = orientation === "horizontal";
   const shouldReverse = reverse && isLandscape;
+
+  // Calculate grid spans based on block size
+  const [cols, rows] = blockSize;
+
+  // For landscape orientation, we'll split the content into columns
+  // For portrait, we'll split into rows
+  const imageSpan = isLandscape
+    ? Math.min(Math.max(Math.floor(cols / 2), 3), 6) // Image takes 3-6 cols in landscape
+    : Math.min(Math.max(Math.floor(rows / 2), 4)); // Image takes up to half rows in portrait
+
+  const contentSpan = isLandscape ? cols - imageSpan : rows - imageSpan;
+
   return (
-    <div className="@container group h-full px-4 lg:px-0 ">
+    <div className="@container group h-full px-4 lg:px-0">
       <div
         className={twMerge(
-          "flex gap-x-4 gap-y-1 h-full flex-col",
+          "grid h-full",
           isLandscape
-            ? reverse
-              ? "lg:flex-row-reverse"
-              : "lg:flex-row"
-            : reverse
-            ? "lg:flex-col-reverse"
-            : "lg:flex-col"
+            ? "lg:grid-flow-col lg:auto-cols-fr"
+            : "grid-flow-row auto-rows-fr"
         )}
+        style={{
+          gridTemplateColumns: isLandscape
+            ? `repeat(${cols}, minmax(0, 1fr))`
+            : undefined,
+          gridTemplateRows: !isLandscape
+            ? `repeat(${rows}, minmax(0, 1fr))`
+            : undefined,
+        }}
       >
         {featuredImageUrl && displayImage && (
           <div
             className={twMerge(
-              "relative max-md:min-h-36 max-md:w-full",
-              isLandscape ? "w-1/2" : "h-full",
-              !expandImage && !isLandscape && "lg:flex-1"
+              "relative",
+              isLandscape
+                ? `lg:col-span-${imageSpan} max-md:col-span-full max-md:row-span-${Math.min(
+                    2,
+                    rows
+                  )}`
+                : `row-span-${imageSpan} max-md:row-span-${Math.min(2, rows)}`
             )}
           >
             <Image
               src={featuredImageUrl}
               alt={featuredImageAlt || ""}
               fill
-              sizes={getSizesFromBlockArea(blockSize[0] * blockSize[1])}
+              sizes={getSizesFromBlockArea(cols * rows)}
               className={twMerge("object-cover")}
               style={{ objectPosition: positionMap[objectPosition] }}
               quality={85}
             />
           </div>
         )}
-        <div className="lg:flex-1 flex flex-col justify-start max-lg:border-b-2 max-lg:pb-4">
+
+        <div
+          className={twMerge(
+            "flex flex-col justify-start max-lg:border-b-2 max-lg:pb-4",
+            isLandscape
+              ? `lg:col-span-${contentSpan} max-md:col-span-full`
+              : `row-span-${contentSpan}`
+          )}
+        >
           {postFields.antetitulo && (
             <p
               className={twMerge(
@@ -103,6 +131,7 @@ export function ClassicStoryLayout({
               )}
             </p>
           )}
+
           {!postFields.antetitulo && hasTagsToShow && (
             <div
               className={twMerge(
@@ -142,6 +171,7 @@ export function ClassicStoryLayout({
               title
             )}
           </h2>
+
           {(postFields.chamadaDestaque || postFields.chamadaManchete) && (
             <p
               className={twMerge(
