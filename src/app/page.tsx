@@ -1,11 +1,10 @@
-import { loadGridState } from "@/services/jsonbin";
 import { NewsGrid } from "@/components/grid/NewsGrid";
 import { GridState } from "@/types";
 import { PostFooter } from "@/components/post/PostFooter";
 import { Metadata } from "next";
 import { loadGridStateLocal } from "@/services/local-storage";
+import { loadGridStateRedis } from "@/services/redis";
 import { isDevelopment } from "@/services/config";
-
 
 export const metadata: Metadata = {
   title: "Página UM",
@@ -17,7 +16,8 @@ async function getInitialState(): Promise<GridState | null> {
     if (isDevelopment) {
       return await loadGridStateLocal();
     } else {
-      return await loadGridState();
+      const gridState = await loadGridStateRedis();
+      return gridState;
     }
   } catch (error) {
     console.error("Failed to load initial grid state:", error);

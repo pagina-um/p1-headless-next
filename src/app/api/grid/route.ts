@@ -1,11 +1,11 @@
 import { revalidatePath, revalidateTag } from "next/cache";
-import { loadGridState, saveGridState } from "@/services/jsonbin";
 import {
   loadGridStateLocal,
   saveGridStateLocal,
 } from "@/services/local-storage";
 import { isDevelopment } from "@/services/config";
-
+import { loadGridStateRedis, saveGridStateRedis } from "@/services/redis";
+import { NextResponse } from 'next/server';
 
 // Default empty grid state
 const DEFAULT_GRID_STATE = {
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     if (isDevelopment) {
       await saveGridStateLocal(gridState);
     } else {
-      await saveGridState(gridState);
+      await saveGridStateRedis(gridState);
     }
 
     revalidateTag("homepage-grid"); // Revalidate all fetches with this tag
@@ -45,9 +45,8 @@ export async function GET() {
     if (isDevelopment) {
       gridState = await loadGridStateLocal();
     } else {
-      gridState = await loadGridState();
-
-      // If external service returns null, use default empty state
+      gridState = await loadGridStateRedis();
+      // If Redis returns null, use default empty state
       if (!gridState) {
         gridState = DEFAULT_GRID_STATE;
       }
