@@ -1,6 +1,6 @@
 # Página UM - Headless Wordpress App with NextJS
 
-A modern blog application built with Next.js 14+, using WordPress as a headless CMS. It features a landing page, article pages (both statically generated) and an admin panel. The admin panel edits and saves a grid state to JSONbin and the landing page uses it to display the news stories/articles.
+A modern blog application built with Next.js 14+, using WordPress as a headless CMS. It features a landing page, article pages (both statically generated) and an admin panel. The admin panel edits and saves a grid state to Redis and the landing page uses it to display the news stories/articles.
 
 ## Features
 
@@ -8,14 +8,14 @@ A modern blog application built with Next.js 14+, using WordPress as a headless 
 - **Article Pages**: Statically generated for optimal performance
 - **Admin Panel**: Easy-to-use interface for managing content and layout
 - **WordPress Integration**: Uses WordPress as a headless CMS for content management
-- **JSONbin Integration**: Stores and retrieves layout configuration data
+- **Redis Integration**: Stores and retrieves layout configuration data
 
 ## Prerequisites
 
 - Node.js 20.x.x or newer
 - npm or yarn package manager
 - A WordPress instance (local or remote)
-- [JSONbin.io](https://jsonbin.io/) account (free tier works fine)
+- A Redis instance (local or cloud-based)
 
 ## Getting Started
 
@@ -32,10 +32,15 @@ A modern blog application built with Next.js 14+, using WordPress as a headless 
    ```
    
    Then edit the `.env` file and add your configuration:
-   - Create a [JSONbin.io](https://jsonbin.io/) account
-   - Get your API key from https://jsonbin.io/app/app/api-keys
-   - Get your bin ID from https://jsonbin.io/app/account/summary
-   - Update the corresponding variables in the `.env` file
+   - Set up your Redis instance
+     - You can use Redis Cloud for free tier hosting
+     - Alternatively, run Redis locally using Docker: `docker run -p 6379:6379 redis`
+   - Get your Redis connection string
+   - Update the corresponding variables in the `.env` file:
+     ```
+     PORT=3000
+     REDIS_URL=your-redis-connection-string
+     ```
 
 3. **Install dependencies**
    ```bash
@@ -66,6 +71,21 @@ A modern blog application built with Next.js 14+, using WordPress as a headless 
 ├── public/         # Static assets
 └── types/          # TypeScript type definitions
 ```
+
+## Environment Variables
+
+The following environment variables are required:
+
+- `PORT`: The port the server will run on
+- `REDIS_URL`: Your Redis connection string
+
+## Data Storage
+
+This application uses Redis for data persistence. All data is stored in Redis as JSON strings, providing:
+- Fast read/write operations
+- Simple data structure
+- Reliable data persistence
+- Expiration and TTL capabilities
 
 ## Contributing
 
