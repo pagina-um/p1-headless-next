@@ -87,11 +87,10 @@ export function ClassicStoryLayout({
           {postFields.antetitulo && (
             <p
               className={twMerge(
-                "flex items-start text-pretty text-gray-600 font-medium  underline-offset-2 text-sm  gap-x-2",
+                "flex items-start text-pretty text-primary-dark font-medium  underline-offset-2 text-sm  gap-x-1 before:content-[''] before:block before:w-1 before:h-full before:bg-primary-dark before:flex-shrink-0 ",
                 shouldReverse && "lg:flex-row-reverse"
               )}
             >
-              <Square className="w-3 h-3 bg-primary-dark stroke-primary inline mt-1" />
               {isAdmin ? (
                 <EditableText
                   blockUid={blockUid}
