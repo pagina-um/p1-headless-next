@@ -56,42 +56,19 @@ export function ClassicStoryLayout({
 
   // For landscape orientation, we'll split the content into columns
   // For portrait, we'll split into rows
-  const imageSpan = isLandscape
-    ? Math.min(Math.max(Math.floor(cols / 2), 3), 6) // Image takes 3-6 cols in landscape
-    : Math.min(Math.max(Math.floor(rows / 2), 4)); // Image takes up to half rows in portrait
-
-  const contentSpan = isLandscape ? cols - imageSpan : rows - imageSpan;
 
   return (
-    <div className="@container group h-full px-4 lg:px-0">
+    <div className="@container group h-full px-4 lg:px-0 ">
       <div
         className={twMerge(
-          "grid h-full gap-4",
+          "grid h-full gap-4 grid-cols-subgrid grid-rows-subgrid",
           isLandscape
             ? "lg:grid-flow-col lg:auto-cols-fr"
             : "grid-flow-row auto-rows-fr"
         )}
-        style={{
-          gridTemplateColumns: isLandscape
-            ? `repeat(${cols}, minmax(0, 1fr))`
-            : undefined,
-          gridTemplateRows: !isLandscape
-            ? `repeat(${rows}, minmax(0, 1fr))`
-            : undefined,
-        }}
       >
         {featuredImageUrl && displayImage && (
-          <div
-            className={twMerge(
-              "relative",
-              isLandscape
-                ? `lg:col-span-${imageSpan} max-md:col-span-full max-md:row-span-${Math.min(
-                    2,
-                    rows
-                  )}`
-                : `row-span-${imageSpan} max-md:row-span-${Math.min(2, rows)}`
-            )}
-          >
+          <div className={twMerge("relative")}>
             <Image
               src={featuredImageUrl}
               alt={featuredImageAlt || ""}
@@ -106,10 +83,7 @@ export function ClassicStoryLayout({
 
         <div
           className={twMerge(
-            "flex flex-col justify-start max-lg:border-b-2 max-lg:pb-4",
-            isLandscape
-              ? `lg:col-span-${contentSpan} max-md:col-span-full`
-              : `row-span-${contentSpan}`
+            "flex flex-col justify-start max-lg:border-b-2 max-lg:pb-4"
           )}
         >
           {postFields.antetitulo && (
