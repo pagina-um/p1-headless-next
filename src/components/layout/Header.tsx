@@ -8,6 +8,7 @@ import { DesktopNav } from "./DesktopNav";
 import { MobileNav } from "./MobileNav";
 import { useScrollHeader } from "@/hooks/useScrollHeader";
 import Link from "next/link";
+import { SearchButton } from "./SearchButton";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -59,8 +60,9 @@ export function Header() {
             </div>
 
             {!isAdmin && (
-              <div className="hidden md:flex flex-1 items-center justify-end">
+              <div className="hidden md:flex flex-1 items-center justify-end space-x-4">
                 <DesktopNav />
+                <SearchButton />
               </div>
             )}
 
@@ -78,7 +80,11 @@ export function Header() {
                 </span>
               </Link>
             )}
-            {!isAdmin && <div className=" md:hidden w-10 h-full"></div>}
+            {!isAdmin && (
+              <div className="md:hidden flex items-center">
+                <SearchButton />
+              </div>
+            )}
           </div>
         </div>
       </header>

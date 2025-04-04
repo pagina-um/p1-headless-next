@@ -374,3 +374,59 @@ export const GET_PAGE_BY_SLUG = graphql(`
     }
   }
 `);
+
+export const GET_POSTS_BY_SEARCH = graphql(`
+  query GetPostsBySearch(
+    $searchQuery: String!
+    $postsPerPage: Int!
+    $after: String
+  ) {
+    posts(
+      where: { search: $searchQuery, status: PUBLISH }
+      first: $postsPerPage
+      after: $after
+    ) {
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+      nodes {
+        id
+        title
+        content
+        excerpt
+        date
+        slug
+        uri
+        postFields {
+          antetitulo
+          chamadaDestaque
+          chamadaManchete
+        }
+        categories {
+          nodes {
+            id
+            name
+          }
+        }
+        author {
+          node {
+            name
+            avatar {
+              url
+            }
+          }
+        }
+        featuredImage {
+          node {
+            sourceUrl
+            srcSet
+            altText
+          }
+        }
+      }
+    }
+  }
+`);
