@@ -345,6 +345,13 @@ export const GET_LATEST_POSTS_FOR_STATIC_GENERATION = graphql(`
           date
           modified
           title
+          categories {
+            edges {
+              node {
+                name
+              }
+            }
+          }
         }
       }
     }
