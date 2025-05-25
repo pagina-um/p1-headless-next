@@ -40,7 +40,6 @@ export default async function HomePage() {
   return (
     <>
       <main className="max-w-7xl mx-auto pb-8">
-        <ArticleSupportModal />
         <NewsGrid blocks={initialState.blocks} />
       </main>
       <PostFooter />

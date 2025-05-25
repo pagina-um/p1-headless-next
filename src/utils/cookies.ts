@@ -19,7 +19,8 @@ export function getArticleCount(): number {
   return count ? parseInt(count, 10) : 0;
 }
 
-export function incrementArticleCount(currentCount: number) {
+export function incrementArticleCount() {
+  const currentCount = getArticleCount();
   setCookie("articleCount", (currentCount + 1).toString(), 1); // Reset after 1 day
   return currentCount + 1;
 }
