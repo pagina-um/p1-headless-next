@@ -5,7 +5,6 @@ import { Handshake, Mail, X } from "lucide-react";
 import { Logo } from "../ui/Logo";
 import Link from "next/link";
 import {
-  getCookie,
   getArticleCount,
   incrementArticleCount,
   getLastModalShow,
@@ -23,10 +22,7 @@ export function ArticleSupportModal() {
     // Increment article count on first render
     incrementArticleCount();
   }, []);
-  let cookiesAccepted = false;
-  if (typeof window !== "undefined") {
-    cookiesAccepted = localStorage.getItem("cookieConsent") === "accepted";
-  }
+
   const [isVisible, setIsVisible] = useState(false);
   const [hasScrolledPastThreshold, setHasScrolledPastThreshold] =
     useState(false);
@@ -55,20 +51,16 @@ export function ArticleSupportModal() {
   }, []);
 
   useEffect(() => {
-    if (cookiesAccepted) {
-      const articleCount = getArticleCount();
-      const lastModalShow = getLastModalShow();
-      const today = new Date().toISOString().split("T")[0];
+    const articleCount = getArticleCount();
+    const lastModalShow = getLastModalShow();
+    const today = new Date().toISOString().split("T")[0];
 
-      // Don't show if already shown today
-      // Don't show if haven't reached article threshold
-      if (
-        articleCount % ARTICLE_DISPLAY_LIMIT !== 0 ||
-        lastModalShow === today
-      ) {
-        return;
-      }
+    // Don't show if already shown today
+    // Don't show if haven't reached article threshold
+    if (articleCount % ARTICLE_DISPLAY_LIMIT !== 0 || lastModalShow === today) {
+      return;
     }
+
     if (hasScrolledPastThreshold) setIsVisible(true);
   }, [hasScrolledPastThreshold]);
 
@@ -76,9 +68,8 @@ export function ArticleSupportModal() {
     setIsVisible(false);
 
     // If cookies accepted, update last show time when manually closed
-    if (cookiesAccepted) {
-      setLastModalShow();
-    }
+
+    setLastModalShow();
   };
 
   if (!isVisible) return null;
