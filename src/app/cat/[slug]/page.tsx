@@ -4,6 +4,7 @@ import Image from "next/image";
 import Pagination from "@/components/ui/Pagination";
 import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
+import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
 
 export default async function CategoryPage({
   params,

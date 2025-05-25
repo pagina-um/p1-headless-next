@@ -1,24 +1,24 @@
 // app/sitemap.xml/route.ts
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 import {
   getClient,
   GET_LATEST_POSTS_FOR_STATIC_GENERATION,
 } from "@/services/wp-graphql";
-import { OperationResult } from '@urql/next';
+import { OperationResult } from "@urql/next";
 
 function escapeXml(text: string): string {
   return text
-    .replace(/&/g, '&amp;')
-    .replace(/'/g, '&apos;')
-    .replace(/"/g, '&quot;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+    .replace(/&/g, "&amp;")
+    .replace(/'/g, "&apos;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 }
 
 function errorResponse() {
-  return new NextResponse('Internal Server Error', {
+  return new NextResponse("Internal Server Error", {
     status: 500,
-    headers: { 'Content-Type': 'text/plain' },
+    headers: { "Content-Type": "text/plain" },
   });
 }
 
@@ -29,15 +29,19 @@ export async function GET() {
   let after = null;
 
   xmlBuilder.push('<?xml version="1.0" encoding="UTF-8"?>');
-  xmlBuilder.push('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">')
+  xmlBuilder.push(
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">'
+  );
 
   while (hasNextPage) {
     try {
-      const result: OperationResult<any> = await getClient().query(
-        GET_LATEST_POSTS_FOR_STATIC_GENERATION,
-        { first: 100, after },
-        { requestPolicy: "network-only" }
-      ).toPromise();
+      const result: OperationResult<any> = await getClient()
+        .query(
+          GET_LATEST_POSTS_FOR_STATIC_GENERATION,
+          { first: 100, after },
+          { requestPolicy: "network-only" }
+        )
+        .toPromise();
 
       if (result.error) {
         console.error("Error fetching sitemap posts: ", result.error.message);
@@ -59,7 +63,7 @@ export async function GET() {
             .map((c: any) => c?.node?.name)
             .filter(Boolean)
             .map(escapeXml)
-            .join(',');
+            .join(",");
 
           xmlBuilder.push(
             `<url>
@@ -74,24 +78,23 @@ export async function GET() {
                 <news:keywords>${keywords}</news:keywords>
               </news:news>
             </url>`
-          )
+          );
         }
-      })
+      });
 
       hasNextPage = pageInfo?.hasNextPage ?? false;
       after = pageInfo?.endCursor ?? null;
-
     } catch (error) {
       console.error("Error generating sitemap xml:", error);
       return errorResponse();
     }
   }
 
-  xmlBuilder.push('</urlset>')
+  xmlBuilder.push("</urlset>");
 
-  return new NextResponse(xmlBuilder.join(''), {
+  return new NextResponse(xmlBuilder.join(""), {
     headers: {
-      'Content-Type': 'application/xml',
+      "Content-Type": "application/xml",
     },
   });
 }

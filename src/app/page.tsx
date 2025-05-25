@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import { loadGridStateLocal } from "@/services/local-storage";
 import { loadGridStateRedis } from "@/services/redis";
 import { isDevelopment } from "@/services/config";
+import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
 
 export const metadata: Metadata = {
   title: "Página UM",
