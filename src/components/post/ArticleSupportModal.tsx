@@ -57,7 +57,11 @@ export function ArticleSupportModal() {
 
     // Don't show if already shown today
     // Don't show if haven't reached article threshold
-    if (articleCount % ARTICLE_DISPLAY_LIMIT !== 0 || lastModalShow === today) {
+    if (
+      articleCount === 1 ||
+      articleCount % ARTICLE_DISPLAY_LIMIT !== 0 ||
+      lastModalShow === today
+    ) {
       return;
     }
 
