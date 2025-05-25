@@ -1,73 +1,68 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import { Handshake, Mail, X } from 'lucide-react';
-import { Logo } from '../ui/Logo';
-import Link from 'next/link';
-import { 
-  getCookie, 
-  getArticleCount, 
-  incrementArticleCount, 
-  getLastModalShow, 
-  setLastModalShow 
-} from '@/utils/cookies';
+import React, { useEffect, useState } from "react";
+import { Handshake, Mail, X } from "lucide-react";
+import { Logo } from "../ui/Logo";
+import Link from "next/link";
+import {
+  getCookie,
+  getArticleCount,
+  incrementArticleCount,
+  getLastModalShow,
+  setLastModalShow,
+} from "@/utils/cookies";
 
 const ARTICLES_THRESHOLD = 5;
 
 export function ArticleSupportModal() {
   const [isVisible, setIsVisible] = useState(false);
-  const [hasScrolledPastThreshold, setHasScrolledPastThreshold] = useState(false);
+  const [hasScrolledPastThreshold, setHasScrolledPastThreshold] =
+    useState(false);
+  const cookiesAccepted = getCookie("cookieConsent") === "accepted";
+
+  const handleScrollCheck = () => {
+    if (hasScrolledPastThreshold) return;
+
+    const articleElement = document.querySelector("main");
+
+    if (!articleElement) return;
+
+    const articleHeight = articleElement.scrollHeight;
+    const scrollPosition = window.scrollY;
+    const oneThirdHeight = articleHeight / 3;
+
+    if (scrollPosition > oneThirdHeight) {
+      setHasScrolledPastThreshold(true);
+
+      // Only set cookie if consent was given
+    }
+  };
 
   useEffect(() => {
-    const cookiesAccepted = getCookie('cookieConsent') === 'accepted';
-    
-    if (cookiesAccepted) {
-      const articleCount = incrementArticleCount();
-      const lastModalShow = getLastModalShow();
-      const today = new Date().toISOString().split('T')[0];
-      
-      // Don't show if already shown today
-      if (lastModalShow === today) {
-        return;
-      }
+    window.addEventListener("scroll", handleScrollCheck);
+    return () => window.removeEventListener("scroll", handleScrollCheck);
+  }, []);
 
+  useEffect(() => {
+    if (cookiesAccepted) {
+      const articleCount = getArticleCount();
+      const lastModalShow = getLastModalShow();
+      const today = new Date().toISOString().split("T")[0];
+
+      // Don't show if already shown today
       // Don't show if haven't reached article threshold
-      if (articleCount < ARTICLES_THRESHOLD) {
+      if (articleCount < ARTICLES_THRESHOLD || lastModalShow === today) {
         return;
       }
     }
-
-    // Add scroll listener
-    const handleScrollCheck = () => {
-      if (hasScrolledPastThreshold) return;
-
-      const articleElement = document.querySelector('article');
-      if (!articleElement) return;
-
-      const articleHeight = articleElement.scrollHeight;
-      const scrollPosition = window.scrollY + window.innerHeight;
-      const oneThirdHeight = articleHeight / 3;
-
-      if (scrollPosition > oneThirdHeight) {
-        setHasScrolledPastThreshold(true);
-        setIsVisible(true);
-        
-        // Only set cookie if consent was given
-        if (getCookie('cookieConsent') === 'accepted') {
-          setLastModalShow();
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScrollCheck);
-    return () => window.removeEventListener('scroll', handleScrollCheck);
+    if (hasScrolledPastThreshold) setIsVisible(true);
   }, [hasScrolledPastThreshold]);
 
   const handleClose = () => {
     setIsVisible(false);
-    
+
     // If cookies accepted, update last show time when manually closed
-    if (getCookie('cookieConsent') === 'accepted') {
+    if (cookiesAccepted) {
       setLastModalShow();
     }
   };
@@ -77,7 +72,8 @@ export function ArticleSupportModal() {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
       <div className="relative w-full max-w-2xl bg-slate-800 rounded-lg shadow-xl">
-        <button 
+        <button
+          type="button"
           onClick={handleClose}
           className="absolute right-4 top-4 text-white/70 hover:text-white transition-colors"
         >
@@ -100,9 +96,7 @@ export function ArticleSupportModal() {
             <p className="text-lg text-white">
               Não dependemos de grupos económicos nem do Estado. Não fazemos
               fretes. Fazemos jornalismo para os leitores,{" "}
-              <strong>
-                mas só sobreviveremos com o seu apoio financeiro.
-              </strong>
+              <strong>mas só sobreviveremos com o seu apoio financeiro.</strong>
             </p>
           </div>
 
