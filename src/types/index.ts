@@ -88,7 +88,7 @@ export type BlockSettings<T extends Block> = T extends StoryBlock
       | "extraBigTitle"
     >
   : T extends CategoryBlock
-  ? Pick<CategoryBlock, "mobilePriority" | "postsPerPage">
-  : T extends StaticBlock
-  ? Pick<StaticBlock, "mobilePriority">
-  : never;
+    ? Pick<CategoryBlock, "mobilePriority" | "postsPerPage">
+    : T extends StaticBlock
+      ? Pick<StaticBlock, "mobilePriority">
+      : never;
