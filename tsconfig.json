@@ -15,14 +15,13 @@
     "incremental": true,
     "plugins": [
       {
-        "name": "next",
-        
+        "name": "next"
       },
-      { 
-        "name": "gql.tada/ts-plugin", 
-        "schema": "",  // configure locally
+      {
+        "name": "gql.tada/ts-plugin",
+        "schema": "", // configure locally
         "tadaOutputLocation": "./src/graphql-env.d.ts"
-      } 
+      }
     ],
     "paths": {
       "@/*": ["./src/*"]

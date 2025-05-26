@@ -5,7 +5,7 @@ import {
 } from "@/services/local-storage";
 import { isDevelopment } from "@/services/config";
 import { loadGridStateRedis, saveGridStateRedis } from "@/services/redis";
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
 // Default empty grid state
 const DEFAULT_GRID_STATE = {

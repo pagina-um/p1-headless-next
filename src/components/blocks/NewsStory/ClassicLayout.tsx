@@ -60,8 +60,8 @@ export function ClassicStoryLayout({
               ? "lg:flex-row-reverse"
               : "lg:flex-row"
             : reverse
-            ? "lg:flex-col-reverse"
-            : "lg:flex-col"
+              ? "lg:flex-col-reverse"
+              : "lg:flex-col"
         )}
       >
         {featuredImageUrl && displayImage && (

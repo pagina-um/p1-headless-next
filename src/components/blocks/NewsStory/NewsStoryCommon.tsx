@@ -9,7 +9,6 @@ import Link from "next/link";
 import { mockFeaturedImage } from "@/mocks/featuredImage";
 import { isDevelopment } from "@/services/config";
 
-
 export function NewsStoryCommon({
   story,
   data,

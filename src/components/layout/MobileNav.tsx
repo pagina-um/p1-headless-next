@@ -1,6 +1,6 @@
-import React from 'react';
-import { X } from 'lucide-react';
-import { NavigationLinks } from './NavigationLinks';
+import React from "react";
+import { X } from "lucide-react";
+import { NavigationLinks } from "./NavigationLinks";
 
 interface MobileNavProps {
   isOpen: boolean;
@@ -12,7 +12,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
     <div
       className={`
         fixed inset-0 bg-white z-50 transition-transform duration-300 ease-in-out
-        ${isOpen ? 'translate-x-0' : 'translate-x-full'}
+        ${isOpen ? "translate-x-0" : "translate-x-full"}
       `}
     >
       <div className="flex justify-end p-4">

@@ -52,8 +52,8 @@ export function EditableText({
             textAlign === "right"
               ? "text-right"
               : textAlign === "center"
-              ? "text-center"
-              : "text-left"
+                ? "text-center"
+                : "text-left"
           )}
           value={text}
           onChange={(e) => {

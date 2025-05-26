@@ -8,7 +8,8 @@ This document outlines the process for contributing to our project using a fork-
 
 1. **Fork the repository**: Click the "Fork" button in the upper right corner of the [Project repository](https://github.com/pagina-um/p1-headless-next).
 
-2. **Clone your fork**: 
+2. **Clone your fork**:
+
    ```bash
    git clone https://github.com/YOUR-USERNAME/p1-headless-next.git
    cd project
@@ -57,11 +58,13 @@ git rebase main
 ## Submitting a Pull Request
 
 1. **Push your changes to your fork**:
+
    ```bash
    git push origin feature/your-feature-name
    ```
 
 2. **Create a Pull Request**:
+
    - Go to the [original repository](https://github.com/pagina-um/p1-headless-next)
    - Click "Pull Requests" and then "New Pull Request"
    - Click "compare across forks"
@@ -69,7 +72,6 @@ git rebase main
    - Set the head repository to your fork and the compare branch to your feature branch
    - Click "Create Pull Request"
 
-5. **After approval**:
+3. **After approval**:
    - A maintainer will merge your PR once it's approved
    - Your contribution will become part of the project!
-

@@ -16,24 +16,20 @@ interface CategoryPostListProps {
   shouldLink: boolean;
 }
 
-export function CategoryPostList({
-  posts,
-  categoryId,
-}: CategoryPostListProps) {
+export function CategoryPostList({ posts, categoryId }: CategoryPostListProps) {
   const showAuthor = shouldShowAuthor(categoryId);
   const showDate = shouldShowDate(categoryId);
   return (
     <div className="h-full flex flex-col @3xl:flex-row gap-y-3 divide-y overflow-clip">
-      {posts?.map((post) =>
-          <Link href={post.uri || "#"} key={post.id} passHref className="">
-            <ArticleContent
-              post={post}
-              showAuthor={showAuthor}
-              showDate={showDate}
-            />
-          </Link>
-       
-      )}
+      {posts?.map((post) => (
+        <Link href={post.uri || "#"} key={post.id} passHref className="">
+          <ArticleContent
+            post={post}
+            showAuthor={showAuthor}
+            showDate={showDate}
+          />
+        </Link>
+      ))}
     </div>
   );
 }

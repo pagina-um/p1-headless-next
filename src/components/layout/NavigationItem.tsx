@@ -1,13 +1,18 @@
-import React from 'react';
+import React from "react";
 
 interface NavigationItemProps {
   href: string;
   label: string;
-  orientation?: 'horizontal' | 'vertical';
+  orientation?: "horizontal" | "vertical";
   onClick?: () => void;
 }
 
-export function NavigationItem({ href, label, orientation, onClick }: NavigationItemProps) {
+export function NavigationItem({
+  href,
+  label,
+  orientation,
+  onClick,
+}: NavigationItemProps) {
   return (
     <li>
       <a
@@ -15,7 +20,7 @@ export function NavigationItem({ href, label, orientation, onClick }: Navigation
         onClick={onClick}
         className={`
           text-gray-900 hover:text-primary transition-colors
-          ${orientation === 'vertical' ? 'text-lg block py-2' : ''}
+          ${orientation === "vertical" ? "text-lg block py-2" : ""}
         `}
       >
         {label}
