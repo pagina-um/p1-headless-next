@@ -119,7 +119,9 @@ export function DonationForm() {
                 setIsLoading(false);
                 setShowLoader(true);
               },
-              testing: process.env.NODE_ENV === "development",
+              testing:
+                process.env.NODE_ENV === "development" ||
+                process.env.NEXT_PUBLIC_VERCEL_TARGET_ENV !== "production",
               language: "pt_PT",
               hideDetails: true,
               display: "inline",
