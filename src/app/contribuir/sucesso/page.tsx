@@ -30,7 +30,6 @@ export default function SucessoPage({ searchParams }: SuccessPageProps) {
           <div className="flex justify-center mb-8">
             <div className="relative">
               <CheckCircle className="w-24 h-24 text-green-500" />
-              <Heart className="w-8 h-8 text-red-500 absolute -top-2 -right-2" />
             </div>
           </div>
 

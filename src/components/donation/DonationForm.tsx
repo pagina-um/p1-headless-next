@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createDonationCheckout } from "@/app/contribuir/actions";
-import { CheckoutManifest } from "@easypaypt/checkout-sdk";
+import { CheckoutInstance, CheckoutManifest } from "@easypaypt/checkout-sdk";
+import { Loader } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 type DonationType = "single" | "subscription";
 
@@ -18,19 +20,30 @@ export function DonationForm() {
   const [formData, setFormData] = useState<DonationFormData>({
     amount: 10,
     type: "single",
-    name: "",
-    email: "",
-    phone: "",
+    name: "asd",
+    email: "asd@asd.com",
+    phone: "918190321",
   });
   const [isLoading, setIsLoading] = useState(false);
   const [checkoutManifest, setCheckoutManifest] =
     useState<CheckoutManifest | null>(null);
+  const [showLoader, setShowLoader] = useState(true);
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const [paymentInfo, setPaymentInfo] = useState<any>(null);
+
+  // Use ref to track payment success status
+  const paymentSuccessRef = useRef(false);
 
   const predefinedAmounts = [5, 10, 25, 50, 100];
+  const { push } = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    // Reset payment success when starting new payment
+    setPaymentSuccess(false);
+    setPaymentInfo(null);
+    paymentSuccessRef.current = false;
 
     try {
       const manifest = await createDonationCheckout(formData);
@@ -49,19 +62,19 @@ export function DonationForm() {
       typeof window !== "undefined" &&
       window.easypayCheckout
     ) {
+      setShowLoader(true);
+
       // Small delay to ensure DOM element is rendered
       const timer = setTimeout(() => {
         const checkoutElement = document.getElementById("easypay-checkout");
         if (checkoutElement) {
-          const checkoutInstance = window.easypayCheckout.startCheckout(
-            checkoutManifest,
-            {
+          const checkoutInstance: CheckoutInstance =
+            window.easypayCheckout.startCheckout(checkoutManifest, {
               onSuccess: (successInfo: any) => {
                 console.log("Payment successful:", successInfo);
-                alert("Obrigado pela sua contribuição!");
-                checkoutInstance.unmount();
-                setCheckoutManifest(null);
-                setIsLoading(false);
+                setPaymentSuccess(true);
+                setPaymentInfo(successInfo);
+                paymentSuccessRef.current = true; // Update ref as well
               },
               onError: (error: any) => {
                 console.error("Payment error:", error);
@@ -69,16 +82,48 @@ export function DonationForm() {
                 alert("Erro no pagamento. Por favor, tente novamente.");
                 setCheckoutManifest(null);
                 setIsLoading(false);
+                setShowLoader(true);
+                setPaymentInfo(null);
+                paymentSuccessRef.current = false;
               },
               onClose: () => {
-                console.log("Checkout closed");
+                console.log(
+                  "Payment success status:",
+                  paymentSuccessRef.current
+                );
+                if (paymentSuccessRef.current) {
+                  console.log("Payment was successful, redirecting...");
+                  // Create URL with search parameters
+                  const params = new URLSearchParams({
+                    amount: formData.amount.toString(),
+                    type: formData.type,
+                  });
+
+                  // Add payment_id if available in paymentInfo
+                  if (
+                    paymentInfo?.id ||
+                    paymentInfo?.payment_id ||
+                    paymentInfo?.transactionId
+                  ) {
+                    const paymentId =
+                      paymentInfo.id ||
+                      paymentInfo.payment_id ||
+                      paymentInfo.transactionId;
+                    params.set("payment_id", paymentId);
+                  }
+
+                  return push(`/contribuir/sucesso?${params.toString()}`);
+                }
+                console.log("Checkout closed without success");
                 setCheckoutManifest(null);
                 setIsLoading(false);
+                setShowLoader(true);
               },
               testing: process.env.NODE_ENV === "development",
               language: "pt_PT",
-            }
-          );
+              hideDetails: true,
+              display: "inline",
+            });
         } else {
           console.error("Easypay checkout element not found");
         }
@@ -86,6 +131,35 @@ export function DonationForm() {
 
       return () => clearTimeout(timer);
     }
+  }, [checkoutManifest, push]);
+
+  // Check for iframe every second to hide loader
+  useEffect(() => {
+    if (!checkoutManifest) return;
+
+    const checkForIframe = () => {
+      const checkoutElement = document.getElementById("easypay-checkout");
+      if (checkoutElement) {
+        const iframe = checkoutElement.querySelector("iframe");
+        if (iframe) {
+          setShowLoader(false);
+          return true;
+        }
+      }
+      return false;
+    };
+
+    // Check immediately
+    if (checkForIframe()) return;
+
+    // Check every second
+    const interval = setInterval(() => {
+      if (checkForIframe()) {
+        clearInterval(interval);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
   }, [checkoutManifest]);
 
   const handleAmountChange = (amount: number) => {
@@ -101,19 +175,23 @@ export function DonationForm() {
 
   if (checkoutManifest) {
     return (
-      <div className="bg-white p-8 rounded-lg shadow-md">
-        <div className="text-center mb-6">
-          <h3 className="text-xl font-bold mb-2">Finalizar Contribuição</h3>
-          <p className="text-gray-600">
-            Complete o seu pagamento no formulário abaixo
-          </p>
-        </div>
-        <div id="easypay-checkout" className="min-h-[600px]"></div>
+      <div className="bg-white rounded-lg shadow-md max-w-[400px] max-sm:mx-auto">
+        {showLoader && (
+          <Loader className="w-12 h-12 mx-auto text-blue-600 animate-spin mb-4" />
+        )}
+        <div
+          id="easypay-checkout"
+          className="min-h-[600px] flex justify-center p-0"
+        ></div>
         <div className="text-center mt-4">
           <button
             onClick={() => {
               setCheckoutManifest(null);
               setIsLoading(false);
+              setShowLoader(true);
+              setPaymentSuccess(false);
+              setPaymentInfo(null);
+              paymentSuccessRef.current = false;
             }}
             className="text-gray-500 hover:text-gray-700 underline"
           >
