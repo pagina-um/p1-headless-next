@@ -20,9 +20,9 @@ export function DonationForm() {
   const [formData, setFormData] = useState<DonationFormData>({
     amount: 10,
     type: "single",
-    name: "asd",
-    email: "asd@asd.com",
-    phone: "918190321",
+    name: "",
+    email: "",
+    phone: "",
   });
   const [isLoading, setIsLoading] = useState(false);
   const [checkoutManifest, setCheckoutManifest] =
@@ -205,7 +205,7 @@ export function DonationForm() {
   }
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-md">
+    <div className="bg-white p-8 rounded-lg shadow-md max-w-[400px]">
       <h3 className="text-2xl font-bold mb-6 text-center">
         Escolha o seu contributo
       </h3>
