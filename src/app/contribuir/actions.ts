@@ -15,10 +15,9 @@ export async function createDonationCheckout(
 ): Promise<CheckoutManifest> {
   const accountId = process.env.EASYPAY_CLIENT_ID;
   const apiKey = process.env.EASYPAY_API_KEY;
-  const apiUrl =
-    process.env.EASYPAY_API_URL || "https://api.test.easypay.pt/2.0";
+  const apiUrl = process.env.EASYPAY_API_URL;
 
-  if (!accountId || !apiKey) {
+  if (!accountId || !apiKey || !apiUrl) {
     throw new Error("Easypay credentials not configured");
   }
 
