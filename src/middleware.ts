@@ -6,7 +6,8 @@ export function middleware(request: NextRequest) {
   // Check if the path starts with /admin
   if (
     request.nextUrl.pathname.startsWith("/admin") &&
-    process.env.NODE_ENV === "production"
+    process.env.NODE_ENV === "production" &&
+    process.env.NEXT_PUBLIC_VERCEL_TARGET_ENV === "production"
   ) {
     // Get the Authorization header
     const authHeader = request.headers.get("authorization");

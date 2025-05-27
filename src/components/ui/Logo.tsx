@@ -1,11 +1,18 @@
+import { cn } from "@/utils/utils";
 import React from "react";
 
-export function Logo({ white = false }) {
+export function Logo({
+  white = false,
+  className,
+}: {
+  white?: boolean;
+  className?: string;
+}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 1780 340"
-      className="w-full h-auto"
+      className={cn("w-full h-auto", className)}
       aria-label="Página UM"
     >
       <path

@@ -67,6 +67,27 @@ export function ArticleSupportModal() {
     if (hasScrolledPastThreshold) setIsVisible(true);
   }, [hasScrolledPastThreshold]);
 
+  // Prevent scrolling behind modal when open
+  useEffect(() => {
+    if (isVisible) {
+      // Save current scroll position
+      const scrollY = window.scrollY;
+
+      // Apply styles to prevent scrolling
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
+
+      return () => {
+        // Restore scrolling and position when modal closes
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.width = "";
+        window.scrollTo(0, scrollY);
+      };
+    }
+  }, [isVisible]);
+
   const handleClose = () => {
     setIsVisible(false);
 
@@ -111,7 +132,7 @@ export function ArticleSupportModal() {
           {/* Call to Action Buttons */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Link
-              href="https://lp.paginaum.pt/donativos/"
+              href="https://lp.paginaum.pt/donativos"
               className="group bg-primary hover:bg-primary-dark transition-all duration-300 rounded-lg p-4 text-center flex items-center justify-center space-x-3"
             >
               <Handshake className="w-6 h-6 group-hover:scale-110 transition-transform duration-300 stroke-white" />
