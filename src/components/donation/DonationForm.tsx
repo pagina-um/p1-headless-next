@@ -6,6 +6,7 @@ import { CheckoutInstance, CheckoutManifest } from "@easypaypt/checkout-sdk";
 import { Loader } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Logo } from "../ui/Logo";
+import { setDonationSuccess } from "@/utils/cookies";
 
 type DonationType = "single" | "subscription";
 
@@ -70,9 +71,10 @@ export function DonationForm() {
           const checkoutInstance: CheckoutInstance =
             window.easypayCheckout.startCheckout(checkoutManifest, {
               onSuccess: (successInfo: any) => {
-                console.log("Payment successful:", successInfo);
                 setPaymentInfo(successInfo);
                 paymentSuccessRef.current = true; // Update ref as well
+                // Set donation success flag immediately
+                setDonationSuccess();
               },
               onError: (error: any) => {
                 console.error("Payment error:", error);
