@@ -29,7 +29,6 @@ export function DonationForm() {
   const [checkoutManifest, setCheckoutManifest] =
     useState<CheckoutManifest | null>(null);
   const [showLoader, setShowLoader] = useState(true);
-  const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [paymentInfo, setPaymentInfo] = useState<any>(null);
 
   // Use ref to track payment success status
@@ -42,7 +41,6 @@ export function DonationForm() {
     e.preventDefault();
     setIsLoading(true);
     // Reset payment success when starting new payment
-    setPaymentSuccess(false);
     setPaymentInfo(null);
     paymentSuccessRef.current = false;
 
@@ -73,7 +71,6 @@ export function DonationForm() {
             window.easypayCheckout.startCheckout(checkoutManifest, {
               onSuccess: (successInfo: any) => {
                 console.log("Payment successful:", successInfo);
-                setPaymentSuccess(true);
                 setPaymentInfo(successInfo);
                 paymentSuccessRef.current = true; // Update ref as well
               },
@@ -192,7 +189,6 @@ export function DonationForm() {
               setCheckoutManifest(null);
               setIsLoading(false);
               setShowLoader(true);
-              setPaymentSuccess(false);
               setPaymentInfo(null);
               paymentSuccessRef.current = false;
             }}
