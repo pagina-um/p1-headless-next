@@ -175,14 +175,12 @@ export function DonationForm() {
 
   if (checkoutManifest) {
     return (
-      <div className="bg-white rounded-lg shadow-md max-w-[400px] max-sm:mx-auto">
-        {showLoader && (
-          <Loader className="w-12 h-12 mx-auto text-blue-600 animate-spin mb-4" />
-        )}
+      <div className="bg-white rounded-lg shadow-md max-w-[400px] max-sm:mx-auto relative">
         <div
           id="easypay-checkout"
-          className="min-h-[600px] flex justify-center p-0 min-w-[400px]"
+          className="min-h-[600px] flex justify-center p-0 min-w-[400px] z-10 relative"
         ></div>
+        <Loader className="w-12 h-12 mx-auto text-blue-600 animate-spin mb-4 absolute top-4 left-1/2" />
         <div className="text-center my-4">
           <button
             onClick={() => {
