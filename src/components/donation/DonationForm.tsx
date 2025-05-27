@@ -183,9 +183,9 @@ export function DonationForm() {
         )}
         <div
           id="easypay-checkout"
-          className="min-h-[600px] flex justify-center p-0"
+          className="min-h-[600px] flex justify-center p-0 min-w-[400px]"
         ></div>
-        <div className="text-center mt-4">
+        <div className="text-center my-4">
           <button
             onClick={() => {
               setCheckoutManifest(null);
