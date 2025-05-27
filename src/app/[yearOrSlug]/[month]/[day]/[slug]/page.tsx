@@ -97,8 +97,6 @@ async function PostComponent({ slug }: { slug: string }) {
           </div>
         </div>
       </article>
-
-      <PostFooter />
     </>
   );
 }
