@@ -188,7 +188,38 @@ h3 {
   margin-top: 16px;
   margin-bottom: 8px;
 }
+
+.thrv_wrapper > p {
+  margin-bottom: 16px;
+}
+
 .wp-block-embed-youtube {
   display: flex;
   justify-content: center;
 }
+
+/* ─── Desktop & small-tablet viewports ─────────────────────────────┐
+   ┌── float image + keep first four blocks beside it …             */
+@media (min-width: 40em) {
+  /* 40em ≈ 640 px */
+
+  /* picture column */
+  .tcb-clear {
+    float: left;
+    clear: none !important; /* override Thrive auto-clear */
+    margin: 0 1.5rem 1rem 0; /* gutter */
+  }
+
+  /* text column may wrap around the float */
+  .thrv_text_element {
+    overflow: visible;
+  }
+
+  /* push “Recensão” + following text below the image */
+  .thrv_text_element h3:nth-of-type(4),
+  .thrv_text_element h3:nth-of-type(4) ~ * {
+    clear: both; /* start a new line */
+    margin-left: 0; /* full width */
+  }
+}
+/* ─────────────────────────────────────────────────────────────────┘ */
