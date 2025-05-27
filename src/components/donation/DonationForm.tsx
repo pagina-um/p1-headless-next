@@ -5,6 +5,7 @@ import { createDonationCheckout } from "@/app/contribuir/actions";
 import { CheckoutInstance, CheckoutManifest } from "@easypaypt/checkout-sdk";
 import { Loader } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Logo } from "../ui/Logo";
 
 type DonationType = "single" | "subscription";
 
@@ -34,7 +35,7 @@ export function DonationForm() {
   // Use ref to track payment success status
   const paymentSuccessRef = useRef(false);
 
-  const predefinedAmounts = [5, 10, 25, 50, 100];
+  const predefinedAmounts = [2, 5, 10, 25, 50];
   const { push } = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -205,17 +206,11 @@ export function DonationForm() {
   }
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-md max-w-[400px]">
-      <h3 className="text-2xl font-bold mb-6 text-center">
-        Escolha o seu contributo
-      </h3>
-
+    <div className="bg-white p-4 rounded-lg shadow-md max-w-[400px] max-md:mx-auto">
+      <Logo className="w-[200px] mx-auto mb-4" />
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Donation Type */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-3">
-            Tipo de Contribuição
-          </label>
           <div className="grid grid-cols-2 gap-4">
             <button
               type="button"
@@ -226,7 +221,7 @@ export function DonationForm() {
                   : "border-gray-300 hover:border-gray-400"
               }`}
             >
-              <div className="font-medium">Única</div>
+              <div className="font-medium">Doação</div>
               <div className="text-sm text-gray-500">Doação pontual</div>
             </button>
             <button
@@ -289,7 +284,7 @@ export function DonationForm() {
               htmlFor="name"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Nome Completo *
+              Nome *
             </label>
             <input
               type="text"

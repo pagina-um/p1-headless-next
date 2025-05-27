@@ -6,6 +6,7 @@ import { loadGridStateLocal } from "@/services/local-storage";
 import { loadGridStateRedis } from "@/services/redis";
 import { isDevelopment } from "@/services/config";
 import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
+import { Header } from "@/components/layout/Header";
 
 export const metadata: Metadata = {
   title: "Página UM",
@@ -39,6 +40,7 @@ export default async function HomePage() {
   }
   return (
     <>
+      <Header />
       <main className="max-w-7xl mx-auto pb-8">
         <NewsGrid blocks={initialState.blocks} />
       </main>
