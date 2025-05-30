@@ -291,6 +291,7 @@ export const GET_POST_BY_SLUG = graphql(`
       id
       title
       content
+      databaseId
       date
       slug
       uri
