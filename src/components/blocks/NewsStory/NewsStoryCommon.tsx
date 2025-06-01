@@ -38,6 +38,7 @@ export function NewsStoryCommon({
     <ConditionalLinkWrapper href={isAdmin ? undefined : uri}>
       {story.style === "modern" ? (
         <ModernStoryLayout
+          uri={uri}
           featuredImageWidth={featuredImage?.node?.mediaDetails?.width || 0}
           featuredImageHeight={featuredImage?.node?.mediaDetails?.height || 0}
           featuredImageUrl={featuredImage?.node?.sourceUrl || ""}
@@ -58,6 +59,7 @@ export function NewsStoryCommon({
         />
       ) : (
         <ClassicStoryLayout
+          uri={uri}
           blockSize={[story.gridPosition.width, story.gridPosition.height]}
           featuredImageUrl={featuredImage?.node?.sourceUrl || ""}
           featuredImageSrcSet={featuredImage?.node?.srcSet}
@@ -88,5 +90,6 @@ function ConditionalLinkWrapper({
   children: React.ReactNode;
   href?: string;
 }) {
-  return href ? <Link href={href}>{children}</Link> : <>{children}</>;
+  // return href ? <Link href={href}>{children}</Link> : <>{children}</>;
+  return <>{children}</>;
 }
