@@ -5,9 +5,11 @@ import { Square } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 import { positionMap } from "@/utils/categoryUtils";
 import Image from "next/image";
+import Link from "next/link";
 
 export const MIN_BLOCK_AREA_FOR_EXTRA_CONTENT = 12;
 export interface StoryLayoutProps {
+  uri: string;
   blockSize: [number, number];
   featuredImageUrl: string;
   featuredImageSrcSet?: Maybe<string>;
@@ -45,6 +47,7 @@ export function ClassicStoryLayout({
   expandImage,
   extraBigTitle,
   blockSize,
+  uri,
 }: StoryLayoutProps) {
   const hasTagsToShow = tags.nodes.length > 0;
   const displayImage = !hideImage;
@@ -72,15 +75,17 @@ export function ClassicStoryLayout({
               !expandImage && !isLandscape && "lg:flex-1"
             )}
           >
-            <Image
-              src={featuredImageUrl}
-              alt={featuredImageAlt || ""}
-              fill
-              sizes={getSizesFromBlockArea(blockSize[0] * blockSize[1])}
-              className={twMerge("object-cover")}
-              style={{ objectPosition: positionMap[objectPosition] }}
-              quality={85}
-            />
+            <Link href={uri}>
+              <Image
+                src={featuredImageUrl}
+                alt={featuredImageAlt || ""}
+                fill
+                sizes={getSizesFromBlockArea(blockSize[0] * blockSize[1])}
+                className={twMerge("object-cover")}
+                style={{ objectPosition: positionMap[objectPosition] }}
+                quality={85}
+              />
+            </Link>
           </div>
         )}
         <div className="lg:flex-1 flex flex-col justify-start max-lg:border-b-2 max-lg:pb-4">
@@ -139,14 +144,15 @@ export function ClassicStoryLayout({
                 textAlign={shouldReverse ? "right" : "left"}
               />
             ) : (
-              title
+              <Link href={uri}>{title}</Link>
             )}
           </h2>
           {(postFields.chamadaDestaque || postFields.chamadaManchete) && (
             <p
               className={twMerge(
                 "text-gray-600 text-sm",
-                shouldReverse && "lg:text-right"
+                shouldReverse && "lg:text-right",
+                !isAdmin && "select-text"
               )}
             >
               {isAdmin ? (
