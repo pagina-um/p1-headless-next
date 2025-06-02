@@ -23,7 +23,7 @@ export interface PostPageProps {
   };
 }
 
-async function getPostBySlug(slug: string) {
+export async function getPostBySlug(slug: string) {
   const { data, error } = await getClient().query(GET_POST_BY_SLUG, {
     slug,
   });
