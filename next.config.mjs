@@ -89,9 +89,14 @@ const nextConfig = {
         source: "/media/:path*",
         destination: `${process.env.NEXT_PUBLIC_WP_URL}/wp-content/uploads/:path*`,
       },
+      // Support feed with or without trail slash
       {
         source: '/feed',
-        destination: `${process.env.NEXT_PUBLIC_WP_URL}/feed`,
+        destination: `${process.env.NEXT_PUBLIC_WP_URL}/feed/`,
+      },
+      {
+        source: '/feed/',
+        destination: `${process.env.NEXT_PUBLIC_WP_URL}/feed/`,
       }
     ];
   },
