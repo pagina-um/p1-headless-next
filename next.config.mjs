@@ -89,6 +89,10 @@ const nextConfig = {
         source: "/media/:path*",
         destination: `${process.env.NEXT_PUBLIC_WP_URL}/wp-content/uploads/:path*`,
       },
+      {
+        source: '/feed',
+        destination: `${process.env.NEXT_PUBLIC_WP_URL}/feed`,
+      }
     ];
   },
 
