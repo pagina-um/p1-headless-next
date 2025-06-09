@@ -55,7 +55,7 @@ export function PostFooter() {
               href="/contactos"
               className="hover:text-primary transition-colors duration-200 text-sm uppercase tracking-wider text-slate-400"
             >
-              Apoios e Contactos
+              Termos e Contactos
             </Link>
             <Link
               href="/ficha-tecnica"
