@@ -6,49 +6,49 @@ import { MetadataRoute } from "next";
 
 export const staticPages: MetadataRoute.Sitemap = [
   {
-    url: "https://www.paginaum.pt",
+    url: "https://paginaum.pt",
     lastModified: new Date(),
     changeFrequency: "daily" as const,
     priority: 1,
   },
   {
-    url: "https://www.paginaum.pt/contactos",
+    url: "https://paginaum.pt/contactos",
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.5,
   },
   {
-    url: "https://www.paginaum.pt/ficha-tecnica",
+    url: "https://paginaum.pt/ficha-tecnica",
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.5,
   },
   {
-    url: "https://www.paginaum.pt/politica-de-privacidade",
+    url: "https://paginaum.pt/politica-de-privacidade",
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.5,
   },
   {
-    url: "https://www.paginaum.pt/estatuto-editorial",
+    url: "https://paginaum.pt/estatuto-editorial",
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.5,
   },
   {
-    url: "https://www.paginaum.pt/codigo-de-principios",
+    url: "https://paginaum.pt/codigo-de-principios",
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.5,
   },
   {
-    url: "https://www.paginaum.pt/politica-de-correccoes",
+    url: "https://paginaum.pt/politica-de-correccoes",
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.5,
   },
   {
-    url: "https://www.paginaum.pt/codigo-de-transparencia",
+    url: "https://paginaum.pt/codigo-de-transparencia",
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.5,
@@ -65,7 +65,7 @@ export default async function sitemap({
 }: {
   id: number;
 }): Promise<MetadataRoute.Sitemap> {
-  const BASE_URL = "https://www.paginaum.pt";
+  const BASE_URL = "https://paginaum.pt";
   let allPosts: MetadataRoute.Sitemap = [];
   let hasNextPage = true;
   let after = null;

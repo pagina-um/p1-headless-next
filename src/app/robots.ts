@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/admin",
     },
-    sitemap: "https://www.paginaum.pt/sitemap/0.xml",
+    sitemap: "https://paginaum.pt/sitemap/0.xml",
   };
 }

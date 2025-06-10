@@ -90,7 +90,7 @@ async function PostComponent({ slug }: { slug: string }) {
             {" "}
             Partilhe esta notícia nas redes sociais.{" "}
             <SocialShare
-              url={"http://www.paginaum.pt" + (data.postBy.uri || "")}
+              url={"http://paginaum.pt" + (data.postBy.uri || "")}
               description=""
               title={data.postBy.title || ""}
             />

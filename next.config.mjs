@@ -6,7 +6,7 @@ const nextConfig = {
   images: {
     domains: [
       "images.unsplash.com",
-      "www.paginaum.pt",
+      "paginaum.pt",
       domain,
       "secure.gravatar.com",
     ],
@@ -91,13 +91,13 @@ const nextConfig = {
       },
       // Support feed with or without trail slash
       {
-        source: '/feed',
+        source: "/feed",
         destination: `${process.env.NEXT_PUBLIC_WP_URL}/feed/`,
       },
       {
-        source: '/feed/',
+        source: "/feed/",
         destination: `${process.env.NEXT_PUBLIC_WP_URL}/feed/`,
-      }
+      },
     ];
   },
 

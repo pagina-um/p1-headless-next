@@ -64,7 +64,7 @@ export function PostHeader({ post }: { post: PostBySlugData["data"] }) {
         {/* Social share section */}
         <div className="flex gap-4">
           <SocialShare
-            url={"http://www.paginaum.pt" + (post?.postBy?.uri || "")}
+            url={"http://paginaum.pt" + (post?.postBy?.uri || "")}
             description=""
             title={post?.postBy?.title || ""}
           />

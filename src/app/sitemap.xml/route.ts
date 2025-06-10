@@ -23,7 +23,7 @@ function errorResponse() {
 }
 
 export async function GET() {
-  const BASE_URL = "https://www.paginaum.pt";
+  const BASE_URL = "https://paginaum.pt";
   const xmlBuilder: string[] = [];
   let hasNextPage = true;
   let after = null;

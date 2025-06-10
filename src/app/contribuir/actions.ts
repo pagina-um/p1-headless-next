@@ -73,7 +73,7 @@ export async function createDonationCheckout(
     payment: payment,
     order: order,
     config: {
-      logo_url: "https://www.paginaum.pt/icon.png",
+      logo_url: "https://paginaum.pt/icon.png",
       background_color: "#ffffff",
       accent_color: "#e10012",
     },

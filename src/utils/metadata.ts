@@ -25,7 +25,7 @@ export const defaultMetadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_PT",
-    url: "https://www.paginaum.pt",
+    url: "https://paginaum.pt",
     siteName: "Página UM",
     images: [
       {
@@ -38,7 +38,7 @@ export const defaultMetadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "https://www.paginaum.pt",
+    site: "https://paginaum.pt",
     creator: "@PAG_UM",
   },
   robots: {
@@ -93,7 +93,7 @@ export const makeMetadataObject = (
             },
           ]
         : undefined,
-      url: `https://www.paginaum.pt/${year}/${month}/${day}/${slug}`,
+      url: `https://paginaum.pt/${year}/${month}/${day}/${slug}`,
     },
     twitter: {
       card: "summary_large_image",
