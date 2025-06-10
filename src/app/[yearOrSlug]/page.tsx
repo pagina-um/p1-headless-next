@@ -49,7 +49,6 @@ export default async function StaticPage({
         <h1>{data.pageBy.title}</h1>
         {parse(data.pageBy.content, parserOptions)}
       </article>
-      <PostFooter />
     </>
   );
 }
