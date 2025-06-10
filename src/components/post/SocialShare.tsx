@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Twitter, Facebook, MessageCircle } from "lucide-react";
+import { Facebook, MessageCircle } from "lucide-react";
 
 export default function SocialShare({
   url,
@@ -57,10 +57,10 @@ export default function SocialShare({
     <div className="flex gap-x-2 items-center">
       <button
         onClick={handleTwitterShare}
-        className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+        className="p-2 rounded-full hover:text-primary text-3xl transition-colors"
         aria-label="Share on Twitter"
       >
-        <Twitter className="w-6 h-6 hover:stroke-primary" />
+        𝕏
       </button>
 
       <button
