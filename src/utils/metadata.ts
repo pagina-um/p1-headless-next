@@ -105,7 +105,7 @@ export const makeMetadataObject = (
     },
     // Add schema.org structured data
     alternates: {
-      canonical: `https://www.paginaum.pt/${year}/${month}/${day}/${slug}`,
+      canonical: `https://paginaum.pt/${year}/${month}/${day}/${slug}`,
     },
   };
 };
