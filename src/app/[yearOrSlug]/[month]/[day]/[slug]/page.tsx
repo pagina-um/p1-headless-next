@@ -81,8 +81,6 @@ async function PostComponent({ slug }: { slug: string }) {
   return (
     <>
       <article>
-        <ArticleSupportModal />
-
         <div className="max-w-4xl mx-auto px-4 py-12">
           <PostHeader post={data} />
           <PostContent content={data.postBy?.content || ""} />
