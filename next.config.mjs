@@ -18,6 +18,21 @@ const nextConfig = {
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "lp.paginaum.pt",
+          },
+        ],
+        destination: "https://www.paginaum.pt/contribuir",
+        permanent: true,
+      },
+    ];
+  },
 
   async rewrites() {
     return [
