@@ -107,7 +107,7 @@ export default function SucessoPage({ searchParams }: SuccessPageProps) {
               Voltar ao início
             </Link>
             <Link
-              href="/contribuir"
+              href="/donativos"
               className="inline-flex items-center justify-center bg-gray-200 text-gray-700 px-6 py-3 rounded-md font-medium hover:bg-gray-300 transition-colors"
             >
               <Heart className="w-4 h-4 mr-2" />

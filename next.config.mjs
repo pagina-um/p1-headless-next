@@ -28,7 +28,7 @@ const nextConfig = {
             value: "lp.paginaum.pt",
           },
         ],
-        destination: "https://www.paginaum.pt/contribuir",
+        destination: "https://www.paginaum.pt/donativos",
         permanent: true,
       },
     ];

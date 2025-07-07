@@ -132,7 +132,7 @@ export function ArticleSupportModal() {
           {/* Call to Action Buttons */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Link
-              href="/contribuir"
+              href="/donativos"
               className="group bg-primary hover:bg-primary-dark transition-all duration-300 rounded-lg p-4 text-center flex items-center justify-center space-x-3"
             >
               <Handshake className="w-6 h-6 group-hover:scale-110 transition-transform duration-300 stroke-white" />

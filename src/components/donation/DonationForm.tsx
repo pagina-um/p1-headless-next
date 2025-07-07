@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { createDonationCheckout } from "@/app/contribuir/actions";
+import { createDonationCheckout } from "@/app/donativos/actions";
 import { CheckoutInstance, CheckoutManifest } from "@easypaypt/checkout-sdk";
 import { Loader } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -110,7 +110,7 @@ export function DonationForm() {
                     params.set("payment_id", paymentId);
                   }
 
-                  return push(`/contribuir/sucesso?${params.toString()}`);
+                  return push(`/donativos/sucesso?${params.toString()}`);
                 }
                 console.log("Checkout closed without success");
                 setCheckoutManifest(null);
