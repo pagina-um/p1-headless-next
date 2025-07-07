@@ -34,7 +34,7 @@ export function DonationForm() {
   // Use ref to track payment success status
   const paymentSuccessRef = useRef(false);
 
-  const predefinedAmounts = [2, 5, 10, 25, 50];
+  const predefinedAmounts = [5, 10, 25, 50, 100];
   const { push } = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
