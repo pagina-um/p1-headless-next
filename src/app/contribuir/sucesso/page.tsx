@@ -59,29 +59,6 @@ export default function SucessoPage({ searchParams }: SuccessPageProps) {
           <div className="grid md:grid-cols-2 gap-6 mb-12 max-w-4xl mx-auto">
             <div className="bg-white p-6 rounded-lg shadow-md">
               <h2 className="text-xl font-bold mb-4 text-gray-900">
-                O que acontece agora?
-              </h2>
-              {type === "subscription" ? (
-                <ul className="text-left text-gray-600 space-y-2">
-                  <li>• Receberá um email de confirmação</li>
-                  <li>• O pagamento será processado mensalmente</li>
-                  <li>• Pode cancelar a qualquer momento</li>
-                  <li>• Terá acesso a conteúdo exclusivo (em breve)</li>
-                </ul>
-              ) : (
-                <ul className="text-left text-gray-600 space-y-2">
-                  <li>• Receberá um email de confirmação</li>
-                  <li>• O pagamento foi processado imediatamente</li>
-                  <li>
-                    • A sua contribuição ajuda-nos a manter a independência
-                  </li>
-                  <li>• Pode contribuir novamente sempre que desejar</li>
-                </ul>
-              )}
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h2 className="text-xl font-bold mb-4 text-gray-900">
                 Partilhe a nossa missão
               </h2>
               <p className="text-gray-600 mb-4">
