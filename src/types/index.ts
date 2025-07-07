@@ -56,7 +56,7 @@ export interface StaticBlock extends BaseBlock {
   blockType: "static";
   title: string;
   content: string;
-  type: "newsletter" | "podcast" | "divider";
+  type: "newsletter" | "podcast" | "divider" | "donation";
 }
 
 // Union type for all blocks

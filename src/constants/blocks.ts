@@ -48,6 +48,12 @@ export const STATIC_BLOCKS = {
     content: "A simple divider to separate content.",
     defaultSize: { width: 10, height: 1 },
   },
+  donation: {
+    type: "donation" as const,
+    title: "Apoiar",
+    content: "Support independent journalism by making a donation.",
+    defaultSize: { width: 3, height: 4 },
+  },
 };
 
 export const GRID_COLUMNS = 10;

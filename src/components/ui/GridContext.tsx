@@ -31,7 +31,7 @@ type GridContextType = {
   handleCreateCategoryBlock: (id: number, name: string) => void;
   handleUpdateBlockSettings: (block: Block) => void;
   handleCreateStaticBlock: (
-    title: "newsletter" | "podcast" | "divider"
+    title: "newsletter" | "podcast" | "divider" | "donation"
   ) => void;
   handleCreateStoryBlock: (databaseId: number, postId: string) => void;
   handleClearLayout: () => void;
@@ -178,7 +178,7 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
   };
 
   const handleCreateStaticBlock = (
-    type: "newsletter" | "podcast" | "divider"
+    type: "newsletter" | "podcast" | "divider" | "donation"
   ) => {
     if (!gridState) return;
     const newBlock: StaticBlock = {
