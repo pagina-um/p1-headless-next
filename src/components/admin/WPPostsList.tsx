@@ -36,7 +36,7 @@ export function WPPostsList({
               {post.featuredImage?.node?.sourceUrl && (
                 <img
                   src={post.featuredImage.node.sourceUrl}
-                  alt={post.featuredImage.node.altText || 'Featured image'}
+                  alt={post.featuredImage.node.altText || "Featured image"}
                   className="w-12 h-12 object-cover rounded flex-shrink-0"
                 />
               )}
@@ -48,14 +48,17 @@ export function WPPostsList({
                 {(() => {
                   // Prioritize custom fields for preview text
                   const postFields = post.postFields as any;
-                  const previewText = postFields?.chamadaDestaque || 
-                                    postFields?.chamadaManchete || 
-                                    post.excerpt;
-                  return previewText && (
-                    <p 
-                      className="text-xs text-gray-500 mt-1 line-clamp-1"
-                      dangerouslySetInnerHTML={{ __html: previewText }}
-                    />
+                  const previewText =
+                    postFields?.chamadaDestaque ||
+                    postFields?.chamadaManchete ||
+                    post.excerpt;
+                  return (
+                    previewText && (
+                      <p
+                        className="text-xs text-gray-500 mt-1 line-clamp-1"
+                        dangerouslySetInnerHTML={{ __html: previewText }}
+                      />
+                    )
                   );
                 })()}
               </div>

@@ -59,10 +59,16 @@ export function NotificationsPage() {
       const getNotificationBody = () => {
         // Try chamadaDestaque first, then chamadaManchete, then excerpt, then fallback
         if (selectedPost.postFields?.chamadaDestaque) {
-          return selectedPost.postFields.chamadaDestaque.replace(/<[^>]*>/g, "");
+          return selectedPost.postFields.chamadaDestaque.replace(
+            /<[^>]*>/g,
+            ""
+          );
         }
         if (selectedPost.postFields?.chamadaManchete) {
-          return selectedPost.postFields.chamadaManchete.replace(/<[^>]*>/g, "");
+          return selectedPost.postFields.chamadaManchete.replace(
+            /<[^>]*>/g,
+            ""
+          );
         }
         if (selectedPost.excerpt) {
           return selectedPost.excerpt.replace(/<[^>]*>/g, "");
@@ -294,13 +300,16 @@ export function NotificationsPage() {
                   {selectedPost.featuredImage?.node?.sourceUrl && (
                     <img
                       src={selectedPost.featuredImage.node.sourceUrl}
-                      alt={selectedPost.featuredImage.node.altText || 'Featured image'}
+                      alt={
+                        selectedPost.featuredImage.node.altText ||
+                        "Featured image"
+                      }
                       className="w-16 h-16 object-cover rounded"
                     />
                   )}
                   <div className="flex-1 min-w-0">
                     <h3 className="font-medium text-sm text-blue-900 line-clamp-2">
-                      {selectedPost.title?.replace(/<[^>]*>/g, '')}
+                      {selectedPost.title?.replace(/<[^>]*>/g, "")}
                     </h3>
                     <p className="text-xs text-blue-700 mt-1">
                       História selecionada para notificação
@@ -447,7 +456,7 @@ export function NotificationsPage() {
                       alt="Preview da notificação"
                       className="w-20 h-20 object-cover rounded border"
                       onError={(e) => {
-                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.style.display = "none";
                       }}
                     />
                   </div>
