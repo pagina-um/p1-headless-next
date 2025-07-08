@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { Settings, ArrowLeft, Menu } from "lucide-react";
+import { Settings, ArrowLeft, Menu, Bell, BellOff, Loader2 } from "lucide-react";
 import { Logo } from "../ui/Logo";
 import { DesktopNav } from "./DesktopNav";
 import { MobileNav } from "./MobileNav";
 import { useScrollHeader } from "@/hooks/useScrollHeader";
+import { usePushNotifications } from "@/hooks/usePushNotifications";
 import Link from "next/link";
 import { SearchButton } from "./SearchButton";
 
@@ -15,6 +16,45 @@ export function Header() {
   const { isScrolled } = useScrollHeader();
   const pathname = usePathname();
   const isAdmin = pathname === "/admin";
+  
+  const {
+    isSupported,
+    permission,
+    isSubscribed,
+    loading,
+    requestPermission,
+    subscribe,
+    unsubscribe,
+  } = usePushNotifications();
+
+  const handleNotificationToggle = async () => {
+    if (isSubscribed) {
+      await unsubscribe();
+    } else {
+      if (permission === "default") {
+        const granted = await requestPermission();
+        if (granted) {
+          await subscribe();
+        }
+      } else if (permission === "granted") {
+        await subscribe();
+      }
+    }
+  };
+
+  const getNotificationIcon = () => {
+    if (loading) return Loader2;
+    if (!isSupported || permission === "denied") return BellOff;
+    return isSubscribed ? Bell : BellOff;
+  };
+
+  const getNotificationColor = () => {
+    if (!isSupported || permission === "denied") return "text-gray-400";
+    if (loading) return "text-blue-600";
+    return isSubscribed ? "text-green-600" : "text-gray-600";
+  };
+
+  const NotificationIcon = getNotificationIcon();
 
   return (
     <>
@@ -34,13 +74,44 @@ export function Header() {
               ${isScrolled ? "h-14 md:h-16" : "h-16 md:h-24"}
             `}
           >
-            {/* Mobile menu button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(true)}
-              className="p-2 hover:bg-gray-100 rounded-full transition-colors md:hidden"
-            >
-              <Menu className="w-6 h-6" />
-            </button>
+            {/* Mobile controls */}
+            <div className="flex items-center gap-2 md:hidden">
+              {/* Notification button */}
+              {!isAdmin && (
+                <button
+                  onClick={handleNotificationToggle}
+                  disabled={!isSupported || permission === "denied" || loading}
+                  className={`p-2 rounded-full transition-colors ${
+                    !isSupported || permission === "denied"
+                      ? "cursor-not-allowed opacity-50"
+                      : "hover:bg-gray-100"
+                  }`}
+                  title={
+                    !isSupported
+                      ? "Notificações não suportadas"
+                      : permission === "denied"
+                      ? "Permissão negada"
+                      : isSubscribed
+                      ? "Desativar notificações"
+                      : "Ativar notificações"
+                  }
+                >
+                  <NotificationIcon 
+                    className={`w-5 h-5 ${getNotificationColor()} ${
+                      loading ? "animate-spin" : ""
+                    }`} 
+                  />
+                </button>
+              )}
+              
+              {/* Menu button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(true)}
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <Menu className="w-6 h-6" />
+              </button>
+            </div>
 
             <div className="flex-1 flex flex-col items-center md:items-start">
               <div
