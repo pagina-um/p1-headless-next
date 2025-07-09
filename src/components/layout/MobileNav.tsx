@@ -1,5 +1,12 @@
 import React from "react";
-import { X, Bell, BellOff, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import {
+  X,
+  Bell,
+  BellOff,
+  CheckCircle,
+  AlertCircle,
+  Loader2,
+} from "lucide-react";
 import { NavigationLinks } from "./NavigationLinks";
 import { usePushNotifications } from "../../hooks/usePushNotifications";
 
@@ -15,24 +22,11 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
     isSubscribed,
     loading,
     error,
-    requestPermission,
-    subscribe,
-    unsubscribe,
+    toggleSubscription,
   } = usePushNotifications();
 
   const handleNotificationToggle = async () => {
-    if (isSubscribed) {
-      await unsubscribe();
-    } else {
-      if (permission === "default") {
-        const granted = await requestPermission();
-        if (granted) {
-          await subscribe();
-        }
-      } else if (permission === "granted") {
-        await subscribe();
-      }
-    }
+    await toggleSubscription();
   };
 
   const getNotificationStatus = () => {
@@ -72,9 +66,19 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
       };
     }
 
+    // Show different message based on permission state for iOS clarity
+    if (permission === "granted") {
+      return {
+        icon: BellOff,
+        text: "Ativar notificações",
+        color: "text-gray-600",
+        disabled: false,
+      };
+    }
+
     return {
       icon: BellOff,
-      text: "Ativar notificações",
+      text: "Permitir notificações",
       color: "text-gray-600",
       disabled: false,
     };
@@ -114,13 +118,15 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                   : "hover:bg-gray-50 active:bg-gray-100"
               }`}
             >
-              <StatusIcon 
+              <StatusIcon
                 className={`w-5 h-5 ${notificationStatus.color} ${
                   loading ? "animate-spin" : ""
-                }`} 
+                }`}
               />
               <div className="flex-1 text-left">
-                <span className={`text-sm font-medium ${notificationStatus.color}`}>
+                <span
+                  className={`text-sm font-medium ${notificationStatus.color}`}
+                >
                   {notificationStatus.text}
                 </span>
                 {isSupported && permission !== "denied" && (

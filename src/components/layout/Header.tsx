@@ -2,7 +2,14 @@
 
 import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { Settings, ArrowLeft, Menu, Bell, BellOff, Loader2 } from "lucide-react";
+import {
+  Settings,
+  ArrowLeft,
+  Menu,
+  Bell,
+  BellOff,
+  Loader2,
+} from "lucide-react";
 import { Logo } from "../ui/Logo";
 import { DesktopNav } from "./DesktopNav";
 import { MobileNav } from "./MobileNav";
@@ -16,30 +23,12 @@ export function Header() {
   const { isScrolled } = useScrollHeader();
   const pathname = usePathname();
   const isAdmin = pathname === "/admin";
-  
-  const {
-    isSupported,
-    permission,
-    isSubscribed,
-    loading,
-    requestPermission,
-    subscribe,
-    unsubscribe,
-  } = usePushNotifications();
+
+  const { isSupported, permission, isSubscribed, loading, toggleSubscription } =
+    usePushNotifications();
 
   const handleNotificationToggle = async () => {
-    if (isSubscribed) {
-      await unsubscribe();
-    } else {
-      if (permission === "default") {
-        const granted = await requestPermission();
-        if (granted) {
-          await subscribe();
-        }
-      } else if (permission === "granted") {
-        await subscribe();
-      }
-    }
+    await toggleSubscription();
   };
 
   const getNotificationIcon = () => {
@@ -90,20 +79,20 @@ export function Header() {
                     !isSupported
                       ? "Notificações não suportadas"
                       : permission === "denied"
-                      ? "Permissão negada"
-                      : isSubscribed
-                      ? "Desativar notificações"
-                      : "Ativar notificações"
+                        ? "Permissão negada"
+                        : isSubscribed
+                          ? "Desativar notificações"
+                          : "Ativar notificações"
                   }
                 >
-                  <NotificationIcon 
+                  <NotificationIcon
                     className={`w-5 h-5 ${getNotificationColor()} ${
                       loading ? "animate-spin" : ""
-                    }`} 
+                    }`}
                   />
                 </button>
               )}
-              
+
               {/* Menu button */}
               <button
                 onClick={() => setIsMobileMenuOpen(true)}

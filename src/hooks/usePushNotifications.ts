@@ -16,6 +16,7 @@ interface UsePushNotificationsReturn {
   subscribe: () => Promise<boolean>;
   unsubscribe: () => Promise<boolean>;
   sendNotification: (payload: NotificationPayload) => Promise<boolean>;
+  toggleSubscription: () => Promise<boolean>; // Add this new method
 }
 
 export function usePushNotifications(): UsePushNotificationsReturn {
@@ -158,6 +159,28 @@ export function usePushNotifications(): UsePushNotificationsReturn {
     [isSupported]
   );
 
+  // iOS-friendly toggle method that handles the two-step process
+  const toggleSubscription = useCallback(async (): Promise<boolean> => {
+    if (!!subscription) {
+      // Already subscribed, so unsubscribe
+      return await unsubscribe();
+    } else {
+      if (permission === "default") {
+        // First step: request permission
+        const granted = await requestPermission();
+        if (!granted) return false;
+
+        // On iOS, the permission dialog prevents immediate subscription
+        // We need to wait for the next user interaction
+        return false; // Return false to indicate subscription is not complete yet
+      } else if (permission === "granted") {
+        // Second step: actually subscribe
+        return await subscribe();
+      }
+    }
+    return false;
+  }, [subscription, permission, requestPermission, subscribe, unsubscribe]);
+
   return {
     isSupported,
     permission,
@@ -169,5 +192,6 @@ export function usePushNotifications(): UsePushNotificationsReturn {
     subscribe,
     unsubscribe,
     sendNotification,
+    toggleSubscription,
   };
 }
