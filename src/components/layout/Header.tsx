@@ -14,9 +14,9 @@ import { Logo } from "../ui/Logo";
 import { DesktopNav } from "./DesktopNav";
 import { MobileNav } from "./MobileNav";
 import { useScrollHeader } from "@/hooks/useScrollHeader";
-import { usePushNotifications } from "@/hooks/usePushNotifications";
 import Link from "next/link";
 import { SearchButton } from "./SearchButton";
+import { usePushNotifications } from "@/contexts/PushNotificationsContext";
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

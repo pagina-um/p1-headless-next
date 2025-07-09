@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Bell, BellOff, Settings } from "lucide-react";
-import { usePushNotifications } from "@/hooks/usePushNotifications";
+import { usePushNotifications } from "@/contexts/PushNotificationsContext";
 
 export function NotificationSettings() {
   const {

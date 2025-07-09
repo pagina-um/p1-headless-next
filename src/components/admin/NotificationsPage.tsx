@@ -10,12 +10,12 @@ import {
   X,
   RefreshCw,
 } from "lucide-react";
-import { usePushNotifications } from "@/hooks/usePushNotifications";
 import { NotificationPayload } from "@/services/push-notifications";
 import { WPPostsList } from "./WPPostsList";
 import { useQuery } from "@urql/next";
 import { GET_LATEST_POSTS } from "@/services/wp-graphql";
 import Link from "next/link";
+import { usePushNotifications } from "@/contexts/PushNotificationsContext";
 
 export function NotificationsPage() {
   const {

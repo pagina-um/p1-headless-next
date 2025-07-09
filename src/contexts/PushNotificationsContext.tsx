@@ -1,11 +1,20 @@
-import { useState, useEffect, useCallback } from "react";
+"use client";
+
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  ReactNode,
+} from "react";
 import {
   pushNotificationService,
   NotificationPayload,
   PushSubscription,
 } from "@/services/push-notifications";
 
-interface UsePushNotificationsReturn {
+interface PushNotificationsContextValue {
   isSupported: boolean;
   permission: NotificationPermission | null;
   subscription: PushSubscription | null;
@@ -16,10 +25,19 @@ interface UsePushNotificationsReturn {
   subscribe: () => Promise<boolean>;
   unsubscribe: () => Promise<boolean>;
   sendNotification: (payload: NotificationPayload) => Promise<boolean>;
-  toggleSubscription: () => Promise<boolean>; // Add this new method
+  toggleSubscription: () => Promise<boolean>;
 }
 
-export function usePushNotifications(): UsePushNotificationsReturn {
+const PushNotificationsContext =
+  createContext<PushNotificationsContextValue | null>(null);
+
+interface PushNotificationsProviderProps {
+  children: ReactNode;
+}
+
+export function PushNotificationsProvider({
+  children,
+}: PushNotificationsProviderProps) {
   const [isSupported, setIsSupported] = useState(false);
   const [permission, setPermission] = useState<NotificationPermission | null>(
     null
@@ -181,7 +199,7 @@ export function usePushNotifications(): UsePushNotificationsReturn {
     return false;
   }, [subscription, permission, requestPermission, subscribe, unsubscribe]);
 
-  return {
+  const contextValue: PushNotificationsContextValue = {
     isSupported,
     permission,
     subscription,
@@ -194,4 +212,22 @@ export function usePushNotifications(): UsePushNotificationsReturn {
     sendNotification,
     toggleSubscription,
   };
+
+  return (
+    <PushNotificationsContext.Provider value={contextValue}>
+      {children}
+    </PushNotificationsContext.Provider>
+  );
+}
+
+export function usePushNotifications(): PushNotificationsContextValue {
+  const context = useContext(PushNotificationsContext);
+
+  if (!context) {
+    throw new Error(
+      "usePushNotifications must be used within a PushNotificationsProvider"
+    );
+  }
+
+  return context;
 }

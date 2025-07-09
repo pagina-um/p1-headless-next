@@ -8,7 +8,7 @@ import {
   Loader2,
 } from "lucide-react";
 import { NavigationLinks } from "./NavigationLinks";
-import { usePushNotifications } from "../../hooks/usePushNotifications";
+import { usePushNotifications } from "@/contexts/PushNotificationsContext";
 
 interface MobileNavProps {
   isOpen: boolean;

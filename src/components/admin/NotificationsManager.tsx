@@ -9,8 +9,8 @@ import {
   CheckCircle,
   X,
 } from "lucide-react";
-import { usePushNotifications } from "@/hooks/usePushNotifications";
 import { NotificationPayload } from "@/services/push-notifications";
+import { usePushNotifications } from "@/contexts/PushNotificationsContext";
 
 interface NotificationsManagerProps {
   selectedPost?: {
