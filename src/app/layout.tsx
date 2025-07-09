@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
-import { Header } from "@/components/layout/Header";
 import "@/styles/globals.css";
 import CookieConsent from "@/components/CookieConsent";
-import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
 import NextTopLoader from "nextjs-toploader";
 import { twMerge } from "tailwind-merge";
-import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
@@ -43,7 +40,6 @@ export default function RootLayout({
         content="Wj_fmHQpUTV1dCIq5m4CqVtryF2z_6sLyKsEXOF_3e0"
       />
       <body className="min-h-screen bg-gray-100">
-        <ServiceWorkerRegistration />
         <SpeedInsights />
         <NextTopLoader color="#e10012" shadow={false} showSpinner={false} />
 
