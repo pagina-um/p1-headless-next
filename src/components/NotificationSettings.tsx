@@ -10,27 +10,10 @@ export function NotificationSettings() {
     isSubscribed,
     loading,
     error,
-    requestPermission,
-    subscribe,
-    unsubscribe,
+    toggleSubscription: handleToggleNotifications,
   } = usePushNotifications();
 
   const [showSettings, setShowSettings] = useState(false);
-
-  const handleToggleNotifications = async () => {
-    if (isSubscribed) {
-      await unsubscribe();
-    } else {
-      if (permission !== "granted") {
-        const granted = await requestPermission();
-        if (granted) {
-          await subscribe();
-        }
-      } else {
-        await subscribe();
-      }
-    }
-  };
 
   if (!isSupported) {
     return null; // Don't show anything if not supported
