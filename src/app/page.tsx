@@ -40,12 +40,12 @@ export default async function HomePage() {
     );
   }
   return (
-    <PushNotificationsProvider>
+    <>
       <Header />
       <main className="max-w-7xl mx-auto pb-8">
         <NewsGrid blocks={initialState.blocks} />
       </main>
       <PostFooter />
-    </PushNotificationsProvider>
+    </>
   );
 }
