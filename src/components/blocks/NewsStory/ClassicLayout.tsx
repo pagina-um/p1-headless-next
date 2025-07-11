@@ -90,49 +90,56 @@ export function ClassicStoryLayout({
                 style={{ objectPosition: positionMap[objectPosition] }}
                 quality={85}
               />
+              <div
+                className={twMerge(
+                  "absolute h-fit bottom-0",
+                  !isLandscape ? "bottom-0" : "lg:top-0"
+                )}
+              >
+                {" "}
+                {postFields.antetitulo && (
+                  <p
+                    className={twMerge(
+                      " flex bg-primary-dark  w-fit pr-2  items-start text-pretty text-white underline-offset-2 text-xs  gap-x-1 p-1",
+                      !shouldReverse && "lg:flex-row-reverse lg:text-right"
+                    )}
+                  >
+                    {isAdmin ? (
+                      <EditableText
+                        blockUid={blockUid}
+                        originalText={postFields.antetitulo}
+                        fieldName="antetitulo"
+                        textAlign={shouldReverse ? "right" : "left"}
+                      />
+                    ) : (
+                      postFields.antetitulo
+                    )}
+                  </p>
+                )}
+                {!postFields.antetitulo && hasTagsToShow && (
+                  <div
+                    className={twMerge(
+                      "flex gap-2 text-balance text-gray-600 font-medium underline-offset-2",
+                      shouldReverse && "lg:flex-row-reverse"
+                    )}
+                  >
+                    {tags.nodes
+                      .filter((tag: any) => !tag.name.includes("estaque"))
+                      .map((tag: any) => (
+                        <div
+                          className="bg-primary-dark text-white uppercase font-medium text-xs px-2 py-1"
+                          key={tag.id}
+                        >
+                          {tag.name}
+                        </div>
+                      ))}
+                  </div>
+                )}
+              </div>
             </Link>
           </div>
         )}
         <div className="lg:flex-1 flex flex-col justify-start max-lg:border-b-2 max-lg:pb-4">
-          {postFields.antetitulo && (
-            <p
-              className={twMerge(
-                "bg-opacity-50 flex bg-white  w-fit pr-2 border items-start text-pretty text-primary-dark font-medium  underline-offset-2 text-sm  gap-x-1 before:content-[''] before:block before:w-1 before:h-full before:bg-primary-dark before:flex-shrink-0 ",
-                shouldReverse && "lg:flex-row-reverse lg:text-right"
-              )}
-            >
-              {isAdmin ? (
-                <EditableText
-                  blockUid={blockUid}
-                  originalText={postFields.antetitulo}
-                  fieldName="antetitulo"
-                  textAlign={shouldReverse ? "right" : "left"}
-                />
-              ) : (
-                postFields.antetitulo
-              )}
-            </p>
-          )}
-          {!postFields.antetitulo && hasTagsToShow && (
-            <div
-              className={twMerge(
-                "flex gap-2 text-balance text-gray-600 font-medium underline-offset-2",
-                shouldReverse && "lg:flex-row-reverse"
-              )}
-            >
-              {tags.nodes
-                .filter((tag: any) => !tag.name.includes("estaque"))
-                .map((tag: any) => (
-                  <div
-                    className="bg-primary-dark text-white uppercase font-medium text-xs px-2 py-1"
-                    key={tag.id}
-                  >
-                    {tag.name}
-                  </div>
-                ))}
-            </div>
-          )}
-
           <h2
             className={twMerge(
               "font-serif text-2xl font-bold mb-3 leading-tight text-pretty",
@@ -155,7 +162,7 @@ export function ClassicStoryLayout({
           {(postFields.chamadaDestaque || postFields.chamadaManchete) && (
             <p
               className={twMerge(
-                "text-gray-600 text-sm",
+                "text-gray-600 text-md",
                 shouldReverse && "lg:text-right",
                 !isAdmin && "select-text"
               )}
