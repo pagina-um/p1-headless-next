@@ -109,7 +109,7 @@ export function ClassicStoryLayout({
                       className={twMerge(
                         "relative flex w-fit items-start text-balance font-semibold text-sm gap-x-1.5",
                         "bg-gradient-to-r from-white/95 to-white/90 backdrop-blur-md",
-                        "border border-white/20 rounded-r-lg px-3 py-2 pr-4",
+                        "border border-white/20 rounded-sm px-2 py-1",
                         "shadow-lg shadow-black/10",
                         "text-primary-dark/90",
                         shouldReverse && "lg:flex-row-reverse lg:text-right"
@@ -268,7 +268,7 @@ export function ClassicStoryLayout({
           {(postFields.chamadaDestaque || postFields.chamadaManchete) && (
             <p
               className={twMerge(
-                "text-gray-600 text-sm",
+                "text-gray-600 text-[15px]",
                 shouldReverse && "lg:text-right",
                 !isAdmin && "select-text"
               )}
