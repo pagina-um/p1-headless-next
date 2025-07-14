@@ -91,47 +91,160 @@ export function ClassicStoryLayout({
                 quality={85}
               />
             </Link>
+
+            {/* Overlay pre-title content on image */}
+            <div className="absolute inset-0 pointer-events-none">
+              {/* Subtle gradient overlay for better text readability */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-transparent" />
+
+              <div className="absolute top-3 left-3 right-3 pointer-events-auto">
+                {postFields.antetitulo && (
+                  <div
+                    className={twMerge(
+                      "hidden lg:block",
+                      shouldReverse && "lg:flex lg:justify-end"
+                    )}
+                  >
+                    <p
+                      className={twMerge(
+                        "relative flex w-fit items-start text-balance font-semibold text-sm gap-x-1.5",
+                        "bg-gradient-to-r from-white/95 to-white/90 backdrop-blur-md",
+                        "border border-white/20 rounded-r-lg px-3 py-2 pr-4",
+                        "shadow-lg shadow-black/10",
+                        "text-primary-dark/90",
+                        shouldReverse && "lg:flex-row-reverse lg:text-right"
+                      )}
+                    >
+                      <span className="relative z-10 leading-relaxed">
+                        {isAdmin ? (
+                          <EditableText
+                            blockUid={blockUid}
+                            originalText={postFields.antetitulo}
+                            fieldName="antetitulo"
+                            textAlign={shouldReverse ? "right" : "left"}
+                          />
+                        ) : (
+                          (() => {
+                            const colonIndex =
+                              postFields.antetitulo.indexOf(":");
+                            if (colonIndex !== -1) {
+                              const beforeColon =
+                                postFields.antetitulo.substring(
+                                  0,
+                                  colonIndex + 1
+                                );
+                              const afterColon =
+                                postFields.antetitulo.substring(colonIndex + 1);
+                              return (
+                                <>
+                                  <span className="text-primary-dark font-bold">
+                                    {beforeColon}
+                                  </span>
+                                  {afterColon}
+                                </>
+                              );
+                            }
+                            return postFields.antetitulo;
+                          })()
+                        )}
+                      </span>
+                    </p>
+                  </div>
+                )}
+                {!postFields.antetitulo && hasTagsToShow && (
+                  <div
+                    className={twMerge(
+                      "hidden lg:flex gap-2.5 flex-wrap",
+                      shouldReverse && "lg:flex-row-reverse lg:justify-end"
+                    )}
+                  >
+                    {tags.nodes
+                      .filter((tag: any) => !tag.name.includes("estaque"))
+                      .map((tag: any) => (
+                        <div
+                          className={twMerge(
+                            "relative overflow-hidden",
+                            "bg-gradient-to-r from-primary-dark via-primary-dark to-primary-dark/90",
+                            "backdrop-blur-md border border-primary-dark/20",
+                            "text-white uppercase font-bold text-xs tracking-wider",
+                            "px-3 py-1.5 rounded-full shadow-lg shadow-primary-dark/25"
+                          )}
+                          key={tag.id}
+                        >
+                          <span className="relative z-10">{tag.name}</span>
+                        </div>
+                      ))}
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         )}
         <div className="lg:flex-1 flex flex-col justify-start max-lg:border-b-2 max-lg:pb-4">
-          {postFields.antetitulo && (
-            <p
-              className={twMerge(
-                "bg-opacity-50 flex bg-white  w-fit pr-2 border items-start text-pretty text-primary-dark font-medium  underline-offset-2 text-sm  gap-x-1 before:content-[''] before:block before:w-1 before:h-full before:bg-primary-dark before:flex-shrink-0 ",
-                shouldReverse && "lg:flex-row-reverse lg:text-right"
-              )}
-            >
-              {isAdmin ? (
-                <EditableText
-                  blockUid={blockUid}
-                  originalText={postFields.antetitulo}
-                  fieldName="antetitulo"
-                  textAlign={shouldReverse ? "right" : "left"}
-                />
-              ) : (
-                postFields.antetitulo
-              )}
-            </p>
-          )}
-          {!postFields.antetitulo && hasTagsToShow && (
-            <div
-              className={twMerge(
-                "flex gap-2 text-balance text-gray-600 font-medium underline-offset-2",
-                shouldReverse && "lg:flex-row-reverse"
-              )}
-            >
-              {tags.nodes
-                .filter((tag: any) => !tag.name.includes("estaque"))
-                .map((tag: any) => (
-                  <div
-                    className="bg-primary-dark text-white uppercase font-medium text-xs px-2 py-1"
-                    key={tag.id}
-                  >
-                    {tag.name}
-                  </div>
-                ))}
-            </div>
-          )}
+          {/* Show pre-title content here when there's no image, or on smaller screens when there is an image */}
+          {(!displayImage || (displayImage && featuredImageUrl)) &&
+            postFields.antetitulo && (
+              <p
+                className={twMerge(
+                  "bg-opacity-50 flex bg-white w-fit pr-2 border items-start text-pretty text-primary-dark font-medium underline-offset-2 text-sm gap-x-1 before:content-[''] before:block before:w-1 before:h-full before:bg-primary-dark before:flex-shrink-0",
+                  shouldReverse && "lg:flex-row-reverse lg:text-right",
+                  displayImage && featuredImageUrl && "lg:hidden" // Hide on lg+ when image is present
+                )}
+              >
+                {isAdmin ? (
+                  <EditableText
+                    blockUid={blockUid}
+                    originalText={postFields.antetitulo}
+                    fieldName="antetitulo"
+                    textAlign={shouldReverse ? "right" : "left"}
+                  />
+                ) : (
+                  (() => {
+                    const colonIndex = postFields.antetitulo.indexOf(":");
+                    if (colonIndex !== -1) {
+                      const beforeColon = postFields.antetitulo.substring(
+                        0,
+                        colonIndex + 1
+                      );
+                      const afterColon = postFields.antetitulo.substring(
+                        colonIndex + 1
+                      );
+                      return (
+                        <>
+                          <span className="text-primary-dark font-bold">
+                            {beforeColon}
+                          </span>
+                          {afterColon}
+                        </>
+                      );
+                    }
+                    return postFields.antetitulo;
+                  })()
+                )}
+              </p>
+            )}
+          {(!displayImage || (displayImage && featuredImageUrl)) &&
+            !postFields.antetitulo &&
+            hasTagsToShow && (
+              <div
+                className={twMerge(
+                  "flex gap-2 text-balance text-gray-600 font-medium underline-offset-2",
+                  shouldReverse && "lg:flex-row-reverse",
+                  displayImage && featuredImageUrl && "lg:hidden" // Hide on lg+ when image is present
+                )}
+              >
+                {tags.nodes
+                  .filter((tag: any) => !tag.name.includes("estaque"))
+                  .map((tag: any) => (
+                    <div
+                      className="bg-primary-dark text-white uppercase font-medium text-xs px-2 py-1"
+                      key={tag.id}
+                    >
+                      {tag.name}
+                    </div>
+                  ))}
+              </div>
+            )}
 
           <h2
             className={twMerge(

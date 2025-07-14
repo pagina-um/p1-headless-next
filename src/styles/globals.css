@@ -24,6 +24,27 @@
     font-family: "Playfair Display", serif;
   }
 }
+
+/* Sophisticated animations for overlay elements */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
 .aligncenter {
   @apply flex flex-col justify-center text-center gap-y-2;
 }
