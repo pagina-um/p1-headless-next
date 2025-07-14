@@ -42,11 +42,17 @@ export function NewsGrid({ blocks = [] }: NewsGridProps) {
               <NewsStoryServer story={block} />
             ) : block.blockType === "category" ? (
               isLandscape ? (
-                <CategoryCarouselServer
-                  block={block}
-                  cardsPerView={block.postsPerPage} // Optional: number of cards visible at once
-                  excludePostIds={storyPostsIds}
-                />
+                <div className="relative">
+                  <div className="absolute -inset-3 bg-stone-200 w-screen left-1/2 -translate-x-1/2"></div>
+                  <div className="relative">
+                    <CategoryCarouselServer
+                      block={block}
+                      cardsPerView={block.postsPerPage} // Optional: number of cards visible at once
+                      excludePostIds={storyPostsIds}
+                      className=""
+                    />
+                  </div>
+                </div>
               ) : (
                 <CategoryBlockServer
                   block={block}
