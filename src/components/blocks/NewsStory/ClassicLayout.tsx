@@ -97,7 +97,7 @@ export function ClassicStoryLayout({
               {/* Subtle gradient overlay for better text readability */}
               <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-transparent" />
 
-              <div className="absolute top-3 left-3 right-3 pointer-events-auto">
+              <div className="absolute top-2 left-2 right-2 pointer-events-auto">
                 {postFields.antetitulo && (
                   <div
                     className={twMerge(
@@ -108,10 +108,10 @@ export function ClassicStoryLayout({
                     <p
                       className={twMerge(
                         "relative flex w-fit items-start text-balance font-semibold text-sm gap-x-1.5",
-                        "bg-gradient-to-r from-white/95 to-white/90 backdrop-blur-md",
-                        "border border-white/20 rounded-sm px-2 py-1",
+                        "bg-primary-dark",
+                        " rounded-sm px-2 py-1",
                         "shadow-lg shadow-black/10",
-                        "text-primary-dark/90",
+                        "text-white",
                         shouldReverse && "lg:flex-row-reverse lg:text-right"
                       )}
                     >
@@ -137,7 +137,7 @@ export function ClassicStoryLayout({
                                 postFields.antetitulo.substring(colonIndex + 1);
                               return (
                                 <>
-                                  <span className="text-primary-dark font-bold">
+                                  <span className="text-white font-bold">
                                     {beforeColon}
                                   </span>
                                   {afterColon}
