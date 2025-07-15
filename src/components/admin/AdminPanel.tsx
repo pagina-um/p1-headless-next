@@ -8,6 +8,7 @@ import {
   ChevronUp,
   Eye,
   EyeIcon,
+  Bell,
 } from "lucide-react";
 import { EditableGrid } from "../grid/EditableGrid";
 import { Toast } from "../ui/Toast";
@@ -93,6 +94,12 @@ export function AdminPanel({}: AdminPanelProps) {
               className="bg-gray-600 w-40 h-10 text-white px-4 py-2 flex items-center gap-2 hover:bg-gray-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
             >
               <Eye className="w-4 h-4" /> Pré-visualizar
+            </Link>
+            <Link
+              href="/admin/notifications"
+              className="bg-green-600 w-40 h-10 text-white px-4 py-2 flex items-center gap-2 hover:bg-green-700 transition-colors"
+            >
+              <Bell className="w-4 h-4" /> Notificações
             </Link>
             <button
               disabled={isSaving || !hasUnsavedChanges}
