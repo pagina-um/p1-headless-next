@@ -1,8 +1,9 @@
 import React from "react";
-import { Layout, Mail, Mic, Tag, Handshake } from "lucide-react";
+import { Layout, Mail, Mic, Tag } from "lucide-react";
 import { StaticBlock as StaticBlockType } from "../../types";
 import { STATIC_BLOCKS } from "../../constants/blocks";
 import { PodcastBlock } from "./PodcastBlock";
+import { DonationBlock } from "./DonationBlock";
 import { PostHeader } from "../post/PostHeader";
 import { CategoryBlockHeader } from "./CategoryBlockHeader";
 import { EditableText } from "../ui/EditableText";
@@ -78,36 +79,6 @@ export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
   }
 
   if (isDonationBlock) {
-    return (
-      <div
-        className="h-full p-8 bg-slate-800 shadow-sm block-content @container"
-        style={gridStyles}
-      >
-        <div className="space-y-4 max-w-4xl mx-auto flex flex-col justify-center h-full @[400px]:text-center">
-          <div className="space-y-4">
-            <p className="font-serif text-lg text-white">
-              O jornalismo independente (só) depende dos leitores.
-            </p>
-            <p className="text-lg text-white">
-              Não dependemos de grupos económicos nem do Estado. Não fazemos
-              fretes. Fazemos jornalismo para os leitores,{" "}
-              <strong className="">
-                mas só sobreviveremos com o seu apoio financeiro.
-              </strong>
-            </p>
-          </div>
-
-          <div className="pt-4 @[400px]:flex @[400px]:justify-center">
-            <a
-              href="/donativos"
-              className="group bg-primary hover:bg-primary-dark transition-all duration-300 rounded-lg p-4 text-center flex items-center justify-center space-x-3 w-full max-w-96 @[400px]:mx-0"
-            >
-              <Handshake className="w-6 h-6 group-hover:scale-110 transition-transform duration-300 stroke-white" />
-              <span className="text-xl font-bold text-white">Contribuir</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    );
+    return <DonationBlock block={block} />;
   }
 }
