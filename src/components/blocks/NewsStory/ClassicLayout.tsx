@@ -155,7 +155,7 @@ export function ClassicStoryLayout({
           {(postFields.chamadaDestaque || postFields.chamadaManchete) && (
             <p
               className={twMerge(
-                "text-gray-600 text-sm",
+                "text-gray-600 md:text-sm",
                 shouldReverse && "lg:text-right",
                 !isAdmin && "select-text"
               )}

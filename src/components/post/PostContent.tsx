@@ -1,5 +1,7 @@
 import { parserOptions } from "@/utils/wpParsing";
+import { injectDonationBlock } from "@/utils/contentInjection";
 import parse from "html-react-parser";
+
 interface PostContentProps {
   content: string;
 }
@@ -9,6 +11,9 @@ export function PostContent({ content }: PostContentProps) {
     `<p><strong>PÁGINA UM &#8211; <em>O jornalismo independente (só) depende dos leitores.</em></strong></p>`
   )[0]; // TODO: bring this transformation to the parsing function
 
+  // Inject donation block into the content
+  const contentWithDonation = injectDonationBlock(contentWithoutManualFooter);
+
   return (
     <>
       <article
@@ -16,7 +21,7 @@ export function PostContent({ content }: PostContentProps) {
         [&_figcaption]:text-sm [&_figcaption]:italic [&_a]:underline
         [&_a]:text-[var(--color-primary)] [&_hr]:last-of-type:hidden [&_p]:mt-0"
       >
-        {parse(contentWithoutManualFooter, parserOptions)}
+        {parse(contentWithDonation, parserOptions)}
       </article>
     </>
   );
