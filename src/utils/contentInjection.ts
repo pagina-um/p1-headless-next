@@ -23,7 +23,6 @@ const getDonationBlockHTML = (): string => {
             position: absolute;
             top: 0;
             bottom: 0;
-            width: 100vw;
             background-color: rgb(30 41 59); /* slate-800 */
             z-index: -1;
           }
