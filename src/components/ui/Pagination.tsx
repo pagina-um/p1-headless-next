@@ -28,7 +28,9 @@ export default function Pagination({
             href={
               currentPage === 2
                 ? basePath // page 1 has no explicit page/after params
-                : `${basePath}${joinChar}page=${currentPage - 1}&after=${startCursor || ""}`
+                : `${basePath}${joinChar}page=${currentPage - 1}&after=${encodeURIComponent(
+                    startCursor || ""
+                  )}`
             }
             className="inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md transition-colors"
           >
@@ -45,7 +47,9 @@ export default function Pagination({
       <div className="flex w-0 flex-1 justify-end">
         {hasNextPage && (
           <Link
-            href={`${basePath}${joinChar}page=${currentPage + 1}&after=${endCursor || ""}`}
+            href={`${basePath}${joinChar}page=${currentPage + 1}&after=${encodeURIComponent(
+              endCursor || ""
+            )}`}
             className="inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md transition-colors"
           >
             Próximo

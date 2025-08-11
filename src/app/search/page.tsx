@@ -1,4 +1,3 @@
-// filepath: /Users/zemaria/Downloads/project3/src/app/search/page.tsx
 import { GET_POSTS_BY_SEARCH, getClient } from "@/services/wp-graphql";
 import Link from "next/link";
 import Image from "next/image";
@@ -36,12 +35,17 @@ export default async function SearchPage({
       </div>
     );
   }
-
-  const { data } = await getClient().query(GET_POSTS_BY_SEARCH, {
+  const variables = {
     searchQuery: query,
     postsPerPage,
     after: searchParams.after || null,
-  });
+  };
+  const forceNetwork = !!variables.after || currentPage > 1;
+  const { data } = await getClient().query(
+    GET_POSTS_BY_SEARCH,
+    variables,
+    forceNetwork ? { requestPolicy: "network-only" } : undefined
+  );
 
   const posts = data?.posts?.nodes || [];
   const pageInfo = data?.posts?.pageInfo;
@@ -67,7 +71,7 @@ export default async function SearchPage({
       ) : (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post) => (
+            {posts.map((post: any) => (
               <div
                 key={post.id}
                 className="bg-white rounded-lg shadow-md overflow-hidden"
@@ -118,12 +122,12 @@ export default async function SearchPage({
               </div>
             ))}
           </div>
-
           {pageInfo && (
             <Pagination
               currentPage={currentPage}
               hasNextPage={pageInfo.hasNextPage}
               basePath={`/search?q=${encodeURIComponent(query)}`}
+              startCursor={pageInfo.startCursor}
               endCursor={pageInfo.endCursor}
             />
           )}
