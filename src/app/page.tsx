@@ -7,6 +7,7 @@ import { loadGridStateRedis } from "@/services/redis";
 import { isDevelopment } from "@/services/config";
 import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
 import { Header } from "@/components/layout/Header";
+import { PushNotificationsProvider } from "@/contexts/PushNotificationsContext";
 
 export const metadata: Metadata = {
   title: "Página UM",
