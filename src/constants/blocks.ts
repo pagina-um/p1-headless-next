@@ -54,6 +54,13 @@ export const STATIC_BLOCKS = {
     content: "Support independent journalism by making a donation.",
     defaultSize: { width: 3, height: 4 },
   },
+  accountsCounter: {
+    type: "accountsCounter" as const,
+    title: "Contador de Contas",
+    content:
+      "Contagem desde a data em que as contas deviam ter sido apresentadas.",
+    defaultSize: { width: 4, height: 2 },
+  },
 };
 
 export const GRID_COLUMNS = 10;

@@ -7,6 +7,7 @@ import { DonationBlock } from "./DonationBlock";
 import { PostHeader } from "../post/PostHeader";
 import { CategoryBlockHeader } from "./CategoryBlockHeader";
 import { EditableText } from "../ui/EditableText";
+import { AccountsCounterBlock } from "./AccountsCounterBlock";
 
 interface StaticBlockProps {
   block: StaticBlockType;
@@ -18,6 +19,7 @@ export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
   const isPodcastBlock = block.type === "podcast";
   const isDivider = block.type === "divider";
   const isDonationBlock = block.type === "donation";
+  const isAccountsCounter = block.type === "accountsCounter";
 
   const gridStyles = {
     gridColumn: `span ${block.gridPosition?.width || 1}`,
@@ -80,5 +82,16 @@ export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
 
   if (isDonationBlock) {
     return <DonationBlock block={block} />;
+  }
+
+  if (isAccountsCounter) {
+    return (
+      <div
+        className="h-full p-4 bg-primary  shadow-sm block-content lg:rounded-md"
+        style={gridStyles}
+      >
+        <AccountsCounterBlock />
+      </div>
+    );
   }
 }
