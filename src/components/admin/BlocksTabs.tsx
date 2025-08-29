@@ -6,9 +6,7 @@ import type { StaticBlockType } from "../../types";
 
 interface BlocksTabsProps {
   onCreateCategoryBlock: (categoryId: number, title: string) => void;
-  onCreateStaticBlock: (
-    title: StaticBlockType
-  ) => void;
+  onCreateStaticBlock: (title: StaticBlockType) => void;
 }
 
 export function BlocksTabs({

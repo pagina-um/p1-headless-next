@@ -31,9 +31,7 @@ type GridContextType = {
   handleSave: () => Promise<void>;
   handleCreateCategoryBlock: (id: number, name: string) => void;
   handleUpdateBlockSettings: (block: Block) => void;
-  handleCreateStaticBlock: (
-    title: StaticBlockType
-  ) => void;
+  handleCreateStaticBlock: (title: StaticBlockType) => void;
   handleCreateStoryBlock: (databaseId: number, postId: string) => void;
   handleClearLayout: () => void;
   handleOverrideStoryBlockField: (
@@ -178,9 +176,7 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
     });
   };
 
-  const handleCreateStaticBlock = (
-    type: StaticBlockType
-  ) => {
+  const handleCreateStaticBlock = (type: StaticBlockType) => {
     if (!gridState) return;
     const newBlock: StaticBlock = {
       uId: Date.now().toString(),
