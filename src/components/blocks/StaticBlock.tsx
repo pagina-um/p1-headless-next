@@ -8,6 +8,7 @@ import { PostHeader } from "../post/PostHeader";
 import { CategoryBlockHeader } from "./CategoryBlockHeader";
 import { EditableText } from "../ui/EditableText";
 import { AccountsCounterBlock } from "./AccountsCounterBlock";
+import { BookPresaleBlock } from "./BookPresaleBlock";
 
 interface StaticBlockProps {
   block: StaticBlockType;
@@ -20,6 +21,7 @@ export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
   const isDivider = block.type === "divider";
   const isDonationBlock = block.type === "donation";
   const isAccountsCounter = block.type === "accountsCounter";
+  const isBookPresale = block.type === "bookPresale";
 
   const gridStyles = {
     gridColumn: `span ${block.gridPosition?.width || 1}`,
@@ -91,6 +93,17 @@ export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
         style={gridStyles}
       >
         <AccountsCounterBlock />
+      </div>
+    );
+  }
+
+  if (isBookPresale) {
+    return (
+      <div
+        className="h-full p-4  block-content lg:rounded-md"
+        style={gridStyles}
+      >
+        <BookPresaleBlock />
       </div>
     );
   }

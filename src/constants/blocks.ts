@@ -61,6 +61,12 @@ export const STATIC_BLOCKS = {
       "Contagem desde a data em que as contas deviam ter sido apresentadas.",
     defaultSize: { width: 4, height: 2 },
   },
+  bookPresale: {
+    type: "bookPresale" as const,
+    title: "Pré-venda: Correio Mercantil de Brás Cubas",
+    content: "Correio Mercantil de Brás Cubas em pré-venda.",
+    defaultSize: { width: 4, height: 3 },
+  },
 };
 
 export const GRID_COLUMNS = 10;
