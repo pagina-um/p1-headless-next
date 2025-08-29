@@ -10,6 +10,7 @@ import {
   OverridableField,
   Block,
 } from "@/types";
+import type { StaticBlockType } from "@/types";
 import * as RGL from "react-grid-layout";
 import {
   findEmptySpaces,
@@ -31,7 +32,7 @@ type GridContextType = {
   handleCreateCategoryBlock: (id: number, name: string) => void;
   handleUpdateBlockSettings: (block: Block) => void;
   handleCreateStaticBlock: (
-    title: "newsletter" | "podcast" | "divider" | "donation" | "accountsCounter"
+    title: StaticBlockType
   ) => void;
   handleCreateStoryBlock: (databaseId: number, postId: string) => void;
   handleClearLayout: () => void;
@@ -178,7 +179,7 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
   };
 
   const handleCreateStaticBlock = (
-    type: "newsletter" | "podcast" | "divider" | "donation" | "accountsCounter"
+    type: StaticBlockType
   ) => {
     if (!gridState) return;
     const newBlock: StaticBlock = {

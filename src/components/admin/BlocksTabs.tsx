@@ -2,11 +2,12 @@ import React from "react";
 import { CategoryBlockCreator } from "./CategoryBlockCreator";
 import { StaticBlockCreator } from "./StaticBlockCreator";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "../ui/Tabs";
+import type { StaticBlockType } from "../../types";
 
 interface BlocksTabsProps {
   onCreateCategoryBlock: (categoryId: number, title: string) => void;
   onCreateStaticBlock: (
-    title: "newsletter" | "podcast" | "divider" | "donation" | "accountsCounter"
+    title: StaticBlockType
   ) => void;
 }
 

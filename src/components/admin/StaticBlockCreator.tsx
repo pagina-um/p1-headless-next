@@ -1,11 +1,10 @@
 import React from "react";
 import { Layout, Mail, Plus, Handshake } from "lucide-react";
 import { STATIC_BLOCKS } from "../../constants/blocks";
+import type { StaticBlockType } from "../../types";
 
 interface StaticBlockCreatorProps {
-  onCreateBlock: (
-    title: "newsletter" | "podcast" | "divider" | "donation" | "accountsCounter"
-  ) => void;
+  onCreateBlock: (title: StaticBlockType) => void;
 }
 
 export function StaticBlockCreator({ onCreateBlock }: StaticBlockCreatorProps) {

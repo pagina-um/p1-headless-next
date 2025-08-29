@@ -56,14 +56,20 @@ export interface StaticBlock extends BaseBlock {
   blockType: "static";
   title: string;
   content: string;
-  type:
-    | "newsletter"
-    | "podcast"
-    | "divider"
-    | "donation"
-    | "accountsCounter"
-    | "bookPresale";
+  type: StaticBlockType;
 }
+
+// Canonical list of static block type strings (runtime + type-level source of truth)
+export const STATIC_BLOCK_TYPES = [
+  "newsletter",
+  "podcast",
+  "divider",
+  "donation",
+  "accountsCounter",
+  "bookPresale",
+] as const;
+
+export type StaticBlockType = (typeof STATIC_BLOCK_TYPES)[number];
 
 // Union type for all blocks
 export type Block = StoryBlock | CategoryBlock | StaticBlock;
