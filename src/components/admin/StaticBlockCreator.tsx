@@ -4,7 +4,7 @@ import { STATIC_BLOCKS } from "../../constants/blocks";
 
 interface StaticBlockCreatorProps {
   onCreateBlock: (
-    title: "newsletter" | "podcast" | "divider" | "donation"
+    title: "newsletter" | "podcast" | "divider" | "donation" | "accountsCounter"
   ) => void;
 }
 
