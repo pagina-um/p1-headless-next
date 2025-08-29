@@ -44,16 +44,13 @@ export function AccountsCounterBlock() {
         <span className=" font-mono">{time.seconds}</span> segundos
         <br />
         que a{" "}
-        <a href="https://paginaum.pt/2025/08/18/dona-do-diario-de-noticias-esta-em-falencia-tecnica-com-capitais-proprios-negativos-de-quase-20-milhoes">
-          {" "}
-          <span className="underline decoration-primary-light">
-            Global Notícias
-          </span>{" "}
-        </a>
+        <span className="underline decoration-primary-light">
+          Global Notícias
+        </span>{" "}
         devia ter entregue as suas contas.
       </p>
       <a
-        href="https://paginaum.pt/2025/08/28/o-director-do-diario-de-noticias-cuja-empresa-em-falencia-tecnica-registou-custos-operacionais-de-473-milhoes-de-euros-quer-saber-como-o-pagina-um-gastou-os-seus-63-mil-euros-de-receitas"
+        href="https://paginaum.pt/2025/08/29/global-noticias-a-casa-do-diario-de-noticias-arde-e-o-seu-director-quer-encontrar-rachas-no-pagina-um"
         className="underline"
       >
         <p className="text-base sm:text-lg leading-snug">
