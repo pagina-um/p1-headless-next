@@ -87,7 +87,7 @@ export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
   if (isAccountsCounter) {
     return (
       <div
-        className="h-full p-4 bg-primary  shadow-sm block-content rounded-md"
+        className="h-full p-4 bg-primary  shadow-sm block-content lg:rounded-md"
         style={gridStyles}
       >
         <AccountsCounterBlock />

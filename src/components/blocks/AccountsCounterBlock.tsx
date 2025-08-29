@@ -38,8 +38,10 @@ export function AccountsCounterBlock() {
   return (
     <div className="h-full w-full flex flex-col items-center justify-center text-center gap-4 p-4 bg-primary-dark text-white rounded-md shadow">
       <p className="font-serif text-xl sm:text-2xl font-bold leading-snug">
-        Há {time.days} dias, {time.hours} horas, {time.minutes} minutos,{" "}
-        {time.seconds} segundos
+        Há <span className=" font-mono">{time.days}</span> dias,{" "}
+        <span className=" font-mono">{time.hours}</span> horas,{" "}
+        <span className=" font-mono">{time.minutes}</span> minutos,{" "}
+        <span className=" font-mono">{time.seconds}</span> segundos
         <br />
         que a{" "}
         <a href="https://paginaum.pt/2025/08/18/dona-do-diario-de-noticias-esta-em-falencia-tecnica-com-capitais-proprios-negativos-de-quase-20-milhoes">
@@ -48,14 +50,15 @@ export function AccountsCounterBlock() {
             Global Notícias
           </span>{" "}
         </a>
-        devia ter apresentado as suas contas.
+        devia ter entregue as suas contas.
       </p>
       <a
         href="https://paginaum.pt/2025/08/28/o-director-do-diario-de-noticias-cuja-empresa-em-falencia-tecnica-registou-custos-operacionais-de-473-milhoes-de-euros-quer-saber-como-o-pagina-um-gastou-os-seus-63-mil-euros-de-receitas"
         className="underline"
       >
-        <p className="text-base sm:text-lg leading-snug font-medium">
-          Mas quer saber das do <span className="font-bold">Página UM</span>.
+        <p className="text-base sm:text-lg leading-snug">
+          Mas prefere perguntar pelas do{" "}
+          <span className="font-bold">PÁGINA UM</span>.
         </p>
       </a>
     </div>
