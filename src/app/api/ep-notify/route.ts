@@ -1,35 +1,64 @@
-import { NextApiRequest, NextApiResponse } from "next";
+// App router uses Web Request / Response. Export named HTTP method handlers.
+import { ServerClient } from "postmark";
 
-export async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
-  }
+function jsonResponse(obj: unknown, status = 200) {
+  return new Response(JSON.stringify(obj), {
+    status,
+    headers: { "content-type": "application/json" },
+  });
+}
 
-  const payload = req.body;
-
-  // Check for successful capture
-  if (payload.type === "capture" && payload.status === "success") {
-    try {
-      const transactionType = payload.key.split("-")[0] as
+export async function POST(req: Request) {
+  try {
+    const payload = await req.json();
+    console.log("Received webhook payload:", payload);
+    // Check for successful capture
+    if (payload?.type === "capture" && payload?.status === "success") {
+      const transactionType = String(payload.key || "").split("-")[0] as
         | "single"
         | "subscription";
-      const customerEmail = await queryEasyPayForEmail(
-        payload.id,
-        transactionType
-      );
-      if (customerEmail) {
-        await sendPostmarkEmail(customerEmail);
-        return res.status(200).json({ message: "Email sent successfully" });
-      } else {
-        return res.status(400).json({ error: "Customer email not found" });
+      try {
+        const customerEmail = await queryEasyPayForEmail(
+          payload.id,
+          transactionType
+        );
+        if (customerEmail) {
+          await sendPostmarkEmail(customerEmail);
+          return jsonResponse({ message: "Email sent successfully" }, 200);
+        } else {
+          return jsonResponse({ error: "Customer email not found" }, 400);
+        }
+      } catch (error) {
+        console.error("Error processing webhook:", error);
+        return jsonResponse({ error: "Internal server error" }, 500);
       }
-    } catch (error) {
-      console.error("Error processing webhook:", error);
-      return res.status(500).json({ error: "Internal server error" });
     }
-  }
 
-  return res.status(200).json({ message: "No action taken" });
+    return jsonResponse({ message: "No action taken" }, 200);
+  } catch (err) {
+    console.error("Invalid JSON payload:", err);
+    return jsonResponse({ error: "Invalid JSON payload" }, 400);
+  }
+}
+
+// Return 405 for other HTTP methods to satisfy framework/lint rules.
+export async function GET() {
+  return jsonResponse({ error: "Method not allowed" }, 405);
+}
+export async function PUT() {
+  return jsonResponse({ error: "Method not allowed" }, 405);
+}
+export async function DELETE() {
+  return jsonResponse({ error: "Method not allowed" }, 405);
+}
+export async function PATCH() {
+  return jsonResponse({ error: "Method not allowed" }, 405);
+}
+export async function OPTIONS() {
+  return jsonResponse({ error: "Method not allowed" }, 405);
+}
+export async function HEAD() {
+  return jsonResponse(null, 405);
 }
 
 async function queryEasyPayForEmail(
@@ -42,9 +71,9 @@ async function queryEasyPayForEmail(
     process.env.EASYPAY_API_URL || "https://api.test.easypay.pt/2.0";
 
   const url = `${apiUrl}/${transactionType}/${transactionId}`;
-  const headers = {
-    AccountId: process.env.EASYPAY_ACCOUNT_ID,
-    ApiKey: process.env.EASYPAY_API_KEY,
+  const headers: Record<string, string> = {
+    AccountId: accountId ?? "",
+    ApiKey: apiKey ?? "",
     "Content-Type": "application/json",
   };
 
@@ -58,15 +87,13 @@ async function queryEasyPayForEmail(
 }
 
 async function sendPostmarkEmail(customerEmail: string) {
-  const url = "https://api.postmarkapp.com/email";
-  const headers = {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-    "X-Postmark-Server-Token": process.env.POSTMARK_SERVER_TOKEN,
-  };
-  const body = {
-    From: "support@yourdomain.com", // Replace with your verified sender
-    To: customerEmail,
+  const token =
+    process.env.POSTMARK_SERVER_TOKEN ?? "be9594ea-2280-455f-b9e8-1d831e808ad4";
+  const client = new ServerClient(token);
+
+  const message = {
+    From: "teste@paginaum.pt",
+    To: "tech@paginaum.pt",
     Subject: "Thank You for Your Donation!",
     TextBody:
       "Thank you for your generous donation! We appreciate your support.",
@@ -75,14 +102,10 @@ async function sendPostmarkEmail(customerEmail: string) {
     MessageStream: "outbound",
   };
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-  });
-
-  if (!response.ok) {
-    console.error("Postmark API error:", await response.text());
+  try {
+    await client.sendEmail(message as any);
+  } catch (err) {
+    console.error("Postmark client error:", err);
     throw new Error("Failed to send email");
   }
 }
