@@ -53,7 +53,7 @@ export async function createDonationCheckout(
   if (donationData.type === "single" || donationData.type === "subscription") {
     order = {
       value: donationData.amount,
-      key: `donation-${Date.now()}`,
+      key: `${donationData.type}-${Date.now()}`,
       items: [
         {
           description:
