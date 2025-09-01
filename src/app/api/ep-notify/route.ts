@@ -18,12 +18,22 @@ export async function POST(req: Request) {
         | "single"
         | "subscription";
       try {
-        const customerEmail = await queryEasyPayForEmail(
+        const transactionDetails = await queryEasyPayForTransactionDetails(
           payload.id,
           transactionType
         );
-        if (customerEmail) {
-          await sendPostmarkEmail(customerEmail);
+        if (
+          transactionDetails?.customer?.email &&
+          transactionDetails.payment_status !== "failed"
+        ) {
+          /* await sendPostmarkEmail(
+            transactionDetails.customer.email,
+            transactionDetails.type,
+            transactionDetails.amount,
+            transactionDetails.currency,
+            transactionDetails.value
+          ); */
+          console.log(transactionDetails);
           return jsonResponse({ message: "Email sent successfully" }, 200);
         } else {
           return jsonResponse({ error: "Customer email not found" }, 400);
@@ -61,7 +71,7 @@ export async function HEAD() {
   return jsonResponse(null, 405);
 }
 
-async function queryEasyPayForEmail(
+async function queryEasyPayForTransactionDetails(
   transactionId: string,
   transactionType: "single" | "subscription"
 ) {
@@ -80,7 +90,7 @@ async function queryEasyPayForEmail(
   const response = await fetch(url, { headers });
   if (response.ok) {
     const data = await response.json();
-    return data.customer?.email || null;
+    return data;
   }
   console.error("EasyPay API error:", await response.text());
   return null;
