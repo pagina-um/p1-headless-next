@@ -30,7 +30,7 @@ export async function createDonationCheckout(
     methods: ["cc", "mb", "mbw", "dd", "vi", "ap", "gp"],
     type: "sale",
     capture: {
-      transaction_key: `donation-${Date.now()}`,
+      transaction_key: `${donationData.type}-${Date.now()}`,
       descriptive: `Contribuição - Página UM`,
     },
     currency: "EUR",
