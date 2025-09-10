@@ -51,13 +51,17 @@ export function ClassicStoryLayout({
 }: StoryLayoutProps) {
   const hasTagsToShow = tags.nodes.length > 0;
   const displayImage = !hideImage;
+  const tagNames = tags.nodes
+    .filter((tag: any) => !tag.name.includes("estaque"))
+    .map((t: any) => t.name)
+    .join(" • ");
   const isLandscape = orientation === "horizontal";
   const shouldReverse = reverse && isLandscape;
   return (
-    <div className="@container group h-full px-4 lg:px-0 ">
+    <div className="@container group h-full px-4 lg:px-0">
       <div
         className={twMerge(
-          "flex gap-x-4 gap-y-1 h-full flex-col",
+          "flex gap-x-4 lg:gap-y-1 h-full flex-col",
           isLandscape
             ? reverse
               ? "lg:flex-row-reverse"
@@ -70,11 +74,43 @@ export function ClassicStoryLayout({
         {featuredImageUrl && displayImage && (
           <div
             className={twMerge(
-              "relative max-md:min-h-36 max-md:w-full",
+              "relative min-h-36 max-md:w-full lg:min-h-0",
               isLandscape ? "w-1/2" : "h-full",
               !expandImage && !isLandscape && "lg:flex-1"
             )}
           >
+            {/* Pre-title or tags overlay on top of the featured image */}
+            {(postFields.antetitulo || hasTagsToShow) && (
+              <div
+                className={twMerge(
+                  "absolute z-20 hidden lg:block",
+                  shouldReverse && "lg:right-4 lg:left-auto lg:text-right",
+                  isLandscape ? "" : "lg:top-auto lg:bottom-0"
+                )}
+              >
+                <div
+                  className={twMerge(
+                    "bg-primary-dark text-white uppercase font-medium text-sm tracking-wide px-2 py-0.5 border-white backdrop-blur-sm w-fit",
+                    shouldReverse && "lg:text-right"
+                  )}
+                >
+                  {postFields.antetitulo ? (
+                    isAdmin ? (
+                      <EditableText
+                        blockUid={blockUid}
+                        originalText={postFields.antetitulo}
+                        fieldName="antetitulo"
+                        textAlign={shouldReverse ? "right" : "left"}
+                      />
+                    ) : (
+                      postFields.antetitulo
+                    )
+                  ) : (
+                    <span>{tagNames}</span>
+                  )}
+                </div>
+              </div>
+            )}
             <div
               className="absolute inset-0 bg-gray-300 animate-pulse"
               id={`skeleton-${blockUid}`}
@@ -93,11 +129,45 @@ export function ClassicStoryLayout({
             </Link>
           </div>
         )}
+        {/* Pre-title or tags overlay on top of the featured image */}
+        {(postFields.antetitulo || hasTagsToShow) && (
+          <div
+            className={twMerge(
+              "md:hidden",
+              shouldReverse && "lg:right-4 lg:left-auto lg:text-right",
+              isLandscape ? "" : "lg:top-auto lg:bottom-0"
+            )}
+          >
+            <div
+              className={twMerge(
+                "bg-[rgb(146,10,10)] text-white uppercase font-medium text-sm tracking-wide px-2 py-0.5 border-white backdrop-blur-sm lg:w-fit",
+                shouldReverse && "lg:text-right"
+              )}
+            >
+              {postFields.antetitulo ? (
+                isAdmin ? (
+                  <EditableText
+                    blockUid={blockUid}
+                    originalText={postFields.antetitulo}
+                    fieldName="antetitulo"
+                    textAlign={shouldReverse ? "right" : "left"}
+                  />
+                ) : (
+                  postFields.antetitulo
+                )
+              ) : (
+                <span>{tagNames}</span>
+              )}
+            </div>
+          </div>
+        )}
+
         <div className="lg:flex-1 flex flex-col justify-start max-lg:border-b-2 max-lg:pb-4">
-          {postFields.antetitulo && (
+          {/* If there's no featured image, render the pre-title / tags in the text column (keeps previous behaviour) */}
+          {!displayImage && postFields.antetitulo && (
             <p
               className={twMerge(
-                "bg-opacity-50 flex bg-white  w-fit pr-2 border items-start text-pretty text-primary-dark font-medium  underline-offset-2 text-sm  gap-x-1 before:content-[''] before:block before:w-1 before:h-full before:bg-primary-dark before:flex-shrink-0 ",
+                "bg-[rgba(0,0,0,0.06)] w-fit pr-2 border items-start text-pretty text-primary-dark font-medium text-sm gap-x-1 before:content-[''] before:block before:w-1 before:h-full before:bg-primary-dark before:flex-shrink-0",
                 shouldReverse && "lg:flex-row-reverse lg:text-right"
               )}
             >
@@ -113,7 +183,7 @@ export function ClassicStoryLayout({
               )}
             </p>
           )}
-          {!postFields.antetitulo && hasTagsToShow && (
+          {!displayImage && !postFields.antetitulo && hasTagsToShow && (
             <div
               className={twMerge(
                 "flex gap-2 text-balance text-gray-600 font-medium underline-offset-2",
