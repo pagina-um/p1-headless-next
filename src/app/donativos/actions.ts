@@ -115,3 +115,56 @@ export async function createDonationCheckout(
     throw new Error("Failed to create payment session");
   }
 }
+
+/* 
+
+example transaction details - single MBW
+
+
+{
+  id: '96eea832-0a0a-4f35-be17-c87ff5e180d8',
+  type: 'sale',
+  key: '',
+  expiration_time: '2025-09-02T22:08:00Z',
+  customer: {
+    id: '6798d954-484d-4b55-9504-09299e1d7715',
+    name: 'teste',
+    email: 'teste@teste.com',
+    phone: '918190321',
+    phone_indicative: '+351',
+    key: 'customer-1756764535032',
+    language: 'PT'
+  },
+  method: { type: 'MBW', status: 'active' },
+  currency: 'EUR',
+  value: 1,
+  transactions: [
+    {
+      id: '66dd19aa-a27d-4c9e-9c24-65c4a96ad2e6',
+      key: '',
+      created_at: '2025-09-01T22:12:09Z',
+      date: '2025-09-01T22:12:10Z',
+      values: [Object],
+      transfer_date: '2025-09-04T00:00:00Z',
+      transfer_batch: '',
+      method: 'mbw',
+      document_number: 'PGINAU0205220504839720250901221210',
+      descriptive: 'Contribuição - Página UM'
+    }
+  ],
+  captures: [
+    {
+      id: '66dd19aa-a27d-4c9e-9c24-65c4a96ad2e6',
+      status: 'success',
+      transaction_key: 'single-1756764535032',
+      capture_date: '2025-09-01',
+      account: [Object],
+      descriptive: 'Contribuição - Página UM',
+      value: 1,
+      force_3ds: false
+    }
+  ],
+  created_at: '2025-09-01 22:08:58',
+  payment_status: 'paid',
+  paid_at: '2025-09-01 22:12:10'
+}*/
