@@ -10,7 +10,7 @@ export function titleCaseExceptForSomeWords(str?: string) {
   return str
     .split(" ")
     .map((word) => {
-      if (["com", "de", "do", "da"].includes(word.toLowerCase()))
+      if (["com", "de", "do", "da", "na", "e"].includes(word.toLowerCase()))
         return word.toLowerCase();
       return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
     })
