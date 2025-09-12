@@ -122,7 +122,7 @@ export function ClassicStoryLayout({
                 alt={featuredImageAlt || ""}
                 fill
                 sizes={getSizesFromBlockArea(blockSize[0] * blockSize[1])}
-                className={twMerge("object-cover")}
+                className={twMerge("object-cover max-md:rounded-t-sm")}
                 style={{ objectPosition: positionMap[objectPosition] }}
                 quality={85}
               />
@@ -140,7 +140,7 @@ export function ClassicStoryLayout({
           >
             <div
               className={twMerge(
-                "bg-[rgb(146,10,10)] text-white uppercase font-medium text-sm tracking-wide px-2 py-0.5 border-white backdrop-blur-sm lg:w-fit",
+                "bg-[rgb(146,10,10)] text-white uppercase font-medium text-sm tracking-wide px-2 py-0.5 border-white backdrop-blur-sm lg:w-fit rounded-b-sm",
                 shouldReverse && "lg:text-right"
               )}
             >
@@ -205,7 +205,7 @@ export function ClassicStoryLayout({
 
           <h2
             className={twMerge(
-              "font-serif text-2xl font-bold mb-3 leading-tight text-pretty",
+              "font-serif text-2xl font-bold mb-3 leading-tight text-pretty max-md:mt-3",
               !isAdmin && "lg:group-hover:underline",
               shouldReverse && "lg:text-right",
               extraBigTitle && "text-3xl"
