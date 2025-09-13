@@ -7,13 +7,6 @@ export const makeClient = () => {
   return createClient({
     url: (WP_URL + "graphql") as string,
     exchanges: [cacheExchange, fetchExchange],
-    fetchOptions: {
-      headers: {
-        Authorization: `Basic ${Buffer.from(
-          `${process.env.NEXT_PUBLIC_HOST_USER}:${process.env.NEXT_PUBLIC_HOST_PASS}`
-        ).toString("base64")}`,
-      },
-    },
   });
 };
 
