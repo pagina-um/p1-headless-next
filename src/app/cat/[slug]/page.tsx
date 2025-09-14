@@ -1,4 +1,7 @@
-import { GET_POSTS_BY_CATEGORY_SLUG, getPublicClient } from "@/services/wp-graphql";
+import {
+  GET_POSTS_BY_CATEGORY_SLUG,
+  getPublicClient,
+} from "@/services/wp-graphql";
 import Link from "next/link";
 import Image from "next/image";
 import Pagination from "@/components/ui/Pagination";
