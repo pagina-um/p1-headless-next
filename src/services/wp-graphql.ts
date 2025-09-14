@@ -7,6 +7,9 @@ export const makeClient = () => {
   return createClient({
     url: (WP_URL + "graphql") as string,
     exchanges: [cacheExchange, fetchExchange],
+    fetchOptions: {
+      next: { revalidate: 3600 },
+    },
   });
 };
 
@@ -22,6 +25,7 @@ export const makePublicClient = () => {
     // urql will use the runtime fetch provided by Next. We supply fetchOptions
     // that include the Next.js fetch `next` hint to control ISR caching.
     fetchOptions: () => ({
+      method: "GET",
       // intentionally no Authorization header here
       // pass the `next` option so Next can cache the fetch for 3600 seconds
       // (adjust as desired). This only takes effect in Next server runtime.
