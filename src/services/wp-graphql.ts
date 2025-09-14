@@ -10,7 +10,27 @@ export const makeClient = () => {
   });
 };
 
+// Keep the existing client factory (for any authenticated/admin usages)
 export const { getClient } = registerUrql(makeClient);
+
+// Public client: no Authorization header and instruct Next to revalidate the
+// fetch results so Next/Vercel can cache them at the edge when appropriate.
+export const makePublicClient = () => {
+  return createClient({
+    url: (WP_URL + "graphql") as string,
+    exchanges: [cacheExchange, fetchExchange],
+    // urql will use the runtime fetch provided by Next. We supply fetchOptions
+    // that include the Next.js fetch `next` hint to control ISR caching.
+    fetchOptions: () => ({
+      // intentionally no Authorization header here
+      // pass the `next` option so Next can cache the fetch for 3600 seconds
+      // (adjust as desired). This only takes effect in Next server runtime.
+      next: { revalidate: 3600 },
+    }),
+  });
+};
+
+export const { getClient: getPublicClient } = registerUrql(makePublicClient);
 
 export const GET_CATEGORIES = graphql(`
   query GetCategories {

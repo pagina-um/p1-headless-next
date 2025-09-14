@@ -1,4 +1,4 @@
-import { GET_POSTS_BY_CATEGORY_SLUG, getClient } from "@/services/wp-graphql";
+import { GET_POSTS_BY_CATEGORY_SLUG, getPublicClient } from "@/services/wp-graphql";
 import Link from "next/link";
 import Image from "next/image";
 import Pagination from "@/components/ui/Pagination";
@@ -16,7 +16,7 @@ export default async function CategoryPage({
   const currentPage = Number(searchParams.page) || 1;
   const postsPerPage = 12; // Increased for grid layout
 
-  const { data } = await getClient().query(GET_POSTS_BY_CATEGORY_SLUG, {
+  const { data } = await getPublicClient().query(GET_POSTS_BY_CATEGORY_SLUG, {
     slug: params.slug,
     postsPerPage,
     after: searchParams.after || null,
