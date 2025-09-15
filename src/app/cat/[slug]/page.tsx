@@ -6,6 +6,8 @@ import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
 import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
 
+export const fetchCache = "force-cache";
+
 export default async function CategoryPage({
   params,
   searchParams,
