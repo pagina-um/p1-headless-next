@@ -1,10 +1,29 @@
-import { GET_POSTS_BY_CATEGORY_SLUG, getClient } from "@/services/wp-graphql";
+import { GET_POSTS_BY_CATEGORY_SLUG, GET_CATEGORIES, getClient } from "@/services/wp-graphql";
 import Link from "next/link";
 import Image from "next/image";
 import Pagination from "@/components/ui/Pagination";
 import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
 import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
+
+// Enable ISR with 1 hour revalidation
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  try {
+    const { data } = await getClient().query(GET_CATEGORIES, {});
+    
+    // Return only categories that have posts
+    return data?.categories?.nodes
+      ?.filter(category => category.count && category.count > 0)
+      ?.map((category) => ({
+        slug: category.slug,
+      })) || [];
+  } catch (error) {
+    console.error('Error generating static params for categories:', error);
+    return [];
+  }
+}
 
 export default async function CategoryPage({
   params,

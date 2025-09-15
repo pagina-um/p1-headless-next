@@ -1,9 +1,28 @@
-import { GET_POSTS_BY_TAG_SLUG, getClient } from "@/services/wp-graphql";
+import { GET_POSTS_BY_TAG_SLUG, GET_ALL_TAGS, getClient } from "@/services/wp-graphql";
 import Link from "next/link";
 import Image from "next/image";
 import Pagination from "@/components/ui/Pagination";
 import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
+
+// Enable ISR with 1 hour revalidation
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  try {
+    const { data } = await getClient().query(GET_ALL_TAGS, {});
+    
+    // Return only tags that have posts
+    return data?.tags?.nodes
+      ?.filter(tag => tag.count && tag.count > 0)
+      ?.map((tag) => ({
+        slug: tag.slug,
+      })) || [];
+  } catch (error) {
+    console.error('Error generating static params for tags:', error);
+    return [];
+  }
+}
 
 export default async function TagPage({
   params,

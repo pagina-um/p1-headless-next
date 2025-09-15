@@ -26,6 +26,20 @@ export const GET_CATEGORIES = graphql(`
   }
 `);
 
+export const GET_ALL_TAGS = graphql(`
+  query GetAllTags {
+    tags(first: 1000) {
+      nodes {
+        id
+        name
+        slug
+        count
+        databaseId
+      }
+    }
+  }
+`);
+
 export const GET_POSTS_BY_CATEGORY_SLUG = graphql(`
   query GetPostsByCategorySlug(
     $slug: String!
