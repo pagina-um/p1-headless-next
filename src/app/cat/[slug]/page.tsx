@@ -7,6 +7,8 @@ import { Calendar, User } from "lucide-react";
 import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
 
 export const dynamic = "force-static";
+export const revalidate = 3600; // Revalidate every hour
+
 export default async function CategoryPage({
   params,
   searchParams,

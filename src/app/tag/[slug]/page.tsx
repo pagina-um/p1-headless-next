@@ -5,6 +5,9 @@ import Pagination from "@/components/ui/Pagination";
 import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
 
+export const dynamic = "force-static";
+export const revalidate = 3600; // Revalidate every hour
+
 export default async function TagPage({
   params,
   searchParams,
