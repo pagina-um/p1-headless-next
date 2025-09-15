@@ -6,6 +6,9 @@ import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
 import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
 
+// Enable caching for category pages - revalidate every hour
+export const revalidate = 3600;
+
 export default async function CategoryPage({
   params,
   searchParams,

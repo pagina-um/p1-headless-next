@@ -5,6 +5,9 @@ import Pagination from "@/components/ui/Pagination";
 import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
 
+// Enable caching for tag pages - revalidate every hour
+export const revalidate = 3600;
+
 export default async function TagPage({
   params,
   searchParams,
