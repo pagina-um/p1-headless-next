@@ -1,12 +1,63 @@
 import { graphql } from "gql.tada";
 import { cacheExchange, createClient, fetchExchange } from "@urql/core";
 import { registerUrql } from "@urql/next/rsc";
-import { WP_URL } from "./config";
+import { WP_URL, WP_GRAPHQL_API_KEY, ADMIN_USERNAME, ADMIN_PASSWORD, validateGraphQLConfig, validateAdminConfig } from "./config";
 
+// Create a client with API key authentication for public queries
 export const makeClient = () => {
+  // Validate configuration in development
+  if (process.env.NODE_ENV === "development") {
+    validateGraphQLConfig();
+  }
+  
   return createClient({
     url: (WP_URL + "graphql") as string,
     exchanges: [cacheExchange, fetchExchange],
+    fetchOptions: () => {
+      const headers: Record<string, string> = {};
+      
+      // Add API key authentication if available
+      if (WP_GRAPHQL_API_KEY) {
+        headers['X-WP-GraphQL-API-Key'] = WP_GRAPHQL_API_KEY;
+      }
+      
+      return {
+        headers,
+      };
+    },
+  });
+};
+
+// Create a client with admin credentials for admin queries
+export const makeAdminClient = () => {
+  // Validate configuration in development
+  if (process.env.NODE_ENV === "development") {
+    validateGraphQLConfig();
+    validateAdminConfig();
+  }
+  
+  return createClient({
+    url: (WP_URL + "graphql") as string,
+    exchanges: [cacheExchange, fetchExchange],
+    fetchOptions: () => {
+      const headers: Record<string, string> = {};
+      
+      // Add API key authentication if available
+      if (WP_GRAPHQL_API_KEY) {
+        headers['X-WP-GraphQL-API-Key'] = WP_GRAPHQL_API_KEY;
+      }
+      
+      // Add Basic Auth for admin operations
+      if (ADMIN_USERNAME && ADMIN_PASSWORD) {
+        headers['Authorization'] = `Basic ${Buffer.from(
+          `${ADMIN_USERNAME}:${ADMIN_PASSWORD}`
+        ).toString("base64")}`;
+      }
+      
+      return {
+        headers,
+      };
+    },
   });
 };
 
