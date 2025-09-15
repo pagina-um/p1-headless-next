@@ -7,6 +7,11 @@ export const makeClient = () => {
   return createClient({
     url: (WP_URL + "graphql") as string,
     exchanges: [cacheExchange, fetchExchange],
+    fetchOptions: {
+      headers: {
+        Authorization: `Bearer ${process.env.WP_GRAPHQL_JWT_TOKEN}`,
+      },
+    },
   });
 };
 
