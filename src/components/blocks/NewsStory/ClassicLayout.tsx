@@ -111,11 +111,6 @@ export function ClassicStoryLayout({
                 </div>
               </div>
             )}
-            <div
-              className="absolute inset-0 bg-gray-300 animate-pulse"
-              id={`skeleton-${blockUid}`}
-            ></div>
-
             <Link href={uri}>
               <Image
                 src={featuredImageUrl}
