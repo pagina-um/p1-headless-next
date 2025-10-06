@@ -14,7 +14,7 @@ function formatTime(seconds: number): string {
 }
 
 export function PodcastBlock() {
-  const { feed, isLoading, error } = usePodcastFeed(
+  const { feed, isLoading, error, refetch } = usePodcastFeed(
     "https://anchor.fm/s/bfa992b8/podcast/rss"
   );
   const title = "Podcast";
@@ -108,55 +108,99 @@ export function PodcastBlock() {
           <h2 className="font-serif text-2xl font-bold text-white">{title}</h2>
         </div>
       </div>
-
       <div className="flex-1 overflow-auto">
-        <div className="space-y-4">
-          {episodes.map((episode) => (
-            <div
-              key={episode.guid}
-              className={`p-4 transition-colors duration-200 cursor-pointer ${
-                activeEpisode?.guid === episode.guid
-                  ? "bg-primary/5 border-primary/10"
-                  : "hover:bg-stone-500"
-              }`}
-              onClick={() => handleEpisodeClick(episode)}
+        {/* Loading state */}
+        {isLoading && (
+          <div role="status" aria-live="polite" className="space-y-4 animate-pulse">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div
+                key={i}
+                className="p-4 rounded bg-stone-600/40 border border-stone-500/30 flex gap-3"
+              >
+                <div className="w-10 h-10 rounded-full bg-stone-500/60" />
+                <div className="flex-1 space-y-2">
+                  <div className="h-4 bg-stone-500/60 rounded w-3/4" />
+                  <div className="h-3 bg-stone-500/50 rounded w-full" />
+                  <div className="h-3 bg-stone-500/40 rounded w-2/5" />
+                </div>
+              </div>
+            ))}
+            <span className="sr-only">Loading podcast episodes...</span>
+          </div>
+        )}
+
+        {/* Error state */}
+        {!isLoading && error && (
+          <div
+            role="alert"
+            className="p-4 mb-4 rounded border border-red-300 bg-red-100/60 text-red-800"
+          >
+            <p className="font-semibold mb-2">Failed to load podcast episodes.</p>
+            <p className="text-sm mb-3">{error}</p>
+            <button
+              onClick={refetch}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-red-700 text-white text-sm hover:bg-red-800 transition-colors"
             >
-              <div className="flex items-start gap-3">
-                <button
-                  className={`flex-shrink-0 w-10 h-10 bg-white rounded-full flex items-center justify-center transition-colors ${
-                    activeEpisode?.guid === episode.guid
-                      ? "bg-primary text-primary"
-                      : "bg-gray-100 text-gray-600 hover:bg-primary/10"
-                  }`}
-                >
-                  {activeEpisode?.guid === episode.guid && isPlaying ? (
-                    <Pause className="w-5 h-5" />
-                  ) : (
-                    <Play className="w-5 h-5" />
-                  )}
-                </button>
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-lg leading-tight mb-1 text-white">
-                    {episode.title}
-                  </h3>
-                  <p className="text-sm text-gray-900 mb-2 line-clamp-2">
-                    {stripHtmlTags(episode.description)}
-                  </p>
-                  <div className="flex items-center gap-4 text-sm text-white">
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      {episode.duration}
-                    </span>
-                    <span className="flex items-center gap-1 text-white">
-                      <Calendar className="w-4 h-4" />
-                      {formatDate(episode.pubDate || "")}
-                    </span>
+              Try again
+            </button>
+          </div>
+        )}
+
+        {/* Empty state */}
+        {!isLoading && !error && episodes.length === 0 && (
+          <div className="p-4 text-sm text-stone-300">No episodes available.</div>
+        )}
+
+        {/* Episodes list */}
+        {!isLoading && !error && episodes.length > 0 && (
+          <div className="space-y-4">
+            {episodes.map((episode) => (
+              <div
+                key={episode.guid}
+                className={`p-4 transition-colors duration-200 cursor-pointer ${
+                  activeEpisode?.guid === episode.guid
+                    ? "bg-primary/5 border-primary/10"
+                    : "hover:bg-stone-500"
+                }`}
+                onClick={() => handleEpisodeClick(episode)}
+              >
+                <div className="flex items-start gap-3">
+                  <button
+                    className={`flex-shrink-0 w-10 h-10 bg-white rounded-full flex items-center justify-center transition-colors ${
+                      activeEpisode?.guid === episode.guid
+                        ? "bg-primary text-primary"
+                        : "bg-gray-100 text-gray-600 hover:bg-primary/10"
+                    }`}
+                  >
+                    {activeEpisode?.guid === episode.guid && isPlaying ? (
+                      <Pause className="w-5 h-5" />
+                    ) : (
+                      <Play className="w-5 h-5" />
+                    )}
+                  </button>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-lg leading-tight mb-1 text-white">
+                      {episode.title}
+                    </h3>
+                    <p className="text-sm text-gray-900 mb-2 line-clamp-2">
+                      {stripHtmlTags(episode.description)}
+                    </p>
+                    <div className="flex items-center gap-4 text-sm text-white">
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-4 h-4" />
+                        {episode.duration}
+                      </span>
+                      <span className="flex items-center gap-1 text-white">
+                        <Calendar className="w-4 h-4" />
+                        {formatDate(episode.pubDate || "")}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {activeEpisode && (
@@ -191,6 +235,7 @@ export function usePodcastFeed(feedUrl: string) {
   const [feed, setFeed] = useState<PodcastFeed | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
     let isMounted = true;
@@ -231,9 +276,11 @@ export function usePodcastFeed(feedUrl: string) {
     return () => {
       isMounted = false;
     };
-  }, [feedUrl]);
+  }, [feedUrl, reloadKey]);
 
-  return { feed, isLoading, error };
+  const refetch = () => setReloadKey((k) => k + 1);
+
+  return { feed, isLoading, error, refetch };
 }
 
 function stripHtmlTags(html: string | null): string {
