@@ -111,7 +111,11 @@ export function PodcastBlock() {
       <div className="flex-1 overflow-auto">
         {/* Loading state */}
         {isLoading && (
-          <div role="status" aria-live="polite" className="space-y-4 animate-pulse">
+          <div
+            role="status"
+            aria-live="polite"
+            className="space-y-4 animate-pulse"
+          >
             {Array.from({ length: 5 }).map((_, i) => (
               <div
                 key={i}
@@ -135,7 +139,9 @@ export function PodcastBlock() {
             role="alert"
             className="p-4 mb-4 rounded border border-red-300 bg-red-100/60 text-red-800"
           >
-            <p className="font-semibold mb-2">Failed to load podcast episodes.</p>
+            <p className="font-semibold mb-2">
+              Failed to load podcast episodes.
+            </p>
             <p className="text-sm mb-3">{error}</p>
             <button
               onClick={refetch}
@@ -148,7 +154,9 @@ export function PodcastBlock() {
 
         {/* Empty state */}
         {!isLoading && !error && episodes.length === 0 && (
-          <div className="p-4 text-sm text-stone-300">No episodes available.</div>
+          <div className="p-4 text-sm text-stone-300">
+            No episodes available.
+          </div>
         )}
 
         {/* Episodes list */}
