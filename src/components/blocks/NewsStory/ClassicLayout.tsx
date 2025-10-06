@@ -111,11 +111,6 @@ export function ClassicStoryLayout({
                 </div>
               </div>
             )}
-            <div
-              className="absolute inset-0 bg-gray-300 animate-pulse"
-              id={`skeleton-${blockUid}`}
-            ></div>
-
             <Link href={uri}>
               <Image
                 src={featuredImageUrl}
@@ -125,6 +120,10 @@ export function ClassicStoryLayout({
                 className={twMerge("object-cover max-md:rounded-t-sm")}
                 style={{ objectPosition: positionMap[objectPosition] }}
                 quality={85}
+                placeholder="blur"
+                blurDataURL={
+                  "data:image/gif;base64,R0lGODlhAQABAPAAANTU1P///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                }
               />
             </Link>
           </div>
