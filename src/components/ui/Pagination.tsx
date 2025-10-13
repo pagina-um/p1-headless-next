@@ -17,8 +17,24 @@ export default function Pagination({
   startCursor,
   endCursor,
 }: PaginationProps) {
-  // Determine proper join character depending on whether basePath already has query params
-  const joinChar = basePath.includes("?") ? "&" : "?";
+  // Helper to build hrefs by merging/updating query params reliably
+  const buildHref = (
+    updates: Record<string, string | number | null | undefined>
+  ) => {
+    const [path, queryString] = basePath.split("?");
+    const params = new URLSearchParams(queryString || "");
+
+    Object.entries(updates).forEach(([key, value]) => {
+      if (value === undefined || value === null || value === "") {
+        params.delete(key);
+      } else {
+        params.set(key, String(value));
+      }
+    });
+
+    const qs = params.toString();
+    return qs ? `${path}?${qs}` : path;
+  };
 
   return (
     <nav className="flex items-center justify-between border-t border-gray-200 px-4 sm:px-0 mt-8 pt-6">
@@ -27,11 +43,14 @@ export default function Pagination({
           <Link
             href={
               currentPage === 2
-                ? basePath // page 1 has no explicit page/after params
-                : `${basePath}${joinChar}page=${currentPage - 1}&after=${encodeURIComponent(
-                    startCursor || ""
-                  )}`
+                ? buildHref({ page: null, after: null })
+                : buildHref({
+                    page: currentPage - 1,
+                    after: startCursor || null,
+                  })
             }
+            prefetch={false}
+            rel="prev"
             className="inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md transition-colors"
           >
             <ChevronLeft className="mr-2 h-4 w-4" />
@@ -47,9 +66,12 @@ export default function Pagination({
       <div className="flex w-0 flex-1 justify-end">
         {hasNextPage && (
           <Link
-            href={`${basePath}${joinChar}page=${currentPage + 1}&after=${encodeURIComponent(
-              endCursor || ""
-            )}`}
+            href={buildHref({
+              page: currentPage + 1,
+              after: endCursor || undefined,
+            })}
+            prefetch={false}
+            rel="next"
             className="inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md transition-colors"
           >
             Próximo

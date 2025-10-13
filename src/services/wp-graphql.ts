@@ -106,6 +106,9 @@ export const GET_POSTS_BY_TAG_SLUG = graphql(`
         hasPreviousPage
         startCursor
       }
+      edges {
+        cursor
+      }
       nodes {
         id
         title
@@ -383,7 +386,11 @@ export const GET_POSTS_BY_SEARCH = graphql(`
     $after: String
   ) {
     posts(
-      where: { search: $searchQuery, status: PUBLISH }
+      where: {
+        search: $searchQuery
+        status: PUBLISH
+        orderby: { field: DATE, order: DESC }
+      }
       first: $postsPerPage
       after: $after
     ) {

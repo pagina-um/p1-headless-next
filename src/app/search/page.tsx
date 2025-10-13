@@ -35,17 +35,20 @@ export default async function SearchPage({
       </div>
     );
   }
+  const afterCursor = searchParams.after
+    ? decodeURIComponent(searchParams.after)
+    : null;
+
   const variables = {
     searchQuery: query,
     postsPerPage,
-    after: searchParams.after || null,
-  };
-  const forceNetwork = !!variables.after || currentPage > 1;
-  const { data } = await getClient().query(
-    GET_POSTS_BY_SEARCH,
-    variables,
-    forceNetwork ? { requestPolicy: "network-only" } : undefined
-  );
+    after: afterCursor,
+  } as const;
+
+  // Always fetch from network to avoid any cache inconsistencies on search
+  const { data } = await getClient().query(GET_POSTS_BY_SEARCH, variables, {
+    requestPolicy: "network-only",
+  });
 
   const posts = data?.posts?.nodes || [];
   const pageInfo = data?.posts?.pageInfo;
@@ -71,56 +74,64 @@ export default async function SearchPage({
       ) : (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post: any) => (
-              <div
-                key={post.id}
-                className="bg-white rounded-lg shadow-md overflow-hidden"
-              >
-                {post.featuredImage?.node?.sourceUrl && (
-                  <div className="relative h-48 w-full">
-                    <Image
-                      src={post.featuredImage.node.sourceUrl}
-                      alt={
-                        post.featuredImage.node.altText ||
-                        post.title ||
-                        "Post image"
-                      }
-                      fill
-                      sizes="(max-width: 768px) 30vw, (max-width: 1200px) 30vw, 33vw"
-                      className="object-cover"
-                    />
-                  </div>
-                )}
-                <div className="p-4">
-                  <h2 className="text-xl font-bold mb-2 line-clamp-2">
-                    <Link
-                      href={post.uri || `/post/${post.slug}`}
-                      className="hover:text-blue-600 transition-colors"
-                    >
-                      {post.title}
-                    </Link>
-                  </h2>
-                  <div
-                    className="text-gray-700 mb-4 line-clamp-3"
-                    dangerouslySetInnerHTML={{ __html: post.excerpt || "" }}
-                  />
-                  <div className="flex items-center text-sm text-gray-500 space-x-4">
-                    <div className="flex items-center">
-                      <Calendar className="w-4 h-4 mr-1" />
-                      <span>
-                        {post.date ? formatDate(post.date) : "No date"}
-                      </span>
+            {posts.map((post: any) => {
+              return (
+                <div
+                  key={post.id}
+                  className="bg-white rounded-lg shadow-md overflow-hidden"
+                >
+                  {post.featuredImage?.node?.sourceUrl && (
+                    <div className="relative h-48 w-full">
+                      <Image
+                        src={post.featuredImage.node.sourceUrl}
+                        alt={
+                          post.featuredImage.node.altText ||
+                          post.title ||
+                          "Post image"
+                        }
+                        fill
+                        sizes="(max-width: 768px) 30vw, (max-width: 1200px) 30vw, 33vw"
+                        className="object-cover"
+                      />
                     </div>
-                    {post.author?.node?.name && (
+                  )}
+                  <div className="p-4">
+                    <h2 className="text-xl font-bold mb-2 line-clamp-2">
+                      <Link
+                        href={post.uri || `/post/${post.slug}`}
+                        className="hover:text-blue-600 transition-colors"
+                      >
+                        {post.title}
+                      </Link>
+                    </h2>
+                    <div
+                      className="text-gray-700 mb-4 line-clamp-3"
+                      dangerouslySetInnerHTML={{
+                        __html:
+                          post.postFields.chamadaManchete ||
+                          post.postFields.chamadaDestaque ||
+                          post.postFields.antetitulo ||
+                          "",
+                      }}
+                    />
+                    <div className="flex items-center text-sm text-gray-500 space-x-4">
                       <div className="flex items-center">
-                        <User className="w-4 h-4 mr-1" />
-                        <span>{post.author.node.name}</span>
+                        <Calendar className="w-4 h-4 mr-1" />
+                        <span>
+                          {post.date ? formatDate(post.date) : "No date"}
+                        </span>
                       </div>
-                    )}
+                      {post.author?.node?.name && (
+                        <div className="flex items-center">
+                          <User className="w-4 h-4 mr-1" />
+                          <span>{post.author.node.name}</span>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
           {pageInfo && (
             <Pagination
