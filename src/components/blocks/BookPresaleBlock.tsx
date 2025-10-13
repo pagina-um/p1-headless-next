@@ -34,15 +34,12 @@ export function BookPresaleBlock() {
             Correio Mercantil de Brás Cubas
           </h2>
           <div className="text-yellow-800 text-lg md:text-xl font-medium italic mb-2 text-center md:text-left">
-            em pré-venda.
+            já à venda.
           </div>
           <div className="text-stone-700 text-base md:text-lg font-normal mb-2 text-center md:text-left">
             <span className="inline-block px-2 py-1 bg-yellow-200 rounded-full font-bold text-yellow-900 border border-yellow-400  cursor-pointer">
               Garanta o seu exemplar
             </span>
-          </div>
-          <div className="mt-2 text-md text-stone-500 italic text-center md:text-left">
-            com o seu nome na <strong>‘edição príncipe’</strong>.
           </div>
         </div>
       </div>
