@@ -18,11 +18,19 @@ export default async function TagPage({
   const currentPage = Number(searchParams.page) || 1;
   const postsPerPage = 12; // Increased for grid layout
 
-  const { data, error } = await getClient().query(GET_POSTS_BY_TAG_SLUG, {
-    slug: params.slug,
-    postsPerPage,
-    after: searchParams.after || null,
-  });
+  const afterCursor = searchParams.after
+    ? decodeURIComponent(searchParams.after)
+    : null;
+
+  const { data, error } = await getClient().query(
+    GET_POSTS_BY_TAG_SLUG,
+    {
+      slug: params.slug,
+      postsPerPage,
+      after: afterCursor,
+    },
+    currentPage > 1 || !!afterCursor ? { requestPolicy: "network-only" } : undefined
+  );
 
   const tag = data?.tags?.nodes[0];
   const posts = data?.posts?.nodes;

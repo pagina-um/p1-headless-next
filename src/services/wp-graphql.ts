@@ -38,13 +38,22 @@ export const GET_POSTS_BY_CATEGORY_SLUG = graphql(`
       }
     }
 
-    posts(where: { categoryName: $slug }, first: $postsPerPage, after: $after) {
+    posts(
+      where: {
+        categoryName: $slug
+        status: PUBLISH
+        orderby: { field: DATE, order: DESC }
+      }
+      first: $postsPerPage
+      after: $after
+    ) {
       pageInfo {
         endCursor
         hasNextPage
         hasPreviousPage
         startCursor
       }
+      edges { cursor }
       nodes {
         id
         title
@@ -96,7 +105,11 @@ export const GET_POSTS_BY_TAG_SLUG = graphql(`
     }
 
     posts(
-      where: { tag: $slug, status: PUBLISH }
+      where: {
+        tag: $slug
+        status: PUBLISH
+        orderby: { field: DATE, order: DESC }
+      }
       first: $postsPerPage
       after: $after
     ) {
@@ -106,9 +119,7 @@ export const GET_POSTS_BY_TAG_SLUG = graphql(`
         hasPreviousPage
         startCursor
       }
-      edges {
-        cursor
-      }
+      edges { cursor }
       nodes {
         id
         title
@@ -166,6 +177,7 @@ export const GET_POSTS_BY_CATEGORY = graphql(`
         categoryId: $categoryId
         status: PUBLISH
         notIn: $excludePostIds
+        orderby: { field: DATE, order: DESC }
       }
       first: $postsPerPage
       after: $after
@@ -176,6 +188,7 @@ export const GET_POSTS_BY_CATEGORY = graphql(`
         hasPreviousPage
         startCursor
       }
+      edges { cursor }
       nodes {
         id
         title
