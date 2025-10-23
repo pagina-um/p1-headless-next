@@ -5,8 +5,9 @@ import Pagination from "@/components/ui/Pagination";
 import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
 
-export const dynamic = "force-static";
-export const revalidate = 3600; // Revalidate every hour
+// Tag pages must be dynamic when using cursor-based pagination via searchParams
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function TagPage({
   params,
@@ -18,11 +19,21 @@ export default async function TagPage({
   const currentPage = Number(searchParams.page) || 1;
   const postsPerPage = 12; // Increased for grid layout
 
-  const { data, error } = await getClient().query(GET_POSTS_BY_TAG_SLUG, {
-    slug: params.slug,
-    postsPerPage,
-    after: searchParams.after || null,
-  });
+  const afterCursor = searchParams.after
+    ? decodeURIComponent(searchParams.after)
+    : null;
+
+  const { data, error } = await getClient().query(
+    GET_POSTS_BY_TAG_SLUG,
+    {
+      slug: params.slug,
+      postsPerPage,
+      after: afterCursor,
+    },
+    currentPage > 1 || !!afterCursor
+      ? { requestPolicy: "network-only" }
+      : undefined
+  );
 
   const tag = data?.tags?.nodes[0];
   const posts = data?.posts?.nodes;

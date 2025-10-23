@@ -6,8 +6,9 @@ import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
 import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
 
-export const dynamic = "force-static";
-export const revalidate = 3600; // Revalidate every hour
+// Category pages must be dynamic when using cursor-based pagination via searchParams
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function CategoryPage({
   params,
@@ -19,11 +20,21 @@ export default async function CategoryPage({
   const currentPage = Number(searchParams.page) || 1;
   const postsPerPage = 12; // Increased for grid layout
 
-  const { data } = await getClient().query(GET_POSTS_BY_CATEGORY_SLUG, {
-    slug: params.slug,
-    postsPerPage,
-    after: searchParams.after || null,
-  });
+  const afterCursor = searchParams.after
+    ? decodeURIComponent(searchParams.after)
+    : null;
+
+  const { data } = await getClient().query(
+    GET_POSTS_BY_CATEGORY_SLUG,
+    {
+      slug: params.slug,
+      postsPerPage,
+      after: afterCursor,
+    },
+    currentPage > 1 || !!afterCursor
+      ? { requestPolicy: "network-only" }
+      : undefined
+  );
 
   const category = data?.categories?.nodes[0];
   const posts = data?.posts?.nodes;
