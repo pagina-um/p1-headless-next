@@ -6,8 +6,9 @@ import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
 import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
 
-export const dynamic = "force-static";
-export const revalidate = 3600; // Revalidate every hour
+// Category pages must be dynamic when using cursor-based pagination via searchParams
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function CategoryPage({
   params,

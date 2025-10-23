@@ -5,8 +5,9 @@ import Pagination from "@/components/ui/Pagination";
 import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
 
-export const dynamic = "force-static";
-export const revalidate = 3600; // Revalidate every hour
+// Tag pages must be dynamic when using cursor-based pagination via searchParams
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function TagPage({
   params,
