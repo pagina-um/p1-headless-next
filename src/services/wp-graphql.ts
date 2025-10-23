@@ -53,7 +53,9 @@ export const GET_POSTS_BY_CATEGORY_SLUG = graphql(`
         hasPreviousPage
         startCursor
       }
-      edges { cursor }
+      edges {
+        cursor
+      }
       nodes {
         id
         title
@@ -119,7 +121,9 @@ export const GET_POSTS_BY_TAG_SLUG = graphql(`
         hasPreviousPage
         startCursor
       }
-      edges { cursor }
+      edges {
+        cursor
+      }
       nodes {
         id
         title
@@ -188,7 +192,9 @@ export const GET_POSTS_BY_CATEGORY = graphql(`
         hasPreviousPage
         startCursor
       }
-      edges { cursor }
+      edges {
+        cursor
+      }
       nodes {
         id
         title

@@ -30,7 +30,9 @@ export default async function CategoryPage({
       postsPerPage,
       after: afterCursor,
     },
-    currentPage > 1 || !!afterCursor ? { requestPolicy: "network-only" } : undefined
+    currentPage > 1 || !!afterCursor
+      ? { requestPolicy: "network-only" }
+      : undefined
   );
 
   const category = data?.categories?.nodes[0];

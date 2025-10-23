@@ -29,7 +29,9 @@ export default async function TagPage({
       postsPerPage,
       after: afterCursor,
     },
-    currentPage > 1 || !!afterCursor ? { requestPolicy: "network-only" } : undefined
+    currentPage > 1 || !!afterCursor
+      ? { requestPolicy: "network-only" }
+      : undefined
   );
 
   const tag = data?.tags?.nodes[0];
