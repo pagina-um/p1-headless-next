@@ -44,6 +44,7 @@ export function BlockWrapper<T extends Block>({
           reverse: block.reverse,
           expandImage: block.expandImage,
           extraBigTitle: block.extraBigTitle,
+          antetituloColor: block.antetituloColor || "auto",
         } as BlockSettings<T>;
       case "category":
         return {
@@ -146,6 +147,13 @@ export function BlockWrapper<T extends Block>({
     setBlockSettings((prev) => ({
       ...prev,
       extraBigTitle: e.target.checked,
+    }));
+  };
+
+  const handleAntetituloColor = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setBlockSettings((prev) => ({
+      ...prev,
+      antetituloColor: e.target.value as "auto" | "noticia" | "opiniao",
     }));
   };
 
@@ -317,6 +325,27 @@ export function BlockWrapper<T extends Block>({
                         className="w-full border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                         onChange={handleExtraBigTitle}
                       ></input>
+                    </div>
+                  )}
+
+                  {(blockSettings as BlockSettings<StoryBlock>).style ===
+                    "classic" && (
+                    <div className="">
+                      <label className="block text-xs text-gray-600 mb-1">
+                        Cor do antetítulo
+                      </label>
+                      <select
+                        value={
+                          (blockSettings as BlockSettings<StoryBlock>)
+                            .antetituloColor || "auto"
+                        }
+                        className="w-full text-xs border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                        onChange={handleAntetituloColor}
+                      >
+                        <option value="auto">Automático (categoria)</option>
+                        <option value="noticia">Notícia (vermelho)</option>
+                        <option value="opiniao">Opinião (azul)</option>
+                      </select>
                     </div>
                   )}
 

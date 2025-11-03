@@ -43,6 +43,9 @@ export interface StoryBlock extends BaseBlock, CustomPostFields {
   reverse: boolean;
   expandImage: boolean;
   extraBigTitle: boolean;
+  // Controls the background color used for postFields.antetitulo in Classic layout
+  // 'auto' uses category detection (opiniao -> blue, otherwise noticia -> primary)
+  antetituloColor?: "auto" | "noticia" | "opiniao";
 }
 
 export interface CategoryBlock extends BaseBlock {
@@ -98,6 +101,7 @@ export type BlockSettings<T extends Block> = T extends StoryBlock
       | "hideImage"
       | "expandImage"
       | "extraBigTitle"
+      | "antetituloColor"
     >
   : T extends CategoryBlock
     ? Pick<CategoryBlock, "mobilePriority" | "postsPerPage">

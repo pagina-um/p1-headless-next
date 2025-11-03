@@ -19,6 +19,10 @@ export interface StoryLayoutProps {
   author: any;
   date: string;
   tags: any;
+  // Categories are used to determine styling variants (e.g., opinion vs news)
+  categories?: { nodes: Array<{ id: string; name: string | null }> } | null;
+  // Optional override for antetitulo color selection
+  antetituloColor?: "auto" | "noticia" | "opiniao";
   orientation: "horizontal" | "vertical";
   objectPosition: ObjectPosition;
   isAdmin: boolean;
@@ -38,6 +42,8 @@ export function ClassicStoryLayout({
   postFields,
   title,
   tags,
+  categories,
+  antetituloColor = "auto",
   orientation,
   isAdmin,
   blockUid,
@@ -57,6 +63,25 @@ export function ClassicStoryLayout({
     .join(" • ");
   const isLandscape = orientation === "horizontal";
   const shouldReverse = reverse && isLandscape;
+  // Determine if this post is an Opinion piece based on category names (default behavior)
+  const isOpinionByCategory = (categories?.nodes || []).some((c) =>
+    /opini[aã]o/i.test(c.name || "")
+  );
+  // Effective choice: override from settings if provided, else auto by category
+  const effectiveChoice = antetituloColor || "auto";
+  const effectiveIsOpinion =
+    effectiveChoice === "opiniao"
+      ? true
+      : effectiveChoice === "noticia"
+        ? false
+        : isOpinionByCategory;
+  // Background classes for antetitulo based on effective choice
+  const antetituloBgClass = effectiveIsOpinion
+    ? "bg-blue-900"
+    : "bg-primary-dark";
+  const antetituloBeforeBarClass = effectiveIsOpinion
+    ? "before:bg-blue-900"
+    : "before:bg-primary-dark";
   return (
     <div className="@container group h-full px-4 lg:px-0">
       <div
@@ -90,7 +115,11 @@ export function ClassicStoryLayout({
               >
                 <div
                   className={twMerge(
-                    "bg-primary-dark text-white uppercase font-medium text-sm tracking-wide px-2 py-0.5 border-white backdrop-blur-sm w-fit",
+                    twMerge(
+                      "text-white uppercase font-medium text-sm tracking-wide px-2 py-0.5 border-white backdrop-blur-sm w-fit",
+                      // Use category-based background when showing antetitulo; fallback preserved for tags too
+                      antetituloBgClass
+                    ),
                     shouldReverse && "lg:text-right"
                   )}
                 >
@@ -139,7 +168,10 @@ export function ClassicStoryLayout({
           >
             <div
               className={twMerge(
-                "bg-[rgb(146,10,10)] text-white uppercase font-medium text-sm tracking-wide px-2 py-0.5 border-white backdrop-blur-sm lg:w-fit rounded-b-sm",
+                twMerge(
+                  "text-white uppercase font-medium text-sm tracking-wide px-2 py-0.5 border-white backdrop-blur-sm lg:w-fit rounded-b-sm",
+                  antetituloBgClass
+                ),
                 shouldReverse && "lg:text-right"
               )}
             >
@@ -166,7 +198,10 @@ export function ClassicStoryLayout({
           {!displayImage && postFields.antetitulo && (
             <p
               className={twMerge(
-                "bg-[rgba(0,0,0,0.06)] w-fit pr-2 border items-start text-pretty text-primary-dark font-medium text-sm gap-x-1 before:content-[''] before:block before:w-1 before:h-full before:bg-primary-dark before:flex-shrink-0",
+                twMerge(
+                  "bg-[rgba(0,0,0,0.06)] w-fit pr-2 border items-start text-pretty text-primary-dark font-medium text-sm gap-x-1 before:content-[''] before:block before:w-1 before:h-full before:flex-shrink-0",
+                  antetituloBeforeBarClass
+                ),
                 shouldReverse && "lg:flex-row-reverse lg:text-right"
               )}
             >
