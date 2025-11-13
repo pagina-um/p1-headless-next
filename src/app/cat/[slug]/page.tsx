@@ -6,9 +6,9 @@ import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
 import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
 
-// Category pages must be dynamic when using cursor-based pagination via searchParams
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+// Enable ISR with 1 hour revalidation for better caching
+// First page load will be cached, subsequent pagination requests will be dynamic
+export const revalidate = 3600;
 
 export default async function CategoryPage({
   params,
