@@ -5,9 +5,9 @@ import Pagination from "@/components/ui/Pagination";
 import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
 
-// Tag pages must be dynamic when using cursor-based pagination via searchParams
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+// Enable ISR with 1 hour revalidation for better caching
+// First page load will be cached, subsequent pagination requests will be dynamic
+export const revalidate = 3600;
 
 export default async function TagPage({
   params,
