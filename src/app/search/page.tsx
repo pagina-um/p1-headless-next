@@ -1,4 +1,4 @@
-import { GET_POSTS_BY_SEARCH, getClient } from "@/services/wp-graphql";
+import { searchPosts } from "@/services/payload-api";
 import Link from "next/link";
 import Image from "next/image";
 import Pagination from "@/components/ui/Pagination";
@@ -8,10 +8,11 @@ import { Calendar, User, Search } from "lucide-react";
 export default async function SearchPage({
   searchParams,
 }: {
-  searchParams: { q?: string; page?: string; after?: string };
+  searchParams: Promise<{ q?: string; page?: string; after?: string }>;
 }) {
-  const query = searchParams.q || "";
-  const currentPage = Number(searchParams.page) || 1;
+  const searchParamsResolved = await searchParams;
+  const query = searchParamsResolved.q || "";
+  const currentPage = Number(searchParamsResolved.page) || 1;
   const postsPerPage = 12; // Consistent with other pages
 
   // If no search query is provided, show an empty state
@@ -35,20 +36,8 @@ export default async function SearchPage({
       </div>
     );
   }
-  const afterCursor = searchParams.after
-    ? decodeURIComponent(searchParams.after)
-    : null;
 
-  const variables = {
-    searchQuery: query,
-    postsPerPage,
-    after: afterCursor,
-  } as const;
-
-  // Always fetch from network to avoid any cache inconsistencies on search
-  const { data } = await getClient().query(GET_POSTS_BY_SEARCH, variables, {
-    requestPolicy: "network-only",
-  });
+  const { data } = await searchPosts(query, postsPerPage);
 
   const posts = data?.posts?.nodes || [];
   const pageInfo = data?.posts?.pageInfo;

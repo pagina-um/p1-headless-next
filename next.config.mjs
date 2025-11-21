@@ -1,3 +1,5 @@
+import { withPayload } from '@payloadcms/next/withPayload'
+
 /** @type {import('next').NextConfig} */
 const gqlUrl = new URL(process.env.NEXT_PUBLIC_WP_URL);
 const domain = gqlUrl.hostname;
@@ -154,4 +156,4 @@ if (process.env.NODE_ENV === "development") {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 }
 
-export default nextConfig;
+export default withPayload(nextConfig);

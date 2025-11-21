@@ -1,4 +1,4 @@
-import { GET_POSTS_BY_TAG_SLUG, getClient } from "@/services/wp-graphql";
+import { getPostsByTagSlug } from "@/services/payload-api";
 import Link from "next/link";
 import Image from "next/image";
 import Pagination from "@/components/ui/Pagination";
@@ -13,26 +13,22 @@ export default async function TagPage({
   params,
   searchParams,
 }: {
-  params: { slug: string };
-  searchParams: { page?: string; after?: string };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ page?: string; after?: string }>;
 }) {
-  const currentPage = Number(searchParams.page) || 1;
+  const { slug } = await params;
+  const searchParamsResolved = await searchParams;
+  const currentPage = Number(searchParamsResolved.page) || 1;
   const postsPerPage = 12; // Increased for grid layout
 
-  const afterCursor = searchParams.after
-    ? decodeURIComponent(searchParams.after)
+  const afterCursor = searchParamsResolved.after
+    ? decodeURIComponent(searchParamsResolved.after)
     : null;
 
-  const { data, error } = await getClient().query(
-    GET_POSTS_BY_TAG_SLUG,
-    {
-      slug: params.slug,
-      postsPerPage,
-      after: afterCursor,
-    },
-    currentPage > 1 || !!afterCursor
-      ? { requestPolicy: "network-only" }
-      : undefined
+  const { data, error } = await getPostsByTagSlug(
+    slug,
+    postsPerPage,
+    afterCursor
   );
 
   const tag = data?.tags?.nodes[0];
@@ -40,7 +36,7 @@ export default async function TagPage({
   const pageInfo = data?.posts?.pageInfo;
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {error}</div>;
   }
 
   return (
@@ -95,7 +91,7 @@ export default async function TagPage({
         <Pagination
           currentPage={currentPage}
           hasNextPage={pageInfo.hasNextPage}
-          basePath={`/tag/${params.slug}`}
+          basePath={`/tag/${slug}`}
           startCursor={pageInfo.startCursor}
           endCursor={pageInfo.endCursor}
         />

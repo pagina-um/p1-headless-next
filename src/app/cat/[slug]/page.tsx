@@ -1,4 +1,4 @@
-import { GET_POSTS_BY_CATEGORY_SLUG, getClient } from "@/services/wp-graphql";
+import { getPostsByCategorySlug } from "@/services/payload-api";
 import Link from "next/link";
 import Image from "next/image";
 import Pagination from "@/components/ui/Pagination";
@@ -14,26 +14,22 @@ export default async function CategoryPage({
   params,
   searchParams,
 }: {
-  params: { slug: string };
-  searchParams: { page?: string; after?: string };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ page?: string; after?: string }>;
 }) {
-  const currentPage = Number(searchParams.page) || 1;
+  const { slug } = await params;
+  const searchParamsResolved = await searchParams;
+  const currentPage = Number(searchParamsResolved.page) || 1;
   const postsPerPage = 12; // Increased for grid layout
 
-  const afterCursor = searchParams.after
-    ? decodeURIComponent(searchParams.after)
+  const afterCursor = searchParamsResolved.after
+    ? decodeURIComponent(searchParamsResolved.after)
     : null;
 
-  const { data } = await getClient().query(
-    GET_POSTS_BY_CATEGORY_SLUG,
-    {
-      slug: params.slug,
-      postsPerPage,
-      after: afterCursor,
-    },
-    currentPage > 1 || !!afterCursor
-      ? { requestPolicy: "network-only" }
-      : undefined
+  const { data } = await getPostsByCategorySlug(
+    slug,
+    postsPerPage,
+    afterCursor
   );
 
   const category = data?.categories?.nodes[0];
@@ -92,7 +88,7 @@ export default async function CategoryPage({
         <Pagination
           currentPage={currentPage}
           hasNextPage={pageInfo.hasNextPage}
-          basePath={`/cat/${params.slug}`}
+          basePath={`/cat/${slug}`}
           startCursor={pageInfo.startCursor}
           endCursor={pageInfo.endCursor}
         />

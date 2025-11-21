@@ -1,6 +1,6 @@
 import React from "react";
 
-import { getClient, GET_POST_BY_ID } from "@/services/wp-graphql";
+import { getPostById } from "@/services/payload-api";
 import { StoryBlock } from "@/types";
 
 import { NewsStoryCommon } from "./NewsStoryCommon";
@@ -12,9 +12,7 @@ interface NewsStoryProps {
 export async function NewsStoryServer({ story }: NewsStoryProps) {
   const { databaseId } = story;
 
-  const { data, error } = await getClient().query(GET_POST_BY_ID, {
-    id: databaseId.toString(),
-  });
+  const { data, error } = await getPostById(databaseId.toString());
 
   return (
     <NewsStoryCommon story={story} data={data} error={error} isAdmin={false} />

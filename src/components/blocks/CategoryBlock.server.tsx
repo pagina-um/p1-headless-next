@@ -2,7 +2,7 @@ import React from "react";
 import { CategoryBlock as CategoryBlockType } from "../../types";
 import { CategoryBlockHeader } from "./CategoryBlockHeader";
 import { CategoryPostList } from "./CategoryPostList";
-import { GET_POSTS_BY_CATEGORY, getClient } from "@/services/wp-graphql";
+import { getPostsByCategoryId } from "@/services/payload-api";
 
 export interface CategoryBlockProps {
   block: CategoryBlockType;
@@ -13,12 +13,11 @@ export async function CategoryBlockServer({
   block,
   excludePostIds,
 }: CategoryBlockProps) {
-  const { data, error } = await getClient().query(GET_POSTS_BY_CATEGORY, {
-    categoryId: block.wpCategoryId,
-    sameCategoryIdAsString: block.wpCategoryId.toString(),
-    postsPerPage: block.postsPerPage,
-    excludePostIds,
-  });
+  const { data, error } = await getPostsByCategoryId(
+    block.wpCategoryId,
+    block.postsPerPage,
+    excludePostIds
+  );
   const posts = data?.posts?.nodes || [];
   const category = data?.category;
 

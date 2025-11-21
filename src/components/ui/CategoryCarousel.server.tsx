@@ -1,8 +1,4 @@
-import {
-  GET_POSTS_BY_CATEGORY,
-  GET_POSTS_BY_CATEGORY_SLUG,
-  getClient,
-} from "@/services/wp-graphql";
+import { getPostsByCategoryId } from "@/services/payload-api";
 import {
   Carousel,
   CarouselContent,
@@ -31,17 +27,16 @@ export async function CategoryCarouselServer({
   totalPosts = 12,
   excludePostIds = [],
 }: CategoryCarouselProps) {
-  const { data, error } = await getClient().query(GET_POSTS_BY_CATEGORY, {
-    categoryId: block.wpCategoryId,
-    sameCategoryIdAsString: block.wpCategoryId.toString(),
-    postsPerPage: totalPosts,
-    excludePostIds,
-  });
+  const { data, error } = await getPostsByCategoryId(
+    block.wpCategoryId,
+    totalPosts,
+    excludePostIds
+  );
   const posts = data?.posts?.nodes || [];
   if (error) {
     return (
       <div className="text-red-500 p-4">
-        Error loading posts: {error.message}
+        Error loading posts: {error}
       </div>
     );
   }
