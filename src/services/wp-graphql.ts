@@ -1,3 +1,14 @@
+/**
+ * LEGACY: WordPress GraphQL Service
+ *
+ * This file is kept for backward compatibility with:
+ * - Legacy admin panel at /legacy-admin
+ * - Migration script (scripts/migrate-wordpress.ts)
+ *
+ * All public-facing pages now use Payload CMS API (payload-api.ts)
+ * TODO: Migrate legacy admin panel to Payload, then remove this file
+ */
+
 import { graphql } from "gql.tada";
 import { cacheExchange, createClient, fetchExchange } from "@urql/core";
 import { registerUrql } from "@urql/next/rsc";

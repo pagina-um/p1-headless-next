@@ -3,6 +3,7 @@ import { extractStoryData } from "@/utils/categoryUtils";
 import { FileWarningIcon } from "lucide-react";
 import { ClassicStoryLayout } from "./ClassicLayout";
 import { ModernStoryLayout } from "./ModernLayout";
+// LEGACY: WordPress GraphQL types - kept for type compatibility with legacy admin panel
 import { GET_POST_BY_ID } from "@/services/wp-graphql";
 import { ResultOf } from "gql.tada";
 import Link from "next/link";

@@ -668,6 +668,54 @@ export async function searchPosts(searchTerm: string, limit = 20) {
 }
 
 // ============================================================================
+// SITEMAP
+// ============================================================================
+
+export async function getAllPublishedPosts() {
+  const payload = await getPayloadInstance()
+
+  const allPosts: any[] = []
+  let page = 1
+  let hasNextPage = true
+
+  while (hasNextPage) {
+    const result = await payload.find({
+      collection: 'posts',
+      where: {
+        status: {
+          equals: 'publish',
+        },
+      },
+      limit: 100,
+      page,
+      sort: '-publishedAt',
+      depth: 1, // Only need basic info
+    })
+
+    allPosts.push(...result.docs)
+    hasNextPage = result.hasNextPage
+    page++
+  }
+
+  return {
+    data: {
+      posts: allPosts.map((post: any) => ({
+        id: post.id,
+        title: post.title,
+        date: post.publishedAt,
+        slug: post.slug,
+        categories: Array.isArray(post.categories)
+          ? post.categories.map((cat: any) => ({
+              name: typeof cat === 'object' ? cat.name : '',
+            }))
+          : [],
+      })),
+    },
+    error: null,
+  }
+}
+
+// ============================================================================
 // PAGES
 // ============================================================================
 
