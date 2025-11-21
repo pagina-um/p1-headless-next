@@ -354,11 +354,12 @@ export async function getPostsByCategorySlug(
   const page = after ? parseInt(Buffer.from(after, "base64").toString()) : 1;
 
   // Find posts in this category
+  // Use 'in' operator with array for hasMany relationship fields
   const result = await payload.find({
     collection: "posts",
     where: {
       categories: {
-        contains: category.id,
+        in: [category.id], // Must be an array
       },
       status: {
         equals: "publish",
@@ -471,7 +472,7 @@ export async function getPostsByCategoryId(
   // Build where clause with exclusions if provided
   const whereClause: any = {
     categories: {
-      contains: category.id,
+      in: [category.id], // Must be an array
     },
     status: {
       equals: "publish",
@@ -584,11 +585,12 @@ export async function getPostsByTagSlug(
   const page = after ? parseInt(Buffer.from(after, "base64").toString()) : 1;
 
   // Find posts with this tag
+  // Use 'in' operator with array for hasMany relationship fields
   const result = await payload.find({
     collection: "posts",
     where: {
       tags: {
-        contains: tag.id,
+        in: [tag.id], // Must be an array
       },
       status: {
         equals: "publish",
