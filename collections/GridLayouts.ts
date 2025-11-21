@@ -4,24 +4,22 @@ export const GridLayouts: CollectionConfig = {
   slug: 'grid-layouts',
   admin: {
     useAsTitle: 'name',
-    description: 'Homepage grid layout configurations',
+    description: 'Homepage grid layout configuration',
+    hidden: true, // Hide from main nav, accessed via custom grid editor
   },
   access: {
-    read: () => true,
+    read: () => true, // Public read for homepage
+    create: ({ req: { user } }) => user?.role === 'admin',
+    update: ({ req: { user } }) => user?.role === 'admin',
+    delete: ({ req: { user } }) => user?.role === 'admin',
   },
   fields: [
     {
       name: 'name',
       type: 'text',
       required: true,
-      defaultValue: 'Homepage Grid',
-    },
-    {
-      name: 'isActive',
-      type: 'checkbox',
-      defaultValue: false,
       admin: {
-        description: 'Set this layout as active for the homepage',
+        description: 'Name this layout (e.g., "Homepage - December 2025")',
       },
     },
     {
@@ -30,6 +28,7 @@ export const GridLayouts: CollectionConfig = {
       required: true,
       admin: {
         description: 'Grid configuration data including blocks and layout positions',
+        readOnly: true, // Edited via grid editor UI, not directly
       },
     },
     {
@@ -38,34 +37,52 @@ export const GridLayouts: CollectionConfig = {
       relationTo: 'users',
       admin: {
         position: 'sidebar',
+        readOnly: true,
+      },
+    },
+    {
+      name: 'usedBy',
+      type: 'relationship',
+      relationTo: 'pages',
+      hasMany: true,
+      admin: {
+        position: 'sidebar',
+        readOnly: true,
+        description: 'Pages using this layout',
       },
     },
   ],
   hooks: {
     beforeChange: [
       async ({ data, req, operation }) => {
-        // If this layout is being set as active, deactivate all others
-        if (data.isActive && operation === 'create') {
-          const layouts = await req.payload.find({
-            collection: 'grid-layouts',
-            where: {
-              isActive: {
-                equals: true,
-              },
-            },
-          })
-
-          for (const layout of layouts.docs) {
-            await req.payload.update({
-              collection: 'grid-layouts',
-              id: layout.id,
-              data: {
-                isActive: false,
-              },
-            })
-          }
+        // Track who created the layout
+        if (operation === 'create' && req.user) {
+          data.createdBy = req.user.id
         }
         return data
+      },
+    ],
+    afterChange: [
+      async ({ doc, req }) => {
+        // Update usedBy field by finding pages that reference this layout
+        const pages = await req.payload.find({
+          collection: 'pages',
+          where: {
+            gridLayout: {
+              equals: doc.id,
+            },
+          },
+        })
+
+        if (pages.docs.length > 0) {
+          await req.payload.update({
+            collection: 'grid-layouts',
+            id: doc.id,
+            data: {
+              usedBy: pages.docs.map((page) => page.id),
+            },
+          })
+        }
       },
     ],
   },
