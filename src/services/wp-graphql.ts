@@ -14,9 +14,34 @@ import { cacheExchange, createClient, fetchExchange } from "@urql/core";
 import { registerUrql } from "@urql/next/rsc";
 import { WP_URL } from "./config";
 
+const WP_GRAPHQL_ENDPOINT = (() => {
+  if (!WP_URL) {
+    console.warn(
+      "[wp-graphql] NEXT_PUBLIC_WP_URL is not set. WordPress data access will fail."
+    );
+    return null;
+  }
+
+  const normalized = WP_URL.endsWith("/") ? WP_URL : `${WP_URL}/`;
+  return `${normalized}graphql`;
+})();
+
+let hasLoggedClientInit = false;
+
 export const makeClient = () => {
+  if (!WP_GRAPHQL_ENDPOINT) {
+    throw new Error(
+      "[wp-graphql] Cannot create client because NEXT_PUBLIC_WP_URL is undefined."
+    );
+  }
+
+  if (!hasLoggedClientInit) {
+    console.log(`[wp-graphql] Creating client for ${WP_GRAPHQL_ENDPOINT}`);
+    hasLoggedClientInit = true;
+  }
+
   return createClient({
-    url: (WP_URL + "graphql") as string,
+    url: WP_GRAPHQL_ENDPOINT,
     exchanges: [cacheExchange, fetchExchange],
   });
 };
@@ -252,6 +277,7 @@ export const GET_POST_BY_ID = graphql(`
       title
       uri
       excerpt
+      content
       date
       slug
       postFields {

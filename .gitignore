@@ -26,3 +26,7 @@ dist-ssr
 /.next
 .next
 .vercel
+
+*.db
+
+.db
