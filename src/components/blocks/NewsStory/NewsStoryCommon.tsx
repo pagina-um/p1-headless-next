@@ -3,12 +3,47 @@ import { extractStoryData } from "@/utils/categoryUtils";
 import { FileWarningIcon } from "lucide-react";
 import { ClassicStoryLayout } from "./ClassicLayout";
 import { ModernStoryLayout } from "./ModernLayout";
-// LEGACY: WordPress GraphQL types - kept for type compatibility with legacy admin panel
-import { GET_POST_BY_ID } from "@/services/wp-graphql";
-import { ResultOf } from "gql.tada";
 import Link from "next/link";
-import { mockFeaturedImage } from "@/mocks/featuredImage";
-import { isDevelopment } from "@/services/config";
+
+// Payload API post data type
+type PayloadPostData = {
+  post: {
+    id: string;
+    title: string;
+    content: string;
+    excerpt: string;
+    date: string;
+    slug: string;
+    uri: string;
+    postFields?: {
+      antetitulo?: string | null;
+      chamadaDestaque?: string | null;
+      chamadaManchete?: string | null;
+    };
+    categories?: {
+      nodes: Array<{ id: string; name: string }>;
+    };
+    tags?: {
+      nodes: Array<{ id: string; name: string }>;
+    };
+    author?: {
+      node?: {
+        name: string;
+        avatar?: { url: string };
+      };
+    };
+    featuredImage?: {
+      node?: {
+        sourceUrl: string;
+        altText: string;
+        mediaDetails?: {
+          height: number;
+          width: number;
+        };
+      };
+    } | null;
+  };
+};
 
 export function NewsStoryCommon({
   story,
@@ -17,7 +52,7 @@ export function NewsStoryCommon({
   isAdmin,
 }: {
   story: StoryBlock;
-  data: ResultOf<typeof GET_POST_BY_ID> | undefined;
+  data: PayloadPostData | null | undefined;
   error: any;
   isAdmin: boolean;
 }) {
@@ -33,8 +68,7 @@ export function NewsStoryCommon({
   const { finalTitle, overridePostFields, author, date, uri } =
     extractStoryData(data, story);
 
-  const featuredImage: NonNullable<(typeof data)["post"]>["featuredImage"] =
-    !isDevelopment ? data.post?.featuredImage : mockFeaturedImage;
+  const featuredImage = data.post?.featuredImage;
   return (
     <ConditionalLinkWrapper href={isAdmin ? undefined : uri}>
       {story.style === "modern" ? (

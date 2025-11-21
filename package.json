@@ -4,16 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "dev:wp": "npx @wp-playground/cli server --blueprint=blueprint.json",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,md,json}\"",
-    "codegen": "gql-tada generate output",
     "test": "jest",
     "payload": "payload",
-    "generate:types": "payload generate:types",
-    "migrate:wordpress": "tsx --env-file=.env.development.local scripts/migrate-wordpress.ts"
+    "generate:types": "payload generate:types"
   },
   "dependencies": {
     "@easypaypt/checkout-sdk": "^2.7.2",
@@ -24,7 +21,6 @@
     "@payloadcms/ui": "^3.64.0",
     "@radix-ui/react-slot": "^1.1.1",
     "@upstash/redis": "^1.34.6",
-    "@urql/next": "^1.1.3",
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.1.0",
     "@wpengine/edge-cache": "^1.3.1",
@@ -33,9 +29,6 @@
     "dotenv": "^17.2.3",
     "embla-carousel-react": "^8.5.2",
     "geist": "^1.3.1",
-    "gql.tada": "^1.8.10",
-    "graphql": "^16.10.0",
-    "graphql-request": "^7.1.2",
     "html-react-parser": "^5.2.2",
     "jsdom": "^27.2.0",
     "lucide-react": "^0.344.0",
@@ -48,8 +41,7 @@
     "react-grid-layout": "^1.4.4",
     "sharp": "^0.34.5",
     "tailwind-merge": "^2.6.0",
-    "tailwindcss-animate": "^1.0.7",
-    "urql": "^4.2.1"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",
