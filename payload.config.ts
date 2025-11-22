@@ -47,5 +47,10 @@ export default buildConfig({
       titleSuffix: " - Página UM CMS",
       favicon: "/favicon.ico",
     },
+    components: {
+      graphics: {
+        Logo: './src/components/admin/PayloadLogo#PayloadLogo',
+      },
+    },
   },
 });

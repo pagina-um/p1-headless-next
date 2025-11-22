@@ -26,6 +26,9 @@ export const Posts: CollectionConfig = {
     {
       name: "excerpt",
       type: "textarea",
+      admin: {
+        hidden: true,
+      },
     },
     {
       name: "slug",

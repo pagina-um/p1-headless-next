@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { createDonationCheckout } from "@/app/donativos/actions";
+import { createDonationCheckout } from "@/app/(frontend)/donativos/actions";
 import { CheckoutInstance, CheckoutManifest } from "@easypaypt/checkout-sdk";
 import { Loader } from "lucide-react";
 import { useRouter } from "next/navigation";
