@@ -18,6 +18,7 @@ import {
   visualizeGrid,
 } from "@/utils/grid";
 import { getStoryPostsIds } from "@/utils/categoryUtils";
+import { getGridLayout, getActiveGridLayout } from "@/app/(payload)/admin/grid-editor/actions";
 
 type GridContextType = {
   gridState: GridState | undefined;
@@ -68,12 +69,9 @@ export function GridProvider({
       try {
         // If layoutId is provided, load that specific layout
         // Otherwise, load the active layout
-        const endpoint = layoutId
-          ? `/api/content/grid-layouts/${layoutId}`
-          : "/api/content/grid-layouts?active=true";
-
-        const response = await fetch(endpoint);
-        const data = await response.json();
+        const data = layoutId
+          ? await getGridLayout(layoutId)
+          : await getActiveGridLayout();
 
         // Extract gridState from the layout object
         const fetchedGridState = data?.gridState || initialGridState;

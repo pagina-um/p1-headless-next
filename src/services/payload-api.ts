@@ -10,14 +10,14 @@ import { getPayload } from "payload";
 import config from "@payload-config";
 import { richTextToHtml } from "@/utils/richTextConversion";
 
-// Initialize Payload (cached)
-let payloadInstance: any = null;
+// Initialize Payload (cached) - Cache the promise to prevent race conditions
+let payloadPromise: Promise<any> | null = null;
 
 export async function getPayloadInstance() {
-  if (!payloadInstance) {
-    payloadInstance = await getPayload({ config });
+  if (!payloadPromise) {
+    payloadPromise = getPayload({ config });
   }
-  return payloadInstance;
+  return payloadPromise;
 }
 
 async function serializePostContent(content: unknown) {

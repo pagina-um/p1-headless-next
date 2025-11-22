@@ -3,6 +3,7 @@
 import { StoryBlock } from "@/types";
 import { NewsStoryCommon } from "./NewsStoryCommon";
 import { useEffect, useState } from "react";
+import { getPost } from "@/app/(payload)/admin/grid-editor/actions";
 
 interface NewsStoryProps {
   story: StoryBlock;
@@ -18,9 +19,7 @@ export function NewsStoryClient({ story }: NewsStoryProps) {
     async function fetchPost() {
       try {
         setLoading(true);
-        const response = await fetch(`/api/content/posts/${postId}`);
-        if (!response.ok) throw new Error("Failed to fetch post");
-        const postData = await response.json();
+        const postData = await getPost(postId);
         setData({ post: postData });
       } catch (err) {
         setError(err);

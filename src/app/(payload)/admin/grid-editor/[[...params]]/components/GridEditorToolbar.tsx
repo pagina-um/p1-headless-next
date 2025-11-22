@@ -4,6 +4,7 @@ import { useGrid } from "@/components/ui/GridContext";
 import { Save, Trash, RotateCcw, ArrowLeft, Loader } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { saveGridLayout } from "../../actions";
 
 interface GridEditorToolbarProps {
   layoutId: string | null;
@@ -25,25 +26,19 @@ export function GridEditorToolbar({ layoutId }: GridEditorToolbarProps) {
     setSaveMessage("");
 
     try {
-      const response = await fetch("/api/content/grid-layouts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          gridState,
-          name: layoutName,
-          ...(layoutId && { id: layoutId }),
-        }),
+      const result = await saveGridLayout({
+        gridState,
+        name: layoutName,
+        ...(layoutId && { id: layoutId }),
       });
 
-      const data = await response.json();
-
-      if (data.success) {
+      if (result.success) {
         setSaveMessage("✓ Saved successfully!");
         await handleSave(); // Update GridContext state
         setTimeout(() => setSaveMessage(""), 3000);
       } else {
-        console.error("Save failed:", data);
-        setSaveMessage(`✗ Failed to save${data.error ? `: ${data.error}` : ""}`);
+        console.error("Save failed:", result);
+        setSaveMessage(`✗ Failed to save${result.error ? `: ${result.error}` : ""}`);
       }
     } catch (error) {
       console.error("Save error:", error);

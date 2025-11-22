@@ -3,6 +3,7 @@
 import { useGrid } from "@/components/ui/GridContext";
 import { useEffect, useState } from "react";
 import { Loader, FolderOpen } from "lucide-react";
+import { getCategories } from "../../actions";
 
 interface Category {
   id: string;
@@ -21,8 +22,7 @@ export function CategoriesList() {
   useEffect(() => {
     async function fetchCategories() {
       try {
-        const response = await fetch("/api/content/categories");
-        const data = await response.json();
+        const data = await getCategories();
 
         if (data.docs) {
           setCategories(data.docs);

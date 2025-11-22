@@ -95,28 +95,7 @@ export const GridLayouts: CollectionConfig = {
         return data
       },
     ],
-    afterChange: [
-      async ({ doc, req }) => {
-        // Update usedBy field by finding pages that reference this layout
-        const pages = await req.payload.find({
-          collection: 'pages',
-          where: {
-            gridLayout: {
-              equals: doc.id,
-            },
-          },
-        })
-
-        if (pages.docs.length > 0) {
-          await req.payload.update({
-            collection: 'grid-layouts',
-            id: doc.id,
-            data: {
-              usedBy: pages.docs.map((page) => page.id),
-            },
-          })
-        }
-      },
-    ],
+    // Removed afterChange hook to prevent infinite loop
+    // The usedBy field is not critical and was causing saves to hang
   },
 }
