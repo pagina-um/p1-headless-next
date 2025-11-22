@@ -21,7 +21,7 @@ export function CategoriesList() {
   useEffect(() => {
     async function fetchCategories() {
       try {
-        const response = await fetch("/api/categories");
+        const response = await fetch("/api/content/categories");
         const data = await response.json();
 
         if (data.docs) {

@@ -10,6 +10,7 @@ export const Pages: CollectionConfig = {
   access: {
     read: () => true,
   },
+  timestamps: true,
   hooks: {
     beforeChange: [
       async ({ data, req, operation }) => {

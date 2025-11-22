@@ -10,6 +10,7 @@ export const GridLayouts: CollectionConfig = {
   access: {
     read: () => true,
   },
+  timestamps: true,
   fields: [
     {
       name: 'gridEditorRedirect',

@@ -14,13 +14,13 @@ export function useCategoryPosts(
       try {
         setFetching(true);
         // Fetch category data and posts from Payload API
-        const categoryResponse = await fetch(`/api/categories/${categoryId}`);
+        const categoryResponse = await fetch(`/api/content/categories/${categoryId}`);
         if (!categoryResponse.ok) throw new Error("Failed to fetch category");
         const category = await categoryResponse.json();
 
         // Fetch posts for this category
         const postsResponse = await fetch(
-          `/api/posts?category=${categoryId}&limit=${postsPerPage}&exclude=${excludePostIds.join(",")}`
+          `/api/content/posts?category=${categoryId}&limit=${postsPerPage}&exclude=${excludePostIds.join(",")}`
         );
         if (!postsResponse.ok) throw new Error("Failed to fetch posts");
         const postsData = await postsResponse.json();

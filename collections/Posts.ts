@@ -10,6 +10,7 @@ export const Posts: CollectionConfig = {
   access: {
     read: () => true,
   },
+  timestamps: true,
   fields: [
     {
       name: "title",
