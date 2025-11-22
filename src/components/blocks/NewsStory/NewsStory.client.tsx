@@ -18,7 +18,7 @@ export function NewsStoryClient({ story }: NewsStoryProps) {
     async function fetchPost() {
       try {
         setLoading(true);
-        const response = await fetch(`/api/posts/${postId}`);
+        const response = await fetch(`/api/content/posts/${postId}`);
         if (!response.ok) throw new Error("Failed to fetch post");
         const postData = await response.json();
         setData({ post: postData });
