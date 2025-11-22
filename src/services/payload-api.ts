@@ -13,7 +13,7 @@ import { richTextToHtml } from "@/utils/richTextConversion";
 // Initialize Payload (cached)
 let payloadInstance: any = null;
 
-async function getPayloadInstance() {
+export async function getPayloadInstance() {
   if (!payloadInstance) {
     payloadInstance = await getPayload({ config });
   }

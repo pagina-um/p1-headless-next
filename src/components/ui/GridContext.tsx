@@ -49,7 +49,13 @@ const initialGridState: GridState = {
   createdAt: "",
 };
 
-export function GridProvider({ children }: { children: React.ReactNode }) {
+export function GridProvider({
+  children,
+  layoutId = null
+}: {
+  children: React.ReactNode;
+  layoutId?: string | null;
+}) {
   const [gridState, setGridState] = useState<GridState>(initialGridState);
   const [isSaving, setIsSaving] = useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
@@ -59,19 +65,32 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
   // Load initial grid state
   useEffect(() => {
     const fetchGridState = async () => {
-      const response = await fetch("/api/grid");
-      const fetchedGridState = await response.json();
-      if (fetchedGridState) {
+      try {
+        // If layoutId is provided, load that specific layout
+        // Otherwise, load the active layout
+        const endpoint = layoutId
+          ? `/api/grid-layouts/${layoutId}`
+          : "/api/grid-layouts?active=true";
+
+        const response = await fetch(endpoint);
+        const data = await response.json();
+
+        // Extract gridState from the layout object
+        const fetchedGridState = data?.gridState || initialGridState;
+
         setGridState(fetchedGridState);
         originalGridStateRef.current = JSON.parse(
           JSON.stringify(fetchedGridState)
         );
         setHasUnsavedChanges(false);
+      } catch (error) {
+        console.error("Failed to load grid state:", error);
+        setGridState(initialGridState);
       }
     };
 
     fetchGridState();
-  }, []);
+  }, [layoutId]);
 
   // Check for unsaved changes whenever gridState updates
   useEffect(() => {
@@ -141,22 +160,14 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
   };
 
   const handleSave = async () => {
+    // This function is now mainly used to update the local state after save
+    // The actual API call is handled by GridEditorToolbar or other components
     if (!gridState) return;
-    try {
-      setIsSaving(true);
-      await fetch("/api/grid", {
-        method: "POST",
-        body: JSON.stringify(gridState),
-      });
 
-      originalGridStateRef.current = JSON.parse(JSON.stringify(gridState));
-      setHasUnsavedChanges(false);
-      setShowToast(true);
-      setIsSaving(false);
-    } catch (error) {
-      setIsSaving(false);
-      console.error("Failed to save grid state:", error);
-    }
+    // Update the original state to match current state (mark as saved)
+    originalGridStateRef.current = JSON.parse(JSON.stringify(gridState));
+    setHasUnsavedChanges(false);
+    setShowToast(true);
   };
 
   const handleCreateCategoryBlock = (id: number, name: string) => {

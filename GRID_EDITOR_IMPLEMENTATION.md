@@ -9,12 +9,14 @@ This document outlines the implementation plan for integrating the drag-and-drop
 ### 1. Database Schema Updates
 
 **Pages Collection** (`collections/Pages.ts`)
+
 - ✅ Added `pageType` field with options: "article" or "grid-layout"
 - ✅ Conditional `content` field (rich text) - shows only for article pages
 - ✅ Conditional `gridLayout` field (relationship) - shows only for grid-layout pages
 - ✅ Admin-only access control
 
 **GridLayouts Collection** (`collections/GridLayouts.ts`)
+
 - ✅ Stores grid state as JSON
 - ✅ Tracks creator via `createdBy` relationship
 - ✅ Tracks usage via `usedBy` relationship (auto-populated)
@@ -24,6 +26,7 @@ This document outlines the implementation plan for integrating the drag-and-drop
 ### 2. API Infrastructure
 
 **Endpoint:** `/api/grid-layouts/route.ts`
+
 - ✅ `GET` - Fetch all layouts or active layout (`?active=true`)
 - ✅ `POST` - Create or update grid layout
 - ✅ Auto-deduplication (updates existing if found)
@@ -38,11 +41,13 @@ This document outlines the implementation plan for integrating the drag-and-drop
 **Location:** `/src/app/(payload)/admin/grid-editor/[[...params]]/page.tsx`
 
 **Purpose:** Full-page grid editor accessible via:
+
 - `/admin/grid-editor/new` - Create new layout
 - `/admin/grid-editor/[layoutId]` - Edit existing layout
 - Link button from Pages > Grid Layout field
 
 **Requirements:**
+
 ```typescript
 // Grid Editor Page Structure
 "use client"
@@ -74,6 +79,7 @@ export default function GridEditorPage({ params }) {
 **A. GridEditorToolbar** (`/admin/grid-editor/components/GridEditorToolbar.tsx`)
 
 Features:
+
 - Save button → POST to `/api/grid-layouts`
 - Clear button → Remove all blocks
 - Reset button → Restore to last saved state
@@ -188,20 +194,20 @@ export function PostsList() {
 
 ```typescript
 export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url)
-  const limit = parseInt(searchParams.get('limit') || '50')
+  const { searchParams } = new URL(request.url);
+  const limit = parseInt(searchParams.get("limit") || "50");
 
-  const payload = await getPayloadInstance()
+  const payload = await getPayloadInstance();
   const result = await payload.find({
-    collection: 'posts',
+    collection: "posts",
     limit,
-    sort: '-publishedAt',
+    sort: "-publishedAt",
     where: {
-      status: { equals: 'publish' }
-    }
-  })
+      status: { equals: "publish" },
+    },
+  });
 
-  return NextResponse.json(result)
+  return NextResponse.json(result);
 }
 ```
 
@@ -242,18 +248,18 @@ export function CategoriesList() {
 
 ```typescript
 export async function GET() {
-  const payload = await getPayloadInstance()
+  const payload = await getPayloadInstance();
 
   // Fetch categories with post counts
   const result = await payload.find({
-    collection: 'categories',
-    sort: 'name',
-  })
+    collection: "categories",
+    sort: "name",
+  });
 
   // TODO: Add post count calculation
   // For each category, count posts that have this category
 
-  return NextResponse.json(result)
+  return NextResponse.json(result);
 }
 ```
 
@@ -299,37 +305,40 @@ export function StaticBlocksList() {
 **Changes needed:**
 
 1. Update load endpoint:
+
 ```typescript
 // OLD
-const response = await fetch("/api/grid")
+const response = await fetch("/api/grid");
 
 // NEW
-const response = await fetch("/api/grid-layouts?active=true")
-const layout = await response.json()
-const gridState = layout?.gridState || initialGridState
+const response = await fetch("/api/grid-layouts?active=true");
+const layout = await response.json();
+const gridState = layout?.gridState || initialGridState;
 ```
 
 2. Update save endpoint:
+
 ```typescript
 // OLD
-await fetch("/api/grid", { method: "POST", body: JSON.stringify(gridState) })
+await fetch("/api/grid", { method: "POST", body: JSON.stringify(gridState) });
 
 // NEW
 await fetch("/api/grid-layouts", {
   method: "POST",
   body: JSON.stringify({
     gridState,
-    name: "Homepage Grid" // Or get from context
-  })
-})
+    name: "Homepage Grid", // Or get from context
+  }),
+});
 ```
 
 3. Add layout ID tracking:
+
 ```typescript
-const [layoutId, setLayoutId] = useState<string | null>(null)
+const [layoutId, setLayoutId] = useState<string | null>(null);
 
 // After loading:
-setLayoutId(layout.id)
+setLayoutId(layout.id);
 
 // When saving, include ID if updating
 ```
@@ -415,13 +424,13 @@ export function CustomGridLayoutField({ value, onChange }) {
 // OLD: Load from Redis/local
 async function getInitialState(): Promise<GridState | null> {
   if (isDevelopment) {
-    return await loadGridStateLocal()
+    return await loadGridStateLocal();
   } else {
-    return await loadGridStateRedis()
+    return await loadGridStateRedis();
   }
 }
 
-const initialState = await getInitialState()
+const initialState = await getInitialState();
 ```
 
 **NEW: Load from Pages collection**
@@ -572,32 +581,38 @@ Once everything works with Payload:
 ## Implementation Timeline Estimate
 
 **Phase 1:** Grid Editor UI (4-6 hours)
+
 - Page structure
 - Toolbar component
 - Content picker tabs
 
 **Phase 2:** Data Components (3-4 hours)
+
 - PostsList with API
 - CategoriesList with API
 - StaticBlocksList
 - API endpoints
 
 **Phase 3:** GridContext Updates (2-3 hours)
+
 - Update endpoints
 - Test save/load
 - Error handling
 
 **Phase 4:** Pages Integration (2-3 hours)
+
 - Custom field component
 - Edit button
 - Testing workflow
 
 **Phase 5:** Homepage Update (1-2 hours)
+
 - Load from Pages
 - Remove old storage
 - Test rendering
 
 **Phase 6:** Cleanup & Polish (2-3 hours)
+
 - Delete legacy files
 - Documentation
 - Final testing
@@ -636,6 +651,7 @@ Once everything works with Payload:
 ## Support
 
 If you encounter issues or have questions:
+
 1. Check this guide first
 2. Review existing components in `/src/components/grid/`
 3. Test API endpoints directly with curl/Postman

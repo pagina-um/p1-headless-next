@@ -40,13 +40,13 @@ export function extractStoryData(data: any, story: StoryBlock) {
     post: { author, featuredImage, uri, title, date },
   } = data;
 
-  const postFields: CustomPostFields = data.post
-    ?.postFields as CustomPostFields;
+  const postFields: CustomPostFields = (data.post
+    ?.postFields as CustomPostFields) || {};
 
   const overridePostFields = {
-    antetitulo: or(overrideAntetitulo, postFields.antetitulo),
-    chamadaDestaque: or(overrideChamadaDestaque, postFields.chamadaDestaque),
-    chamadaManchete: or(overrideChamadaManchete, postFields.chamadaManchete),
+    antetitulo: or(overrideAntetitulo, postFields?.antetitulo),
+    chamadaDestaque: or(overrideChamadaDestaque, postFields?.chamadaDestaque),
+    chamadaManchete: or(overrideChamadaManchete, postFields?.chamadaManchete),
   };
 
   const finalTitle = or(overrideTitle, title);
