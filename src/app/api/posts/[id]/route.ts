@@ -1,4 +1,4 @@
-import { getPayloadInstance } from "@/services/payload-api";
+import { getPostById } from "@/services/payload-api";
 import { NextResponse } from "next/server";
 
 export async function GET(
@@ -7,15 +7,16 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    const payload = await getPayloadInstance();
+    const { data, error } = await getPostById(id);
 
-    const result = await payload.findByID({
-      collection: "posts",
-      id,
-      depth: 2,
-    });
+    if (error || !data) {
+      return NextResponse.json(
+        { error: error || "Post not found" },
+        { status: 404 }
+      );
+    }
 
-    return NextResponse.json(result);
+    return NextResponse.json(data.post);
   } catch (error: any) {
     console.error("Failed to fetch post:", error);
     return NextResponse.json(
