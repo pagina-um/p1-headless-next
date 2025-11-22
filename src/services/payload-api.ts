@@ -220,7 +220,19 @@ export async function getPostBySlug(slug: string) {
                 },
               },
             }
-          : null,
+          : post.wpFeaturedImage?.url
+            ? {
+                node: {
+                  sourceUrl: post.wpFeaturedImage.url,
+                  srcSet: "",
+                  altText: post.wpFeaturedImage.alt || "",
+                  mediaDetails: {
+                    height: post.wpFeaturedImage.height || 0,
+                    width: post.wpFeaturedImage.width || 0,
+                  },
+                },
+              }
+            : null,
       },
     },
     error: null,
@@ -319,7 +331,19 @@ export async function getPostById(id: string) {
                 },
               },
             }
-          : null,
+          : post.wpFeaturedImage?.url
+            ? {
+                node: {
+                  sourceUrl: post.wpFeaturedImage.url,
+                  srcSet: "",
+                  altText: post.wpFeaturedImage.alt || "",
+                  mediaDetails: {
+                    height: post.wpFeaturedImage.height || 0,
+                    width: post.wpFeaturedImage.width || 0,
+                  },
+                },
+              }
+            : null,
       },
     },
     error: null,
@@ -415,7 +439,15 @@ export async function getPostsByCategorySlug(
                   : "",
             },
           }
-        : null,
+        : post.wpFeaturedImage?.url
+          ? {
+              node: {
+                sourceUrl: post.wpFeaturedImage.url,
+                srcSet: "",
+                altText: post.wpFeaturedImage.alt || "",
+              },
+            }
+          : null,
     }))
   );
 
@@ -551,7 +583,15 @@ export async function getPostsByCategoryId(
                       : "",
                 },
               }
-            : null,
+            : post.wpFeaturedImage?.url
+              ? {
+                  node: {
+                    sourceUrl: post.wpFeaturedImage.url,
+                    srcSet: "",
+                    altText: post.wpFeaturedImage.alt || "",
+                  },
+                }
+              : null,
         })),
       },
     },
@@ -649,7 +689,14 @@ export async function getPostsByTagSlug(
                       : "",
                 },
               }
-            : null,
+            : post.wpFeaturedImage?.url
+              ? {
+                  node: {
+                    sourceUrl: post.wpFeaturedImage.url,
+                    altText: post.wpFeaturedImage.alt || "",
+                  },
+                }
+              : null,
         })),
       },
     },
@@ -724,7 +771,14 @@ export async function searchPosts(searchTerm: string, limit = 20) {
                       : "",
                 },
               }
-            : null,
+            : post.wpFeaturedImage?.url
+              ? {
+                  node: {
+                    sourceUrl: post.wpFeaturedImage.url,
+                    altText: post.wpFeaturedImage.alt || "",
+                  },
+                }
+              : null,
         })),
       },
     },

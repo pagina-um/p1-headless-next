@@ -76,6 +76,35 @@ export const Posts: CollectionConfig = {
       },
     },
     {
+      name: "wpFeaturedImage",
+      type: "group",
+      label: "WordPress Featured Image (Legacy)",
+      admin: {
+        position: "sidebar",
+        description: "Featured image URL from WordPress (used during migration)",
+      },
+      fields: [
+        {
+          name: "url",
+          type: "text",
+          label: "Image URL",
+        },
+        {
+          name: "alt",
+          type: "text",
+          label: "Alt Text",
+        },
+        {
+          name: "width",
+          type: "number",
+        },
+        {
+          name: "height",
+          type: "number",
+        },
+      ],
+    },
+    {
       name: "author",
       type: "group",
       fields: [
