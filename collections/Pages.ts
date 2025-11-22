@@ -5,13 +5,49 @@ export const Pages: CollectionConfig = {
   slug: "pages",
   admin: {
     useAsTitle: "title",
-    defaultColumns: ["title", "pageType", "slug", "updatedAt"],
+    defaultColumns: ["title", "pageType", "slug", "isHomePage", "updatedAt"],
   },
   access: {
     read: () => true,
-    create: ({ req: { user } }) => user?.role === "admin",
-    update: ({ req: { user } }) => user?.role === "admin",
-    delete: ({ req: { user } }) => user?.role === "admin",
+  },
+  hooks: {
+    beforeChange: [
+      async ({ data, req, operation }) => {
+        // If setting this page as homepage, unset all other pages
+        if (data.isHomePage === true) {
+          const payload = req.payload;
+
+          // Find all pages where isHomePage is true
+          const existingHomePages = await payload.find({
+            collection: "pages",
+            where: {
+              isHomePage: {
+                equals: true,
+              },
+            },
+            limit: 100,
+          });
+
+          // Unset isHomePage for all existing home pages
+          for (const page of existingHomePages.docs) {
+            // Skip if it's the same page being updated
+            if (operation === "update" && page.id === data.id) {
+              continue;
+            }
+
+            await payload.update({
+              collection: "pages",
+              id: page.id,
+              data: {
+                isHomePage: false,
+              },
+            });
+          }
+        }
+
+        return data;
+      },
+    ],
   },
   fields: [
     {
@@ -48,6 +84,16 @@ export const Pages: CollectionConfig = {
         description: "Choose how this page should be edited and displayed",
       },
     },
+    {
+      name: "isHomePage",
+      type: "checkbox",
+      defaultValue: false,
+      admin: {
+        position: "sidebar",
+        description:
+          "Set this page as the site homepage. Only one page can be the homepage at a time.",
+      },
+    },
     // Article content - only show if pageType is 'article'
     {
       name: "content",
@@ -71,6 +117,18 @@ export const Pages: CollectionConfig = {
         description:
           "Select a grid layout or create a new one using the Grid Editor",
         position: "sidebar",
+      },
+    },
+    // Custom UI component for Edit Grid button
+    {
+      name: "editGridButton",
+      type: "ui",
+      admin: {
+        position: "sidebar",
+        condition: (data) => data.pageType === "grid-layout",
+        components: {
+          Field: "./collections/components/EditGridButton#EditGridButton",
+        },
       },
     },
   ],

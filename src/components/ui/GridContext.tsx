@@ -69,8 +69,8 @@ export function GridProvider({
         // If layoutId is provided, load that specific layout
         // Otherwise, load the active layout
         const endpoint = layoutId
-          ? `/api/grid-layouts/${layoutId}`
-          : "/api/grid-layouts?active=true";
+          ? `/api/content/grid-layouts/${layoutId}`
+          : "/api/content/grid-layouts?active=true";
 
         const response = await fetch(endpoint);
         const data = await response.json();

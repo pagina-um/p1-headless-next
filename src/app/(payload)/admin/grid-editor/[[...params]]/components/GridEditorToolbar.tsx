@@ -25,7 +25,7 @@ export function GridEditorToolbar({ layoutId }: GridEditorToolbarProps) {
     setSaveMessage("");
 
     try {
-      const response = await fetch("/api/grid-layouts", {
+      const response = await fetch("/api/content/grid-layouts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

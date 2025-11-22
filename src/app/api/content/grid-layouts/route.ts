@@ -53,13 +53,14 @@ export async function GET(request: Request) {
   }
 }
 
-// POST /api/grid-layouts - Create or update grid layout
+// POST /api/content/grid-layouts - Create or update grid layout
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { gridState, name } = body as {
+    const { gridState, name, id } = body as {
       gridState: GridState;
       name?: string;
+      id?: string;
     };
 
     if (!gridState) {
@@ -71,28 +72,14 @@ export async function POST(request: Request) {
 
     const payload = await getPayloadInstance();
 
-    // Check if there's an existing active layout
-    const existingLayouts = await payload.find({
-      collection: "grid-layouts",
-      where: {
-        isActive: {
-          equals: true,
-        },
-      },
-      limit: 1,
-    });
-
-    const existingLayout = existingLayouts.docs[0];
-
-    if (existingLayout) {
-      // Update existing layout
+    // If ID is provided, update that specific layout
+    if (id) {
       const updated = await payload.update({
         collection: "grid-layouts",
-        id: existingLayout.id,
+        id,
         data: {
           gridState,
-          name: name || existingLayout.name,
-          isActive: true,
+          ...(name && { name }),
         },
       });
 
@@ -103,13 +90,12 @@ export async function POST(request: Request) {
       });
     }
 
-    // Create new layout
+    // Otherwise, create new layout
     const created = await payload.create({
       collection: "grid-layouts",
       data: {
-        name: name || "Homepage Grid",
+        name: name || "New Grid Layout",
         gridState,
-        isActive: true,
       },
     });
 

@@ -4,16 +4,22 @@ export const GridLayouts: CollectionConfig = {
   slug: 'grid-layouts',
   admin: {
     useAsTitle: 'name',
-    description: 'Homepage grid layout configuration',
-    hidden: true, // Hide from main nav, accessed via custom grid editor
+    description: 'Grid layout configurations for pages',
+    defaultColumns: ['name', 'usedBy', 'updatedAt'],
   },
   access: {
-    read: () => true, // Public read for homepage
-    create: ({ req: { user } }) => user?.role === 'admin',
-    update: ({ req: { user } }) => user?.role === 'admin',
-    delete: ({ req: { user } }) => user?.role === 'admin',
+    read: () => true,
   },
   fields: [
+    {
+      name: 'gridEditorRedirect',
+      type: 'ui',
+      admin: {
+        components: {
+          Field: './collections/components/GridEditorRedirect#GridEditorRedirect',
+        },
+      },
+    },
     {
       name: 'name',
       type: 'text',
@@ -28,7 +34,8 @@ export const GridLayouts: CollectionConfig = {
       required: true,
       admin: {
         description: 'Grid configuration data including blocks and layout positions',
-        readOnly: true, // Edited via grid editor UI, not directly
+        readOnly: true,
+        hidden: true, // Hidden - use grid editor instead
       },
     },
     {

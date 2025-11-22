@@ -4,24 +4,49 @@ import { PostFooter } from "@/components/post/PostFooter";
 import { Metadata } from "next";
 import { getPayloadInstance } from "@/services/payload-api";
 import { Header } from "@/components/layout/Header";
+import { notFound } from "next/navigation";
 import { richTextToHtml } from "@/utils/richTextConversion";
 import { parserOptions } from "@/utils/wpParsing";
 import parse from "html-react-parser";
 
-export const metadata: Metadata = {
-  title: "Página UM",
-  description: "O jornalismo independente só depende dos leitores.",
-};
+interface PageProps {
+  params: Promise<{
+    slug: string;
+  }>;
+}
 
-export default async function HomePage() {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
   const payload = await getPayloadInstance();
 
-  // Find the page marked as homepage
   const result = await payload.find({
     collection: "pages",
     where: {
-      isHomePage: {
-        equals: true,
+      slug: {
+        equals: slug,
+      },
+    },
+    limit: 1,
+  });
+
+  const page = result.docs[0];
+
+  return {
+    title: page?.title || "Página UM",
+    description: page?.title || "O jornalismo independente só depende dos leitores.",
+  };
+}
+
+export default async function Page({ params }: PageProps) {
+  const { slug } = await params;
+  const payload = await getPayloadInstance();
+
+  // Find the page by slug
+  const result = await payload.find({
+    collection: "pages",
+    where: {
+      slug: {
+        equals: slug,
       },
     },
     depth: 2,
@@ -30,22 +55,12 @@ export default async function HomePage() {
 
   const page = result.docs[0];
 
-  // If no homepage is configured, show empty state
+  // If page not found, show 404
   if (!page) {
-    return (
-      <>
-        <Header />
-        <main className="max-w-7xl mx-auto pb-8">
-          <div className="p-8 text-center text-gray-500">
-            <p>No homepage configured yet. Please set a page as homepage in the admin panel.</p>
-          </div>
-        </main>
-        <PostFooter />
-      </>
-    );
+    notFound();
   }
 
-  // Render based on page type (same logic as /pages/[slug])
+  // Render based on page type
   if (page.pageType === "grid-layout") {
     // Grid layout page
     const gridState: GridState | null =
@@ -79,6 +94,7 @@ export default async function HomePage() {
     );
   } else {
     // Article (rich text) page
+    // Convert Lexical JSON to HTML
     const htmlContent = page.content ? await richTextToHtml(page.content) : "";
 
     return (
