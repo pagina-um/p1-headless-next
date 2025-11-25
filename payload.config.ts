@@ -22,21 +22,24 @@ const dirname = path.dirname(filename);
 // Check if we're on Vercel non-prod branch
 const isVercel = process.env.VERCEL === "1";
 const isProduction = process.env.VERCEL_ENV === "production";
-const useTurso = isVercel && !isProduction;
+const tursoUrl = process.env.MYSQL_TURSO_DATABASE_URL;
+const tursoToken = process.env.MYSQL_TURSO_AUTH_TOKEN;
+const useTurso = isVercel && !isProduction && tursoUrl && tursoToken;
+
+console.log("Database config:", {
+  isVercel,
+  isProduction,
+  vercelEnv: process.env.VERCEL_ENV,
+  hasTursoUrl: !!tursoUrl,
+  hasTursoToken: !!tursoToken,
+  useTurso,
+});
 
 // Database configuration
 const getDatabaseAdapter = () => {
   if (useTurso) {
     // Use Turso for non-prod Vercel deployments
-    const tursoUrl = process.env.MYSQL_TURSO_DATABASE_URL;
-    const tursoToken = process.env.MYSQL_TURSO_AUTH_TOKEN;
-
-    if (!tursoUrl || !tursoToken) {
-      throw new Error(
-        "MYSQL_TURSO_DATABASE_URL and MYSQL_TURSO_AUTH_TOKEN must be set for Vercel deployments"
-      );
-    }
-
+    console.log("Using Turso database");
     const tursoClient = createClient({
       url: tursoUrl,
       authToken: tursoToken,
@@ -48,6 +51,7 @@ const getDatabaseAdapter = () => {
   }
 
   // Use local SQLite for development
+  console.log("Using local SQLite database");
   return sqliteAdapter({
     client: {
       url: process.env.DATABASE_URI || "file:./payload.db",
