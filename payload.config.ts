@@ -24,14 +24,14 @@ const isVercel = process.env.VERCEL === "1";
 const isProduction = process.env.VERCEL_ENV === "production";
 const tursoUrl = process.env.MYSQL_TURSO_DATABASE_URL;
 const tursoToken = process.env.MYSQL_TURSO_AUTH_TOKEN;
-const useTurso = isVercel && !isProduction && tursoUrl && tursoToken;
+const useTurso = !!(isVercel && !isProduction && tursoUrl && tursoToken);
 
 console.log("Database config:", {
   isVercel,
   isProduction,
   vercelEnv: process.env.VERCEL_ENV,
-  hasTursoUrl: !!tursoUrl,
-  hasTursoToken: !!tursoToken,
+  tursoUrlPreview: tursoUrl ? `${tursoUrl.substring(0, 30)}...` : "undefined",
+  tursoTokenPreview: tursoToken ? `${tursoToken.substring(0, 20)}...` : "undefined",
   useTurso,
 });
 
@@ -39,7 +39,12 @@ console.log("Database config:", {
 const getDatabaseAdapter = () => {
   if (useTurso) {
     // Use Turso for non-prod Vercel deployments
-    console.log("Using Turso database");
+    console.log("Using Turso database with URL:", tursoUrl);
+
+    if (!tursoUrl || !tursoToken) {
+      throw new Error("Turso URL and token must be set");
+    }
+
     const tursoClient = createClient({
       url: tursoUrl,
       authToken: tursoToken,
