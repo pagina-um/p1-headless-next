@@ -1,6 +1,5 @@
 import { EditableText } from "@/components/ui/EditableText";
-import { CustomPostFields, ObjectPosition } from "@/types";
-import { Maybe } from "graphql/jsutils/Maybe";
+import { CustomPostFields, ObjectPosition, Maybe } from "@/types";
 import { Square } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 import { positionMap } from "@/utils/categoryUtils";

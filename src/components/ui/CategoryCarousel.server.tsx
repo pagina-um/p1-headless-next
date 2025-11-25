@@ -60,7 +60,7 @@ export async function CategoryCarouselServer({
         className="w-full"
       >
         <CarouselContent className="-ml-2 md:-ml-4">
-          {posts.map((post, index) => {
+          {posts.map((post: any, index: number) => {
             const { antetitulo }: CustomPostFields = post.postFields as any;
             return (
               <CarouselItem

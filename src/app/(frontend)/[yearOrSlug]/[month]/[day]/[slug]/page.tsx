@@ -49,7 +49,7 @@ export async function generateStaticParams() {
     return [];
   }
 
-  return data.posts.nodes.map((post) => {
+  return data.posts.nodes.map((post: any) => {
     if (!post.date) {
       return null;
     }

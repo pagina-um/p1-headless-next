@@ -164,6 +164,7 @@ export async function getPostBySlug(slug: string) {
         content: htmlContent,
         excerpt: post.excerpt || "",
         date: post.publishedAt,
+        modified: post.updatedAt,
         slug: post.slug,
         uri: post.uri,
         status: post.status,
@@ -656,6 +657,7 @@ export async function getPostsByTagSlug(
           endCursor: Buffer.from(String(page + 1)).toString("base64"),
           hasNextPage: result.hasNextPage,
           hasPreviousPage: result.hasPrevPage,
+          startCursor: Buffer.from(String(page)).toString("base64"),
         },
         nodes: result.docs.map((post: any) => ({
           id: post.id,
@@ -734,6 +736,12 @@ export async function searchPosts(searchTerm: string, limit = 20) {
   return {
     data: {
       posts: {
+        pageInfo: {
+          hasNextPage: result.hasNextPage,
+          hasPreviousPage: result.hasPrevPage,
+          startCursor: result.docs.length > 0 ? Buffer.from(String(result.docs[0].id)).toString("base64") : null,
+          endCursor: result.docs.length > 0 ? Buffer.from(String(result.docs[result.docs.length - 1].id)).toString("base64") : null,
+        },
         nodes: result.docs.map((post: any) => ({
           id: post.id,
           title: post.title,

@@ -5,6 +5,18 @@ const gqlUrl = new URL(process.env.NEXT_PUBLIC_WP_URL);
 const domain = gqlUrl.hostname;
 console.log("domain", domain);
 const nextConfig = {
+  serverExternalPackages: [
+    'payload',
+    '@payloadcms/db-sqlite',
+    '@payloadcms/drizzle',
+    'pino',
+    'thread-stream',
+    '@libsql/client',
+    'libsql',
+    'drizzle-kit',
+    'esbuild',
+    'sharp',
+  ],
   images: {
     domains: [
       "images.unsplash.com",
@@ -147,6 +159,15 @@ const nextConfig = {
         topLevelAwait: true,
       };
     }
+
+    // Exclude test files and test dependencies from node_modules
+    config.plugins = config.plugins || [];
+    config.plugins.push(
+      new (require('webpack')).IgnorePlugin({
+        resourceRegExp: /^(tap|why-is-node-running)$/,
+      })
+    );
+
     return config;
   },
 };

@@ -2,7 +2,7 @@
 import {
   PostBySlugData,
   PostPageProps,
-} from "@/app/[yearOrSlug]/[month]/[day]/[slug]/page";
+} from "@/app/(frontend)/[yearOrSlug]/[month]/[day]/[slug]/page";
 import { CustomPostFields } from "@/types";
 import { Metadata } from "next";
 

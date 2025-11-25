@@ -24,7 +24,7 @@ export default async function CategoryPage({
 
   const afterCursor = searchParamsResolved.after
     ? decodeURIComponent(searchParamsResolved.after)
-    : null;
+    : undefined;
 
   const { data } = await getPostsByCategorySlug(
     slug,

@@ -1,3 +1,6 @@
+// Utility types
+export type Maybe<T> = T | null | undefined;
+
 // Position types
 export interface GridPosition {
   x: number;

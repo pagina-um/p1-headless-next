@@ -36,6 +36,7 @@ type PayloadPostData = {
       node?: {
         sourceUrl: string;
         altText: string;
+        srcSet?: string;
         mediaDetails?: {
           height: number;
           width: number;

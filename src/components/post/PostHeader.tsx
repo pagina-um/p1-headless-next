@@ -7,7 +7,7 @@ import {
   User,
   X,
 } from "lucide-react";
-import { PostBySlugData } from "@/app/[yearOrSlug]/[month]/[day]/[slug]/page";
+import { PostBySlugData } from "@/app/(frontend)/[yearOrSlug]/[month]/[day]/[slug]/page";
 import { formatDate } from "@/utils/categoryUtils";
 import SocialShare from "./SocialShare";
 import Image from "next/image";
@@ -38,10 +38,10 @@ export function PostHeader({ post }: { post: PostBySlugData["data"] }) {
       <div className="flex flex-col items-center space-y-4 md:space-y-0 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-col items-center md:flex-row md:gap-4">
           {/* Avatar */}
-          {authorAvatar?.foundAvatar && (
+          {authorAvatar?.url && (
             <div className="relative w-14 h-14 md:w-12 md:h-12 mb-2 md:mb-0">
               <Image
-                src={authorAvatar.url || ""}
+                src={authorAvatar.url}
                 alt="Author avatar"
                 className="rounded-full border-2 border-primary-dark"
                 fill

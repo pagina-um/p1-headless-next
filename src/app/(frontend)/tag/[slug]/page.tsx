@@ -23,7 +23,7 @@ export default async function TagPage({
 
   const afterCursor = searchParamsResolved.after
     ? decodeURIComponent(searchParamsResolved.after)
-    : null;
+    : undefined;
 
   const { data, error } = await getPostsByTagSlug(
     slug,

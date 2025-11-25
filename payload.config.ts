@@ -43,7 +43,7 @@ const getDatabaseAdapter = () => {
     });
 
     return sqliteAdapter({
-      client: tursoClient,
+      client: tursoClient as any,
     });
   }
 
@@ -78,7 +78,6 @@ export default buildConfig({
     user: "users",
     meta: {
       titleSuffix: " - Página UM CMS",
-      favicon: "/favicon.ico",
     },
     components: {
       graphics: {
