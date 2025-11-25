@@ -4,6 +4,7 @@ import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import sharp from "sharp";
 import path from "path";
 import { fileURLToPath } from "url";
+import { createClient } from "@libsql/client";
 
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
@@ -18,6 +19,42 @@ import { pt } from "@payloadcms/translations/languages/pt";
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
+// Check if we're on Vercel non-prod branch
+const isVercel = process.env.VERCEL === "1";
+const isProduction = process.env.VERCEL_ENV === "production";
+const useTurso = isVercel && !isProduction;
+
+// Database configuration
+const getDatabaseAdapter = () => {
+  if (useTurso) {
+    // Use Turso for non-prod Vercel deployments
+    const tursoUrl = process.env.TURSO_DATABASE_URL;
+    const tursoToken = process.env.TURSO_AUTH_TOKEN;
+
+    if (!tursoUrl || !tursoToken) {
+      throw new Error(
+        "TURSO_DATABASE_URL and TURSO_AUTH_TOKEN must be set for Vercel deployments"
+      );
+    }
+
+    const tursoClient = createClient({
+      url: tursoUrl,
+      authToken: tursoToken,
+    });
+
+    return sqliteAdapter({
+      client: tursoClient,
+    });
+  }
+
+  // Use local SQLite for development
+  return sqliteAdapter({
+    client: {
+      url: process.env.DATABASE_URI || "file:./payload.db",
+    },
+  });
+};
+
 export default buildConfig({
   i18n: {
     supportedLanguages: { pt, en },
@@ -25,11 +62,7 @@ export default buildConfig({
   },
   secret: process.env.PAYLOAD_SECRET || "your-secret-key-change-in-production",
 
-  db: sqliteAdapter({
-    client: {
-      url: process.env.DATABASE_URI || "file:./payload.db",
-    },
-  }),
+  db: getDatabaseAdapter(),
 
   editor: lexicalEditor(),
 

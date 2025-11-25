@@ -28,6 +28,8 @@ dist-ssr
 .vercel
 
 *.db
+*.sql
 
 .db
 payload.db
+*_dump.sql
