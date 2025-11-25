@@ -4,6 +4,32 @@ import Image from "next/image";
 import Pagination from "@/components/ui/Pagination";
 import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User, Search } from "lucide-react";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}): Promise<Metadata> {
+  const searchParamsResolved = await searchParams;
+  const query = searchParamsResolved.q || "";
+
+  const title = query
+    ? `Pesquisa: ${query} - Página Um`
+    : "Pesquisa - Página Um";
+  const description = query
+    ? `Resultados de pesquisa para "${query}" na Página Um. Jornalismo independente que só depende dos leitores.`
+    : "Pesquise artigos na Página Um. Jornalismo independente que só depende dos leitores.";
+
+  return {
+    title,
+    description,
+    robots: {
+      index: false,
+      follow: true,
+    },
+  };
+}
 
 export default async function SearchPage({
   searchParams,

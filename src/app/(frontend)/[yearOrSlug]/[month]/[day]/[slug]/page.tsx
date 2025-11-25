@@ -9,6 +9,8 @@ import { PostContent } from "@/components/post/PostContent";
 import { defaultMetadata, makeMetadataObject } from "@/utils/metadata";
 import SocialShare from "@/components/post/SocialShare";
 import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
+import { StructuredData } from "@/components/StructuredData";
+import { generateNewsArticleSchema, generateBreadcrumbSchema } from "@/utils/structured-data";
 
 export interface PostPageProps {
   params: Promise<{
@@ -69,8 +71,21 @@ async function PostComponent({ slug }: { slug: string }) {
     notFound();
   }
 
+  // Generate structured data
+  const postUrl = `https://paginaum.pt${data.postBy.uri || ""}`;
+  const newsArticleSchema = generateNewsArticleSchema(data, postUrl);
+
+  // Get first category for breadcrumb
+  const firstCategory = data.postBy.categories?.nodes?.[0];
+  const breadcrumbSchema = generateBreadcrumbSchema(
+    firstCategory?.name || null,
+    data.postBy.title || "",
+    firstCategory?.id || undefined
+  );
+
   return (
     <>
+      <StructuredData data={[newsArticleSchema, breadcrumbSchema]} />
       <article>
         <div className="max-w-4xl mx-auto px-4 py-12">
           <PostHeader post={data} />

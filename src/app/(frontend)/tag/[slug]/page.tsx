@@ -4,10 +4,61 @@ import Image from "next/image";
 import Pagination from "@/components/ui/Pagination";
 import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
+import { Metadata } from "next";
 
 // Enable ISR with 1 hour revalidation for better caching
 // First page load will be cached, subsequent pagination requests will be dynamic
 export const revalidate = 3600;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const { data } = await getPostsByTagSlug(slug, 1);
+
+  const tag = data?.tags?.nodes[0];
+  const tagName = tag?.name || "Tag";
+
+  const title = `${tagName} - Página Um`;
+  const description = `Descubra os artigos sobre ${tagName}. Jornalismo independente que só depende dos leitores.`;
+  const url = `https://paginaum.pt/tag/${slug}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      type: "website",
+      title,
+      description,
+      url,
+      siteName: "Página Um",
+      images: [
+        {
+          url: "https://paginaum.pt/icon.png",
+          width: 512,
+          height: 512,
+          alt: "Página Um",
+        },
+      ],
+      locale: "pt_PT",
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+      images: ["https://paginaum.pt/icon.png"],
+    },
+    alternates: {
+      canonical: url,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}
 
 export default async function TagPage({
   params,

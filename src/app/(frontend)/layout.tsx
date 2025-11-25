@@ -5,6 +5,8 @@ import CookieConsent from "@/components/CookieConsent";
 import NextTopLoader from "nextjs-toploader";
 import { twMerge } from "tailwind-merge";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { StructuredData } from "@/components/StructuredData";
+import { generateOrganizationSchema, generateWebSiteSchema } from "@/utils/structured-data";
 
 export const metadata: Metadata = {
   title: "Página UM",
@@ -33,13 +35,17 @@ export default function FrontendLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const organizationSchema = generateOrganizationSchema();
+  const websiteSchema = generateWebSiteSchema();
+
   return (
-    <html lang="en">
+    <html lang="pt">
       <meta
         name="google-site-verification"
         content="Wj_fmHQpUTV1dCIq5m4CqVtryF2z_6sLyKsEXOF_3e0"
       />
       <body>
+        <StructuredData data={[organizationSchema, websiteSchema]} />
         <SpeedInsights />
         <div className={twMerge("h-full min-h-screen bg-gray-100")}>
           <NextTopLoader color="#e10012" shadow={false} showSpinner={false} />

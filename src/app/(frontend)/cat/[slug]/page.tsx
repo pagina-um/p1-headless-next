@@ -5,10 +5,61 @@ import Pagination from "@/components/ui/Pagination";
 import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
 import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
+import { Metadata } from "next";
 
 // Enable ISR with 1 hour revalidation for better caching
 // First page load will be cached, subsequent pagination requests will be dynamic
 export const revalidate = 3600;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const { data } = await getPostsByCategorySlug(slug, 1);
+
+  const category = data?.categories?.nodes[0];
+  const categoryName = category?.name || "Categoria";
+
+  const title = `${categoryName} - Página Um`;
+  const description = `Explore os artigos na categoria ${categoryName}. Jornalismo independente que só depende dos leitores.`;
+  const url = `https://paginaum.pt/cat/${slug}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      type: "website",
+      title,
+      description,
+      url,
+      siteName: "Página Um",
+      images: [
+        {
+          url: "https://paginaum.pt/icon.png",
+          width: 512,
+          height: 512,
+          alt: "Página Um",
+        },
+      ],
+      locale: "pt_PT",
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+      images: ["https://paginaum.pt/icon.png"],
+    },
+    alternates: {
+      canonical: url,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}
 
 export default async function CategoryPage({
   params,
