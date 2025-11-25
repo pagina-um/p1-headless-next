@@ -28,12 +28,12 @@ const useTurso = isVercel && !isProduction;
 const getDatabaseAdapter = () => {
   if (useTurso) {
     // Use Turso for non-prod Vercel deployments
-    const tursoUrl = process.env.TURSO_DATABASE_URL;
-    const tursoToken = process.env.TURSO_AUTH_TOKEN;
+    const tursoUrl = process.env.MYSQL_TURSO_DATABASE_URL;
+    const tursoToken = process.env.MYSQL_TURSO_AUTH_TOKEN;
 
     if (!tursoUrl || !tursoToken) {
       throw new Error(
-        "TURSO_DATABASE_URL and TURSO_AUTH_TOKEN must be set for Vercel deployments"
+        "MYSQL_TURSO_DATABASE_URL and MYSQL_TURSO_AUTH_TOKEN must be set for Vercel deployments"
       );
     }
 
