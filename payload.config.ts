@@ -4,7 +4,6 @@ import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import sharp from "sharp";
 import path from "path";
 import { fileURLToPath } from "url";
-import { createClient } from "@libsql/client";
 
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
@@ -45,13 +44,11 @@ const getDatabaseAdapter = () => {
       throw new Error("Turso URL and token must be set");
     }
 
-    const tursoClient = createClient({
-      url: tursoUrl,
-      authToken: tursoToken,
-    });
-
     return sqliteAdapter({
-      client: tursoClient as any,
+      client: {
+        url: tursoUrl,
+        authToken: tursoToken,
+      },
     });
   }
 
