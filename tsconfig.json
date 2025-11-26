@@ -45,6 +45,7 @@
   ],
   "exclude": [
     "node_modules",
-    "archive"
+    "archive",
+    "scripts/migration"
   ]
 }
