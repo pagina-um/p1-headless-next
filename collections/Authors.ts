@@ -4,7 +4,7 @@ export const Authors: CollectionConfig = {
   slug: 'authors',
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'email', 'postCount'],
+    defaultColumns: ['name', 'email', 'slug'],
   },
   access: {
     read: () => true,
