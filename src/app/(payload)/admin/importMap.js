@@ -24,6 +24,7 @@ import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0
 import { EditGridButton as EditGridButton_7decdd1d8b6a525915d53a277adda01d } from '../../../../collections/components/EditGridButton'
 import { GridEditorRedirect as GridEditorRedirect_07bae6112e3a4f7210fd08b49856c41b } from '../../../../collections/components/GridEditorRedirect'
 import { PayloadLogo as PayloadLogo_408156dc93783cee60e7338b07437d26 } from '../../../../src/components/admin/PayloadLogo'
+import { VercelBlobClientUploadHandler as VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e } from '@payloadcms/storage-vercel-blob/client'
 
 export const importMap = {
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell": RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,
@@ -51,5 +52,6 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#ItalicFeatureClient": ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "./collections/components/EditGridButton#EditGridButton": EditGridButton_7decdd1d8b6a525915d53a277adda01d,
   "./collections/components/GridEditorRedirect#GridEditorRedirect": GridEditorRedirect_07bae6112e3a4f7210fd08b49856c41b,
-  "./src/components/admin/PayloadLogo#PayloadLogo": PayloadLogo_408156dc93783cee60e7338b07437d26
+  "./src/components/admin/PayloadLogo#PayloadLogo": PayloadLogo_408156dc93783cee60e7338b07437d26,
+  "@payloadcms/storage-vercel-blob/client#VercelBlobClientUploadHandler": VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e
 }

@@ -33,3 +33,6 @@ dist-ssr
 .db
 payload.db
 *_dump.sql
+
+# Migration data files (too large for git)
+scripts/migration/data/

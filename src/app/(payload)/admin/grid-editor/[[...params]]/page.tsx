@@ -7,6 +7,7 @@ import { GridEditorToolbar } from "./components/GridEditorToolbar";
 import { ContentPicker } from "./components/ContentPicker";
 import { useEffect, useState } from "react";
 import { GridState } from "@/types";
+import "@/styles/globals.css";
 
 interface PageProps {
   params: Promise<{ params?: string[] }>;

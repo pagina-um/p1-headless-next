@@ -110,17 +110,11 @@ export const Posts: CollectionConfig = {
     },
     {
       name: "author",
-      type: "group",
-      fields: [
-        {
-          name: "name",
-          type: "text",
-        },
-        {
-          name: "avatar",
-          type: "text",
-        },
-      ],
+      type: "relationship",
+      relationTo: "authors",
+      admin: {
+        position: "sidebar",
+      },
     },
     {
       name: "categories",

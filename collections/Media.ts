@@ -4,6 +4,8 @@ export const Media: CollectionConfig = {
   slug: 'media',
   upload: {
     staticDir: 'media',
+    // Disable local storage when using Vercel Blob (token present)
+    disableLocalStorage: !!process.env.BLOB_READ_WRITE_TOKEN,
     mimeTypes: ['image/*', 'application/pdf', 'video/*', 'audio/*'],
     imageSizes: [
       {

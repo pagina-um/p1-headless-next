@@ -1,6 +1,7 @@
 import { buildConfig } from "payload";
 import { sqliteAdapter } from "@payloadcms/db-sqlite";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
 import sharp from "sharp";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -10,6 +11,7 @@ import { Media } from "./collections/Media";
 import { Posts } from "./collections/Posts";
 import { Categories } from "./collections/Categories";
 import { Tags } from "./collections/Tags";
+import { Authors } from "./collections/Authors";
 import { Pages } from "./collections/Pages";
 import { GridLayouts } from "./collections/GridLayouts";
 import { en } from "@payloadcms/translations/languages/en";
@@ -72,13 +74,23 @@ export default buildConfig({
 
   editor: lexicalEditor(),
 
-  collections: [Users, Media, Posts, Categories, Tags, Pages, GridLayouts],
+  collections: [Users, Media, Posts, Categories, Tags, Authors, Pages, GridLayouts],
 
   typescript: {
     outputFile: path.resolve(dirname, "./payload-types.ts"),
   },
 
   sharp,
+
+  plugins: [
+    vercelBlobStorage({
+      enabled: !!process.env.BLOB_READ_WRITE_TOKEN,
+      collections: {
+        media: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+    }),
+  ],
 
   admin: {
     user: "users",
