@@ -1,4 +1,7 @@
 import { withPayload } from '@payloadcms/next/withPayload'
+import { createRequire } from 'module'
+
+const require = createRequire(import.meta.url)
 
 /** @type {import('next').NextConfig} */
 const gqlUrl = new URL(process.env.NEXT_PUBLIC_WP_URL);
