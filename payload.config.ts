@@ -27,15 +27,6 @@ const tursoUrl = process.env.MYSQL_TURSO_DATABASE_URL;
 const tursoToken = process.env.MYSQL_TURSO_AUTH_TOKEN;
 const useTurso = !!(isVercel && !isProduction && tursoUrl && tursoToken);
 
-console.log("Database config:", {
-  isVercel,
-  isProduction,
-  vercelEnv: process.env.VERCEL_ENV,
-  tursoUrlPreview: tursoUrl ? `${tursoUrl.substring(0, 30)}...` : "undefined",
-  tursoTokenPreview: tursoToken ? `${tursoToken.substring(0, 20)}...` : "undefined",
-  useTurso,
-});
-
 // Database configuration
 const getDatabaseAdapter = () => {
   if (useTurso) {
@@ -55,7 +46,6 @@ const getDatabaseAdapter = () => {
   }
 
   // Use local SQLite for development
-  console.log("Using local SQLite database");
   return sqliteAdapter({
     client: {
       url: process.env.DATABASE_URI || "file:./payload.db",
@@ -74,7 +64,16 @@ export default buildConfig({
 
   editor: lexicalEditor(),
 
-  collections: [Users, Media, Posts, Categories, Tags, Authors, Pages, GridLayouts],
+  collections: [
+    Users,
+    Media,
+    Posts,
+    Categories,
+    Tags,
+    Authors,
+    Pages,
+    GridLayouts,
+  ],
 
   typescript: {
     outputFile: path.resolve(dirname, "./payload-types.ts"),
@@ -88,7 +87,7 @@ export default buildConfig({
       collections: {
         media: true,
       },
-      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+      token: process.env.BLOB_READ_WRITE_TOKEN || "",
     }),
   ],
 
@@ -99,7 +98,7 @@ export default buildConfig({
     },
     components: {
       graphics: {
-        Logo: './src/components/admin/PayloadLogo#PayloadLogo',
+        Logo: "./src/components/admin/PayloadLogo#PayloadLogo",
       },
     },
   },
