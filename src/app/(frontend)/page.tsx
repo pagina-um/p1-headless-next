@@ -16,8 +16,8 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const payload = await getPayloadInstance();
 
-  // Find the page marked as homepage
-  const result = await payload.find({
+  // First, try to find a page marked as homepage
+  const pageResult = await payload.find({
     collection: "pages",
     where: {
       isHomePage: {
@@ -28,16 +28,45 @@ export default async function HomePage() {
     limit: 1,
   });
 
-  const page = result.docs[0];
+  const page = pageResult.docs[0];
 
-  // If no homepage is configured, show empty state
+  // If no homepage page is configured, check for an active grid layout
   if (!page) {
+    const layoutResult = await payload.find({
+      collection: "grid-layouts",
+      where: {
+        isActive: {
+          equals: true,
+        },
+      },
+      limit: 1,
+    });
+
+    const activeLayout = layoutResult.docs[0];
+
+    if (activeLayout?.gridState) {
+      const gridState = activeLayout.gridState as GridState;
+
+      if (gridState.blocks.length > 0) {
+        return (
+          <>
+            <Header />
+            <main className="max-w-7xl mx-auto pb-8">
+              <NewsGrid blocks={gridState.blocks} />
+            </main>
+            <PostFooter />
+          </>
+        );
+      }
+    }
+
+    // No homepage or active layout configured
     return (
       <>
         <Header />
         <main className="max-w-7xl mx-auto pb-8">
           <div className="p-8 text-center text-gray-500">
-            <p>No homepage configured yet. Please set a page as homepage in the admin panel.</p>
+            <p>No homepage configured yet. Please set a page as homepage or mark a grid layout as active in the admin panel.</p>
           </div>
         </main>
         <PostFooter />

@@ -29,7 +29,7 @@ export function PostsList() {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const response = await fetch("/api/posts?limit=50&status=publish");
+        const response = await fetch("/api/posts?limit=50&status=publish&sort=-publishedAt");
         const data = await response.json();
 
         if (data.docs) {

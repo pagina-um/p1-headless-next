@@ -29,7 +29,7 @@ export function CategoryCarouselClient({
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   const { data, fetching, error } = useCategoryPosts(
-    block.wpCategoryId,
+    block.categoryId || block.wpCategoryId,
     totalPosts,
     excludePostIds
   );

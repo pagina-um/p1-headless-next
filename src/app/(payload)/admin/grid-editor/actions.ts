@@ -120,7 +120,7 @@ export async function getPost(id: string) {
   }
 }
 
-export async function getPostsByCategory(categoryId: number, limit: number = 10) {
+export async function getPostsByCategory(categoryId: string | number, limit: number = 10) {
   try {
     // Use service layer function that transforms to WordPress format
     const { data, error } = await getPostsByCategoryIdService(categoryId, limit);

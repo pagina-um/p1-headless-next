@@ -30,7 +30,7 @@ type GridContextType = {
   handleLayoutChange: (layout: RGL.Layout[]) => void;
   handleDeleteBlock: (uId: string) => void;
   handleSave: () => Promise<void>;
-  handleCreateCategoryBlock: (id: number, name: string) => void;
+  handleCreateCategoryBlock: (categoryId: string, name: string, wpDatabaseId?: number) => void;
   handleUpdateBlockSettings: (block: Block) => void;
   handleCreateStaticBlock: (title: StaticBlockType) => void;
   handleCreateStoryBlock: (databaseId: number, postId: string) => void;
@@ -168,10 +168,11 @@ export function GridProvider({
     setShowToast(true);
   };
 
-  const handleCreateCategoryBlock = (id: number, name: string) => {
+  const handleCreateCategoryBlock = (categoryId: string, name: string, wpDatabaseId?: number) => {
     if (!gridState) return;
     const newBlock: CategoryBlock = {
-      wpCategoryId: id,
+      categoryId,
+      wpCategoryId: wpDatabaseId,
       wpCategoryName: name,
       blockType: "category",
       ...makeNewBlockOccupyFirstEmptySpace(gridState.blocks),

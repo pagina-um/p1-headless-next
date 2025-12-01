@@ -21,6 +21,8 @@ import { StrikethroughFeatureClient as StrikethroughFeatureClient_e70f5e05f09f93
 import { UnderlineFeatureClient as UnderlineFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { BoldFeatureClient as BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
+import { VisitButton as VisitButton_f3167c50f7a4e89caa1e682c7a24427c } from '../../../../collections/components/VisitButton'
+import { SlugField as SlugField_b26df75874d7faac722b69bf70180050 } from '../../../../collections/components/SlugField'
 import { EditGridButton as EditGridButton_7decdd1d8b6a525915d53a277adda01d } from '../../../../collections/components/EditGridButton'
 import { GridEditorRedirect as GridEditorRedirect_07bae6112e3a4f7210fd08b49856c41b } from '../../../../collections/components/GridEditorRedirect'
 import { PayloadLogo as PayloadLogo_408156dc93783cee60e7338b07437d26 } from '../../../../src/components/admin/PayloadLogo'
@@ -50,6 +52,8 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#UnderlineFeatureClient": UnderlineFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#BoldFeatureClient": BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#ItalicFeatureClient": ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "./collections/components/VisitButton#VisitButton": VisitButton_f3167c50f7a4e89caa1e682c7a24427c,
+  "./collections/components/SlugField#SlugField": SlugField_b26df75874d7faac722b69bf70180050,
   "./collections/components/EditGridButton#EditGridButton": EditGridButton_7decdd1d8b6a525915d53a277adda01d,
   "./collections/components/GridEditorRedirect#GridEditorRedirect": GridEditorRedirect_07bae6112e3a4f7210fd08b49856c41b,
   "./src/components/admin/PayloadLogo#PayloadLogo": PayloadLogo_408156dc93783cee60e7338b07437d26,

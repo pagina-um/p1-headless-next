@@ -1,18 +1,21 @@
 import { Block, CustomPostFields, ObjectPosition, StoryBlock } from "@/types";
 import { SPECIAL_CATEGORIES, SPECIAL_STYLES } from "../constants/categories";
 
-export function shouldShowAuthor(categoryId: number): boolean {
+export function shouldShowAuthor(categoryId: number | undefined): boolean {
+  if (categoryId === undefined) return false;
   return (
     categoryId === SPECIAL_CATEGORIES.OPINION ||
     categoryId === SPECIAL_CATEGORIES.CHRONICLE
   );
 }
 
-export function shouldHaveDifferentStyles(categoryId: number): boolean {
+export function shouldHaveDifferentStyles(categoryId: number | undefined): boolean {
+  if (categoryId === undefined) return false;
   return categoryId === SPECIAL_STYLES.INTERVIEW;
 }
 
-export function shouldShowDate(categoryId: number): boolean {
+export function shouldShowDate(categoryId: number | undefined): boolean {
+  if (categoryId === undefined) return true;
   return (
     categoryId !== SPECIAL_CATEGORIES.OPINION &&
     categoryId !== SPECIAL_CATEGORIES.CHRONICLE

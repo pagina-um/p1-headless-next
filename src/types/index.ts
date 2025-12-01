@@ -53,7 +53,8 @@ export interface StoryBlock extends BaseBlock, CustomPostFields {
 
 export interface CategoryBlock extends BaseBlock {
   blockType: "category";
-  wpCategoryId: number;
+  categoryId?: string; // Payload category ID (preferred)
+  wpCategoryId?: number; // WordPress database ID (legacy/fallback)
   wpCategoryName: string;
   postsPerPage: number;
 }

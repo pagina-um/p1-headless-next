@@ -11,6 +11,7 @@ import SocialShare from "@/components/post/SocialShare";
 import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
 import { StructuredData } from "@/components/StructuredData";
 import { generateNewsArticleSchema, generateBreadcrumbSchema } from "@/utils/structured-data";
+import { EditPostButton } from "@/components/post/EditPostButton";
 
 export interface PostPageProps {
   params: Promise<{
@@ -101,6 +102,7 @@ async function PostComponent({ slug }: { slug: string }) {
           </div>
         </div>
       </article>
+      <EditPostButton postId={data.postBy.id} />
     </>
   );
 }

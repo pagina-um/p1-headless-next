@@ -12,7 +12,7 @@ import { twMerge } from "tailwind-merge";
 
 interface CategoryPostListProps {
   posts: CategoryPostNode[];
-  categoryId: number;
+  categoryId?: number;
   shouldLink: boolean;
 }
 

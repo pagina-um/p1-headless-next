@@ -1,5 +1,6 @@
 import { CollectionConfig } from "payload";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { slugify } from "../src/lib/slugify";
 
 export const Pages: CollectionConfig = {
   slug: "pages",
@@ -63,6 +64,26 @@ export const Pages: CollectionConfig = {
       unique: true,
       admin: {
         position: "sidebar",
+        components: {
+          Field: {
+            path: "./collections/components/SlugField#SlugField",
+            clientProps: {
+              sourceField: "title",
+              readOnly: true,
+            },
+          },
+        },
+      },
+      hooks: {
+        beforeValidate: [
+          ({ value, data, originalDoc }) => {
+            // Keep existing slug if document exists (lock after creation)
+            if (originalDoc?.slug) return originalDoc.slug;
+            // Auto-generate from title if empty
+            if (!value && data?.title) return slugify(data.title);
+            return value;
+          },
+        ],
       },
     },
     {

@@ -479,28 +479,58 @@ export async function getPostsByCategorySlug(
 }
 
 export async function getPostsByCategoryId(
-  categoryId: number,
+  categoryId: string | number,
   postsPerPage = 10,
   excludePostIds: string[] = []
 ) {
   const payload = await getPayloadInstance();
 
-  // Find the category by WordPress database ID
-  const categoryResult = await payload.find({
-    collection: "categories",
-    where: {
-      wpDatabaseId: {
-        equals: categoryId,
-      },
-    },
-    limit: 1,
-  });
+  let category;
 
-  if (!categoryResult.docs[0]) {
-    return { data: null, error: "Category not found" };
+  // Check if it's a numeric string (legacy wpCategoryId from JSON)
+  const numericId = typeof categoryId === "string" ? parseInt(categoryId, 10) : categoryId;
+  const isNumericId = typeof categoryId === "number" || (typeof categoryId === "string" && !isNaN(numericId));
+
+  if (isNumericId) {
+    // Look up by WordPress database ID (legacy/numeric)
+    const categoryResult = await payload.find({
+      collection: "categories",
+      where: {
+        wpDatabaseId: {
+          equals: numericId,
+        },
+      },
+      limit: 1,
+    });
+
+    if (categoryResult.docs[0]) {
+      category = categoryResult.docs[0];
+    } else {
+      // Try Payload ID lookup as fallback
+      try {
+        category = await payload.findByID({
+          collection: "categories",
+          id: String(categoryId),
+        });
+      } catch {
+        return { data: null, error: "Category not found" };
+      }
+    }
+  } else {
+    // Non-numeric string - look up by Payload ID directly
+    try {
+      category = await payload.findByID({
+        collection: "categories",
+        id: categoryId,
+      });
+    } catch {
+      return { data: null, error: "Category not found" };
+    }
   }
 
-  const category = categoryResult.docs[0];
+  if (!category) {
+    return { data: null, error: "Category not found" };
+  }
 
   // Build where clause with exclusions if provided
   const whereClause: any = {

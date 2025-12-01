@@ -33,6 +33,10 @@ export const GridLayouts: CollectionConfig = {
       name: 'gridState',
       type: 'json',
       required: true,
+      defaultValue: {
+        blocks: [],
+        createdAt: '',
+      },
       admin: {
         description: 'Grid configuration data including blocks and layout positions',
         readOnly: true,

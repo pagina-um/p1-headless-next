@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getCategory, getPostsByCategory } from "@/app/(payload)/admin/grid-editor/actions";
 
 export function useCategoryPosts(
-  categoryId: number,
+  categoryId: string | number | undefined,
   postsPerPage: number = 5,
   excludePostIds: string[] = []
 ) {
@@ -15,8 +15,9 @@ export function useCategoryPosts(
       try {
         setFetching(true);
         // Fetch category data and posts using server functions
-        const category = await getCategory(categoryId.toString());
-        const postsData = await getPostsByCategory(categoryId, postsPerPage);
+        const catIdStr = typeof categoryId === 'string' ? categoryId : categoryId?.toString();
+        const category = await getCategory(catIdStr || '');
+        const postsData = await getPostsByCategory(categoryId!, postsPerPage);
 
         setData({
           category,

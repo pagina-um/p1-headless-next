@@ -13,15 +13,28 @@ export async function CategoryBlockServer({
   block,
   excludePostIds,
 }: CategoryBlockProps) {
+  // Use Payload categoryId if available, fall back to wpCategoryId for legacy blocks
+  const effectiveCategoryId = block.categoryId || block.wpCategoryId;
+
+  if (!effectiveCategoryId) {
+    return (
+      <div className="h-full p-6 bg-white  shadow-sm border border-gray-100">
+        <p className="text-gray-500 italic font-body-serif">
+          Configuração de categoria inválida
+        </p>
+      </div>
+    );
+  }
+
   const { data, error } = await getPostsByCategoryId(
-    block.wpCategoryId,
+    effectiveCategoryId,
     block.postsPerPage,
     excludePostIds
   );
   const posts = data?.posts?.nodes || [];
   const category = data?.category;
 
-  if (!block.wpCategoryId || error) {
+  if (error) {
     return (
       <div className="h-full p-6 bg-white  shadow-sm border border-gray-100">
         <p className="text-gray-500 italic font-body-serif">

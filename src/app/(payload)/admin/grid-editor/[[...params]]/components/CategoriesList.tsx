@@ -71,7 +71,7 @@ export function CategoriesList() {
         <button
           key={category.id}
           onClick={() =>
-            handleCreateCategoryBlock(category.wpDatabaseId || 0, category.name)
+            handleCreateCategoryBlock(category.id, category.name, category.wpDatabaseId)
           }
           className="p-4 border border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all text-left group"
         >

@@ -28,7 +28,7 @@ export async function CategoryCarouselServer({
   excludePostIds = [],
 }: CategoryCarouselProps) {
   const { data, error } = await getPostsByCategoryId(
-    block.wpCategoryId,
+    block.categoryId || block.wpCategoryId!,
     totalPosts,
     excludePostIds
   );

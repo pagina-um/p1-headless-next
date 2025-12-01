@@ -1,5 +1,6 @@
 import { CollectionConfig } from "payload";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { slugify, buildPostUri } from "../src/lib/slugify";
 
 export const Posts: CollectionConfig = {
   slug: "posts",
@@ -11,6 +12,29 @@ export const Posts: CollectionConfig = {
     read: () => true,
   },
   timestamps: true,
+  hooks: {
+    beforeValidate: [
+      async ({ data, req, originalDoc }) => {
+        // Only check URI uniqueness for new posts (existing posts have locked URIs)
+        if (originalDoc?.uri || !data?.slug) return data;
+
+        const date = new Date(data.publishedAt || Date.now());
+        const uri = buildPostUri(date, data.slug);
+
+        const existing = await req.payload.find({
+          collection: "posts",
+          where: { uri: { equals: uri } },
+          limit: 1,
+        });
+
+        if (existing.docs.length > 0) {
+          throw new Error(`Já existe um artigo com este URL: ${uri}`);
+        }
+
+        return data;
+      },
+    ],
+  },
   fields: [
     {
       name: "title",
@@ -31,12 +55,42 @@ export const Posts: CollectionConfig = {
       },
     },
     {
+      name: "visitButton",
+      type: "ui",
+      admin: {
+        position: "sidebar",
+        components: {
+          Field: "./collections/components/VisitButton#VisitButton",
+        },
+      },
+    },
+    {
       name: "slug",
       type: "text",
       required: true,
       unique: true,
       admin: {
         position: "sidebar",
+        components: {
+          Field: {
+            path: "./collections/components/SlugField#SlugField",
+            clientProps: {
+              sourceField: "title",
+              readOnly: true,
+            },
+          },
+        },
+      },
+      hooks: {
+        beforeValidate: [
+          ({ value, data, originalDoc }) => {
+            // Keep existing slug if document exists (lock after creation)
+            if (originalDoc?.slug) return originalDoc.slug;
+            // Auto-generate from title if empty
+            if (!value && data?.title) return slugify(data.title);
+            return value;
+          },
+        ],
       },
     },
     {
@@ -44,7 +98,20 @@ export const Posts: CollectionConfig = {
       type: "text",
       admin: {
         position: "sidebar",
-        description: "Full URI path (e.g., /2024/01/15/article-title)",
+        readOnly: true,
+        description: "Full URI path (auto-generated, locked after save)",
+      },
+      hooks: {
+        beforeValidate: [
+          ({ data, originalDoc }) => {
+            // Keep existing URI if document exists (lock after creation)
+            if (originalDoc?.uri) return originalDoc.uri;
+            // Auto-generate from publishedAt + slug
+            const date = new Date(data?.publishedAt || Date.now());
+            const slug = data?.slug || "";
+            return buildPostUri(date, slug);
+          },
+        ],
       },
     },
     {
@@ -56,6 +123,15 @@ export const Posts: CollectionConfig = {
         date: {
           pickerAppearance: "dayAndTime",
         },
+      },
+      hooks: {
+        beforeValidate: [
+          ({ value }) => {
+            // Auto-set to current date if empty
+            if (!value) return new Date().toISOString();
+            return value;
+          },
+        ],
       },
     },
     {
