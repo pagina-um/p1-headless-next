@@ -1,4 +1,5 @@
 import { CollectionConfig } from 'payload'
+import { revalidatePath } from 'next/cache'
 
 export const GridLayouts: CollectionConfig = {
   slug: 'grid-layouts',
@@ -99,7 +100,13 @@ export const GridLayouts: CollectionConfig = {
         return data
       },
     ],
-    // Removed afterChange hook to prevent infinite loop
-    // The usedBy field is not critical and was causing saves to hang
+    afterChange: [
+      async ({ doc }) => {
+        // Revalidate homepage cache when an active layout is saved
+        if (doc.isActive) {
+          revalidatePath('/')
+        }
+      },
+    ],
   },
 }
