@@ -33,8 +33,8 @@ dist-ssr
 .db
 payload.db
 *_dump.sql
-*-db-wal
-*-db-shm
+*.db-wal
+*.db-shm
 
 # Migration data files (too large for git)
 scripts/migration/data/

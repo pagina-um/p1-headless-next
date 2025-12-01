@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   description: "O jornalismo independente só depende dos leitores.",
 };
 
+// Revalidate homepage every 5 minutes
+export const revalidate = 300;
+
 export default async function HomePage() {
   const payload = await getPayloadInstance();
 
