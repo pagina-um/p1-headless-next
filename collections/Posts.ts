@@ -1,5 +1,6 @@
 import { CollectionConfig } from "payload";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { revalidatePath } from "next/cache";
 import { slugify, buildPostUri } from "../src/lib/slugify";
 import { UploadWithUnsplashFeature } from "../src/lexical/upload-with-unsplash";
 
@@ -33,6 +34,14 @@ export const Posts: CollectionConfig = {
         }
 
         return data;
+      },
+    ],
+    afterChange: [
+      async ({ doc }) => {
+        // Revalidate the post's page cache when it's saved
+        if (doc.uri) {
+          revalidatePath(doc.uri);
+        }
       },
     ],
   },
