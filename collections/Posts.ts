@@ -1,6 +1,7 @@
 import { CollectionConfig } from "payload";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { slugify, buildPostUri } from "../src/lib/slugify";
+import { UploadWithUnsplashFeature } from "../src/lexical/upload-with-unsplash";
 
 export const Posts: CollectionConfig = {
   slug: "posts",
@@ -45,7 +46,13 @@ export const Posts: CollectionConfig = {
       name: "content",
       type: "richText",
       required: false, // Will be populated during migration
-      editor: lexicalEditor(),
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          // Filter out the default UploadFeature and replace with our custom one
+          ...defaultFeatures.filter((feature) => feature.key !== 'upload'),
+          UploadWithUnsplashFeature(),
+        ],
+      }),
     },
     {
       name: "excerpt",

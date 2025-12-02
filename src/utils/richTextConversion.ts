@@ -24,6 +24,7 @@ import type { SanitizedConfig } from "payload";
 import { JSDOM } from "jsdom";
 import { Buffer } from "node:buffer";
 import payloadConfigPromise from "@payload-config";
+import { getPayloadInstance } from "@/services/payload-api";
 
 let sanitizedConfigPromise: Promise<SanitizedServerEditorConfig> | null = null;
 let editorPromise: Promise<LexicalEditor> | null = null;
@@ -130,16 +131,32 @@ const blockFromText = (text: string): SerializedLexicalNode => ({
   ],
 });
 
+// Store for resolved upload URLs (populated during async processing)
+let uploadUrlCache: Map<string, { url: string; alt?: string }> = new Map();
+
 function convertUploadNode(
   node: SerializedLexicalNode
 ): SerializedLexicalNode | null {
   if (node.type === "upload") {
-    const src =
+    // Check for direct URL first (legacy format)
+    let src =
       node?.src ||
       node?.imageURL ||
       node?.value?.url ||
       node?.pending?.src ||
       "";
+
+    let alt = node?.alt || node?.value?.alt;
+
+    // If no direct URL, check if we have a cached URL from relationTo/value
+    if (!src && node?.value && node?.relationTo) {
+      const cacheKey = `${node.relationTo}:${node.value}`;
+      const cached = uploadUrlCache.get(cacheKey);
+      if (cached) {
+        src = cached.url;
+        alt = alt || cached.alt;
+      }
+    }
 
     if (!src) {
       return null;
@@ -147,7 +164,7 @@ function convertUploadNode(
 
     const payload: MediaTokenPayload = {
       src,
-      alt: node?.alt || node?.value?.alt,
+      alt,
       caption: node?.value?.caption,
       title: node?.value?.title,
     };
@@ -162,9 +179,65 @@ function convertUploadNode(
   return node;
 }
 
-function stripUnsupportedNodes(
+// Collect all upload node values that need to be resolved
+function collectUploadIds(state: SerializedEditorState): Array<{ relationTo: string; value: string | number }> {
+  const uploads: Array<{ relationTo: string; value: string | number }> = [];
+
+  function traverse(node: SerializedLexicalNode) {
+    if (node.type === "upload" && node.relationTo && node.value) {
+      // Only collect if we don't have a direct URL
+      if (!node.src && !node.imageURL && !node.value?.url && !node.pending?.src) {
+        uploads.push({ relationTo: node.relationTo, value: node.value });
+      }
+    }
+    if (Array.isArray(node.children)) {
+      node.children.forEach(traverse);
+    }
+  }
+
+  if (Array.isArray((state as any)?.root?.children)) {
+    (state as any).root.children.forEach(traverse);
+  }
+
+  return uploads;
+}
+
+// Resolve upload IDs to URLs
+async function resolveUploadUrls(uploads: Array<{ relationTo: string; value: string | number }>) {
+  if (uploads.length === 0) return;
+
+  const payload = await getPayloadInstance();
+
+  for (const upload of uploads) {
+    const cacheKey = `${upload.relationTo}:${upload.value}`;
+    if (uploadUrlCache.has(cacheKey)) continue;
+
+    try {
+      const doc = await payload.findByID({
+        collection: upload.relationTo,
+        id: String(upload.value),
+      });
+
+      if (doc?.url) {
+        uploadUrlCache.set(cacheKey, {
+          url: doc.url,
+          alt: doc.alt || ''
+        });
+      }
+    } catch (e) {
+      console.error(`Failed to resolve upload ${cacheKey}:`, e);
+    }
+  }
+}
+
+async function stripUnsupportedNodes(
   state: SerializedEditorState
-): SerializedEditorState {
+): Promise<SerializedEditorState> {
+  // First, resolve all upload IDs to URLs
+  const uploads = collectUploadIds(state);
+  await resolveUploadUrls(uploads);
+
+  // Then convert upload nodes using the cached URLs
   if (Array.isArray((state as any)?.root?.children)) {
     (state as any).root.children = (state as any).root.children
       .map(convertUploadNode)
@@ -498,7 +571,7 @@ export async function htmlToRichText(
   );
 
   const json = editor.getEditorState().toJSON() as SerializedEditorState;
-  const sanitized = stripUnsupportedNodes(json);
+  const sanitized = await stripUnsupportedNodes(json);
 
   editor.update(
     () => {
@@ -521,9 +594,14 @@ export async function richTextToHtml(
     return richText;
   }
 
+  // First, resolve upload URLs and convert upload nodes to media tokens
+  const processedRichText = await stripUnsupportedNodes(
+    JSON.parse(JSON.stringify(richText)) // Deep clone to avoid mutation
+  );
+
   ensureLexicalDom();
   const editor = await getHeadlessEditor();
-  const editorState = editor.parseEditorState(richText);
+  const editorState = editor.parseEditorState(processedRichText);
   editor.setEditorState(editorState);
 
   let html = "";

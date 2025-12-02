@@ -17,6 +17,7 @@
     "@libsql/client": "^0.15.15",
     "@next/third-parties": "^15.1.4",
     "@payloadcms/db-sqlite": "^3.65.0",
+    "@payloadcms/live-preview": "3.65.0",
     "@payloadcms/next": "^3.65.0",
     "@payloadcms/richtext-lexical": "^3.65.0",
     "@payloadcms/storage-vercel-blob": "3.65.0",

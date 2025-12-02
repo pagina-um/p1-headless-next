@@ -1,6 +1,7 @@
 import { CollectionConfig } from "payload";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { slugify } from "../src/lib/slugify";
+import { UploadWithUnsplashFeature } from "../src/lexical/upload-with-unsplash";
 
 export const Pages: CollectionConfig = {
   slug: "pages",
@@ -121,7 +122,13 @@ export const Pages: CollectionConfig = {
       name: "content",
       type: "richText",
       required: false,
-      editor: lexicalEditor(),
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          // Filter out the default UploadFeature and replace with our custom one
+          ...defaultFeatures.filter((feature) => feature.key !== 'upload'),
+          UploadWithUnsplashFeature(),
+        ],
+      }),
       admin: {
         condition: (data) => data.pageType === "article",
         description: "Rich text content for article-type pages",
