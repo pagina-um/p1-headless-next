@@ -2,7 +2,21 @@ import { CollectionConfig } from 'payload'
 
 export const Categories: CollectionConfig = {
   slug: 'categories',
+  labels: {
+    singular: {
+      en: 'Category',
+      pt: 'Categoria',
+    },
+    plural: {
+      en: 'Categories',
+      pt: 'Categorias',
+    },
+  },
   admin: {
+    group: {
+      en: 'Content',
+      pt: 'Conteúdo',
+    },
     useAsTitle: 'name',
   },
   access: {

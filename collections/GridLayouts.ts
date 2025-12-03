@@ -3,7 +3,21 @@ import { revalidatePath } from 'next/cache'
 
 export const GridLayouts: CollectionConfig = {
   slug: 'grid-layouts',
+  labels: {
+    singular: {
+      en: 'Grid Layout',
+      pt: 'Layout de Grelha',
+    },
+    plural: {
+      en: 'Grid Layouts',
+      pt: 'Layouts de Grelha',
+    },
+  },
   admin: {
+    group: {
+      en: 'Content',
+      pt: 'Conteúdo',
+    },
     useAsTitle: 'name',
     description: 'Grid layout configurations for pages',
     defaultColumns: ['name', 'usedBy', 'updatedAt'],

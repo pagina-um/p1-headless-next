@@ -3,7 +3,21 @@ import { slugify } from '../src/lib/slugify'
 
 export const Tags: CollectionConfig = {
   slug: 'tags',
+  labels: {
+    singular: {
+      en: 'Tag',
+      pt: 'Tag',
+    },
+    plural: {
+      en: 'Tags',
+      pt: 'Tags',
+    },
+  },
   admin: {
+    group: {
+      en: 'Content',
+      pt: 'Conteúdo',
+    },
     useAsTitle: 'name',
   },
   access: {

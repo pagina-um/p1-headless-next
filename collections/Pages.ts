@@ -5,7 +5,21 @@ import { UploadWithUnsplashFeature } from "../src/lexical/upload-with-unsplash";
 
 export const Pages: CollectionConfig = {
   slug: "pages",
+  labels: {
+    singular: {
+      en: "Page",
+      pt: "Página",
+    },
+    plural: {
+      en: "Pages",
+      pt: "Páginas",
+    },
+  },
   admin: {
+    group: {
+      en: "Content",
+      pt: "Conteúdo",
+    },
     useAsTitle: "title",
     defaultColumns: ["title", "pageType", "slug", "isHomePage", "updatedAt"],
   },

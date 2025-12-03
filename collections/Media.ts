@@ -2,6 +2,16 @@ import { CollectionConfig } from 'payload'
 
 export const Media: CollectionConfig = {
   slug: 'media',
+  labels: {
+    singular: {
+      en: 'Media',
+      pt: 'Media',
+    },
+    plural: {
+      en: 'Media',
+      pt: 'Media',
+    },
+  },
   upload: {
     staticDir: 'media',
     // Disable local storage when using Vercel Blob (token present)

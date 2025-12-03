@@ -6,7 +6,21 @@ import { UploadWithUnsplashFeature } from "../src/lexical/upload-with-unsplash";
 
 export const Posts: CollectionConfig = {
   slug: "posts",
+  labels: {
+    singular: {
+      en: "Post",
+      pt: "Artigo",
+    },
+    plural: {
+      en: "Posts",
+      pt: "Artigos",
+    },
+  },
   admin: {
+    group: {
+      en: "Content",
+      pt: "Conteúdo",
+    },
     useAsTitle: "title",
     defaultColumns: ["title", "publishedAt", "status"],
   },

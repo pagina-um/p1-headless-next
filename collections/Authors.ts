@@ -3,7 +3,21 @@ import { slugify } from '../src/lib/slugify'
 
 export const Authors: CollectionConfig = {
   slug: 'authors',
+  labels: {
+    singular: {
+      en: 'Author',
+      pt: 'Autor',
+    },
+    plural: {
+      en: 'Authors',
+      pt: 'Autores',
+    },
+  },
   admin: {
+    group: {
+      en: 'Content',
+      pt: 'Conteúdo',
+    },
     useAsTitle: 'name',
     defaultColumns: ['name', 'email', 'slug'],
   },
