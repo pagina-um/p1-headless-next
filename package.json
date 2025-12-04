@@ -2,6 +2,9 @@
   "name": "news-grid-nextjs",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
@@ -10,7 +13,7 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,md,json}\"",
     "test": "jest",
     "payload": "payload",
-    "generate:types": "payload generate:types"
+    "generate:types": "NODE_OPTIONS='--import tsx' payload generate:types"
   },
   "dependencies": {
     "@easypaypt/checkout-sdk": "^2.7.2",
@@ -47,6 +50,11 @@
     "sharp": "^0.34.5",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7"
+  },
+  "pnpm": {
+    "overrides": {
+      "undici": "6.21.1"
+    }
   },
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",

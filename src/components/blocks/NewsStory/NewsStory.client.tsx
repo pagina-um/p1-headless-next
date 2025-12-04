@@ -1,6 +1,6 @@
 "use client";
 
-import { StoryBlock } from "@/types";
+import { StoryBlock, PayloadPost } from "@/types";
 import { NewsStoryCommon } from "./NewsStoryCommon";
 import { useEffect, useState } from "react";
 import { getPost } from "@/app/(payload)/admin/grid-editor/actions";
@@ -11,7 +11,7 @@ interface NewsStoryProps {
 
 export function NewsStoryClient({ story }: NewsStoryProps) {
   const { postId } = story;
-  const [data, setData] = useState<any>(null);
+  const [post, setPost] = useState<PayloadPost | null>(null);
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
@@ -20,7 +20,7 @@ export function NewsStoryClient({ story }: NewsStoryProps) {
       try {
         setLoading(true);
         const postData = await getPost(postId);
-        setData({ post: postData });
+        setPost(postData as PayloadPost);
       } catch (err) {
         setError(err);
       } finally {
@@ -42,6 +42,6 @@ export function NewsStoryClient({ story }: NewsStoryProps) {
   }
 
   return (
-    <NewsStoryCommon story={story} data={data} error={error} isAdmin={true} />
+    <NewsStoryCommon story={story} post={post} error={error} isAdmin={true} />
   );
 }

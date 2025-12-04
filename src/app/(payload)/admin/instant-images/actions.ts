@@ -1,6 +1,7 @@
 'use server'
 
-import { getPayloadInstance } from '@/services/payload-api'
+import { getPayload } from 'payload'
+import config from '@payload-config'
 import { searchUnsplash, trackDownload, UnsplashImage, UnsplashSearchResponse } from '@/services/unsplash'
 
 export async function searchImages(query: string, page = 1): Promise<UnsplashSearchResponse> {
@@ -14,7 +15,7 @@ export async function searchImages(query: string, page = 1): Promise<UnsplashSea
 
 export async function importImage(image: UnsplashImage): Promise<{ success: boolean; mediaId?: string; error?: string }> {
   try {
-    const payload = await getPayloadInstance()
+    const payload = await getPayload({ config })
 
     // 1. Trigger Unsplash download tracking (required by API guidelines)
     await trackDownload(image.links.download_location)

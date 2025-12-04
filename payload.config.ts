@@ -20,23 +20,13 @@ import { pt } from "@payloadcms/translations/languages/pt";
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
-// Check if we're on Vercel non-prod branch
-const isVercel = process.env.VERCEL === "1";
-const isProduction = process.env.VERCEL_ENV === "production";
+// Database configuration - use Turso if credentials are available
 const tursoUrl = process.env.MYSQL_TURSO_DATABASE_URL;
 const tursoToken = process.env.MYSQL_TURSO_AUTH_TOKEN;
-const useTurso = !!(isVercel && !isProduction && tursoUrl && tursoToken);
 
-// Database configuration
 const getDatabaseAdapter = () => {
-  if (useTurso) {
-    // Use Turso for non-prod Vercel deployments
-    console.log("Using Turso database with URL:", tursoUrl);
-
-    if (!tursoUrl || !tursoToken) {
-      throw new Error("Turso URL and token must be set");
-    }
-
+  if (tursoUrl && tursoToken) {
+    console.log("Using Turso database");
     return sqliteAdapter({
       client: {
         url: tursoUrl,
@@ -45,7 +35,8 @@ const getDatabaseAdapter = () => {
     });
   }
 
-  // Use local SQLite for development
+  // Fallback to local SQLite
+  console.log("Using local SQLite database");
   return sqliteAdapter({
     client: {
       url: process.env.DATABASE_URI || "file:./payload.db",

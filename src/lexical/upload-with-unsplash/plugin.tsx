@@ -41,8 +41,8 @@ export const UnsplashPlugin: React.FC = () => {
           const uploadNode = $createUploadNode({
             data: {
               fields: {},
-              relationTo: collectionSlug,
-              value: docId,
+              relationTo: collectionSlug as 'media',
+              value: Number(docId),
             },
           })
           const { focus } = selection

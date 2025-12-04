@@ -2,7 +2,8 @@ import { NewsGrid } from "@/components/grid/NewsGrid";
 import { GridState } from "@/types";
 import { PostFooter } from "@/components/post/PostFooter";
 import { Metadata } from "next";
-import { getPayloadInstance } from "@/services/payload-api";
+import { getPayload } from "payload";
+import config from "@payload-config";
 import { Header } from "@/components/layout/Header";
 import { richTextToHtml } from "@/utils/richTextConversion";
 import { parserOptions } from "@/utils/wpParsing";
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const payload = await getPayloadInstance();
+  const payload = await getPayload({ config });
 
   // First, try to find a page marked as homepage
   const pageResult = await payload.find({
@@ -45,7 +46,7 @@ export default async function HomePage() {
     const activeLayout = layoutResult.docs[0];
 
     if (activeLayout?.gridState) {
-      const gridState = activeLayout.gridState as GridState;
+      const gridState = activeLayout.gridState as unknown as GridState;
 
       if (gridState.blocks.length > 0) {
         return (
@@ -79,7 +80,7 @@ export default async function HomePage() {
     // Grid layout page
     const gridState: GridState | null =
       page.gridLayout && typeof page.gridLayout === "object" && page.gridLayout.gridState
-        ? page.gridLayout.gridState
+        ? (page.gridLayout.gridState as unknown as GridState)
         : null;
 
     if (!gridState || gridState.blocks.length === 0) {

@@ -1,4 +1,5 @@
-import { getPostsByCategoryId } from "@/services/payload-api";
+import { getPayload } from "payload";
+import config from "@payload-config";
 import {
   Carousel,
   CarouselContent,
@@ -8,7 +9,7 @@ import {
 } from "./carousel";
 import { CategoryBlockProps } from "../blocks/CategoryBlock.server";
 import { CategoryBlockHeader } from "../blocks/CategoryBlockHeader";
-import { CustomPostFields } from "@/types";
+import { PayloadPost, PayloadCategory, getPostImageUrl, getPostImageAlt } from "@/types";
 import Image from "next/image";
 import { titleCaseExceptForSomeWords } from "@/utils/utils";
 import { twMerge } from "tailwind-merge";
@@ -27,25 +28,67 @@ export async function CategoryCarouselServer({
   totalPosts = 12,
   excludePostIds = [],
 }: CategoryCarouselProps) {
-  const { data, error } = await getPostsByCategoryId(
-    block.categoryId || block.wpCategoryId!,
-    totalPosts,
-    excludePostIds
-  );
-  const posts = data?.posts?.nodes || [];
-  if (error) {
+  const effectiveCategoryId = block.categoryId || block.wpCategoryId;
+
+  if (!effectiveCategoryId) {
     return (
       <div className="text-red-500 p-4">
-        Error loading posts: {error}
+        Error: Invalid category configuration
       </div>
     );
   }
-  const category = data?.category;
+
+  const payload = await getPayload({ config });
+
+  // Fetch category
+  let category: PayloadCategory | null = null;
+  try {
+    const categoryDoc = await payload.findByID({
+      collection: "categories",
+      id: String(effectiveCategoryId),
+    });
+    category = categoryDoc as PayloadCategory;
+  } catch {
+    const result = await payload.find({
+      collection: "categories",
+      where: {
+        wpDatabaseId: { equals: Number(effectiveCategoryId) },
+      },
+      limit: 1,
+    });
+    category = (result.docs[0] as PayloadCategory) || null;
+  }
+
+  if (!category) {
+    return (
+      <div className="text-red-500 p-4">
+        Error: Category not found
+      </div>
+    );
+  }
+
+  // Fetch posts for this category
+  const postsResult = await payload.find({
+    collection: "posts",
+    where: {
+      categories: { in: [category.id] },
+      status: { equals: "publish" },
+      ...(excludePostIds.length > 0 && {
+        id: { not_in: excludePostIds },
+      }),
+    },
+    limit: totalPosts,
+    sort: "-publishedAt",
+    depth: 2,
+  });
+
+  const posts = postsResult.docs as PayloadPost[];
+
   return (
     <div className={`relative ${className}`}>
       <CategoryBlockHeader
-        title={block.wpCategoryName}
-        link={`/cat/${category?.slug}`}
+        title={block.wpCategoryName || category.name}
+        link={`/cat/${category.slug}`}
       />
       <Carousel
         opts={{
@@ -60,28 +103,27 @@ export async function CategoryCarouselServer({
         className="w-full"
       >
         <CarouselContent className="-ml-2 md:-ml-4">
-          {posts.map((post: any, index: number) => {
-            const { antetitulo }: CustomPostFields = post.postFields as any;
+          {posts.map((post, index) => {
+            const imageUrl = getPostImageUrl(post);
+            const imageAlt = getPostImageAlt(post);
+
             return (
               <CarouselItem
                 key={post.id}
                 className={`pl-2 md:pl-4 basis-1/2 md:basis-1/${cardsPerView}`}
               >
-                {" "}
                 <div
-                  style={
-                    {
-                      height: `${block.gridPosition.height * 60 - 40}px`,
-                    } as React.CSSProperties
-                  }
+                  style={{
+                    height: `${block.gridPosition.height * 60 - 40}px`,
+                  }}
                   className={twMerge(
                     "relative overflow-hidden rounded-lg group"
                   )}
                 >
-                  {post.featuredImage?.node?.sourceUrl && (
+                  {imageUrl && (
                     <Image
-                      src={post.featuredImage.node.sourceUrl}
-                      alt={post.featuredImage.node.altText || ""}
+                      src={imageUrl}
+                      alt={imageAlt || ""}
                       fill
                       sizes={`(max-width: 768px) 50vw, ${100 / cardsPerView}vw`}
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -89,19 +131,19 @@ export async function CategoryCarouselServer({
                     />
                   )}
                   <div className="absolute top-3 pt-0 left-4 text-white">
-                    <h3 className="font-sans text-xl  mb-2 line-clamp-5 leading-[0.01rem]  inline  font-extrabold tracking-tighter  bg-primary-dark">
-                      &nbsp;&nbsp; {titleCaseExceptForSomeWords(antetitulo)}{" "}
+                    <h3 className="font-sans text-xl mb-2 line-clamp-5 leading-[0.01rem] inline font-extrabold tracking-tighter bg-primary-dark">
+                      &nbsp;&nbsp; {titleCaseExceptForSomeWords(post.antetitulo || "")}{" "}
                       &nbsp;&nbsp;
                     </h3>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
                     <div className="absolute bottom-0 p-4 pt-0 text-white">
-                      <h3 className="font-serif text-lg  mb-2 line-clamp-5 leading-5 ">
+                      <h3 className="font-serif text-lg mb-2 line-clamp-5 leading-5">
                         {post.title}
                       </h3>
                     </div>
                   </div>
-                  <a href={post.uri!} className="absolute inset-0" />
+                  <a href={post.uri || "#"} className="absolute inset-0" />
                 </div>
               </CarouselItem>
             );

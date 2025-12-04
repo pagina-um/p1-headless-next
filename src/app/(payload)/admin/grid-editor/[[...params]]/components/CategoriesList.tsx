@@ -6,10 +6,10 @@ import { Loader, FolderOpen } from "lucide-react";
 import { getCategories } from "../../actions";
 
 interface Category {
-  id: string;
+  id: number;
   name: string;
-  slug: string;
-  wpDatabaseId?: number;
+  slug?: string | null;
+  wpDatabaseId?: number | null;
   postCount?: number;
 }
 
@@ -71,7 +71,7 @@ export function CategoriesList() {
         <button
           key={category.id}
           onClick={() =>
-            handleCreateCategoryBlock(category.id, category.name, category.wpDatabaseId)
+            handleCreateCategoryBlock(String(category.id), category.name, category.wpDatabaseId ?? undefined)
           }
           className="p-4 border border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all text-left group"
         >

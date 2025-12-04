@@ -73,8 +73,8 @@ export function GridProvider({
           ? await getGridLayout(layoutId)
           : await getActiveGridLayout();
 
-        // Extract gridState from the layout object
-        const fetchedGridState = data?.gridState || initialGridState;
+        // Extract gridState from the layout object (gridState is stored as JSON)
+        const fetchedGridState = (data?.gridState as unknown as GridState) || initialGridState;
 
         setGridState(fetchedGridState);
         originalGridStateRef.current = JSON.parse(

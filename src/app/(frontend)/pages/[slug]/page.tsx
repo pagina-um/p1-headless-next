@@ -2,7 +2,8 @@ import { NewsGrid } from "@/components/grid/NewsGrid";
 import { GridState } from "@/types";
 import { PostFooter } from "@/components/post/PostFooter";
 import { Metadata } from "next";
-import { getPayloadInstance } from "@/services/payload-api";
+import { getPayload } from "payload";
+import config from "@payload-config";
 import { Header } from "@/components/layout/Header";
 import { notFound } from "next/navigation";
 import { richTextToHtml } from "@/utils/richTextConversion";
@@ -17,7 +18,7 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const payload = await getPayloadInstance();
+  const payload = await getPayload({ config });
 
   const result = await payload.find({
     collection: "pages",
@@ -39,7 +40,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
-  const payload = await getPayloadInstance();
+  const payload = await getPayload({ config });
 
   // Find the page by slug
   const result = await payload.find({
@@ -65,7 +66,7 @@ export default async function Page({ params }: PageProps) {
     // Grid layout page
     const gridState: GridState | null =
       page.gridLayout && typeof page.gridLayout === "object" && page.gridLayout.gridState
-        ? page.gridLayout.gridState
+        ? (page.gridLayout.gridState as unknown as GridState)
         : null;
 
     if (!gridState || gridState.blocks.length === 0) {

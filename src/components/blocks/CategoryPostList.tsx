@@ -7,11 +7,11 @@ import {
 } from "../../utils/categoryUtils";
 import Link from "next/link";
 import Image from "next/image";
-import { CategoryPostNode } from "@/hooks/useCategoryPosts";
+import { PayloadPost, Media } from "@/types";
 import { twMerge } from "tailwind-merge";
 
 interface CategoryPostListProps {
-  posts: CategoryPostNode[];
+  posts: PayloadPost[];
   categoryId?: number;
   shouldLink: boolean;
 }
@@ -39,55 +39,62 @@ const ArticleContent = ({
   showAuthor,
   showDate,
 }: {
-  post: CategoryPostNode;
+  post: PayloadPost;
   showAuthor: boolean;
   showDate: boolean;
-}) => (
-  <article
-    key={post.id}
-    className="group cursor-pointer   flex-1 flex justify-between items-center gap-2 "
-  >
-    <div>
-      {" "}
+}) => {
+  const author = typeof post.author === "object" ? post.author : null;
+  const authorName = author?.name;
+  // Avatar can be number | null | Media - extract URL if it's a Media object
+  const authorAvatar = author?.avatar && typeof author.avatar === "object"
+    ? (author.avatar as Media).url
+    : null;
+
+  return (
+    <article
+      key={post.id}
+      className="group cursor-pointer flex-1 flex justify-between items-center gap-2"
+    >
+      <div>
+        {showAuthor && authorName && (
+          <p className="font-sans text-sm font-[300] text-gray-600">
+            {authorName}
+          </p>
+        )}
+        <h3
+          className={twMerge(
+            "font-serif text-lg font-semibold group-hover:text-primary transition-colors line-clamp-3 @3xl:line-clamp-3",
+            showAuthor && "text-xl"
+          )}
+        >
+          "{post.title}"
+        </h3>
+        <div className="flex items-center gap-3 text-sm text-gray-500 mt-2 font-body-serif">
+          {showDate && post.publishedAt && (
+            <span className="flex items-center gap-1 font-sans @3xl:hidden">
+              <Calendar className="w-4 h-4" />
+              {formatDate(post.publishedAt)}
+            </span>
+          )}
+        </div>
+      </div>
       {showAuthor && (
-        <p className="font-sans text-sm  font-[300] text-gray-600">
-          {" "}
-          {post.author?.node.name}
-        </p>
+        <div className="flex items-center gap-3 flex-shrink-0 justify-end font-thin text-md text-slate-900">
+          {authorAvatar ? (
+            <div className="relative w-12 h-12">
+              <Image
+                src={authorAvatar}
+                alt={authorName || ""}
+                className="rounded-full border-2 border-primary-dark"
+                fill
+                sizes="48px"
+              />
+            </div>
+          ) : (
+            <User className="w-4 h-4" />
+          )}
+        </div>
       )}
-      <h3
-        className={twMerge(
-          "font-serif text-lg font-semibold group-hover:text-primary transition-colors line-clamp-3 @3xl:line-clamp-3",
-          showAuthor && "text-xl"
-        )}
-      >
-        "{post.title}"
-      </h3>
-      <div className="flex items-center gap-3 text-sm text-gray-500 mt-2 font-body-serif">
-        {showDate && post.date && (
-          <span className="flex items-center gap-1 font-sans @3xl:hidden">
-            <Calendar className="w-4 h-4" />
-            {formatDate(post.date)}
-          </span>
-        )}
-      </div>
-    </div>
-    {showAuthor && (
-      <div className="flex items-center gap-3 flex-shrink-0 justify-end font-thin text-md text-slate-900">
-        {post.author?.node.avatar?.url ? (
-          <div className="relative w-12 h-12">
-            <Image
-              src={post.author?.node.avatar?.url}
-              alt={post.author?.node.name || ""}
-              className="rounded-full border-2 border-primary-dark"
-              fill
-              sizes="48px"
-            />
-          </div>
-        ) : (
-          <User className="w-4 h-4" />
-        )}
-      </div>
-    )}
-  </article>
-);
+    </article>
+  );
+};

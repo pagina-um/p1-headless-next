@@ -21,10 +21,10 @@ import type {
   SerializedEditorState,
 } from "@payloadcms/richtext-lexical/lexical";
 import type { SanitizedConfig } from "payload";
+import { getPayload } from "payload";
 import { JSDOM } from "jsdom";
 import { Buffer } from "node:buffer";
 import payloadConfigPromise from "@payload-config";
-import { getPayloadInstance } from "@/services/payload-api";
 
 let sanitizedConfigPromise: Promise<SanitizedServerEditorConfig> | null = null;
 let editorPromise: Promise<LexicalEditor> | null = null;
@@ -206,7 +206,7 @@ function collectUploadIds(state: SerializedEditorState): Array<{ relationTo: str
 async function resolveUploadUrls(uploads: Array<{ relationTo: string; value: string | number }>) {
   if (uploads.length === 0) return;
 
-  const payload = await getPayloadInstance();
+  const payload = await getPayload({ config: payloadConfigPromise });
 
   for (const upload of uploads) {
     const cacheKey = `${upload.relationTo}:${upload.value}`;
@@ -214,8 +214,8 @@ async function resolveUploadUrls(uploads: Array<{ relationTo: string; value: str
 
     try {
       const doc = await payload.findByID({
-        collection: upload.relationTo,
-        id: String(upload.value),
+        collection: upload.relationTo as 'media',
+        id: Number(upload.value),
       });
 
       if (doc?.url) {

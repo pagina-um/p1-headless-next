@@ -1,4 +1,4 @@
-import { PostBySlugData } from "@/app/(frontend)/[yearOrSlug]/[month]/[day]/[slug]/page";
+// Schema.org type definitions for structured data
 
 export interface NewsArticleSchema {
   "@context": "https://schema.org";
@@ -61,77 +61,6 @@ export interface BreadcrumbListSchema {
     name: string;
     item?: string;
   }[];
-}
-
-/**
- * Generate NewsArticle schema for post pages
- */
-export function generateNewsArticleSchema(
-  data: PostBySlugData["data"],
-  url: string
-): NewsArticleSchema {
-  const post = data?.postBy;
-  if (!post) {
-    throw new Error("Post data is required for NewsArticle schema");
-  }
-
-  const categories = post.categories?.nodes || [];
-  const tags = post.tags?.nodes || [];
-  const authorName = post.author?.node?.name || "Página Um";
-
-  const schema: NewsArticleSchema = {
-    "@context": "https://schema.org",
-    "@type": "NewsArticle",
-    headline: post.title || "",
-    datePublished: post.date || new Date().toISOString(),
-    dateModified: post.modified || post.date || new Date().toISOString(),
-    author: [
-      {
-        "@type": "Person",
-        name: authorName,
-      },
-    ],
-    publisher: {
-      "@type": "Organization",
-      name: "Página Um",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://paginaum.pt/icon.png",
-      },
-    },
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": url,
-    },
-  };
-
-  // Add image if available
-  if (post.featuredImage?.node?.sourceUrl) {
-    schema.image = [post.featuredImage.node.sourceUrl];
-  }
-
-  // Add description
-  const postFields = post.postFields as any;
-  if (postFields?.chamadaDestaque) {
-    schema.description = postFields.chamadaDestaque;
-  }
-
-  // Add article section (first category)
-  if (categories.length > 0 && categories[0].name) {
-    schema.articleSection = categories[0].name;
-  }
-
-  // Add keywords (tags + categories)
-  const keywords = [
-    ...tags.map((tag: any) => tag.name).filter(Boolean),
-    ...categories.map((cat: any) => cat.name).filter(Boolean),
-  ].filter((k): k is string => k !== null && k !== undefined);
-
-  if (keywords.length > 0) {
-    schema.keywords = keywords;
-  }
-
-  return schema;
 }
 
 /**

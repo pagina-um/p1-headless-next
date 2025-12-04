@@ -1,10 +1,40 @@
-import { searchPosts } from "@/services/payload-api";
+import { getPayload } from "payload";
+import config from "@payload-config";
 import Link from "next/link";
 import Image from "next/image";
 import Pagination from "@/components/ui/Pagination";
 import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User, Search } from "lucide-react";
 import { Metadata } from "next";
+import { PayloadPost, getPostImageUrl, getPostImageAlt } from "@/types";
+
+async function searchPosts(query: string, page: number, postsPerPage: number) {
+  const payload = await getPayload({ config });
+
+  const result = await payload.find({
+    collection: "posts",
+    where: {
+      or: [
+        { title: { contains: query } },
+        { antetitulo: { contains: query } },
+        { chamadaDestaque: { contains: query } },
+        { chamadaManchete: { contains: query } },
+      ],
+      status: { equals: "publish" },
+    },
+    limit: postsPerPage,
+    page,
+    sort: "-publishedAt",
+    depth: 2,
+  });
+
+  return {
+    posts: result.docs as PayloadPost[],
+    hasNextPage: result.hasNextPage,
+    hasPrevPage: result.hasPrevPage,
+    totalPages: result.totalPages,
+  };
+}
 
 export async function generateMetadata({
   searchParams,
@@ -34,12 +64,12 @@ export async function generateMetadata({
 export default async function SearchPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; page?: string; after?: string }>;
+  searchParams: Promise<{ q?: string; page?: string }>;
 }) {
   const searchParamsResolved = await searchParams;
   const query = searchParamsResolved.q || "";
   const currentPage = Number(searchParamsResolved.page) || 1;
-  const postsPerPage = 12; // Consistent with other pages
+  const postsPerPage = 12;
 
   // If no search query is provided, show an empty state
   if (!query) {
@@ -63,10 +93,11 @@ export default async function SearchPage({
     );
   }
 
-  const { data } = await searchPosts(query, postsPerPage);
-
-  const posts = data?.posts?.nodes || [];
-  const pageInfo = data?.posts?.pageInfo;
+  const { posts, hasNextPage, totalPages } = await searchPosts(
+    query,
+    currentPage,
+    postsPerPage
+  );
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -89,21 +120,21 @@ export default async function SearchPage({
       ) : (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post: any) => {
+            {posts.map((post) => {
+              const imageUrl = getPostImageUrl(post);
+              const imageAlt = getPostImageAlt(post);
+              const authorName = typeof post.author === "object" ? post.author?.name : undefined;
+
               return (
                 <div
                   key={post.id}
                   className="bg-white rounded-lg shadow-md overflow-hidden"
                 >
-                  {post.featuredImage?.node?.sourceUrl && (
+                  {imageUrl && (
                     <div className="relative h-48 w-full">
                       <Image
-                        src={post.featuredImage.node.sourceUrl}
-                        alt={
-                          post.featuredImage.node.altText ||
-                          post.title ||
-                          "Post image"
-                        }
+                        src={imageUrl}
+                        alt={imageAlt || post.title || "Post image"}
                         fill
                         sizes="(max-width: 768px) 30vw, (max-width: 1200px) 30vw, 33vw"
                         className="object-cover"
@@ -123,9 +154,9 @@ export default async function SearchPage({
                       className="text-gray-700 mb-4 line-clamp-3"
                       dangerouslySetInnerHTML={{
                         __html:
-                          post.postFields.chamadaManchete ||
-                          post.postFields.chamadaDestaque ||
-                          post.postFields.antetitulo ||
+                          post.chamadaManchete ||
+                          post.chamadaDestaque ||
+                          post.antetitulo ||
                           "",
                       }}
                     />
@@ -133,13 +164,13 @@ export default async function SearchPage({
                       <div className="flex items-center">
                         <Calendar className="w-4 h-4 mr-1" />
                         <span>
-                          {post.date ? formatDate(post.date) : "No date"}
+                          {post.publishedAt ? formatDate(post.publishedAt) : "No date"}
                         </span>
                       </div>
-                      {post.author?.node?.name && (
+                      {authorName && (
                         <div className="flex items-center">
                           <User className="w-4 h-4 mr-1" />
-                          <span>{post.author.node.name}</span>
+                          <span>{authorName}</span>
                         </div>
                       )}
                     </div>
@@ -148,15 +179,12 @@ export default async function SearchPage({
               );
             })}
           </div>
-          {pageInfo && (
-            <Pagination
-              currentPage={currentPage}
-              hasNextPage={pageInfo.hasNextPage}
-              basePath={`/search?q=${encodeURIComponent(query)}`}
-              startCursor={pageInfo.startCursor}
-              endCursor={pageInfo.endCursor}
-            />
-          )}
+          <Pagination
+            currentPage={currentPage}
+            hasNextPage={hasNextPage}
+            basePath={`/search?q=${encodeURIComponent(query)}`}
+            totalPages={totalPages}
+          />
         </>
       )}
     </div>

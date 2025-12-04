@@ -1,18 +1,14 @@
 'use server'
 
-import {
-  getPayloadInstance,
-  getPostById as getPostByIdService,
-  getPostsByCategoryId as getPostsByCategoryIdService,
-  getCategories as getCategoriesService,
-} from '@/services/payload-api';
-import { GridState } from '@/types';
+import { getPayload } from 'payload';
+import config from '@payload-config';
+import { GridState, PayloadPost, PayloadCategory } from '@/types';
 
 // Grid Layout Operations
 
 export async function getGridLayout(id: string) {
   try {
-    const payload = await getPayloadInstance();
+    const payload = await getPayload({ config });
     const layout = await payload.findByID({
       collection: 'grid-layouts',
       id,
@@ -26,7 +22,7 @@ export async function getGridLayout(id: string) {
 
 export async function getActiveGridLayout() {
   try {
-    const payload = await getPayloadInstance();
+    const payload = await getPayload({ config });
     const result = await payload.find({
       collection: 'grid-layouts',
       where: {
@@ -60,7 +56,7 @@ export async function saveGridLayout(data: {
   id?: string;
 }) {
   try {
-    const payload = await getPayloadInstance();
+    const payload = await getPayload({ config });
 
     if (data.id) {
       // Update existing layout
@@ -68,7 +64,7 @@ export async function saveGridLayout(data: {
         collection: 'grid-layouts',
         id: data.id,
         data: {
-          gridState: data.gridState,
+          gridState: data.gridState as unknown as Record<string, unknown>,
           ...(data.name && { name: data.name }),
         },
       });
@@ -85,7 +81,7 @@ export async function saveGridLayout(data: {
       collection: 'grid-layouts',
       data: {
         name: data.name || 'New Grid Layout',
-        gridState: data.gridState,
+        gridState: data.gridState as unknown as Record<string, unknown>,
       },
     });
 
@@ -106,14 +102,37 @@ export async function saveGridLayout(data: {
 
 // Post Operations
 
-export async function getPost(id: string) {
+export async function getPost(id: string | number) {
   try {
-    // Use service layer function that transforms to WordPress format
-    const { data, error } = await getPostByIdService(id);
-    if (error || !data) {
-      throw new Error(error || 'Post not found');
+    const payload = await getPayload({ config });
+
+    // Try by ID first, then by wpDatabaseId
+    let post: PayloadPost | null = null;
+
+    try {
+      post = await payload.findByID({
+        collection: 'posts',
+        id: Number(id),
+        depth: 2,
+      }) as PayloadPost;
+    } catch {
+      // Try by wpDatabaseId
+      const result = await payload.find({
+        collection: 'posts',
+        where: {
+          wpDatabaseId: { equals: parseInt(String(id)) },
+        },
+        limit: 1,
+        depth: 2,
+      });
+      post = (result.docs[0] as PayloadPost) || null;
     }
-    return data.post;
+
+    if (!post) {
+      throw new Error('Post not found');
+    }
+
+    return post;
   } catch (error: any) {
     console.error('Failed to fetch post:', error);
     throw new Error(`Error fetching post: ${error.message}`);
@@ -122,12 +141,46 @@ export async function getPost(id: string) {
 
 export async function getPostsByCategory(categoryId: string | number, limit: number = 10) {
   try {
-    // Use service layer function that transforms to WordPress format
-    const { data, error } = await getPostsByCategoryIdService(categoryId, limit);
-    if (error || !data) {
-      throw new Error(error || 'Posts not found');
+    const payload = await getPayload({ config });
+
+    // First resolve category
+    let category: PayloadCategory | null = null;
+    try {
+      category = await payload.findByID({
+        collection: 'categories',
+        id: String(categoryId),
+      }) as PayloadCategory;
+    } catch {
+      const result = await payload.find({
+        collection: 'categories',
+        where: {
+          wpDatabaseId: { equals: Number(categoryId) },
+        },
+        limit: 1,
+      });
+      category = (result.docs[0] as PayloadCategory) || null;
     }
-    return data;
+
+    if (!category) {
+      throw new Error('Category not found');
+    }
+
+    // Fetch posts
+    const postsResult = await payload.find({
+      collection: 'posts',
+      where: {
+        categories: { in: [category.id] },
+        status: { equals: 'publish' },
+      },
+      limit,
+      sort: '-publishedAt',
+      depth: 2,
+    });
+
+    return {
+      posts: postsResult.docs as PayloadPost[],
+      category,
+    };
   } catch (error: any) {
     console.error('Failed to fetch posts by category:', error);
     throw new Error(`Error fetching posts by category: ${error.message}`);
@@ -138,27 +191,29 @@ export async function getPostsByCategory(categoryId: string | number, limit: num
 
 export async function getCategories() {
   try {
-    // Use service layer function
-    const { data, error } = await getCategoriesService();
-    if (error || !data) {
-      throw new Error(error || 'Categories not found');
-    }
-    return { docs: data.categories.nodes };
+    const payload = await getPayload({ config });
+    const result = await payload.find({
+      collection: 'categories',
+      limit: 100,
+      sort: 'name',
+    });
+
+    return { docs: result.docs as PayloadCategory[] };
   } catch (error: any) {
     console.error('Failed to fetch categories:', error);
     throw new Error(`Error fetching categories: ${error.message}`);
   }
 }
 
-export async function getCategory(id: string) {
+export async function getCategory(id: string | number) {
   try {
-    const payload = await getPayloadInstance();
+    const payload = await getPayload({ config });
 
     // Try to find by ID first
     try {
       const category = await payload.findByID({
         collection: 'categories',
-        id,
+        id: Number(id),
       });
       return category;
     } catch {
@@ -167,7 +222,7 @@ export async function getCategory(id: string) {
         collection: 'categories',
         where: {
           wpDatabaseId: {
-            equals: parseInt(id),
+            equals: parseInt(String(id)),
           },
         },
         limit: 1,
