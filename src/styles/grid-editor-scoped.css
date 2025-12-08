@@ -1,0 +1,166 @@
+/* Grid Editor Styles - Using CSS layers for proper cascade control */
+
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap");
+
+/* Import Tailwind in lower priority layers so Payload styles can override */
+@layer grid-base {
+  @tailwind base;
+}
+
+@layer grid-components {
+  @tailwind components;
+}
+
+@layer grid-utilities {
+  @tailwind utilities;
+}
+
+/* CSS Variables scoped */
+.grid-editor-scope {
+  --color-primary: #cf2e2e;
+  --color-primary-dark: rgb(146, 10, 10);
+  --radius: 0.5rem;
+}
+
+/* Font family for headings */
+.grid-editor-scope h1,
+.grid-editor-scope h2,
+.grid-editor-scope h3,
+.grid-editor-scope h4,
+.grid-editor-scope h5,
+.grid-editor-scope h6,
+.grid-editor-scope .font-serif {
+  font-family: "Playfair Display", serif;
+}
+
+/* Component utility classes */
+.grid-editor-scope .headline {
+  font-family: "Playfair Display", serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.grid-editor-scope .subheadline {
+  font-family: "Playfair Display", serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.375;
+}
+
+.grid-editor-scope .article-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  transition: color 0.2s;
+}
+
+.grid-editor-scope .article-title:hover {
+  color: var(--color-primary);
+}
+
+.grid-editor-scope .btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.grid-editor-scope .btn-primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+/* Alignment utilities */
+.grid-editor-scope .aligncenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.grid-editor-scope .aligncenter > img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* React Grid Layout styles */
+.grid-editor-scope .react-resizable-handle:after {
+  scale: 2;
+  border-color: rgb(146, 10, 10) !important;
+}
+
+.grid-editor-scope .react-grid-item {
+  transition: transform 200ms ease-in-out, opacity 200ms ease-in-out;
+}
+
+.grid-editor-scope .react-grid-item.react-draggable-dragging {
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  z-index: 50;
+}
+
+.grid-editor-scope .react-grid-item.react-grid-placeholder {
+  background-color: rgb(191 219 254 / 0.5);
+  border: 2px dashed rgb(96 165 250);
+  border-radius: 0.5rem;
+}
+
+.grid-editor-scope .react-resizable-handle {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+.grid-editor-scope :is(.group:hover) .react-resizable-handle {
+  opacity: 1;
+}
+
+.grid-editor-scope .drag-handle {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.5rem;
+  background-color: rgb(255 255 255 / 0.9);
+  border-radius: 9999px;
+  opacity: 0;
+  transition: all 200ms;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  cursor: move;
+  z-index: 10;
+}
+
+.grid-editor-scope :is(.group:hover) .drag-handle {
+  opacity: 1;
+}
+
+.grid-editor-scope .block-controls {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+.grid-editor-scope :is(.group:hover) .block-controls {
+  opacity: 1;
+}
+
+.grid-editor-scope .block-content {
+  user-select: none;
+}
+
+.grid-editor-scope .block-content input,
+.grid-editor-scope .block-content textarea,
+.grid-editor-scope .block-content [contenteditable="true"] {
+  user-select: text;
+}
+
+.grid-editor-scope .block-settings {
+  user-select: text;
+}
+
+/* Grid layout media query */
+@media (min-width: 1024px) {
+  .grid-editor-scope .layout {
+    grid-auto-rows: 48px;
+  }
+}

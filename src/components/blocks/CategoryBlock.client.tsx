@@ -23,15 +23,18 @@ export function CategoryBlockClient({
     setCurrentPostsPerPage(block.postsPerPage || 5);
   }, [block.postsPerPage]);
 
+  // Use Payload categoryId if available, fall back to wpCategoryId for legacy blocks
+  const effectiveCategoryId = block.categoryId || block.wpCategoryId;
+
   const {
     data,
     fetching: loading,
     error,
-  } = useCategoryPosts(block.wpCategoryId, currentPostsPerPage, excludePostIds);
+  } = useCategoryPosts(effectiveCategoryId, currentPostsPerPage, excludePostIds);
 
   const posts = data?.posts?.nodes || [];
   const category = data?.category;
-  if (!block.wpCategoryId) {
+  if (!effectiveCategoryId) {
     return (
       <div className="h-full p-6 bg-white  shadow-sm border border-gray-100">
         <p className="text-gray-500 italic font-body-serif">

@@ -1,5 +1,21 @@
 import React from "react";
 
+// Create context for tabs state
+interface TabsContextType {
+  activeTab: string;
+  setActiveTab: (value: string) => void;
+}
+
+const TabsContext = React.createContext<TabsContextType | undefined>(undefined);
+
+function useTabsContext() {
+  const context = React.useContext(TabsContext);
+  if (!context) {
+    throw new Error("Tabs components must be used within a Tabs component");
+  }
+  return context;
+}
+
 interface TabsProps {
   defaultValue: string;
   children: React.ReactNode;
@@ -9,7 +25,6 @@ interface TabsProps {
 export function Tabs({ defaultValue, children, className = "" }: TabsProps) {
   const [activeTab, setActiveTab] = React.useState(defaultValue);
 
-  // Create context to pass down the active tab state
   const contextValue = React.useMemo(
     () => ({
       activeTab,
@@ -19,38 +34,21 @@ export function Tabs({ defaultValue, children, className = "" }: TabsProps) {
   );
 
   return (
-    <div className={className}>
-      {React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-          return React.cloneElement(child, { activeTab, setActiveTab } as any);
-        }
-        return child;
-      })}
-    </div>
+    <TabsContext.Provider value={contextValue}>
+      <div className={className}>{children}</div>
+    </TabsContext.Provider>
   );
 }
 
 interface TabsListProps {
   children: React.ReactNode;
   className?: string;
-  activeTab?: string;
-  setActiveTab?: (value: string) => void;
 }
 
-export function TabsList({
-  children,
-  className = "",
-  activeTab,
-  setActiveTab,
-}: TabsListProps) {
+export function TabsList({ children, className = "" }: TabsListProps) {
   return (
-    <div className={`flex gap-1 p-1 bg-gray-100  ${className}`}>
-      {React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-          return React.cloneElement(child, { activeTab, setActiveTab } as any);
-        }
-        return child;
-      })}
+    <div className={`flex gap-1 p-1 bg-gray-100 ${className}`}>
+      {children}
     </div>
   );
 }
@@ -58,21 +56,15 @@ export function TabsList({
 interface TabsTriggerProps {
   value: string;
   children: React.ReactNode;
-  activeTab?: string;
-  setActiveTab?: (value: string) => void;
 }
 
-export function TabsTrigger({
-  value,
-  children,
-  activeTab,
-  setActiveTab,
-}: TabsTriggerProps) {
+export function TabsTrigger({ value, children }: TabsTriggerProps) {
+  const { activeTab, setActiveTab } = useTabsContext();
   const isActive = activeTab === value;
 
   return (
     <button
-      onClick={() => setActiveTab?.(value)}
+      onClick={() => setActiveTab(value)}
       className={`px-4 py-2 text-sm font-medium rounded-md transition-colors
         ${
           isActive
@@ -88,10 +80,10 @@ export function TabsTrigger({
 interface TabsContentProps {
   value: string;
   children: React.ReactNode;
-  activeTab?: string;
 }
 
-export function TabsContent({ value, children, activeTab }: TabsContentProps) {
+export function TabsContent({ value, children }: TabsContentProps) {
+  const { activeTab } = useTabsContext();
   if (activeTab !== value) return null;
   return <div>{children}</div>;
 }
