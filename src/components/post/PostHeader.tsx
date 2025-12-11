@@ -11,12 +11,14 @@ import { PostBySlugData } from "@/app/[yearOrSlug]/[month]/[day]/[slug]/page";
 import { formatDate } from "@/utils/categoryUtils";
 import SocialShare from "./SocialShare";
 import Image from "next/image";
+import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 interface PostHeaderProps {
   post: PostBySlugData["data"];
 }
 export function PostHeader({ post }: { post: PostBySlugData["data"] }) {
   const author = post?.postBy?.author?.node.name || "Unknown Author";
+  const authorSlug = post?.postBy?.author?.node.slug;
   const authorAvatar = post?.postBy?.author?.node.avatar;
   const antetitulo = (post?.postBy?.postFields as any).antetitulo || "";
   return (
@@ -39,7 +41,7 @@ export function PostHeader({ post }: { post: PostBySlugData["data"] }) {
         <div className="flex flex-col items-center md:flex-row md:gap-4">
           {/* Avatar */}
           {authorAvatar?.foundAvatar && (
-            <div className="relative w-14 h-14 md:w-12 md:h-12 mb-2 md:mb-0">
+            <Link href={authorSlug ? `/author/${authorSlug}` : "#"} className="relative w-14 h-14 md:w-12 md:h-12 mb-2 md:mb-0 block hover:opacity-80 transition-opacity">
               <Image
                 src={authorAvatar.url || ""}
                 alt="Author avatar"
@@ -47,12 +49,14 @@ export function PostHeader({ post }: { post: PostBySlugData["data"] }) {
                 fill
                 sizes="(max-width: 768px) 64px, 48px"
               />
-            </div>
+            </Link>
           )}
 
           {/* Author name and date */}
           <div className="flex items-center gap-2 text-gray-500">
-            <span className="text-md">{author}</span>
+            <Link href={authorSlug ? `/author/${authorSlug}` : "#"} className="text-md hover:text-primary transition-colors">
+              {author}
+            </Link>
             <span className="text-gray-400">|</span>
             <span className="text-gray-500 flex items-center gap-1 text-md">
               <Calendar className="w-4 h-4" />

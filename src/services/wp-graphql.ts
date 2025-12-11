@@ -81,6 +81,7 @@ export const GET_POSTS_BY_CATEGORY_SLUG = graphql(`
         author {
           node {
             name
+            slug
             avatar {
               url
             }
@@ -146,6 +147,7 @@ export const GET_POSTS_BY_TAG_SLUG = graphql(`
         author {
           node {
             name
+            slug
             avatar {
               url
             }
@@ -212,6 +214,7 @@ export const GET_POSTS_BY_CATEGORY = graphql(`
         author {
           node {
             name
+            slug
             avatar {
               url
             }
@@ -263,6 +266,7 @@ export const GET_POST_BY_ID = graphql(`
       author {
         node {
           name
+          slug
         }
       }
       featuredImage {
@@ -320,6 +324,7 @@ export const GET_POST_BY_SLUG = graphql(`
       author {
         node {
           name
+          slug
           avatar {
             url
             width
@@ -441,9 +446,72 @@ export const GET_POSTS_BY_SEARCH = graphql(`
         author {
           node {
             name
+            slug
             avatar {
               url
             }
+          }
+        }
+        featuredImage {
+          node {
+            sourceUrl
+            srcSet
+            altText
+          }
+        }
+      }
+    }
+  }
+`);
+
+export const GET_POSTS_BY_AUTHOR_SLUG = graphql(`
+  query GetPostsByAuthorSlug(
+    $authorSlug: String!
+    $postsPerPage: Int!
+    $after: String
+  ) {
+    users(where: { nicename: $authorSlug }) {
+      nodes {
+        name
+        slug
+        description
+        avatar {
+          url
+        }
+      }
+    }
+
+    posts(
+      where: {
+        authorName: $authorSlug
+        status: PUBLISH
+        orderby: { field: DATE, order: DESC }
+      }
+      first: $postsPerPage
+      after: $after
+    ) {
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
+      nodes {
+        id
+        title
+        excerpt
+        date
+        slug
+        uri
+        postFields {
+          antetitulo
+          chamadaDestaque
+          chamadaManchete
+        }
+        categories {
+          nodes {
+            id
+            name
           }
         }
         featuredImage {
