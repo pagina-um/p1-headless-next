@@ -77,13 +77,20 @@ async function PostComponent({ slug }: { slug: string }) {
   if (!data?.postBy || error) {
     notFound();
   }
-
+  console.log("Categories:", data.postBy.categories?.nodes);
   return (
     <>
       <article>
         <div className="max-w-4xl mx-auto px-4 py-12">
           <PostHeader post={data} />
-          <PostContent content={data.postBy?.content || ""} />
+          <PostContent
+            content={data.postBy?.content || ""}
+            shouldInjectDonation={
+              !data.postBy.categories?.nodes.some(
+                (category) => category.name === "Recensões"
+              )
+            }
+          />
           <div className="mt-8 flex justify-center flex-col mx-auto text-center items-center gap-y-2">
             {" "}
             Partilhe esta notícia nas redes sociais.{" "}

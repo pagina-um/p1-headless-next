@@ -93,12 +93,14 @@ export async function CategoryCarouselServer({
                       priority={index < 2}
                     />
                   )}
-                  <div className="absolute top-3 pt-0 left-4 text-white">
-                    <h3 className="font-sans text-xl  mb-2 line-clamp-5 leading-[0.01rem]  inline  font-extrabold tracking-tighter  bg-primary-dark">
-                      &nbsp;&nbsp; {titleCaseExceptForSomeWords(antetitulo)}{" "}
-                      &nbsp;&nbsp;
-                    </h3>
-                  </div>
+                  {antetitulo && antetitulo?.length > 0 && (
+                    <div className="absolute top-2 pt-0 left-3 text-white">
+                      <h3 className="font-sans text-sm mb-2 line-clamp-5 leading-[0.01rem]  inline  font-extrabold tracking-tighter  bg-primary-dark">
+                        &nbsp;&nbsp; {titleCaseExceptForSomeWords(antetitulo)}{" "}
+                        &nbsp;&nbsp;
+                      </h3>
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
                     <div className="absolute bottom-0 p-4 pt-0 text-white">
                       <h3 className="font-serif text-lg  mb-2 line-clamp-5 leading-5 ">
