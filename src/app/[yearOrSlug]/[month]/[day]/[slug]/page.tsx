@@ -77,7 +77,6 @@ async function PostComponent({ slug }: { slug: string }) {
   if (!data?.postBy || error) {
     notFound();
   }
-  console.log("Categories:", data.postBy.categories?.nodes);
   return (
     <>
       <article>
