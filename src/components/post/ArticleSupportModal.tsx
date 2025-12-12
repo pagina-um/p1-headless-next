@@ -9,6 +9,7 @@ import {
   incrementArticleCount,
   getLastModalShow,
   setLastModalShow,
+  hasDonationSuccess,
 } from "@/utils/cookies";
 
 const ARTICLE_DISPLAY_LIMIT = 3;
@@ -54,10 +55,13 @@ export function ArticleSupportModal() {
     const articleCount = getArticleCount();
     const lastModalShow = getLastModalShow();
     const today = new Date().toISOString().split("T")[0];
+    const hasSuccessfulDonation = hasDonationSuccess();
 
+    // Don't show if user has already made a successful donation
     // Don't show if already shown today
     // Don't show if haven't reached article threshold
     if (
+      hasSuccessfulDonation ||
       (articleCount !== 1 && articleCount % ARTICLE_DISPLAY_LIMIT !== 0) ||
       lastModalShow === today
     ) {

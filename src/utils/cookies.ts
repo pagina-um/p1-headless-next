@@ -17,3 +17,11 @@ export function setLastModalShow() {
   const today = new Date().toISOString().split("T")[0];
   window?.localStorage.setItem("lastModalShow", today);
 }
+
+export function setDonationSuccess() {
+  window?.localStorage.setItem("donationSuccessful", "true");
+}
+
+export function hasDonationSuccess(): boolean {
+  return window?.localStorage.getItem("donationSuccessful") === "true";
+}
