@@ -30,7 +30,7 @@ export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
 
   if (isDivider) {
     return (
-      <div className="flex items-end gap-1 border-b-primary border-b max-sm:pl-3">
+      <div className="flex items-end gap-1 border-b-primary-dark border-b max-sm:pl-3">
         <h2 className="font-serif text-3xl font-bold text-primary-dark ">
           {isAdmin ? (
             <EditableText
