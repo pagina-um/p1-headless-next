@@ -56,5 +56,14 @@ export const Tags: CollectionConfig = {
         ],
       },
     },
+    {
+      name: 'posts',
+      type: 'join',
+      collection: 'posts',
+      on: 'tags',
+      admin: {
+        defaultColumns: ['title', 'author', 'publishedAt', 'status'],
+      },
+    },
   ],
 }

@@ -61,5 +61,14 @@ export const Categories: CollectionConfig = {
         description: 'Original WordPress database ID for migration reference',
       },
     },
+    {
+      name: 'posts',
+      type: 'join',
+      collection: 'posts',
+      on: 'categories',
+      admin: {
+        defaultColumns: ['title', 'author', 'publishedAt', 'status'],
+      },
+    },
   ],
 }

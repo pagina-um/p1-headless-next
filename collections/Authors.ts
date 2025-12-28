@@ -103,5 +103,14 @@ export const Authors: CollectionConfig = {
         description: 'Original WordPress user ID for migration reference',
       },
     },
+    {
+      name: 'posts',
+      type: 'join',
+      collection: 'posts',
+      on: 'author',
+      admin: {
+        defaultColumns: ['title', 'categories', 'publishedAt', 'status'],
+      },
+    },
   ],
 }
