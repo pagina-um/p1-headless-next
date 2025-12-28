@@ -1,0 +1,86 @@
+/* Grid Editor Specific Styles - CSS Module */
+/* These styles are scoped to the grid editor only and won't affect other admin pages */
+
+.gridEditor {
+  min-height: 100vh;
+  background-color: rgb(249 250 251);
+}
+
+/* React Grid Layout resize handle styling */
+.gridEditor :global(.react-resizable-handle):after {
+  scale: 2;
+  border-color: rgb(146, 10, 10) !important;
+}
+
+/* React Grid Layout item transitions */
+.gridEditor :global(.react-grid-item) {
+  transition: transform 200ms ease-in-out, opacity 200ms ease-in-out;
+}
+
+.gridEditor :global(.react-grid-item.react-draggable-dragging) {
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  z-index: 50;
+}
+
+.gridEditor :global(.react-grid-item.react-grid-placeholder) {
+  background-color: rgb(191 219 254 / 0.5);
+  border: 2px dashed rgb(96 165 250);
+  border-radius: 0.5rem;
+}
+
+.gridEditor :global(.react-resizable-handle) {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+.gridEditor :global(.group:hover .react-resizable-handle) {
+  opacity: 1;
+}
+
+.gridEditor :global(.drag-handle) {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.5rem;
+  background-color: rgb(255 255 255 / 0.9);
+  border-radius: 9999px;
+  opacity: 0;
+  transition: all 200ms;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  cursor: move;
+  z-index: 10;
+}
+
+.gridEditor :global(.group:hover .drag-handle) {
+  opacity: 1;
+}
+
+.gridEditor :global(.block-controls) {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+.gridEditor :global(.group:hover .block-controls) {
+  opacity: 1;
+}
+
+.gridEditor :global(.block-content) {
+  user-select: none;
+}
+
+.gridEditor :global(.block-content input),
+.gridEditor :global(.block-content textarea),
+.gridEditor :global(.block-content [contenteditable="true"]) {
+  user-select: text;
+}
+
+.gridEditor :global(.block-settings) {
+  user-select: text;
+}
+
+/* Grid layout media query */
+@media (min-width: 1024px) {
+  .gridEditor :global(.layout) {
+    grid-auto-rows: 48px;
+  }
+}

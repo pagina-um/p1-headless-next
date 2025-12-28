@@ -1,0 +1,100 @@
+/* Grid Editor Styles - Tailwind utilities without base resets */
+
+/* Import Google Fonts for proper typography */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap");
+
+/* Import only Tailwind utilities and components, NOT base (which resets everything) */
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS variables for grid editor */
+:root {
+  --color-primary: #cf2e2e;
+  --color-primary-dark: rgb(146, 10, 10);
+  --radius: 0.5rem;
+}
+
+/* Font family utilities for blocks */
+.font-serif,
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Playfair Display", serif;
+}
+
+/* Component utility classes from globals.css */
+@layer components {
+  .headline {
+    @apply font-serif text-4xl font-bold leading-tight;
+  }
+
+  .subheadline {
+    @apply font-serif text-xl font-medium leading-snug;
+  }
+
+  .article-title {
+    @apply font-serif text-2xl font-bold hover:text-primary transition-colors;
+  }
+
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-dark text-white font-medium px-4 py-2 rounded-lg transition-colors;
+  }
+}
+
+/* Alignment utilities */
+.aligncenter {
+  @apply flex flex-col justify-center text-center gap-y-2;
+}
+
+.aligncenter > img {
+  @apply mx-auto;
+}
+
+/* React Grid Layout specific styles */
+.react-resizable-handle:after {
+  scale: 2;
+  border-color: rgb(146, 10, 10) !important;
+}
+
+.react-grid-item {
+  @apply transition-[transform,opacity] duration-200 ease-in-out;
+}
+
+.react-grid-item.react-draggable-dragging {
+  @apply shadow-xl z-50;
+}
+
+.react-grid-item.react-grid-placeholder {
+  @apply bg-blue-200/50 border-2 border-dashed border-blue-400 rounded-lg;
+}
+
+.react-resizable-handle {
+  @apply opacity-0 group-hover:opacity-100 transition-opacity duration-200;
+}
+
+.drag-handle {
+  @apply absolute top-2 left-2 p-2 bg-white/90 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-sm cursor-move z-10;
+}
+
+.block-controls {
+  @apply opacity-0 group-hover:opacity-100 transition-opacity duration-200;
+}
+
+.block-content {
+  @apply select-none;
+}
+
+.block-content input,
+.block-content textarea,
+.block-content [contenteditable="true"] {
+  @apply select-text;
+}
+
+.block-settings {
+  @apply select-text;
+}
+
+/* Grid layout media query */
+@media (min-width: 1024px) {
+  .layout {
+    grid-auto-rows: 48px;
+  }
+}

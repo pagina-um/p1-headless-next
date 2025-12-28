@@ -1,6 +1,9 @@
-export const isDevelopment = false; // process.env.NODE_ENV === "development";
+export const isDevelopment = process.env.NODE_ENV === "development";
+
+const LOCAL_WP_URL = "http://127.0.0.1:9400/";
+
 export const WP_URL = isDevelopment
-  ? "http://127.0.0.1:9400/" // Local WP server
+  ? LOCAL_WP_URL
   : process.env.NEXT_PUBLIC_WP_URL;
 
 export const ADMIN_USERNAME = isDevelopment

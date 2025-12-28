@@ -6,6 +6,8 @@ interface PaginationProps {
   currentPage: number;
   hasNextPage: boolean;
   basePath: string;
+  totalPages?: number;
+  // Legacy cursor-based props (deprecated)
   startCursor?: string | null;
   endCursor?: string | null;
 }
@@ -14,6 +16,7 @@ export default function Pagination({
   currentPage,
   hasNextPage,
   basePath,
+  totalPages,
   startCursor,
   endCursor,
 }: PaginationProps) {
@@ -61,6 +64,9 @@ export default function Pagination({
       <div className="hidden md:flex">
         <span className="text-sm text-gray-700">
           Página <span className="font-medium">{currentPage}</span>
+          {totalPages && totalPages > 1 && (
+            <span> de <span className="font-medium">{totalPages}</span></span>
+          )}
         </span>
       </div>
       <div className="flex w-0 flex-1 justify-end">

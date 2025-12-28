@@ -1,10 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useQuery } from "urql";
-import {
-  GET_POSTS_BY_CATEGORY,
-  GET_POSTS_BY_CATEGORY_SLUG,
-} from "@/services/wp-graphql";
+import { useCategoryPosts } from "@/hooks/useCategoryPosts";
 import {
   Carousel,
   CarouselContent,
@@ -17,7 +13,7 @@ import { CategoryBlockHeader } from "../blocks/CategoryBlockHeader";
 import { CategoryCarouselProps } from "./CategoryCarousel.server";
 import { CustomPostFields } from "@/types";
 import Image from "next/image";
-import { titleCaseExceptForSomeWords } from "@/utils/utils";
+import { titleCaseExceptForSomeWords, decodeHtmlEntities } from "@/utils/utils";
 import { twMerge } from "tailwind-merge";
 import { GRID_COLUMNS } from "@/constants/blocks";
 
@@ -32,21 +28,15 @@ export function CategoryCarouselClient({
   const [after, setAfter] = useState<string | null>(null);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
-  const [{ data, fetching, error }] = useQuery({
-    query: GET_POSTS_BY_CATEGORY,
-    variables: {
-      categoryId: block.wpCategoryId,
-      sameCategoryIdAsString: block.wpCategoryId.toString(),
-      postsPerPage: totalPosts,
-      excludePostIds,
-      after: null,
-    },
-  });
+  const { data, fetching, error } = useCategoryPosts(
+    block.categoryId || block.wpCategoryId,
+    totalPosts,
+    excludePostIds
+  );
 
   useEffect(() => {
-    if (data?.posts?.nodes) {
-      setAllPosts(data.posts.nodes);
-      setAfter(data.posts.pageInfo.endCursor);
+    if (data?.posts) {
+      setAllPosts(data.posts);
     }
   }, [data]);
 
@@ -79,7 +69,7 @@ export function CategoryCarouselClient({
   if (error) {
     return (
       <div className="text-red-500 p-4">
-        Error loading posts: {error.message}
+        Error loading posts
       </div>
     );
   }
@@ -114,7 +104,8 @@ export function CategoryCarouselClient({
       >
         <CarouselContent className="-ml-2 md:-ml-4">
           {allPosts.map((post, index) => {
-            const { antetitulo }: CustomPostFields = post.postFields as any;
+            const postFields = (post?.postFields || {}) as CustomPostFields;
+            const antetitulo = postFields?.antetitulo || "";
             return (
               <CarouselItem
                 key={post.id}
@@ -142,7 +133,7 @@ export function CategoryCarouselClient({
                   )}
                   {antetitulo && antetitulo?.length > 0 && (
                     <div className="absolute top-2 pt-0 left-3 text-white">
-                      <h3 className="font-sans text-sm mb-2 line-clamp-5 leading-[0.01rem]  inline  font-extrabold tracking-tighter  bg-primary-dark">
+                      <h3 className="font-sans text-sm mb-2 line-clamp-5 leading-[0.01rem] inline font-extrabold tracking-tighter bg-primary-dark">
                         &nbsp;&nbsp; {titleCaseExceptForSomeWords(antetitulo)}{" "}
                         &nbsp;&nbsp;
                       </h3>
@@ -151,7 +142,7 @@ export function CategoryCarouselClient({
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
                     <div className="absolute bottom-0 p-4 pt-0 text-white">
                       <h3 className="font-serif text-lg  mb-2 line-clamp-5 leading-5 ">
-                        {post.title}
+                        {decodeHtmlEntities(post.title)}
                       </h3>
                     </div>
                   </div>
