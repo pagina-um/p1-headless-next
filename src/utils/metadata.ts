@@ -90,11 +90,15 @@ export const makeMetadataObject = (
   return {
     title: data?.postBy?.title || "Página Um",
     description:
-      chamadaDestaque || "O jornalismo independente só depende dos leitores.",
+      chamadaDestaque ||
+      chamadaManchete ||
+      "O jornalismo independente só depende dos leitores.",
     openGraph: {
       title: title || "Página Um",
       description:
-        chamadaDestaque || "O jornalismo independente só depende dos leitores.",
+        chamadaDestaque ||
+        chamadaManchete ||
+        "O jornalismo independente só depende dos leitores.",
       type: "article",
       publishedTime: date || new Date().toISOString(),
       modifiedTime: modified || new Date().toISOString(),
@@ -106,7 +110,9 @@ export const makeMetadataObject = (
       card: "summary_large_image",
       title: title || "Página Um",
       description:
-        chamadaDestaque || "O jornalismo independente só depende dos leitores.",
+        chamadaDestaque ||
+        chamadaManchete ||
+        "O jornalismo independente só depende dos leitores.",
       images: [ogImage.url],
     },
     // Add schema.org structured data
