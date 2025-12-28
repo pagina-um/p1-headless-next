@@ -11,7 +11,7 @@ import { CategoryBlockProps } from "../blocks/CategoryBlock.server";
 import { CategoryBlockHeader } from "../blocks/CategoryBlockHeader";
 import { PayloadPost, PayloadCategory, getPostImageUrl, getPostImageAlt } from "@/types";
 import Image from "next/image";
-import { titleCaseExceptForSomeWords } from "@/utils/utils";
+import { titleCaseExceptForSomeWords, decodeHtmlEntities } from "@/utils/utils";
 import { twMerge } from "tailwind-merge";
 import { GRID_COLUMNS } from "@/constants/blocks";
 
@@ -141,7 +141,7 @@ export async function CategoryCarouselServer({
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
                     <div className="absolute bottom-0 p-4 pt-0 text-white">
                       <h3 className="font-serif text-lg mb-2 line-clamp-5 leading-5">
-                        {post.title}
+                        {decodeHtmlEntities(post.title)}
                       </h3>
                     </div>
                   </div>

@@ -9,6 +9,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { PayloadPost, Media } from "@/types";
 import { twMerge } from "tailwind-merge";
+import { decodeHtmlEntities } from "@/utils/utils";
 
 interface CategoryPostListProps {
   posts: PayloadPost[];
@@ -71,7 +72,7 @@ const ArticleContent = ({
               showAuthor && "text-xl"
             )}
           >
-            "{post.title}"
+            "{decodeHtmlEntities(post.title)}"
           </h3>
         </Link>
         <div className="flex items-center gap-3 text-sm text-gray-500 mt-2 font-body-serif">

@@ -7,6 +7,7 @@ import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User, Search } from "lucide-react";
 import { Metadata } from "next";
 import { PayloadPost, getPostImageUrl, getPostImageAlt } from "@/types";
+import { decodeHtmlEntities } from "@/utils/utils";
 
 async function searchPosts(query: string, page: number, postsPerPage: number) {
   const payload = await getPayload({ config });
@@ -147,7 +148,7 @@ export default async function SearchPage({
                         href={post.uri || `/post/${post.slug}`}
                         className="hover:text-blue-600 transition-colors"
                       >
-                        {post.title}
+                        {decodeHtmlEntities(post.title)}
                       </Link>
                     </h2>
                     <div

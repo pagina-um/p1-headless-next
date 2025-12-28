@@ -38,3 +38,4 @@ payload.db
 
 # Migration data files (too large for git)
 scripts/migration/data/
+database.sqlite

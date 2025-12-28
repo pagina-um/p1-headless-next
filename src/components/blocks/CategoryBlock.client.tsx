@@ -32,7 +32,7 @@ export function CategoryBlockClient({
     error,
   } = useCategoryPosts(effectiveCategoryId, currentPostsPerPage, excludePostIds);
 
-  const posts = data?.posts?.nodes || [];
+  const posts = data?.posts || [];
   const category = data?.category;
   if (!effectiveCategoryId) {
     return (

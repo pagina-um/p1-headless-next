@@ -7,6 +7,7 @@ import { formatDate } from "@/utils/categoryUtils";
 import { Calendar } from "lucide-react";
 import { Metadata } from "next";
 import { PayloadPost, Author, Media, getPostImageUrl, getPostImageAlt } from "@/types";
+import { decodeHtmlEntities } from "@/utils/utils";
 
 // Enable ISR with 1 hour revalidation for better caching
 export const revalidate = 3600;
@@ -196,7 +197,7 @@ export default async function AuthorPage({
                     )}
                     <div className="p-6">
                       <h3 className="text-xl font-serif font-bold mb-3 group-hover:text-primary transition-colors">
-                        {post.title}
+                        {decodeHtmlEntities(post.title)}
                       </h3>
 
                       <div className="flex items-center gap-4 text-sm text-gray-500">
