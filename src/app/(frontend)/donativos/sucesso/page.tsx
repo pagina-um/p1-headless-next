@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CheckCircle, Heart, Home, Mail } from "lucide-react";
+import { CheckCircle, Heart, Home, Mail, Clock } from "lucide-react";
 import { PostFooter } from "@/components/post/PostFooter";
 import { Metadata } from "next";
 
@@ -14,11 +14,15 @@ interface SuccessPageProps {
     amount?: string;
     type?: string;
     payment_id?: string;
+    method?: string;
+    entity?: string;
+    reference?: string;
   }>;
 }
 
 export default async function SucessoPage({ searchParams }: SuccessPageProps) {
-  const { amount, type, payment_id: paymentId } = await searchParams;
+  const { amount, type, payment_id: paymentId, method, entity, reference } = await searchParams;
+  const isMultibanco = method === "mb";
 
   return (
     <>
@@ -27,31 +31,73 @@ export default async function SucessoPage({ searchParams }: SuccessPageProps) {
           {/* Success Icon */}
           <div className="flex justify-center mb-8">
             <div className="relative">
-              <CheckCircle className="w-24 h-24 text-green-500" />
+              {isMultibanco ? (
+                <Clock className="w-24 h-24 text-amber-500" />
+              ) : (
+                <CheckCircle className="w-24 h-24 text-green-500" />
+              )}
             </div>
           </div>
 
           {/* Main Message */}
           <h1 className="text-4xl font-serif font-bold mb-6 text-gray-900">
-            Obrigado pela sua contribuição!
+            {isMultibanco
+              ? "Quase lá! Complete o pagamento"
+              : "Obrigado pela sua contribuição!"}
           </h1>
 
-          <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-8 max-w-2xl mx-auto">
-            <p className="text-lg text-gray-700 mb-4">
-              {type === "subscription"
-                ? `A sua subscrição mensal de ${amount ? `${amount}€` : ""} foi criada com sucesso.`
-                : `A sua contribuição de ${amount ? `${amount}€` : ""} foi processada com sucesso.`}
-            </p>
-
-            {paymentId && (
-              <p className="text-sm text-gray-600">
-                Referência do pagamento:{" "}
-                <code className="bg-gray-100 px-2 py-1 rounded">
-                  {paymentId}
-                </code>
+          {isMultibanco ? (
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-8 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-700 mb-6">
+                Para completar a sua contribuição de{" "}
+                {amount ? <strong>{amount}€</strong> : ""}, efetue o pagamento
+                num multibanco ou através do homebanking com os seguintes dados:
               </p>
-            )}
-          </div>
+
+              <div className="bg-white rounded-lg p-4 mb-4 space-y-3">
+                <div className="flex justify-between items-center border-b pb-2">
+                  <span className="text-gray-600">Entidade:</span>
+                  <code className="bg-gray-100 px-3 py-1 rounded text-lg font-mono font-bold">
+                    {entity}
+                  </code>
+                </div>
+                <div className="flex justify-between items-center border-b pb-2">
+                  <span className="text-gray-600">Referência:</span>
+                  <code className="bg-gray-100 px-3 py-1 rounded text-lg font-mono font-bold">
+                    {reference}
+                  </code>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Valor:</span>
+                  <code className="bg-gray-100 px-3 py-1 rounded text-lg font-mono font-bold">
+                    {amount}€
+                  </code>
+                </div>
+              </div>
+
+              <p className="text-sm text-gray-600">
+                O pagamento pode demorar até 72 horas a ser processado. Guarde
+                estes dados para referência.
+              </p>
+            </div>
+          ) : (
+            <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-8 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-700 mb-4">
+                {type === "subscription"
+                  ? `A sua subscrição mensal de ${amount ? `${amount}€` : ""} foi criada com sucesso.`
+                  : `A sua contribuição de ${amount ? `${amount}€` : ""} foi processada com sucesso.`}
+              </p>
+
+              {paymentId && (
+                <p className="text-sm text-gray-600">
+                  Referência do pagamento:{" "}
+                  <code className="bg-gray-100 px-2 py-1 rounded">
+                    {paymentId}
+                  </code>
+                </p>
+              )}
+            </div>
+          )}
 
           {/* Information Cards */}
           <div className="grid md:grid-cols-2 gap-6 mb-12 max-w-4xl mx-auto">
