@@ -131,10 +131,11 @@ export function CategoryCarouselClient({
                       priority={index < 2}
                     />
                   )}
-                  {antetitulo && (
-                    <div className="absolute top-1 pt-0 left-2 text-white">
-                      <h3 className="font-sans text-xl  mb-2 line-clamp-5 leading-[0.01rem]  inline  font-extrabold tracking-tighter  bg-primary-dark">
-                        {titleCaseExceptForSomeWords(antetitulo)}
+                  {antetitulo && antetitulo?.length > 0 && (
+                    <div className="absolute top-2 pt-0 left-3 text-white">
+                      <h3 className="font-sans text-sm mb-2 line-clamp-5 leading-[0.01rem] inline font-extrabold tracking-tighter bg-primary-dark">
+                        &nbsp;&nbsp; {titleCaseExceptForSomeWords(antetitulo)}{" "}
+                        &nbsp;&nbsp;
                       </h3>
                     </div>
                   )}

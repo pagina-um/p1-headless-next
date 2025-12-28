@@ -3,8 +3,7 @@ import Image from "next/image";
 
 const COVER_URL =
   "https://paginaum.pt/_next/image?url=https%3A%2F%2Fsrv700518.hstgr.cloud%2Fwp-content%2Fuploads%2F2025%2F08%2Fcapa_final_bras-cubas.png&w=828&q=75&dpl=dpl_7pBZFC4xumnusD8BqbatWgDbDPcy";
-const SHOP_URL =
-  "https://paginaum.myshopify.com/products/correio-mercantil-de-bras-cubas-de-pedro-almeida-vieira?variant=55532849037656";
+const SHOP_URL = "https://paginaum.myshopify.com/collections/all";
 
 export function BookPresaleBlock() {
   return (

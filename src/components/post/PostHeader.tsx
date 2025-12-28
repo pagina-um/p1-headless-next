@@ -2,6 +2,7 @@ import { Calendar } from "lucide-react";
 import { formatDate } from "@/utils/categoryUtils";
 import SocialShare from "./SocialShare";
 import Image from "next/image";
+import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import { Post, Author, Media } from "@/types";
 
@@ -12,12 +13,12 @@ interface PostHeaderProps {
 export function PostHeader({ post }: PostHeaderProps) {
   const authorObj = typeof post.author === "object" ? (post.author as Author) : null;
   const author = authorObj?.name || "Unknown Author";
+  const authorSlug = authorObj?.slug;
   const authorAvatar = authorObj?.avatar;
   // Avatar can be number | null | Media - extract URL only if it's a Media object
   const avatarUrl = authorAvatar && typeof authorAvatar === "object" ? (authorAvatar as Media)?.url : null;
   const antetitulo = post.antetitulo || "";
   const postUrl = `http://paginaum.pt${post.uri || ""}`;
-
   return (
     <header className="mb-8">
       {/* Title */}
@@ -40,7 +41,7 @@ export function PostHeader({ post }: PostHeaderProps) {
         <div className="flex flex-col items-center md:flex-row md:gap-4">
           {/* Avatar */}
           {avatarUrl && (
-            <div className="relative w-14 h-14 md:w-12 md:h-12 mb-2 md:mb-0">
+            <Link href={authorSlug ? `/author/${authorSlug}` : "#"} className="relative w-14 h-14 md:w-12 md:h-12 mb-2 md:mb-0 block hover:opacity-80 transition-opacity">
               <Image
                 src={avatarUrl}
                 alt="Author avatar"
@@ -48,12 +49,14 @@ export function PostHeader({ post }: PostHeaderProps) {
                 fill
                 sizes="(max-width: 768px) 64px, 48px"
               />
-            </div>
+            </Link>
           )}
 
           {/* Author name and date */}
           <div className="flex items-center gap-2 text-gray-500">
-            <span className="text-md">{author}</span>
+            <Link href={authorSlug ? `/author/${authorSlug}` : "#"} className="text-md hover:text-primary transition-colors">
+              {author}
+            </Link>
             <span className="text-gray-400">|</span>
             <span className="text-gray-500 flex items-center gap-1 text-md">
               <Calendar className="w-4 h-4" />

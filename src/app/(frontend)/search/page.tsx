@@ -168,10 +168,13 @@ export default async function SearchPage({
                         </span>
                       </div>
                       {authorName && (
-                        <div className="flex items-center">
+                        <Link
+                          href={typeof post.author === "object" && post.author?.slug ? `/author/${post.author.slug}` : "#"}
+                          className="flex items-center hover:text-primary transition-colors"
+                        >
                           <User className="w-4 h-4 mr-1" />
                           <span>{authorName}</span>
-                        </div>
+                        </Link>
                       )}
                     </div>
                   </div>
