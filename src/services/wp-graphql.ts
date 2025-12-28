@@ -291,12 +291,28 @@ export const GET_LATEST_POSTS = graphql(`
         id
         databaseId
         title
+        excerpt
         date
         slug
         categories {
           nodes {
             id
             name
+          }
+        }
+        postFields {
+          antetitulo
+          chamadaDestaque
+          chamadaManchete
+        }
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+            mediaDetails {
+              width
+              height
+            }
           }
         }
       }
