@@ -21,7 +21,7 @@ export const defaultMetadata: Metadata = {
     default: "Página UM",
     template: "%s | Página UM",
   },
-  description: "Your default site description",
+  description: "O jornalismo independente só depende dos leitores.",
   openGraph: {
     type: "website",
     locale: "pt_PT",
@@ -29,9 +29,9 @@ export const defaultMetadata: Metadata = {
     siteName: "Página UM",
     images: [
       {
-        url: "/default-og-image.jpg",
-        width: 1200,
-        height: 630,
+        url: "https://paginaum.pt/icon.png",
+        width: 512,
+        height: 512,
         alt: "Página UM",
       },
     ],
@@ -58,6 +58,13 @@ export const metadata: Metadata = {
   },
 };
 
+const DEFAULT_OG_IMAGE = {
+  url: "https://paginaum.pt/icon.png",
+  width: 512,
+  height: 512,
+  alt: "Página UM",
+};
+
 export const makeMetadataObject = (
   data: PostBySlugData["data"],
   year: string,
@@ -71,6 +78,15 @@ export const makeMetadataObject = (
   const { antetitulo, chamadaDestaque, chamadaManchete } =
     postFields as CustomPostFields;
 
+  const ogImage = featuredImage?.node?.sourceUrl
+    ? {
+        url: featuredImage.node.sourceUrl,
+        width: 1200,
+        height: 630,
+        alt: featuredImage.node.altText || title || "Página Um",
+      }
+    : DEFAULT_OG_IMAGE;
+
   return {
     title: data?.postBy?.title || "Página Um",
     description:
@@ -83,25 +99,15 @@ export const makeMetadataObject = (
       publishedTime: date || new Date().toISOString(),
       modifiedTime: modified || new Date().toISOString(),
       authors: author?.node?.name ? [author.node.name] : undefined,
-      images: featuredImage?.node?.sourceUrl
-        ? [
-            {
-              url: featuredImage?.node?.sourceUrl,
-              width: 1200,
-              height: 630,
-              alt: featuredImage?.node?.altText || title || "Página Um",
-            },
-          ]
-        : undefined,
+      images: [ogImage],
       url: `https://paginaum.pt/${year}/${month}/${day}/${slug}`,
     },
     twitter: {
       card: "summary_large_image",
       title: title || "Página Um",
-      description: "excerpt",
-      images: featuredImage?.node?.sourceUrl
-        ? [featuredImage?.node?.sourceUrl]
-        : undefined,
+      description:
+        chamadaDestaque || "O jornalismo independente só depende dos leitores.",
+      images: [ogImage.url],
     },
     // Add schema.org structured data
     alternates: {
