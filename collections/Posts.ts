@@ -135,8 +135,10 @@ export const Posts: CollectionConfig = {
       hooks: {
         beforeValidate: [
           ({ value, data, originalDoc }) => {
-            // Keep existing slug if document exists (lock after creation)
-            if (originalDoc?.slug) return originalDoc.slug;
+            // Lock slug forever once published
+            if (originalDoc?.slug && originalDoc?.publishedOnce) {
+              return originalDoc.slug;
+            }
             // Auto-generate from title if empty
             if (!value && data?.title) return slugify(data.title);
             return value;
@@ -155,11 +157,15 @@ export const Posts: CollectionConfig = {
       hooks: {
         beforeValidate: [
           ({ data, originalDoc }) => {
-            // Keep existing URI if document exists (lock after creation)
-            if (originalDoc?.uri) return originalDoc.uri;
+            // Lock URI forever once published
+            if (originalDoc?.uri && originalDoc?.publishedOnce) {
+              return originalDoc.uri;
+            }
+
             // Auto-generate from publishedAt + slug
+            // Compute slug inline since the slug hook may not have run yet
             const date = new Date(data?.publishedAt || Date.now());
-            const slug = data?.slug || "";
+            const slug = data?.slug || (data?.title ? slugify(data.title) : "");
             return buildPostUri(date, slug);
           },
         ],
@@ -279,6 +285,25 @@ export const Posts: CollectionConfig = {
       admin: {
         position: "sidebar",
         description: "Original WordPress database ID for migration reference",
+      },
+    },
+    {
+      name: "publishedOnce",
+      type: "checkbox",
+      defaultValue: false,
+      admin: {
+        hidden: true,
+      },
+      hooks: {
+        beforeChange: [
+          ({ value, data, originalDoc }) => {
+            // Once true, stays true forever
+            if (originalDoc?.publishedOnce) return true;
+            // Set to true when publishing
+            if (data?._status === 'published') return true;
+            return value || false;
+          },
+        ],
       },
     },
   ],

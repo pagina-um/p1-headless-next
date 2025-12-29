@@ -20,9 +20,9 @@ export const SlugField: React.FC<SlugFieldProps> = ({
   const { value, setValue } = useField<string>({ path })
   const sourceValue = useFormFields(([fields]) => fields[sourceField]?.value as string)
 
-  // Check if document has been saved (has an id)
-  const docId = useFormFields(([fields]) => fields.id?.value)
-  const isLocked = readOnly && !!docId
+  // Check if post has been published (lock slug forever once published)
+  const publishedOnce = useFormFields(([fields]) => fields.publishedOnce?.value)
+  const isLocked = readOnly && publishedOnce === true
 
   // Track if user has manually edited the slug
   const hasManualEdit = useRef(false)
@@ -39,12 +39,12 @@ export const SlugField: React.FC<SlugFieldProps> = ({
     }
   }, [sourceValue, setValue, isLocked])
 
-  // Reset manual edit flag when source changes significantly (new document)
+  // Reset manual edit flag when creating a new document (publishedOnce is false)
   useEffect(() => {
-    if (!docId) {
+    if (!publishedOnce) {
       hasManualEdit.current = false
     }
-  }, [docId])
+  }, [publishedOnce])
 
   return (
     <TextInput
@@ -58,7 +58,7 @@ export const SlugField: React.FC<SlugFieldProps> = ({
         }
       }}
       readOnly={isLocked}
-      description={isLocked ? 'Locked after save' : 'Auto-generated from title'}
+      description={isLocked ? 'Locked after publish' : 'Auto-generated from title'}
     />
   )
 }
