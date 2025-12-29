@@ -23,6 +23,11 @@ export const Posts: CollectionConfig = {
     },
     useAsTitle: "title",
     defaultColumns: ["title", "publishedAt", "_status"],
+    components: {
+      beforeList: [
+        './collections/components/DuplicatePostsButton#DuplicatePostsButton',
+      ],
+    },
   },
   access: {
     read: ({ req }) => {
