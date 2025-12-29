@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import { headers } from "next/headers";
 import { getPayload } from "payload";
 import config from "@payload-config";
 import { PostHeader } from "@/components/post/PostHeader";
@@ -26,6 +27,7 @@ export interface PostPageProps {
 
 async function getPostBySlug(slug: string): Promise<Post | null> {
   const payload = await getPayload({ config });
+  const headersList = await headers();
 
   const result = await payload.find({
     collection: "posts",
@@ -34,6 +36,8 @@ async function getPostBySlug(slug: string): Promise<Post | null> {
     },
     limit: 1,
     depth: 2,
+    overrideAccess: false,
+    headers: headersList,
   });
 
   return result.docs[0] || null;

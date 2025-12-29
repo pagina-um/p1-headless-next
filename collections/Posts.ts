@@ -69,9 +69,13 @@ export const Posts: CollectionConfig = {
     ],
     afterChange: [
       async ({ doc }) => {
-        // Revalidate the post's page cache when it's saved
+        // Revalidate the post's page cache when status changes (publish/unpublish)
         if (doc.uri) {
-          revalidatePath(doc.uri);
+          try {
+            revalidatePath(doc.uri);
+          } catch {
+            // Ignore errors during admin render (revalidatePath not allowed in render)
+          }
         }
       },
     ],
