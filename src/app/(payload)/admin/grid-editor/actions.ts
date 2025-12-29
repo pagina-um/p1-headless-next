@@ -170,7 +170,7 @@ export async function getPostsByCategory(categoryId: string | number, limit: num
       collection: 'posts',
       where: {
         categories: { in: [category.id] },
-        status: { equals: 'publish' },
+        _status: { equals: 'published' },
       },
       limit,
       sort: '-publishedAt',

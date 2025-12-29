@@ -37,7 +37,7 @@ async function getPostsByTag(
     collection: "posts",
     where: {
       tags: { in: [tagId] },
-      status: { equals: "publish" },
+      _status: { equals: "published" },
     },
     limit: postsPerPage,
     page,

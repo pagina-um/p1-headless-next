@@ -37,7 +37,7 @@ async function getPostsByAuthor(
     collection: "posts",
     where: {
       author: { equals: authorId },
-      status: { equals: "publish" },
+      _status: { equals: "published" },
     },
     limit: postsPerPage,
     page,

@@ -65,7 +65,7 @@ export async function CategoryBlockServer({
     collection: "posts",
     where: {
       categories: { in: [category.id] },
-      status: { equals: "publish" },
+      _status: { equals: "published" },
       ...(excludePostIds.length > 0 && {
         id: { not_in: excludePostIds },
       }),

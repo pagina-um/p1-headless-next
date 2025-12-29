@@ -45,7 +45,7 @@ async function getLatestPosts(limit: number = 50) {
   const result = await payload.find({
     collection: "posts",
     where: {
-      status: { equals: "publish" },
+      _status: { equals: "published" },
     },
     limit,
     sort: "-publishedAt",

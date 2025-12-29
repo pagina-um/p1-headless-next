@@ -80,7 +80,17 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    categories: {
+      posts: 'posts';
+    };
+    tags: {
+      posts: 'posts';
+    };
+    authors: {
+      posts: 'posts';
+    };
+  };
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -228,7 +238,6 @@ export interface Post {
    */
   uri?: string | null;
   publishedAt: string;
-  status: 'draft' | 'publish';
   featuredImage?: (number | null) | Media;
   /**
    * Featured image URL from WordPress (used during migration)
@@ -260,6 +269,7 @@ export interface Post {
   wpDatabaseId?: number | null;
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -290,6 +300,11 @@ export interface Author {
    * Original WordPress user ID for migration reference
    */
   wpUserId?: number | null;
+  posts?: {
+    docs?: (number | Post)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -305,6 +320,11 @@ export interface Category {
    * Original WordPress database ID for migration reference
    */
   wpDatabaseId?: number | null;
+  posts?: {
+    docs?: (number | Post)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -316,6 +336,11 @@ export interface Tag {
   id: number;
   name: string;
   slug?: string | null;
+  posts?: {
+    docs?: (number | Post)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -581,7 +606,6 @@ export interface PostsSelect<T extends boolean = true> {
   slug?: T;
   uri?: T;
   publishedAt?: T;
-  status?: T;
   featuredImage?: T;
   wpFeaturedImage?:
     | T
@@ -600,6 +624,7 @@ export interface PostsSelect<T extends boolean = true> {
   wpDatabaseId?: T;
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -609,6 +634,7 @@ export interface CategoriesSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
   wpDatabaseId?: T;
+  posts?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -619,6 +645,7 @@ export interface CategoriesSelect<T extends boolean = true> {
 export interface TagsSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
+  posts?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -635,6 +662,7 @@ export interface AuthorsSelect<T extends boolean = true> {
   wpAvatarUrl?: T;
   gravatarUrl?: T;
   wpUserId?: T;
+  posts?: T;
   updatedAt?: T;
   createdAt?: T;
 }

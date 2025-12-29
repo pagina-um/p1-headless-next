@@ -38,7 +38,7 @@ async function getPostsByCategory(
     collection: "posts",
     where: {
       categories: { in: [categoryId] },
-      status: { equals: "publish" },
+      _status: { equals: "published" },
     },
     limit: postsPerPage,
     page,

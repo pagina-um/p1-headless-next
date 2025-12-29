@@ -21,7 +21,7 @@ async function searchPosts(query: string, page: number, postsPerPage: number) {
         { chamadaDestaque: { contains: query } },
         { chamadaManchete: { contains: query } },
       ],
-      status: { equals: "publish" },
+      _status: { equals: "published" },
     },
     limit: postsPerPage,
     page,

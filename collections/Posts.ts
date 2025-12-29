@@ -22,12 +22,29 @@ export const Posts: CollectionConfig = {
       pt: "Conteúdo",
     },
     useAsTitle: "title",
-    defaultColumns: ["title", "publishedAt", "status"],
+    defaultColumns: ["title", "publishedAt", "_status"],
   },
   access: {
-    read: () => true,
+    read: ({ req }) => {
+      if (req.user) return true;
+      return {
+        or: [
+          { _status: { equals: "published" } },
+          { _status: { exists: false } },
+        ],
+      };
+    },
   },
   timestamps: true,
+  versions: {
+    maxPerDoc: 100,
+    drafts: {
+      autosave: {
+        interval: 2000,
+      },
+      validate: false,
+    },
+  },
   hooks: {
     beforeValidate: [
       async ({ data, req, originalDoc }) => {
@@ -162,19 +179,6 @@ export const Posts: CollectionConfig = {
             return value;
           },
         ],
-      },
-    },
-    {
-      name: "status",
-      type: "select",
-      required: true,
-      defaultValue: "draft",
-      options: [
-        { label: "Draft", value: "draft" },
-        { label: "Published", value: "publish" },
-      ],
-      admin: {
-        position: "sidebar",
       },
     },
     {
