@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { headers } from "next/headers";
 import { getPayload } from "payload";
 import config from "@payload-config";
 import { PostHeader } from "@/components/post/PostHeader";
@@ -27,17 +26,15 @@ export interface PostPageProps {
 
 async function getPostBySlug(slug: string): Promise<Post | null> {
   const payload = await getPayload({ config });
-  const headersList = await headers();
 
   const result = await payload.find({
     collection: "posts",
     where: {
       slug: { equals: slug },
+      _status: { equals: "published" },
     },
     limit: 1,
     depth: 2,
-    overrideAccess: false,
-    headers: headersList,
   });
 
   return result.docs[0] || null;
@@ -108,19 +105,26 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const posts = await getLatestPosts(50);
+  try {
+    const posts = await getLatestPosts(50);
 
-  return posts
-    .filter((post) => post.publishedAt)
-    .map((post) => {
-      const date = new Date(post.publishedAt);
-      return {
-        yearOrSlug: date.getFullYear().toString(),
-        month: (date.getMonth() + 1).toString().padStart(2, "0"),
-        day: date.getDate().toString().padStart(2, "0"),
-        slug: post.slug,
-      };
-    });
+    return posts
+      .filter((post) => post.publishedAt)
+      .map((post) => {
+        const date = new Date(post.publishedAt);
+        return {
+          yearOrSlug: date.getFullYear().toString(),
+          month: (date.getMonth() + 1).toString().padStart(2, "0"),
+          day: date.getDate().toString().padStart(2, "0"),
+          slug: post.slug,
+        };
+      });
+  } catch (error) {
+    // If database is unavailable during build, skip static generation
+    // Pages will be generated on-demand with ISR (revalidate=3600)
+    console.warn('generateStaticParams: Database unavailable, skipping static generation', error);
+    return [];
+  }
 }
 
 async function PostComponent({ slug }: { slug: string }) {
