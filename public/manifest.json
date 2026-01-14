@@ -1,0 +1,34 @@
+{
+  "name": "Página UM",
+  "short_name": "Página UM",
+  "description": "O Jornalismo independente só depende dos leitores.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#e10012",
+  "orientation": "portrait-primary",
+  "categories": ["news", "journalism"],
+  "lang": "pt-PT",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}

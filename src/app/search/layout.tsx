@@ -6,7 +6,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <Header />
       <main className="">{children}</main>
-
       <PostFooter />
     </>
   );

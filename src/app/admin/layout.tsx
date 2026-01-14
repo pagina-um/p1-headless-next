@@ -1,5 +1,6 @@
 "use client";
 import { GridProvider } from "@/components/ui/GridContext";
+import { PushNotificationsProvider } from "@/contexts/PushNotificationsContext";
 import { ADMIN_PASSWORD, ADMIN_USERNAME, WP_URL } from "@/services/config";
 import {
   ssrExchange,
@@ -33,8 +34,10 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <UrqlProvider client={client} ssr={ssr}>
-      <GridProvider> {children}</GridProvider>
-    </UrqlProvider>
+    <PushNotificationsProvider>
+      <UrqlProvider client={client} ssr={ssr}>
+        <GridProvider> {children}</GridProvider>
+      </UrqlProvider>
+    </PushNotificationsProvider>
   );
 }
