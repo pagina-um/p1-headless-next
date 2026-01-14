@@ -40,8 +40,8 @@ export async function createDonationCheckout(
 
   // For subscriptions, add subscription-specific fields
   if (donationData.type === "subscription") {
+    // Set start_time to now for immediate first charge
     const startTime = new Date();
-    startTime.setHours(startTime.getHours() + 1);
 
     // Set expiration based on user-selected duration (Checkout SDK requires a termination condition)
     const durationYears = donationData.durationYears || 2;
