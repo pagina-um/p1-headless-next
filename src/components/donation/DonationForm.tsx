@@ -382,6 +382,12 @@ export function DonationForm() {
 
         <p className="text-sm text-gray-500 text-center">
           O seu pagamento é processado de forma segura pela Easypay.
+          {formData.type === "subscription" && (
+            <span className="block mt-1">
+              Durante a autenticação poderá ver 0,00€ — o valor da sua
+              contribuição será cobrado imediatamente após confirmação.
+            </span>
+          )}
         </p>
       </form>
     </div>
