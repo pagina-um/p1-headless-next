@@ -269,7 +269,7 @@ export function DonationForm() {
             <input
               type="number"
               min="1"
-              step="0.01"
+              step="1"
               value={formData.amount}
               onChange={(e) =>
                 handleAmountChange(parseFloat(e.target.value) || 0)
