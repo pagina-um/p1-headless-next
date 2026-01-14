@@ -240,7 +240,6 @@ export function DonationForm() {
               <div className="text-sm text-gray-500">Subscrição recorrente</div>
             </button>
           </div>
-
         </div>
 
         {/* Amount Selection */}
@@ -384,8 +383,9 @@ export function DonationForm() {
           O seu pagamento é processado de forma segura pela Easypay.
           {formData.type === "subscription" && (
             <span className="block mt-1">
-              Durante a autenticação poderá ver 0,00€ — o valor da sua
-              contribuição será cobrado imediatamente após confirmação.
+              Durante a autenticação poderá ver uma cobrança de 0,00€ — o valor
+              da sua primeira contribuição recorrente será cobrado pouco depois
+              desta confirmação.
             </span>
           )}
         </p>
