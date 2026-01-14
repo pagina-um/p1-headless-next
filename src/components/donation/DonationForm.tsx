@@ -15,6 +15,7 @@ interface DonationFormData {
   name: string;
   email: string;
   phone: string;
+  durationYears: number;
 }
 
 export function DonationForm() {
@@ -24,6 +25,7 @@ export function DonationForm() {
     name: "",
     email: "",
     phone: "",
+    durationYears: 2,
   });
   const [isLoading, setIsLoading] = useState(false);
   const [checkoutManifest, setCheckoutManifest] =
@@ -238,6 +240,7 @@ export function DonationForm() {
               <div className="text-sm text-gray-500">Subscrição recorrente</div>
             </button>
           </div>
+
         </div>
 
         {/* Amount Selection */}
@@ -276,6 +279,34 @@ export function DonationForm() {
             />
             <span className="text-gray-700">€</span>
           </div>
+
+          {/* Subscription Duration */}
+          {formData.type === "subscription" && (
+            <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+              <div className="flex items-center gap-2">
+                <label className="text-sm text-gray-700">
+                  Renovar automaticamente durante:
+                </label>
+                <input
+                  type="number"
+                  min="1"
+                  max="10"
+                  value={formData.durationYears}
+                  onChange={(e) =>
+                    handleInputChange(
+                      "durationYears",
+                      Math.max(1, Math.min(10, parseInt(e.target.value) || 1))
+                    )
+                  }
+                  className="w-16 px-2 py-1 border border-gray-300 rounded-md text-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+                <span className="text-sm text-gray-700">anos</span>
+              </div>
+              <p className="text-xs text-gray-500 mt-2">
+                Pode cancelar a qualquer momento
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Personal Information */}
@@ -351,8 +382,6 @@ export function DonationForm() {
 
         <p className="text-sm text-gray-500 text-center">
           O seu pagamento é processado de forma segura pela Easypay.
-          {formData.type === "subscription" &&
-            " Pode cancelar a qualquer momento."}
         </p>
       </form>
     </div>

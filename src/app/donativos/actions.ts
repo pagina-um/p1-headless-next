@@ -8,6 +8,7 @@ interface DonationData {
   name: string;
   email: string;
   phone: string;
+  durationYears?: number;
 }
 
 export async function createDonationCheckout(
@@ -42,9 +43,10 @@ export async function createDonationCheckout(
     const startTime = new Date();
     startTime.setHours(startTime.getHours() + 1);
 
-    // Set expiration to 4 years from now (Checkout SDK requires a termination condition)
+    // Set expiration based on user-selected duration (Checkout SDK requires a termination condition)
+    const durationYears = donationData.durationYears || 2;
     const expirationTime = new Date();
-    expirationTime.setFullYear(expirationTime.getFullYear() + 4);
+    expirationTime.setFullYear(expirationTime.getFullYear() + durationYears);
 
     payment.start_time = startTime.toISOString().slice(0, 16).replace("T", " ");
     payment.expiration_time = expirationTime.toISOString().slice(0, 16).replace("T", " ");
