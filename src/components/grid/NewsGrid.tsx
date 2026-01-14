@@ -23,7 +23,7 @@ export function NewsGrid({ blocks = [] }: NewsGridProps) {
 
   return (
     <div className="layout grid grid-cols-1 lg:grid-cols-10 gap-4 lg:mt-4 lg:mx-4">
-      {sortedBlocks.map((block) => {
+      {sortedBlocks.map((block, i) => {
         const storyPostsIds = getStoryPostsIds(sortedBlocks);
         const isLandscape =
           block.gridPosition.width * 1.5 > block.gridPosition.height;
@@ -35,7 +35,8 @@ export function NewsGrid({ blocks = [] }: NewsGridProps) {
               `lg:col-start-${block.gridPosition.x + 1}`,
               `lg:col-span-${block.gridPosition.width}`,
               `lg:row-start-${block.gridPosition.y + 1}`,
-              `lg:row-span-${block.gridPosition.height}`
+              `lg:row-span-${block.gridPosition.height}`,
+              i === 0 && "max-md:mt-4"
             )}
           >
             {block.blockType === "story" ? (

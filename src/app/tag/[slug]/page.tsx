@@ -5,6 +5,10 @@ import Pagination from "@/components/ui/Pagination";
 import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
 
+// Enable ISR with 1 hour revalidation for better caching
+// First page load will be cached, subsequent pagination requests will be dynamic
+export const revalidate = 3600;
+
 export default async function TagPage({
   params,
   searchParams,
@@ -15,11 +19,21 @@ export default async function TagPage({
   const currentPage = Number(searchParams.page) || 1;
   const postsPerPage = 12; // Increased for grid layout
 
-  const { data, error } = await getClient().query(GET_POSTS_BY_TAG_SLUG, {
-    slug: params.slug,
-    postsPerPage,
-    after: searchParams.after || null,
-  });
+  const afterCursor = searchParams.after
+    ? decodeURIComponent(searchParams.after)
+    : null;
+
+  const { data, error } = await getClient().query(
+    GET_POSTS_BY_TAG_SLUG,
+    {
+      slug: params.slug,
+      postsPerPage,
+      after: afterCursor,
+    },
+    currentPage > 1 || !!afterCursor
+      ? { requestPolicy: "network-only" }
+      : undefined
+  );
 
   const tag = data?.tags?.nodes[0];
   const posts = data?.posts?.nodes;
@@ -54,25 +68,29 @@ export default async function TagPage({
                   />
                 </div>
               )}
-              <div className="p-6">
+              <div className="p-6 pb-0">
                 <h2 className="text-xl font-serif font-bold mb-3 group-hover:text-primary transition-colors">
                   {post.title}
                 </h2>
-
-                <div className="flex items-center gap-4 text-sm text-gray-500">
-                  {post.author?.node?.name && (
-                    <span className="flex items-center gap-1">
-                      <User className="w-4 h-4" />
-                      {post.author.node.name}
-                    </span>
-                  )}
-                  <span className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4" />
-                    {formatDate(post.date)}
-                  </span>
-                </div>
               </div>
             </Link>
+            <div className="px-6 pb-6">
+              <div className="flex items-center gap-4 text-sm text-gray-500">
+                {post.author?.node?.name && (
+                  <Link
+                    href={post.author.node.slug ? `/author/${post.author.node.slug}` : "#"}
+                    className="flex items-center gap-1 hover:text-primary transition-colors"
+                  >
+                    <User className="w-4 h-4" />
+                    {post.author.node.name}
+                  </Link>
+                )}
+                <span className="flex items-center gap-1">
+                  <Calendar className="w-4 h-4" />
+                  {formatDate(post.date)}
+                </span>
+              </div>
+            </div>
           </article>
         ))}
       </div>

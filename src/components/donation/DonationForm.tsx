@@ -31,8 +31,9 @@ export function DonationForm() {
   const [showLoader, setShowLoader] = useState(true);
   const [paymentInfo, setPaymentInfo] = useState<any>(null);
 
-  // Use ref to track payment success status
+  // Use refs to track payment status (to avoid stale closures in callbacks)
   const paymentSuccessRef = useRef(false);
+  const paymentInfoRef = useRef<any>(null);
 
   const predefinedAmounts = [5, 10, 25, 50, 100];
   const { push } = useRouter();
@@ -72,7 +73,8 @@ export function DonationForm() {
               onSuccess: (successInfo: any) => {
                 console.log("Payment successful:", successInfo);
                 setPaymentInfo(successInfo);
-                paymentSuccessRef.current = true; // Update ref as well
+                paymentInfoRef.current = successInfo;
+                paymentSuccessRef.current = true;
               },
               onError: (error: any) => {
                 console.error("Payment error:", error);
@@ -82,6 +84,7 @@ export function DonationForm() {
                 setIsLoading(false);
                 setShowLoader(true);
                 setPaymentInfo(null);
+                paymentInfoRef.current = null;
                 paymentSuccessRef.current = false;
               },
               onClose: () => {
@@ -91,23 +94,26 @@ export function DonationForm() {
                 );
                 if (paymentSuccessRef.current) {
                   console.log("Payment was successful, redirecting...");
+                  const info = paymentInfoRef.current;
+                  const payment = info?.payment;
                   // Create URL with search parameters
                   const params = new URLSearchParams({
                     amount: formData.amount.toString(),
                     type: formData.type,
                   });
 
-                  // Add payment_id if available in paymentInfo
+                  // Check if it's a Multibanco payment (has entity and reference)
                   if (
-                    paymentInfo?.id ||
-                    paymentInfo?.payment_id ||
-                    paymentInfo?.transactionId
+                    payment?.method === "mb" &&
+                    payment?.entity &&
+                    payment?.reference
                   ) {
-                    const paymentId =
-                      paymentInfo.id ||
-                      paymentInfo.payment_id ||
-                      paymentInfo.transactionId;
-                    params.set("payment_id", paymentId);
+                    params.set("method", "mb");
+                    params.set("entity", payment.entity);
+                    params.set("reference", payment.reference);
+                  } else if (payment?.id || info?.id) {
+                    // Add payment_id for other payment methods
+                    params.set("payment_id", payment?.id || info.id);
                   }
 
                   return push(`/donativos/sucesso?${params.toString()}`);
@@ -188,6 +194,7 @@ export function DonationForm() {
               setIsLoading(false);
               setShowLoader(true);
               setPaymentInfo(null);
+              paymentInfoRef.current = null;
               paymentSuccessRef.current = false;
             }}
             className="text-gray-500 hover:text-gray-700 underline"

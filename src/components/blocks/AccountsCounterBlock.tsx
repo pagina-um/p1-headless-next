@@ -47,7 +47,7 @@ export function AccountsCounterBlock() {
         <span className="underline decoration-primary-light">
           Global Notícias
         </span>{" "}
-        devia ter entregue as suas contas.
+        devia ter as suas contas entregues.
       </p>
       <a
         href="https://paginaum.pt/2025/08/29/global-noticias-a-casa-do-diario-de-noticias-arde-e-o-seu-director-quer-encontrar-rachas-no-pagina-um"

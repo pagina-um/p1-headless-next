@@ -22,13 +22,12 @@ export function CategoryPostList({ posts, categoryId }: CategoryPostListProps) {
   return (
     <div className="h-full flex flex-col @3xl:flex-row gap-y-3 divide-y overflow-clip">
       {posts?.map((post) => (
-        <Link href={post.uri || "#"} key={post.id} passHref className="">
-          <ArticleContent
-            post={post}
-            showAuthor={showAuthor}
-            showDate={showDate}
-          />
-        </Link>
+        <ArticleContent
+          key={post.id}
+          post={post}
+          showAuthor={showAuthor}
+          showDate={showDate}
+        />
       ))}
     </div>
   );
@@ -45,24 +44,27 @@ const ArticleContent = ({
 }) => (
   <article
     key={post.id}
-    className="group cursor-pointer   flex-1 flex justify-between items-center gap-2 "
+    className="group flex-1 flex justify-between items-center gap-2"
   >
     <div>
-      {" "}
-      {showAuthor && (
-        <p className="font-sans text-sm  font-[300] text-gray-600">
-          {" "}
-          {post.author?.node.name}
-        </p>
+      {showAuthor && post.author?.node.name && (
+        <Link
+          href={post.author?.node.slug ? `/author/${post.author.node.slug}` : "#"}
+          className="font-sans text-sm font-[300] text-gray-600 hover:text-primary transition-colors"
+        >
+          {post.author.node.name}
+        </Link>
       )}
-      <h3
-        className={twMerge(
-          "font-serif text-lg font-semibold group-hover:text-primary transition-colors line-clamp-3 @3xl:line-clamp-3",
-          showAuthor && "text-xl"
-        )}
-      >
-        "{post.title}"
-      </h3>
+      <Link href={post.uri || "#"} className="block">
+        <h3
+          className={twMerge(
+            "font-serif text-lg font-semibold hover:text-primary transition-colors line-clamp-3 @3xl:line-clamp-3",
+            showAuthor && "text-xl"
+          )}
+        >
+          "{post.title}"
+        </h3>
+      </Link>
       <div className="flex items-center gap-3 text-sm text-gray-500 mt-2 font-body-serif">
         {showDate && post.date && (
           <span className="flex items-center gap-1 font-sans @3xl:hidden">
@@ -73,7 +75,10 @@ const ArticleContent = ({
       </div>
     </div>
     {showAuthor && (
-      <div className="flex items-center gap-3 flex-shrink-0 justify-end font-thin text-md text-slate-900">
+      <Link
+        href={post.author?.node.slug ? `/author/${post.author.node.slug}` : "#"}
+        className="flex items-center gap-3 flex-shrink-0 justify-end font-thin text-md text-slate-900 hover:opacity-80 transition-opacity"
+      >
         {post.author?.node.avatar?.url ? (
           <div className="relative w-12 h-12">
             <Image
@@ -87,7 +92,7 @@ const ArticleContent = ({
         ) : (
           <User className="w-4 h-4" />
         )}
-      </div>
+      </Link>
     )}
   </article>
 );

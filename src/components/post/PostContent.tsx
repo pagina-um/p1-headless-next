@@ -4,15 +4,21 @@ import parse from "html-react-parser";
 
 interface PostContentProps {
   content: string;
+  shouldInjectDonation?: boolean;
 }
 
-export function PostContent({ content }: PostContentProps) {
+export function PostContent({
+  content,
+  shouldInjectDonation,
+}: PostContentProps) {
   const contentWithoutManualFooter = content.split(
     `<p><strong>PÁGINA UM &#8211; <em>O jornalismo independente (só) depende dos leitores.</em></strong></p>`
   )[0]; // TODO: bring this transformation to the parsing function
 
   // Inject donation block into the content
-  const contentWithDonation = injectDonationBlock(contentWithoutManualFooter);
+  const contentWithDonation = !shouldInjectDonation
+    ? contentWithoutManualFooter
+    : injectDonationBlock(contentWithoutManualFooter);
 
   return (
     <>

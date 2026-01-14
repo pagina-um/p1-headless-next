@@ -209,6 +209,7 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
       reverse: false,
       expandImage: false,
       extraBigTitle: false,
+      antetituloColor: "auto",
     };
     setGridState((prevState: GridState) => ({
       ...prevState,

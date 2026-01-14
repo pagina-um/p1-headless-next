@@ -1,16 +1,13 @@
-import { GET_POSTS_BY_CATEGORY_SLUG, getClient } from "@/services/wp-graphql";
+import { GET_POSTS_BY_AUTHOR_SLUG, getClient } from "@/services/wp-graphql";
 import Link from "next/link";
 import Image from "next/image";
 import Pagination from "@/components/ui/Pagination";
 import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
-import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
 
-// Enable ISR with 1 hour revalidation for better caching
-// First page load will be cached, subsequent pagination requests will be dynamic
 export const revalidate = 3600;
 
-export default async function CategoryPage({
+export default async function AuthorPage({
   params,
   searchParams,
 }: {
@@ -18,16 +15,16 @@ export default async function CategoryPage({
   searchParams: { page?: string; after?: string };
 }) {
   const currentPage = Number(searchParams.page) || 1;
-  const postsPerPage = 12; // Increased for grid layout
+  const postsPerPage = 12;
 
   const afterCursor = searchParams.after
     ? decodeURIComponent(searchParams.after)
     : null;
 
   const { data } = await getClient().query(
-    GET_POSTS_BY_CATEGORY_SLUG,
+    GET_POSTS_BY_AUTHOR_SLUG,
     {
-      slug: params.slug,
+      authorSlug: params.slug,
       postsPerPage,
       after: afterCursor,
     },
@@ -36,15 +33,47 @@ export default async function CategoryPage({
       : undefined
   );
 
-  const category = data?.categories?.nodes[0];
+  const author = data?.users?.nodes[0];
   const posts = data?.posts?.nodes;
   const pageInfo = data?.posts?.pageInfo;
 
+  if (!author) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-4xl font-serif font-bold mb-8 text-gray-900">
+          Autor não encontrado
+        </h1>
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-serif font-bold mb-8 text-gray-900">
-        {category?.name}
-      </h1>
+      <div className="flex items-center gap-6 mb-8">
+        {author.avatar?.url && (
+          <div className="relative w-24 h-24 flex-shrink-0">
+            <Image
+              src={author.avatar.url}
+              alt={author.name || "Author avatar"}
+              className="rounded-full border-2 border-primary-dark"
+              fill
+              sizes="96px"
+            />
+          </div>
+        )}
+        <div>
+          <h1 className="text-4xl font-serif font-bold text-gray-900">
+            {author.name}
+          </h1>
+          {author.description && (
+            <p className="text-gray-600 mt-2">{author.description}</p>
+          )}
+        </div>
+      </div>
+
+      <h2 className="text-2xl font-serif font-bold mb-6 text-gray-800">
+        Artigos de {author.name}
+      </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {posts?.map((post: any, index: number) => (
@@ -65,29 +94,19 @@ export default async function CategoryPage({
                   />
                 </div>
               )}
-              <div className="p-6 pb-0">
-                <h2 className="text-xl font-serif font-bold mb-3 group-hover:text-primary transition-colors">
+              <div className="p-6">
+                <h3 className="text-xl font-serif font-bold mb-3 group-hover:text-primary transition-colors">
                   {post.title}
-                </h2>
+                </h3>
+
+                <div className="flex items-center gap-4 text-sm text-gray-500">
+                  <span className="flex items-center gap-1">
+                    <Calendar className="w-4 h-4" />
+                    {formatDate(post.date)}
+                  </span>
+                </div>
               </div>
             </Link>
-            <div className="px-6 pb-6">
-              <div className="flex items-center gap-4 text-sm text-gray-500">
-                {post.author?.node?.name && (
-                  <Link
-                    href={post.author.node.slug ? `/author/${post.author.node.slug}` : "#"}
-                    className="flex items-center gap-1 hover:text-primary transition-colors"
-                  >
-                    <User className="w-4 h-4" />
-                    {post.author.node.name}
-                  </Link>
-                )}
-                <span className="flex items-center gap-1">
-                  <Calendar className="w-4 h-4" />
-                  {formatDate(post.date)}
-                </span>
-              </div>
-            </div>
           </article>
         ))}
       </div>
@@ -96,7 +115,7 @@ export default async function CategoryPage({
         <Pagination
           currentPage={currentPage}
           hasNextPage={pageInfo.hasNextPage}
-          basePath={`/cat/${params.slug}`}
+          basePath={`/author/${params.slug}`}
           startCursor={pageInfo.startCursor}
           endCursor={pageInfo.endCursor}
         />

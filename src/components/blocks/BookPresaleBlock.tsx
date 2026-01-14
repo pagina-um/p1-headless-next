@@ -3,8 +3,7 @@ import Image from "next/image";
 
 const COVER_URL =
   "https://paginaum.pt/_next/image?url=https%3A%2F%2Fsrv700518.hstgr.cloud%2Fwp-content%2Fuploads%2F2025%2F08%2Fcapa_final_bras-cubas.png&w=828&q=75&dpl=dpl_7pBZFC4xumnusD8BqbatWgDbDPcy";
-const SHOP_URL =
-  "https://paginaum.myshopify.com/products/correio-mercantil-de-bras-cubas-de-pedro-almeida-vieira?variant=55532849037656";
+const SHOP_URL = "https://paginaum.myshopify.com/collections/all";
 
 export function BookPresaleBlock() {
   return (
@@ -34,15 +33,12 @@ export function BookPresaleBlock() {
             Correio Mercantil de Brás Cubas
           </h2>
           <div className="text-yellow-800 text-lg md:text-xl font-medium italic mb-2 text-center md:text-left">
-            em pré-venda.
+            já à venda.
           </div>
           <div className="text-stone-700 text-base md:text-lg font-normal mb-2 text-center md:text-left">
             <span className="inline-block px-2 py-1 bg-yellow-200 rounded-full font-bold text-yellow-900 border border-yellow-400  cursor-pointer">
               Garanta o seu exemplar
             </span>
-          </div>
-          <div className="mt-2 text-md text-stone-500 italic text-center md:text-left">
-            com o seu nome na <strong>‘edição príncipe’</strong>.
           </div>
         </div>
       </div>

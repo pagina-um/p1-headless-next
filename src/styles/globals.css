@@ -7,7 +7,7 @@
 @layer base {
   :root {
     --color-primary: #cf2e2e;
-    --color-primary-dark: #b22828;
+    --color-primary-dark: rgb(146, 10, 10);
     --radius: 0.5rem;
   }
 
@@ -33,7 +33,7 @@
 }
 .react-resizable-handle:after {
   scale: 2;
-  border-color: #cf2e2e !important;
+  border-color: rgb(146, 10, 10) !important;
 }
 @layer components {
   .headline {

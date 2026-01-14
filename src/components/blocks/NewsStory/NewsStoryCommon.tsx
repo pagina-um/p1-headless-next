@@ -73,6 +73,8 @@ export function NewsStoryCommon({
           orientation={story.orientation}
           objectPosition={story.objectPosition}
           tags={data.post.tags}
+          categories={data.post.categories}
+          antetituloColor={story.antetituloColor}
           hideImage={story.hideImage}
           reverse={story.reverse}
           expandImage={story.expandImage}

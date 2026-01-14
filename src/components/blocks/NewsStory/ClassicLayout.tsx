@@ -19,6 +19,10 @@ export interface StoryLayoutProps {
   author: any;
   date: string;
   tags: any;
+  // Categories are used to determine styling variants (e.g., opinion vs news)
+  categories?: { nodes: Array<{ id: string; name: string | null }> } | null;
+  // Optional override for antetitulo color selection
+  antetituloColor?: "auto" | "noticia" | "opiniao";
   orientation: "horizontal" | "vertical";
   objectPosition: ObjectPosition;
   isAdmin: boolean;
@@ -38,6 +42,8 @@ export function ClassicStoryLayout({
   postFields,
   title,
   tags,
+  categories,
+  antetituloColor = "auto",
   orientation,
   isAdmin,
   blockUid,
@@ -51,13 +57,36 @@ export function ClassicStoryLayout({
 }: StoryLayoutProps) {
   const hasTagsToShow = tags.nodes.length > 0;
   const displayImage = !hideImage;
+  const tagNames = tags.nodes
+    .filter((tag: any) => !tag.name.includes("estaque"))
+    .map((t: any) => t.name)
+    .join(" • ");
   const isLandscape = orientation === "horizontal";
   const shouldReverse = reverse && isLandscape;
+  // Determine if this post is an Opinion piece based on category names (default behavior)
+  const isOpinionByCategory = (categories?.nodes || []).some((c) =>
+    /opini[aã]o/i.test(c.name || "")
+  );
+  // Effective choice: override from settings if provided, else auto by category
+  const effectiveChoice = antetituloColor || "auto";
+  const effectiveIsOpinion =
+    effectiveChoice === "opiniao"
+      ? true
+      : effectiveChoice === "noticia"
+        ? false
+        : isOpinionByCategory;
+  // Background classes for antetitulo based on effective choice
+  const antetituloBgClass = effectiveIsOpinion
+    ? "bg-blue-900"
+    : "bg-primary-dark";
+  const antetituloBeforeBarClass = effectiveIsOpinion
+    ? "before:bg-blue-900"
+    : "before:bg-primary-dark";
   return (
-    <div className="@container group h-full px-4 lg:px-0 ">
+    <div className="@container group h-full px-4 lg:px-0">
       <div
         className={twMerge(
-          "flex gap-x-4 gap-y-1 h-full flex-col",
+          "flex gap-x-4 lg:gap-y-1 h-full flex-col",
           isLandscape
             ? reverse
               ? "lg:flex-row-reverse"
@@ -70,34 +99,109 @@ export function ClassicStoryLayout({
         {featuredImageUrl && displayImage && (
           <div
             className={twMerge(
-              "relative max-md:min-h-36 max-md:w-full",
+              "relative min-h-36 max-md:w-full lg:min-h-0",
               isLandscape ? "w-1/2" : "h-full",
               !expandImage && !isLandscape && "lg:flex-1"
             )}
           >
-            <div
-              className="absolute inset-0 bg-gray-300 animate-pulse"
-              id={`skeleton-${blockUid}`}
-            ></div>
-
+            {/* Pre-title or tags overlay on top of the featured image */}
+            {(postFields.antetitulo || hasTagsToShow) && (
+              <div
+                className={twMerge(
+                  "absolute z-20 hidden lg:block",
+                  shouldReverse && "lg:right-4 lg:left-auto lg:text-right",
+                  isLandscape ? "" : "lg:top-auto lg:bottom-0"
+                )}
+              >
+                <div
+                  className={twMerge(
+                    twMerge(
+                      "text-white uppercase font-medium text-sm tracking-wide px-2 py-0.5 border-white backdrop-blur-sm w-fit",
+                      // Use category-based background when showing antetitulo; fallback preserved for tags too
+                      antetituloBgClass
+                    ),
+                    shouldReverse && "lg:text-right"
+                  )}
+                >
+                  {postFields.antetitulo ? (
+                    isAdmin ? (
+                      <EditableText
+                        blockUid={blockUid}
+                        originalText={postFields.antetitulo}
+                        fieldName="antetitulo"
+                        textAlign={shouldReverse ? "right" : "left"}
+                      />
+                    ) : (
+                      postFields.antetitulo
+                    )
+                  ) : (
+                    <span>{tagNames}</span>
+                  )}
+                </div>
+              </div>
+            )}
             <Link href={uri}>
               <Image
                 src={featuredImageUrl}
                 alt={featuredImageAlt || ""}
                 fill
                 sizes={getSizesFromBlockArea(blockSize[0] * blockSize[1])}
-                className={twMerge("object-cover")}
+                className={twMerge("object-cover max-md:rounded-t-sm")}
                 style={{ objectPosition: positionMap[objectPosition] }}
                 quality={85}
+                placeholder="blur"
+                blurDataURL={
+                  "data:image/gif;base64,R0lGODlhAQABAPAAANTU1P///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                }
               />
             </Link>
           </div>
         )}
+        {/* Pre-title or tags overlay on top of the featured image */}
+        {(postFields.antetitulo || hasTagsToShow) && (
+          <div
+            className={twMerge(
+              "md:hidden",
+              shouldReverse && "lg:right-4 lg:left-auto lg:text-right",
+              isLandscape ? "" : "lg:top-auto lg:bottom-0"
+            )}
+          >
+            <div
+              className={twMerge(
+                twMerge(
+                  "text-white uppercase font-medium text-sm tracking-wide px-2 py-0.5 border-white backdrop-blur-sm lg:w-fit rounded-b-sm",
+                  antetituloBgClass
+                ),
+                shouldReverse && "lg:text-right"
+              )}
+            >
+              {postFields.antetitulo ? (
+                isAdmin ? (
+                  <EditableText
+                    blockUid={blockUid}
+                    originalText={postFields.antetitulo}
+                    fieldName="antetitulo"
+                    textAlign={shouldReverse ? "right" : "left"}
+                  />
+                ) : (
+                  postFields.antetitulo
+                )
+              ) : (
+                <span>{tagNames}</span>
+              )}
+            </div>
+          </div>
+        )}
+
         <div className="lg:flex-1 flex flex-col justify-start max-lg:border-b-2 max-lg:pb-4">
-          {postFields.antetitulo && (
+          {/* If there's no featured image, render the pre-title / tags in the text column (keeps previous behaviour) */}
+          {!displayImage && postFields.antetitulo && (
             <p
               className={twMerge(
-                "bg-opacity-50 flex bg-white  w-fit pr-2 border items-start text-pretty text-primary-dark font-medium  underline-offset-2 text-sm  gap-x-1 before:content-[''] before:block before:w-1 before:h-full before:bg-primary-dark before:flex-shrink-0 ",
+                twMerge(
+                  "bg-[rgba(0,0,0,0.06)] w-fit pr-2 border items-start text-pretty text-primary-dark font-medium text-sm gap-x-1 before:content-[''] before:block before:w-1 before:h-full before:flex-shrink-0",
+                  antetituloBeforeBarClass
+                ),
                 shouldReverse && "lg:flex-row-reverse lg:text-right"
               )}
             >
@@ -113,7 +217,7 @@ export function ClassicStoryLayout({
               )}
             </p>
           )}
-          {!postFields.antetitulo && hasTagsToShow && (
+          {!displayImage && !postFields.antetitulo && hasTagsToShow && (
             <div
               className={twMerge(
                 "flex gap-2 text-balance text-gray-600 font-medium underline-offset-2",
@@ -135,7 +239,7 @@ export function ClassicStoryLayout({
 
           <h2
             className={twMerge(
-              "font-serif text-2xl font-bold mb-3 leading-tight text-pretty",
+              "font-serif text-2xl font-bold mb-3 leading-tight text-pretty max-md:mt-3",
               !isAdmin && "lg:group-hover:underline",
               shouldReverse && "lg:text-right",
               extraBigTitle && "text-3xl"
