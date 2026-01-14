@@ -45,9 +45,6 @@ export async function createDonationCheckout(
     payment.start_time = startTime.toISOString().slice(0, 16).replace("T", " ");
     payment.frequency = "1M"; // Monthly subscription
     payment.methods = ["cc", "dd"]; // Only credit card and direct debit for subscriptions
-    payment.unlimited_payments = true; // Enable ongoing recurring payments
-    payment.retries = 3; // Retry failed payments up to 3 times
-    payment.failover = true; // Try alternate payment method if primary fails
   }
 
   let order: any = {};
