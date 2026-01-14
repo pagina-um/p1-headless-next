@@ -8,6 +8,7 @@ interface DonationData {
   name: string;
   email: string;
   phone: string;
+  durationYears?: number;
 }
 
 export async function createDonationCheckout(
@@ -42,12 +43,16 @@ export async function createDonationCheckout(
     const startTime = new Date();
     startTime.setHours(startTime.getHours() + 1);
 
+    // Set expiration based on user-selected duration (Checkout SDK requires a termination condition)
+    const durationYears = donationData.durationYears || 2;
+    const expirationTime = new Date();
+    expirationTime.setFullYear(expirationTime.getFullYear() + durationYears);
+
     payment.start_time = startTime.toISOString().slice(0, 16).replace("T", " ");
+    payment.expiration_time = expirationTime.toISOString().slice(0, 16).replace("T", " ");
     payment.frequency = "1M"; // Monthly subscription
+    payment.capture_now = true; // Charge immediately, then start recurring from start_time
     payment.methods = ["cc", "dd"]; // Only credit card and direct debit for subscriptions
-    payment.unlimited_payments = true; // Enable ongoing recurring payments
-    payment.retries = 3; // Retry failed payments up to 3 times
-    payment.failover = true; // Try alternate payment method if primary fails
   }
 
   let order: any = {};
