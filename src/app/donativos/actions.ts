@@ -51,7 +51,6 @@ export async function createDonationCheckout(
     payment.start_time = startTime.toISOString().slice(0, 16).replace("T", " ");
     payment.expiration_time = expirationTime.toISOString().slice(0, 16).replace("T", " ");
     payment.frequency = "1M"; // Monthly subscription
-    payment.capture_now = true; // Charge first payment immediately, then start recurring from start_time
     payment.methods = ["cc", "dd"]; // Only credit card and direct debit for subscriptions
   }
 
@@ -77,7 +76,8 @@ export async function createDonationCheckout(
   }
 
   const payload = {
-    type: [donationData.type],
+    // For subscriptions, include both "single" (immediate charge) and "subscription" (recurring)
+    type: donationData.type === "subscription" ? ["single", "subscription"] : ["single"],
     payment: payment,
     order: order,
     config: {
