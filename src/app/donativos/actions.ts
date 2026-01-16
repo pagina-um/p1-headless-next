@@ -63,7 +63,7 @@ export async function createDonationCheckout(
       // Create a one-time payment checkout session
       const session = await stripe.checkout.sessions.create({
         mode: "payment",
-        payment_method_types: ["card", "multibanco", "mbway"],
+        payment_method_types: ["card", "multibanco", "mb_way"],
         customer_email: donationData.email,
         line_items: [
           {
