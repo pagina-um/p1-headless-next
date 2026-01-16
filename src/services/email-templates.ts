@@ -28,7 +28,7 @@ export function getSingleDonationTemplate(
 </head>
 <body style="font-family: Georgia, serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
   <div style="text-align: center; margin-bottom: 30px;">
-    <h1 style="color: #1a1a1a; font-size: 24px; margin: 0;">Página UM</h1>
+    <img src="https://paginaum.pt/icon.png" alt="Página UM" width="80" style="display: block; margin: 0 auto 15px;" />
   </div>
 
   <p>Caro/a ${donorName},</p>
@@ -84,7 +84,7 @@ export function getSubscriptionWelcomeTemplate(
 </head>
 <body style="font-family: Georgia, serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
   <div style="text-align: center; margin-bottom: 30px;">
-    <h1 style="color: #1a1a1a; font-size: 24px; margin: 0;">Página UM</h1>
+    <img src="https://paginaum.pt/icon.png" alt="Página UM" width="80" style="display: block; margin: 0 auto 15px;" />
   </div>
 
   <p>Caro/a ${donorName},</p>
@@ -138,7 +138,7 @@ export function getRecurringPaymentTemplate(
 </head>
 <body style="font-family: Georgia, serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
   <div style="text-align: center; margin-bottom: 30px;">
-    <h1 style="color: #1a1a1a; font-size: 24px; margin: 0;">Página UM</h1>
+    <img src="https://paginaum.pt/icon.png" alt="Página UM" width="80" style="display: block; margin: 0 auto 15px;" />
   </div>
 
   <p>Caro/a ${donorName},</p>
