@@ -24,8 +24,10 @@ export async function createDonationCheckout(
   try {
     if (donationData.type === "subscription") {
       // Create a subscription checkout session
+      // Note: MB Way and Multibanco don't support recurring payments
       const session = await stripe.checkout.sessions.create({
         mode: "subscription",
+        payment_method_types: ["card"],
         customer_email: donationData.email,
         line_items: [
           {
@@ -61,6 +63,7 @@ export async function createDonationCheckout(
       // Create a one-time payment checkout session
       const session = await stripe.checkout.sessions.create({
         mode: "payment",
+        payment_method_types: ["card", "multibanco", "mbway"],
         customer_email: donationData.email,
         line_items: [
           {
