@@ -56,7 +56,7 @@ export default function SucessoPage({ searchParams }: SuccessPageProps) {
           </div>
 
           {/* Information Cards */}
-          <div className="grid md:grid-cols-2 gap-6 mb-12 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-1 gap-6 mb-12 max-w-4xl mx-auto">
             <div className="bg-white p-6 rounded-lg shadow-md">
               <h2 className="text-xl font-bold mb-4 text-gray-900">
                 Partilhe a nossa missão
@@ -80,7 +80,7 @@ export default function SucessoPage({ searchParams }: SuccessPageProps) {
           </div>
 
           {/* Contact Information */}
-          <div className="bg-gray-50 p-6 rounded-lg mb-8">
+          <div className="bg-white p-6 rounded-lg shadow-md mb-6">
             <h3 className="text-lg font-bold mb-3 text-gray-900">
               Precisa de ajuda?
             </h3>
