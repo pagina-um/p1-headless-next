@@ -2,6 +2,7 @@ import {
   getSingleDonationTemplate,
   getSubscriptionWelcomeTemplate,
   getRecurringPaymentTemplate,
+  getMultibancoPaymentTemplate,
 } from "./email-templates";
 
 const POSTMARK_API_URL = "https://api.postmarkapp.com/email";
@@ -78,6 +79,31 @@ export async function sendRecurringPaymentEmail(
   const { to, donorName, amount } = params;
 
   const template = getRecurringPaymentTemplate(donorName, amount);
+
+  await sendEmail(to, template.subject, template.htmlBody, template.textBody);
+}
+
+interface MultibancoEmailParams {
+  to: string;
+  donorName: string;
+  amount: number;
+  entity: string;
+  reference: string;
+  expiresAt: string;
+}
+
+export async function sendMultibancoEmail(
+  params: MultibancoEmailParams
+): Promise<void> {
+  const { to, donorName, amount, entity, reference, expiresAt } = params;
+
+  const template = getMultibancoPaymentTemplate(
+    donorName,
+    amount,
+    entity,
+    reference,
+    expiresAt
+  );
 
   await sendEmail(to, template.subject, template.htmlBody, template.textBody);
 }

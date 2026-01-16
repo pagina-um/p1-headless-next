@@ -3,6 +3,7 @@ import Stripe from "stripe";
 import {
   sendDonationThankYouEmail,
   sendRecurringPaymentEmail,
+  sendMultibancoEmail,
 } from "@/services/postmark";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
@@ -48,6 +49,12 @@ export async function POST(request: NextRequest) {
         await handleInvoicePaid(event.data.object as Stripe.Invoice);
         break;
 
+      case "checkout.session.async_payment_succeeded":
+        await handleAsyncPaymentSucceeded(
+          event.data.object as Stripe.Checkout.Session
+        );
+        break;
+
       default:
         console.log(`Unhandled event type: ${event.type}`);
     }
@@ -74,6 +81,13 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     return;
   }
 
+  // Check if this is a Multibanco payment (payment_status will be "unpaid")
+  if (session.payment_status === "unpaid" && session.payment_intent) {
+    await handleMultibancoPayment(session, donorName, donorEmail, amountTotal);
+    return;
+  }
+
+  // For paid sessions (card, MB Way), send thank you email immediately
   console.log(
     `Processing ${donationType} donation of ${amountTotal}€ from ${donorName} (${donorEmail})`
   );
@@ -83,6 +97,90 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     donorName,
     amount: amountTotal,
     donationType: donationType || "single",
+  });
+}
+
+async function handleMultibancoPayment(
+  session: Stripe.Checkout.Session,
+  donorName: string,
+  donorEmail: string,
+  amount: number
+) {
+  const paymentIntentId =
+    typeof session.payment_intent === "string"
+      ? session.payment_intent
+      : session.payment_intent?.id;
+
+  if (!paymentIntentId) {
+    console.error("No payment intent found for Multibanco session:", session.id);
+    return;
+  }
+
+  try {
+    const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+    const multibancoDetails =
+      paymentIntent.next_action?.multibanco_display_details;
+
+    if (!multibancoDetails) {
+      console.error(
+        "No Multibanco details found in payment intent:",
+        paymentIntentId
+      );
+      return;
+    }
+
+    const entity = multibancoDetails.entity || "";
+    const reference = multibancoDetails.reference || "";
+    const expiresAt = multibancoDetails.expires_at
+      ? new Date(multibancoDetails.expires_at * 1000).toLocaleDateString(
+          "pt-PT",
+          {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          }
+        )
+      : "";
+
+    console.log(
+      `Processing Multibanco payment of ${amount}€ from ${donorName} (${donorEmail}) - Entity: ${entity}, Reference: ${reference}`
+    );
+
+    await sendMultibancoEmail({
+      to: donorEmail,
+      donorName,
+      amount,
+      entity,
+      reference,
+      expiresAt,
+    });
+  } catch (err) {
+    console.error("Failed to retrieve Multibanco details:", err);
+  }
+}
+
+async function handleAsyncPaymentSucceeded(session: Stripe.Checkout.Session) {
+  // This event fires when Multibanco payment is actually completed
+  const donorName = session.metadata?.donor_name || "Apoiante";
+  const donorEmail = session.customer_email;
+  const amountTotal = session.amount_total ? session.amount_total / 100 : 0;
+
+  if (!donorEmail) {
+    console.error("No email found in async payment session:", session.id);
+    return;
+  }
+
+  console.log(
+    `Multibanco payment completed: ${amountTotal}€ from ${donorName} (${donorEmail})`
+  );
+
+  await sendDonationThankYouEmail({
+    to: donorEmail,
+    donorName,
+    amount: amountTotal,
+    donationType: "single",
   });
 }
 
