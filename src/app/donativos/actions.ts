@@ -27,7 +27,7 @@ export async function createDonationCheckout(
       // Note: MB Way and Multibanco don't support recurring payments
       const session = await stripe.checkout.sessions.create({
         mode: "subscription",
-        payment_method_types: ["card", "paypal"],
+        payment_method_types: ["card"],
         customer_email: donationData.email,
         line_items: [
           {
@@ -64,24 +64,7 @@ export async function createDonationCheckout(
       // Note: Apple Pay and Google Pay are automatically available with "card"
       const session = await stripe.checkout.sessions.create({
         mode: "payment",
-        payment_method_types: [
-          "card",
-          "multibanco",
-          "mb_way",
-          "customer_balance",
-          "paypal",
-        ],
-        payment_method_options: {
-          customer_balance: {
-            funding_type: "bank_transfer",
-            bank_transfer: {
-              type: "eu_bank_transfer",
-              eu_bank_transfer: {
-                country: "PT",
-              },
-            },
-          },
-        },
+        payment_method_types: ["card", "multibanco", "mb_way"],
         customer_email: donationData.email,
         line_items: [
           {

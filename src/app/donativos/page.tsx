@@ -1,4 +1,5 @@
 import { DonationForm } from "@/components/donation/DonationForm";
+import { BankTransferModal } from "@/components/donation/BankTransferModal";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
@@ -37,7 +38,14 @@ export default function ContribuirPage() {
           </p>
 
           <PaymentMethods />
-          <span className="mt-14 inline-block text-xs italic text-gray-500">
+
+          <div className="mt-6 text-sm text-gray-600">
+            <span>Prefere fazer uma </span>
+            <BankTransferModal />
+            <span>?</span>
+          </div>
+
+          <span className="mt-8 inline-block text-xs italic text-gray-500">
             Se necessitar de factura, envie-nos email para facturas@paginaum.pt.
             Os donativos de empresas têm o limite de 500€ por semestre.
           </span>
