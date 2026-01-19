@@ -27,7 +27,7 @@ export async function createDonationCheckout(
       // Note: MB Way and Multibanco don't support recurring payments
       const session = await stripe.checkout.sessions.create({
         mode: "subscription",
-        payment_method_types: ["card"],
+        payment_method_types: ["card", "paypal"],
         customer_email: donationData.email,
         line_items: [
           {
@@ -64,7 +64,7 @@ export async function createDonationCheckout(
       // Note: Apple Pay and Google Pay are automatically available with "card"
       const session = await stripe.checkout.sessions.create({
         mode: "payment",
-        payment_method_types: ["card", "multibanco", "mb_way"],
+        payment_method_types: ["card", "multibanco", "mb_way", "paypal"],
         customer_email: donationData.email,
         line_items: [
           {
@@ -95,7 +95,18 @@ export async function createDonationCheckout(
       return { url: session.url };
     }
   } catch (error) {
-    console.error("Error creating Stripe checkout:", error);
-    throw new Error("Failed to create payment session");
+    if (error instanceof Stripe.errors.StripeError) {
+      console.error("Stripe error:", error.message, error.code, error.type);
+
+      if (error.code === "email_invalid") {
+        throw new Error("O endereço de email não é válido.");
+      }
+      if (error.code === "parameter_invalid_integer") {
+        throw new Error("O valor do donativo não é válido.");
+      }
+    } else {
+      console.error("Error creating Stripe checkout:", error);
+    }
+    throw new Error("Não foi possível criar a sessão de pagamento. Tente novamente.");
   }
 }

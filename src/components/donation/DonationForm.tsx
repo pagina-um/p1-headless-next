@@ -41,7 +41,11 @@ export function DonationForm() {
       window.location.href = url;
     } catch (error) {
       console.error("Error creating checkout:", error);
-      alert("Erro ao iniciar o pagamento. Por favor, tente novamente.");
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Erro ao iniciar o pagamento. Por favor, tente novamente.";
+      alert(message);
       setIsLoading(false);
     }
   };
