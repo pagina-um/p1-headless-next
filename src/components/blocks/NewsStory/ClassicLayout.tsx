@@ -1,6 +1,5 @@
 import { EditableText } from "@/components/ui/EditableText";
-import { CustomPostFields, ObjectPosition } from "@/types";
-import { Maybe } from "graphql/jsutils/Maybe";
+import { CustomPostFields, ObjectPosition, Maybe } from "@/types";
 import { Square } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 import { positionMap } from "@/utils/categoryUtils";
@@ -55,9 +54,9 @@ export function ClassicStoryLayout({
   blockSize,
   uri,
 }: StoryLayoutProps) {
-  const hasTagsToShow = tags.nodes.length > 0;
+  const hasTagsToShow = tags?.nodes?.length > 0;
   const displayImage = !hideImage;
-  const tagNames = tags.nodes
+  const tagNames = (tags?.nodes || [])
     .filter((tag: any) => !tag.name.includes("estaque"))
     .map((t: any) => t.name)
     .join(" • ");
@@ -224,7 +223,7 @@ export function ClassicStoryLayout({
                 shouldReverse && "lg:flex-row-reverse"
               )}
             >
-              {tags.nodes
+              {(tags?.nodes || [])
                 .filter((tag: any) => !tag.name.includes("estaque"))
                 .map((tag: any) => (
                   <div

@@ -26,3 +26,16 @@ dist-ssr
 /.next
 .next
 .vercel
+
+*.db
+*.sql
+
+.db
+payload.db
+*_dump.sql
+*.db-wal
+*.db-shm
+
+# Migration data files (too large for git)
+scripts/migration/data/
+database.sqlite
