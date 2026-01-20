@@ -15,7 +15,7 @@ export function BankTransferModal() {
   const bankDetails = {
     bank: "Banco Santander Totta",
     iban: "PT50 0018 0003 5564 8737 0201 1",
-    accountHolder: "Página UM - Associação",
+    accountHolder: "Página UM, Lda",
     bic: "TOTAPTPL",
   };
 
