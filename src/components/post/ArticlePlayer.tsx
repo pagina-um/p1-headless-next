@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { Play, Pause, Volume2, Loader2 } from "lucide-react";
+import { FEATURES } from "@/config/features";
 
 type PlayerState = "idle" | "generating" | "ready" | "playing" | "error";
 
@@ -143,6 +144,8 @@ export function ArticlePlayer({ postId, slug }: ArticlePlayerProps) {
     setCurrentTime(newTime);
   }
 
+  if (!FEATURES.TTS_ENABLED) return null;
+
   // Idle state: show generate button
   if (state === "idle") {
     return (
@@ -189,7 +192,9 @@ export function ArticlePlayer({ postId, slug }: ArticlePlayerProps) {
 
   // Ready / Playing state: show player
   return (
-    <div className="my-4 flex items-center gap-3 px-4 py-3 bg-gray-50 rounded-lg border border-gray-200">
+    <div className="mt-3 mb-0 md:mt-4 md:mb-0 px-4 py-3 bg-gray-50 rounded-lg border border-gray-200">
+      <p className="text-xs text-gray-500 mb-2 font-medium">Ouvir artigo (experimental)</p>
+      <div className="flex items-center gap-3">
       <button
         onClick={handlePlayPause}
         className="flex-shrink-0 w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center hover:opacity-90 transition-opacity"
@@ -220,6 +225,7 @@ export function ArticlePlayer({ postId, slug }: ArticlePlayerProps) {
       </div>
 
       {audioUrl && <audio ref={audioRef} src={audioUrl} className="hidden" />}
+      </div>
     </div>
   );
 }

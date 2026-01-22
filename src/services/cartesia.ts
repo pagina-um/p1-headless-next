@@ -20,6 +20,9 @@ interface CartesiaRequest {
     bit_rate: number;
     sample_rate: number;
   };
+  generation_config: {
+    speed: number;
+  };
   save: boolean;
 }
 
@@ -44,6 +47,9 @@ async function generateChunkAudio(text: string): Promise<Buffer> {
       container: "mp3",
       bit_rate: 128000,
       sample_rate: 44100,
+    },
+    generation_config: {
+      speed: 0.9,
     },
     save: false,
   };

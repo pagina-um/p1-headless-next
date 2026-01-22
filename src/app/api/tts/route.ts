@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { FEATURES } from "@/config/features";
 import { put } from "@vercel/blob";
 import { loadGridStateRedis } from "@/services/redis";
 import { sortBlocksZigzagThenMobilePriority } from "@/utils/sorting";
@@ -15,6 +16,10 @@ export const maxDuration = 60;
  * Check if TTS audio is cached for a given post.
  */
 export async function GET(request: NextRequest) {
+  if (!FEATURES.TTS_ENABLED) {
+    return NextResponse.json({ error: "TTS is disabled" }, { status: 403 });
+  }
+
   try {
     const postId = request.nextUrl.searchParams.get("postId");
     if (!postId) {
@@ -49,6 +54,10 @@ export async function GET(request: NextRequest) {
  * Body: { postId: number, slug: string }
  */
 export async function POST(request: NextRequest) {
+  if (!FEATURES.TTS_ENABLED) {
+    return NextResponse.json({ error: "TTS is disabled" }, { status: 403 });
+  }
+
   try {
     const { postId, slug } = await request.json();
 
