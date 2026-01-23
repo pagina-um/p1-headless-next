@@ -34,8 +34,8 @@ export function PostHeader({ post }: { post: PostBySlugData["data"] }) {
         dangerouslySetInnerHTML={{ __html: post?.postBy?.title || "" }}
       />
 
-      {/* Author, date, and share - single row */}
-      <div className="flex items-center justify-between">
+      {/* Author, date, and share */}
+      <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
         <div className="flex items-center gap-2 text-sm text-gray-500">
           <Link href={authorSlug ? `/author/${authorSlug}` : "#"} className="hover:text-primary transition-colors">
             {author}
