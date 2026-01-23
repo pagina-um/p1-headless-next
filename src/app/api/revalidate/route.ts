@@ -2,6 +2,7 @@ import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 import { getTTSMetadata, deleteTTSMetadata } from "@/services/tts-cache";
 import { del } from "@vercel/blob";
+import { getClient, GET_POST_BY_SLUG } from "@/services/wp-graphql";
 
 const REVALIDATION_SECRET = process.env.REVALIDATION_SECRET;
 
@@ -101,7 +102,20 @@ export async function POST(request: NextRequest) {
       }
     } catch (ttsError) {
       console.error("TTS cache invalidation error:", ttsError);
-      // Don't fail the whole revalidation for TTS errors
+    }
+
+    // Warm the OG image cache so WhatsApp previews load instantly
+    if (post?.post_name) {
+      try {
+        const { data } = await getClient().query(GET_POST_BY_SLUG, {
+          slug: post.post_name,
+        });
+        const sourceUrl = data?.postBy?.featuredImage?.node?.sourceUrl;
+        if (sourceUrl) {
+          const ogImageUrl = `https://paginaum.pt/_next/image?url=${encodeURIComponent(sourceUrl)}&w=1200&q=75`;
+          fetch(ogImageUrl).catch(() => {});
+        }
+      } catch {}
     }
 
     return NextResponse.json({

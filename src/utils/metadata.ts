@@ -71,6 +71,10 @@ export const makeMetadataObject = (
   const { antetitulo, chamadaDestaque, chamadaManchete } =
     postFields as CustomPostFields;
 
+  const ogImageUrl = featuredImage?.node?.sourceUrl
+    ? `https://paginaum.pt/_next/image?url=${encodeURIComponent(featuredImage.node.sourceUrl)}&w=1200&q=75`
+    : undefined;
+
   return {
     title: data?.postBy?.title || "Página Um",
     description:
@@ -83,10 +87,10 @@ export const makeMetadataObject = (
       publishedTime: date || new Date().toISOString(),
       modifiedTime: modified || new Date().toISOString(),
       authors: author?.node?.name ? [author.node.name] : undefined,
-      images: featuredImage?.node?.sourceUrl
+      images: ogImageUrl
         ? [
             {
-              url: featuredImage?.node?.sourceUrl,
+              url: ogImageUrl,
               width: 1200,
               height: 630,
               alt: featuredImage?.node?.altText || title || "Página Um",
@@ -99,9 +103,7 @@ export const makeMetadataObject = (
       card: "summary_large_image",
       title: title || "Página Um",
       description: "excerpt",
-      images: featuredImage?.node?.sourceUrl
-        ? [featuredImage?.node?.sourceUrl]
-        : undefined,
+      images: ogImageUrl ? [ogImageUrl] : undefined,
     },
     // Add schema.org structured data
     alternates: {
