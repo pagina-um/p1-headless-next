@@ -36,7 +36,7 @@ async function generateChunkAudio(text: string): Promise<Buffer> {
     input: { text },
     voice: {
       languageCode: "pt-PT",
-      name: "pt-PT-Neural2-A",
+      name: "pt-PT-Wavenet-F",
     },
     audioConfig: {
       audioEncoding: "MP3",
