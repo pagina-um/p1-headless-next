@@ -82,16 +82,17 @@ export async function saveTTSMetadata(metadata: TTSMetadata): Promise<void> {
 }
 
 /**
- * Attempt to acquire a generation lock (SET NX with 120s TTL).
- * Returns true if lock was acquired, false if already generating.
+ * Acquire a global TTS batch lock (SET NX with 600s TTL).
+ * Prevents overlapping batch runs so only one workflow hits Cartesia at a time.
+ * TTL is a safety net — workflow clears the lock when done.
  */
-export async function acquireTTSGeneratingLock(postId: number): Promise<boolean> {
+export async function acquireTTSBatchLock(): Promise<boolean> {
   if (!KV_REST_API_URL || !KV_REST_API_TOKEN) {
     throw new Error("Missing KV Store environment variables");
   }
 
   const response = await fetch(
-    `${KV_REST_API_URL}/set/tts:generating:${postId}/1/EX/120/NX`,
+    `${KV_REST_API_URL}/set/tts:batch_running/1/EX/600/NX`,
     {
       method: "POST",
       headers: {
@@ -105,20 +106,65 @@ export async function acquireTTSGeneratingLock(postId: number): Promise<boolean>
   }
 
   const data = await response.json();
-  // NX returns null if key already exists
   return data.result !== null;
 }
 
 /**
- * Check if a post is currently generating TTS.
+ * Clear the global TTS batch lock.
  */
-export async function isTTSGenerating(postId: number): Promise<boolean> {
+export async function clearTTSBatchLock(): Promise<void> {
   if (!KV_REST_API_URL || !KV_REST_API_TOKEN) {
     throw new Error("Missing KV Store environment variables");
   }
 
   const response = await fetch(
-    `${KV_REST_API_URL}/get/tts:generating:${postId}`,
+    `${KV_REST_API_URL}/del/tts:batch_running`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${KV_REST_API_TOKEN}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`KV Store responded with status: ${response.status}`);
+  }
+}
+
+/**
+ * Set a TTS error for a post (5-min TTL so the UI can show failure state).
+ */
+export async function setTTSError(postId: number, message: string): Promise<void> {
+  if (!KV_REST_API_URL || !KV_REST_API_TOKEN) {
+    throw new Error("Missing KV Store environment variables");
+  }
+
+  const response = await fetch(
+    `${KV_REST_API_URL}/set/tts:error:${postId}/${encodeURIComponent(message)}/EX/300`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${KV_REST_API_TOKEN}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`KV Store responded with status: ${response.status}`);
+  }
+}
+
+/**
+ * Get TTS error message for a post (if any).
+ */
+export async function getTTSError(postId: number): Promise<string | null> {
+  if (!KV_REST_API_URL || !KV_REST_API_TOKEN) {
+    throw new Error("Missing KV Store environment variables");
+  }
+
+  const response = await fetch(
+    `${KV_REST_API_URL}/get/tts:error:${postId}`,
     {
       headers: {
         Authorization: `Bearer ${KV_REST_API_TOKEN}`,
@@ -131,30 +177,7 @@ export async function isTTSGenerating(postId: number): Promise<boolean> {
   }
 
   const data = await response.json();
-  return !!data.result;
-}
-
-/**
- * Clear the generating flag for a post.
- */
-export async function clearTTSGenerating(postId: number): Promise<void> {
-  if (!KV_REST_API_URL || !KV_REST_API_TOKEN) {
-    throw new Error("Missing KV Store environment variables");
-  }
-
-  const response = await fetch(
-    `${KV_REST_API_URL}/del/tts:generating:${postId}`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${KV_REST_API_TOKEN}`,
-      },
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error(`KV Store responded with status: ${response.status}`);
-  }
+  return data.result ? decodeURIComponent(data.result) : null;
 }
 
 /**

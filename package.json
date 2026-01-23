@@ -44,7 +44,8 @@
     "stripe": "^20.1.2",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
-    "urql": "^4.2.1"
+    "urql": "^4.2.1",
+    "workflow": "^4.0.1-beta.50"
   },
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",

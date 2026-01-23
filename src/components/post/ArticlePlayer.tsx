@@ -1,14 +1,13 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Play, Pause, Loader2 } from "lucide-react";
+import { Play, Pause } from "lucide-react";
 import { FEATURES } from "@/config/features";
 
-type PlayerState = "loading" | "idle" | "generating" | "ready" | "playing" | "error" | "hidden";
+type PlayerState = "loading" | "ready" | "playing" | "hidden";
 
 interface ArticlePlayerProps {
   postId: number;
-  slug: string;
 }
 
 function formatTime(seconds: number): string {
@@ -20,19 +19,17 @@ function formatTime(seconds: number): string {
     .padStart(2, "0")}`;
 }
 
-export function ArticlePlayer({ postId, slug }: ArticlePlayerProps) {
+export function ArticlePlayer({ postId }: ArticlePlayerProps) {
   const [state, setState] = useState<PlayerState>("loading");
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
-  const pollIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // Check cache and eligibility on mount
+  // Check cache on mount
   useEffect(() => {
     async function checkCache() {
       try {
@@ -45,22 +42,11 @@ export function ArticlePlayer({ postId, slug }: ArticlePlayerProps) {
             setState("ready");
             return;
           }
-          if (!data.eligible) {
-            setState("hidden");
-            return;
-          }
-          if (data.generating) {
-            setState("generating");
-            pollForAudio();
-            return;
-          }
         }
       } catch {
-        // Network error — hide to be safe
-        setState("hidden");
-        return;
+        // Network error — hide
       }
-      setState((s) => (s === "loading" ? "idle" : s));
+      setState("hidden");
     }
     checkCache();
   }, [postId]);
@@ -86,105 +72,16 @@ export function ArticlePlayer({ postId, slug }: ArticlePlayerProps) {
       setCurrentTime(0);
     };
 
-    const handleError = () => {
-      setState("error");
-      setErrorMessage("Erro ao reproduzir áudio");
-    };
-
     audio.addEventListener("timeupdate", handleTimeUpdate);
     audio.addEventListener("loadedmetadata", handleLoadedMetadata);
     audio.addEventListener("ended", handleEnded);
-    audio.addEventListener("error", handleError);
 
     return () => {
       audio.removeEventListener("timeupdate", handleTimeUpdate);
       audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
       audio.removeEventListener("ended", handleEnded);
-      audio.removeEventListener("error", handleError);
     };
   }, [audioUrl]);
-
-  async function handleGenerate() {
-    setState("generating");
-    setErrorMessage(null);
-
-    try {
-      const res = await fetch("/api/tts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ postId, slug }),
-      });
-
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || "Falha ao gerar áudio");
-      }
-
-      const data = await res.json();
-
-      // If already cached, use immediately
-      if (data.cached) {
-        setAudioUrl(data.url);
-        setDuration(data.durationSeconds);
-        setState("ready");
-        return;
-      }
-
-      // Poll until generation completes
-      pollForAudio();
-    } catch (err) {
-      setState("error");
-      setErrorMessage(
-        err instanceof Error ? err.message : "Erro ao gerar áudio"
-      );
-    }
-  }
-
-  function pollForAudio() {
-    if (pollIntervalRef.current) clearInterval(pollIntervalRef.current);
-
-    const interval = setInterval(async () => {
-      try {
-        const res = await fetch(`/api/tts?postId=${postId}`);
-        if (res.ok) {
-          const data = await res.json();
-          if (data.cached) {
-            clearInterval(interval);
-            pollIntervalRef.current = null;
-            setAudioUrl(data.url);
-            setDuration(data.durationSeconds);
-            setState("ready");
-          }
-        }
-      } catch {
-        // Keep polling
-      }
-    }, 3000);
-
-    pollIntervalRef.current = interval;
-
-    // Stop polling after 90s
-    setTimeout(() => {
-      if (pollIntervalRef.current === interval) {
-        clearInterval(interval);
-        pollIntervalRef.current = null;
-        setState((s) => {
-          if (s === "generating") {
-            setErrorMessage("Tempo esgotado ao gerar áudio");
-            return "error";
-          }
-          return s;
-        });
-      }
-    }, 90000);
-  }
-
-  // Cleanup polling on unmount
-  useEffect(() => {
-    return () => {
-      if (pollIntervalRef.current) clearInterval(pollIntervalRef.current);
-    };
-  }, []);
 
   function handlePlayPause() {
     const audio = audioRef.current;
@@ -212,23 +109,18 @@ export function ArticlePlayer({ postId, slug }: ArticlePlayerProps) {
     setCurrentTime(newTime);
   }
 
-  if (!FEATURES.TTS_ENABLED || state === "hidden") return null;
-
-  const isPlayerVisible = state === "ready" || state === "playing";
+  if (!FEATURES.TTS_ENABLED || state === "hidden" || state === "loading") return null;
 
   return (
     <div className="mt-3 mb-0 md:mt-4 md:mb-0 w-full px-4 py-3 bg-gray-50 rounded-lg border border-gray-200">
       <p className="text-xs text-gray-500 mb-2 font-medium">Ouvir artigo (experimental)</p>
       <div className="flex items-center gap-3">
         <button
-          onClick={isPlayerVisible ? handlePlayPause : handleGenerate}
-          disabled={state === "loading" || state === "generating"}
-          className="flex-shrink-0 w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center hover:opacity-90 transition-opacity disabled:opacity-50"
+          onClick={handlePlayPause}
+          className="flex-shrink-0 w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center hover:opacity-90 transition-opacity"
           aria-label={state === "playing" ? "Pausar" : "Reproduzir"}
         >
-          {state === "loading" || state === "generating" ? (
-            <Loader2 className="w-4 h-4 animate-spin" />
-          ) : state === "playing" ? (
+          {state === "playing" ? (
             <Pause className="w-4 h-4" />
           ) : (
             <Play className="w-4 h-4 ml-0.5" />
@@ -239,7 +131,7 @@ export function ArticlePlayer({ postId, slug }: ArticlePlayerProps) {
           <div
             ref={progressBarRef}
             className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden cursor-pointer"
-            onClick={isPlayerVisible ? handleProgressBarClick : undefined}
+            onClick={handleProgressBarClick}
           >
             <div
               className="h-full bg-primary rounded-full transition-[width] duration-150"
@@ -247,14 +139,8 @@ export function ArticlePlayer({ postId, slug }: ArticlePlayerProps) {
             />
           </div>
           <div className="flex justify-between text-xs text-gray-500">
-            <span>
-              {state === "generating"
-                ? "A gerar áudio..."
-                : state === "error"
-                  ? errorMessage || "Erro"
-                  : formatTime(currentTime)}
-            </span>
-            <span>{isPlayerVisible ? formatTime(duration) : ""}</span>
+            <span>{formatTime(currentTime)}</span>
+            <span>{formatTime(duration)}</span>
           </div>
         </div>
       </div>

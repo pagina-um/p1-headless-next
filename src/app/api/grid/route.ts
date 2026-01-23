@@ -5,11 +5,13 @@ import {
 } from "@/services/local-storage";
 import { isDevelopment } from "@/services/config";
 import { loadGridStateRedis, saveGridStateRedis } from "@/services/redis";
-import { NextResponse } from "next/server";
 import { waitUntil } from "@vercel/functions";
 import { FEATURES } from "@/config/features";
 import { sortBlocksZigzagThenMobilePriority } from "@/utils/sorting";
 import { GridState, StoryBlock } from "@/types";
+import { getTTSMetadata, acquireTTSBatchLock } from "@/services/tts-cache";
+import { start } from "workflow/api";
+import { ttsBatchWorkflow } from "../tts/workflow";
 
 // Default empty grid state
 const DEFAULT_GRID_STATE = {
@@ -68,21 +70,31 @@ export async function GET() {
   }
 }
 
+/**
+ * Trigger TTS generation for top 5 articles.
+ * Acquires a global batch lock so only one batch runs at a time,
+ * ensuring sequential Cartesia API usage (no concurrent calls).
+ */
 async function triggerTTSForTopArticles(gridState: GridState) {
-  const baseUrl = `https://${process.env.VERCEL_URL}`;
   const sorted = sortBlocksZigzagThenMobilePriority(gridState.blocks);
-  const top3 = sorted
+  const top5 = sorted
     .filter((b) => b.blockType === "story")
-    .slice(0, 3)
-    .map((b) => (b as StoryBlock).databaseId);
+    .slice(0, 5) as StoryBlock[];
 
-  await Promise.allSettled(
-    top3.map((id) =>
-      fetch(`${baseUrl}/api/tts`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ postId: id }),
-      }).catch(() => {})
-    )
-  );
+  // Filter to articles that don't already have TTS
+  const needsGeneration: number[] = [];
+  for (const block of top5) {
+    const existing = await getTTSMetadata(block.databaseId);
+    if (!existing) {
+      needsGeneration.push(block.databaseId);
+    }
+  }
+
+  if (needsGeneration.length === 0) return;
+
+  // Acquire global lock — if a batch is already running, skip
+  const acquired = await acquireTTSBatchLock();
+  if (!acquired) return;
+
+  await start(ttsBatchWorkflow, [needsGeneration]);
 }

@@ -83,10 +83,7 @@ async function PostComponent({ slug }: { slug: string }) {
       <article>
         <div className="max-w-4xl mx-auto px-4 py-6 md:py-12">
           <PostHeader post={data} />
-          <ArticlePlayer
-            postId={data.postBy.databaseId}
-            slug={slug}
-          />
+          <ArticlePlayer postId={data.postBy.databaseId} />
           <PostContent
             content={data.postBy?.content || ""}
             shouldInjectDonation={
