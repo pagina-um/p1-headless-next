@@ -116,7 +116,7 @@ export function ClassicStoryLayout({
                 <div
                   className={twMerge(
                     twMerge(
-                      "text-white uppercase font-medium text-sm tracking-wide px-2 py-0.5 border-white backdrop-blur-sm w-fit",
+                      "text-white uppercase font-semibold text-xs tracking-wider px-4 py-2 border-white backdrop-blur-sm w-fit",
                       // Use category-based background when showing antetitulo; fallback preserved for tags too
                       antetituloBgClass
                     ),
@@ -169,7 +169,7 @@ export function ClassicStoryLayout({
             <div
               className={twMerge(
                 twMerge(
-                  "text-white uppercase font-medium text-sm tracking-wide px-2 py-0.5 border-white backdrop-blur-sm lg:w-fit rounded-b-sm",
+                  "text-white uppercase font-semibold text-xs tracking-wider px-4 py-2 border-white backdrop-blur-sm w-fit",
                   antetituloBgClass
                 ),
                 shouldReverse && "lg:text-right"
