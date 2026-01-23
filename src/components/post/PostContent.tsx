@@ -15,10 +15,16 @@ export function PostContent({
     `<p><strong>PÁGINA UM &#8211; <em>O jornalismo independente (só) depende dos leitores.</em></strong></p>`
   )[0]; // TODO: bring this transformation to the parsing function
 
+  // Remove the first wp-block-spacer (decorative spacer at top of WP content)
+  const contentWithoutFirstSpacer = contentWithoutManualFooter.replace(
+    /<div[^>]*\bwp-block-spacer\b[^>]*><\/div>/,
+    ""
+  );
+
   // Inject donation block into the content
   const contentWithDonation = !shouldInjectDonation
-    ? contentWithoutManualFooter
-    : injectDonationBlock(contentWithoutManualFooter);
+    ? contentWithoutFirstSpacer
+    : injectDonationBlock(contentWithoutFirstSpacer);
 
   return (
     <>

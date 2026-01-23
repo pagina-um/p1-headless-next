@@ -76,13 +76,17 @@ export async function GET() {
  */
 async function triggerTTSForTopArticles(gridState: GridState) {
   const sorted = sortBlocksZigzagThenMobilePriority(gridState.blocks);
-  const top5 = sorted
-    .filter((b) => b.blockType === "story")
-    .slice(0, 5) as StoryBlock[];
+  const candidates = sorted
+    .filter(
+      (b) =>
+        b.blockType === "story" &&
+        (b as StoryBlock).antetituloColor !== "opiniao"
+    )
+    .slice(0, 6) as StoryBlock[];
 
   // Filter to articles that don't already have TTS
   const needsGeneration: number[] = [];
-  for (const block of top5) {
+  for (const block of candidates) {
     const existing = await getTTSMetadata(block.databaseId);
     if (!existing) {
       needsGeneration.push(block.databaseId);
