@@ -82,15 +82,16 @@ export async function saveTTSMetadata(metadata: TTSMetadata): Promise<void> {
 }
 
 /**
- * Mark a post as currently generating TTS (with 120s TTL as safety net).
+ * Attempt to acquire a generation lock (SET NX with 120s TTL).
+ * Returns true if lock was acquired, false if already generating.
  */
-export async function setTTSGenerating(postId: number): Promise<void> {
+export async function acquireTTSGeneratingLock(postId: number): Promise<boolean> {
   if (!KV_REST_API_URL || !KV_REST_API_TOKEN) {
     throw new Error("Missing KV Store environment variables");
   }
 
   const response = await fetch(
-    `${KV_REST_API_URL}/set/tts:generating:${postId}/1/EX/120`,
+    `${KV_REST_API_URL}/set/tts:generating:${postId}/1/EX/120/NX`,
     {
       method: "POST",
       headers: {
@@ -102,6 +103,10 @@ export async function setTTSGenerating(postId: number): Promise<void> {
   if (!response.ok) {
     throw new Error(`KV Store responded with status: ${response.status}`);
   }
+
+  const data = await response.json();
+  // NX returns null if key already exists
+  return data.result !== null;
 }
 
 /**

@@ -3,7 +3,7 @@ import { FEATURES } from "@/config/features";
 import { put } from "@vercel/blob";
 import { loadGridStateRedis } from "@/services/redis";
 import { sortBlocksZigzagThenMobilePriority } from "@/utils/sorting";
-import { getTTSMetadata, saveTTSMetadata, setTTSGenerating, isTTSGenerating, clearTTSGenerating } from "@/services/tts-cache";
+import { getTTSMetadata, saveTTSMetadata, acquireTTSGeneratingLock, isTTSGenerating, clearTTSGenerating } from "@/services/tts-cache";
 import { generateFullArticleAudio, estimateDuration } from "@/services/cartesia";
 import { htmlToTtsText } from "@/utils/htmlToText";
 import { chunkTextForTTS } from "@/utils/ttsChunker";
@@ -101,8 +101,12 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Mark as generating and kick off in the background
-    await setTTSGenerating(postId);
+    // Acquire lock — if already generating, just report status
+    const acquired = await acquireTTSGeneratingLock(postId);
+    if (!acquired) {
+      return NextResponse.json({ status: "generating" });
+    }
+
     waitUntil(generateAndCacheTTS(postId, slug));
 
     return NextResponse.json({ status: "generating" });
