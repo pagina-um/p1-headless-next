@@ -6,4 +6,6 @@
 export const FEATURES = {
   /** Enable TTS (text-to-speech) audio playback for articles */
   TTS_ENABLED: true,
+  /** TTS provider: "cartesia" or "google" */
+  TTS_PROVIDER: "google" as "cartesia" | "google",
 } as const;

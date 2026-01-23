@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { put } from "@vercel/blob";
 import { getTTSMetadata, saveTTSMetadata, setTTSError } from "@/services/tts-cache";
-import { generateFullArticleAudio, estimateDuration } from "@/services/cartesia";
+import { getTTSProvider } from "@/services/tts-provider";
 import { htmlToTtsText } from "@/utils/htmlToText";
 import { chunkTextForTTS } from "@/utils/ttsChunker";
 import { GET_POST_BY_ID, getClient } from "@/services/wp-graphql";
@@ -55,9 +55,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "No text to generate" }, { status: 400 });
     }
 
-    // Generate audio via Cartesia (sequential chunks with built-in retries)
-    const audioBuffer = await generateFullArticleAudio(chunks);
-    const durationSeconds = estimateDuration(audioBuffer);
+    // Generate audio via configured TTS provider
+    const ttsProvider = getTTSProvider();
+    const audioBuffer = await ttsProvider.generateFullArticleAudio(chunks);
+    const durationSeconds = ttsProvider.estimateDuration(audioBuffer);
     const contentHash = simpleHash(plainText);
 
     // Upload to Vercel Blob
