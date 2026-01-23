@@ -111,12 +111,12 @@ function decodeHtmlEntities(text: string): string {
 
   // Handle numeric entities (decimal)
   result = result.replace(/&#(\d+);/g, (_, code) =>
-    String.fromCharCode(parseInt(code, 10))
+    String.fromCodePoint(parseInt(code, 10))
   );
 
   // Handle numeric entities (hex)
   result = result.replace(/&#x([0-9a-fA-F]+);/g, (_, code) =>
-    String.fromCharCode(parseInt(code, 16))
+    String.fromCodePoint(parseInt(code, 16))
   );
 
   return result;

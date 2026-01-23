@@ -21,6 +21,12 @@ export async function GET(request: NextRequest) {
     }
 
     const numericId = parseInt(postId, 10);
+    if (!Number.isFinite(numericId) || numericId <= 0) {
+      return NextResponse.json(
+        { error: "Invalid postId parameter" },
+        { status: 400 }
+      );
+    }
     const metadata = await getTTSMetadata(numericId);
     if (metadata) {
       return NextResponse.json({

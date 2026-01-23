@@ -14,11 +14,21 @@ export const maxDuration = 120;
  * Body: { postId: number }
  */
 export async function POST(request: NextRequest) {
+  const secret = request.headers.get("x-internal-secret");
+  if (!process.env.TTS_INTERNAL_SECRET || secret !== process.env.TTS_INTERNAL_SECRET) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  let postId: number | null = null;
+
   try {
-    const { postId } = await request.json();
+    const body = await request.json();
+    postId = typeof body.postId === "number" && Number.isFinite(body.postId) && body.postId > 0
+      ? Math.floor(body.postId)
+      : null;
 
     if (!postId) {
-      return NextResponse.json({ error: "Missing postId" }, { status: 400 });
+      return NextResponse.json({ error: "Invalid or missing postId" }, { status: 400 });
     }
 
     // Skip if already generated
@@ -68,7 +78,6 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ status: "generated", blobUrl: blob.url });
   } catch (error) {
-    const postId = await request.clone().json().then(b => b.postId).catch(() => null);
     const message = error instanceof Error ? error.message : "TTS generation failed";
     console.error(`TTS generate failed for post ${postId}:`, error);
     if (postId) {

@@ -140,13 +140,19 @@ export async function setTTSError(postId: number, message: string): Promise<void
     throw new Error("Missing KV Store environment variables");
   }
 
+  const truncated = message.slice(0, 200);
+
   const response = await fetch(
-    `${KV_REST_API_URL}/set/tts:error:${postId}/${encodeURIComponent(message)}/EX/300`,
+    `${KV_REST_API_URL}/pipeline`,
     {
       method: "POST",
       headers: {
+        "Content-Type": "application/json",
         Authorization: `Bearer ${KV_REST_API_TOKEN}`,
       },
+      body: JSON.stringify([
+        ["SET", `tts:error:${postId}`, truncated, "EX", 300],
+      ]),
     }
   );
 
@@ -177,7 +183,7 @@ export async function getTTSError(postId: number): Promise<string | null> {
   }
 
   const data = await response.json();
-  return data.result ? decodeURIComponent(data.result) : null;
+  return data.result || null;
 }
 
 /**

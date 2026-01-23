@@ -100,5 +100,6 @@ async function triggerTTSForTopArticles(gridState: GridState) {
   if (!acquired) return;
 
   const baseUrl = `https://${process.env.VERCEL_URL}`;
-  await start(ttsBatchWorkflow, [baseUrl, needsGeneration]);
+  const internalSecret = process.env.TTS_INTERNAL_SECRET || "";
+  await start(ttsBatchWorkflow, [baseUrl, needsGeneration, internalSecret]);
 }
