@@ -22,7 +22,7 @@ export function NewsGrid({ blocks = [] }: NewsGridProps) {
   const sortedBlocks = sortBlocksZigzagThenMobilePriority(blocks, 6);
 
   return (
-    <div className="layout grid grid-cols-1 lg:grid-cols-10 gap-4 lg:mt-4 lg:mx-4">
+    <div className="layout grid grid-cols-1 lg:grid-cols-10 gap-4 lg:mt-4 lg:mx-4 lg:gap-y-8">
       {sortedBlocks.map((block, i) => {
         const storyPostsIds = getStoryPostsIds(sortedBlocks);
         const isLandscape =
