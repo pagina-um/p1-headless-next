@@ -5,7 +5,12 @@ import {
 } from "@/services/local-storage";
 import { isDevelopment } from "@/services/config";
 import { loadGridStateRedis, saveGridStateRedis } from "@/services/redis";
-import { NextResponse } from "next/server";
+import { FEATURES } from "@/config/features";
+import { sortBlocksZigzagThenMobilePriority } from "@/utils/sorting";
+import { GridState, StoryBlock } from "@/types";
+import { getTTSMetadata, acquireTTSBatchLock } from "@/services/tts-cache";
+import { start } from "workflow/api";
+import { ttsBatchWorkflow } from "../tts/workflow";
 
 // Default empty grid state
 const DEFAULT_GRID_STATE = {
@@ -28,6 +33,11 @@ export async function POST(request: Request) {
 
     revalidateTag("homepage-grid"); // Revalidate all fetches with this tag
     revalidatePath("/");
+
+    if (FEATURES.TTS_ENABLED && process.env.VERCEL_ENV === "production") {
+      await triggerTTSForTopArticles(gridState);
+    }
+
     return Response.json({ revalidated: true });
   } catch (error) {
     console.error("Failed to save grid state:", error);
@@ -57,4 +67,39 @@ export async function GET() {
     console.error("Failed to load grid state:", error);
     return Response.json(DEFAULT_GRID_STATE);
   }
+}
+
+/**
+ * Trigger TTS generation for top 5 articles.
+ * Acquires a global batch lock so only one batch runs at a time,
+ * ensuring sequential Cartesia API usage (no concurrent calls).
+ */
+async function triggerTTSForTopArticles(gridState: GridState) {
+  const sorted = sortBlocksZigzagThenMobilePriority(gridState.blocks);
+  const candidates = sorted
+    .filter(
+      (b) =>
+        b.blockType === "story" &&
+        (b as StoryBlock).antetituloColor !== "opiniao"
+    )
+    .slice(0, 6) as StoryBlock[];
+
+  // Filter to articles that don't already have TTS
+  const needsGeneration: number[] = [];
+  for (const block of candidates) {
+    const existing = await getTTSMetadata(block.databaseId);
+    if (!existing) {
+      needsGeneration.push(block.databaseId);
+    }
+  }
+
+  if (needsGeneration.length === 0) return;
+
+  // Acquire global lock — if a batch is already running, skip
+  const acquired = await acquireTTSBatchLock();
+  if (!acquired) return;
+
+  const baseUrl = `https://${process.env.VERCEL_URL}`;
+  const internalSecret = process.env.TTS_INTERNAL_SECRET || "";
+  await start(ttsBatchWorkflow, [baseUrl, needsGeneration, internalSecret]);
 }

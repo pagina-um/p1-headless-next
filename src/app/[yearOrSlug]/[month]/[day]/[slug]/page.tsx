@@ -13,6 +13,7 @@ import { PostContent } from "@/components/post/PostContent";
 import { defaultMetadata, makeMetadataObject } from "@/utils/metadata";
 import SocialShare from "@/components/post/SocialShare";
 import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
+import { ArticlePlayer } from "@/components/post/ArticlePlayer";
 
 export interface PostPageProps {
   params: {
@@ -80,8 +81,9 @@ async function PostComponent({ slug }: { slug: string }) {
   return (
     <>
       <article>
-        <div className="max-w-4xl mx-auto px-4 py-12">
+        <div className="max-w-4xl mx-auto px-4 py-6 md:py-12">
           <PostHeader post={data} />
+          <ArticlePlayer postId={data.postBy.databaseId} />
           <PostContent
             content={data.postBy?.content || ""}
             shouldInjectDonation={

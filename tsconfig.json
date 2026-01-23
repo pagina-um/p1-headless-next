@@ -21,6 +21,9 @@
         "name": "gql.tada/ts-plugin",
         "schema": "", // configure locally
         "tadaOutputLocation": "./src/graphql-env.d.ts"
+      },
+      {
+        "name": "workflow/typescript"
       }
     ],
     "paths": {

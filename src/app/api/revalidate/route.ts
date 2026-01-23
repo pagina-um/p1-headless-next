@@ -1,5 +1,7 @@
 import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
+import { getTTSMetadata, deleteTTSMetadata } from "@/services/tts-cache";
+import { del } from "@vercel/blob";
 
 const REVALIDATION_SECRET = process.env.REVALIDATION_SECRET;
 
@@ -88,6 +90,18 @@ export async function POST(request: NextRequest) {
         revalidatePath(path);
         revalidatedPaths.push(path);
       }
+    }
+
+    // Invalidate TTS cache if it exists for this post
+    try {
+      const existingTTS = await getTTSMetadata(body.post_id);
+      if (existingTTS) {
+        await del(existingTTS.blobUrl);
+        await deleteTTSMetadata(body.post_id);
+      }
+    } catch (ttsError) {
+      console.error("TTS cache invalidation error:", ttsError);
+      // Don't fail the whole revalidation for TTS errors
     }
 
     return NextResponse.json({
