@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter, usePathname } from "next/navigation";
-import { Settings, ArrowLeft, Menu } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 import { Logo } from "../ui/Logo";
 import { DesktopNav } from "./DesktopNav";
 import { MobileNav } from "./MobileNav";
@@ -11,7 +11,7 @@ import Link from "next/link";
 import { SearchButton } from "./SearchButton";
 
 export function Header() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const { isScrolled } = useScrollHeader();
   const pathname = usePathname();
   const isAdmin = pathname === "/admin";
@@ -20,7 +20,7 @@ export function Header() {
     <>
       <header
         className={`
-          bg-white border-b border-gray-200 
+          bg-white border-b border-gray-200
           fixed top-0 left-0 right-0 z-40
           transition-all duration-300
           ${isScrolled ? "shadow-md" : ""}
@@ -29,20 +29,15 @@ export function Header() {
         <div className="max-w-7xl mx-auto px-4">
           <div
             className={`
-              flex items-center justify-between gap-8
+              flex items-center justify-between gap-2 md:gap-8
               transition-all duration-300
               ${isScrolled ? "h-14 md:h-16" : "h-16 md:h-24"}
             `}
           >
-            {/* Mobile menu button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(true)}
-              className="p-2 hover:bg-gray-100 rounded-full transition-colors md:hidden"
-            >
-              <Menu className="w-6 h-6" />
-            </button>
+            {/* Mobile menu button + sheet */}
+            {!isAdmin && <MobileNav />}
 
-            <div className="flex-1 flex flex-col items-center md:items-start">
+            <div className={`flex-1 min-w-0 overflow-hidden flex flex-col md:items-start transition-all duration-300 ${isSearchExpanded ? "items-end" : "items-center"}`}>
               <div
                 className={`
                   transition-all duration-300
@@ -66,7 +61,7 @@ export function Header() {
               </div>
             )}
 
-            {/* Admin settings button */}
+            {/* Admin back button */}
             {isAdmin && (
               <Link
                 prefetch={false}
@@ -81,8 +76,8 @@ export function Header() {
               </Link>
             )}
             {!isAdmin && (
-              <div className="md:hidden flex items-center">
-                <SearchButton />
+              <div className="md:hidden flex items-center flex-shrink-0">
+                <SearchButton onExpandChange={setIsSearchExpanded} />
               </div>
             )}
           </div>
@@ -95,11 +90,6 @@ export function Header() {
           transition-all duration-300
           ${isScrolled ? "h-14 md:h-16" : "h-16 md:h-24"}
         `}
-      />
-
-      <MobileNav
-        isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
       />
     </>
   );

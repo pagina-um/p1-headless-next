@@ -16,8 +16,8 @@ export function NavigationLinks({
   return (
     <ul
       className={`
-        flex gap-6 text-sm font-light
-        ${orientation === "vertical" ? "flex-col" : "items-center"}
+        flex text-sm font-light
+        ${orientation === "vertical" ? "flex-col gap-3" : "items-center gap-6"}
       `}
     >
       {links.map((link) => (
