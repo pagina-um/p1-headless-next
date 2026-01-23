@@ -3,7 +3,7 @@ import { FEATURES } from "@/config/features";
 import { put } from "@vercel/blob";
 import { loadGridStateRedis } from "@/services/redis";
 import { sortBlocksZigzagThenMobilePriority } from "@/utils/sorting";
-import { getTTSMetadata, saveTTSMetadata } from "@/services/tts-cache";
+import { getTTSMetadata, saveTTSMetadata, setTTSGenerating, isTTSGenerating, clearTTSGenerating } from "@/services/tts-cache";
 import { generateFullArticleAudio, estimateDuration } from "@/services/cartesia";
 import { htmlToTtsText } from "@/utils/htmlToText";
 import { chunkTextForTTS } from "@/utils/ttsChunker";
@@ -53,9 +53,13 @@ export async function GET(request: NextRequest) {
       .slice(0, 10)
       .map((b) => (b as { databaseId: number }).databaseId);
 
+    const eligible = top10Ids.includes(numericId);
+    const generating = eligible ? await isTTSGenerating(numericId) : false;
+
     return NextResponse.json({
       cached: false,
-      eligible: top10Ids.includes(numericId),
+      eligible,
+      generating,
     });
   } catch (error) {
     console.error("TTS GET error:", error);
@@ -97,7 +101,8 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Kick off generation in the background
+    // Mark as generating and kick off in the background
+    await setTTSGenerating(postId);
     waitUntil(generateAndCacheTTS(postId, slug));
 
     return NextResponse.json({ status: "generating" });
@@ -114,7 +119,10 @@ async function generateAndCacheTTS(postId: number, slug?: string) {
   try {
     // Re-check cache (another request may have completed generation)
     const existing = await getTTSMetadata(postId);
-    if (existing) return;
+    if (existing) {
+      await clearTTSGenerating(postId);
+      return;
+    }
 
     // Fetch article content by slug or by ID
     let title: string;
@@ -171,8 +179,10 @@ async function generateAndCacheTTS(postId: number, slug?: string) {
       durationSeconds,
       chunkCount: chunks.length,
     });
+    await clearTTSGenerating(postId);
   } catch (error) {
     console.error(`TTS background generation failed for post ${postId}:`, error);
+    await clearTTSGenerating(postId).catch(() => {});
   }
 }
 

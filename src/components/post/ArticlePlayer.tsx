@@ -49,6 +49,11 @@ export function ArticlePlayer({ postId, slug }: ArticlePlayerProps) {
             setState("hidden");
             return;
           }
+          if (data.generating) {
+            setState("generating");
+            pollForAudio();
+            return;
+          }
         }
       } catch {
         // Network error — hide to be safe
