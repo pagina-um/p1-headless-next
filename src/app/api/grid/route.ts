@@ -5,7 +5,6 @@ import {
 } from "@/services/local-storage";
 import { isDevelopment } from "@/services/config";
 import { loadGridStateRedis, saveGridStateRedis } from "@/services/redis";
-import { waitUntil } from "@vercel/functions";
 import { FEATURES } from "@/config/features";
 import { sortBlocksZigzagThenMobilePriority } from "@/utils/sorting";
 import { GridState, StoryBlock } from "@/types";
@@ -36,7 +35,7 @@ export async function POST(request: Request) {
     revalidatePath("/");
 
     if (FEATURES.TTS_ENABLED && process.env.VERCEL_ENV === "production") {
-      waitUntil(triggerTTSForTopArticles(gridState));
+      await triggerTTSForTopArticles(gridState);
     }
 
     return Response.json({ revalidated: true });
