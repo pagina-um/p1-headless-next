@@ -95,6 +95,6 @@ async function triggerTTSForTopArticles(gridState: GridState) {
   const acquired = await acquireTTSBatchLock();
   if (!acquired) return;
 
-  const baseUrl = `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL}`;
+  const baseUrl = `https://${process.env.VERCEL_URL}`;
   await start(ttsBatchWorkflow, [baseUrl, needsGeneration]);
 }
