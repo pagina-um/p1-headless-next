@@ -242,6 +242,8 @@ export const GET_POST_BY_ID = graphql(`
     post(id: $id, idType: DATABASE_ID) {
       id
       title
+      content
+      databaseId
       uri
       excerpt
       date

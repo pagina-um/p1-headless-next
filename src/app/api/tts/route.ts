@@ -7,7 +7,8 @@ import { getTTSMetadata, saveTTSMetadata } from "@/services/tts-cache";
 import { generateFullArticleAudio, estimateDuration } from "@/services/cartesia";
 import { htmlToTtsText } from "@/utils/htmlToText";
 import { chunkTextForTTS } from "@/utils/ttsChunker";
-import { GET_POST_BY_SLUG, getClient } from "@/services/wp-graphql";
+import { GET_POST_BY_SLUG, GET_POST_BY_ID, getClient } from "@/services/wp-graphql";
+import { waitUntil } from "@vercel/functions";
 
 export const maxDuration = 60;
 
@@ -29,15 +30,32 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const metadata = await getTTSMetadata(parseInt(postId, 10));
-    if (!metadata) {
-      return NextResponse.json({ cached: false }, { status: 404 });
+    const numericId = parseInt(postId, 10);
+    const metadata = await getTTSMetadata(numericId);
+    if (metadata) {
+      return NextResponse.json({
+        cached: true,
+        eligible: true,
+        url: metadata.blobUrl,
+        durationSeconds: metadata.durationSeconds,
+      });
     }
 
+    // Not cached — check eligibility
+    const gridState = await loadGridStateRedis();
+    if (!gridState) {
+      return NextResponse.json({ cached: false, eligible: false });
+    }
+
+    const sorted = sortBlocksZigzagThenMobilePriority(gridState.blocks);
+    const top10Ids = sorted
+      .filter((b) => b.blockType === "story")
+      .slice(0, 10)
+      .map((b) => (b as { databaseId: number }).databaseId);
+
     return NextResponse.json({
-      cached: true,
-      url: metadata.blobUrl,
-      durationSeconds: metadata.durationSeconds,
+      cached: false,
+      eligible: top10Ids.includes(numericId),
     });
   } catch (error) {
     console.error("TTS GET error:", error);
@@ -50,8 +68,9 @@ export async function GET(request: NextRequest) {
 
 /**
  * POST /api/tts
- * Generate TTS audio for an article.
- * Body: { postId: number, slug: string }
+ * Trigger TTS audio generation for an article.
+ * Returns immediately; generation runs in the background.
+ * Body: { postId: number, slug?: string }
  */
 export async function POST(request: NextRequest) {
   if (!FEATURES.TTS_ENABLED) {
@@ -61,9 +80,9 @@ export async function POST(request: NextRequest) {
   try {
     const { postId, slug } = await request.json();
 
-    if (!postId || !slug) {
+    if (!postId) {
       return NextResponse.json(
-        { error: "Missing postId or slug" },
+        { error: "Missing postId" },
         { status: 400 }
       );
     }
@@ -78,55 +97,57 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Verify article is in top 10 grid positions
-    const gridState = await loadGridStateRedis();
-    if (!gridState) {
-      return NextResponse.json(
-        { error: "Grid state not available" },
-        { status: 500 }
-      );
+    // Kick off generation in the background
+    waitUntil(generateAndCacheTTS(postId, slug));
+
+    return NextResponse.json({ status: "generating" });
+  } catch (error) {
+    console.error("TTS POST error:", error);
+    return NextResponse.json(
+      { error: "Failed to generate TTS audio" },
+      { status: 500 }
+    );
+  }
+}
+
+async function generateAndCacheTTS(postId: number, slug?: string) {
+  try {
+    // Re-check cache (another request may have completed generation)
+    const existing = await getTTSMetadata(postId);
+    if (existing) return;
+
+    // Fetch article content by slug or by ID
+    let title: string;
+    let content: string;
+
+    if (slug) {
+      const { data, error } = await getClient().query(GET_POST_BY_SLUG, {
+        slug,
+      });
+      if (error || !data?.postBy?.content) {
+        console.error(`TTS generation failed: could not fetch post by slug "${slug}"`);
+        return;
+      }
+      title = data.postBy.title || "";
+      content = data.postBy.content;
+    } else {
+      const { data, error } = await getClient().query(GET_POST_BY_ID, {
+        id: String(postId),
+      });
+      if (error || !data?.post?.content) {
+        console.error(`TTS generation failed: could not fetch post by ID ${postId}`);
+        return;
+      }
+      title = data.post.title || "";
+      content = data.post.content;
     }
-
-    const sorted = sortBlocksZigzagThenMobilePriority(gridState.blocks);
-    const top10Ids = sorted
-      .filter((b) => b.blockType === "story")
-      .slice(0, 10)
-      .map((b) => (b as { databaseId: number }).databaseId);
-
-    if (!top10Ids.includes(postId)) {
-      return NextResponse.json(
-        { error: "Article not eligible for TTS" },
-        { status: 403 }
-      );
-    }
-
-    // Fetch article content
-    const { data, error } = await getClient().query(GET_POST_BY_SLUG, {
-      slug,
-    });
-
-    if (error || !data?.postBy?.content) {
-      return NextResponse.json(
-        { error: "Failed to fetch article content" },
-        { status: 500 }
-      );
-    }
-
-    const title = data.postBy.title || "";
-    const content = data.postBy.content;
 
     // Convert HTML to plain text
     const plainText = htmlToTtsText(content, title);
 
     // Chunk text for TTS
     const chunks = chunkTextForTTS(plainText);
-
-    if (chunks.length === 0) {
-      return NextResponse.json(
-        { error: "No text content to convert" },
-        { status: 400 }
-      );
-    }
+    if (chunks.length === 0) return;
 
     // Generate audio via Cartesia
     const audioBuffer = await generateFullArticleAudio(chunks);
@@ -142,28 +163,16 @@ export async function POST(request: NextRequest) {
     });
 
     // Save metadata to Redis
-    const metadata = {
+    await saveTTSMetadata({
       postId,
       blobUrl: blob.url,
       generatedAt: new Date().toISOString(),
       contentHash,
       durationSeconds,
       chunkCount: chunks.length,
-    };
-
-    await saveTTSMetadata(metadata);
-
-    return NextResponse.json({
-      url: blob.url,
-      durationSeconds,
-      cached: false,
     });
   } catch (error) {
-    console.error("TTS POST error:", error);
-    return NextResponse.json(
-      { error: "Failed to generate TTS audio" },
-      { status: 500 }
-    );
+    console.error(`TTS background generation failed for post ${postId}:`, error);
   }
 }
 
