@@ -24,7 +24,7 @@ export function PostHeader({ post }: { post: PostBySlugData["data"] }) {
       {/* Title */}
       <h2
         className={twMerge(
-          "flex font-sans bg-primary-dark w-fit pr-2 items-start text-pretty text-white font-medium text-sm gap-x-1 before:content-[''] before:block before:w-1 before:h-full before:bg-white before:flex-shrink-0"
+          "flex font-sans bg-primary-dark w-fit pr-2 items-start text-pretty text-white font-semibold text-xs p-2 gap-x-1 before:content-[''] before:block before:w-1 before:h-full before:bg-white before:flex-shrink-0 mb-2"
         )}
       >
         {antetitulo}
@@ -37,7 +37,10 @@ export function PostHeader({ post }: { post: PostBySlugData["data"] }) {
       {/* Author, date, and share */}
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
         <div className="flex items-center gap-2 text-sm text-gray-500">
-          <Link href={authorSlug ? `/author/${authorSlug}` : "#"} className="hover:text-primary transition-colors">
+          <Link
+            href={authorSlug ? `/author/${authorSlug}` : "#"}
+            className="hover:text-primary transition-colors"
+          >
             {author}
           </Link>
           <span className="text-gray-300">|</span>
