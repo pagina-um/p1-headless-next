@@ -4,7 +4,6 @@ const { withWorkflow } = pkg;
 /** @type {import('next').NextConfig} */
 const gqlUrl = new URL(process.env.NEXT_PUBLIC_WP_URL);
 const domain = gqlUrl.hostname;
-console.log("domain", domain);
 const nextConfig = {
   images: {
     domains: [
@@ -12,6 +11,7 @@ const nextConfig = {
       "paginaum.pt",
       domain,
       "secure.gravatar.com",
+      "p1-media-uploads.s3-accelerate.amazonaws.com",
     ],
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200],
