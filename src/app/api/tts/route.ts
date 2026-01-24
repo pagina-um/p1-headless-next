@@ -29,14 +29,29 @@ export async function GET(request: NextRequest) {
     }
     const metadata = await getTTSMetadata(numericId);
     if (metadata) {
-      return NextResponse.json({
-        cached: true,
-        url: metadata.blobUrl,
-        durationSeconds: metadata.durationSeconds,
-      });
+      return NextResponse.json(
+        {
+          cached: true,
+          url: metadata.blobUrl,
+          durationSeconds: metadata.durationSeconds,
+        },
+        {
+          headers: {
+            "Cache-Control":
+              "public, s-maxage=86400, stale-while-revalidate=604800",
+          },
+        }
+      );
     }
 
-    return NextResponse.json({ cached: false });
+    return NextResponse.json(
+      { cached: false },
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
+        },
+      }
+    );
   } catch (error) {
     console.error("TTS GET error:", error);
     return NextResponse.json(
