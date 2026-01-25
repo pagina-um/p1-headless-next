@@ -1,23 +1,25 @@
 "use client";
 
-import * as React from "react";
 import { ReactNode, createElement } from "react";
-
-// In client bundles, ViewTransition is exported as unstable_ViewTransition
-// In server bundles, it's exported as ViewTransition
-const ReactViewTransition =
-  (React as any)["unstable_ViewTransition"] ||
-  (React as any)["ViewTransition"];
 
 interface ViewTransitionProps {
   children: ReactNode;
   name?: string;
 }
 
+// Dynamically access ViewTransition at runtime to avoid bundler static analysis
+function getViewTransitionComponent() {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const React = require("react");
+  return React.unstable_ViewTransition || React.ViewTransition;
+}
+
 export function ViewTransition({ children, name }: ViewTransitionProps) {
-  if (!ReactViewTransition) {
+  const ViewTransitionComponent = getViewTransitionComponent();
+
+  if (!ViewTransitionComponent) {
     return <>{children}</>;
   }
 
-  return createElement(ReactViewTransition, { name }, children);
+  return createElement(ViewTransitionComponent, { name }, children);
 }
