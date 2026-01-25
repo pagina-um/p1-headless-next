@@ -5,6 +5,13 @@ const { withWorkflow } = pkg;
 const gqlUrl = new URL(process.env.NEXT_PUBLIC_WP_URL);
 const domain = gqlUrl.hostname;
 const nextConfig = {
+  experimental: {
+    viewTransition: true,
+  },
+  eslint: {
+    // Skip during builds - run separately with flat config
+    ignoreDuringBuilds: true,
+  },
   images: {
     domains: [
       "images.unsplash.com",

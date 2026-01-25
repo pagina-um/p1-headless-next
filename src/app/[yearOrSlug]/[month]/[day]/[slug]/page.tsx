@@ -1,44 +1,30 @@
-import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { PostHeader } from "@/components/post/PostHeader";
-import { PostFooter } from "@/components/post/PostFooter";
-import { PostLoadingUI } from "@/components/post/PostLoadingUi";
 import {
   GET_LATEST_POSTS_FOR_STATIC_GENERATION,
-  GET_POST_BY_SLUG,
   getClient,
 } from "@/services/wp-graphql";
+import { getPostBySlug } from "@/services/posts";
 import { PostContent } from "@/components/post/PostContent";
 import { defaultMetadata, makeMetadataObject } from "@/utils/metadata";
 import SocialShare from "@/components/post/SocialShare";
-import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
 import { ArticlePlayer } from "@/components/post/ArticlePlayer";
+import { ViewTransition } from "@/components/ui/ViewTransition";
 
 export interface PostPageProps {
-  params: {
+  params: Promise<{
     yearOrSlug: string;
     month: string;
     day: string;
     slug: string;
-  };
+  }>;
 }
-
-export async function getPostBySlug(slug: string) {
-  const { data, error } = await getClient().query(GET_POST_BY_SLUG, {
-    slug,
-  });
-  return { data, error };
-}
-
-export type PostBySlugData = NonNullable<
-  Awaited<ReturnType<typeof getPostBySlug>>
->;
 
 export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
-  const { slug, day, month, yearOrSlug: year } = params;
+  const { slug, day, month, yearOrSlug: year } = await params;
   const { data, error } = await getPostBySlug(slug);
 
   if (!data?.postBy || !data?.postBy.title || error) {
@@ -73,16 +59,19 @@ export async function generateStaticParams() {
   });
 }
 
-async function PostComponent({ slug }: { slug: string }) {
+export default async function PostPage({ params }: PostPageProps) {
+  const { slug } = await params;
   const { data, error } = await getPostBySlug(slug);
+
   if (!data?.postBy || error) {
     notFound();
   }
+
   return (
-    <>
+    <ViewTransition>
       <article>
         <div className="max-w-4xl mx-auto px-4 py-6 md:py-12">
-          <PostHeader post={data} />
+          <PostHeader post={data} slug={slug} />
           <ArticlePlayer postId={data.postBy.databaseId} />
           <PostContent
             content={data.postBy?.content || ""}
@@ -103,16 +92,7 @@ async function PostComponent({ slug }: { slug: string }) {
           </div>
         </div>
       </article>
-    </>
-  );
-}
-
-export default async function PostPage({ params }: PostPageProps) {
-  const { slug } = params;
-  return (
-    <Suspense fallback={<PostLoadingUI />}>
-      <PostComponent slug={slug} />
-    </Suspense>
+    </ViewTransition>
   );
 }
 

@@ -6,6 +6,7 @@ import { twMerge } from "tailwind-merge";
 import { positionMap } from "@/utils/categoryUtils";
 import Image from "next/image";
 import Link from "next/link";
+import { ViewTransition } from "@/components/ui/ViewTransition";
 
 export const MIN_BLOCK_AREA_FOR_EXTRA_CONTENT = 12;
 export interface StoryLayoutProps {
@@ -57,6 +58,8 @@ export function ClassicStoryLayout({
 }: StoryLayoutProps) {
   const hasTagsToShow = tags.nodes.length > 0;
   const displayImage = !hideImage;
+  // Extract slug from URI for ViewTransition naming
+  const slug = uri.split("/").filter(Boolean).pop() || "";
   const tagNames = tags.nodes
     .filter((tag: any) => !tag.name.includes("estaque"))
     .map((t: any) => t.name)
@@ -113,18 +116,31 @@ export function ClassicStoryLayout({
                   isLandscape ? "" : "lg:top-auto lg:bottom-0"
                 )}
               >
-                <div
-                  className={twMerge(
-                    twMerge(
-                      "text-white uppercase font-semibold text-xs tracking-wider px-4 py-2 border-white backdrop-blur-sm w-fit",
-                      // Use category-based background when showing antetitulo; fallback preserved for tags too
-                      antetituloBgClass
-                    ),
-                    shouldReverse && "lg:text-right"
-                  )}
-                >
-                  {postFields.antetitulo ? (
-                    isAdmin ? (
+                {postFields.antetitulo && !isAdmin ? (
+                  <ViewTransition name={`antetitulo-${slug}`}>
+                    <div
+                      className={twMerge(
+                        twMerge(
+                          "text-white uppercase font-semibold text-xs tracking-wider px-4 py-2 border-white backdrop-blur-sm w-fit",
+                          antetituloBgClass
+                        ),
+                        shouldReverse && "lg:text-right"
+                      )}
+                    >
+                      {postFields.antetitulo}
+                    </div>
+                  </ViewTransition>
+                ) : (
+                  <div
+                    className={twMerge(
+                      twMerge(
+                        "text-white uppercase font-semibold text-xs tracking-wider px-4 py-2 border-white backdrop-blur-sm w-fit",
+                        antetituloBgClass
+                      ),
+                      shouldReverse && "lg:text-right"
+                    )}
+                  >
+                    {postFields.antetitulo ? (
                       <EditableText
                         blockUid={blockUid}
                         originalText={postFields.antetitulo}
@@ -132,12 +148,10 @@ export function ClassicStoryLayout({
                         textAlign={shouldReverse ? "right" : "left"}
                       />
                     ) : (
-                      postFields.antetitulo
-                    )
-                  ) : (
-                    <span>{tagNames}</span>
-                  )}
-                </div>
+                      <span>{tagNames}</span>
+                    )}
+                  </div>
+                )}
               </div>
             )}
             <Link href={uri}>
@@ -253,7 +267,9 @@ export function ClassicStoryLayout({
                 textAlign={shouldReverse ? "right" : "left"}
               />
             ) : (
-              <Link href={uri}>{title}</Link>
+              <ViewTransition name={`title-${slug}`}>
+                <Link href={uri}>{title}</Link>
+              </ViewTransition>
             )}
           </h2>
           {(postFields.chamadaDestaque || postFields.chamadaManchete) && (

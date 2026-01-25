@@ -1,8 +1,6 @@
 // lib/metadata.ts
-import {
-  PostBySlugData,
-  PostPageProps,
-} from "@/app/[yearOrSlug]/[month]/[day]/[slug]/page";
+import { PostPageProps } from "@/app/[yearOrSlug]/[month]/[day]/[slug]/page";
+import { PostBySlugData } from "@/services/posts";
 import { CustomPostFields } from "@/types";
 import { Metadata } from "next";
 

@@ -7,32 +7,40 @@ import {
   User,
   X,
 } from "lucide-react";
-import { PostBySlugData } from "@/app/[yearOrSlug]/[month]/[day]/[slug]/page";
+import { PostBySlugData } from "@/services/posts";
 import { formatDate } from "@/utils/categoryUtils";
 import SocialShare from "./SocialShare";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
+import { ViewTransition } from "@/components/ui/ViewTransition";
+
 interface PostHeaderProps {
   post: PostBySlugData["data"];
+  slug?: string;
 }
-export function PostHeader({ post }: { post: PostBySlugData["data"] }) {
+export function PostHeader({ post, slug }: PostHeaderProps) {
   const author = post?.postBy?.author?.node.name || "Unknown Author";
   const authorSlug = post?.postBy?.author?.node.slug;
   const antetitulo = (post?.postBy?.postFields as any).antetitulo || "";
   return (
     <header className="mb-4 md:mb-8">
+      {/* Antetitulo */}
+      <ViewTransition name={slug ? `antetitulo-${slug}` : undefined}>
+        <h2
+          className={twMerge(
+            "flex font-sans bg-primary-dark w-fit pr-2 items-start text-pretty text-white font-semibold text-xs p-2 gap-x-1 before:content-[''] before:block before:w-1 before:h-full before:bg-white before:flex-shrink-0 mb-2"
+          )}
+        >
+          {antetitulo}
+        </h2>
+      </ViewTransition>
       {/* Title */}
-      <h2
-        className={twMerge(
-          "flex font-sans bg-primary-dark w-fit pr-2 items-start text-pretty text-white font-semibold text-xs p-2 gap-x-1 before:content-[''] before:block before:w-1 before:h-full before:bg-white before:flex-shrink-0 mb-2"
-        )}
-      >
-        {antetitulo}
-      </h2>
-      <h1
-        className="text-4xl md:text-5xl font-serif font-bold mb-3 md:mb-8"
-        dangerouslySetInnerHTML={{ __html: post?.postBy?.title || "" }}
-      />
+      <ViewTransition name={slug ? `title-${slug}` : undefined}>
+        <h1
+          className="text-4xl md:text-5xl font-serif font-bold mb-3 md:mb-8"
+          dangerouslySetInnerHTML={{ __html: post?.postBy?.title || "" }}
+        />
+      </ViewTransition>
 
       {/* Author, date, and share */}
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">

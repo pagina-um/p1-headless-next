@@ -7,6 +7,7 @@ import { loadGridStateRedis } from "@/services/redis";
 import { isDevelopment } from "@/services/config";
 import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
 import { Header } from "@/components/layout/Header";
+import { ViewTransition } from "@/components/ui/ViewTransition";
 
 export const metadata: Metadata = {
   title: "Página UM",
@@ -39,12 +40,12 @@ export default async function HomePage() {
     );
   }
   return (
-    <>
+    <ViewTransition>
       <Header />
       <main className="max-w-7xl mx-auto pb-8">
         <NewsGrid blocks={initialState.blocks} />
       </main>
       <PostFooter />
-    </>
+    </ViewTransition>
   );
 }

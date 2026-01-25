@@ -4,6 +4,7 @@ import { StoryLayoutProps } from "./ClassicLayout";
 import { twMerge } from "tailwind-merge";
 import Image from "next/image";
 import Link from "next/link";
+import { ViewTransition } from "@/components/ui/ViewTransition";
 
 export function ModernStoryLayout({
   featuredImageUrl,
@@ -21,6 +22,8 @@ export function ModernStoryLayout({
 }: StoryLayoutProps) {
   // TODO: improve props typing
   const hasTagsToShow = tags.nodes.length > 0;
+  // Extract slug from URI for ViewTransition naming
+  const slug = uri.split("/").filter(Boolean).pop() || "";
   return (
     <div className="relative h-full overflow-hidden  shadow-lg group">
       {featuredImageUrl && (
@@ -54,30 +57,34 @@ export function ModernStoryLayout({
         )}
         <div className="absolute bottom-0 p-6 text-white">
           {postFields.antetitulo && (
-            <p>
+            <ViewTransition name={`antetitulo-${slug}`}>
+              <p>
+                {!isAdmin ? (
+                  postFields.antetitulo
+                ) : (
+                  <EditableText
+                    blockUid={blockUid}
+                    fieldName="antetitulo"
+                    originalText={postFields.antetitulo}
+                  />
+                )}
+              </p>
+            </ViewTransition>
+          )}
+
+          <ViewTransition name={`title-${slug}`}>
+            <h2 className="font-serif text-2xl md:text-3xl font-bold mb-3 leading-tight">
               {!isAdmin ? (
-                postFields.antetitulo
+                <Link href={uri}>{title}</Link>
               ) : (
                 <EditableText
                   blockUid={blockUid}
-                  fieldName="antetitulo"
-                  originalText={postFields.antetitulo}
+                  fieldName="title"
+                  originalText={title}
                 />
               )}
-            </p>
-          )}
-
-          <h2 className="font-serif text-2xl md:text-3xl font-bold mb-3 leading-tight">
-            {!isAdmin ? (
-              <Link href={uri}>{title}</Link>
-            ) : (
-              <EditableText
-                blockUid={blockUid}
-                fieldName="title"
-                originalText={title}
-              />
-            )}
-          </h2>
+            </h2>
+          </ViewTransition>
 
           {(postFields.chamadaDestaque || postFields.chamadaManchete) && (
             <p

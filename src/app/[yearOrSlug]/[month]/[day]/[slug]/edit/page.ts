@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getPostBySlug } from "../page";
+import { getPostBySlug } from "@/services/posts";
 
 export default async function EditPage({ params }: any) {
   const { slug, day, month, yearOrSlug: year } = params;
