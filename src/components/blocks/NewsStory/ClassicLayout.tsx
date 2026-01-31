@@ -169,7 +169,7 @@ export function ClassicStoryLayout({
             <div
               className={twMerge(
                 twMerge(
-                  "text-white uppercase font-semibold text-xs tracking-wider px-4 py-2 border-white backdrop-blur-sm lg:w-fit",
+                  "text-white uppercase font-semibold text-xs tracking-wider px-4 py-2 border-white backdrop-blur-sm lg:w-fit max-md:rounded-b-sm",
                   antetituloBgClass
                 ),
                 shouldReverse && "lg:text-right"
