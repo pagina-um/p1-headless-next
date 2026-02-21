@@ -35,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={twMerge("h-full")}>
+    <html lang="pt-PT" className={twMerge("h-full")}>
       <meta
         name="google-site-verification"
         content="Wj_fmHQpUTV1dCIq5m4CqVtryF2z_6sLyKsEXOF_3e0"
