@@ -12,6 +12,39 @@ export const makeClient = () => {
 
 export const { getClient } = registerUrql(makeClient);
 
+export const GET_CATEGORY_METADATA = graphql(`
+  query GetCategoryMetadata($slug: String!) {
+    categories(where: { slug: [$slug] }) {
+      nodes {
+        name
+        description
+      }
+    }
+  }
+`);
+
+export const GET_TAG_METADATA = graphql(`
+  query GetTagMetadata($slug: String!) {
+    tags(where: { slug: [$slug] }) {
+      nodes {
+        name
+        description
+      }
+    }
+  }
+`);
+
+export const GET_AUTHOR_METADATA = graphql(`
+  query GetAuthorMetadata($authorSlug: String!) {
+    users(where: { nicename: $authorSlug }) {
+      nodes {
+        name
+        description
+      }
+    }
+  }
+`);
+
 export const GET_CATEGORIES = graphql(`
   query GetCategories {
     categories(first: 100) {
@@ -35,6 +68,7 @@ export const GET_POSTS_BY_CATEGORY_SLUG = graphql(`
     categories(where: { slug: [$slug] }) {
       nodes {
         name
+        description
       }
     }
 
@@ -104,6 +138,7 @@ export const GET_POSTS_BY_TAG_SLUG = graphql(`
     tags(where: { slug: [$slug] }) {
       nodes {
         name
+        description
       }
     }
 
