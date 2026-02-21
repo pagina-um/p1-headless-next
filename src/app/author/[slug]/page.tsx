@@ -1,11 +1,35 @@
-import { GET_POSTS_BY_AUTHOR_SLUG, getClient } from "@/services/wp-graphql";
+import { GET_POSTS_BY_AUTHOR_SLUG, GET_AUTHOR_METADATA, getClient } from "@/services/wp-graphql";
 import Link from "next/link";
 import Image from "next/image";
 import Pagination from "@/components/ui/Pagination";
 import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
+import { Metadata } from "next";
 
 export const revalidate = 3600;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const { data } = await getClient().query(GET_AUTHOR_METADATA, {
+    authorSlug: params.slug,
+  });
+
+  const author = data?.users?.nodes[0];
+  const name = author?.name || params.slug;
+  const description = author?.description || `Artigos de ${name}`;
+
+  return {
+    title: name,
+    description,
+    openGraph: {
+      title: name,
+      description,
+    },
+  };
+}
 
 export default async function AuthorPage({
   params,

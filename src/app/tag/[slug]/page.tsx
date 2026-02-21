@@ -1,13 +1,37 @@
-import { GET_POSTS_BY_TAG_SLUG, getClient } from "@/services/wp-graphql";
+import { GET_POSTS_BY_TAG_SLUG, GET_TAG_METADATA, getClient } from "@/services/wp-graphql";
 import Link from "next/link";
 import Image from "next/image";
 import Pagination from "@/components/ui/Pagination";
 import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
+import { Metadata } from "next";
 
 // Enable ISR with 1 hour revalidation for better caching
 // First page load will be cached, subsequent pagination requests will be dynamic
 export const revalidate = 3600;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const { data } = await getClient().query(GET_TAG_METADATA, {
+    slug: params.slug,
+  });
+
+  const tag = data?.tags?.nodes[0];
+  const name = tag?.name || params.slug;
+  const description = tag?.description || `Artigos com a tag ${name}`;
+
+  return {
+    title: name,
+    description,
+    openGraph: {
+      title: name,
+      description,
+    },
+  };
+}
 
 export default async function TagPage({
   params,

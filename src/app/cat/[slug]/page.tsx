@@ -1,14 +1,39 @@
-import { GET_POSTS_BY_CATEGORY_SLUG, getClient } from "@/services/wp-graphql";
+import { GET_POSTS_BY_CATEGORY_SLUG, GET_CATEGORY_METADATA, getClient } from "@/services/wp-graphql";
 import Link from "next/link";
 import Image from "next/image";
 import Pagination from "@/components/ui/Pagination";
 import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
 import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
+import { Metadata } from "next";
 
 // Enable ISR with 1 hour revalidation for better caching
 // First page load will be cached, subsequent pagination requests will be dynamic
 export const revalidate = 3600;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const { data } = await getClient().query(GET_CATEGORY_METADATA, {
+    slug: params.slug,
+  });
+
+  const category = data?.categories?.nodes[0];
+  const name = category?.name || params.slug;
+  const description =
+    category?.description || `Artigos na categoria ${name}`;
+
+  return {
+    title: name,
+    description,
+    openGraph: {
+      title: name,
+      description,
+    },
+  };
+}
 
 export default async function CategoryPage({
   params,
