@@ -2,7 +2,7 @@
 import Image from "next/image";
 
 const COVER_URL =
-  "https://paginaum.pt/_next/image?url=https%3A%2F%2Fsrv700518.hstgr.cloud%2Fwp-content%2Fuploads%2F2025%2F08%2Fcapa_final_bras-cubas.png&w=828&q=75&dpl=dpl_7pBZFC4xumnusD8BqbatWgDbDPcy";
+    "https://p1-media-uploads.s3-accelerate.amazonaws.com/wp-content/uploads/2025/08/capa_final_bras-cubas.png";
 const SHOP_URL = "https://paginaum.myshopify.com/collections/all";
 
 export function BookPresaleBlock() {
