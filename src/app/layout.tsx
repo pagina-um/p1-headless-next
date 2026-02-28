@@ -6,6 +6,7 @@ import NextTopLoader from "nextjs-toploader";
 import { twMerge } from "tailwind-merge";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { ThemeProvider } from "@/components/ui/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Página UM",
@@ -35,19 +36,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-PT" className={twMerge("h-full")}>
+    <html lang="pt-PT" className={twMerge("h-full")} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=localStorage.getItem('theme');if(s==='dark'||(s!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}}catch(e){}})()`,
+          }}
+        />
+      </head>
       <meta
         name="google-site-verification"
         content="Wj_fmHQpUTV1dCIq5m4CqVtryF2z_6sLyKsEXOF_3e0"
       />
-      <body className="min-h-screen bg-gray-100">
-        <SpeedInsights />
-        <NextTopLoader color="#e10012" shadow={false} showSpinner={false} />
+      <body className="min-h-screen bg-gray-100 dark:bg-gray-950 dark:text-gray-100">
+        <ThemeProvider>
+          <SpeedInsights />
+          <NextTopLoader color="#e10012" shadow={false} showSpinner={false} />
 
-        {children}
-        {process.env.GOOGLE_ANALYTICS_ID && (
-          <CookieConsent gaId={process.env.GOOGLE_ANALYTICS_ID} />
-        )}
+          {children}
+          {process.env.GOOGLE_ANALYTICS_ID && (
+            <CookieConsent gaId={process.env.GOOGLE_ANALYTICS_ID} />
+          )}
+        </ThemeProvider>
       </body>
     </html>
   );

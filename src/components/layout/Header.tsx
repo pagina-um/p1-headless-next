@@ -9,6 +9,7 @@ import { MobileNav } from "./MobileNav";
 import { useScrollHeader } from "@/hooks/useScrollHeader";
 import Link from "next/link";
 import { SearchButton } from "./SearchButton";
+import { ThemeToggle } from "../ui/ThemeToggle";
 
 export function Header() {
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
@@ -20,7 +21,7 @@ export function Header() {
     <>
       <header
         className={`
-          bg-white border-b border-gray-200
+          bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700
           fixed top-0 left-0 right-0 z-40
           transition-all duration-300
           ${isScrolled ? "shadow-md" : ""}
@@ -58,6 +59,7 @@ export function Header() {
               <div className="hidden md:flex flex-1 items-center justify-end space-x-4">
                 <DesktopNav />
                 <SearchButton />
+                <ThemeToggle />
               </div>
             )}
 
