@@ -2,7 +2,7 @@
 import Image from "next/image";
 
 const COVER_URL =
-    "https://p1-media-uploads.s3-accelerate.amazonaws.com/wp-content/uploads/2025/08/capa_final_bras-cubas.png";
+  "https://p1-media-uploads.s3-accelerate.amazonaws.com/wp-content/uploads/2025/08/capa_final_bras-cubas.png";
 const SHOP_URL = "https://paginaum.myshopify.com/collections/all";
 
 export function BookPresaleBlock() {

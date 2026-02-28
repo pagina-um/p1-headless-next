@@ -18,6 +18,7 @@ export async function loadGridStateRedis(): Promise<GridState | null> {
       headers: {
         Authorization: `Bearer ${KV_REST_API_TOKEN}`,
       },
+      next: { tags: ["homepage-grid"] },
     });
 
     if (!response.ok) {
