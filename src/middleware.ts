@@ -56,5 +56,5 @@ export function middleware(request: NextRequest) {
 
 // Configure the middleware to only run on /admin routes
 export const config = {
-  matcher: "/admin/:path*",
+  matcher: ["/admin/:path*", "/admin-cultura/:path*"],
 };
