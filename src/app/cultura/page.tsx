@@ -41,18 +41,12 @@ export default async function CulturaPage() {
     );
   }
   return (
-    <div className="bg-amber-50/60 min-h-screen">
-      <Header />
+    <>
+      <Header section="Cultura" accentColor="#f5f0e8" />
       <main className="max-w-7xl mx-auto pb-8">
-        <div className="text-center pt-8 pb-4 lg:pt-12 lg:pb-6 px-4">
-          <h1 className="font-serif text-5xl lg:text-6xl font-bold tracking-[0.25em] uppercase text-stone-800">
-            Cultura
-          </h1>
-          <div className="mt-3 mx-auto w-24 border-t-2 border-amber-700/60" />
-        </div>
         <NewsGrid blocks={initialState.blocks} />
       </main>
       <PostFooter />
-    </div>
+    </>
   );
 }

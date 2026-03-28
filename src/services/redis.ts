@@ -46,7 +46,7 @@ export async function loadGridStateRedis(
       }
     }
 
-    return responseData;
+    return null;
   } catch (error) {
     console.error("KV Store error loading grid state:", error);
     throw new Error("Failed to load state from KV Store");
