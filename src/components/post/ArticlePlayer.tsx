@@ -112,7 +112,7 @@ export function ArticlePlayer({ postId }: ArticlePlayerProps) {
   if (!FEATURES.TTS_ENABLED || state === "hidden" || state === "loading") return null;
 
   return (
-    <div className="mt-3 mb-0 md:mt-4 md:mb-0 w-full px-4 py-3 bg-gray-50 rounded-lg border border-gray-200">
+    <div className="mt-3 mb-4 md:mt-4 md:mb-6 w-full px-4 py-3 bg-gray-50 rounded-lg border border-gray-200">
       <p className="text-xs text-gray-500 mb-2 font-medium">Ouvir artigo (experimental)</p>
       <div className="flex items-center gap-3">
         <button
