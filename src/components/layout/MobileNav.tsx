@@ -11,16 +11,17 @@ import {
   SheetTrigger,
   SheetTitle,
 } from "@/components/ui/sheet";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export function MobileNav() {
   return (
     <Sheet>
       <SheetTrigger asChild>
         <button
-          className="p-2 hover:bg-gray-100 rounded-full transition-colors md:hidden"
+          className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors md:hidden"
           aria-label="Open menu"
         >
-          <Menu className="w-6 h-6" />
+          <Menu className="w-6 h-6 dark:text-gray-200" />
         </button>
       </SheetTrigger>
       <SheetContent side="left" className="flex flex-col">
@@ -39,6 +40,10 @@ export function MobileNav() {
         <nav className="mt-6 flex-1 overflow-y-auto min-h-0">
           <NavigationLinks orientation="vertical" />
         </nav>
+        <div className="mt-4 flex items-center justify-between border-t border-gray-200 dark:border-gray-700 pt-4">
+          <span className="text-sm text-gray-500 dark:text-gray-400">Modo nocturno</span>
+          <ThemeToggle />
+        </div>
       </SheetContent>
     </Sheet>
   );

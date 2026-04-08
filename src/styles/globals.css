@@ -11,6 +11,11 @@
     --radius: 0.5rem;
   }
 
+  .dark {
+    --color-primary: #e05555;
+    --color-primary-dark: #cf2e2e;
+  }
+
   body {
     @apply antialiased;
   }

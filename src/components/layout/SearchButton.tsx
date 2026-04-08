@@ -56,7 +56,7 @@ export function SearchButton({ onExpandChange }: SearchButtonProps) {
       <form
         onSubmit={handleSearch}
         className={`
-          flex items-center bg-gray-100 rounded-full overflow-hidden
+          flex items-center bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden
           transition-all duration-300 ease-in-out
           ${isExpanded ? "w-[200px] sm:w-[260px] opacity-100" : "w-0 opacity-0"}
         `}
@@ -68,7 +68,7 @@ export function SearchButton({ onExpandChange }: SearchButtonProps) {
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Pesquisar..."
           tabIndex={isExpanded ? 0 : -1}
-          className="flex-1 min-w-0 px-4 py-2 bg-transparent outline-none text-sm"
+          className="flex-1 min-w-0 px-4 py-2 bg-transparent outline-none text-sm dark:text-gray-100 dark:placeholder-gray-400"
         />
         <button
           type="button"
@@ -77,20 +77,20 @@ export function SearchButton({ onExpandChange }: SearchButtonProps) {
             setSearchQuery("");
           }}
           tabIndex={isExpanded ? 0 : -1}
-          className="p-2 hover:bg-gray-200 rounded-full transition-colors mr-1"
+          className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition-colors mr-1"
         >
-          <X className="w-4 h-4 text-gray-600" />
+          <X className="w-4 h-4 text-gray-600 dark:text-gray-300" />
         </button>
       </form>
       <button
         onClick={() => setExpanded(true)}
         className={`
-          p-2 hover:bg-gray-100 rounded-full transition-all duration-300
+          p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-all duration-300
           ${isExpanded ? "scale-0 w-0 opacity-0" : "scale-100 opacity-100"}
         `}
         aria-label="Search"
       >
-        <Search className="w-5 h-5 text-gray-600" />
+        <Search className="w-5 h-5 text-gray-600 dark:text-gray-300" />
       </button>
     </div>
   );
