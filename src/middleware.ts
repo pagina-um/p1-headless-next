@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { ADMIN_USERNAME, ADMIN_PASSWORD } from "./services/config";
+import {
+  ADMIN_USERNAME,
+  ADMIN_PASSWORD,
+  ADMIN_CULTURA_USERNAME,
+  ADMIN_CULTURA_PASSWORD,
+} from "./services/config";
 
 export function middleware(request: NextRequest) {
   // Check if the path starts with /admin
@@ -9,6 +14,16 @@ export function middleware(request: NextRequest) {
     process.env.NODE_ENV === "production" &&
     process.env.NEXT_PUBLIC_VERCEL_TARGET_ENV === "production"
   ) {
+    const isCultura =
+      request.nextUrl.pathname.startsWith("/admin-cultura");
+    const expectedUsername = isCultura
+      ? ADMIN_CULTURA_USERNAME
+      : ADMIN_USERNAME;
+    const expectedPassword = isCultura
+      ? ADMIN_CULTURA_PASSWORD
+      : ADMIN_PASSWORD;
+    const realm = isCultura ? "Admin Cultura Area" : "Admin Area";
+
     // Get the Authorization header
     const authHeader = request.headers.get("authorization");
 
@@ -17,7 +32,7 @@ export function middleware(request: NextRequest) {
       return new NextResponse(null, {
         status: 401,
         headers: {
-          "WWW-Authenticate": 'Basic realm="Admin Area"',
+          "WWW-Authenticate": `Basic realm="${realm}"`,
         },
       });
     }
@@ -27,7 +42,7 @@ export function middleware(request: NextRequest) {
       const credentials = authHeader.split(" ")[1];
       const [username, password] = atob(credentials).split(":");
 
-      if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+      if (username === expectedUsername && password === expectedPassword) {
         // Authentication successful, continue to the route
         return NextResponse.next();
       }
@@ -36,7 +51,7 @@ export function middleware(request: NextRequest) {
       return new NextResponse(null, {
         status: 401,
         headers: {
-          "WWW-Authenticate": 'Basic realm="Admin Area"',
+          "WWW-Authenticate": `Basic realm="${realm}"`,
         },
       });
     } catch (_e) {
@@ -44,7 +59,7 @@ export function middleware(request: NextRequest) {
       return new NextResponse(null, {
         status: 401,
         headers: {
-          "WWW-Authenticate": 'Basic realm="Admin Area"',
+          "WWW-Authenticate": `Basic realm="${realm}"`,
         },
       });
     }

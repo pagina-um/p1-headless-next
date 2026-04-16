@@ -9,3 +9,10 @@ export const ADMIN_USERNAME = isDevelopment
 export const ADMIN_PASSWORD = isDevelopment
   ? "admin"
   : process.env.ADMIN_PASSWORD;
+
+export const ADMIN_CULTURA_USERNAME = isDevelopment
+  ? "admin"
+  : process.env.ADMIN_CULTURA_USERNAME;
+export const ADMIN_CULTURA_PASSWORD = isDevelopment
+  ? "admin"
+  : process.env.ADMIN_CULTURA_PASSWORD;
