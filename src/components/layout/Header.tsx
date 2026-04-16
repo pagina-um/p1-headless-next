@@ -10,7 +10,12 @@ import { useScrollHeader } from "@/hooks/useScrollHeader";
 import Link from "next/link";
 import { SearchButton } from "./SearchButton";
 
-export function Header() {
+interface HeaderProps {
+  section?: string;
+  accentColor?: string;
+}
+
+export function Header({ section, accentColor }: HeaderProps = {}) {
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const { isScrolled } = useScrollHeader();
   const pathname = usePathname();
@@ -20,11 +25,12 @@ export function Header() {
     <>
       <header
         className={`
-          bg-white border-b border-gray-200
+          border-b border-gray-200
           fixed top-0 left-0 right-0 z-40
           transition-all duration-300
           ${isScrolled ? "shadow-md" : ""}
         `}
+        style={{ backgroundColor: accentColor || "white" }}
       >
         <div className="max-w-7xl mx-auto px-4">
           <div
@@ -48,8 +54,13 @@ export function Header() {
                   }
                 `}
               >
-                <Link href={"/"}>
+                <Link href={section ? `/${section.toLowerCase()}` : "/"} className="flex flex-col items-center md:items-start">
                   <Logo />
+                  {section && (
+                    <span className="font-serif text-[10px] md:text-xs tracking-[0.3em] uppercase text-stone-500 -mt-1 md:-mt-1.5">
+                      {section}
+                    </span>
+                  )}
                 </Link>
               </div>
             </div>

@@ -18,9 +18,12 @@ import { useGrid } from "@/components/ui/GridContext";
 import { RotateCcw } from "lucide-react";
 import Link from "next/link";
 
-interface AdminPanelProps {}
+interface AdminPanelProps {
+  previewPath?: string;
+  sectionLabel?: string;
+}
 
-export function AdminPanel({}: AdminPanelProps) {
+export function AdminPanel({ previewPath = "/admin/preview", sectionLabel }: AdminPanelProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const {
@@ -66,6 +69,11 @@ export function AdminPanel({}: AdminPanelProps) {
               )}
             </button>
             Adicionar conteúdo
+            {sectionLabel && (
+              <span className="ml-2 px-2.5 py-0.5 text-sm font-medium rounded-full bg-amber-100 text-amber-800 border border-amber-300">
+                {sectionLabel}
+              </span>
+            )}
           </h1>
           <div className="flex gap-4">
             <button
@@ -89,7 +97,7 @@ export function AdminPanel({}: AdminPanelProps) {
               Anular Alterações
             </button>
             <Link
-              href="/admin/preview"
+              href={previewPath}
               className="bg-gray-600 w-40 h-10 text-white px-4 py-2 flex items-center gap-2 hover:bg-gray-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
             >
               <Eye className="w-4 h-4" /> Pré-visualizar

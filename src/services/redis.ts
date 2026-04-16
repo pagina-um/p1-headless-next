@@ -8,17 +8,20 @@ const GRID_STATE_KEY = "grid-state";
 /**
  * Load grid state from KV Store
  */
-export async function loadGridStateRedis(): Promise<GridState | null> {
+export async function loadGridStateRedis(
+  key: string = GRID_STATE_KEY,
+  tag: string = "homepage-grid"
+): Promise<GridState | null> {
   try {
     if (!KV_REST_API_URL || !KV_REST_API_TOKEN) {
       throw new Error("Missing KV Store environment variables");
     }
 
-    const response = await fetch(`${KV_REST_API_URL}/get/${GRID_STATE_KEY}`, {
+    const response = await fetch(`${KV_REST_API_URL}/get/${key}`, {
       headers: {
         Authorization: `Bearer ${KV_REST_API_TOKEN}`,
       },
-      next: { tags: ["homepage-grid"] },
+      next: { tags: [tag] },
     });
 
     if (!response.ok) {
@@ -43,7 +46,7 @@ export async function loadGridStateRedis(): Promise<GridState | null> {
       }
     }
 
-    return responseData;
+    return null;
   } catch (error) {
     console.error("KV Store error loading grid state:", error);
     throw new Error("Failed to load state from KV Store");
@@ -53,13 +56,16 @@ export async function loadGridStateRedis(): Promise<GridState | null> {
 /**
  * Save grid state to KV Store
  */
-export async function saveGridStateRedis(gridState: GridState): Promise<void> {
+export async function saveGridStateRedis(
+  gridState: GridState,
+  key: string = GRID_STATE_KEY
+): Promise<void> {
   try {
     if (!KV_REST_API_URL || !KV_REST_API_TOKEN) {
       throw new Error("Missing KV Store environment variables");
     }
 
-    const response = await fetch(`${KV_REST_API_URL}/set/${GRID_STATE_KEY}`, {
+    const response = await fetch(`${KV_REST_API_URL}/set/${key}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

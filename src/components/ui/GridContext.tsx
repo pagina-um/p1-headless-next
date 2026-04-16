@@ -49,7 +49,13 @@ const initialGridState: GridState = {
   createdAt: "",
 };
 
-export function GridProvider({ children }: { children: React.ReactNode }) {
+export function GridProvider({
+  children,
+  apiEndpoint = "/api/grid",
+}: {
+  children: React.ReactNode;
+  apiEndpoint?: string;
+}) {
   const [gridState, setGridState] = useState<GridState>(initialGridState);
   const [isSaving, setIsSaving] = useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
@@ -59,7 +65,7 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
   // Load initial grid state
   useEffect(() => {
     const fetchGridState = async () => {
-      const response = await fetch("/api/grid");
+      const response = await fetch(apiEndpoint);
       const fetchedGridState = await response.json();
       if (fetchedGridState) {
         setGridState(fetchedGridState);
@@ -144,7 +150,7 @@ export function GridProvider({ children }: { children: React.ReactNode }) {
     if (!gridState) return;
     try {
       setIsSaving(true);
-      await fetch("/api/grid", {
+      await fetch(apiEndpoint, {
         method: "POST",
         body: JSON.stringify(gridState),
       });

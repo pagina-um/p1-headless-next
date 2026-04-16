@@ -20,10 +20,13 @@ async function ensureDataDir() {
   }
 }
 
-export async function saveGridStateLocal(state: GridState): Promise<void> {
+export async function saveGridStateLocal(
+  state: GridState,
+  filename: string = GRID_STATE_FILENAME
+): Promise<void> {
   try {
     await ensureDataDir();
-    const filePath = path.join(DATA_DIR, GRID_STATE_FILENAME);
+    const filePath = path.join(DATA_DIR, filename);
     await fs.writeFile(
       filePath,
       JSON.stringify(
@@ -41,10 +44,12 @@ export async function saveGridStateLocal(state: GridState): Promise<void> {
   }
 }
 
-export async function loadGridStateLocal(): Promise<GridState> {
+export async function loadGridStateLocal(
+  filename: string = GRID_STATE_FILENAME
+): Promise<GridState> {
   try {
     await ensureDataDir();
-    const filePath = path.join(DATA_DIR, GRID_STATE_FILENAME);
+    const filePath = path.join(DATA_DIR, filename);
 
     try {
       await fs.access(filePath);
