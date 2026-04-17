@@ -77,6 +77,13 @@ export const STATIC_BLOCKS: Record<string, StaticBlockDefinition> = {
     content: "Correio Mercantil de Brás Cubas em pré-venda.",
     defaultSize: { width: 4, height: 3 },
   },
+  culturaBanner: {
+    type: "culturaBanner",
+    title: "Banner Cultura",
+    content:
+      "Banner destacado com as 5 histórias mais recentes da grelha de Cultura.",
+    defaultSize: { width: 6, height: 4 },
+  },
 };
 
 export const GRID_COLUMNS = 10;
