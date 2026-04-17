@@ -1,6 +1,7 @@
 import { Block } from "@/types";
 import { NewsStoryServer } from "../blocks/NewsStory/NewsStory.server";
 import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
+import { CulturaBannerServer } from "../blocks/CulturaBanner.server";
 import { EmptyState } from "../ui/EmptyState";
 import { CategoryBlockServer } from "../blocks/CategoryBlock.server";
 import { sortBlocksZigzagThenMobilePriority } from "@/utils/sorting";
@@ -54,6 +55,8 @@ export function NewsGrid({ blocks = [] }: NewsGridProps) {
                   excludePostIds={storyPostsIds}
                 />
               )
+            ) : block.blockType === "static" && block.type === "culturaBanner" ? (
+              <CulturaBannerServer block={block} />
             ) : (
               <StaticBlockComponent block={block} isAdmin={false} />
             )}
