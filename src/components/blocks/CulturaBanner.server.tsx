@@ -87,7 +87,7 @@ export async function CulturaBannerServer({ block }: CulturaBannerProps) {
             <p className="font-serif text-[10px] uppercase tracking-[0.35em] text-amber-800/80">
               Secção
             </p>
-            <h2 className="mt-1 font-serif text-4xl font-bold leading-none text-stone-900 md:text-5xl lg:text-6xl">
+            <h2 className="font-instrument mt-1 text-5xl font-normal leading-[0.9] tracking-tight text-stone-900 md:text-6xl lg:text-7xl">
               Cultura
             </h2>
             <p className="mt-3 max-w-xs text-sm text-stone-700/90">
@@ -100,33 +100,41 @@ export async function CulturaBannerServer({ block }: CulturaBannerProps) {
           </span>
         </header>
 
-        <ul className="flex-1 divide-y divide-amber-900/10">
-          {resolved.length === 0 && (
-            <li className="py-3 text-sm italic text-stone-600">
-              Sem histórias na grelha de Cultura.
-            </li>
-          )}
-          {resolved.map((story) => (
-            <li key={story.uId} className="relative z-20 py-2.5 first:pt-0">
-              <Link
-                href={story.uri}
-                className="block focus-visible:outline-2 focus-visible:outline-amber-700"
+        <div className="flex flex-1 flex-col">
+          <p className="mb-2 font-serif text-[10px] uppercase tracking-[0.35em] text-amber-800/80">
+            Recentes
+          </p>
+          <ul className="flex-1 divide-y divide-amber-900/10">
+            {resolved.length === 0 && (
+              <li className="py-3 text-sm italic text-stone-600">
+                Sem histórias na grelha de Cultura.
+              </li>
+            )}
+            {resolved.map((story) => (
+              <li
+                key={story.uId}
+                className="relative z-20 py-2.5 first:pt-0"
               >
-                <h3 className="font-serif text-base leading-snug text-stone-900 hover:text-amber-900 md:text-[17px]">
-                  {story.title}
-                </h3>
-                {story.date && (
-                  <time
-                    dateTime={story.date}
-                    className="mt-0.5 block text-[11px] uppercase tracking-wider text-stone-500"
-                  >
-                    {formatDate(story.date)}
-                  </time>
-                )}
-              </Link>
-            </li>
-          ))}
-        </ul>
+                <Link
+                  href={story.uri}
+                  className="block focus-visible:outline-2 focus-visible:outline-amber-700"
+                >
+                  <h3 className="font-serif text-base leading-snug text-stone-900 hover:text-amber-900 md:text-[17px]">
+                    {story.title}
+                  </h3>
+                  {story.date && (
+                    <time
+                      dateTime={story.date}
+                      className="mt-0.5 block text-[11px] uppercase tracking-wider text-stone-500"
+                    >
+                      {formatDate(story.date)}
+                    </time>
+                  )}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </article>
   );

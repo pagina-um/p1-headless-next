@@ -126,13 +126,18 @@ export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
             <p className="font-serif text-[10px] uppercase tracking-[0.35em] text-amber-800/80">
               Secção
             </p>
-            <h2 className="mt-1 font-serif text-4xl font-bold leading-none text-stone-900">
+            <h2 className="font-instrument mt-1 text-5xl font-normal leading-[0.9] tracking-tight text-stone-900">
               Cultura
             </h2>
           </div>
-          <p className="text-xs italic text-stone-600">
-            5 histórias mais recentes da grelha de Cultura (pré-visualização)
-          </p>
+          <div>
+            <p className="font-serif text-[10px] uppercase tracking-[0.35em] text-amber-800/80">
+              Recentes
+            </p>
+            <p className="mt-1 text-xs italic text-stone-600">
+              5 histórias mais recentes da grelha de Cultura (pré-visualização)
+            </p>
+          </div>
         </div>
       </div>
     );
