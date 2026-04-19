@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Mail, Plus, Handshake } from "lucide-react";
+import { Layout, Mail, Plus, Handshake, Palette } from "lucide-react";
 import { STATIC_BLOCKS } from "../../constants/blocks";
 import type { StaticBlockType } from "../../types";
 
@@ -27,6 +27,8 @@ export function StaticBlockCreator({ onCreateBlock }: StaticBlockCreatorProps) {
                 <Mail className="w-5 h-5 text-primary" />
               ) : block.type === "donation" ? (
                 <Handshake className="w-5 h-5 text-primary" />
+              ) : block.type === "culturaBanner" ? (
+                <Palette className="w-5 h-5 text-amber-700" />
               ) : (
                 <Layout className="w-5 h-5 text-gray-500" />
               )}
