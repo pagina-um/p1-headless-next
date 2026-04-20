@@ -11,7 +11,7 @@ export function useNavigation() {
       { href: "/cat/opiniao", label: "Opinião" },
       { href: "/cat/entrevistas", label: "Entrevistas" },
       { href: "/cat/cronica", label: "Crónica" },
-      { href: "/cat/cultura", label: "Cultura" },
+      { href: "/cultura", label: "Cultura" },
     ],
     []
   );
