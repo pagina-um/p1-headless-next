@@ -64,7 +64,7 @@ module.exports = {
           "color-mix(in srgb, var(--color-primary) 10%, white)",
       },
       fontFamily: {
-        serif: ["Playfair Display", "serif"],
+        serif: ["Instrument Serif", "serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.3s ease-in-out",

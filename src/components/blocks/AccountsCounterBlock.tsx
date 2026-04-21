@@ -37,7 +37,7 @@ export function AccountsCounterBlock() {
 
   return (
     <div className="h-full w-full flex flex-col items-center justify-center text-center gap-4 p-4 bg-primary-dark text-white rounded-md shadow">
-      <p className="font-serif text-xl sm:text-2xl font-bold leading-snug">
+      <p className="font-serif text-xl sm:text-2xl leading-snug">
         Há <span className=" font-mono">{time.days}</span> dias,{" "}
         <span className=" font-mono">{time.hours}</span> horas,{" "}
         <span className=" font-mono">{time.minutes}</span> minutos,{" "}

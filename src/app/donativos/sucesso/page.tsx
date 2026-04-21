@@ -34,7 +34,7 @@ export default function SucessoPage({ searchParams }: SuccessPageProps) {
           </div>
 
           {/* Main Message */}
-          <h1 className="text-4xl font-serif font-bold mb-6 text-gray-900">
+          <h1 className="text-4xl font-serif mb-6 text-gray-900">
             Obrigado pela sua contribuição!
           </h1>
 

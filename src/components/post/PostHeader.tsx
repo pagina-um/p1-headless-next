@@ -30,7 +30,7 @@ export function PostHeader({ post }: { post: PostBySlugData["data"] }) {
         {antetitulo}
       </h2>
       <h1
-        className="text-4xl md:text-5xl font-serif font-bold mb-3 md:mb-8"
+        className="text-4xl md:text-5xl font-serif mb-3 md:mb-8"
         dangerouslySetInnerHTML={{ __html: post?.postBy?.title || "" }}
       />
 

@@ -67,7 +67,7 @@ export function ModernStoryLayout({
             </p>
           )}
 
-          <h2 className="font-serif text-2xl md:text-3xl font-bold mb-3 leading-tight">
+          <h2 className="font-serif text-2xl md:text-3xl mb-3 leading-tight">
             {!isAdmin ? (
               <Link href={uri}>{title}</Link>
             ) : (

@@ -20,7 +20,7 @@ export default async function SearchPage({
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center mb-8">
           <Search className="mr-2" />
-          <h1 className="text-4xl font-serif font-bold text-gray-900">
+          <h1 className="text-4xl font-serif text-gray-900">
             Pesquisa
           </h1>
         </div>
@@ -57,7 +57,7 @@ export default async function SearchPage({
     <div className="container mx-auto px-4 py-8">
       <div className="flex items-center mb-8">
         <Search className="mr-2" />
-        <h1 className="text-4xl font-serif font-bold text-gray-900">
+        <h1 className="text-4xl font-serif text-gray-900">
           Artigos relacionados com: <span className="italic">"{query}"</span>
         </h1>
       </div>

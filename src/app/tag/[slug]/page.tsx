@@ -69,7 +69,7 @@ export default async function TagPage({
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-serif font-bold mb-8 text-gray-900">
+      <h1 className="text-4xl font-serif mb-8 text-gray-900">
         {tag?.name}
       </h1>
 
@@ -93,7 +93,7 @@ export default async function TagPage({
                 </div>
               )}
               <div className="p-6 pb-0">
-                <h2 className="text-xl font-serif font-bold mb-3 group-hover:text-primary transition-colors">
+                <h2 className="text-xl font-serif mb-3 group-hover:text-primary transition-colors">
                   {post.title}
                 </h2>
               </div>

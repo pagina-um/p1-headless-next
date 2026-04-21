@@ -105,7 +105,7 @@ export function PodcastBlock() {
       <div className="flex items-center justify-between mb-6 pb-3 border-b border-gray-200">
         <div className="flex items-center gap-2">
           <Mic className="w-5 h-5 text-white" />
-          <h2 className="font-serif text-2xl font-bold text-white">{title}</h2>
+          <h2 className="font-serif text-2xl text-white">{title}</h2>
         </div>
       </div>
       <div className="flex-1 overflow-auto">

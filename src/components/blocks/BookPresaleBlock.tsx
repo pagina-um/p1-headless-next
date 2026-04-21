@@ -29,7 +29,7 @@ export function BookPresaleBlock() {
           />
         </div>
         <div className="flex flex-col items-center md:items-start justify-center flex-1 min-w-0 book-presale-content">
-          <h2 className="font-serif text-2xl md:text-3xl font-bold text-yellow-900 mb-1 drop-shadow-sm text-center md:text-left break-words">
+          <h2 className="font-serif text-2xl md:text-3xl text-yellow-900 mb-1 drop-shadow-sm text-center md:text-left break-words">
             Correio Mercantil de Brás Cubas
           </h2>
           <div className="text-yellow-800 text-lg md:text-xl font-medium italic mb-2 text-center md:text-left">

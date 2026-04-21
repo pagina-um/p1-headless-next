@@ -64,7 +64,7 @@ export default async function AuthorPage({
   if (!author) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-serif font-bold mb-8 text-gray-900">
+        <h1 className="text-4xl font-serif mb-8 text-gray-900">
           Autor não encontrado
         </h1>
       </div>
@@ -86,7 +86,7 @@ export default async function AuthorPage({
           </div>
         )}
         <div>
-          <h1 className="text-4xl font-serif font-bold text-gray-900">
+          <h1 className="text-4xl font-serif text-gray-900">
             {author.name}
           </h1>
           {author.description && (
@@ -95,7 +95,7 @@ export default async function AuthorPage({
         </div>
       </div>
 
-      <h2 className="text-2xl font-serif font-bold mb-6 text-gray-800">
+      <h2 className="text-2xl font-serif mb-6 text-gray-800">
         Artigos de {author.name}
       </h2>
 
@@ -119,7 +119,7 @@ export default async function AuthorPage({
                 </div>
               )}
               <div className="p-6">
-                <h3 className="text-xl font-serif font-bold mb-3 group-hover:text-primary transition-colors">
+                <h3 className="text-xl font-serif mb-3 group-hover:text-primary transition-colors">
                   {post.title}
                 </h3>
 

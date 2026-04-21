@@ -25,7 +25,7 @@ export default function ContribuirPage() {
     <>
       <main className=" mx-auto px-4 py-12 md:flex justify-center items-center gap-4">
         <div className="text-center mb-12 md:max-w-[400px] md:p-4">
-          <h1 className="text-4xl font-serif font-bold mb-6 text-gray-900">
+          <h1 className="text-4xl font-serif mb-6 text-gray-900">
             Só depende dos leitores.
           </h1>
           <p className="text-xl text-gray-600 mb-8 md:text-center">

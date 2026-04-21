@@ -31,7 +31,7 @@ export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
   if (isDivider) {
     return (
       <div className="flex items-end gap-1 border-b-primary-dark border-b max-sm:pl-3">
-        <h2 className="font-serif text-3xl font-bold text-primary-dark ">
+        <h2 className="font-serif text-3xl text-primary-dark ">
           {isAdmin ? (
             <EditableText
               blockUid={block.uId}
@@ -54,7 +54,7 @@ export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
       >
         <div className="flex flex-col items-center text-center text-white h-full justify-center">
           <Mail className="w-12 h-12 mb-4" />
-          <h2 className="font-serif text-2xl font-bold mb-2">
+          <h2 className="font-serif text-2xl mb-2">
             Subscreva a nossa newsletter
           </h2>
           <p className="mb-6 text-white/90">

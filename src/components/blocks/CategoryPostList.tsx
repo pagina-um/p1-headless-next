@@ -58,7 +58,7 @@ const ArticleContent = ({
       <Link href={post.uri || "#"} className="block">
         <h3
           className={twMerge(
-            "font-serif text-lg font-semibold hover:text-primary transition-colors line-clamp-3 @3xl:line-clamp-3",
+            "font-serif text-lg hover:text-primary transition-colors line-clamp-3 @3xl:line-clamp-3",
             showAuthor && "text-xl"
           )}
         >
