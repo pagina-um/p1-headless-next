@@ -22,6 +22,7 @@ export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
   const isDonationBlock = block.type === "donation";
   const isAccountsCounter = block.type === "accountsCounter";
   const isBookPresale = block.type === "bookPresale";
+  const isCulturaBanner = block.type === "culturaBanner";
 
   const gridStyles = {
     gridColumn: `span ${block.gridPosition?.width || 1}`,
@@ -104,6 +105,40 @@ export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
         style={gridStyles}
       >
         <BookPresaleBlock />
+      </div>
+    );
+  }
+
+  if (isCulturaBanner) {
+    return (
+      <div
+        className="relative h-full overflow-hidden rounded-md border border-amber-200/60 bg-gradient-to-br from-[#f5ecd9] via-[#f0e4c7] to-[#e8d9b0] shadow-sm block-content"
+        style={gridStyles}
+      >
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -left-6 -top-10 text-[9rem] leading-none font-serif italic text-amber-900/5 select-none"
+        >
+          C
+        </div>
+        <div className="relative flex h-full flex-col justify-between p-5">
+          <div>
+            <p className="font-serif text-[10px] uppercase tracking-[0.35em] text-amber-800/80">
+              Secção
+            </p>
+            <h2 className="font-instrument mt-1 text-5xl font-normal leading-[0.9] tracking-tight text-stone-900">
+              Cultura
+            </h2>
+          </div>
+          <div>
+            <p className="font-serif text-[10px] uppercase tracking-[0.35em] text-amber-800/80">
+              Recentes
+            </p>
+            <p className="mt-1 text-xs italic text-stone-600">
+              5 histórias mais recentes da grelha de Cultura (pré-visualização)
+            </p>
+          </div>
+        </div>
       </div>
     );
   }
