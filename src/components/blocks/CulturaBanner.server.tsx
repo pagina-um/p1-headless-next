@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { twMerge } from "tailwind-merge";
 import { StaticBlock, StoryBlock } from "@/types";
 import { isDevelopment } from "@/services/config";
 import { loadGridStateLocal } from "@/services/local-storage";
@@ -65,7 +66,7 @@ export async function CulturaBannerServer({ block }: CulturaBannerProps) {
 
   return (
     <article
-      className="group relative isolate h-full overflow-hidden rounded-md border border-amber-200/60 bg-gradient-to-br from-[#f5ecd9] via-[#f0e4c7] to-[#e8d9b0] shadow-sm block-content"
+      className="@container group relative isolate h-full overflow-hidden rounded-md border border-amber-200/60 bg-gradient-to-br from-[#f5ecd9] via-[#f0e4c7] to-[#e8d9b0] shadow-sm block-content"
       style={gridStyles}
     >
       <Link
@@ -76,21 +77,21 @@ export async function CulturaBannerServer({ block }: CulturaBannerProps) {
 
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-6 -top-10 text-[11rem] leading-none font-serif italic text-amber-900/5 select-none"
+        className="pointer-events-none absolute -left-6 -top-10 text-[7rem] @md:text-[9rem] @2xl:text-[11rem] leading-none font-serif italic text-amber-900/5 select-none"
       >
         C
       </div>
 
-      <div className="relative flex h-full flex-col gap-4 p-5 md:flex-row md:gap-6 md:p-6">
-        <header className="flex shrink-0 flex-col justify-between md:w-2/5">
+      <div className="relative flex h-full flex-col gap-4 p-4 @md:p-5 @2xl:flex-row @2xl:gap-6 @2xl:p-6">
+        <header className="flex shrink-0 flex-col justify-between @2xl:w-2/5">
           <div>
             <p className="font-serif text-[10px] uppercase tracking-[0.35em] text-amber-800/80">
               Secção
             </p>
-            <h2 className="font-instrument mt-1 text-5xl font-normal leading-[0.9] tracking-tight text-stone-900 md:text-6xl lg:text-7xl">
+            <h2 className="font-instrument mt-1 text-4xl @md:text-5xl @2xl:text-6xl @4xl:text-7xl font-normal leading-[0.9] tracking-tight text-stone-900">
               Cultura
             </h2>
-            <p className="mt-3 max-w-xs text-sm text-stone-700/90">
+            <p className="mt-3 hidden @md:block max-w-xs text-sm text-stone-700/90">
               Livros, arte, ideias e ensaio no Página UM.
             </p>
           </div>
@@ -100,7 +101,7 @@ export async function CulturaBannerServer({ block }: CulturaBannerProps) {
           </span>
         </header>
 
-        <div className="flex flex-1 flex-col">
+        <div className="hidden @lg:flex flex-1 flex-col">
           <p className="mb-2 font-serif text-[10px] uppercase tracking-[0.35em] text-amber-800/80">
             Recentes
           </p>
@@ -110,16 +111,20 @@ export async function CulturaBannerServer({ block }: CulturaBannerProps) {
                 Sem histórias na grelha de Cultura.
               </li>
             )}
-            {resolved.map((story) => (
+            {resolved.map((story, idx) => (
               <li
                 key={story.uId}
-                className="relative z-20 py-2.5 first:pt-0"
+                className={twMerge(
+                  "relative z-20 py-2.5 first:pt-0",
+                  idx >= 1 && "hidden @xl:block",
+                  idx >= 3 && "@xl:hidden @3xl:block"
+                )}
               >
                 <Link
                   href={story.uri}
                   className="block focus-visible:outline-2 focus-visible:outline-amber-700"
                 >
-                  <h3 className="font-serif text-base leading-snug text-stone-900 hover:text-amber-900 md:text-[17px]">
+                  <h3 className="font-serif text-base leading-snug text-stone-900 hover:text-amber-900 @2xl:text-[17px]">
                     {story.title}
                   </h3>
                   {story.date && (
