@@ -11,14 +11,15 @@ export const revalidate = 3600;
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
+  const { slug } = await params;
   const { data } = await getClient().query(GET_AUTHOR_METADATA, {
-    authorSlug: params.slug,
+    authorSlug: slug,
   });
 
   const author = data?.users?.nodes[0];
-  const name = author?.name || params.slug;
+  const name = author?.name || slug;
   const description = author?.description || `Artigos de ${name}`;
 
   return {
@@ -35,20 +36,20 @@ export default async function AuthorPage({
   params,
   searchParams,
 }: {
-  params: { slug: string };
-  searchParams: { page?: string; after?: string };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ page?: string; after?: string }>;
 }) {
-  const currentPage = Number(searchParams.page) || 1;
+  const { slug } = await params;
+  const { page, after } = await searchParams;
+  const currentPage = Number(page) || 1;
   const postsPerPage = 12;
 
-  const afterCursor = searchParams.after
-    ? decodeURIComponent(searchParams.after)
-    : null;
+  const afterCursor = after ? decodeURIComponent(after) : null;
 
   const { data } = await getClient().query(
     GET_POSTS_BY_AUTHOR_SLUG,
     {
-      authorSlug: params.slug,
+      authorSlug: slug,
       postsPerPage,
       after: afterCursor,
     },
@@ -139,7 +140,7 @@ export default async function AuthorPage({
         <Pagination
           currentPage={currentPage}
           hasNextPage={pageInfo.hasNextPage}
-          basePath={`/author/${params.slug}`}
+          basePath={`/author/${slug}`}
           startCursor={pageInfo.startCursor}
           endCursor={pageInfo.endCursor}
         />

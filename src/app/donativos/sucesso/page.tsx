@@ -10,17 +10,15 @@ export const metadata: Metadata = {
 };
 
 interface SuccessPageProps {
-  searchParams: {
+  searchParams: Promise<{
     amount?: string;
     type?: string;
     session_id?: string;
-  };
+  }>;
 }
 
-export default function SucessoPage({ searchParams }: SuccessPageProps) {
-  const amount = searchParams.amount;
-  const type = searchParams.type;
-  const sessionId = searchParams.session_id;
+export default async function SucessoPage({ searchParams }: SuccessPageProps) {
+  const { amount, type, session_id: sessionId } = await searchParams;
 
   return (
     <>

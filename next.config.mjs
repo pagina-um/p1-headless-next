@@ -6,12 +6,12 @@ const gqlUrl = new URL(process.env.NEXT_PUBLIC_WP_URL);
 const domain = gqlUrl.hostname;
 const nextConfig = {
   images: {
-    domains: [
-      "images.unsplash.com",
-      "paginaum.pt",
-      domain,
-      "secure.gravatar.com",
-      "p1-media-uploads.s3-accelerate.amazonaws.com",
+    remotePatterns: [
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "paginaum.pt" },
+      { protocol: "https", hostname: domain },
+      { protocol: "https", hostname: "secure.gravatar.com" },
+      { protocol: "https", hostname: "p1-media-uploads.s3-accelerate.amazonaws.com" },
     ],
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200],

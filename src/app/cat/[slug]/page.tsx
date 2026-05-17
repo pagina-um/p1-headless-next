@@ -14,14 +14,15 @@ export const revalidate = 3600;
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
+  const { slug } = await params;
   const { data } = await getClient().query(GET_CATEGORY_METADATA, {
-    slug: params.slug,
+    slug,
   });
 
   const category = data?.categories?.nodes[0];
-  const name = category?.name || params.slug;
+  const name = category?.name || slug;
   const description =
     category?.description || `Artigos na categoria ${name}`;
 
@@ -39,20 +40,20 @@ export default async function CategoryPage({
   params,
   searchParams,
 }: {
-  params: { slug: string };
-  searchParams: { page?: string; after?: string };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ page?: string; after?: string }>;
 }) {
-  const currentPage = Number(searchParams.page) || 1;
+  const { slug } = await params;
+  const { page, after } = await searchParams;
+  const currentPage = Number(page) || 1;
   const postsPerPage = 12; // Increased for grid layout
 
-  const afterCursor = searchParams.after
-    ? decodeURIComponent(searchParams.after)
-    : null;
+  const afterCursor = after ? decodeURIComponent(after) : null;
 
   const { data } = await getClient().query(
     GET_POSTS_BY_CATEGORY_SLUG,
     {
-      slug: params.slug,
+      slug,
       postsPerPage,
       after: afterCursor,
     },
@@ -121,7 +122,7 @@ export default async function CategoryPage({
         <Pagination
           currentPage={currentPage}
           hasNextPage={pageInfo.hasNextPage}
-          basePath={`/cat/${params.slug}`}
+          basePath={`/cat/${slug}`}
           startCursor={pageInfo.startCursor}
           endCursor={pageInfo.endCursor}
         />
