@@ -8,10 +8,11 @@ import { Calendar, User, Search } from "lucide-react";
 export default async function SearchPage({
   searchParams,
 }: {
-  searchParams: { q?: string; page?: string; after?: string };
+  searchParams: Promise<{ q?: string; page?: string; after?: string }>;
 }) {
-  const query = searchParams.q || "";
-  const currentPage = Number(searchParams.page) || 1;
+  const { q, page, after } = await searchParams;
+  const query = q || "";
+  const currentPage = Number(page) || 1;
   const postsPerPage = 12; // Consistent with other pages
 
   // If no search query is provided, show an empty state
@@ -35,9 +36,7 @@ export default async function SearchPage({
       </div>
     );
   }
-  const afterCursor = searchParams.after
-    ? decodeURIComponent(searchParams.after)
-    : null;
+  const afterCursor = after ? decodeURIComponent(after) : null;
 
   const variables = {
     searchQuery: query,

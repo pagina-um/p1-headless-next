@@ -32,9 +32,9 @@ export async function generateStaticParams() {
 export default async function StaticPage({
   params,
 }: {
-  params: { yearOrSlug: string };
+  params: Promise<{ yearOrSlug: string }>;
 }) {
-  const { yearOrSlug } = params;
+  const { yearOrSlug } = await params;
   const { data, error } = await getClient().query(GET_PAGE_BY_SLUG, {
     slug: yearOrSlug,
   });

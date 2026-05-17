@@ -13,14 +13,15 @@ export const revalidate = 3600;
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
+  const { slug } = await params;
   const { data } = await getClient().query(GET_TAG_METADATA, {
-    slug: params.slug,
+    slug,
   });
 
   const tag = data?.tags?.nodes[0];
-  const name = tag?.name || params.slug;
+  const name = tag?.name || slug;
   const description = tag?.description || `Artigos com a tag ${name}`;
 
   return {
@@ -37,20 +38,20 @@ export default async function TagPage({
   params,
   searchParams,
 }: {
-  params: { slug: string };
-  searchParams: { page?: string; after?: string };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ page?: string; after?: string }>;
 }) {
-  const currentPage = Number(searchParams.page) || 1;
+  const { slug } = await params;
+  const { page, after } = await searchParams;
+  const currentPage = Number(page) || 1;
   const postsPerPage = 12; // Increased for grid layout
 
-  const afterCursor = searchParams.after
-    ? decodeURIComponent(searchParams.after)
-    : null;
+  const afterCursor = after ? decodeURIComponent(after) : null;
 
   const { data, error } = await getClient().query(
     GET_POSTS_BY_TAG_SLUG,
     {
-      slug: params.slug,
+      slug,
       postsPerPage,
       after: afterCursor,
     },
@@ -123,7 +124,7 @@ export default async function TagPage({
         <Pagination
           currentPage={currentPage}
           hasNextPage={pageInfo.hasNextPage}
-          basePath={`/tag/${params.slug}`}
+          basePath={`/tag/${slug}`}
           startCursor={pageInfo.startCursor}
           endCursor={pageInfo.endCursor}
         />
