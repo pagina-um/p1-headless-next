@@ -64,5 +64,10 @@
     "tailwindcss": "^3.4.1",
     "ts-jest": "^29.2.5",
     "typescript": "^5.7.3"
+  },
+  "overrides": {
+    "undici": "^7.24.0",
+    "minimatch": "^9.0.7",
+    "devalue": "^5.6.4"
   }
 }
