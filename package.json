@@ -36,7 +36,7 @@
     "graphql-request": "^7.1.2",
     "html-react-parser": "^5.2.2",
     "lucide-react": "^0.344.0",
-    "next": "^14.2.35",
+    "next": "^16.2.6",
     "nextjs-toploader": "^3.7.15",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -45,7 +45,7 @@
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "urql": "^4.2.1",
-    "workflow": "^4.0.1-beta.50"
+    "workflow": "^4.2.4"
   },
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",
