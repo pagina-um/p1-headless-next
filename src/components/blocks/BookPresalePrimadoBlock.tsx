@@ -38,7 +38,7 @@ export function BookPresalePrimadoBlock() {
           </div>
           <div className="text-stone-700 text-base md:text-lg font-normal mb-2 text-center md:text-left">
             <span className="inline-block px-2 py-1 bg-sky-200 rounded-full font-bold text-sky-900 border border-sky-400 cursor-pointer">
-              Garanta o seu exemplar
+              Já disponível
             </span>
           </div>
         </div>
