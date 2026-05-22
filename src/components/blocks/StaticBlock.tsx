@@ -9,6 +9,7 @@ import { CategoryBlockHeader } from "./CategoryBlockHeader";
 import { EditableText } from "../ui/EditableText";
 import { AccountsCounterBlock } from "./AccountsCounterBlock";
 import { BookPresaleBlock } from "./BookPresaleBlock";
+import { BookPresalePrimadoBlock } from "./BookPresalePrimadoBlock";
 
 interface StaticBlockProps {
   block: StaticBlockType;
@@ -22,6 +23,7 @@ export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
   const isDonationBlock = block.type === "donation";
   const isAccountsCounter = block.type === "accountsCounter";
   const isBookPresale = block.type === "bookPresale";
+  const isBookPresalePrimado = block.type === "bookPresalePrimado";
   const isCulturaBanner = block.type === "culturaBanner";
 
   const gridStyles = {
@@ -105,6 +107,17 @@ export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
         style={gridStyles}
       >
         <BookPresaleBlock />
+      </div>
+    );
+  }
+
+  if (isBookPresalePrimado) {
+    return (
+      <div
+        className="h-full p-4  block-content lg:rounded-md"
+        style={gridStyles}
+      >
+        <BookPresalePrimadoBlock />
       </div>
     );
   }

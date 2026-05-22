@@ -70,6 +70,7 @@ export const STATIC_BLOCK_TYPES = [
   "donation",
   "accountsCounter",
   "bookPresale",
+  "bookPresalePrimado",
   "culturaBanner",
 ] as const;
 

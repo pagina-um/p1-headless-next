@@ -73,8 +73,14 @@ export const STATIC_BLOCKS: Record<string, StaticBlockDefinition> = {
   },
   bookPresale: {
     type: "bookPresale",
-    title: "Pré-venda: Correio Mercantil de Brás Cubas",
-    content: "Correio Mercantil de Brás Cubas em pré-venda.",
+    title: "Livro: Correio Mercantil de Brás Cubas",
+    content: "Correio Mercantil de Brás Cubas à venda.",
+    defaultSize: { width: 4, height: 3 },
+  },
+  bookPresalePrimado: {
+    type: "bookPresalePrimado",
+    title: "Livro: Primado do Direito",
+    content: "Primado do Direito, de Miguel dos Santos Pereira, à venda.",
     defaultSize: { width: 4, height: 3 },
   },
   culturaBanner: {
