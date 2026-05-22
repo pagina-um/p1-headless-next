@@ -101,7 +101,7 @@ export async function CulturaBannerServer({ block }: CulturaBannerProps) {
           </span>
         </header>
 
-        <div className="hidden @lg:flex flex-1 flex-col">
+        <div className="flex flex-1 flex-col">
           <p className="mb-2 font-serif text-[10px] uppercase tracking-[0.35em] text-amber-800/80">
             Recentes
           </p>
@@ -116,7 +116,8 @@ export async function CulturaBannerServer({ block }: CulturaBannerProps) {
                 key={story.uId}
                 className={twMerge(
                   "relative z-20 py-2.5 first:pt-0",
-                  idx >= 1 && "hidden @xl:block",
+                  idx >= 1 && "hidden @md:block",
+                  idx >= 2 && "@md:hidden @xl:block",
                   idx >= 3 && "@xl:hidden @3xl:block"
                 )}
               >
