@@ -9,6 +9,7 @@ import { MobileNav } from "./MobileNav";
 import { useScrollHeader } from "@/hooks/useScrollHeader";
 import Link from "next/link";
 import { SearchButton } from "./SearchButton";
+import { CorpusBanner } from "./CorpusBanner";
 
 interface HeaderProps {
   section?: string;
@@ -102,6 +103,9 @@ export function Header({ section, accentColor }: HeaderProps = {}) {
           ${isScrolled ? "h-14 md:h-16" : "h-16 md:h-24"}
         `}
       />
+
+      {/* Corpus CTA — top of the scrollable page, scrolls away with content */}
+      {!isAdmin && <CorpusBanner />}
     </>
   );
 }
