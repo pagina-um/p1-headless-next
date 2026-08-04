@@ -13,7 +13,6 @@ export interface TTSProvider {
 export function getTTSProvider(): TTSProvider {
   switch (FEATURES.TTS_PROVIDER) {
     case "google": {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
       const google = require("@/services/google-tts");
       return {
         generateFullArticleAudio: google.generateFullArticleAudio,
@@ -22,7 +21,6 @@ export function getTTSProvider(): TTSProvider {
     }
     case "cartesia":
     default: {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
       const cartesia = require("@/services/cartesia");
       return {
         generateFullArticleAudio: cartesia.generateFullArticleAudio,

@@ -1,0 +1,17 @@
+{
+  // Replaces a flat eslint.config.js that could never load: it required
+  // typescript-eslint and eslint-plugin-react-refresh (neither installed) and
+  // carried no Next rules, so `next build` skipped linting entirely.
+  "extends": ["next/core-web-vitals"],
+  "ignorePatterns": [".next/", "node_modules/", "wp-plugins/", "scripts/"],
+  "rules": {
+    // Pre-existing debt, demoted to warnings so switching lint on does not break
+    // the build. Both are worth clearing, neither is mechanical:
+    //   no-unescaped-entities  - literal quotes in Portuguese copy (8 sites)
+    //   no-html-link-for-pages - <a> tags the rule matches against the
+    //                            [yearOrSlug] catch-all, including
+    //                            /payment/debit, which is not a real route
+    "react/no-unescaped-entities": "warn",
+    "@next/next/no-html-link-for-pages": "warn"
+  }
+}

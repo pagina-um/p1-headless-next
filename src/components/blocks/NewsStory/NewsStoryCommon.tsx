@@ -20,8 +20,11 @@ export function NewsStoryCommon({
   error: any;
   isAdmin: boolean;
 }) {
+  // Reached when the post genuinely no longer exists. Server-side transport and
+  // GraphQL errors throw upstream rather than degrading to this placeholder, so
+  // a failed fetch is never baked into a cached page.
   if (!data?.post || error) {
-    console.error(error);
+    if (error) console.error(error);
     return (
       <div className="h-full flex items-center justify-center text-center flex-col text-gray-400 text-sm gap-1">
         <FileWarningIcon className="w-6 h-6 " />

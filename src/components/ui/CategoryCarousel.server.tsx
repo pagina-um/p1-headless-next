@@ -37,14 +37,15 @@ export async function CategoryCarouselServer({
     postsPerPage: totalPosts,
     excludePostIds,
   });
-  const posts = data?.posts?.nodes || [];
+  // Throw instead of rendering an inline error: a swallowed error is cached by
+  // Next.js as a valid render and served until the next manual purge.
   if (error) {
-    return (
-      <div className="text-red-500 p-4">
-        Error loading posts: {error.message}
-      </div>
+    throw new Error(
+      `Failed to load carousel posts for category ${block.wpCategoryId}: ${error.message}`,
+      { cause: error }
     );
   }
+  const posts = data?.posts?.nodes || [];
   const category = data?.category;
   return (
     <div className={`relative ${className}`}>

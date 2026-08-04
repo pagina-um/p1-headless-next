@@ -12,21 +12,19 @@ import { notFound } from "next/navigation";
 export async function generateStaticParams() {
   const { data, error } = await getClient().query(GET_ALL_PAGES, {});
 
-  if (error || !data?.pages) {
-    console.log("Error fetching posts:", error);
-    return [];
+  // Fail the build rather than silently prerendering nothing. Swallowing this
+  // turned a backend blip into "no pages were generated", which looks identical
+  // to a successful build.
+  if (error) {
+    throw new Error(
+      `Failed to load pages for static generation: ${error.message}`,
+      { cause: error }
+    );
   }
 
-  return data.pages.nodes.map((node) => {
-    if (!node.uri) {
-      return null;
-    }
-    return {
-      params: {
-        yearOrSlug: node.uri,
-      },
-    };
-  });
+  return (data?.pages?.nodes ?? []).flatMap((node) =>
+    node.uri ? [{ params: { yearOrSlug: node.uri } }] : []
+  );
 }
 
 export default async function StaticPage({

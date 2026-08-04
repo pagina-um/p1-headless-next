@@ -1,12 +1,35 @@
-import { graphql } from "gql.tada";
+import { graphql, ResultOf } from "gql.tada";
 import { cacheExchange, createClient, fetchExchange } from "@urql/core";
+import { retryExchange } from "@urql/exchange-retry";
 import { registerUrql } from "@urql/next/rsc";
 import { WP_URL } from "./config";
+
+// WordPress intermittently answers with an HTML database-error page — under a
+// 200 status and a JSON content-type — which urql surfaces as a networkError
+// while parsing. Left alone these blips blank out whichever block was unlucky.
+const REQUEST_TIMEOUT_MS = 15_000;
 
 export const makeClient = () => {
   return createClient({
     url: (WP_URL + "graphql") as string,
-    exchanges: [cacheExchange, fetchExchange],
+    exchanges: [
+      cacheExchange,
+      // Retry transport failures only. GraphQL errors are deterministic — the
+      // same malformed query would just fail three times.
+      retryExchange({
+        initialDelayMs: 300,
+        maxDelayMs: 5_000,
+        randomDelay: true,
+        maxNumberAttempts: 3,
+        retryIf: (error) => !!error.networkError,
+      }),
+      fetchExchange,
+    ],
+    // Evaluated per attempt, so each retry gets a fresh deadline rather than
+    // inheriting an already-expired signal.
+    fetchOptions: () => ({
+      signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+    }),
   });
 };
 
@@ -314,6 +337,68 @@ export const GET_POST_BY_ID = graphql(`
           mediaDetails {
             height
             width
+          }
+        }
+      }
+    }
+  }
+`);
+
+export type StoryPost = NonNullable<ResultOf<typeof GET_POST_BY_ID>["post"]>;
+
+/**
+ * Batched equivalent of GET_POST_BY_ID, used to resolve every story block on a
+ * grid page in a single round trip. Rendering one query per block used to fan
+ * ~40 concurrent requests at WordPress per render, which pushed response times
+ * from <1s to >12s and made individual queries time out.
+ *
+ * The selection set must stay in sync with GET_POST_BY_ID: nodes from this query
+ * are handed to the same components, typed as StoryPost.
+ */
+export const GET_POSTS_BY_IDS = graphql(`
+  query GetPostsByIds($ids: [ID], $first: Int!) {
+    posts(where: { in: $ids }, first: $first) {
+      nodes {
+        id
+        title
+        content
+        databaseId
+        uri
+        excerpt
+        date
+        slug
+        postFields {
+          antetitulo
+          chamadaDestaque
+          chamadaManchete
+        }
+        tags {
+          nodes {
+            id
+            name
+          }
+        }
+        categories {
+          nodes {
+            id
+            name
+          }
+        }
+        author {
+          node {
+            name
+            slug
+          }
+        }
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+            srcSet
+            mediaDetails {
+              height
+              width
+            }
           }
         }
       }

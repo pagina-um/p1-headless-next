@@ -19,10 +19,19 @@ export async function CategoryBlockServer({
     postsPerPage: block.postsPerPage,
     excludePostIds,
   });
+  // Throw instead of degrading to a placeholder: a swallowed error is cached by
+  // Next.js as a valid render and served until the next manual purge.
+  if (error) {
+    throw new Error(
+      `Failed to load posts for category ${block.wpCategoryId}: ${error.message}`,
+      { cause: error }
+    );
+  }
+
   const posts = data?.posts?.nodes || [];
   const category = data?.category;
 
-  if (!block.wpCategoryId || error) {
+  if (!block.wpCategoryId) {
     return (
       <div className="h-full p-6 bg-white  shadow-sm border border-gray-100">
         <p className="text-gray-500 italic font-body-serif">

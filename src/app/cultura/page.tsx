@@ -12,21 +12,17 @@ export const metadata: Metadata = {
   description: "Cultura - O jornalismo independente só depende dos leitores.",
 };
 
+// Safety net, not the primary refresh path — see src/app/page.tsx.
+export const revalidate = 300;
+
+// Errors deliberately propagate: catching them here renders a "Failed to load
+// content" page that Next.js caches as a valid render and serves until the next
+// manual purge. Letting the render fail keeps the last good page in cache.
 async function getInitialState(): Promise<GridState | null> {
-  try {
-    if (isDevelopment) {
-      return await loadGridStateLocal("grid-state-cultura.json");
-    } else {
-      const gridState = await loadGridStateRedis(
-        "grid-state-cultura",
-        "cultura-grid"
-      );
-      return gridState;
-    }
-  } catch (error) {
-    console.error("Failed to load cultura grid state:", error);
-    return null;
+  if (isDevelopment) {
+    return await loadGridStateLocal("grid-state-cultura.json");
   }
+  return await loadGridStateRedis("grid-state-cultura", "cultura-grid");
 }
 
 export default async function CulturaPage() {

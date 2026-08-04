@@ -54,22 +54,29 @@ export async function generateStaticParams() {
     { first: 50 }
   );
 
-  if (error || !data?.posts) {
-    console.log("Error fetching posts:", error);
-    return [];
+  // Fail the build rather than silently prerendering nothing. Swallowing this
+  // turned a backend blip into "no posts were generated", which looks identical
+  // to a successful build.
+  if (error) {
+    throw new Error(
+      `Failed to load posts for static generation: ${error.message}`,
+      { cause: error }
+    );
   }
 
-  return data.posts.edges.map((edge) => {
+  return (data?.posts?.edges ?? []).flatMap((edge) => {
     if (!edge.node.date) {
-      return null;
+      return [];
     }
     const date = new Date(edge.node.date);
-    return {
-      year: date.getFullYear().toString(),
-      month: (date.getMonth() + 1).toString().padStart(2, "0"),
-      day: date.getDate().toString().padStart(2, "0"),
-      slug: edge.node.slug,
-    };
+    return [
+      {
+        year: date.getFullYear().toString(),
+        month: (date.getMonth() + 1).toString().padStart(2, "0"),
+        day: date.getDate().toString().padStart(2, "0"),
+        slug: edge.node.slug,
+      },
+    ];
   });
 }
 

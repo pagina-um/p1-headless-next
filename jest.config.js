@@ -4,6 +4,9 @@ module.exports = {
     "^.+\\.(ts|tsx)$": "ts-jest",
   },
   moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/$1", // so you can import from "@/..."
+    // Must match the tsconfig paths alias ("@/*" -> "./src/*"). This previously
+    // pointed at <rootDir>, which only went unnoticed because the sole test
+    // imported a type — erased at compile time, so it never resolved at runtime.
+    "^@/(.*)$": "<rootDir>/src/$1",
   },
 };
