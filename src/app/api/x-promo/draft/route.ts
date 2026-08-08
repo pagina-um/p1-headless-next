@@ -6,6 +6,7 @@ import { twitterConfigured } from "@/services/twitter";
 import { verifyAdminToken } from "@/services/admin-token";
 import { extractPostImages } from "@/utils/postImages";
 import { htmlToTtsText } from "@/utils/htmlToText";
+import { cutAtSentence } from "@/utils/xPromoText";
 import type { CustomPostFields } from "@/types";
 import {
   DEFAULT_REPLY_TEXT,
@@ -56,8 +57,9 @@ const BRIEF =
   "acusação a alguém, a publicação atribui também — não a transforma em " +
   "facto assente.\n" +
   "- Números e datas em formato pt-PT (36,2%, 12 500 euros, 3 de março).\n" +
-  `- Máximo ${MAIN_MAX_CHARS} caracteres, sem exceção. Posts curtos rendem ` +
-  "mais no X do que posts que enchem o limite.\n\n" +
+  `- Comprimento: aponta para 150 a 200 caracteres e nunca passes de ` +
+  `${MAIN_MAX_CHARS}. Posts curtos rendem mais no X do que posts que enchem ` +
+  "o limite. Conta os caracteres antes de responderes.\n\n" +
   "Ajusta ao género da peça (vem indicado na secção e no corpo):\n" +
   "- Notícia, investigação ou reportagem: dá o facto, com o seu contexto.\n" +
   "- Crónica ou opinião: dá a tese do autor e atribui-lha explicitamente " +
@@ -151,15 +153,22 @@ export async function POST(req: Request) {
         `\nCorpo (excerto):\n${body.slice(0, 6000)}`,
     });
 
+    const text = await fitToLimit(draft.text.trim(), MAIN_MAX_CHARS, "publicação");
+    const reply = draft.replyText?.trim()
+      ? await fitToLimit(draft.replyText.trim(), REPLY_MAX_CHARS, "resposta")
+      : { text: DEFAULT_REPLY_TEXT, cut: false };
+
     return NextResponse.json({
       title,
-      text: clamp(draft.text.trim(), MAIN_MAX_CHARS),
-      replyText: draft.replyText?.trim()
-        ? clamp(draft.replyText.trim(), REPLY_MAX_CHARS)
-        : DEFAULT_REPLY_TEXT,
+      text: text.text,
+      replyText: reply.text,
       images,
       linkUrl,
       configured: twitterConfigured(),
+      warning:
+        text.cut || reply.cut
+          ? "O texto excedia o limite e foi cortado na última frase completa — reveja antes de publicar."
+          : undefined,
     });
   } catch (e) {
     console.error("[x-promo] draft failed", e);
@@ -194,10 +203,41 @@ function stripTags(html: string): string {
     .trim();
 }
 
-/** The model overshoots the limit now and then; cut at a word boundary. */
-function clamp(text: string, max: number): string {
-  if (text.length <= max) return text;
-  const cut = text.slice(0, max);
-  const lastSpace = cut.lastIndexOf(" ");
-  return (lastSpace > max * 0.6 ? cut.slice(0, lastSpace) : cut).trim();
+/**
+ * Bring an over-long draft under the limit. Models can't count characters, so
+ * an overshoot is routine — but cutting the text leaves the editor with a post
+ * that stops mid-sentence, so ask for a rewrite first and only cut as a last
+ * resort, at a sentence boundary and with the editor told it happened.
+ */
+async function fitToLimit(
+  text: string,
+  max: number,
+  kind: string
+): Promise<{ text: string; cut: boolean }> {
+  if (text.length <= max) return { text, cut: false };
+
+  try {
+    const { object } = await generateObject({
+      model: MODEL,
+      schema: z.object({ text: z.string() }),
+      system:
+        "Reescreves textos jornalísticos para caberem num limite de " +
+        "caracteres, sem os empobrecer.",
+      prompt:
+        `Este texto de ${kind} tem ${text.length} caracteres e o limite é ` +
+        `${max}. Reescreve-o com ${max} caracteres ou menos.\n\n` +
+        "Regras: mantém o facto principal e os nomes próprios; corta o que " +
+        "for acessório em vez de encurtar as frases até ficarem telegráficas; " +
+        "devolve frases completas e pontuadas; mesmo registo, português " +
+        "europeu; sem link, sem hashtags, sem emojis.\n\n" +
+        `Texto:\n${text}`,
+    });
+    const rewritten = object.text.trim();
+    if (rewritten && rewritten.length <= max) return { text: rewritten, cut: false };
+    return { text: cutAtSentence(rewritten || text, max), cut: true };
+  } catch (e) {
+    console.error("[x-promo] rewrite to fit failed", e);
+    return { text: cutAtSentence(text, max), cut: true };
+  }
 }
+
