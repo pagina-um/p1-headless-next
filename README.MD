@@ -9,6 +9,7 @@ A modern blog application built with Next.js 14+, using WordPress as a headless 
 - **Admin Panel**: Easy-to-use interface for managing content and layout
 - **WordPress Integration**: Uses WordPress as a headless CMS for content management
 - **Redis Integration**: Stores and retrieves layout configuration data
+- **X Promotion**: Drafts and publishes promotional posts for published stories (see below)
 
 ## Prerequisites
 
@@ -78,6 +79,29 @@ The following environment variables are required:
 
 - `PORT`: The port the server will run on
 - `REDIS_URL`: Your Redis connection string
+
+## X Promotion (`/admin/x`)
+
+Lists the latest published stories; opening one drafts a promotional post with
+AI, lets the editor pick a picture from the article and edit the text under a
+hard character limit, and publishes to the newspaper's X account.
+
+The post format follows what performs on X: the main post carries the news and
+the picture but **no link** (X suppresses the reach of posts with outbound
+links), and the article URL goes out in a first reply instead. No hashtags, no
+mentions, 240 characters maximum.
+
+Required environment variables:
+
+- `X_API_KEY`, `X_API_SECRET` — the X developer app's consumer keys
+- `X_ACCESS_TOKEN`, `X_ACCESS_SECRET` — access tokens for the account that posts
+- `AI_GATEWAY_API_KEY` — Vercel AI Gateway; set automatically on Vercel by the
+  AI Gateway integration, needed explicitly only for local development
+- `AI_MODEL` — optional, defaults to `anthropic/claude-sonnet-4.6`
+
+The X app must have **Read and Write** permissions, and the access token has to
+be generated *after* that permission is set — a token minted while the app was
+read-only keeps failing with a 403 on publish.
 
 ## Data Storage
 

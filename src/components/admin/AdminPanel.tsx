@@ -8,6 +8,7 @@ import {
   ChevronUp,
   Eye,
   EyeIcon,
+  Send,
 } from "lucide-react";
 import { EditableGrid } from "../grid/EditableGrid";
 import { Toast } from "../ui/Toast";
@@ -21,9 +22,15 @@ import Link from "next/link";
 interface AdminPanelProps {
   previewPath?: string;
   sectionLabel?: string;
+  /** Only the main admin has the credentials for /admin/x. */
+  showXPromotion?: boolean;
 }
 
-export function AdminPanel({ previewPath = "/admin/preview", sectionLabel }: AdminPanelProps) {
+export function AdminPanel({
+  previewPath = "/admin/preview",
+  sectionLabel,
+  showXPromotion = false,
+}: AdminPanelProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const {
@@ -96,6 +103,14 @@ export function AdminPanel({ previewPath = "/admin/preview", sectionLabel }: Adm
               <RotateCcw className="w-4 h-4" />
               Anular Alterações
             </button>
+            {showXPromotion && (
+              <Link
+                href="/admin/x"
+                className="bg-gray-900 h-10 text-white px-4 py-2 flex items-center gap-2 hover:bg-gray-700 transition-colors"
+              >
+                <Send className="w-4 h-4" /> Promover no X
+              </Link>
+            )}
             <Link
               href={previewPath}
               className="bg-gray-600 w-40 h-10 text-white px-4 py-2 flex items-center gap-2 hover:bg-gray-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"

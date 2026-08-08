@@ -426,6 +426,46 @@ export const GET_LATEST_POSTS = graphql(`
   }
 `);
 
+/**
+ * Story list for the X promotion page (/admin/x). Deliberately excludes
+ * `content` — pulling 30 full articles just to render a list is wasteful; the
+ * body (and the images inside it) is fetched per post when the editor opens one.
+ */
+export const GET_LATEST_POSTS_FOR_PROMO = graphql(`
+  query GetLatestPostsForPromo($first: Int!) {
+    posts(
+      first: $first
+      where: { status: PUBLISH, orderby: { field: DATE, order: DESC } }
+    ) {
+      nodes {
+        id
+        databaseId
+        title
+        excerpt
+        date
+        uri
+        categories {
+          nodes {
+            id
+            name
+          }
+        }
+        author {
+          node {
+            name
+          }
+        }
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
+      }
+    }
+  }
+`);
+
 export const GET_POST_BY_SLUG = graphql(`
   query GetPostBySlug($slug: String!) {
     postBy(slug: $slug) {
