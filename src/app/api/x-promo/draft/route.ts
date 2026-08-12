@@ -6,7 +6,11 @@ import { twitterConfigured } from "@/services/twitter";
 import { verifyAdminToken } from "@/services/admin-token";
 import { extractPostImages } from "@/utils/postImages";
 import { htmlToTtsText } from "@/utils/htmlToText";
-import { cutAtSentence } from "@/utils/xPromoText";
+import {
+  fitToLimit,
+  plainErrorMessage,
+  stripTags,
+} from "@/utils/promoDraft";
 import type { CustomPostFields } from "@/types";
 import {
   DEFAULT_REPLY_TEXT,
@@ -53,6 +57,13 @@ const BRIEF =
   "@menções, ou o nome do jornal (o link na resposta já o identifica).\n\n" +
   "Registo:\n" +
   "- Português europeu, sóbrio, factual e direto. Frases curtas.\n" +
+  "- Os leitores reconhecem texto de IA pelos seus tiques, e é preciso " +
+  "evitá-los todos: " +
+  "nunca uses travessões nem hífenes para apartes (usa vírgulas, ou faz duas " +
+  "frases); nada de construções 'não é X, é Y' ou 'mais do que X, Y'; nada " +
+  "de enumerações de três elementos em série; nada de frase final a resumir " +
+  "ou a dar significado ao que já foi dito. Varia o ritmo: uma frase longa e " +
+  "uma curta valem mais do que duas do mesmo tamanho.\n" +
   "- Nunca afirmes nada que não esteja na peça. Se a peça atribui uma " +
   "acusação a alguém, a publicação atribui também — não a transforma em " +
   "facto assente.\n" +
@@ -61,9 +72,11 @@ const BRIEF =
   `${MAIN_MAX_CHARS}. Posts curtos rendem mais no X do que posts que enchem ` +
   "o limite. Conta os caracteres antes de responderes.\n\n" +
   "Ajusta ao género da peça (vem indicado na secção e no corpo):\n" +
-  "- Notícia, investigação ou reportagem: dá o facto, com o seu contexto.\n" +
-  "- Crónica ou opinião: dá a tese do autor e atribui-lha explicitamente " +
-  "('Para [autor], ...'), porque é a opinião dele e não do jornal.\n" +
+  "- Notícia, investigação ou reportagem: dá o facto, com o seu contexto. " +
+  "Não menciones o autor quando for Pedro Almeida Vieira.\n" +
+  "- Editorial, crónica ou opinião: menciona sempre o autor, seja ele quem " +
+  "for — dá a tese dele e atribui-lha explicitamente ('Para [autor], ...'), " +
+  "porque é a opinião dele e não do jornal.\n" +
   "- Entrevista: cita ou parafraseia a afirmação mais forte do " +
   "entrevistado, dizendo quem é.\n" +
   "- Cultura, artes ou desporto: dá o juízo ou o acontecimento concreto, " +
@@ -153,9 +166,9 @@ export async function POST(req: Request) {
         `\nCorpo (excerto):\n${body.slice(0, 6000)}`,
     });
 
-    const text = await fitToLimit(draft.text.trim(), MAIN_MAX_CHARS, "publicação");
+    const text = await fitToLimit(MODEL, draft.text.trim(), MAIN_MAX_CHARS, "publicação");
     const reply = draft.replyText?.trim()
-      ? await fitToLimit(draft.replyText.trim(), REPLY_MAX_CHARS, "resposta")
+      ? await fitToLimit(MODEL, draft.replyText.trim(), REPLY_MAX_CHARS, "resposta")
       : { text: DEFAULT_REPLY_TEXT, cut: false };
 
     return NextResponse.json({
@@ -182,62 +195,8 @@ export async function POST(req: Request) {
       configured: twitterConfigured(),
       warning:
         e instanceof Error
-          ? `A IA não gerou texto (${plain(e.message)}). Escreva a publicação manualmente.`
+          ? `A IA não gerou texto (${plainErrorMessage(e.message)}). Escreva a publicação manualmente.`
           : "A IA não gerou texto. Escreva a publicação manualmente.",
     });
   }
 }
-
-/** AI SDK errors arrive colourised for a terminal; the dialog is not one. */
-function plain(message: string): string {
-  return message.replace(/\u001b\[[0-9;]*m/g, "").replace(/\s+/g, " ").trim();
-}
-
-function stripTags(html: string): string {
-  return html
-    .replace(/<[^>]+>/g, "")
-    .replace(/&#8217;|&rsquo;/g, "’")
-    .replace(/&#8211;|&ndash;/g, "–")
-    .replace(/&amp;/g, "&")
-    .replace(/&nbsp;/g, " ")
-    .trim();
-}
-
-/**
- * Bring an over-long draft under the limit. Models can't count characters, so
- * an overshoot is routine — but cutting the text leaves the editor with a post
- * that stops mid-sentence, so ask for a rewrite first and only cut as a last
- * resort, at a sentence boundary and with the editor told it happened.
- */
-async function fitToLimit(
-  text: string,
-  max: number,
-  kind: string
-): Promise<{ text: string; cut: boolean }> {
-  if (text.length <= max) return { text, cut: false };
-
-  try {
-    const { object } = await generateObject({
-      model: MODEL,
-      schema: z.object({ text: z.string() }),
-      system:
-        "Reescreves textos jornalísticos para caberem num limite de " +
-        "caracteres, sem os empobrecer.",
-      prompt:
-        `Este texto de ${kind} tem ${text.length} caracteres e o limite é ` +
-        `${max}. Reescreve-o com ${max} caracteres ou menos.\n\n` +
-        "Regras: mantém o facto principal e os nomes próprios; corta o que " +
-        "for acessório em vez de encurtar as frases até ficarem telegráficas; " +
-        "devolve frases completas e pontuadas; mesmo registo, português " +
-        "europeu; sem link, sem hashtags, sem emojis.\n\n" +
-        `Texto:\n${text}`,
-    });
-    const rewritten = object.text.trim();
-    if (rewritten && rewritten.length <= max) return { text: rewritten, cut: false };
-    return { text: cutAtSentence(rewritten || text, max), cut: true };
-  } catch (e) {
-    console.error("[x-promo] rewrite to fit failed", e);
-    return { text: cutAtSentence(text, max), cut: true };
-  }
-}
-
