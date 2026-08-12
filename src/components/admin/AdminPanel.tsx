@@ -22,14 +22,14 @@ import Link from "next/link";
 interface AdminPanelProps {
   previewPath?: string;
   sectionLabel?: string;
-  /** Only the main admin has the credentials for /admin/x. */
-  showXPromotion?: boolean;
+  /** Only the main admin has the credentials for /admin/x and /admin/facebook. */
+  showPromotions?: boolean;
 }
 
 export function AdminPanel({
   previewPath = "/admin/preview",
   sectionLabel,
-  showXPromotion = false,
+  showPromotions = false,
 }: AdminPanelProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -103,13 +103,21 @@ export function AdminPanel({
               <RotateCcw className="w-4 h-4" />
               Anular Alterações
             </button>
-            {showXPromotion && (
-              <Link
-                href="/admin/x"
-                className="bg-gray-900 h-10 text-white px-4 py-2 flex items-center gap-2 hover:bg-gray-700 transition-colors"
-              >
-                <Send className="w-4 h-4" /> Promover no X
-              </Link>
+            {showPromotions && (
+              <>
+                <Link
+                  href="/admin/x"
+                  className="bg-gray-900 h-10 text-white px-4 py-2 flex items-center gap-2 hover:bg-gray-700 transition-colors"
+                >
+                  <Send className="w-4 h-4" /> Promover no X
+                </Link>
+                <Link
+                  href="/admin/facebook"
+                  className="bg-gray-900 h-10 text-white px-4 py-2 flex items-center gap-2 hover:bg-gray-700 transition-colors"
+                >
+                  <Send className="w-4 h-4" /> Promover no Facebook
+                </Link>
+              </>
             )}
             <Link
               href={previewPath}
