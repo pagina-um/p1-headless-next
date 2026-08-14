@@ -40,6 +40,7 @@ type GridContextType = {
     fieldText: string
   ) => void;
   handleResetChanges: () => void;
+  handleApplyExternalLayout: (blocks: Block[]) => void;
 };
 
 const GridContext = createContext<GridContextType | undefined>(undefined);
@@ -245,6 +246,13 @@ export function GridProvider({
     });
   };
 
+  // Replace the whole block set at once (used by the AI redesign). The
+  // dirty-check effect above then flags unsaved changes, so the existing
+  // preview/save/reset machinery applies to the new layout unchanged.
+  const handleApplyExternalLayout = (blocks: Block[]) => {
+    setGridState((prevState: GridState) => ({ ...prevState, blocks }));
+  };
+
   const allPostsIdsInStoryBlock =
     getStoryPostsIds(gridState?.blocks || []) || [];
 
@@ -265,6 +273,7 @@ export function GridProvider({
     handleClearLayout,
     handleOverrideStoryBlockField,
     handleResetChanges,
+    handleApplyExternalLayout,
   };
 
   return <GridContext.Provider value={value}>{children}</GridContext.Provider>;

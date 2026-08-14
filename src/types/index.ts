@@ -30,6 +30,24 @@ export interface CustomPostFields {
   chamadaManchete?: string;
 }
 
+// Fine-grained, optional typography/styling knobs on a story card. All are
+// optional so existing saved layouts keep rendering identically; components
+// fall back to their historical defaults when a token is absent.
+export const titleScales = ["s", "m", "l", "xl"] as const;
+export type TitleScale = (typeof titleScales)[number];
+export const titleFonts = ["playfair", "instrument"] as const;
+export type TitleFont = (typeof titleFonts)[number];
+export const densities = ["compact", "normal", "airy"] as const;
+export type Density = (typeof densities)[number];
+
+export interface StoryStyleTokens {
+  titleScale?: TitleScale;
+  titleFont?: TitleFont;
+  titleAlign?: "left" | "center";
+  showChamada?: boolean;
+  density?: Density;
+}
+
 // Specific block types
 export interface StoryBlock extends BaseBlock, CustomPostFields {
   blockType: "story";
@@ -46,6 +64,7 @@ export interface StoryBlock extends BaseBlock, CustomPostFields {
   // Controls the background color used for postFields.antetitulo in Classic layout
   // 'auto' uses category detection (opiniao -> blue, otherwise noticia -> primary)
   antetituloColor?: "auto" | "noticia" | "opiniao";
+  styleTokens?: StoryStyleTokens;
 }
 
 export interface CategoryBlock extends BaseBlock {

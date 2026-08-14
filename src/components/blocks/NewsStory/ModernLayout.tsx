@@ -1,6 +1,7 @@
 import { EditableText } from "@/components/ui/EditableText";
 import { positionMap } from "@/utils/categoryUtils";
 import { StoryLayoutProps } from "./ClassicLayout";
+import { TITLE_FONT_CLASSES, TITLE_SCALE_CLASSES } from "./styleTokens";
 import { twMerge } from "tailwind-merge";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,9 +19,11 @@ export function ModernStoryLayout({
   featuredImageHeight,
   featuredImageWidth,
   uri,
+  styleTokens,
 }: StoryLayoutProps) {
   // TODO: improve props typing
   const hasTagsToShow = tags.nodes.length > 0;
+  const showChamada = styleTokens?.showChamada !== false;
   return (
     <div className="relative h-full overflow-hidden  shadow-lg group">
       {featuredImageUrl && (
@@ -67,7 +70,16 @@ export function ModernStoryLayout({
             </p>
           )}
 
-          <h2 className="font-serif text-2xl md:text-3xl font-bold mb-3 leading-tight">
+          <h2
+            className={twMerge(
+              "font-serif text-2xl md:text-3xl font-bold mb-3 leading-tight",
+              styleTokens?.titleScale &&
+                TITLE_SCALE_CLASSES[styleTokens.titleScale],
+              styleTokens?.titleFont &&
+                TITLE_FONT_CLASSES[styleTokens.titleFont],
+              styleTokens?.titleAlign === "center" && "text-center"
+            )}
+          >
             {!isAdmin ? (
               <Link href={uri}>{title}</Link>
             ) : (
@@ -79,7 +91,8 @@ export function ModernStoryLayout({
             )}
           </h2>
 
-          {(postFields.chamadaDestaque || postFields.chamadaManchete) && (
+          {showChamada &&
+            (postFields.chamadaDestaque || postFields.chamadaManchete) && (
             <p
               className={twMerge(
                 "text-gray-300 text-sm",

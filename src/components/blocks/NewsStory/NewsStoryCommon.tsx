@@ -59,6 +59,7 @@ export function NewsStoryCommon({
           orientation="vertical"
           expandImage={false}
           extraBigTitle={false}
+          styleTokens={story.styleTokens}
         />
       ) : (
         <ClassicStoryLayout
@@ -82,6 +83,7 @@ export function NewsStoryCommon({
           reverse={story.reverse}
           expandImage={story.expandImage}
           extraBigTitle={story.extraBigTitle}
+          styleTokens={story.styleTokens}
         />
       )}
     </ConditionalLinkWrapper>

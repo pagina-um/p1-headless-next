@@ -1,5 +1,11 @@
 import { EditableText } from "@/components/ui/EditableText";
-import { CustomPostFields, ObjectPosition } from "@/types";
+import { CustomPostFields, ObjectPosition, StoryStyleTokens } from "@/types";
+import {
+  DENSITY_GAP_CLASSES,
+  DENSITY_TITLE_MARGIN_CLASSES,
+  TITLE_FONT_CLASSES,
+  TITLE_SCALE_CLASSES,
+} from "./styleTokens";
 import { Maybe } from "graphql/jsutils/Maybe";
 import { Square } from "lucide-react";
 import { twMerge } from "tailwind-merge";
@@ -33,6 +39,7 @@ export interface StoryLayoutProps {
   extraBigTitle: boolean;
   featuredImageWidth?: number;
   featuredImageHeight?: number;
+  styleTokens?: StoryStyleTokens;
 }
 
 export function ClassicStoryLayout({
@@ -54,8 +61,10 @@ export function ClassicStoryLayout({
   extraBigTitle,
   blockSize,
   uri,
+  styleTokens,
 }: StoryLayoutProps) {
   const hasTagsToShow = tags.nodes.length > 0;
+  const showChamada = styleTokens?.showChamada !== false;
   const displayImage = !hideImage;
   const tagNames = tags.nodes
     .filter((tag: any) => !tag.name.includes("estaque"))
@@ -93,7 +102,8 @@ export function ClassicStoryLayout({
               : "lg:flex-row"
             : reverse
               ? "lg:flex-col-reverse"
-              : "lg:flex-col"
+              : "lg:flex-col",
+          styleTokens?.density && DENSITY_GAP_CLASSES[styleTokens.density]
         )}
       >
         {featuredImageUrl && displayImage && (
@@ -242,7 +252,14 @@ export function ClassicStoryLayout({
               "font-serif text-2xl font-bold mb-3 leading-tight text-pretty max-md:mt-3",
               !isAdmin && "lg:group-hover:underline",
               shouldReverse && "lg:text-right",
-              extraBigTitle && "text-3xl"
+              extraBigTitle && "text-3xl",
+              styleTokens?.titleScale &&
+                TITLE_SCALE_CLASSES[styleTokens.titleScale],
+              styleTokens?.titleFont &&
+                TITLE_FONT_CLASSES[styleTokens.titleFont],
+              styleTokens?.titleAlign === "center" && "text-center",
+              styleTokens?.density &&
+                DENSITY_TITLE_MARGIN_CLASSES[styleTokens.density]
             )}
           >
             {isAdmin ? (
@@ -256,12 +273,14 @@ export function ClassicStoryLayout({
               <Link href={uri}>{title}</Link>
             )}
           </h2>
-          {(postFields.chamadaDestaque || postFields.chamadaManchete) && (
+          {showChamada &&
+            (postFields.chamadaDestaque || postFields.chamadaManchete) && (
             <p
               className={twMerge(
                 "text-gray-600 md:text-sm",
                 shouldReverse && "lg:text-right",
-                !isAdmin && "select-text"
+                !isAdmin && "select-text",
+                styleTokens?.titleAlign === "center" && "text-center"
               )}
             >
               {isAdmin ? (
