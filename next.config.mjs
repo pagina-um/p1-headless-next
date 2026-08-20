@@ -107,15 +107,8 @@ const nextConfig = {
         source: "/media/:path*",
         destination: `${process.env.NEXT_PUBLIC_WP_URL}/wp-content/uploads/:path*`,
       },
-      // Support feed with or without trail slash
-      {
-        source: "/feed",
-        destination: `${process.env.NEXT_PUBLIC_WP_URL}/feed/`,
-      },
-      {
-        source: "/feed/",
-        destination: `${process.env.NEXT_PUBLIC_WP_URL}/feed/`,
-      },
+      // /feed is served by src/app/feed/route.ts, which proxies the WP feed
+      // and rewrites the backend host to the public origin.
     ];
   },
 
