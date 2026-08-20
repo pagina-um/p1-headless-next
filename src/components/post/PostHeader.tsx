@@ -53,6 +53,7 @@ export function PostHeader({ post }: { post: PostBySlugData["data"] }) {
           url={"http://paginaum.pt" + (post?.postBy?.uri || "")}
           description=""
           title={post?.postBy?.title || ""}
+          className="items-start md:items-end"
         />
       </div>
     </header>
