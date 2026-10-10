@@ -83,6 +83,13 @@ export const STATIC_BLOCKS: Record<string, StaticBlockDefinition> = {
     content: "Primado do Direito, de Miguel dos Santos Pereira, à venda.",
     defaultSize: { width: 4, height: 3 },
   },
+  bookPresaleValores: {
+    type: "bookPresaleValores",
+    title: "Livro: Valores em vez de Ideologias",
+    content:
+      "Valores em vez de Ideologias, de Pedro Almeida Vieira, em pré-venda.",
+    defaultSize: { width: 4, height: 3 },
+  },
   culturaBanner: {
     type: "culturaBanner",
     title: "Banner Cultura",

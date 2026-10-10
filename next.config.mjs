@@ -12,6 +12,7 @@ const nextConfig = {
       { protocol: "https", hostname: domain },
       { protocol: "https", hostname: "secure.gravatar.com" },
       { protocol: "https", hostname: "p1-media-uploads.s3-accelerate.amazonaws.com" },
+      { protocol: "https", hostname: "cdn.shopify.com" },
     ],
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200],
