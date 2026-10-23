@@ -13,7 +13,9 @@ import { PostContent } from "@/components/post/PostContent";
 import { defaultMetadata, makeMetadataObject } from "@/utils/metadata";
 import SocialShare from "@/components/post/SocialShare";
 import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
-import { ArticlePlayer } from "@/components/post/ArticlePlayer";
+import { ArticlePlayer, ArticleAudio } from "@/components/post/ArticlePlayer";
+import { getTTSMetadata } from "@/services/tts-cache";
+import { FEATURES } from "@/config/features";
 
 export interface PostPageProps {
   params: Promise<{
@@ -80,17 +82,37 @@ export async function generateStaticParams() {
   });
 }
 
+/**
+ * Resolve TTS audio for the article at render time. This page is ISR-cached
+ * for an hour, so the KV store sees one read per article per hour instead of
+ * one per page view (the client used to call /api/tts on every mount, which
+ * exhausted the Upstash daily quota). A KV failure must never take the
+ * article down, so it degrades to "no player".
+ */
+async function getArticleAudio(postId: number): Promise<ArticleAudio | null> {
+  if (!FEATURES.TTS_ENABLED) return null;
+  try {
+    const metadata = await getTTSMetadata(postId);
+    if (!metadata?.blobUrl) return null;
+    return { url: metadata.blobUrl, durationSeconds: metadata.durationSeconds };
+  } catch (error) {
+    console.error(`TTS lookup failed for post ${postId}:`, error);
+    return null;
+  }
+}
+
 async function PostComponent({ slug }: { slug: string }) {
   const { data, error } = await getPostBySlug(slug);
   if (!data?.postBy || error) {
     notFound();
   }
+  const audio = await getArticleAudio(data.postBy.databaseId);
   return (
     <>
       <article>
         <div className="max-w-4xl mx-auto px-4 py-6 md:py-12">
           <PostHeader post={data} />
-          <ArticlePlayer postId={data.postBy.databaseId} />
+          {audio && <ArticlePlayer audio={audio} />}
           <PostContent
             content={data.postBy?.content || ""}
             shouldInjectDonation={

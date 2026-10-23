@@ -4,10 +4,16 @@ import React, { useEffect, useRef, useState } from "react";
 import { Play, Pause } from "lucide-react";
 import { FEATURES } from "@/config/features";
 
-type PlayerState = "loading" | "ready" | "playing" | "hidden";
+type PlayerState = "ready" | "playing";
+
+export interface ArticleAudio {
+  url: string;
+  durationSeconds: number;
+}
 
 interface ArticlePlayerProps {
-  postId: number;
+  /** Resolved on the server by the article page; the player never fetches. */
+  audio: ArticleAudio;
 }
 
 function formatTime(seconds: number): string {
@@ -19,37 +25,15 @@ function formatTime(seconds: number): string {
     .padStart(2, "0")}`;
 }
 
-export function ArticlePlayer({ postId }: ArticlePlayerProps) {
-  const [state, setState] = useState<PlayerState>("loading");
-  const [audioUrl, setAudioUrl] = useState<string | null>(null);
+export function ArticlePlayer({ audio }: ArticlePlayerProps) {
+  const audioUrl = audio.url;
+  const [state, setState] = useState<PlayerState>("ready");
   const [progress, setProgress] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
+  const [duration, setDuration] = useState(audio.durationSeconds);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
-
-  // Check cache on mount
-  useEffect(() => {
-    async function checkCache() {
-      try {
-        const res = await fetch(`/api/tts?postId=${postId}`);
-        if (res.ok) {
-          const data = await res.json();
-          if (data.cached) {
-            setAudioUrl(data.url);
-            setDuration(data.durationSeconds);
-            setState("ready");
-            return;
-          }
-        }
-      } catch {
-        // Network error — hide
-      }
-      setState("hidden");
-    }
-    checkCache();
-  }, [postId]);
 
   // Audio event listeners
   useEffect(() => {
@@ -109,7 +93,7 @@ export function ArticlePlayer({ postId }: ArticlePlayerProps) {
     setCurrentTime(newTime);
   }
 
-  if (!FEATURES.TTS_ENABLED || state === "hidden" || state === "loading") return null;
+  if (!FEATURES.TTS_ENABLED) return null;
 
   return (
     <div className="mt-3 mb-4 md:mt-4 md:mb-6 w-full px-4 py-3 bg-gray-50 rounded-lg border border-gray-200">

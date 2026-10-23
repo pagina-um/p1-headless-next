@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { put } from "@vercel/blob";
 import { getTTSMetadata, saveTTSMetadata, setTTSError } from "@/services/tts-cache";
 import { getTTSProvider } from "@/services/tts-provider";
@@ -76,6 +77,12 @@ export async function POST(request: NextRequest) {
       durationSeconds,
       chunkCount: chunks.length,
     });
+
+    // The article page resolves audio at render time and is ISR-cached, so
+    // purge it now rather than waiting up to an hour for the player to appear.
+    if (data.post.uri) {
+      revalidatePath(data.post.uri);
+    }
 
     return NextResponse.json({ status: "generated", blobUrl: blob.url });
   } catch (error) {
