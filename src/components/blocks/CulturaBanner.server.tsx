@@ -53,7 +53,7 @@ export async function CulturaBannerServer({ block }: CulturaBannerProps) {
   const latest = storyBlocks
     .slice()
     .sort((a, b) => b.uId.localeCompare(a.uId))
-    .slice(0, 5);
+    .slice(0, 6);
 
   const resolved = (await Promise.all(latest.map(resolveStory))).filter(
     (s): s is ResolvedStory => s !== null
@@ -115,10 +115,15 @@ export async function CulturaBannerServer({ block }: CulturaBannerProps) {
               <li
                 key={story.uId}
                 className={twMerge(
+                  // Below lg the grid is single-column with auto row height, so
+                  // every title is shown and the block grows to fit. From lg up
+                  // the block has a fixed grid height, so titles are trimmed by
+                  // container width (max 5).
                   "relative z-20 py-2.5 first:pt-0",
-                  idx >= 1 && "hidden @md:block",
-                  idx >= 2 && "@md:hidden @xl:block",
-                  idx >= 3 && "@xl:hidden @3xl:block"
+                  idx >= 1 && "lg:hidden lg:@md:block",
+                  idx >= 2 && "lg:@md:hidden lg:@xl:block",
+                  idx >= 3 && "lg:@xl:hidden lg:@3xl:block",
+                  idx >= 5 && "lg:@3xl:hidden"
                 )}
               >
                 <Link

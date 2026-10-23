@@ -94,7 +94,7 @@ export const STATIC_BLOCKS: Record<string, StaticBlockDefinition> = {
     type: "culturaBanner",
     title: "Banner Cultura",
     content:
-      "Banner destacado com as 5 histórias mais recentes da grelha de Cultura.",
+      "Banner destacado com as 6 histórias mais recentes da grelha de Cultura.",
     defaultSize: { width: 6, height: 4 },
   },
 };

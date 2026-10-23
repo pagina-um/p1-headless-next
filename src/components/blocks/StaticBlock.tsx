@@ -161,7 +161,7 @@ export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
               Recentes
             </p>
             <p className="mt-1 text-xs italic text-stone-600">
-              5 histórias mais recentes da grelha de Cultura (pré-visualização)
+              6 histórias mais recentes da grelha de Cultura (pré-visualização)
             </p>
           </div>
         </div>
