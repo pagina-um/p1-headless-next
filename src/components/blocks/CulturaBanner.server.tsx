@@ -138,10 +138,10 @@ export async function CulturaBannerServer({ block }: CulturaBannerProps) {
                   href={story.uri}
                   className="flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-amber-700"
                 >
-                  {/* Mobile-only thumbnail. 40px is no taller than a one-line
-                      title plus its date, so it never adds row height. */}
+                  {/* 40px is no taller than a one-line title plus its date,
+                      so the thumbnail never adds row height. */}
                   {story.image && (
-                    <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-md bg-amber-900/10 lg:hidden">
+                    <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-md bg-amber-900/10">
                       <Image
                         src={story.image.url}
                         alt={story.image.alt}
