@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import { StaticBlock, StoryBlock } from "@/types";
@@ -16,6 +17,7 @@ interface ResolvedStory {
   uri: string;
   title: string;
   date: string;
+  image: { url: string; alt: string } | null;
 }
 
 async function getCulturaGridState() {
@@ -42,6 +44,12 @@ async function resolveStory(
     uri: post.uri ?? "#",
     title: block.title || post.title || "",
     date: post.date || "",
+    image: post.featuredImage?.node?.sourceUrl
+      ? {
+          url: post.featuredImage.node.sourceUrl,
+          alt: post.featuredImage.node.altText || "",
+        }
+      : null,
   };
 }
 
@@ -128,19 +136,34 @@ export async function CulturaBannerServer({ block }: CulturaBannerProps) {
               >
                 <Link
                   href={story.uri}
-                  className="block focus-visible:outline-2 focus-visible:outline-amber-700"
+                  className="flex items-center gap-3 focus-visible:outline-2 focus-visible:outline-amber-700"
                 >
-                  <h3 className="font-serif text-base leading-snug text-stone-900 hover:text-amber-900 @2xl:text-[17px]">
-                    {story.title}
-                  </h3>
-                  {story.date && (
-                    <time
-                      dateTime={story.date}
-                      className="mt-0.5 block text-[11px] uppercase tracking-wider text-stone-500"
-                    >
-                      {formatDate(story.date)}
-                    </time>
+                  {/* Mobile-only thumbnail. 40px is no taller than a one-line
+                      title plus its date, so it never adds row height. */}
+                  {story.image && (
+                    <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-md bg-amber-900/10 lg:hidden">
+                      <Image
+                        src={story.image.url}
+                        alt={story.image.alt}
+                        fill
+                        sizes="40px"
+                        className="object-cover"
+                      />
+                    </span>
                   )}
+                  <span className="min-w-0 flex-1">
+                    <h3 className="font-serif text-base leading-snug text-stone-900 hover:text-amber-900 @2xl:text-[17px]">
+                      {story.title}
+                    </h3>
+                    {story.date && (
+                      <time
+                        dateTime={story.date}
+                        className="mt-0.5 block text-[11px] uppercase tracking-wider text-stone-500"
+                      >
+                        {formatDate(story.date)}
+                      </time>
+                    )}
+                  </span>
                 </Link>
               </li>
             ))}
