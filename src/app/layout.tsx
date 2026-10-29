@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import "@/styles/globals.css";
-import CookieConsent from "@/components/CookieConsent";
 import NextTopLoader from "nextjs-toploader";
 import { twMerge } from "tailwind-merge";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
@@ -45,9 +44,7 @@ export default function RootLayout({
         <NextTopLoader color="#e10012" shadow={false} showSpinner={false} />
 
         {children}
-        {process.env.GOOGLE_ANALYTICS_ID && (
-          <CookieConsent gaId={process.env.GOOGLE_ANALYTICS_ID} />
-        )}
+        <Analytics />
       </body>
     </html>
   );
