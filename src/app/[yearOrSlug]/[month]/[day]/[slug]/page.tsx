@@ -73,7 +73,10 @@ export async function generateStaticParams() {
     const date = new Date(edge.node.date);
     return [
       {
-        year: date.getFullYear().toString(),
+        // The segment is [yearOrSlug], shared with the WordPress page route.
+        // Returning `year` here matched nothing, so no article was ever
+        // prerendered at build time.
+        yearOrSlug: date.getFullYear().toString(),
         month: (date.getMonth() + 1).toString().padStart(2, "0"),
         day: date.getDate().toString().padStart(2, "0"),
         slug: edge.node.slug,
