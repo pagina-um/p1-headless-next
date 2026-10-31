@@ -15,8 +15,12 @@ const nextConfig = {
       { protocol: "https", hostname: "cdn.shopify.com" },
     ],
     formats: ["image/avif", "image/webp"],
-    deviceSizes: [640, 750, 828, 1080, 1200],
-    imageSizes: [16, 32, 64, 96, 128, 256],
+    // Every width here is a separate transformation (and cache write) per
+    // source image and format. Nothing in the layouts asks for anything
+    // smaller than 40px, and three breakpoints cover the phone/tablet/desktop
+    // columns the grid actually renders.
+    deviceSizes: [640, 828, 1200],
+    imageSizes: [48, 96, 128, 256],
     minimumCacheTTL: process.env.NODE_ENV === "production" ? 604800 : 60,
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",

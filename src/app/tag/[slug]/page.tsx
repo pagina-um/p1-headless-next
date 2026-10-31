@@ -8,7 +8,7 @@ import { Metadata } from "next";
 
 // Enable ISR with 1 hour revalidation for better caching
 // First page load will be cached, subsequent pagination requests will be dynamic
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 export async function generateMetadata({
   params,

@@ -146,4 +146,4 @@ export default async function PostPage({ params }: PostPageProps) {
 }
 
 // Enable ISR with 1 hour revalidation
-export const revalidate = 3600;
+export const revalidate = 86400;

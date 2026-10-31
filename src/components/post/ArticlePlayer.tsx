@@ -128,7 +128,14 @@ export function ArticlePlayer({ audio }: ArticlePlayerProps) {
           </div>
         </div>
       </div>
-      {audioUrl && <audio ref={audioRef} src={audioUrl} className="hidden" />}
+      {audioUrl && (
+        <audio
+          ref={audioRef}
+          src={audioUrl}
+          preload="none"
+          className="hidden"
+        />
+      )}
     </div>
   );
 }

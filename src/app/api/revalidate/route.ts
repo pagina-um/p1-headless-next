@@ -91,12 +91,19 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Warm the OG image cache so WhatsApp previews load instantly
+    // Author page (its slug is not in the webhook payload), then warm the OG
+    // image cache so WhatsApp previews load instantly
     if (post?.post_name) {
       try {
         const { data } = await getClient().query(GET_POST_BY_SLUG, {
           slug: post.post_name,
         });
+        const authorSlug = data?.postBy?.author?.node?.slug;
+        if (authorSlug) {
+          const path = `/author/${authorSlug}`;
+          revalidatePath(path);
+          revalidatedPaths.push(path);
+        }
         const sourceUrl = data?.postBy?.featuredImage?.node?.sourceUrl;
         if (sourceUrl) {
           const ogImageUrl = `https://paginaum.pt/_next/image?url=${encodeURIComponent(sourceUrl)}&w=1200&q=75`;

@@ -9,6 +9,16 @@ import parse from "html-react-parser";
 
 import { notFound } from "next/navigation";
 
+// Only the WordPress pages returned by generateStaticParams exist at this
+// level. Anything else (bot probes for /wp-login.php, /.env, random slugs)
+// used to render through this page: a function invocation, a GraphQL query
+// against WordPress and an ISR write of a 404, per probe. With
+// dynamicParams off, unknown slugs 404 at the edge without touching anything.
+// Adding a page in WordPress therefore needs a redeploy to go live.
+export const dynamicParams = false;
+// Page edits in WordPress show up within a day; the webhook only covers posts.
+export const revalidate = 86400;
+
 export async function generateStaticParams() {
   const { data, error } = await getClient().query(GET_ALL_PAGES, {});
 
@@ -22,9 +32,12 @@ export async function generateStaticParams() {
     );
   }
 
-  return (data?.pages?.nodes ?? []).flatMap((node) =>
-    node.uri ? [{ params: { yearOrSlug: node.uri } }] : []
-  );
+  // uri comes back as "/contactos/"; this segment matches a single bare slug.
+  // The root ("/") and nested pages cannot be served here and are skipped.
+  return (data?.pages?.nodes ?? []).flatMap((node) => {
+    const slug = (node.uri ?? "").replace(/^\/+|\/+$/g, "");
+    return slug && !slug.includes("/") ? [{ yearOrSlug: slug }] : [];
+  });
 }
 
 export default async function StaticPage({

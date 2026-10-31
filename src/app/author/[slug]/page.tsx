@@ -6,7 +6,7 @@ import { formatDate } from "@/utils/categoryUtils";
 import { Calendar, User } from "lucide-react";
 import { Metadata } from "next";
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 export async function generateMetadata({
   params,
