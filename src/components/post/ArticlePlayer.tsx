@@ -97,7 +97,7 @@ export function ArticlePlayer({ audio }: ArticlePlayerProps) {
 
   return (
     <div className="mt-3 mb-4 md:mt-4 md:mb-6 w-full px-4 py-3 bg-gray-50 rounded-lg border border-gray-200">
-      <p className="text-xs text-gray-500 mb-2 font-medium">Ouvir artigo (experimental)</p>
+      <p className="text-xs text-gray-500 mb-2 font-medium">Ouvir artigo</p>
       <div className="flex items-center gap-3">
         <button
           onClick={handlePlayPause}
