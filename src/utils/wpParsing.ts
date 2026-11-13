@@ -69,6 +69,19 @@ export const parserOptions: HTMLReactParserOptions = {
         }
       }
 
+      // Embeds (YouTube, Vimeo, Spotify…) arrive as iframes with fixed pixel
+      // dimensions, e.g. width="500" height="281". A phone is narrower than
+      // that, and an iframe does not shrink on its own, so the whole page
+      // became horizontally scrollable. Let it fill the column and keep the
+      // original aspect ratio instead.
+      if (domNode.name === "iframe") {
+        const width = parseInt(domNode.attribs.width ?? "", 10);
+        const height = parseInt(domNode.attribs.height ?? "", 10);
+        const ratio =
+          width > 0 && height > 0 ? `${width} / ${height}` : "16 / 9";
+        domNode.attribs.style = `width:100%;max-width:100%;height:auto;aspect-ratio:${ratio};`;
+      }
+
       // Handle images
       if (domNode.name === "img" && domNode.attribs.src) {
         const src = domNode.attribs.src.replace(

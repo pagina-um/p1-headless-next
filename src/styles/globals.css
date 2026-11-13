@@ -198,9 +198,21 @@ h3 {
   margin-bottom: 16px;
 }
 
-.wp-block-embed-youtube {
-  display: flex;
-  justify-content: center;
+/* Gutenberg embeds. The iframe itself is sized in wpParsing.ts (full width,
+   aspect ratio from its width/height attributes); the wrapper just has to give
+   it a definite width to resolve against. */
+.wp-block-embed__wrapper {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Anything else WordPress content can bring in that has an intrinsic size. */
+.prose iframe,
+.prose video,
+.prose embed,
+.prose object,
+.prose table {
+  max-width: 100%;
 }
 
 /* ─── Desktop & small-tablet viewports ─────────────────────────────┐
