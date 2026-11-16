@@ -198,6 +198,22 @@ h3 {
   margin-bottom: 16px;
 }
 
+/* Headings inside article bodies (wp-block-heading). The `prose` classes on
+   the article do nothing because @tailwindcss/typography is not installed,
+   so Preflight left h2 at body size, smaller than the h3 rule above.
+   Vertical spacing comes from the article's space-y utility. */
+.article-content h2 {
+  @apply text-3xl font-semibold leading-tight;
+}
+
+.article-content h3 {
+  @apply text-2xl font-semibold leading-snug;
+}
+
+.article-content h4 {
+  @apply text-xl font-semibold;
+}
+
 /* Gutenberg embeds. The iframe itself is sized in wpParsing.ts (full width,
    aspect ratio from its width/height attributes); the wrapper just has to give
    it a definite width to resolve against. */
