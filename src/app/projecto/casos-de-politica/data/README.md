@@ -1,0 +1,65 @@
+# Casos de Política — imported edition
+
+Imported on 2026-11-20 from the published prototype, version 21, source commit
+`51afb264c9b2ceabd00f53116a9faa5baea4c877`.
+
+- `casos.json`: 464 cases, including 7 party-account decisions.
+- `documentos.json`: 1 reference document, excluded from case totals.
+- `pessoas.json`: 535 people; 27 publicly published portraits with credits/licences.
+- `partidos.json`: 24 current and 4 historical parties, with registration sources and symbol provenance.
+- `manifesto.json`: edition metadata, coverage and the preserved case alias.
+
+Each entity has a source (`label`, `href`). All records within an entity share
+the same fields. Unknown fields are blank or null. Complete dates use YYYY-MM-DD.
+`dateLabel` preserves a source date known only to month/year; `date` is null in
+that situation. No artificial day is introduced. `timeline` follows the same rule.
+
+Person roles and procedural status remain attached to individual cases. A party
+associated with a case is not automatically assigned as every participant's
+membership. `partyOutcomes` preserves mixed decisions in the party summary.
+Public-manager evidence remains in `entityCases`. Reversed administrative mandate
+losses and rejected applications retain their separate classifications.
+
+The public portrait endpoint was read once for this edition. Only published
+image files and public credits/licences were imported. The existing approval
+workflow, pending proposals, account data, private audit log and credentials
+were not copied. New proposals still go to the prototype's moderated service.
+The imported Rui Cristina image was already publicly approved there and marked
+as authorised. The remaining 26 images retain the source's licence references.
+
+Reproduce from a trusted copy of the prototype source:
+
+```sh
+node src/app/projecto/casos-de-politica/data/import.mjs \
+  /path/to/prototype \
+  /path/to/public-portraits.json \
+  /path/to/approved-images
+node src/app/projecto/casos-de-politica/data/verify.mjs
+```
+
+The importer executes the prototype's trusted local data scripts in their
+original order. Never run it on unreviewed third-party scripts. The optional
+published-portraits input must come from the public endpoint, not from the
+private moderation tables. Approved custom images must be supplied separately.
+Future imports must update and verify the edition/source commit in the importer.
+
+The browser receives a compact searchable index only. Full records and evidence
+are rendered in server pages and exported through the read-only `dados` route.
+No new API keys, runtime database, dependencies or production configuration are
+required. The URL prefix `/projecto` is the owner's explicit choice; the project
+registry uses `routeBase` to keep this an internal project in `/projectos`.
+
+## Validation and deployment
+
+The migration verifier uses the repository's existing TypeScript compiler and
+checks data integrity, source preservation, mixed party outcomes, mandate
+classifications, individual procedural status, public assets and client payload
+size. It does not re-investigate or certify the current state of each case.
+
+The project was reviewed at desktop width and in a 390 px frame, including
+search, party ordering, links between records and people, and JSON/CSV downloads.
+The full application build requires the original site's WordPress, Stripe and KV
+configuration. Local compilation reached prerendering but stopped on the existing
+`/cultura` page because KV credentials were absent. The PR remains a draft until
+the full build succeeds in the configured deployment environment. No production
+credentials or environment files are included in this change.

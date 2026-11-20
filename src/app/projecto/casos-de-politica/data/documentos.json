@@ -1,0 +1,72 @@
+[
+  {
+    "id": "contas-2025",
+    "parties": [
+      "ATUA",
+      "ADN",
+      "BE",
+      "CDS",
+      "CH",
+      "IL",
+      "JPP",
+      "L",
+      "MAS",
+      "MPT",
+      "NC",
+      "ND",
+      "PAN",
+      "PCP",
+      "PCTP",
+      "PEV",
+      "PLS",
+      "PPM",
+      "PSD",
+      "PS",
+      "PTP",
+      "RIR",
+      "VP"
+    ],
+    "category": "Documentos",
+    "nature": "Documental",
+    "phase": "Documentos oficiais",
+    "status": "Documento oficial",
+    "date": null,
+    "dateLabel": "",
+    "datePrecision": null,
+    "dateKind": "Exercício contabilístico",
+    "year": 2025,
+    "title": "Contas dos partidos de 2025: consultar os documentos entregues à ECFP",
+    "summary": "O portal do Tribunal Constitucional reúne contas anuais e comunicações de acções e meios referentes a 2025.",
+    "detail": "Esta ficha remete para o índice oficial, que distingue documentos entregues e situações de falta de entrega ou comunicação. A presença de um partido no índice não significa que tenha entregue todos os documentos, nem constitui um juízo sobre a regularidade das suas contas. O índice inclui também partidos que não constam da lista actual de partidos registados. O ano é o exercício contabilístico, não a data de publicação.",
+    "affiliation": "",
+    "finality": "",
+    "penalty": "",
+    "amount": null,
+    "caseNumber": "",
+    "court": "",
+    "location": "",
+    "topic": "",
+    "procedureType": "",
+    "reference": "Financiamento Partidário de 2025",
+    "sourceName": "Tribunal Constitucional · ECFP",
+    "source": {
+      "label": "Financiamento Partidário de 2025",
+      "href": "https://www.tribunalconstitucional.pt/tc/contas_eleicoes-partidos-2025.html"
+    },
+    "checkedAt": "2026-11-20",
+    "researchBatch": "",
+    "related": [],
+    "partyOutcomes": {},
+    "people": [],
+    "timeline": [],
+    "sources": [
+      {
+        "label": "Financiamento Partidário de 2025",
+        "href": "https://www.tribunalconstitucional.pt/tc/contas_eleicoes-partidos-2025.html",
+        "kind": "Documento oficial"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  }
+]

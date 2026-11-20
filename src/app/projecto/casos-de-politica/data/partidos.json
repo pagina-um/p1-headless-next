@@ -1,0 +1,702 @@
+[
+  {
+    "id": "ATUA",
+    "name": "(A)TUA",
+    "abbr": "A)T",
+    "registered": "2015-07-13",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/atua.png",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/content/files/partidos/a_tua.png",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "ADN",
+    "name": "Alternativa Democrática Nacional",
+    "abbr": "ADN",
+    "registered": "2015-02-11",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/adn.png",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/content/files/partidos/adn.png",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "BE",
+    "name": "Bloco de Esquerda",
+    "abbr": "B.E.",
+    "registered": "1999-03-24",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/be.gif",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/conteudo/files/partidos/be.gif",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "CDS",
+    "name": "CDS – Partido Popular",
+    "abbr": "CDS-PP",
+    "registered": "1975-01-13",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/cds.jpg",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/conteudo/files/partidos/cds-pp.jpg",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "CH",
+    "name": "CHEGA",
+    "abbr": "CH",
+    "registered": "2019-04-09",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/ch.png",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/content/files/partidos/chega.png",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "IL",
+    "name": "Iniciativa Liberal",
+    "abbr": "IL",
+    "registered": "2017-12-13",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/il.png",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/content/files/partidos/il.png",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "JPP",
+    "name": "Juntos pelo Povo",
+    "abbr": "JPP",
+    "registered": "2015-01-27",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/jpp.png",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/content/files/partidos/jpp.png",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "L",
+    "name": "LIVRE",
+    "abbr": "L",
+    "registered": "2014-03-19",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/l.jpg",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/content/files/partidos/livre.jpg",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "MAS",
+    "name": "Movimento Alternativa Socialista",
+    "abbr": "MAS",
+    "registered": "2013-07-29",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/mas.png",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/content/files/partidos/mas.png",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "MPT",
+    "name": "Partido da Terra",
+    "abbr": "MPT",
+    "registered": "1993-08-12",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/mpt.gif",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/conteudo/files/partidos/terrareconstruido.gif",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "NC",
+    "name": "Nós, Cidadãos!",
+    "abbr": "NC",
+    "registered": "2015-06-23",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/nc.png",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/content/files/partidos/nos.png",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "ND",
+    "name": "Nova Direita",
+    "abbr": "ND",
+    "registered": "2024-01-09",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/nd.png",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/content/files/partidos/nd.png",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "PAN",
+    "name": "Pessoas–Animais–Natureza",
+    "abbr": "PAN",
+    "registered": "2011-01-13",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/pan.gif",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/content/files/partidos/pan.gif",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "PCP",
+    "name": "Partido Comunista Português",
+    "abbr": "PCP",
+    "registered": "1974-12-26",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/pcp.gif",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/conteudo/files/partidos/pcp1.gif",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "PCTP",
+    "name": "Partido Comunista dos Trabalhadores Portugueses",
+    "abbr": "PCTP/MRPP",
+    "registered": "1975-02-18",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/pctp.gif",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/conteudo/files/partidos/mrpp1.gif",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "PEV",
+    "name": "Partido Ecologista “Os Verdes”",
+    "abbr": "PEV",
+    "registered": "1982-12-15",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/pev.gif",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/conteudo/files/partidos/verdes.gif",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "PLS",
+    "name": "Partido Liberal Social",
+    "abbr": "PLS",
+    "registered": "2025-03-11",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/pls.png",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/content/files/partidos/pls.png",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "PPM",
+    "name": "Partido Popular Monárquico",
+    "abbr": "PPM",
+    "registered": "1975-02-17",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/ppm.png",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/conteudo/files/partidos/ppm20110412.png",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "PSD",
+    "name": "Partido Social Democrata",
+    "abbr": "PPD/PSD",
+    "registered": "1975-01-17",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/psd.gif",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/conteudo/files/partidos/psd.gif",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "PS",
+    "name": "Partido Socialista",
+    "abbr": "PS",
+    "registered": "1975-02-01",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/ps.gif",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/conteudo/files/partidos/ps.gif",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "PTP",
+    "name": "Partido Trabalhista Português",
+    "abbr": "PTP",
+    "registered": "2009-07-01",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/ptp.png",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/conteudo/files/partidos/ptp.png",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "RIR",
+    "name": "Reagir Incluir Reciclar",
+    "abbr": "R.I.R.",
+    "registered": "2019-05-30",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/rir.png",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/content/files/partidos/rir.png",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "TU",
+    "name": "Trabalhadores Unidos",
+    "abbr": "TU",
+    "registered": "2026-07-21",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/tu.png",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/content/files/partidos/tu.png",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "VP",
+    "name": "Volt Portugal",
+    "abbr": "VP",
+    "registered": "2020-06-25",
+    "historical": false,
+    "extinguished": null,
+    "source": {
+      "label": "Tribunal Constitucional · lista de partidos",
+      "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/vp.png",
+      "source": {
+        "label": "Tribunal Constitucional",
+        "href": "https://www.tribunalconstitucional.pt/tc/partidos.html"
+      },
+      "original": "https://www.tribunalconstitucional.pt/tc/content/files/partidos/vp.png",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "PND",
+    "name": "Partido da Nova Democracia (histórico)",
+    "abbr": "PND",
+    "registered": "2003-06-23",
+    "historical": true,
+    "extinguished": null,
+    "source": {
+      "label": "Registo histórico · TC / CNE",
+      "href": "https://www.cne.pt/content/partidos-politicos-1"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/pnd.png",
+      "source": {
+        "label": "Comissão Nacional de Eleições",
+        "href": "https://www.cne.pt/content/partidos-politicos-1"
+      },
+      "original": "https://www.cne.pt/sites/default/files/partido18_0.png",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "UDP",
+    "name": "União Democrática Popular (histórico)",
+    "abbr": "UDP",
+    "registered": "1975-02-10",
+    "historical": true,
+    "extinguished": null,
+    "source": {
+      "label": "Registo histórico · TC / CNE",
+      "href": "https://www.cne.pt/partido/uniao-democratica-popular"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/udp.png",
+      "source": {
+        "label": "Comissão Nacional de Eleições",
+        "href": "https://www.cne.pt/content/partidos-politicos-1"
+      },
+      "original": "https://www.cne.pt/sites/default/files/partido20_0.png",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "PRD",
+    "name": "Partido Renovador Democrático (histórico)",
+    "abbr": "PRD",
+    "registered": "1985-07-10",
+    "historical": true,
+    "extinguished": null,
+    "source": {
+      "label": "Registo histórico · TC / CNE",
+      "href": "https://www.cne.pt/sites/default/files/dl/pp_prd_acordao_126_85.pdf"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/prd.png",
+      "source": {
+        "label": "Wikimedia Commons",
+        "href": "https://commons.wikimedia.org/wiki/File:Logotipo_do_PRD.png"
+      },
+      "original": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Logotipo_do_PRD.png",
+      "author": "Urgup-tur",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "changes": "Nenhuma alteração ao ficheiro original.",
+      "checkedAt": "2026-11-20"
+    }
+  },
+  {
+    "id": "FUP",
+    "name": "Força de Unidade Popular (histórico)",
+    "abbr": "FUP",
+    "registered": "1980-07-31",
+    "historical": true,
+    "extinguished": "2004-03-31",
+    "source": {
+      "label": "Registo histórico · TC / CNE",
+      "href": "https://www.tribunalconstitucional.pt/tc/acordaos/20040231.html"
+    },
+    "logo": {
+      "src": "/projectos/casos-de-politica/logotipos/fup.png",
+      "source": {
+        "label": "Comissão Nacional de Eleições",
+        "href": "https://www.cne.pt/content/partidos-politicos-1"
+      },
+      "original": "https://www.cne.pt/sites/default/files/partido41_0.png",
+      "author": "",
+      "license": "",
+      "licenseUrl": "",
+      "changes": "",
+      "checkedAt": "2026-11-20"
+    }
+  }
+]

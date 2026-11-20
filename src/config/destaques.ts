@@ -30,14 +30,13 @@ export const DESTAQUES: {
   blocoHomepage: { projecto: string };
 } = {
   banner: {
-    projecto: "corpus",
-    lead: "Experimente o",
+    projecto: "casos-de-politica",
+    lead: "Explore",
     note: {
-      before: "Obrigado aos leitores que apoiaram a",
-      linkText: "longa batalha judicial",
-      href: "https://paginaum.pt/2025/11/18/38-486-636-registos-de-internamentos-hospitalares",
-      after: "que lhe deu origem.",
+      before: "Fontes, recursos e desfechos documentados.",
+      linkText: "Conheça o método",
+      href: "/projecto/casos-de-politica/metodo",
     },
   },
-  blocoHomepage: { projecto: "corpus" },
+  blocoHomepage: { projecto: "casos-de-politica" },
 };

@@ -1,0 +1,20 @@
+{
+  "title": "Casos de Política",
+  "extractedAt": "2026-11-20",
+  "checkedAt": "2026-11-20",
+  "source": {
+    "label": "Protótipo Casos de Política · versão 21",
+    "href": "https://arquivo-politico-pav.pav-1969.chatgpt.site"
+  },
+  "sourceCommit": "51afb264c9b2ceabd00f53116a9faa5baea4c877",
+  "caseAliases": {
+    "alipio-dias-bcp-cmvm": "bcp-cmvm-teixeira-pinto-alipio-dias"
+  },
+  "coverage": "Selecção parcial. A data da consulta das fontes não certifica o estado actual de todos os processos.",
+  "cases": 464,
+  "documents": 1,
+  "people": 535,
+  "currentParties": 24,
+  "historicalParties": 4,
+  "photographs": 27
+}
