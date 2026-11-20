@@ -16,7 +16,7 @@ rest.
 
 - All reader-facing text is **European Portuguese in the pre-1990 spelling**
   (the convention Página UM writes in): *projecto*, *actual*, *direcção*,
-  *facto*, *óptimo*, *acção*. Not *projecto*, *atual*, *direção*. Code
+  *facto*, *óptimo*, *acção*. Not *projeto*, *atual*, *direção*. Code
   identifiers and URLs follow the same spelling where they carry a Portuguese
   word (`/projectos`, `ProjectoShell`).
 - Code, comments and commit messages are in English.
