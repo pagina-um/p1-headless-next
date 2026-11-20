@@ -12,9 +12,9 @@ import {
   Users,
   type LucideProps,
 } from "lucide-react";
-import type { ProjetoIconName } from "./registry";
+import type { ProjectoIconName } from "./registry";
 
-const ICONS: Record<ProjetoIconName, React.ComponentType<LucideProps>> = {
+const ICONS: Record<ProjectoIconName, React.ComponentType<LucideProps>> = {
   activity: Activity,
   archive: Archive,
   scale: Scale,
@@ -28,10 +28,10 @@ const ICONS: Record<ProjetoIconName, React.ComponentType<LucideProps>> = {
   "file-search": FileSearch,
 };
 
-export function ProjetoIcon({
+export function ProjectoIcon({
   name,
   ...props
-}: { name: ProjetoIconName } & LucideProps) {
+}: { name: ProjectoIconName } & LucideProps) {
   const Icon = ICONS[name];
   return <Icon aria-hidden="true" {...props} />;
 }

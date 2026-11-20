@@ -1,10 +1,10 @@
 /**
- * Onde cada projeto especial é promovido no site. Os projetos em si estão em
- * `src/projetos/registry.ts`; este ficheiro só escolhe qual aparece onde.
+ * Onde cada projecto especial é promovido no site. Os projectos em si estão em
+ * `src/projectos/registry.ts`; este ficheiro só escolhe qual aparece onde.
  *
  * - `banner`: a faixa colorida no topo de todas as páginas, logo abaixo do
  *   cabeçalho. `null` esconde-a.
- * - `blocoHomepage`: o projeto mostrado pelo bloco estático "Projeto em
+ * - `blocoHomepage`: o projecto mostrado pelo bloco estático "Projecto em
  *   destaque" da grelha da homepage. O bloco só aparece depois de alguém o
  *   adicionar à grelha em /admin.
  */
@@ -17,9 +17,9 @@ export interface BannerNote {
 }
 
 export interface BannerConfig {
-  /** slug em PROJETOS */
-  projeto: string;
-  /** Texto antes do botão com o nome do projeto, por exemplo "Experimente o". */
+  /** slug em PROJECTOS */
+  projecto: string;
+  /** Texto antes do botão com o nome do projecto, por exemplo "Experimente o". */
   lead: string;
   /** Frase secundária, só em ecrãs largos. Opcional. */
   note?: BannerNote;
@@ -27,10 +27,10 @@ export interface BannerConfig {
 
 export const DESTAQUES: {
   banner: BannerConfig | null;
-  blocoHomepage: { projeto: string };
+  blocoHomepage: { projecto: string };
 } = {
   banner: {
-    projeto: "corpus",
+    projecto: "corpus",
     lead: "Experimente o",
     note: {
       before: "Obrigado aos leitores que apoiaram a",
@@ -39,5 +39,5 @@ export const DESTAQUES: {
       after: "que lhe deu origem.",
     },
   },
-  blocoHomepage: { projeto: "corpus" },
+  blocoHomepage: { projecto: "corpus" },
 };

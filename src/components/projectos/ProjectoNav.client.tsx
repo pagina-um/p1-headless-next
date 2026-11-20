@@ -4,22 +4,22 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 
-export interface ProjetoNavItem {
+export interface ProjectoNavItem {
   label: string;
-  /** Caminho absoluto, por exemplo "/projetos/arquivo/casos". */
+  /** Caminho absoluto, por exemplo "/projectos/arquivo/casos". */
   href: string;
 }
 
-export function ProjetoNav({
+export function ProjectoNav({
   items,
   color,
 }: {
-  items: ProjetoNavItem[];
+  items: ProjectoNavItem[];
   color: string;
 }) {
   const pathname = usePathname();
   return (
-    <nav aria-label="Secções do projeto" className="border-t border-gray-200">
+    <nav aria-label="Secções do projecto" className="border-t border-gray-200">
       <ul className="max-w-7xl mx-auto px-4 flex gap-6 overflow-x-auto">
         {items.map((item) => {
           const active = pathname === item.href;

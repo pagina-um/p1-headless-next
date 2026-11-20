@@ -29,7 +29,7 @@ export function StaticBlockCreator({ onCreateBlock }: StaticBlockCreatorProps) {
                 <Handshake className="w-5 h-5 text-primary" />
               ) : block.type === "culturaBanner" ? (
                 <Palette className="w-5 h-5 text-amber-700" />
-              ) : block.type === "projeto" ? (
+              ) : block.type === "projecto" ? (
                 <FolderSearch className="w-5 h-5 text-teal-700" />
               ) : (
                 <Layout className="w-5 h-5 text-gray-500" />

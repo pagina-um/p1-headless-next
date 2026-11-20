@@ -1,22 +1,22 @@
 import { DESTAQUES } from "@/config/destaques";
-import { getProjeto, projetoHref } from "@/projetos/registry";
-import { ProjetoIcon } from "@/projetos/icons";
+import { getProjecto, projectoHref } from "@/projectos/registry";
+import { ProjectoIcon } from "@/projectos/icons";
 
 /**
  * Faixa de destaque no topo da página, por baixo do cabeçalho. Promove o
- * projeto escolhido em `src/config/destaques.ts`; a cor e o nome vêm do
- * registo do projeto.
+ * projecto escolhido em `src/config/destaques.ts`; a cor e o nome vêm do
+ * registo do projecto.
  */
 export function PromoBanner() {
   const banner = DESTAQUES.banner;
   if (!banner) return null;
-  const projeto = getProjeto(banner.projeto);
+  const projecto = getProjecto(banner.projecto);
 
   return (
     <div
       className="w-full text-white"
       style={{
-        background: `linear-gradient(160deg, ${projeto.color} 0%, ${projeto.colorDark} 100%)`,
+        background: `linear-gradient(160deg, ${projecto.color} 0%, ${projecto.colorDark} 100%)`,
       }}
     >
       {/* same container as the navbar so edges line up */}
@@ -26,21 +26,21 @@ export function PromoBanner() {
             {banner.lead}
           </span>
           <a
-            href={projetoHref(projeto)}
+            href={projectoHref(projecto)}
             className="inline-flex items-center gap-2 rounded-lg bg-white px-3 py-1.5 md:px-3.5 shadow-sm transition hover:bg-white/90 hover:shadow active:translate-y-px"
-            style={{ color: projeto.colorDark }}
+            style={{ color: projecto.colorDark }}
           >
-            <ProjetoIcon
-              name={projeto.icon}
+            <ProjectoIcon
+              name={projecto.icon}
               className="w-4 h-4 md:w-[17px] md:h-[17px] shrink-0"
               strokeWidth={2.4}
             />
             <span className="uppercase tracking-[0.22em] text-[13px] md:text-[14px] font-bold leading-none">
-              {projeto.title}
+              {projecto.title}
             </span>
           </a>
           <span className="text-[13.5px] md:text-[15px] font-normal text-white/90 leading-snug">
-            {projeto.kicker}
+            {projecto.kicker}
           </span>
         </div>
 

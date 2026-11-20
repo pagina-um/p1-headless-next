@@ -198,56 +198,56 @@ h3 {
   margin-bottom: 16px;
 }
 
-/* Text inside special projects (src/app/projetos/<slug>). Project pages are
+/* Text inside special projects (src/app/projectos/<slug>). Project pages are
    hand-written JSX, so plain h2/p/ul/table get sensible defaults here and the
    markup stays free of utility classes. */
-.projeto-content h2 {
+.projecto-content h2 {
   @apply font-serif text-2xl md:text-3xl font-bold leading-tight text-stone-900;
 }
 
-.projeto-content h3 {
+.projecto-content h3 {
   @apply font-serif text-xl font-semibold leading-snug text-stone-900;
 }
 
-.projeto-content h2 + p,
-.projeto-content h3 + p {
+.projecto-content h2 + p,
+.projecto-content h3 + p {
   @apply mt-3;
 }
 
-.projeto-content p + p {
+.projecto-content p + p {
   @apply mt-4;
 }
 
-.projeto-content p {
+.projecto-content p {
   @apply text-base md:text-lg leading-relaxed text-stone-700;
 }
 
-.projeto-content p a {
+.projecto-content p a {
   @apply text-primary underline underline-offset-2;
 }
 
-.projeto-content ul,
-.projeto-content ol {
+.projecto-content ul,
+.projecto-content ol {
   @apply mt-3 pl-6 space-y-1 text-stone-700;
 }
 
-.projeto-content ul {
+.projecto-content ul {
   @apply list-disc;
 }
 
-.projeto-content ol {
+.projecto-content ol {
   @apply list-decimal;
 }
 
-.projeto-content table {
+.projecto-content table {
   @apply mt-4 w-full border-collapse text-sm;
 }
 
-.projeto-content th {
+.projecto-content th {
   @apply border-b border-gray-300 py-2 text-left text-[11px] uppercase tracking-wider text-stone-500;
 }
 
-.projeto-content td {
+.projecto-content td {
   @apply border-b border-gray-200 py-2 align-top;
 }
 

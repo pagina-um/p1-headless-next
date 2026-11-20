@@ -1,18 +1,18 @@
-import { ProjetoShell } from "@/components/projetos/ProjetoShell";
-import { projetoMetadata } from "@/projetos/registry";
+import { ProjectoShell } from "@/components/projectos/ProjectoShell";
+import { projectoMetadata } from "@/projectos/registry";
 import { ListaFiltravel, Registo } from "./_components/ListaFiltravel.client";
 import registos from "./data/registos.json";
 
-// Substitua "exemplo" pelo slug do projeto, igual ao da pasta e ao do registo.
+// Substitua "exemplo" pelo slug do projecto, igual ao da pasta e ao do registo.
 const SLUG = "exemplo";
 
-export const metadata = projetoMetadata(SLUG);
+export const metadata = projectoMetadata(SLUG);
 
-// Secções do projeto. Cada uma é uma pasta com page.tsx dentro desta.
-// Apague se o projeto tiver uma única página.
+// Secções do projecto. Cada uma é uma pasta com page.tsx dentro desta.
+// Apague se o projecto tiver uma única página.
 const NAV = [
-  { label: "Síntese", href: `/projetos/${SLUG}` },
-  { label: "Método", href: `/projetos/${SLUG}/metodo` },
+  { label: "Síntese", href: `/projectos/${SLUG}` },
+  { label: "Método", href: `/projectos/${SLUG}/metodo` },
 ];
 
 const dados = registos as Registo[];
@@ -21,7 +21,7 @@ export default function Page() {
   const concluidos = dados.filter((r) => r.estado === "Concluído").length;
 
   return (
-    <ProjetoShell slug={SLUG} nav={NAV}>
+    <ProjectoShell slug={SLUG} nav={NAV}>
       {/* Números-chave: três a quatro, nunca mais. */}
       <dl className="grid grid-cols-2 gap-4 md:grid-cols-4">
         {[
@@ -44,7 +44,7 @@ export default function Page() {
         ))}
       </dl>
 
-      {/* Texto corrido: usa as classes do .projeto-content (h2, p, listas). */}
+      {/* Texto corrido: usa as classes do .projecto-content (h2, p, listas). */}
       <section className="mt-10 max-w-3xl">
         <h2>Sobre este arquivo</h2>
         <p>
@@ -57,6 +57,6 @@ export default function Page() {
       <div className="mt-10">
         <ListaFiltravel registos={dados} />
       </div>
-    </ProjetoShell>
+    </ProjectoShell>
   );
 }

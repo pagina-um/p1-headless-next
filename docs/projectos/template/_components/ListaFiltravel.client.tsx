@@ -5,7 +5,7 @@ import { Search } from "lucide-react";
 
 /**
  * Lista pesquisável e filtrável. Corre no browser ("use client") porque
- * reage ao que o leitor escreve; tudo o resto no projeto deve ser
+ * reage ao que o leitor escreve; tudo o resto no projecto deve ser
  * componentes de servidor (sem "use client").
  */
 export interface Registo {
