@@ -47,9 +47,24 @@ export interface Projecto {
   credits?: string;
   /** Projectos alojados fora do site. Quando ausente, o URL é /projectos/<slug>. */
   href?: string;
+  /** Optional internal route prefix for projects with a specific public URL. */
+  routeBase?: "/projecto";
 }
 
 export const PROJECTOS: Projecto[] = [
+  {
+    slug: "casos-de-politica",
+    title: "Casos de Política",
+    kicker: "Políticos, processos e decisões da Justiça",
+    description:
+      "Um arquivo de casos judiciais da democracia portuguesa, com fontes, percursos políticos e desfechos documentados.",
+    icon: "scale",
+    color: "#2563EB",
+    colorDark: "#1E40AF",
+    publishedAt: "2026-11-20",
+    credits: "PÁGINA UM e CONTRAPROVA · Pedro Almeida Vieira",
+    routeBase: "/projecto",
+  },
   {
     slug: "corpus",
     title: "Corpus",
@@ -75,7 +90,9 @@ export function getProjecto(slug: string): Projecto {
 }
 
 export function projectoHref(projecto: Projecto): string {
-  return projecto.href ?? `/projectos/${projecto.slug}`;
+  return (
+    projecto.href ?? `${projecto.routeBase ?? "/projectos"}/${projecto.slug}`
+  );
 }
 
 /** Projectos alojados neste site, mais recentes primeiro. */
