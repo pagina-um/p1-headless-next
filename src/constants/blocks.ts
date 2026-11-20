@@ -97,6 +97,13 @@ export const STATIC_BLOCKS: Record<string, StaticBlockDefinition> = {
       "Banner destacado com as 6 histórias mais recentes da grelha de Cultura.",
     defaultSize: { width: 6, height: 4 },
   },
+  projeto: {
+    type: "projeto",
+    title: "Projeto em destaque",
+    content:
+      "Cartão do projeto especial escolhido em src/config/destaques.ts (blocoHomepage).",
+    defaultSize: { width: 3, height: 3 },
+  },
 };
 
 export const GRID_COLUMNS = 10;

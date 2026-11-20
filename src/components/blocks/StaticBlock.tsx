@@ -11,6 +11,9 @@ import { AccountsCounterBlock } from "./AccountsCounterBlock";
 import { BookPresaleBlock } from "./BookPresaleBlock";
 import { BookPresalePrimadoBlock } from "./BookPresalePrimadoBlock";
 import { BookPresaleValoresBlock } from "./BookPresaleValoresBlock";
+import { ProjetoCard } from "../projetos/ProjetoCard";
+import { DESTAQUES } from "../../config/destaques";
+import { getProjeto } from "../../projetos/registry";
 
 interface StaticBlockProps {
   block: StaticBlockType;
@@ -27,6 +30,7 @@ export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
   const isBookPresalePrimado = block.type === "bookPresalePrimado";
   const isBookPresaleValores = block.type === "bookPresaleValores";
   const isCulturaBanner = block.type === "culturaBanner";
+  const isProjeto = block.type === "projeto";
 
   const gridStyles = {
     gridColumn: `span ${block.gridPosition?.width || 1}`,
@@ -131,6 +135,17 @@ export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
         style={gridStyles}
       >
         <BookPresaleValoresBlock />
+      </div>
+    );
+  }
+
+  if (isProjeto) {
+    return (
+      <div className="h-full block-content" style={gridStyles}>
+        <ProjetoCard
+          projeto={getProjeto(DESTAQUES.blocoHomepage.projeto)}
+          variant="block"
+        />
       </div>
     );
   }

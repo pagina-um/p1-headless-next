@@ -1,0 +1,29 @@
+[
+  {
+    "id": "exemplo-001",
+    "titulo": "Primeiro registo de exemplo",
+    "categoria": "Categoria A",
+    "ano": 2024,
+    "estado": "Concluído",
+    "resumo": "Uma frase curta a explicar o que é este registo e porque interessa.",
+    "fonte": { "label": "Fonte oficial", "href": "https://example.org/fonte-1" }
+  },
+  {
+    "id": "exemplo-002",
+    "titulo": "Segundo registo de exemplo",
+    "categoria": "Categoria B",
+    "ano": 2023,
+    "estado": "Pendente",
+    "resumo": "Outra frase curta. Os campos são livres; o importante é serem iguais em todos os registos.",
+    "fonte": { "label": "Documento", "href": "https://example.org/fonte-2" }
+  },
+  {
+    "id": "exemplo-003",
+    "titulo": "Terceiro registo de exemplo",
+    "categoria": "Categoria A",
+    "ano": 2021,
+    "estado": "Arquivado",
+    "resumo": "Um registo mais antigo, para a filtragem por ano ter com que trabalhar.",
+    "fonte": { "label": "Notícia", "href": "https://example.org/fonte-3" }
+  }
+]
