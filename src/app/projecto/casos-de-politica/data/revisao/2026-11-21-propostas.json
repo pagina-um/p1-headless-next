@@ -1,0 +1,261 @@
+{
+  "reviewStatus": "pending_editorial_review",
+  "date": "2026-11-21",
+  "baseCommit": "f04e4feec99fd68df81bce3ebcaba1ba9b34c8ed",
+  "appliedToPublicData": false,
+  "newCases": [
+    {
+      "before": null,
+      "after": {
+        "id": "miguel-esteves-vila-real-prevaricacao",
+        "parties": [
+          "PSD"
+        ],
+        "category": "Casos",
+        "nature": "Criminal",
+        "phase": "Absolvições",
+        "status": "Absolvição confirmada em recurso · trânsito noticiado",
+        "date": "2026-11-17",
+        "dateLabel": "2026-11-17",
+        "datePrecision": "day",
+        "dateKind": "Notícia sobre confirmação da absolvição",
+        "year": 2026,
+        "title": "Vila Real: Relação confirma absolvição de Miguel Esteves",
+        "summary": "A Relação de Guimarães confirmou a absolvição do antigo vereador do PSD. A Lusa noticia o trânsito em julgado.",
+        "detail": "A acusação respeitava a uma decisão urbanística de 2012. A absolvição de Abril de 2025 foi mantida após recurso do Ministério Público. O pedido de perda de vantagens de 600 mil euros também foi julgado improcedente. O autarca negou favorecimentos.",
+        "affiliation": "PSD · identificado pela Lusa e pela Voz de Trás-os-Montes como antigo vereador do partido em Vila Real.",
+        "finality": "Trânsito em julgado noticiado pela Lusa em 17 de Novembro de 2026. Não foi obtida certidão nem a data exacta do acórdão da Relação.",
+        "penalty": "",
+        "amount": null,
+        "caseNumber": "",
+        "court": "Tribunal da Relação de Guimarães; Tribunal de Vila Real",
+        "location": "Vila Real",
+        "topic": "",
+        "procedureType": "",
+        "reference": "Observador / Lusa · 17 Novembro 2026",
+        "sourceName": "Imprensa · Lusa",
+        "source": {
+          "label": "Observador / Lusa · 17 Novembro 2026",
+          "href": "https://observador.pt/2026/11/17/relacao-confirma-absolvicao-de-antigo-vereador-de-vila-real-por-prevaricacao/"
+        },
+        "checkedAt": "2026-11-21",
+        "researchBatch": "revisao-editorial-2026-11-21",
+        "related": [],
+        "partyOutcomes": {},
+        "people": [
+          {
+            "id": "miguel-esteves",
+            "name": "Miguel Esteves",
+            "fullName": "",
+            "role": "Antigo vereador do PSD em Vila Real, com o pelouro do urbanismo.",
+            "proceduralStatus": null
+          }
+        ],
+        "timeline": [
+          {
+            "date": null,
+            "dateLabel": "2025-04",
+            "datePrecision": "month",
+            "text": "Absolvição em primeira instância, segundo a Lusa."
+          },
+          {
+            "date": "2026-11-17",
+            "dateLabel": "2026-11-17",
+            "datePrecision": "day",
+            "text": "Notícia sobre confirmação da absolvição e trânsito em julgado."
+          }
+        ],
+        "sources": [
+          {
+            "label": "Observador / Lusa · 17 Novembro 2026",
+            "href": "https://observador.pt/2026/11/17/relacao-confirma-absolvicao-de-antigo-vereador-de-vila-real-por-prevaricacao/",
+            "kind": "Imprensa · Lusa"
+          },
+          {
+            "label": "A Voz de Trás-os-Montes · 18 Novembro 2026 (parte acessível)",
+            "href": "https://www.avozdetrasosmontes.pt/tribunal-da-relacao-confirma-absolvicao-de-antigo-vereador-da-autarquia/",
+            "kind": "Imprensa regional"
+          }
+        ],
+        "mandate": null,
+        "entityCases": []
+      }
+    }
+  ],
+  "newPeople": [
+    {
+      "before": null,
+      "after": {
+        "id": "miguel-esteves",
+        "name": "Miguel Esteves",
+        "fullNames": [],
+        "recordIds": [
+          "miguel-esteves-vila-real-prevaricacao"
+        ],
+        "source": {
+          "label": "Observador / Lusa · 17 Novembro 2026",
+          "href": "https://observador.pt/2026/11/17/relacao-confirma-absolvicao-de-antigo-vereador-de-vila-real-por-prevaricacao/"
+        },
+        "portrait": null
+      }
+    }
+  ],
+  "updates": [
+    {
+      "id": "maia-smeas-hernani-ribeiro-peculato",
+      "fields": {
+        "status": {
+          "before": "Condenação confirmada pelo Supremo; contestação constitucional anunciada",
+          "after": "Condenação confirmada pelo Supremo; recusa de recurso constitucional noticiada"
+        },
+        "summary": {
+          "before": "O Supremo manteve dois anos de prisão suspensa por peculato. A Relação revogara a absolvição de primeira instância. O vereador anunciou que contestaria questões de constitucionalidade.",
+          "after": "O Supremo manteve dois anos de prisão suspensa por peculato. Em 20 de Novembro de 2026, o Maia Hoje noticiou a recusa do recurso constitucional, sem apreciação do mérito."
+        },
+        "finality": {
+          "before": "Condenação confirmada pelo STJ em 17 de Junho de 2026. Em 2 de Julho, o autarca anunciou a contestação de questões de constitucionalidade. Não foi localizada decisão posterior nem certidão de trânsito.",
+          "after": "O Maia Hoje noticia a recusa do recurso pelo TC (acórdão 985/2026) e apresenta a condenação como definitiva. O texto integral e a certidão de trânsito não foram obtidos nesta verificação."
+        },
+        "checkedAt": {
+          "before": "2026-11-20",
+          "after": "2026-11-21"
+        },
+        "researchBatch": {
+          "before": "municipal-round9-2026-11-20",
+          "after": "revisao-editorial-2026-11-21"
+        },
+        "sources": {
+          "before": [
+            {
+              "label": "STJ · acórdão de 17 Junho 2026",
+              "href": "https://juris.stj.pt/12234%2F17.4T9PRT.P1.S1/GVRFe8RGXznBofvM-90hjKPYUc8",
+              "kind": "Acórdão oficial"
+            },
+            {
+              "label": "MP · confirmação da condenação pelo STJ, 1 Julho 2026",
+              "href": "https://www.pgdporto.pt/proc-web/news.jsf?newsItemId=2703",
+              "kind": "Comunicado oficial"
+            },
+            {
+              "label": "CM / Lusa · identificação nominal e decisão",
+              "href": "https://www.cmjornal.pt/portugal/detalhe/supremo-confirma-condenacao-de-vereador-da-camara-da-maia-a-prisao-suspensa-por-peculato",
+              "kind": "Imprensa"
+            },
+            {
+              "label": "Rádio Metropolitana · penas e valores por condenado, 2 Julho 2026",
+              "href": "https://www.radiometropolitanaporto.pt/supremo-confirma-condenacao-de-vereador-da-camara-da-maia-por-crime-de-peculato/",
+              "kind": "Imprensa regional"
+            },
+            {
+              "label": "Notícias Primeira Mão · contraditório e contestação anunciada, 2 Julho 2026",
+              "href": "https://noticiasprimeiramao.pt/vereador-hernani-ribeiro-vai-contestar-constitucionalidade-de-certas-questoes-do-processo-que-resultou-na-sua-condenacao/",
+              "kind": "Imprensa regional"
+            },
+            {
+              "label": "PSD / Povo Livre · presidente da Comissão Política da Maia, 30 Janeiro 2019",
+              "href": "https://www.psd.pt/sites/default/files/povo-livre/povo_livre_30janeiro_2019.pdf",
+              "kind": "Fonte partidária · cargo interno"
+            }
+          ],
+          "after": [
+            {
+              "label": "STJ · acórdão de 17 Junho 2026",
+              "href": "https://juris.stj.pt/12234%2F17.4T9PRT.P1.S1/GVRFe8RGXznBofvM-90hjKPYUc8",
+              "kind": "Acórdão oficial"
+            },
+            {
+              "label": "MP · confirmação da condenação pelo STJ, 1 Julho 2026",
+              "href": "https://www.pgdporto.pt/proc-web/news.jsf?newsItemId=2703",
+              "kind": "Comunicado oficial"
+            },
+            {
+              "label": "CM / Lusa · identificação nominal e decisão",
+              "href": "https://www.cmjornal.pt/portugal/detalhe/supremo-confirma-condenacao-de-vereador-da-camara-da-maia-a-prisao-suspensa-por-peculato",
+              "kind": "Imprensa"
+            },
+            {
+              "label": "Rádio Metropolitana · penas e valores por condenado, 2 Julho 2026",
+              "href": "https://www.radiometropolitanaporto.pt/supremo-confirma-condenacao-de-vereador-da-camara-da-maia-por-crime-de-peculato/",
+              "kind": "Imprensa regional"
+            },
+            {
+              "label": "Notícias Primeira Mão · contraditório e contestação anunciada, 2 Julho 2026",
+              "href": "https://noticiasprimeiramao.pt/vereador-hernani-ribeiro-vai-contestar-constitucionalidade-de-certas-questoes-do-processo-que-resultou-na-sua-condenacao/",
+              "kind": "Imprensa regional"
+            },
+            {
+              "label": "PSD / Povo Livre · presidente da Comissão Política da Maia, 30 Janeiro 2019",
+              "href": "https://www.psd.pt/sites/default/files/povo-livre/povo_livre_30janeiro_2019.pdf",
+              "kind": "Fonte partidária · cargo interno"
+            },
+            {
+              "label": "Maia Hoje · recurso constitucional, 20 Novembro 2026",
+              "href": "https://www.maiahoje.pt/tribunal-constitucional-rejeita-recurso-e-confirma-condenacao-por-peculato-do-vereador-da-maia-hernani-ribeiro/",
+              "kind": "Imprensa regional"
+            }
+          ]
+        },
+        "timeline": {
+          "before": [
+            {
+              "date": "2025-06-06",
+              "dateLabel": "2025-06-06",
+              "datePrecision": "day",
+              "text": "Absolvição dos seis arguidos em primeira instância."
+            },
+            {
+              "date": "2026-02-04",
+              "dateLabel": "2026-02-04",
+              "datePrecision": "day",
+              "text": "Relação condena dois arguidos, na sequência do recurso do MP."
+            },
+            {
+              "date": "2026-06-17",
+              "dateLabel": "2026-06-17",
+              "datePrecision": "day",
+              "text": "Supremo confirma as duas condenações."
+            },
+            {
+              "date": "2026-07-02",
+              "dateLabel": "2026-07-02",
+              "datePrecision": "day",
+              "text": "Hernâni Ribeiro anuncia que pretende contestar questões de constitucionalidade."
+            }
+          ],
+          "after": [
+            {
+              "date": "2025-06-06",
+              "dateLabel": "2025-06-06",
+              "datePrecision": "day",
+              "text": "Absolvição dos seis arguidos em primeira instância."
+            },
+            {
+              "date": "2026-02-04",
+              "dateLabel": "2026-02-04",
+              "datePrecision": "day",
+              "text": "Relação condena dois arguidos, na sequência do recurso do MP."
+            },
+            {
+              "date": "2026-06-17",
+              "dateLabel": "2026-06-17",
+              "datePrecision": "day",
+              "text": "Supremo confirma as duas condenações."
+            },
+            {
+              "date": "2026-07-02",
+              "dateLabel": "2026-07-02",
+              "datePrecision": "day",
+              "text": "Hernâni Ribeiro anuncia que pretende contestar questões de constitucionalidade."
+            },
+            {
+              "date": "2026-11-20",
+              "dateLabel": "2026-11-20",
+              "datePrecision": "day",
+              "text": "Maia Hoje noticia a recusa do recurso constitucional. Data da notícia, não do acórdão."
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
