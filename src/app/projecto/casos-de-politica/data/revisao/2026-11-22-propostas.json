@@ -1,0 +1,297 @@
+{
+  "reviewStatus": "pending_editorial_review",
+  "date": "2026-11-22",
+  "baseCommit": "f04e4feec99fd68df81bce3ebcaba1ba9b34c8ed",
+  "previousReviewCommit": "26c57ebd11c4eb6c6c005ef914d1d44435ae65e3",
+  "appliedToPublicData": false,
+  "newCases": [
+    {
+      "before": null,
+      "after": {
+        "id": "paulo-valdez-portucel-seguranca-2007",
+        "parties": [
+          "PSD"
+        ],
+        "category": "Casos",
+        "nature": "Criminal",
+        "phase": "Condenações criminais",
+        "status": "Condenação em primeira instância · recurso interposto em 2007; desfecho por apurar",
+        "date": "2007-05-08",
+        "dateLabel": "2007-05-08",
+        "datePrecision": "day",
+        "dateKind": "Sentença referida pela imprensa e por comunicado sindical",
+        "year": 2007,
+        "title": "Paulo Valdez: condenação por acidente mortal na Portucel",
+        "summary": "Condenação de três anos, com execução suspensa por dois. A defesa recorreu para Évora; falta apurar o resultado.",
+        "detail": "O acidente ocorreu em 24-11-2000. O comunicado sindical de Julho de 2007 descreve infracção de regras de segurança e absolvição do operador. A identificação de Valdez provém da notícia nominal da Lusa, que regista a sua defesa. Os factos respeitam à actividade profissional, não ao exercício autárquico.",
+        "affiliation": "Vereador e presidente da concelhia do PSD de Setúbal em 2007, segundo a Lusa. O Setubalense identifica-o como ex-autarca e ex-dirigente do PSD em 2019.",
+        "finality": "Recurso noticiado em 2007. Não localizados acórdão posterior ou trânsito. Não apresentar a condenação como definitiva nem o recurso como ainda pendente em 2026.",
+        "penalty": "Três anos de prisão, suspensos por dois, segundo as fontes contemporâneas.",
+        "amount": null,
+        "caseNumber": "",
+        "court": "Tribunal Judicial de Setúbal",
+        "location": "Setúbal",
+        "topic": "",
+        "procedureType": "",
+        "reference": "RTP / Lusa · condenação e recurso",
+        "sourceName": "Imprensa · Lusa",
+        "source": {
+          "label": "RTP / Lusa · condenação e recurso",
+          "href": "https://www.rtp.pt/noticias/pais/vereador-do-psd-na-camara-de-setubal-condenado-por-acidente-de-trabalho-mortal-na-portucel_n46722"
+        },
+        "checkedAt": "2026-11-22",
+        "researchBatch": "revisao-editorial-2026-11-22",
+        "related": [],
+        "partyOutcomes": {},
+        "people": [
+          {
+            "id": "paulo-valdez",
+            "name": "Paulo Valdez",
+            "fullName": "",
+            "role": "Vereador e dirigente do PSD; director de serviços na Portucel à data do acidente.",
+            "proceduralStatus": null
+          }
+        ],
+        "timeline": [
+          {
+            "date": "2000-11-24",
+            "dateLabel": "2000-11-24",
+            "datePrecision": "day",
+            "text": "Acidente mortal na Portucel."
+          },
+          {
+            "date": "2007-05-08",
+            "dateLabel": "2007-05-08",
+            "datePrecision": "day",
+            "text": "Sentença de primeira instância, segundo as fontes contemporâneas."
+          },
+          {
+            "date": "2007-06-28",
+            "dateLabel": "2007-06-28",
+            "datePrecision": "day",
+            "text": "Correio da Manhã noticia a condenação e o recurso."
+          }
+        ],
+        "sources": [
+          {
+            "label": "RTP / Lusa · condenação e posição do visado",
+            "href": "https://www.rtp.pt/noticias/pais/vereador-do-psd-na-camara-de-setubal-condenado-por-acidente-de-trabalho-mortal-na-portucel_n46722",
+            "kind": "Imprensa · Lusa"
+          },
+          {
+            "label": "Correio da Manhã · 28-06-2007",
+            "href": "https://www.cmjornal.pt/portugal/detalhe/vereador-condenado-por-acidente-de-trabalho",
+            "kind": "Imprensa nacional"
+          },
+          {
+            "label": "Comunicado sindical alojado na CGTP · Julho de 2007",
+            "href": "https://www.cgtp.pt/images/stories/imagens/2007/08/com_portucel1.pdf",
+            "kind": "Fonte sindical contemporânea"
+          },
+          {
+            "label": "O Setubalense · nota de autor, 16-10-2019",
+            "href": "https://osetubalense.com/opiniao/homenagem-a-um-amigo/",
+            "kind": "Imprensa regional · contexto biográfico"
+          }
+        ],
+        "mandate": null,
+        "entityCases": []
+      }
+    }
+  ],
+  "newPeople": [
+    {
+      "before": null,
+      "after": {
+        "id": "paulo-valdez",
+        "name": "Paulo Valdez",
+        "fullNames": [],
+        "recordIds": [
+          "paulo-valdez-portucel-seguranca-2007"
+        ],
+        "source": {
+          "label": "RTP / Lusa · condenação e recurso",
+          "href": "https://www.rtp.pt/noticias/pais/vereador-do-psd-na-camara-de-setubal-condenado-por-acidente-de-trabalho-mortal-na-portucel_n46722"
+        },
+        "portrait": null
+      }
+    }
+  ],
+  "updates": [
+    {
+      "id": "roberto-silva-palmeira",
+      "before": {
+        "detail": "A queda da palmeira, em Agosto de 2010, causou duas mortes. A primeira instância aplicara três anos e meio. O recurso alterou a qualificação e a pena. O Observador noticiou posteriormente que um novo recurso ao Supremo não fora admitido.",
+        "finality": "Condenação alterada pela Relação. Recurso posterior rejeitado, segundo a imprensa. Sem certidão de trânsito consultada. Não se mantém aqui a pena inicial de três anos e meio.",
+        "timeline": [
+          {
+            "date": "2013-04-12",
+            "dateLabel": "2013-04-12",
+            "datePrecision": "day",
+            "text": "Sentença de primeira instância."
+          },
+          {
+            "date": "2013-11-27",
+            "dateLabel": "2013-11-27",
+            "datePrecision": "day",
+            "text": "Noticiada redução da pena pela Relação."
+          },
+          {
+            "date": "2017-08-15",
+            "dateLabel": "2017-08-15",
+            "datePrecision": "day",
+            "text": "Retrospectiva refere rejeição de recurso posterior pelo Supremo."
+          }
+        ],
+        "sources": [
+          {
+            "label": "RTP / Lusa · redução para dois anos em recurso",
+            "href": "https://www.rtp.pt/noticias/pais/relacao-reduz-pena-a-ex-autarcas-condenados-por-queda-de-palmeira-no-porto-santo_n698917",
+            "kind": "Imprensa · Lusa"
+          },
+          {
+            "label": "DIÁRIO de Notícias da Madeira · primeira sentença",
+            "href": "https://www.dnoticias.pt/2023/4/11/355683-sera-verdade-que-e-improvavel-uma-condenacao-a-prisao-efectiva-no-caso-do-monte",
+            "kind": "Imprensa regional"
+          },
+          {
+            "label": "Observador · recurso posterior ao Supremo",
+            "href": "https://observador.pt/2017/08/15/nao-e-a-primeira-vez-que-a-queda-de-uma-arvore-mata-na-madeira-e-houve-condenacao/",
+            "kind": "Imprensa nacional"
+          },
+          {
+            "label": "Povo Livre / PSD · candidatura e funções partidárias",
+            "href": "https://www.psd.pt/sites/default/files/povo-livre/POVO_LIVRE_1_JUNHO.pdf",
+            "kind": "Fonte partidária · contexto biográfico"
+          }
+        ],
+        "checkedAt": "2026-11-20",
+        "researchBatch": "aprofundamento-imprensa-2026-11-20"
+      },
+      "after": {
+        "detail": "A queda da palmeira, em Agosto de 2010, causou duas mortes. A primeira instância aplicara três anos e meio. O recurso alterou a qualificação e a pena. O Observador noticiou posteriormente que um novo recurso ao Supremo não fora admitido. Em 21-06-2023, o DIÁRIO da Madeira noticiou, citando o presidente da Câmara, a absolvição pessoal de Roberto Silva, Gina Mendes e José António Vasconcelos na acção indemnizatória julgada pelo TAF do Funchal, com condenação do município. O orçamento municipal de 2023 identifica os três como réus no processo 211/13.9BEFUN, com o 233/13.0BEFUN apenso. Este desfecho civil não corresponde à anulação da condenação criminal.",
+        "finality": "Condenação alterada pela Relação. Recurso posterior rejeitado, segundo a imprensa. Sem certidão de trânsito consultada. Não se mantém aqui a pena inicial de três anos e meio. Na vertente indemnizatória, o município anunciou que não recorreria em Junho de 2023. Não foi consultada a sentença nem comprovado trânsito ou ausência de recurso de outras partes.",
+        "timeline": [
+          {
+            "date": "2013-04-12",
+            "dateLabel": "2013-04-12",
+            "datePrecision": "day",
+            "text": "Sentença de primeira instância."
+          },
+          {
+            "date": "2013-11-27",
+            "dateLabel": "2013-11-27",
+            "datePrecision": "day",
+            "text": "Noticiada redução da pena pela Relação."
+          },
+          {
+            "date": "2017-08-15",
+            "dateLabel": "2017-08-15",
+            "datePrecision": "day",
+            "text": "Retrospectiva refere rejeição de recurso posterior pelo Supremo."
+          },
+          {
+            "date": "2023-06-21",
+            "dateLabel": "2023-06-21",
+            "datePrecision": "day",
+            "text": "Noticiada absolvição pessoal na acção indemnizatória e condenação do município. Data da notícia, não da sentença."
+          }
+        ],
+        "sources": [
+          {
+            "label": "RTP / Lusa · redução para dois anos em recurso",
+            "href": "https://www.rtp.pt/noticias/pais/relacao-reduz-pena-a-ex-autarcas-condenados-por-queda-de-palmeira-no-porto-santo_n698917",
+            "kind": "Imprensa · Lusa"
+          },
+          {
+            "label": "DIÁRIO de Notícias da Madeira · primeira sentença",
+            "href": "https://www.dnoticias.pt/2023/4/11/355683-sera-verdade-que-e-improvavel-uma-condenacao-a-prisao-efectiva-no-caso-do-monte",
+            "kind": "Imprensa regional"
+          },
+          {
+            "label": "Observador · recurso posterior ao Supremo",
+            "href": "https://observador.pt/2017/08/15/nao-e-a-primeira-vez-que-a-queda-de-uma-arvore-mata-na-madeira-e-houve-condenacao/",
+            "kind": "Imprensa nacional"
+          },
+          {
+            "label": "Povo Livre / PSD · candidatura e funções partidárias",
+            "href": "https://www.psd.pt/sites/default/files/povo-livre/POVO_LIVRE_1_JUNHO.pdf",
+            "kind": "Fonte partidária · contexto biográfico"
+          },
+          {
+            "label": "DIÁRIO da Madeira · 21-06-2023, vertente indemnizatória",
+            "href": "https://www.dnoticias.pt/2023/6/21/365135-porto-santo-paga-679-mil-euros-aos-familiares-das-vitimas-mortais-da-queda-da-palmeira/",
+            "kind": "Imprensa regional"
+          },
+          {
+            "label": "Município do Porto Santo · orçamento 2023, secção 10.3, pp. 28–30",
+            "href": "https://cm-portosanto.pt/wp-content/uploads/Orcamento_Municipal_2023_MPS.pdf",
+            "kind": "Documento municipal · identificação do processo"
+          }
+        ],
+        "checkedAt": "2026-11-22",
+        "researchBatch": "revisao-editorial-2026-11-22"
+      },
+      "unchangedEditorialClassification": {
+        "nature": "Criminal",
+        "phase": "Condenações criminais",
+        "status": "Condenação reduzida em recurso",
+        "date": "2013-11-27"
+      },
+      "reason": "Completar o histórico com a vertente indemnizatória, sem substituir o desfecho criminal nem duplicar os mesmos factos."
+    }
+  ],
+  "editorialQuestions": [
+    "Paulo Valdez: validar a inclusão histórica enquanto falta localizar o recurso, a sentença integral e o número de processo. A duração da suspensão é reproduzida das fontes e requer confronto com a sentença.",
+    "Paulo Valdez: não imputar homicídio por negligência apenas por existir morte. A fonte sindical distingue a imputação ao operador do crime de infracção de regras de segurança atribuído às chefias. Não incluir co-arguidos sem ligação política comprovada.",
+    "Roberto Silva: obter a sentença indemnizatória para confirmar o fundamento e alcance individual da absolvição. A notícia cita o presidente da Câmara; o documento municipal comprova os réus e os processos, mas antecede o julgamento final.",
+    "Manter a vertente indemnizatória como complemento da ficha existente nesta proposta. Uma eventual ficha autónoma exige decisão editorial para não duplicar a contagem do caso. Não converter a fase criminal em Absolvições."
+  ],
+  "sourceAccess": [
+    {
+      "url": "https://www.rtp.pt/noticias/pais/vereador-do-psd-na-camara-de-setubal-condenado-por-acidente-de-trabalho-mortal-na-portucel_n46722",
+      "openedAndRead": true,
+      "publicationDate": null,
+      "publicationDateNote": "Página aberta não expôs data de publicação. Não inferida a partir do excerto de pesquisa. Texto identifica a sentença de 8 de Maio; ano corroborado pelo CM e pelo comunicado sindical."
+    },
+    {
+      "url": "https://www.cmjornal.pt/portugal/detalhe/vereador-condenado-por-acidente-de-trabalho",
+      "openedAndRead": true,
+      "publicationDate": "2007-06-28"
+    },
+    {
+      "url": "https://www.cgtp.pt/images/stories/imagens/2007/08/com_portucel1.pdf",
+      "openedAndRead": true,
+      "publicationDate": "2007-07",
+      "publicationDatePrecision": "month",
+      "note": "Fonte sindical, não cópia da sentença. Relato sem nomes, confrontado com notícia nominal da Lusa; não usado para desanonimizar decisão judicial."
+    },
+    {
+      "url": "https://osetubalense.com/opiniao/homenagem-a-um-amigo/",
+      "openedAndRead": true,
+      "publicationDate": "2019-10-16",
+      "note": "Usada apenas a identificação do autor como ex-autarca e ex-dirigente do PSD."
+    },
+    {
+      "url": "https://www.dnoticias.pt/2023/6/21/365135-porto-santo-paga-679-mil-euros-aos-familiares-das-vitimas-mortais-da-queda-da-palmeira/",
+      "openedAndRead": true,
+      "publicationDate": "2023-06-21",
+      "note": "Relato de conferência de imprensa; não certifica trânsito."
+    },
+    {
+      "url": "https://cm-portosanto.pt/wp-content/uploads/Orcamento_Municipal_2023_MPS.pdf",
+      "openedAndRead": true,
+      "documentDate": "2022-11-25",
+      "publicationDate": null,
+      "note": "Proposta de orçamento 2023; secção 10.3. Identifica nominalmente réus e acção pendente à data. Não comprova decisão de 2023."
+    }
+  ],
+  "validation": {
+    "publicData": "Verificador aprovado: 464 casos, 535 pessoas; 517289 bytes nas propriedades da listagem. Dados públicos intactos.",
+    "types": "npx tsc --noEmit: aprovado.",
+    "lint": "npm run lint: bloqueado em next.config.mjs:5, ERR_INVALID_URL, NEXT_PUBLIC_WP_URL ausente.",
+    "build": "npm run build: mesmo impedimento de configuração.",
+    "schema": "Chaves da ficha e pessoa propostas comparadas com dados actuais; IDs e correspondências verificados separadamente.",
+    "publication": "Nenhuma alteração aplicada ao site. Sem PR enquanto não se cumprirem as verificações do contrato. Nenhuma configuração alterada."
+  }
+}
