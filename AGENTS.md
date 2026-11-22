@@ -71,7 +71,38 @@ locally and relies on the Vercel preview of the pull request for the build.
 - Keep the page working at 390 px wide with no horizontal scroll.
 - Never invent content, data, names or sources.
 
-## Two kinds of contribution
+## How a news story works
+
+Journalists write stories in WordPress; this app only renders them. There is
+no story content in the repository.
+
+1. A story is published in WordPress (`NEXT_PUBLIC_WP_URL`), with title,
+   lede (`antetitulo`), featured image, categories and body.
+2. WordPress calls `/api/revalidate`, which purges the story's page, the
+   homepage and the category pages.
+3. The page `src/app/[yearOrSlug]/[month]/[day]/[slug]/page.tsx` fetches the
+   story over GraphQL (`src/services/wp-graphql.ts`), renders the header
+   (`src/components/post/PostHeader.tsx`), the audio player if the story has
+   one, the body (`PostContent.tsx`) and the share links, and caches the
+   result (ISR, one day).
+4. The body is WordPress HTML. `src/utils/wpParsing.ts` turns it into React:
+   images become `next/image`, links to the old host are rewritten, external
+   links open in a new tab, video and audio iframes get a responsive size,
+   and the infografia marker becomes the registered component.
+5. The homepage shows the story only when an editor places it on the grid in
+   `/admin`.
+
+A story is therefore edited in WordPress, never by pull request. What a pull
+request can change is how stories are rendered: the article components, the
+parser, and the pieces that stories can include.
+
+## Kinds of contribution
+
+- A **normal story** needs nothing from this repository. If a story needs
+  something the renderer cannot do yet (a new kind of block, a different
+  header, a layout), that is a change to the article components or the
+  parser, in `src/components/post/` and `src/utils/wpParsing.ts`, made once
+  for every story, never for one story. Contract: `docs/noticias/README.md`.
 
 - A **special project** is a section of its own (an archive, an observatory,
   a searchable dataset), listed at `/projectos`. Contract:
@@ -80,10 +111,12 @@ locally and relies on the Vercel preview of the pull request for the build.
   a map, a timeline, an explorable table. It is a React component registered
   in `src/infografias/registry.ts`; the article shows it inline where the
   editor placed `<div data-infografia="<slug>"></div>` in a Custom HTML
-  block, and it also has a page of its own at `/infografias/<slug>`.
+  block, and it also has a page of its own at `/infografias/<slug>`. A story
+  can be mostly or entirely an infografia: the WordPress article then holds
+  the title, the lede and the marker, and the piece is the story.
   Contract: `docs/infografias/README.md`.
 
-Both are built the same way. The difference is only where they show up.
+All three are built the same way: TypeScript, React, Tailwind, data in JSON. The difference is where the result shows up.
 
 ## How changes get in
 
