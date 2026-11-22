@@ -4,6 +4,8 @@ import React from "react";
 import Image from "next/image";
 import { Element } from "html-react-parser";
 import { InfografiaInline } from "@/components/infografias/InfografiaInline";
+import { InfographicFrame } from "@/components/infografias/InfographicFrame";
+import { normaliseInfographicSrc } from "@/components/infografias/embed";
 
 const OLD_BASE_URL = WP_URL || "";
 const NEW_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://paginaum.pt/";
@@ -80,6 +82,14 @@ export const parserOptions: HTMLReactParserOptions = {
       }
 
       if (domNode.name === "iframe") {
+        // Native infographic frames retain their content-driven height.
+        const nativeSrc = normaliseInfographicSrc(domNode.attribs.src);
+        if (nativeSrc) {
+          return React.createElement(InfographicFrame, {
+            src: nativeSrc,
+            title: domNode.attribs.title,
+          });
+        }
         const width = parseInt(domNode.attribs.width ?? "", 10);
         const height = parseInt(domNode.attribs.height ?? "", 10);
 
