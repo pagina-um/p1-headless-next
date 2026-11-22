@@ -1,0 +1,10 @@
+{
+  "dataCutoff": "2026-11-19",
+  "sourceWorkbook": "Igrejas_catolicas_Portugal_2022_2026(1).xlsx",
+  "recordCount": 206,
+  "countsByUniverse": {
+    "igrejas": 123,
+    "cemiterios": 83
+  },
+  "cemeterySiteCount": 75
+}

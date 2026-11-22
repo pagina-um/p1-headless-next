@@ -19,10 +19,10 @@ export interface Infografia {
 }
 
 export const INFOGRAFIAS: Record<string, Infografia> = {
-  // "patrimonio-religioso": {
-  //   title: "Património religioso atingido, 2022–2026",
-  //   load: () => import("@/app/infografias/patrimonio-religioso/_components/Infografia"),
-  // },
+  "patrimonio-religioso": {
+    title: "Património religioso atingido, 2022–2026",
+    load: () => import("@/app/infografias/patrimonio-religioso/_components/Infografia"),
+  },
 };
 
 export function getInfografia(slug: string): Infografia | null {
