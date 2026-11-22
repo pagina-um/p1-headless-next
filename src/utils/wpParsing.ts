@@ -3,7 +3,7 @@ import { HTMLReactParserOptions } from "html-react-parser";
 import React from "react";
 import Image from "next/image";
 import { Element } from "html-react-parser";
-import { EmbedFrame } from "@/components/embeds/EmbedFrame.client";
+import { InfografiaInline } from "@/components/infografias/InfografiaInline";
 
 const OLD_BASE_URL = WP_URL || "";
 const NEW_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://paginaum.pt/";
@@ -18,28 +18,6 @@ try {
   if (OLD_BASE_URL) SITE_HOSTS.add(new URL(OLD_BASE_URL).hostname.toLowerCase());
 } catch {
   // WP_URL unset or malformed; nothing to add.
-}
-
-/**
- * The path of an iframe src that points at one of this site's embeddable
- * routes ("/infografias/<slug>/embed"), whether written relative or with the
- * site host. Null for everything else.
- */
-function siteEmbedPath(src: string): string | null {
-  try {
-    const url = new URL(src, NEW_BASE_URL);
-    const host = url.hostname.toLowerCase();
-    const onSite =
-      !/^https?:\/\//i.test(src) ||
-      SITE_HOSTS.has(host) ||
-      host.endsWith(".paginaum.pt");
-    if (!onSite) return null;
-    return /^\/infografias\/[^/]+\/embed\/?$/.test(url.pathname)
-      ? url.pathname + url.search
-      : null;
-  } catch {
-    return null;
-  }
 }
 
 /**
@@ -92,21 +70,18 @@ export const parserOptions: HTMLReactParserOptions = {
         }
       }
 
+      // An infografia placed in the article by the editor: a Custom HTML
+      // block holding <div data-infografia="<slug>"></div>. It becomes the
+      // registered React component, inline, with the article's typography.
+      if (domNode.name === "div" && domNode.attribs["data-infografia"]) {
+        return React.createElement(InfografiaInline, {
+          slug: domNode.attribs["data-infografia"].trim(),
+        });
+      }
+
       if (domNode.name === "iframe") {
-        const src = domNode.attribs.src ?? "";
         const width = parseInt(domNode.attribs.width ?? "", 10);
         const height = parseInt(domNode.attribs.height ?? "", 10);
-
-        // A page of this site embedded in an article (an infografia's
-        // /embed route). It sizes itself: see EmbedFrame.
-        const embedPath = siteEmbedPath(src);
-        if (embedPath) {
-          return React.createElement(EmbedFrame, {
-            src: embedPath,
-            title: domNode.attribs.title || "Infografia",
-            initialHeight: height > 0 ? height : 1200,
-          });
-        }
 
         // Video and audio embeds (YouTube, Vimeo, Spotify…) arrive with
         // fixed pixel dimensions, e.g. width="500" height="281". A phone is

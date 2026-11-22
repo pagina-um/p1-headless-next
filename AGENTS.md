@@ -30,8 +30,8 @@ rest.
 | Homepage grid and its blocks | `src/components/grid/`, `src/components/blocks/`, `src/constants/blocks.ts` |
 | Site header, nav, banner | `src/components/layout/` |
 | Special projects (archives, datasets) | `src/app/projectos/<slug>/`, registry in `src/projectos/registry.ts` |
-| Interactive stories (infografias) embedded in articles | `src/app/infografias/<slug>/`, see `docs/infografias/README.md` |
-| Embedding a site page inside an article | `src/components/embeds/`, handled by `src/utils/wpParsing.ts` |
+| Interactive stories (infografias) shown inside articles | `src/app/infografias/<slug>/`, registry in `src/infografias/registry.ts` |
+| WordPress HTML to React, including the infografia marker | `src/utils/wpParsing.ts` |
 | Promo banner and homepage block choice | `src/config/destaques.ts` |
 | WordPress GraphQL client and queries | `src/services/wp-graphql.ts` |
 | Global CSS and fonts | `src/styles/globals.css`, `tailwind.config.js` |
@@ -77,26 +77,29 @@ locally and relies on the Vercel preview of the pull request for the build.
   a searchable dataset), listed at `/projectos`. Contract:
   `docs/projectos/README.md`.
 - An **infografia** is an interactive piece that belongs to one news story:
-  a map, a timeline, an explorable table. It is not listed anywhere; the
-  article embeds it. It has a standalone page at `/infografias/<slug>` and
-  a bare `/infografias/<slug>/embed` route that the article pulls in with a
-  plain iframe. Contract: `docs/infografias/README.md`.
+  a map, a timeline, an explorable table. It is a React component registered
+  in `src/infografias/registry.ts`; the article shows it inline where the
+  editor placed `<div data-infografia="<slug>"></div>` in a Custom HTML
+  block, and it also has a page of its own at `/infografias/<slug>`.
+  Contract: `docs/infografias/README.md`.
 
 Both are built the same way. The difference is only where they show up.
 
 ## How changes get in
 
-Work happens on a **fork**. Branch protection requires every change to `main`
-to come through a pull request, which a maintainer reviews and merges.
+Branch protection requires every change to `main` to come through a pull
+request, which a maintainer reviews and merges. Nobody pushes to `main`.
 
-1. Fork `pagina-um/p1-headless-next` on GitHub and clone the fork.
-2. Add the original as `upstream` and keep `main` in sync with it.
-3. Branch from `main`: `projecto/<slug>` for a special project,
-   `fix/<what>` or `feature/<what>` otherwise.
-4. Run types, lint and build. All three must pass.
-5. Open the PR from the fork against `pagina-um/p1-headless-next:main`,
-   with a description that says what it is, how it was verified and what was
-   left out.
+1. With write access to `pagina-um/p1-headless-next` (ask a maintainer),
+   branch directly in the repository. Without it, fork and branch in the
+   fork; Vercel then asks a maintainer to authorise the preview build.
+2. Start from an up-to-date `main`. Branch names: `projecto/<slug>` for a
+   special project, `infografia/<slug>` for an infografia, `fix/<what>` or
+   `feature/<what>` otherwise.
+3. Run types, lint and build. All three must pass.
+4. Open the PR against `main`, with a description that says what it is, how
+   it was verified and what was left out. Vercel builds a preview for every
+   PR from a branch in the repository.
 
 `CONTRIBUTING.md` has the git commands for each step. After the merge, Vercel
 deploys `main` on its own.

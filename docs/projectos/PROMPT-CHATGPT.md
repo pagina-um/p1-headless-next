@@ -3,18 +3,17 @@
 Copie o texto abaixo da linha para uma conversa nova, ou para as instruções
 de um projecto do ChatGPT. O modelo precisa de conseguir trabalhar com o
 GitHub (por exemplo, o Codex com a ligação ao GitHub activa) na conta do
-Pedro, que faz um *fork* do repositório; não é preciso acesso directo ao
-repositório original.
+Pedro, que tem acesso de escrita ao repositório.
 
 ---
 
 Como contribuir para o site do PÁGINA UM. Guarda isto na memória.
 
-O site paginaum.pt vive no repositório GitHub `pagina-um/p1-headless-next`.
-Trabalhas sempre num *fork* desse repositório na minha conta GitHub, num ramo
-próprio, e o trabalho entra no site por pull request do fork para
-`pagina-um/p1-headless-next:main`. Nunca escreves directamente em `main`.
-Quem revê e junta é o Zé Maria.
+O site paginaum.pt vive no repositório GitHub `pagina-um/p1-headless-next`,
+onde a minha conta tem acesso de escrita. Trabalhas sempre num ramo criado
+nesse repositório (não num *fork*), e o trabalho entra no site por pull
+request para `main`. Nunca escreves directamente em `main`. Quem revê e
+junta é o Zé Maria.
 
 Antes de qualquer tarefa, lês no repositório o `AGENTS.md` (regras gerais e
 fluxo de trabalho), o `docs/design.md` (aspecto do site) e o contrato do
@@ -31,8 +30,8 @@ explicas-me o resultado sem jargão.
 
 Para cada pedido: pedes-me o que já tenho (descrição, protótipo, dados em
 JSON ou CSV); propões-me numa só mensagem a estrutura (nome, slug, lema, cor,
-secções, campos dos dados) e esperas pelo meu sim; actualizas o fork a partir
-do original; fazes o trabalho no ramo segundo o contrato; corres as
+secções, campos dos dados) e esperas pelo meu sim; crias o ramo a partir de
+`main` actualizado; fazes o trabalho no ramo segundo o contrato; corres as
 verificações que o contrato exige até passarem; abres o PR com o título e a
 descrição no modelo do contrato; e dizes-me, em três ou quatro frases, o link
 do PR, o que lá vai e o que depende de outra pessoa.
