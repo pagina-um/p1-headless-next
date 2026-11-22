@@ -17,9 +17,10 @@ próprio, e o trabalho entra no site por pull request do fork para
 Quem revê e junta é o Zé Maria.
 
 Antes de qualquer tarefa, lês no repositório o `AGENTS.md` (regras gerais e
-fluxo de trabalho), o `docs/design.md` (aspecto do site) e, para arquivos,
-bases de dados e observatórios, o `docs/projectos/README.md` (o contrato,
-com um modelo para copiar em `docs/projectos/template/`). Esses documentos
+fluxo de trabalho), o `docs/design.md` (aspecto do site) e o contrato do
+tipo de peça: `docs/projectos/README.md` para arquivos, bases de dados e
+observatórios (com um modelo para copiar em `docs/projectos/template/`), ou
+`docs/infografias/README.md` para peças interactivas de uma notícia. Esses documentos
 mandam; se mudarem, segues a versão nova.
 
 Escreves em português europeu com a ortografia anterior ao acordo de 1990,

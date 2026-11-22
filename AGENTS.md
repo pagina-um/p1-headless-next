@@ -30,11 +30,14 @@ rest.
 | Homepage grid and its blocks | `src/components/grid/`, `src/components/blocks/`, `src/constants/blocks.ts` |
 | Site header, nav, banner | `src/components/layout/` |
 | Special projects (archives, datasets) | `src/app/projectos/<slug>/`, registry in `src/projectos/registry.ts` |
+| Interactive stories (infografias) embedded in articles | `src/app/infografias/<slug>/`, see `docs/infografias/README.md` |
+| Embedding a site page inside an article | `src/components/embeds/`, handled by `src/utils/wpParsing.ts` |
 | Promo banner and homepage block choice | `src/config/destaques.ts` |
 | WordPress GraphQL client and queries | `src/services/wp-graphql.ts` |
 | Global CSS and fonts | `src/styles/globals.css`, `tailwind.config.js` |
 | Design language | `docs/design.md` |
 | Contributing a special project | `docs/projectos/README.md` |
+| Contributing an infografia | `docs/infografias/README.md` |
 
 ## Commands
 
@@ -47,7 +50,10 @@ npm run build        # must pass before any PR
 ```
 
 `npm run dev` reads `.env.local`. Without a WordPress URL the homepage and
-articles will not load; special projects under `/projectos` do not need it.
+articles will not load, but pages under `/projectos` and `/infografias` work.
+`npm run build` does need the WordPress backend, because article pages are
+prerendered from it. A contributor without that access runs `tsc` and `lint`
+locally and relies on the Vercel preview of the pull request for the build.
 
 ## Rules
 
@@ -57,9 +63,26 @@ articles will not load; special projects under `/projectos` do not need it.
   the task.
 - Do not edit `src/styles/globals.css` or `tailwind.config.js` for a single
   page; use Tailwind classes in the page.
+- Everything that renders is a route or a component: TypeScript, React and
+  Tailwind, with data in JSON files next to the page. Never a hand-written
+  HTML, CSS or JavaScript file. `public/` holds only images, fonts and files
+  offered for download.
 - Use `"use client"` only in the component that needs browser interactivity.
 - Keep the page working at 390 px wide with no horizontal scroll.
 - Never invent content, data, names or sources.
+
+## Two kinds of contribution
+
+- A **special project** is a section of its own (an archive, an observatory,
+  a searchable dataset), listed at `/projectos`. Contract:
+  `docs/projectos/README.md`.
+- An **infografia** is an interactive piece that belongs to one news story:
+  a map, a timeline, an explorable table. It is not listed anywhere; the
+  article embeds it. It has a standalone page at `/infografias/<slug>` and
+  a bare `/infografias/<slug>/embed` route that the article pulls in with a
+  plain iframe. Contract: `docs/infografias/README.md`.
+
+Both are built the same way. The difference is only where they show up.
 
 ## How changes get in
 
