@@ -11,7 +11,6 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useInfographicHeight } from "@/components/infografias/useInfographicHeight";
 import { groupMunicipalities, select, series, YEARS } from "../_lib/timeline";
 import {
   filterHash,
@@ -32,7 +31,7 @@ import { Methodology } from "./Methodology";
 import { RecordCard } from "./RecordCard";
 
 interface InfographicProps extends InfographicData {
-  presentation?: "page" | "embed" | "inline";
+  presentation?: "page" | "inline";
 }
 
 const PAGE_SIZE = 6;
@@ -46,8 +45,7 @@ export function Infographic({
   metadata,
   presentation = "inline",
 }: InfographicProps) {
-  const embedded = presentation === "embed";
-  const compact = presentation !== "page";
+  const compact = presentation === "inline";
   const Heading = presentation === "inline" ? "h2" : "h1";
   const [filters, setFilters] = useState<FilterState>(INITIAL_FILTERS);
   const [page, setPage] = useState(1);
@@ -55,14 +53,11 @@ export function Infographic({
   const [playing, setPlaying] = useState(false);
   const [speed, setSpeed] = useState(4000);
   const [restored, setRestored] = useState(false);
-  const contentRef = useRef<HTMLElement>(null);
   const resultsRef = useRef<HTMLHeadingElement>(null);
   const data = useMemo(
     () => ({ records, geography, categories, metadata }),
     [records, geography, categories, metadata]
   );
-
-  useInfographicHeight(contentRef, embedded);
 
   useEffect(() => {
     // An inline piece must not replace the article's own fragment links.
@@ -201,7 +196,6 @@ export function Infographic({
 
   return (
     <section
-      ref={contentRef}
       id="patrimonio-infografia"
       className={`w-full text-stone-900 ${compact ? "px-4 py-6" : ""}`}
     >

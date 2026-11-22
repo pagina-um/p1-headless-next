@@ -49,3 +49,105 @@ os dados do protótipo e por me propor a estrutura. No mesmo PR, muda a faixa
 do topo do Corpus para o Arquivo Político e define-o como projecto do bloco
 da homepage, em `src/config/destaques.ts`, mantendo o Corpus na lista de
 projectos.
+
+---
+
+# Mensagem de actualização enviada a 22 de Novembro de 2026
+
+Enviada ao modelo do Pedro a meio do trabalho no Património Religioso, quando
+o repositório mudou (acesso de escrita, fim dos iframes, histórias). Fica
+aqui como registo e como exemplo de como pôr um modelo a par de mudanças no
+contrato: aponta para os ficheiros, não os repete.
+
+---
+
+Ponto de situação completo. O repositório mudou bastante desde a minha
+última mensagem, e parte do que te pedi já não se aplica. Lê isto até ao fim
+e depois os ficheiros que indico, antes de tocares em código.
+
+**Acesso e ramos.** A minha conta tem acesso de escrita a
+`pagina-um/p1-headless-next`. Trabalhas sempre num ramo criado no próprio
+repositório, a partir de `main` actualizado, e o trabalho entra por pull
+request para `main`. Nunca escreves directamente em `main`; quem revê e junta
+é o Zé Maria. Não voltas a usar o fork. O PR 90 já está no ramo certo,
+`infografia/patrimonio-religioso`, dentro do repositório; é nele que
+continuas.
+
+**Correcção ao que te pedi.** O modelo com rota `embed` e iframe que descrevi
+na última mensagem já não existe. Foi substituído por um modelo mais simples,
+sem iframes:
+
+- A infografia é um componente React em
+  `src/app/infografias/patrimonio-religioso/_components/Infografia.tsx`, com
+  `export default`, que importa os dados em JSON de `data/` e os passa a um
+  único componente `"use client"` com a pesquisa, os filtros e a cronologia.
+  O mapa é SVG gerado a partir do ficheiro de geografia.
+- Registas a peça em `src/infografias/registry.ts`. É isso que permite ao
+  artigo mostrá-la: a redacção põe no WordPress um bloco HTML com
+  `<div data-infografia="patrimonio-religioso"></div>` e o site substitui
+  essa linha pelo teu componente, no meio do texto, com a tipografia do
+  artigo.
+- A peça tem também página própria em `/infografias/patrimonio-religioso`,
+  feita em `page.tsx` com o cabeçalho e o rodapé do site.
+- Não há rota `embed`, nem iframe, nem scripts de altura, nem HTML em
+  `public/`. Se já fizeste alguma dessas coisas no ramo, apaga-as. Conserva
+  os dados e o método que já verificaste.
+
+**O que existe agora.** Há quatro tipos de contribuição, descritos no
+`AGENTS.md`, cada um com o seu contrato em `docs/`:
+
+1. **História** (`docs/historias/README.md`): uma notícia escrita
+   directamente no repositório, sem WordPress. O corpo é JSX em
+   `src/historias/<slug>/Historia.tsx`, copiado do modelo em
+   `docs/historias/template/Historia.tsx`; o título, o antetítulo, o lede, o
+   autor, a data e a imagem de abertura vão numa entrada em
+   `src/historias/registry.ts`; as fotografias em `public/historias/<slug>/`.
+   Fica em `/AAAA/MM/DD/<slug>`, igual às outras notícias. Depois do PR
+   entrar, eu ou o Zé Maria colocamo-la na capa a partir do `/admin`, como
+   qualquer notícia; o PR não trata disso.
+2. **Infografia** (`docs/infografias/README.md`): o que descrevi acima. Entra
+   numa notícia do WordPress com o marcador, ou numa história importando o
+   componente no corpo.
+3. **Projecto** (`docs/projectos/README.md`): arquivos, observatórios e bases
+   de dados com secção própria em `/projectos/<slug>`, como o Casos de
+   Política.
+4. **Notícias do WordPress** (`docs/noticias/README.md`): como chegam ao site
+   e o que se pode mudar na forma como são mostradas. Nunca se abre um PR
+   para publicar ou corrigir uma notícia do WordPress.
+
+**Regras que valem para tudo.** Rotas, componentes React, Tailwind e dados em
+JSON; nunca HTML, CSS ou JavaScript escritos à mão, e `public/` só recebe
+imagens e ficheiros para descarregar. Aspecto segundo `docs/design.md`, sem
+CSS próprio nem marca própria. Português europeu com a ortografia anterior ao
+acordo de 1990. Nada inventado: dados, nomes, citações e fontes; o que falta
+fica em branco e dizes-me. Nada de fotografias de pessoas sem autorização
+confirmada. O que vai para o browser fica abaixo de 1 MB. Não instalas
+dependências nem tocas no WordPress, no GraphQL, no Redis, em `src/app/api/`,
+em variáveis de ambiente, em `src/middleware.ts`, no CSS global nem no
+Tailwind. Ramos `historia/<slug>`, `infografia/<slug>`, `projecto/<slug>`; um
+trabalho por PR.
+
+**Como trabalhas, sempre.** Antes de qualquer tarefa lês, na versão que lá
+estiver nesse momento, o `AGENTS.md`, o `docs/design.md` e o contrato do tipo
+de trabalho. Pedes-me o que já tenho; propões-me numa só mensagem a estrutura
+e esperas pelo meu sim; actualizas o ramo a partir de `main`; fazes o
+trabalho segundo o contrato; corres `npx tsc --noEmit`, `npm run lint` e
+`npm run build` até passarem (se o build falhar por falta do WordPress,
+diz-mo e confiamos no preview da Vercel); abres ou actualizas o PR com o
+título e a descrição do contrato; e dizes-me em três ou quatro frases o link,
+o que lá vai e o que depende de outra pessoa. O trabalho técnico é todo teu:
+nunca me pedes para correr comandos ou editar ficheiros, e explicas-me tudo
+sem jargão.
+
+**Para o Património Religioso**, decide comigo qual das duas formas:
+
+- Só a infografia, para a redacção pôr numa notícia do WordPress com o
+  marcador.
+- A infografia e a notícia que a acompanha, escrita por ti como história, com
+  o componente importado no corpo. Vai tudo no mesmo PR 90; não é preciso
+  outro ramo.
+
+Primeiro passo: lê `AGENTS.md`, `docs/design.md`,
+`docs/infografias/README.md` e `docs/historias/README.md`, actualiza o ramo
+a partir de `main` e propõe-me a estrutura. O PR 90 fica em rascunho até eu
+dizer que sim.

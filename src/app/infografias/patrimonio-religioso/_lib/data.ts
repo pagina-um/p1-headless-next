@@ -56,7 +56,7 @@ const infographicData: InfographicData = {
   metadata: metadataJSON as HeritageMetadata,
 };
 
-/** Shared by the full page and embed server routes; no browser fetch is needed. */
+/** Shared by the inline piece and standalone page; no browser fetch is needed. */
 export function getInfographicData(): InfographicData {
   return infographicData;
 }

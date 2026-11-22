@@ -9,23 +9,25 @@ cartografia por concelho, etapas anuais, reprodução, fichas e exportação CSV
 Os dados e o método provêm da versão editorial do [PR #89](https://github.com/pagina-um/p1-headless-next/pull/89),
 commit `3a510931578ea3200e5b8655ff508953f6a24eda`, cujo documento de origem era
 `public/projectos/patrimonio-religioso/infografia.html`. A implementação actual
-usa as rotas de `/infografias`, componentes React e JSON locais. Não requer
-ficheiros HTML/CSS/JS autónomos em `public/` nem inscrição no registo de projectos.
+usa componentes React e JSON locais, preservando os dados e o método aprovados.
+Esta peça não acrescenta ficheiros a `public/` e não pertence ao registo de
+projectos.
 
-| Rota                                      | Utilização                                                       |
-| ----------------------------------------- | ---------------------------------------------------------------- |
-| `/infografias/patrimonio-religioso`       | Página autónoma com cabeçalho e rodapé do jornal.                |
-| `/infografias/patrimonio-religioso/embed` | A mesma infografia, sem essa moldura, para inserir numa notícia. |
+A página autónoma, `/infografias/patrimonio-religioso`, usa o cabeçalho e o
+rodapé do jornal. A notícia é editada e publicada no WordPress e recebe a mesma
+peça através do marcador descrito abaixo.
 
-Ambas as páginas usam `_components/Infografia.tsx`, a entrada de servidor também
-registada em `src/infografias/registry.ts`. Esta carrega `getInfographicData()` de
+`_components/Infografia.tsx` é a entrada de servidor partilhada pela página e
+pelo registo em `src/infografias/registry.ts`. Carrega `getInfographicData()` de
 `_lib/data.ts`, limitado ao servidor. O loader associa cada registo ao concelho e
-ao identificador regional, preservando os campos editoriais.
-`_components/Infographic.client.tsx` recebe os dados por propriedades e gere a
-interacção. O mapa, o gráfico anual, as fichas e a
-metodologia têm componentes próprios. `_lib/timeline.ts` concentra os filtros e
-as regras temporais. `_lib/presentation.ts` trata a apresentação, o estado no
-fragmento da ligação e o CSV.
+ao identificador regional, preservando os campos editoriais. O único ponto de
+entrada interactivo, `_components/Infographic.client.tsx`, recebe os dados por
+propriedades e gere pesquisa, filtros, cronologia e reprodução.
+
+O mapa SVG, o gráfico anual, as fichas e a metodologia têm componentes próprios.
+`_lib/timeline.ts` concentra os filtros e as regras temporais.
+`_lib/presentation.ts` trata a apresentação, o estado no fragmento da ligação e
+o CSV. A página e o artigo partilham estes componentes e os mesmos dados.
 
 ## Dados e método
 
@@ -58,37 +60,23 @@ da CAOP que o serviço de origem não explicita.
 
 ## Inserir numa notícia
 
-O mecanismo comum introduzido no repositório permite inserir a peça directamente
-no artigo através de um bloco **HTML personalizado**:
+Depois de a infografia estar disponível no site, editar a notícia no WordPress:
+
+1. No ponto do texto onde deve aparecer a peça, acrescentar um bloco **HTML
+   personalizado**.
+2. Colocar nesse bloco apenas o marcador seguinte.
+3. Guardar ou actualizar a notícia e confirmar a apresentação no site.
 
 ```html
 <div data-infografia="patrimonio-religioso"></div>
 ```
 
-`InfografiaInline` carrega o componente registado. Esta apresentação adapta-se à
-coluna do artigo, usa um título `h2` e conserva os fragmentos de navegação da
-notícia. Não inclui o cabeçalho nem o rodapé do site.
-
-Esta contribuição conserva também a rota `/embed` e a integração por iframe
-expressamente pedidas para substituir o PR #89. Essa compatibilidade adicional
-é uma instrução do pedido, embora o contrato de infografias entretanto publicado
-prefira o marcador acima. Não é necessário acrescentar scripts ao artigo:
-
-```html
-<iframe
-  src="/infografias/patrimonio-religioso/embed"
-  title="Património religioso: mapa, tipologias e cronologia"
-></iframe>
-```
-
-O tratamento é comum às infografias nativas: `src/utils/wpParsing.ts` reconhece
-as rotas `/infografias/<slug>/embed` e usa `InfographicFrame`, em
-`src/components/infografias/`. As ligações canónicas são normalizadas para o
-domínio da página, incluindo nos previews. O hook `useInfographicHeight`
-comunica a altura à página que incorpora a infografia. O iframe cresce e
-encolhe quando se abrem fichas ou mudam os resultados. O protocolo valida a
-origem e a janela emissora.
-Os restantes embeds mantêm o tratamento habitual do parser.
+O parser comum em `src/utils/wpParsing.ts` reconhece o marcador e
+`InfografiaInline` carrega o componente registado. A peça adapta-se à largura da
+coluna do artigo e conserva os fragmentos de navegação da notícia. O título,
+o texto, a imagem de abertura e a publicação da notícia continuam a ser geridos
+no WordPress. O PR disponibiliza a infografia; a redacção escolhe a notícia e o
+ponto de inserção do marcador.
 
 ## Manutenção e verificação
 
@@ -101,23 +89,29 @@ formatado para revisão.
 Se o período documental for alargado, actualizar também `YEARS` e os textos
 que identificam o intervalo e o corte da recolha nos componentes de apresentação.
 
-Os testes de preservação reconstituem integralmente os dados e a geografia da
-origem aprovada por hashes canónicos. Uma alteração editorial futura exige uma
-nova referência aprovada e a actualização explícita desses testes. Os testes do
-motor cobrem contagens anuais e acumuladas, intervalos incertos, Bicas, datas de
-referência e filtros. Existe também um limite de 1 MB para o JSON efectivamente
-serializado para o cliente, independente da indentação dos ficheiros em disco.
+Os testes em `_lib/` verificam a preservação integral dos dados e da geografia da
+origem aprovada através de hashes canónicos. Uma alteração editorial futura
+exige uma nova referência aprovada e a actualização explícita desses testes.
+A verificação cobre também contagens anuais e acumuladas, intervalos incertos,
+Bicas, datas de referência, filtros e a inserção pelo marcador no artigo.
+Existe um limite de 1 MB para o JSON efectivamente serializado para o cliente,
+independente da indentação dos ficheiros em disco.
 
 Executar na raiz do repositório:
 
 ```bash
-npm test -- --runInBand src/app/infografias/patrimonio-religioso/_lib src/components/infografias src/utils/wpParsing.infografias.test.ts
+npm test -- --runInBand src/app/infografias/patrimonio-religioso/_lib
 npx tsc --noEmit
 npm run lint
 npm run build
 ```
 
-Verificar as duas rotas e a inserção por marcador e por iframe numa notícia, em
-ecrã largo e a 390 px:
-filtros, pausa e reprodução, intervalos entre anos, fichas, fontes, CSV e ajuste
-da altura do iframe. Registar os resultados de cada revisão no respectivo PR.
+O build depende do backend WordPress; sem esse acesso, seguir a verificação
+local e o preview Vercel previstos em `AGENTS.md`.
+
+Verificar a página autónoma e a inserção por marcador numa notícia, em ecrã
+largo e a 390 px: filtros, pausa e reprodução, intervalos entre anos, fichas,
+fontes e CSV. Uma página temporária de teste com `PostContent` deve ser retirada
+antes do PR, conforme `docs/infografias/README.md`. Registar os resultados de
+cada revisão no respectivo PR; esta lista não substitui a execução das
+verificações.
