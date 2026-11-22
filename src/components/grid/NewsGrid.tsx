@@ -3,6 +3,8 @@ import { NewsStoryServer } from "../blocks/NewsStory/NewsStory.server";
 import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
 import { CulturaBannerServer } from "../blocks/CulturaBanner.server";
 import { HistoriasBlockServer } from "../blocks/HistoriasBlock.server";
+import { getHistoria } from "@/historias/registry";
+import { historiaToStoryPost } from "@/historias/meta";
 import { EmptyState } from "../ui/EmptyState";
 import { CategoryBlockServer } from "../blocks/CategoryBlock.server";
 import { sortBlocksZigzagThenMobilePriority } from "@/utils/sorting";
@@ -37,6 +39,8 @@ async function fetchStoryPosts(
     new Set(
       blocks
         .filter((block): block is StoryBlock => block.blockType === "story")
+        // Stories from the repository have no WordPress post.
+        .filter((block) => !block.historiaSlug)
         .map((block) => block.databaseId)
         .filter((databaseId) => databaseId != null)
     )
@@ -110,7 +114,15 @@ export async function NewsGrid({ blocks = [] }: NewsGridProps) {
               i === 0 && "max-md:mt-4"
             )}
           >
-            {block.blockType === "story" ? (
+            {block.blockType === "story" && block.historiaSlug ? (
+              <NewsStoryServer
+                story={block}
+                post={(() => {
+                  const h = getHistoria(block.historiaSlug);
+                  return h ? historiaToStoryPost(h) : undefined;
+                })()}
+              />
+            ) : block.blockType === "story" ? (
               <NewsStoryServer
                 story={block}
                 post={storyPosts.get(block.databaseId)}

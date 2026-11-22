@@ -61,9 +61,12 @@ tem a informação, não escreve.
 ## Depois do PR
 
 - A história fica no ar assim que o PR entra em `main` e a Vercel publica.
-- Aparece na homepage pelo bloco «Histórias do repositório», que lista as
-  quatro mais recentes. O bloco é posto na grelha uma vez, em `/admin`, por
-  quem tem acesso; não é preciso nada no PR.
+- Para a pôr na capa, quem tem acesso a `/admin` encontra-a na lista
+  «Histórias do repositório», ao lado das notícias do WordPress, e
+  acrescenta-a à grelha como qualquer outra: mesmas opções de estilo
+  (clássico ou moderno), orientação, imagem, título e chamada alteráveis.
+  Há também o bloco estático «Histórias do repositório», que lista as quatro
+  mais recentes automaticamente. Nada disto vai no PR.
 - Não aparece nas páginas de categoria, no feed RSS, na pesquisa nem no
   sitemap, que vêm do WordPress. Se a história precisar de estar aí, diga-o
   na descrição do PR.

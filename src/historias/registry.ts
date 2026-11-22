@@ -1,4 +1,8 @@
 import type { ComponentType } from "react";
+import { HistoriaMeta, historiaPath } from "./meta";
+
+export type { HistoriaMeta } from "./meta";
+export { historiaPath } from "./meta";
 
 /**
  * Registo das histórias escritas neste repositório, sem WordPress.
@@ -11,19 +15,7 @@ import type { ComponentType } from "react";
  * Só código de servidor importa este ficheiro: `load` importa componentes de
  * servidor, que não podem ir para o browser.
  */
-export interface Historia {
-  /** Segmento final do URL. Minúsculas sem acentos, números e hífens. */
-  slug: string;
-  title: string;
-  /** A etiqueta por cima do título ("Investigação", "Análise", "Opinião"). */
-  antetitulo: string;
-  /** Uma ou duas frases para partilhas, metadados e o bloco da homepage. */
-  lede: string;
-  author: string;
-  /** Data de publicação, AAAA-MM-DD. Define o URL. */
-  publishedAt: string;
-  /** Imagem de abertura, em public/historias/<slug>/. */
-  cover?: { src: string; alt: string; credit?: string };
+export interface Historia extends HistoriaMeta {
   load: () => Promise<{ default: ComponentType }>;
 }
 
@@ -51,13 +43,20 @@ export function historiasRecentes(limit = HISTORIAS.length): Historia[] {
     .slice(0, limit);
 }
 
-/** "/2026/11/22/<slug>", a partir de publishedAt. */
-export function historiaPath(historia: Historia): string {
-  const [year, month, day] = historia.publishedAt.split("-");
-  return `/${year}/${month}/${day}/${historia.slug}`;
-}
-
 export function historiaParams(historia: Historia) {
   const [yearOrSlug, month, day] = historia.publishedAt.split("-");
   return { yearOrSlug, month, day, slug: historia.slug };
+}
+
+/** A entrada sem `load`, para passar ao browser (grelha do admin). */
+export function toHistoriaMeta(h: Historia): HistoriaMeta {
+  const { load, ...meta } = h;
+  void load;
+  return meta;
+}
+
+export function historiasMeta(): HistoriaMeta[] {
+  return HISTORIAS.slice()
+    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+    .map(toHistoriaMeta);
 }

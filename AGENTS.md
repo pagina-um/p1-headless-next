@@ -114,8 +114,10 @@ kind below, written in the repository.
   its body is JSX in `src/historias/<slug>/Historia.tsx`, its title, lede,
   author, date and cover are in `src/historias/registry.ts`, and the article
   route serves it at the same `/AAAA/MM/DD/<slug>` address with the same
-  header, typography and share links as any other story. The homepage lists
-  the latest ones through the "historias" grid block. Contract:
+  header, typography and share links as any other story. In `/admin` it is
+  picked from the "Histórias do repositório" list and placed on the grid
+  like a WordPress post, with every layout option; a "historias" grid block
+  can also list the latest ones automatically. Contract:
   `docs/historias/README.md`.
 - An **infografia** is an interactive piece that belongs to one news story:
   a map, a timeline, an explorable table. It is a React component registered
