@@ -2,6 +2,7 @@ import { Block, StoryBlock } from "@/types";
 import { NewsStoryServer } from "../blocks/NewsStory/NewsStory.server";
 import { StaticBlock as StaticBlockComponent } from "../blocks/StaticBlock";
 import { CulturaBannerServer } from "../blocks/CulturaBanner.server";
+import { HistoriasBlockServer } from "../blocks/HistoriasBlock.server";
 import { EmptyState } from "../ui/EmptyState";
 import { CategoryBlockServer } from "../blocks/CategoryBlock.server";
 import { sortBlocksZigzagThenMobilePriority } from "@/utils/sorting";
@@ -129,6 +130,8 @@ export async function NewsGrid({ blocks = [] }: NewsGridProps) {
               )
             ) : block.blockType === "static" && block.type === "culturaBanner" ? (
               <CulturaBannerServer block={block} />
+            ) : block.blockType === "static" && block.type === "historias" ? (
+              <HistoriasBlockServer block={block} />
             ) : (
               <StaticBlockComponent block={block} isAdmin={false} />
             )}

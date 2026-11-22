@@ -104,6 +104,13 @@ export const STATIC_BLOCKS: Record<string, StaticBlockDefinition> = {
       "Cartão do projecto especial escolhido em src/config/destaques.ts (blocoHomepage).",
     defaultSize: { width: 3, height: 3 },
   },
+  historias: {
+    type: "historias",
+    title: "Histórias do repositório",
+    content:
+      "As quatro histórias mais recentes escritas directamente no site (src/historias), sem WordPress.",
+    defaultSize: { width: 3, height: 4 },
+  },
 };
 
 export const GRID_COLUMNS = 10;

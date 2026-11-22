@@ -29,6 +29,7 @@ rest.
 | Article pages, built from WordPress | `src/app/[yearOrSlug]/[month]/[day]/[slug]/` |
 | Homepage grid and its blocks | `src/components/grid/`, `src/components/blocks/`, `src/constants/blocks.ts` |
 | Site header, nav, banner | `src/components/layout/` |
+| Stories written in the repository, no WordPress | `src/historias/<slug>/`, registry in `src/historias/registry.ts`, served by the article route |
 | Special projects (archives, datasets) | `src/app/projectos/<slug>/`, registry in `src/projectos/registry.ts` |
 | Interactive stories (infografias) shown inside articles | `src/app/infografias/<slug>/`, registry in `src/infografias/registry.ts` |
 | WordPress HTML to React, including the infografia marker | `src/utils/wpParsing.ts` |
@@ -36,6 +37,7 @@ rest.
 | WordPress GraphQL client and queries | `src/services/wp-graphql.ts` |
 | Global CSS and fonts | `src/styles/globals.css`, `tailwind.config.js` |
 | Design language | `docs/design.md` |
+| Writing a story in the repository | `docs/historias/README.md` |
 | Contributing a special project | `docs/projectos/README.md` |
 | Contributing an infografia | `docs/infografias/README.md` |
 
@@ -92,9 +94,10 @@ no story content in the repository.
 5. The homepage shows the story only when an editor places it on the grid in
    `/admin`.
 
-A story is therefore edited in WordPress, never by pull request. What a pull
-request can change is how stories are rendered: the article components, the
-parser, and the pieces that stories can include.
+A WordPress story is edited in WordPress, never by pull request. What a pull
+request can change is how stories are rendered (the article components, the
+parser, the pieces stories can include) and it can add a story of the second
+kind below, written in the repository.
 
 ## Kinds of contribution
 
@@ -107,6 +110,13 @@ parser, and the pieces that stories can include.
 - A **special project** is a section of its own (an archive, an observatory,
   a searchable dataset), listed at `/projectos`. Contract:
   `docs/projectos/README.md`.
+- A **story written in the repository** (uma *história*) bypasses WordPress:
+  its body is JSX in `src/historias/<slug>/Historia.tsx`, its title, lede,
+  author, date and cover are in `src/historias/registry.ts`, and the article
+  route serves it at the same `/AAAA/MM/DD/<slug>` address with the same
+  header, typography and share links as any other story. The homepage lists
+  the latest ones through the "historias" grid block. Contract:
+  `docs/historias/README.md`.
 - An **infografia** is an interactive piece that belongs to one news story:
   a map, a timeline, an explorable table. It is a React component registered
   in `src/infografias/registry.ts`; the article shows it inline where the
@@ -116,7 +126,7 @@ parser, and the pieces that stories can include.
   the title, the lede and the marker, and the piece is the story.
   Contract: `docs/infografias/README.md`.
 
-All three are built the same way: TypeScript, React, Tailwind, data in JSON. The difference is where the result shows up.
+All of them are built the same way: TypeScript, React, Tailwind, data in JSON. The difference is where the result shows up.
 
 ## How changes get in
 
@@ -126,9 +136,9 @@ request, which a maintainer reviews and merges. Nobody pushes to `main`.
 1. With write access to `pagina-um/p1-headless-next` (ask a maintainer),
    branch directly in the repository. Without it, fork and branch in the
    fork; Vercel then asks a maintainer to authorise the preview build.
-2. Start from an up-to-date `main`. Branch names: `projecto/<slug>` for a
-   special project, `infografia/<slug>` for an infografia, `fix/<what>` or
-   `feature/<what>` otherwise.
+2. Start from an up-to-date `main`. Branch names: `historia/<slug>` for a
+   story, `infografia/<slug>` for an infografia, `projecto/<slug>` for a
+   special project, `fix/<what>` or `feature/<what>` otherwise.
 3. Run types, lint and build. All three must pass.
 4. Open the PR against `main`, with a description that says what it is, how
    it was verified and what was left out. Vercel builds a preview for every

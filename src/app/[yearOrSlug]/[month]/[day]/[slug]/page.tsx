@@ -16,6 +16,8 @@ import { ArticleSupportModal } from "@/components/post/ArticleSupportModal";
 import { ArticlePlayer, ArticleAudio } from "@/components/post/ArticlePlayer";
 import { getTTSMetadata } from "@/services/tts-cache";
 import { FEATURES } from "@/config/features";
+import { getHistoria, HISTORIAS, historiaParams } from "@/historias/registry";
+import { HistoriaArticle } from "@/components/historias/HistoriaArticle";
 
 export interface PostPageProps {
   params: Promise<{
@@ -41,6 +43,35 @@ export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
   const { slug, day, month, yearOrSlug: year } = await params;
+
+  const historia = getHistoria(slug);
+  if (historia) {
+    const url = `https://paginaum.pt/${year}/${month}/${day}/${slug}`;
+    const image = historia.cover
+      ? [{ url: `https://paginaum.pt${historia.cover.src}`, alt: historia.cover.alt }]
+      : undefined;
+    return {
+      title: historia.title,
+      description: historia.lede,
+      openGraph: {
+        title: historia.title,
+        description: historia.lede,
+        type: "article",
+        publishedTime: historia.publishedAt,
+        authors: [historia.author],
+        images: image,
+        url,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: historia.title,
+        description: historia.lede,
+        images: image?.map((i) => i.url),
+      },
+      alternates: { canonical: url },
+    };
+  }
+
   const { data, error } = await getPostBySlug(slug);
 
   if (!data?.postBy || !data?.postBy.title || error) {
@@ -66,7 +97,10 @@ export async function generateStaticParams() {
     );
   }
 
-  return (data?.posts?.edges ?? []).flatMap((edge) => {
+  // Stories written in the repository (src/historias) share this route.
+  const historias = HISTORIAS.map(historiaParams);
+
+  const posts = (data?.posts?.edges ?? []).flatMap((edge) => {
     if (!edge.node.date) {
       return [];
     }
@@ -83,6 +117,8 @@ export async function generateStaticParams() {
       },
     ];
   });
+
+  return [...historias, ...posts];
 }
 
 /**
@@ -141,6 +177,14 @@ async function PostComponent({ slug }: { slug: string }) {
 
 export default async function PostPage({ params }: PostPageProps) {
   const { slug } = await params;
+
+  // A story written in the repository wins over a WordPress post with the
+  // same slug, and needs no WordPress round trip.
+  const historia = getHistoria(slug);
+  if (historia) {
+    return <HistoriaArticle historia={historia} />;
+  }
+
   return (
     <Suspense fallback={<PostLoadingUI />}>
       <PostComponent slug={slug} />

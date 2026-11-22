@@ -74,6 +74,7 @@ export const STATIC_BLOCK_TYPES = [
   "bookPresaleValores",
   "culturaBanner",
   "projecto",
+  "historias",
 ] as const;
 
 export type StaticBlockType = (typeof STATIC_BLOCK_TYPES)[number];

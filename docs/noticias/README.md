@@ -23,9 +23,15 @@ com ela. Leia antes o `AGENTS.md` na raiz do repositório.
 5. A notícia só aparece na homepage quando alguém a coloca na grelha em
    `/admin`.
 
-Portanto: **o texto, as imagens e a publicação de uma notícia vivem no
-WordPress e nunca passam por este repositório.** Não se abre um PR para
-publicar, corrigir ou formatar uma notícia.
+Portanto: **o texto, as imagens e a publicação de uma notícia do WordPress
+vivem no WordPress e nunca passam por este repositório.** Não se abre um PR
+para publicar, corrigir ou formatar uma notícia do WordPress.
+
+Há uma segunda forma de publicar uma notícia: escrevê-la directamente no
+repositório, como **história**, segundo `docs/historias/README.md`. Fica no
+mesmo endereço e com o mesmo aspecto das notícias do WordPress, e entra no
+site por PR. É o caminho para quem escreve com um modelo e não usa o
+WordPress.
 
 ## O que um PR pode fazer por uma notícia
 
@@ -56,7 +62,8 @@ publicar, corrigir ou formatar uma notícia.
   como componente. Se uma peça precisa de dados que vêm de uma notícia,
   esses dados vão em JSON na pasta da peça, com a notícia como fonte.
 - Não criar rotas por notícia (`src/app/<alguma-coisa>/page.tsx` para uma
-  só notícia). A notícia já tem o seu endereço.
+  só notícia). Uma notícia do WordPress já tem o seu endereço; uma história
+  do repositório recebe-o do registo.
 - Não tocar no WordPress, no GraphQL, no Redis, em `src/app/api/`, em
   variáveis de ambiente nem em `src/middleware.ts`.
 - Não pôr HTML, CSS ou JavaScript em `public/`.
