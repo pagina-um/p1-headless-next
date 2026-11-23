@@ -1,0 +1,162 @@
+{
+  "reviewStatus": "pending_editorial_review",
+  "date": "2026-11-23",
+  "baseCommit": "c20af92b25bb577657eb6bf0f48ce640ca453314",
+  "previousReviewCommit": "0c08675f7c93758b1cc322241bc48b86d77c0ea7",
+  "appliedToPublicData": false,
+  "newCases": [],
+  "updates": [],
+  "supplementsToPendingProposals": [
+    {
+      "id": "maia-smeas-hernani-ribeiro-peculato",
+      "pendingProposal": "2026-11-21-propostas.json",
+      "purpose": "Reforço documental da proposta existente, sem novo caso nem nova decisão judicial apurada.",
+      "fields": {
+        "sources": {
+          "publicBefore": [
+            {
+              "label": "STJ · acórdão de 17 Junho 2026",
+              "href": "https://juris.stj.pt/12234%2F17.4T9PRT.P1.S1/GVRFe8RGXznBofvM-90hjKPYUc8",
+              "kind": "Acórdão oficial"
+            },
+            {
+              "label": "MP · confirmação da condenação pelo STJ, 1 Julho 2026",
+              "href": "https://www.pgdporto.pt/proc-web/news.jsf?newsItemId=2703",
+              "kind": "Comunicado oficial"
+            },
+            {
+              "label": "CM / Lusa · identificação nominal e decisão",
+              "href": "https://www.cmjornal.pt/portugal/detalhe/supremo-confirma-condenacao-de-vereador-da-camara-da-maia-a-prisao-suspensa-por-peculato",
+              "kind": "Imprensa"
+            },
+            {
+              "label": "Rádio Metropolitana · penas e valores por condenado, 2 Julho 2026",
+              "href": "https://www.radiometropolitanaporto.pt/supremo-confirma-condenacao-de-vereador-da-camara-da-maia-por-crime-de-peculato/",
+              "kind": "Imprensa regional"
+            },
+            {
+              "label": "Notícias Primeira Mão · contraditório e contestação anunciada, 2 Julho 2026",
+              "href": "https://noticiasprimeiramao.pt/vereador-hernani-ribeiro-vai-contestar-constitucionalidade-de-certas-questoes-do-processo-que-resultou-na-sua-condenacao/",
+              "kind": "Imprensa regional"
+            },
+            {
+              "label": "PSD / Povo Livre · presidente da Comissão Política da Maia, 30 Janeiro 2019",
+              "href": "https://www.psd.pt/sites/default/files/povo-livre/povo_livre_30janeiro_2019.pdf",
+              "kind": "Fonte partidária · cargo interno"
+            }
+          ],
+          "pendingBefore": [
+            {
+              "label": "STJ · acórdão de 17 Junho 2026",
+              "href": "https://juris.stj.pt/12234%2F17.4T9PRT.P1.S1/GVRFe8RGXznBofvM-90hjKPYUc8",
+              "kind": "Acórdão oficial"
+            },
+            {
+              "label": "MP · confirmação da condenação pelo STJ, 1 Julho 2026",
+              "href": "https://www.pgdporto.pt/proc-web/news.jsf?newsItemId=2703",
+              "kind": "Comunicado oficial"
+            },
+            {
+              "label": "CM / Lusa · identificação nominal e decisão",
+              "href": "https://www.cmjornal.pt/portugal/detalhe/supremo-confirma-condenacao-de-vereador-da-camara-da-maia-a-prisao-suspensa-por-peculato",
+              "kind": "Imprensa"
+            },
+            {
+              "label": "Rádio Metropolitana · penas e valores por condenado, 2 Julho 2026",
+              "href": "https://www.radiometropolitanaporto.pt/supremo-confirma-condenacao-de-vereador-da-camara-da-maia-por-crime-de-peculato/",
+              "kind": "Imprensa regional"
+            },
+            {
+              "label": "Notícias Primeira Mão · contraditório e contestação anunciada, 2 Julho 2026",
+              "href": "https://noticiasprimeiramao.pt/vereador-hernani-ribeiro-vai-contestar-constitucionalidade-de-certas-questoes-do-processo-que-resultou-na-sua-condenacao/",
+              "kind": "Imprensa regional"
+            },
+            {
+              "label": "PSD / Povo Livre · presidente da Comissão Política da Maia, 30 Janeiro 2019",
+              "href": "https://www.psd.pt/sites/default/files/povo-livre/povo_livre_30janeiro_2019.pdf",
+              "kind": "Fonte partidária · cargo interno"
+            },
+            {
+              "label": "Maia Hoje · recurso constitucional, 20 Novembro 2026",
+              "href": "https://www.maiahoje.pt/tribunal-constitucional-rejeita-recurso-e-confirma-condenacao-por-peculato-do-vereador-da-maia-hernani-ribeiro/",
+              "kind": "Imprensa regional"
+            }
+          ],
+          "proposedAfter": [
+            {
+              "label": "STJ · acórdão de 17 Junho 2026",
+              "href": "https://juris.stj.pt/12234%2F17.4T9PRT.P1.S1/GVRFe8RGXznBofvM-90hjKPYUc8",
+              "kind": "Acórdão oficial"
+            },
+            {
+              "label": "MP · confirmação da condenação pelo STJ, 1 Julho 2026",
+              "href": "https://www.pgdporto.pt/proc-web/news.jsf?newsItemId=2703",
+              "kind": "Comunicado oficial"
+            },
+            {
+              "label": "CM / Lusa · identificação nominal e decisão",
+              "href": "https://www.cmjornal.pt/portugal/detalhe/supremo-confirma-condenacao-de-vereador-da-camara-da-maia-a-prisao-suspensa-por-peculato",
+              "kind": "Imprensa"
+            },
+            {
+              "label": "Rádio Metropolitana · penas e valores por condenado, 2 Julho 2026",
+              "href": "https://www.radiometropolitanaporto.pt/supremo-confirma-condenacao-de-vereador-da-camara-da-maia-por-crime-de-peculato/",
+              "kind": "Imprensa regional"
+            },
+            {
+              "label": "Notícias Primeira Mão · contraditório e contestação anunciada, 2 Julho 2026",
+              "href": "https://noticiasprimeiramao.pt/vereador-hernani-ribeiro-vai-contestar-constitucionalidade-de-certas-questoes-do-processo-que-resultou-na-sua-condenacao/",
+              "kind": "Imprensa regional"
+            },
+            {
+              "label": "PSD / Povo Livre · presidente da Comissão Política da Maia, 30 Janeiro 2019",
+              "href": "https://www.psd.pt/sites/default/files/povo-livre/povo_livre_30janeiro_2019.pdf",
+              "kind": "Fonte partidária · cargo interno"
+            },
+            {
+              "label": "Maia Hoje · recurso constitucional, 20 Novembro 2026",
+              "href": "https://www.maiahoje.pt/tribunal-constitucional-rejeita-recurso-e-confirma-condenacao-por-peculato-do-vereador-da-maia-hernani-ribeiro/",
+              "kind": "Imprensa regional"
+            },
+            {
+              "label": "ZAP, citando Jornal de Notícias · 22 Novembro 2026",
+              "href": "https://zap.aeiou.pt/vereador-da-maia-condenado-por-peculato-diz-que-82-mil-euros-vieram-do-poquer-777399",
+              "kind": "Imprensa · fonte secundária"
+            },
+            {
+              "label": "MP · condenação na Relação, 6 Fevereiro 2026",
+              "href": "https://www.pgdporto.pt/proc-web/news.jsf?newsItemId=2658",
+              "kind": "Comunicado oficial"
+            }
+          ]
+        }
+      },
+      "sourcesConsultedAt": "2026-11-23",
+      "editorialQuestions": [
+        "Validar a adição das duas fontes à proposta de 21 de Novembro. O ZAP remete para o JN, cujo artigo devolveu 403. Não são duas fontes directamente lidas.",
+        "O comunicado do MP documenta apenas a Relação em Fevereiro. Não prova o desfecho constitucional de Novembro.",
+        "Manter a ressalva sobre falta de teor do acórdão do TC e certidão de trânsito. Não acrescentar data de trânsito nem alterar pena ou estatutos individuais."
+      ]
+    }
+  ],
+  "leads": [
+    {
+      "entity": "Naturtejo — Empresa de Turismo, EIM",
+      "document": "Relatório VIC 16/2026, 2.ª Secção, processo 4997/2018",
+      "decisionDate": "2026-10-22",
+      "publicationDate": "2026-11-20",
+      "source": "https://www.tcontas.pt/pt-pt/ProdutosTC/Relatorios/RelatoriosVerificacaoInternaContas/Documents/2026/vic-dgtc-rel016-2026-2S.pdf",
+      "sha256": "52c78fd9473a0016ab784e630b580acdf0c15eee888277a1c714fc88e5a9b740",
+      "verified": "Recusa de homologação da conta de 2018 e relevação da responsabilidade financeira sancionatória nos pontos 3.1.1, 3.2.2 e 3.2.3.1. Decisão na página 50, aprovação em 22-10-2026 na página 51.",
+      "blocker": "Nomes ocultados nas páginas 9 e 52. Não identificar responsáveis pela composição pública dos órgãos. Sem proposta nominal."
+    }
+  ],
+  "validation": {
+    "dataVerifier": "passed",
+    "typescript": "passed",
+    "lint": "blocked: NEXT_PUBLIC_WP_URL missing; ERR_INVALID_URL in next.config.mjs:5",
+    "build": "blocked: NEXT_PUBLIC_WP_URL missing; ERR_INVALID_URL in next.config.mjs:5",
+    "publicDataUnchanged": true,
+    "pullRequest": "Não aberto: apenas complemento documental e verificações lint/build impedidas."
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "igrejas": [
+    {
+      "id": "bens",
+      "label": "Subtracção ou desaparecimento de bens",
+      "definition": "Bens ou dinheiro explicitamente relatados como retirados, furtados ou desaparecidos, incluindo suspeitas, excepto quando prevalece roubo/coacção contra pessoa. Não afirma condenação nem furto juridicamente confirmado.",
+      "count": 71
+    },
+    {
+      "id": "tentativa",
+      "label": "Tentativas de furto ou entrada",
+      "definition": "Tentativa de furto ou intrusão expressamente descrita, sem subtracção positiva indicada, incluindo casos com danos. Não abrange automaticamente todo o arrombamento.",
+      "count": 23
+    },
+    {
+      "id": "danos",
+      "label": "Dano, vandalismo ou profanação",
+      "definition": "Dano, vandalismo ou profanação explicitamente descritos, sem subtracção positiva ou tentativa de furto/entrada suficientemente individualizada para as categorias anteriores. Significa a característica principal documentada, não ausência comprovada de furto.",
+      "count": 14
+    },
+    {
+      "id": "pessoas",
+      "label": "Roubo, agressão ou coacção a pessoas",
+      "definition": "Pessoa identificada como alvo de roubo, tentativa de roubo, agressão ou coacção. A força ou ameaça prevalece na classificação mesmo quando há bens levados. Não implica que todos os seis casos tenham agressão consumada.",
+      "count": 6
+    },
+    {
+      "id": "resultado_incerto",
+      "label": "Assaltos com resultado por esclarecer",
+      "definition": "A base usa furto/assalto ou furto/tentativa mas a narrativa, notas ou acesso parcial não permitem optar de forma robusta entre subtracção e tentativa. Alguns destes casos têm danos conhecidos, preservados nos relatos.",
+      "count": 7
+    },
+    {
+      "id": "outros",
+      "label": "Intrusão ou perturbação do culto",
+      "definition": "Uma intrusão sem dano ou furto discriminados e uma explosão de petardo durante o culto, sem furto ou dano descrito.",
+      "count": 2
+    }
+  ],
+  "cemiterios": [
+    {
+      "id": "cem_danos",
+      "label": "Vandalismo, dano ou profanação",
+      "definition": "O relato descreve ou qualifica dano, vandalismo ou profanação. Pode também haver furto.",
+      "count": 53
+    },
+    {
+      "id": "cem_furto",
+      "label": "Furto sem dano descrito",
+      "definition": "O registo relata furto sem dano descrito nas fontes consultadas.",
+      "count": 29
+    },
+    {
+      "id": "cem_anterior",
+      "label": "Ocorrência pouco detalhada",
+      "definition": "Um relato posterior recorda uma ocorrência anterior, sem pormenores suficientes para individualizar os furtos ou danos.",
+      "count": 1
+    }
+  ]
+}

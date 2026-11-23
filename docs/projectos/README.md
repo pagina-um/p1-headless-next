@@ -101,9 +101,9 @@ mostram o que `destaques.ts` manda.
 
 ## O PR
 
-O trabalho é feito num *fork* do repositório e entra por pull request para
-`pagina-um/p1-headless-next`, ramo `main` (ver `AGENTS.md` e
-`CONTRIBUTING.md`).
+O trabalho é feito num ramo do próprio repositório, quando se tem acesso de
+escrita, ou num *fork* quando não se tem, e entra por pull request para
+`main` (ver `AGENTS.md`).
 
 - Ramo `projecto/<slug>` a partir de `main` actualizado.
 - Um projecto por PR. Alterações a um projecto existente vão em PRs próprios,

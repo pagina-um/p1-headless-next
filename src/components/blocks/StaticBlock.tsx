@@ -31,6 +31,7 @@ export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
   const isBookPresaleValores = block.type === "bookPresaleValores";
   const isCulturaBanner = block.type === "culturaBanner";
   const isProjecto = block.type === "projecto";
+  const isHistorias = block.type === "historias";
 
   const gridStyles = {
     gridColumn: `span ${block.gridPosition?.width || 1}`,
@@ -135,6 +136,23 @@ export function StaticBlock({ block, isAdmin }: StaticBlockProps) {
         style={gridStyles}
       >
         <BookPresaleValoresBlock />
+      </div>
+    );
+  }
+
+  if (isHistorias) {
+    // Preview for the admin grid; the real list is HistoriasBlock.server.
+    return (
+      <div
+        className="h-full rounded-md border border-gray-200 bg-white p-4 shadow-sm block-content"
+        style={gridStyles}
+      >
+        <p className="text-[10px] font-semibold uppercase tracking-wider text-primary-dark">
+          Histórias
+        </p>
+        <p className="mt-1 text-xs italic text-stone-600">
+          As 4 histórias mais recentes escritas no repositório (pré-visualização)
+        </p>
       </div>
     );
   }

@@ -18,18 +18,23 @@ import { GRID_COLUMNS } from "@/constants/blocks";
 import { useGrid } from "@/components/ui/GridContext";
 import { RotateCcw } from "lucide-react";
 import Link from "next/link";
+import { HistoriasProvider } from "./HistoriasContext";
+import type { HistoriaMeta } from "@/historias/meta";
 
 interface AdminPanelProps {
   previewPath?: string;
   sectionLabel?: string;
   /** Only the main admin has the credentials for /admin/x and /admin/facebook. */
   showPromotions?: boolean;
+  /** Stories written in the repository, placeable like WordPress posts. */
+  historias?: HistoriaMeta[];
 }
 
 export function AdminPanel({
   previewPath = "/admin/preview",
   sectionLabel,
   showPromotions = false,
+  historias = [],
 }: AdminPanelProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -38,6 +43,7 @@ export function AdminPanel({
     gridState,
     handleCreateStaticBlock,
     handleCreateStoryBlock,
+    handleCreateHistoriaBlock,
     handleSave,
     setShowToast,
     showToast,
@@ -64,6 +70,7 @@ export function AdminPanel({
   };
 
   return (
+    <HistoriasProvider value={historias}>
     <div className="space-y-6 relative">
       <div className="bg-white shadow-lg p-6 ">
         <div className="flex items-center justify-between">
@@ -152,7 +159,11 @@ export function AdminPanel({
               />
             </div>
 
-            <StoriesList onSelectPost={handleCreateStoryBlock} />
+            <StoriesList
+              onSelectPost={handleCreateStoryBlock}
+              historias={historias}
+              onSelectHistoria={handleCreateHistoriaBlock}
+            />
           </div>
         </div>
       </div>
@@ -167,5 +178,6 @@ export function AdminPanel({
         onClose={() => setShowToast(false)}
       />
     </div>
+    </HistoriasProvider>
   );
 }

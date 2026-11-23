@@ -1,6 +1,7 @@
 import { AdminPanel } from "@/components/admin/AdminPanel";
 import { ADMIN_PASSWORD, ADMIN_USERNAME } from "@/services/config";
 import { headers } from "next/headers";
+import { historiasMeta } from "@/historias/registry";
 
 async function verifyBasicAuth() {
   const headersList = await headers();
@@ -32,7 +33,7 @@ export default function AdminPage() {
   if (process.env.NODE_ENV === "production") verifyBasicAuth();
   return (
     <main className="max-w-7xl mx-auto px-4 py-8">
-      <AdminPanel showPromotions />
+      <AdminPanel showPromotions historias={historiasMeta()} />
     </main>
   );
 }

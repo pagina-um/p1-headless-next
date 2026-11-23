@@ -35,6 +35,12 @@ export interface StoryBlock extends BaseBlock, CustomPostFields {
   blockType: "story";
   databaseId: number;
   postId: string;
+  /**
+   * Set when the block shows a story written in the repository
+   * (src/historias) instead of a WordPress post. databaseId is then 0 and
+   * postId is "historia:<slug>"; every layout option works the same.
+   */
+  historiaSlug?: string;
   title?: string;
   style: "classic" | "modern";
   orientation: "horizontal" | "vertical";
@@ -74,6 +80,7 @@ export const STATIC_BLOCK_TYPES = [
   "bookPresaleValores",
   "culturaBanner",
   "projecto",
+  "historias",
 ] as const;
 
 export type StaticBlockType = (typeof STATIC_BLOCK_TYPES)[number];

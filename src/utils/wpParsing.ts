@@ -3,6 +3,7 @@ import { HTMLReactParserOptions } from "html-react-parser";
 import React from "react";
 import Image from "next/image";
 import { Element } from "html-react-parser";
+import { InfografiaInline } from "@/components/infografias/InfografiaInline";
 
 const OLD_BASE_URL = WP_URL || "";
 const NEW_BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://paginaum.pt/";
@@ -69,17 +70,30 @@ export const parserOptions: HTMLReactParserOptions = {
         }
       }
 
-      // Embeds (YouTube, Vimeo, Spotify…) arrive as iframes with fixed pixel
-      // dimensions, e.g. width="500" height="281". A phone is narrower than
-      // that, and an iframe does not shrink on its own, so the whole page
-      // became horizontally scrollable. Let it fill the column and keep the
-      // original aspect ratio instead.
+      // An infografia placed in the article by the editor: a Custom HTML
+      // block holding <div data-infografia="<slug>"></div>. It becomes the
+      // registered React component, inline, with the article's typography.
+      if (domNode.name === "div" && domNode.attribs["data-infografia"]) {
+        return React.createElement(InfografiaInline, {
+          slug: domNode.attribs["data-infografia"].trim(),
+        });
+      }
+
       if (domNode.name === "iframe") {
         const width = parseInt(domNode.attribs.width ?? "", 10);
         const height = parseInt(domNode.attribs.height ?? "", 10);
-        const ratio =
-          width > 0 && height > 0 ? `${width} / ${height}` : "16 / 9";
-        domNode.attribs.style = `width:100%;max-width:100%;height:auto;aspect-ratio:${ratio};`;
+
+        // Video and audio embeds (YouTube, Vimeo, Spotify…) arrive with
+        // fixed pixel dimensions, e.g. width="500" height="281". A phone is
+        // narrower than that, and an iframe does not shrink on its own, so
+        // the whole page became horizontally scrollable. Let it fill the
+        // column and keep the original aspect ratio instead.
+        if (width > 0 && height > 0) {
+          domNode.attribs.style = `width:100%;max-width:100%;height:auto;aspect-ratio:${width} / ${height};`;
+        } else {
+          // Anything else keeps its own height; only stop it overflowing.
+          domNode.attribs.style = `max-width:100%;${domNode.attribs.style ?? ""}`;
+        }
       }
 
       // Handle images

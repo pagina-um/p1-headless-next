@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Mail, Plus, Handshake, Palette, FolderSearch } from "lucide-react";
+import { Layout, Mail, Plus, Handshake, Palette, FolderSearch, Newspaper } from "lucide-react";
 import { STATIC_BLOCKS } from "../../constants/blocks";
 import type { StaticBlockType } from "../../types";
 
@@ -31,6 +31,8 @@ export function StaticBlockCreator({ onCreateBlock }: StaticBlockCreatorProps) {
                 <Palette className="w-5 h-5 text-amber-700" />
               ) : block.type === "projecto" ? (
                 <FolderSearch className="w-5 h-5 text-teal-700" />
+              ) : block.type === "historias" ? (
+                <Newspaper className="w-5 h-5 text-primary-dark" />
               ) : (
                 <Layout className="w-5 h-5 text-gray-500" />
               )}

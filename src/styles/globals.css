@@ -267,6 +267,14 @@ h3 {
   @apply text-xl font-semibold;
 }
 
+.article-content blockquote {
+  @apply border-l-4 border-primary pl-4 italic text-stone-700;
+}
+
+.article-content blockquote footer {
+  @apply mt-2 text-sm not-italic text-stone-500;
+}
+
 /* Gutenberg embeds. The iframe itself is sized in wpParsing.ts (full width,
    aspect ratio from its width/height attributes); the wrapper just has to give
    it a definite width to resolve against. */

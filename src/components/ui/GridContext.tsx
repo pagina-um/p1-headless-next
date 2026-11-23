@@ -33,6 +33,7 @@ type GridContextType = {
   handleUpdateBlockSettings: (block: Block) => void;
   handleCreateStaticBlock: (title: StaticBlockType) => void;
   handleCreateStoryBlock: (databaseId: number, postId: string) => void;
+  handleCreateHistoriaBlock: (slug: string) => void;
   handleClearLayout: () => void;
   handleOverrideStoryBlockField: (
     blockUid: string,
@@ -223,6 +224,31 @@ export function GridProvider({
     }));
   };
 
+  const handleCreateHistoriaBlock = (slug: string) => {
+    if (!gridState) return;
+
+    const newBlock: StoryBlock = {
+      uId: Date.now().toString(),
+      blockType: "story",
+      style: "classic",
+      databaseId: 0,
+      postId: `historia:${slug}`,
+      historiaSlug: slug,
+      mobilePriority: null,
+      ...makeNewBlockOccupyFirstEmptySpace(gridState.blocks),
+      objectPosition: "center",
+      hideImage: false,
+      reverse: false,
+      expandImage: false,
+      extraBigTitle: false,
+      antetituloColor: "auto",
+    };
+    setGridState((prevState: GridState) => ({
+      ...prevState,
+      blocks: [...prevState.blocks, newBlock],
+    }));
+  };
+
   const handleUpdateBlockSettings = (block: Block) => {
     setGridState((prevState: any) => {
       const updatedBlocks = prevState.blocks.map((b: Block) =>
@@ -262,6 +288,7 @@ export function GridProvider({
     handleUpdateBlockSettings,
     handleCreateStaticBlock,
     handleCreateStoryBlock,
+    handleCreateHistoriaBlock,
     handleClearLayout,
     handleOverrideStoryBlockField,
     handleResetChanges,

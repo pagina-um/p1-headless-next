@@ -2,6 +2,10 @@ import { parserOptions } from "@/utils/wpParsing";
 import { injectDonationBlock } from "@/utils/contentInjection";
 import parse from "html-react-parser";
 
+/** Typography of an article body. Shared with stories written in the repo. */
+export const ARTICLE_BODY_CLASS =
+  "article-content prose prose-lg max-w-none font-body-sans text-lg space-y-8 [&_figcaption]:text-sm [&_figcaption]:italic [&_a]:underline [&_a]:text-[var(--color-primary)] [&_hr]:last-of-type:hidden [&_p]:mt-0";
+
 interface PostContentProps {
   content: string;
   shouldInjectDonation?: boolean;
@@ -28,11 +32,7 @@ export function PostContent({
 
   return (
     <>
-      <article
-        className="article-content prose prose-lg max-w-none font-body-sans text-lg space-y-8
-        [&_figcaption]:text-sm [&_figcaption]:italic [&_a]:underline
-        [&_a]:text-[var(--color-primary)] [&_hr]:last-of-type:hidden [&_p]:mt-0"
-      >
+      <article className={ARTICLE_BODY_CLASS}>
         {parse(contentWithDonation, parserOptions)}
       </article>
     </>

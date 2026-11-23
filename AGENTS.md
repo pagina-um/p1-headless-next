@@ -29,12 +29,17 @@ rest.
 | Article pages, built from WordPress | `src/app/[yearOrSlug]/[month]/[day]/[slug]/` |
 | Homepage grid and its blocks | `src/components/grid/`, `src/components/blocks/`, `src/constants/blocks.ts` |
 | Site header, nav, banner | `src/components/layout/` |
+| Stories written in the repository, no WordPress | `src/historias/<slug>/`, registry in `src/historias/registry.ts`, served by the article route |
 | Special projects (archives, datasets) | `src/app/projectos/<slug>/`, registry in `src/projectos/registry.ts` |
+| Interactive stories (infografias) shown inside articles | `src/app/infografias/<slug>/`, registry in `src/infografias/registry.ts` |
+| WordPress HTML to React, including the infografia marker | `src/utils/wpParsing.ts` |
 | Promo banner and homepage block choice | `src/config/destaques.ts` |
 | WordPress GraphQL client and queries | `src/services/wp-graphql.ts` |
 | Global CSS and fonts | `src/styles/globals.css`, `tailwind.config.js` |
 | Design language | `docs/design.md` |
+| Writing a story in the repository | `docs/historias/README.md` |
 | Contributing a special project | `docs/projectos/README.md` |
+| Contributing an infografia | `docs/infografias/README.md` |
 
 ## Commands
 
@@ -47,7 +52,10 @@ npm run build        # must pass before any PR
 ```
 
 `npm run dev` reads `.env.local`. Without a WordPress URL the homepage and
-articles will not load; special projects under `/projectos` do not need it.
+articles will not load, but pages under `/projectos` and `/infografias` work.
+`npm run build` does need the WordPress backend, because article pages are
+prerendered from it. A contributor without that access runs `tsc` and `lint`
+locally and relies on the Vercel preview of the pull request for the build.
 
 ## Rules
 
@@ -57,23 +65,86 @@ articles will not load; special projects under `/projectos` do not need it.
   the task.
 - Do not edit `src/styles/globals.css` or `tailwind.config.js` for a single
   page; use Tailwind classes in the page.
+- Everything that renders is a route or a component: TypeScript, React and
+  Tailwind, with data in JSON files next to the page. Never a hand-written
+  HTML, CSS or JavaScript file. `public/` holds only images, fonts and files
+  offered for download.
 - Use `"use client"` only in the component that needs browser interactivity.
 - Keep the page working at 390 px wide with no horizontal scroll.
 - Never invent content, data, names or sources.
 
+## How a news story works
+
+Journalists write stories in WordPress; this app only renders them. There is
+no story content in the repository.
+
+1. A story is published in WordPress (`NEXT_PUBLIC_WP_URL`), with title,
+   lede (`antetitulo`), featured image, categories and body.
+2. WordPress calls `/api/revalidate`, which purges the story's page, the
+   homepage and the category pages.
+3. The page `src/app/[yearOrSlug]/[month]/[day]/[slug]/page.tsx` fetches the
+   story over GraphQL (`src/services/wp-graphql.ts`), renders the header
+   (`src/components/post/PostHeader.tsx`), the audio player if the story has
+   one, the body (`PostContent.tsx`) and the share links, and caches the
+   result (ISR, one day).
+4. The body is WordPress HTML. `src/utils/wpParsing.ts` turns it into React:
+   images become `next/image`, links to the old host are rewritten, external
+   links open in a new tab, video and audio iframes get a responsive size,
+   and the infografia marker becomes the registered component.
+5. The homepage shows the story only when an editor places it on the grid in
+   `/admin`.
+
+A WordPress story is edited in WordPress, never by pull request. What a pull
+request can change is how stories are rendered (the article components, the
+parser, the pieces stories can include) and it can add a story of the second
+kind below, written in the repository.
+
+## Kinds of contribution
+
+- A **normal story** needs nothing from this repository. If a story needs
+  something the renderer cannot do yet (a new kind of block, a different
+  header, a layout), that is a change to the article components or the
+  parser, in `src/components/post/` and `src/utils/wpParsing.ts`, made once
+  for every story, never for one story. Contract: `docs/noticias/README.md`.
+
+- A **special project** is a section of its own (an archive, an observatory,
+  a searchable dataset), listed at `/projectos`. Contract:
+  `docs/projectos/README.md`.
+- A **story written in the repository** (uma *história*) bypasses WordPress:
+  its body is JSX in `src/historias/<slug>/Historia.tsx`, its title, lede,
+  author, date and cover are in `src/historias/registry.ts`, and the article
+  route serves it at the same `/AAAA/MM/DD/<slug>` address with the same
+  header, typography and share links as any other story. In `/admin` it is
+  picked from the "Histórias do repositório" list and placed on the grid
+  like a WordPress post, with every layout option; a "historias" grid block
+  can also list the latest ones automatically. Contract:
+  `docs/historias/README.md`.
+- An **infografia** is an interactive piece that belongs to one news story:
+  a map, a timeline, an explorable table. It is a React component registered
+  in `src/infografias/registry.ts`; the article shows it inline where the
+  editor placed `<div data-infografia="<slug>"></div>` in a Custom HTML
+  block, and it also has a page of its own at `/infografias/<slug>`. A story
+  can be mostly or entirely an infografia: the WordPress article then holds
+  the title, the lede and the marker, and the piece is the story.
+  Contract: `docs/infografias/README.md`.
+
+All of them are built the same way: TypeScript, React, Tailwind, data in JSON. The difference is where the result shows up.
+
 ## How changes get in
 
-Work happens on a **fork**. Branch protection requires every change to `main`
-to come through a pull request, which a maintainer reviews and merges.
+Branch protection requires every change to `main` to come through a pull
+request, which a maintainer reviews and merges. Nobody pushes to `main`.
 
-1. Fork `pagina-um/p1-headless-next` on GitHub and clone the fork.
-2. Add the original as `upstream` and keep `main` in sync with it.
-3. Branch from `main`: `projecto/<slug>` for a special project,
-   `fix/<what>` or `feature/<what>` otherwise.
-4. Run types, lint and build. All three must pass.
-5. Open the PR from the fork against `pagina-um/p1-headless-next:main`,
-   with a description that says what it is, how it was verified and what was
-   left out.
+1. With write access to `pagina-um/p1-headless-next` (ask a maintainer),
+   branch directly in the repository. Without it, fork and branch in the
+   fork; Vercel then asks a maintainer to authorise the preview build.
+2. Start from an up-to-date `main`. Branch names: `historia/<slug>` for a
+   story, `infografia/<slug>` for an infografia, `projecto/<slug>` for a
+   special project, `fix/<what>` or `feature/<what>` otherwise.
+3. Run types, lint and build. All three must pass.
+4. Open the PR against `main`, with a description that says what it is, how
+   it was verified and what was left out. Vercel builds a preview for every
+   PR from a branch in the repository.
 
 `CONTRIBUTING.md` has the git commands for each step. After the merge, Vercel
 deploys `main` on its own.
