@@ -6416,5 +6416,30 @@
       "href": "https://www.cm-nazare.pt/cmnazare/uploads/document/file/6553/641___estatuto_dos_eleitos_locais___pagamento_despesas.pdf"
     },
     "portrait": null
+  },
+  {
+    "id": "miguel-esteves",
+    "name": "Miguel Esteves",
+    "fullNames": [],
+    "recordIds": ["miguel-esteves-vila-real-prevaricacao"],
+    "source": {
+      "label": "Observador / Lusa · 17 Novembro 2026",
+      "href": "https://observador.pt/2026/11/17/relacao-confirma-absolvicao-de-antigo-vereador-de-vila-real-por-prevaricacao/"
+    },
+    "portrait": null
+  },
+  {
+    "id": "sonia-paixao",
+    "name": "Sónia Paixão",
+    "fullNames": [
+      "Sónia Alexandra da Silva Paixão dos Santos Bernardo",
+      "Sónia Alexandra da Silva Paixão dos Santos Bernardo Lopes"
+    ],
+    "recordIds": ["ipdj-sonia-paixao-contas-2018-absolvicao"],
+    "source": {
+      "label": "Tribunal de Contas · sentença 7/2026, de 7 de Abril",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/3s/Documents/2026/st007-2026-3s.pdf"
+    },
+    "portrait": null
   }
 ]

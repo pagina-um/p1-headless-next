@@ -33,9 +33,9 @@ const cases = read("casos"),
   manifest = read("manifesto");
 const records = [...cases, ...documents];
 const index = buildIndex(records, parties);
-assert.equal(cases.length, 464);
+assert.equal(cases.length, 466);
 assert.equal(documents.length, 1);
-assert.equal(people.length, 535);
+assert.equal(people.length, 537);
 assert.equal(parties.filter((p) => !p.historical).length, 24);
 assert.equal(parties.filter((p) => p.historical).length, 4);
 const ids = new Set(records.map((r) => r.id));

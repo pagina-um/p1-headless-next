@@ -5451,9 +5451,9 @@
     "year": 2013,
     "title": "Roberto Silva: condenação por negligência no caso da palmeira do Porto Santo",
     "summary": "A Relação reduziu a pena para dois anos de prisão suspensos por homicídio por negligência e retirou a proibição de exercer cargos políticos.",
-    "detail": "A queda da palmeira, em Agosto de 2010, causou duas mortes. A primeira instância aplicara três anos e meio. O recurso alterou a qualificação e a pena. O Observador noticiou posteriormente que um novo recurso ao Supremo não fora admitido.",
+    "detail": "A queda da palmeira, em Agosto de 2010, causou duas mortes. A primeira instância aplicara três anos e meio. O recurso alterou a qualificação e a pena. O Observador noticiou posteriormente que um novo recurso ao Supremo não fora admitido. Em 21-06-2023, o DIÁRIO da Madeira noticiou, citando o presidente da Câmara, a absolvição pessoal de Roberto Silva, Gina Mendes e José António Vasconcelos na acção indemnizatória julgada pelo TAF do Funchal, com condenação do município. O orçamento municipal de 2023 identifica os três como réus no processo 211/13.9BEFUN, com o 233/13.0BEFUN apenso. Este desfecho civil não corresponde à anulação da condenação criminal.",
     "affiliation": "PSD · Roberto Silva foi presidente da Câmara do Porto Santo e dirigente local do partido. Não confundir com o homónimo das Lajes do Pico.",
-    "finality": "Condenação alterada pela Relação. Recurso posterior rejeitado, segundo a imprensa. Sem certidão de trânsito consultada. Não se mantém aqui a pena inicial de três anos e meio.",
+    "finality": "Condenação alterada pela Relação. Recurso posterior rejeitado, segundo a imprensa. Sem certidão de trânsito consultada. Não se mantém aqui a pena inicial de três anos e meio. Na vertente indemnizatória, o município anunciou que não recorreria em Junho de 2023. Não foi consultada a sentença nem comprovado trânsito ou ausência de recurso de outras partes.",
     "penalty": "Dois anos de prisão com execução suspensa por igual período, após redução em recurso. Retirada da proibição de exercer cargos políticos.",
     "amount": null,
     "caseNumber": "",
@@ -5467,8 +5467,8 @@
       "label": "RTP / Lusa · redução para dois anos em recurso",
       "href": "https://www.rtp.pt/noticias/pais/relacao-reduz-pena-a-ex-autarcas-condenados-por-queda-de-palmeira-no-porto-santo_n698917"
     },
-    "checkedAt": "2026-11-20",
-    "researchBatch": "aprofundamento-imprensa-2026-11-20",
+    "checkedAt": "2026-11-25",
+    "researchBatch": "confirmacao-editorial-2026-11-25",
     "related": [],
     "partyOutcomes": {},
     "people": [
@@ -5498,6 +5498,12 @@
         "dateLabel": "2017-08-15",
         "datePrecision": "day",
         "text": "Retrospectiva refere rejeição de recurso posterior pelo Supremo."
+      },
+      {
+        "date": "2023-06-21",
+        "dateLabel": "2023-06-21",
+        "datePrecision": "day",
+        "text": "Noticiada absolvição pessoal na acção indemnizatória e condenação do município. Data da notícia, não da sentença."
       }
     ],
     "sources": [
@@ -5520,6 +5526,16 @@
         "label": "Povo Livre / PSD · candidatura e funções partidárias",
         "href": "https://www.psd.pt/sites/default/files/povo-livre/POVO_LIVRE_1_JUNHO.pdf",
         "kind": "Fonte partidária · contexto biográfico"
+      },
+      {
+        "label": "DIÁRIO da Madeira · 21-06-2023, vertente indemnizatória",
+        "href": "https://www.dnoticias.pt/2023/6/21/365135-porto-santo-paga-679-mil-euros-aos-familiares-das-vitimas-mortais-da-queda-da-palmeira/",
+        "kind": "Imprensa regional"
+      },
+      {
+        "label": "Município do Porto Santo · orçamento 2023, secção 10.3, pp. 28–30",
+        "href": "https://cm-portosanto.pt/wp-content/uploads/Orcamento_Municipal_2023_MPS.pdf",
+        "kind": "Documento municipal · identificação do processo"
       }
     ],
     "mandate": null,
@@ -31647,17 +31663,17 @@
     "category": "Casos",
     "nature": "Criminal",
     "phase": "Condenações criminais",
-    "status": "Condenação confirmada pelo Supremo; contestação constitucional anunciada",
+    "status": "Condenação confirmada pelo Supremo; recurso constitucional não admitido",
     "date": "2026-06-17",
     "dateLabel": "2026-06-17",
     "datePrecision": "day",
     "dateKind": "Acórdão do Supremo Tribunal de Justiça",
     "year": 2026,
     "title": "SMEAS da Maia: Supremo confirma condenação de Hernâni Ribeiro",
-    "summary": "O Supremo manteve dois anos de prisão suspensa por peculato. A Relação revogara a absolvição de primeira instância. O vereador anunciou que contestaria questões de constitucionalidade.",
+    "summary": "O Supremo manteve dois anos de prisão suspensa por peculato. Em 13 de Novembro de 2026, o Tribunal Constitucional manteve a não admissão do recurso, sem apreciação do mérito.",
     "detail": "O processo abrange reembolsos de refeições sem justificação de serviço e equipamentos destinados a uso particular, entre 2014 e 2018. Dos seis arguidos absolvidos em Junho de 2025, o recurso do MP visou dois: Hernâni Ribeiro e o antigo director-delegado dos serviços. Em Fevereiro de 2026, a Relação condenou-os e, em Junho, o Supremo confirmou a decisão. O STJ rejeitou a tese de que alterações legislativas haviam despenalizado a conduta de titulares de altos cargos públicos. A absolvição dos restantes arguidos não é convertida nesta ficha em condenação. Os factos ocorreram nos serviços municipalizados, organismo distinto de uma empresa municipal.",
     "affiliation": "PSD · o jornal oficial Povo Livre identifica Hernâni Ribeiro como presidente da Comissão Política da Secção da Maia em Janeiro de 2019.",
-    "finality": "Condenação confirmada pelo STJ em 17 de Junho de 2026. Em 2 de Julho, o autarca anunciou a contestação de questões de constitucionalidade. Não foi localizada decisão posterior nem certidão de trânsito.",
+    "finality": "Acórdão 985/2026 do TC, de 13 de Novembro, mantém a não admissão do recurso constitucional. O Maia Hoje apresenta a condenação como definitiva. Não foi obtida certidão nem data exacta de trânsito.",
     "penalty": "Dois anos de prisão suspensa por igual período, condicionada à restituição de 2.797,55 euros; perda alargada de património de 82.065,33 euros.",
     "amount": null,
     "caseNumber": "12234/17.4T9PRT.P1.S1",
@@ -31671,8 +31687,8 @@
       "label": "STJ · acórdão de 17 Junho 2026",
       "href": "https://juris.stj.pt/12234%2F17.4T9PRT.P1.S1/GVRFe8RGXznBofvM-90hjKPYUc8"
     },
-    "checkedAt": "2026-11-20",
-    "researchBatch": "municipal-round9-2026-11-20",
+    "checkedAt": "2026-11-25",
+    "researchBatch": "confirmacao-editorial-2026-11-25",
     "related": [],
     "partyOutcomes": {},
     "people": [
@@ -31708,6 +31724,12 @@
         "dateLabel": "2026-07-02",
         "datePrecision": "day",
         "text": "Hernâni Ribeiro anuncia que pretende contestar questões de constitucionalidade."
+      },
+      {
+        "date": "2026-11-13",
+        "dateLabel": "2026-11-13",
+        "datePrecision": "day",
+        "text": "TC, acórdão 985/2026, mantém a decisão de não admissão do recurso de constitucionalidade."
       }
     ],
     "sources": [
@@ -31740,6 +31762,16 @@
         "label": "PSD / Povo Livre · presidente da Comissão Política da Maia, 30 Janeiro 2019",
         "href": "https://www.psd.pt/sites/default/files/povo-livre/povo_livre_30janeiro_2019.pdf",
         "kind": "Fonte partidária · cargo interno"
+      },
+      {
+        "label": "TC · acórdão 985/2026, de 13 Novembro; processo 1063/26",
+        "href": "https://www.tribunalconstitucional.pt/tc/acordaos/20260985.html",
+        "kind": "Acórdão oficial"
+      },
+      {
+        "label": "Maia Hoje · identificação nominal e contraditório, 20 Novembro 2026",
+        "href": "https://www.maiahoje.pt/tribunal-constitucional-rejeita-recurso-e-confirma-condenacao-por-peculato-do-vereador-da-maia-hernani-ribeiro/",
+        "kind": "Imprensa regional"
       }
     ],
     "mandate": null,
@@ -42144,5 +42176,229 @@
     ],
     "mandate": null,
     "entityCases": []
+  },
+  {
+    "id": "miguel-esteves-vila-real-prevaricacao",
+    "parties": ["PSD"],
+    "category": "Casos",
+    "nature": "Criminal",
+    "phase": "Absolvições",
+    "status": "Absolvição confirmada em recurso · trânsito noticiado",
+    "date": "2026-11-17",
+    "dateLabel": "2026-11-17",
+    "datePrecision": "day",
+    "dateKind": "Notícia sobre confirmação da absolvição",
+    "year": 2026,
+    "title": "Vila Real: Relação confirma absolvição de Miguel Esteves",
+    "summary": "A Relação de Guimarães confirmou a absolvição do antigo vereador do PSD. A Lusa noticia o trânsito em julgado.",
+    "detail": "A acusação respeitava a uma decisão urbanística de 2012. A absolvição de Abril de 2025 foi mantida após recurso do Ministério Público. O pedido de perda de vantagens de 600 mil euros também foi julgado improcedente. O autarca negou favorecimentos.",
+    "affiliation": "PSD · identificado pela Lusa e pela Voz de Trás-os-Montes como antigo vereador do partido em Vila Real.",
+    "finality": "Trânsito em julgado noticiado pela Lusa em 17 de Novembro de 2026. Não foi obtida certidão nem a data exacta do acórdão da Relação.",
+    "penalty": "",
+    "amount": null,
+    "caseNumber": "",
+    "court": "Tribunal da Relação de Guimarães; Tribunal de Vila Real",
+    "location": "Vila Real",
+    "topic": "",
+    "procedureType": "",
+    "reference": "Observador / Lusa · 17 Novembro 2026",
+    "sourceName": "Imprensa · Lusa",
+    "source": {
+      "label": "Observador / Lusa · 17 Novembro 2026",
+      "href": "https://observador.pt/2026/11/17/relacao-confirma-absolvicao-de-antigo-vereador-de-vila-real-por-prevaricacao/"
+    },
+    "checkedAt": "2026-11-25",
+    "researchBatch": "confirmacao-editorial-2026-11-25",
+    "related": [],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "miguel-esteves",
+        "name": "Miguel Esteves",
+        "fullName": "",
+        "role": "Antigo vereador do PSD em Vila Real, com o pelouro do urbanismo.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": null,
+        "dateLabel": "2025-04",
+        "datePrecision": "month",
+        "text": "Absolvição em primeira instância, segundo a Lusa."
+      },
+      {
+        "date": "2026-11-17",
+        "dateLabel": "2026-11-17",
+        "datePrecision": "day",
+        "text": "Notícia sobre confirmação da absolvição e trânsito em julgado."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Observador / Lusa · 17 Novembro 2026",
+        "href": "https://observador.pt/2026/11/17/relacao-confirma-absolvicao-de-antigo-vereador-de-vila-real-por-prevaricacao/",
+        "kind": "Imprensa · Lusa"
+      },
+      {
+        "label": "A Voz de Trás-os-Montes · 18 Novembro 2026 (parte acessível)",
+        "href": "https://www.avozdetrasosmontes.pt/tribunal-da-relacao-confirma-absolvicao-de-antigo-vereador-da-autarquia/",
+        "kind": "Imprensa regional"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "ipdj-sonia-paixao-contas-2018-absolvicao",
+    "parties": ["PS"],
+    "category": "Casos",
+    "nature": "Financeira",
+    "phase": "Absolvições",
+    "status": "Absolvição financeira de Sónia Paixão · transitada",
+    "date": "2026-04-07",
+    "dateLabel": "2026-04-07",
+    "datePrecision": "day",
+    "dateKind": "Data da sentença do Tribunal de Contas",
+    "year": 2026,
+    "title": "IPDJ: Sónia Paixão absolvida no processo das contas de 2018",
+    "summary": "O Tribunal de Contas absolveu Sónia Paixão das duas infracções financeiras que lhe eram imputadas. A sentença está publicada como transitada.",
+    "detail": "O processo respeita a falhas de controlo interno e de registo de receitas nas contas de 2018. A sentença distingue a situação de quem entrou no final do exercício e não causou as irregularidades. Sónia Paixão corresponde à demandada CC/D3: a tabela nominal de julgamentos do mesmo processo e a sentença coincidem no cargo de vice-presidente e no início em 4 de Setembro de 2018. O dispositivo absolve D3 e D4. Para D2 e D5, o resultado é diferente: condenação com dispensa de multa. Não se estende a esses intervenientes a ligação de Sónia Paixão ao PS.",
+    "affiliation": "PS · a nota curricular municipal documenta a vereação de Loures desde 2013. A Lusa identifica a candidatura pelo PS em 2018, e a página da estrutura partidária identifica Sónia Alexandra Paixão Lopes como secretária-coordenadora da secção de Loures. Não foi apurada a data de inscrição partidária.",
+    "finality": "A capa da sentença 7/2026 assinala trânsito em julgado. A data exacta do trânsito não consta dos elementos consultados.",
+    "penalty": "Sónia Paixão: absolvida dos pedidos de responsabilidade financeira sancionatória e isenta de emolumentos. Sem multa.",
+    "amount": null,
+    "caseNumber": "16/2025-JRF; sentença 7/2026",
+    "court": "Tribunal de Contas, 3.ª Secção",
+    "location": "Lisboa / Loures",
+    "topic": "",
+    "procedureType": "",
+    "reference": "Tribunal de Contas · sentença 7/2026, de 7 de Abril",
+    "sourceName": "Decisão judicial",
+    "source": {
+      "label": "Tribunal de Contas · sentença 7/2026, de 7 de Abril",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/3s/Documents/2026/st007-2026-3s.pdf"
+    },
+    "checkedAt": "2026-11-25",
+    "researchBatch": "confirmacao-editorial-2026-11-25",
+    "related": [],
+    "partyOutcomes": {
+      "PS": "Absolvições"
+    },
+    "people": [
+      {
+        "id": "sonia-paixao",
+        "name": "Sónia Paixão",
+        "fullName": "Sónia Alexandra da Silva Paixão dos Santos Bernardo Lopes",
+        "role": "Vereadora de Loures e vice-presidente do IPDJ desde Setembro de 2018. Demandada absolvida no processo relativo à conta de 2018.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2018-09-04",
+        "dateLabel": "2018-09-04",
+        "datePrecision": "day",
+        "text": "Início das funções de vice-presidente do IPDJ, segundo a tabela nominal e a sentença."
+      },
+      {
+        "date": "2026-02-11",
+        "dateLabel": "2026-02-11",
+        "datePrecision": "day",
+        "text": "Audiência inscrita na tabela pública do Tribunal de Contas para o processo 16/2025-JRF."
+      },
+      {
+        "date": "2026-04-07",
+        "dateLabel": "2026-04-07",
+        "datePrecision": "day",
+        "text": "Sentença: absolvição de Sónia Paixão; desfechos individualizados para os restantes demandados."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Tribunal de Contas · sentença 7/2026, de 7 de Abril",
+        "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/3s/Documents/2026/st007-2026-3s.pdf",
+        "kind": "Decisão judicial"
+      },
+      {
+        "label": "Tribunal de Contas · identificação nominal no processo 16/2025-JRF, audiências de 11 e 13 de Fevereiro de 2026",
+        "href": "https://www.tcontas.pt/pt-pt/Transparencia/TabelasJulgamentos/Paginas/tabelas-de-julgamentos.aspx",
+        "kind": "Registo judicial oficial"
+      },
+      {
+        "label": "Município de Loures · boletim especial de 2 de Dezembro de 2024, nota curricular, página 53 do PDF",
+        "href": "https://cm-loures.pt/media/pdf/PDF20241202161854870.pdf",
+        "kind": "Documento municipal"
+      },
+      {
+        "label": "PS/FAUL · secretária-coordenadora da secção de Loures, consultado em 23 de Novembro de 2026",
+        "href": "https://www.psfaul.pt/concelhia-loures/",
+        "kind": "Fonte partidária"
+      },
+      {
+        "label": "Record/Lusa · nomeação no IPDJ e percurso no PS, 3 de Setembro de 2018",
+        "href": "https://www.record.pt/fora-de-campo/detalhe/vitor-pataco-vai-ser-o-novo-presidente-do-ipdj",
+        "kind": "Imprensa"
+      }
+    ],
+    "mandate": null,
+    "entityCases": [
+      {
+        "name": "Instituto Português do Desporto e Juventude, I.P.",
+        "kind": "institute",
+        "type": "Instituto público",
+        "municipality": "",
+        "people": ["Sónia Paixão"],
+        "connection": "Exercício anterior e simultâneo de cargo autárquico documentado. A filiação ou ligação política não é deduzida da nomeação no IPDJ.",
+        "entityEvidence": [
+          {
+            "person": "",
+            "party": "",
+            "description": "A sentença e a tabela de julgamentos identificam o IPDJ como entidade cujas contas de 2018 foram examinadas.",
+            "period": "2018",
+            "source": {
+              "label": "Tribunal de Contas · sentença 7/2026, de 7 de Abril",
+              "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/3s/Documents/2026/st007-2026-3s.pdf"
+            }
+          }
+        ],
+        "roleEvidence": [
+          {
+            "person": "Sónia Paixão",
+            "party": "",
+            "description": "A tabela nominal liga o nome ao processo 16/2025-JRF e ao cargo de vice-presidente de 04-09-2018 a 31-12-2018, intervalo abrangido pelo exercício auditado.",
+            "period": "2018-09-04 a 2018-12-31",
+            "source": {
+              "label": "Tribunal de Contas · tabela de julgamentos",
+              "href": "https://www.tcontas.pt/pt-pt/Transparencia/TabelasJulgamentos/Paginas/tabelas-de-julgamentos.aspx"
+            }
+          }
+        ],
+        "membershipEvidence": [
+          {
+            "person": "Sónia Paixão",
+            "party": "PS",
+            "description": "A página oficial da estrutura do PS identifica Sónia Alexandra Paixão Lopes como secretária-coordenadora da secção de Loures. Não se fixa a data inicial da militância.",
+            "period": "Página sem data própria; consultada em 2026-11-23",
+            "source": {
+              "label": "PS/FAUL · Loures",
+              "href": "https://www.psfaul.pt/concelhia-loures/"
+            }
+          }
+        ],
+        "politicalRoleEvidence": [
+          {
+            "person": "Sónia Paixão",
+            "party": "PS",
+            "description": "A nota curricular identifica vereação em Loures de Outubro de 2013 a Outubro de 2021 e a vice-presidência municipal desde 15-10-2021. A associação ao PS é corroborada pela Lusa e pela fonte partidária, não inferida da nota curricular.",
+            "period": "2013–2024, conforme nota publicada em 2024",
+            "source": {
+              "label": "Município de Loures · nota curricular de Sónia Paixão",
+              "href": "https://cm-loures.pt/media/pdf/PDF20241202161854870.pdf"
+            }
+          }
+        ]
+      }
+    ]
   }
 ]

@@ -3,9 +3,9 @@
 Imported on 2026-11-20 from the published prototype, version 21, source commit
 `51afb264c9b2ceabd00f53116a9faa5baea4c877`.
 
-- `casos.json`: 464 cases, including 7 party-account decisions.
+- `casos.json`: 466 cases (464 imported, 2 added in the editorial review of 2026-11-25), including 7 party-account decisions.
 - `documentos.json`: 1 reference document, excluded from case totals.
-- `pessoas.json`: 535 people; 27 publicly published portraits with credits/licences.
+- `pessoas.json`: 537 people (535 imported, 2 added in the editorial review of 2026-11-25); 27 publicly published portraits with credits/licences.
 - `partidos.json`: 24 current and 4 historical parties, with registration sources and symbol provenance.
 - `manifesto.json`: edition metadata, coverage and the preserved case alias.
 
@@ -63,3 +63,12 @@ configuration. Local compilation reached prerendering but stopped on the existin
 `/cultura` page because KV credentials were absent. The PR remains a draft until
 the full build succeeds in the configured deployment environment. No production
 credentials or environment files are included in this change.
+
+## Editorial revision prepared on 2026-11-25
+
+Two new acquittal records (Miguel Esteves and Sónia Paixão) and two updates
+(Hernâni Ribeiro and Roberto Silva) are prepared for editorial review. See
+`revisao/2026-11-25.md` and its before/after JSON. This branch is not a
+publication. The original import provenance is retained. The manifest check
+date reflects the latest consulted sources, not a new verification of every
+case. Each record retains its own check date.
