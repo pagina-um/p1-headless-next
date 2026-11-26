@@ -85,7 +85,7 @@ export interface CaseRecord extends Dated {
   checkedAt: string;
   researchBatch: string;
   related: string[];
-  partyOutcomes: Record<string, string>;
+  partyOutcomes: Partial<Record<string, string>>;
   people: Participant[];
   timeline: (Dated & { text: string })[];
   sources: (Source & { kind: string })[];
@@ -141,7 +141,7 @@ export interface CaseIndex extends Dated {
   dateKind: string;
   location: string;
   caseNumber: string;
-  partyOutcomes: Record<string, string>;
+  partyOutcomes: Partial<Record<string, string>>;
   people: { id: string; name: string }[];
   inquest: boolean;
   mandate: boolean;

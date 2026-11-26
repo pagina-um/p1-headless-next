@@ -6441,5 +6441,96 @@
       "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/3s/Documents/2026/st007-2026-3s.pdf"
     },
     "portrait": null
+  },
+  {
+    "id": "manuel-baeta-de-castro",
+    "name": "Manuel Baeta de Castro",
+    "fullNames": [],
+    "recordIds": [
+      "calheta-baeta-contabilizacao-valor-ambiente",
+      "calheta-baeta-progressoes-remuneratorias"
+    ],
+    "source": {
+      "label": "Tribunal de Contas · Sentença n.º 47/2014, de 08-07-2014",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/srmtc/Documents/2014/st047-2014-srmtc.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "carlos-manuel-figueira-de-ornelas-teles",
+    "name": "Carlos Manuel Figueira de Ornelas Teles",
+    "fullNames": [],
+    "recordIds": ["calheta-baeta-contabilizacao-valor-ambiente"],
+    "source": {
+      "label": "Tribunal de Contas · Sentença n.º 47/2014, de 08-07-2014",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/srmtc/Documents/2014/st047-2014-srmtc.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "aleixo-jacinto-castro-abreu",
+    "name": "Aleixo Jacinto Castro Abreu",
+    "fullNames": [],
+    "recordIds": ["calheta-baeta-contabilizacao-valor-ambiente"],
+    "source": {
+      "label": "Tribunal de Contas · Sentença n.º 47/2014, de 08-07-2014",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/srmtc/Documents/2014/st047-2014-srmtc.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "julio-urbino-rodrigues-de-freitas",
+    "name": "Júlio Urbino Rodrigues de Freitas",
+    "fullNames": [],
+    "recordIds": ["calheta-baeta-contabilizacao-valor-ambiente"],
+    "source": {
+      "label": "Tribunal de Contas · Sentença n.º 47/2014, de 08-07-2014",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/srmtc/Documents/2014/st047-2014-srmtc.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "maria-do-rosario-gouveia-de-abreu-gouveia",
+    "name": "Maria do Rosário Gouveia de Abreu Gouveia",
+    "fullNames": [],
+    "recordIds": ["calheta-baeta-contabilizacao-valor-ambiente"],
+    "source": {
+      "label": "Tribunal de Contas · Sentença n.º 47/2014, de 08-07-2014",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/srmtc/Documents/2014/st047-2014-srmtc.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "martinho-gouveia-da-camara",
+    "name": "Martinho Gouveia da Câmara",
+    "fullNames": [],
+    "recordIds": ["calheta-baeta-contabilizacao-valor-ambiente"],
+    "source": {
+      "label": "Tribunal de Contas · Sentença n.º 47/2014, de 08-07-2014",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/srmtc/Documents/2014/st047-2014-srmtc.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "antero-vasconcelos-de-sousa",
+    "name": "Antero Vasconcelos de Sousa",
+    "fullNames": [],
+    "recordIds": ["calheta-baeta-contabilizacao-valor-ambiente"],
+    "source": {
+      "label": "Tribunal de Contas · Sentença n.º 47/2014, de 08-07-2014",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/srmtc/Documents/2014/st047-2014-srmtc.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "maria-olga-rodrigues-sequeira-da-silva",
+    "name": "Maria Olga Rodrigues Sequeira da Silva",
+    "fullNames": [],
+    "recordIds": ["calheta-baeta-contabilizacao-valor-ambiente"],
+    "source": {
+      "label": "Tribunal de Contas · Sentença n.º 47/2014, de 08-07-2014",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/srmtc/Documents/2014/st047-2014-srmtc.pdf"
+    },
+    "portrait": null
   }
 ]

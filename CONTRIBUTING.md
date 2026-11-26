@@ -72,6 +72,6 @@ git rebase main
    - Set the head repository to your fork and the compare branch to your feature branch
    - Click "Create Pull Request"
 
-3. **After approval**:
-   - A maintainer will merge your PR once it's approved
+3. **Merging**:
+   - If the PR only touches content paths (see `AGENTS.md`, "How changes get in"), merge it yourself once the Vercel and `content-only` checks pass; otherwise a maintainer reviews and merges it
    - Your contribution will become part of the project!

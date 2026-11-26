@@ -42400,5 +42400,234 @@
         ]
       }
     ]
+  },
+  {
+    "id": "calheta-baeta-contabilizacao-valor-ambiente",
+    "parties": ["PSD", "CDS"],
+    "category": "Casos",
+    "nature": "Financeira",
+    "phase": "Condenações financeiras",
+    "status": "Condenação financeira definitiva e absolvições",
+    "date": "2014-07-08",
+    "dateLabel": "2014-07-08",
+    "datePrecision": "day",
+    "dateKind": "Sentença",
+    "year": 2014,
+    "title": "Calheta: Baeta multado por omissões contabilísticas e sete vereadores absolvidos",
+    "summary": "Manuel Baeta de Castro foi condenado numa multa de 500 euros por omissão negligente e continuada de registos contabilísticos. Os sete vereadores foram absolvidos do pedido que lhes era dirigido.",
+    "detail": "A Sentença n.º 47/2014 apreciou facturas e notas de crédito da Valor Ambiente, de 2007 a 2010, registadas apenas em 31 de Dezembro de 2011. O total de 1.391.439,78 euros corresponde aos documentos contabilísticos, não ao valor da multa nem a uma reposição decretada. O tribunal considerou diminuto o grau de culpa. Absolveu os oito demandados, incluindo Baeta, do pedido relativo ao plano de saneamento financeiro e ao crescimento das despesas correntes.",
+    "affiliation": "Baeta e cinco dos vereadores constam dos mapas eleitorais de 2005 ou 2009 como eleitos pelo PPD/PSD. Martinho Gouveia da Câmara e Antero Vasconcelos de Sousa constam como eleitos pelo CDS-PP. A candidatura documenta a ligação política, sem provar por si a qualidade de militante.",
+    "finality": "O exemplar oficial da sentença contém a indicação de trânsito em julgado. A notícia de 17-02-2015 confirma-o. Não foi identificada a data exacta do trânsito.",
+    "penalty": "Multa de 500 euros aplicada apenas a Manuel Baeta de Castro. Sete vereadores absolvidos.",
+    "amount": null,
+    "caseNumber": "Sentença n.º 47/2014 · Processo n.º 6/2013-JRF",
+    "court": "Tribunal de Contas · Secção Regional da Madeira",
+    "location": "Calheta, Madeira",
+    "topic": "Omissão de registos contabilísticos e plano de saneamento financeiro",
+    "procedureType": "Responsabilidade financeira sancionatória",
+    "reference": "Tribunal de Contas · Sentença n.º 47/2014, de 08-07-2014",
+    "sourceName": "Tribunal de Contas",
+    "source": {
+      "label": "Tribunal de Contas · Sentença n.º 47/2014, de 08-07-2014",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/srmtc/Documents/2014/st047-2014-srmtc.pdf"
+    },
+    "checkedAt": "2026-11-26",
+    "researchBatch": "history-madeira-2026-11-26",
+    "related": ["calheta-baeta-progressoes-remuneratorias"],
+    "partyOutcomes": {
+      "PSD": "Condenações financeiras",
+      "CDS": "Absolvições"
+    },
+    "people": [
+      {
+        "id": "manuel-baeta-de-castro",
+        "name": "Manuel Baeta de Castro",
+        "fullName": "",
+        "role": "Presidente da Câmara da Calheta, eleito pelo PPD/PSD em 2005 e 2009. Condenado pela omissão contabilística e absolvido quanto ao plano de saneamento financeiro.",
+        "proceduralStatus": null
+      },
+      {
+        "id": "carlos-manuel-figueira-de-ornelas-teles",
+        "name": "Carlos Manuel Figueira de Ornelas Teles",
+        "fullName": "",
+        "role": "Vereador eleito pelo PPD/PSD em 2005 e 2009. Absolvido do pedido relativo ao plano de saneamento financeiro.",
+        "proceduralStatus": null
+      },
+      {
+        "id": "aleixo-jacinto-castro-abreu",
+        "name": "Aleixo Jacinto Castro Abreu",
+        "fullName": "",
+        "role": "Vereador eleito pelo PPD/PSD em 2005 e 2009. Absolvido do pedido relativo ao plano de saneamento financeiro.",
+        "proceduralStatus": null
+      },
+      {
+        "id": "julio-urbino-rodrigues-de-freitas",
+        "name": "Júlio Urbino Rodrigues de Freitas",
+        "fullName": "",
+        "role": "Vereador eleito pelo PPD/PSD em 2005 e 2009. Absolvido do pedido relativo ao plano de saneamento financeiro.",
+        "proceduralStatus": null
+      },
+      {
+        "id": "maria-do-rosario-gouveia-de-abreu-gouveia",
+        "name": "Maria do Rosário Gouveia de Abreu Gouveia",
+        "fullName": "",
+        "role": "Vereadora eleita pelo PPD/PSD em 2005. Absolvida do pedido relativo ao plano de saneamento financeiro.",
+        "proceduralStatus": null
+      },
+      {
+        "id": "martinho-gouveia-da-camara",
+        "name": "Martinho Gouveia da Câmara",
+        "fullName": "",
+        "role": "Vereador eleito pelo CDS-PP em 2005. Absolvido do pedido relativo ao plano de saneamento financeiro.",
+        "proceduralStatus": null
+      },
+      {
+        "id": "antero-vasconcelos-de-sousa",
+        "name": "Antero Vasconcelos de Sousa",
+        "fullName": "",
+        "role": "Vereador identificado na sentença. O mapa eleitoral de 2009 regista Antero Vasconcelos e Sousa, eleito pelo CDS-PP para a mesma Câmara. Absolvido do pedido relativo ao plano de saneamento financeiro.",
+        "proceduralStatus": null
+      },
+      {
+        "id": "maria-olga-rodrigues-sequeira-da-silva",
+        "name": "Maria Olga Rodrigues Sequeira da Silva",
+        "fullName": "",
+        "role": "Vereadora eleita pelo PPD/PSD em 2009. Absolvida do pedido relativo ao plano de saneamento financeiro.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2011-12-31",
+        "dateLabel": "2011-12-31",
+        "datePrecision": "day",
+        "text": "Registo contabilístico das facturas e notas de crédito de 2007 a 2010."
+      },
+      {
+        "date": "2014-07-08",
+        "dateLabel": "2014-07-08",
+        "datePrecision": "day",
+        "text": "Sentença: multa a Baeta pela omissão contabilística e absolvição dos oito demandados quanto ao plano de saneamento financeiro."
+      },
+      {
+        "date": "2015-02-17",
+        "dateLabel": "2015-02-17",
+        "datePrecision": "day",
+        "text": "Publicação da notícia no Funchal Notícias, que refere o trânsito em julgado."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Tribunal de Contas · Sentença n.º 47/2014, de 08-07-2014",
+        "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/srmtc/Documents/2014/st047-2014-srmtc.pdf",
+        "kind": "Documento primário"
+      },
+      {
+        "label": "CNE · eleitos de 2005, DR de 06-02-2006, página 910-(723)",
+        "href": "https://www.cne.pt/sites/default/files/dl/resultados_al_2005.pdf",
+        "kind": "Documento primário"
+      },
+      {
+        "label": "CNE · eleitos de 2009, DR de 11-03-2010, página 726-(1046)",
+        "href": "https://www.cne.pt/sites/default/files/dl/resultados_al_2009.pdf",
+        "kind": "Documento primário"
+      },
+      {
+        "label": "Funchal Notícias · 17-02-2015, actualizado em 19-02-2015",
+        "href": "https://funchalnoticias.net/2015/02/17/baeta-multado-em-500-euros-por-ocultar-facturas-de-14-milhoes-de-euros/",
+        "kind": "Imprensa regional"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "calheta-baeta-progressoes-remuneratorias",
+    "parties": ["PSD"],
+    "category": "Casos",
+    "nature": "Financeira",
+    "phase": "Absolvições",
+    "status": "Absolvição mantida em recurso",
+    "date": "2016-01-28",
+    "dateLabel": "2016-01-28",
+    "datePrecision": "day",
+    "dateKind": "Acórdão em recurso",
+    "year": 2016,
+    "title": "Calheta: absolvição de Baeta nas progressões remuneratórias mantida em recurso",
+    "summary": "O Plenário da 3.ª Secção negou provimento ao recurso do Ministério Público contra a absolvição de Manuel Baeta de Castro no processo relativo às progressões remuneratórias de 60 trabalhadores.",
+    "detail": "O processo respeita ao despacho de 14 de Janeiro de 2009. A decisão inicial absolveu Baeta dos pedidos de multa e reposição por falta de culpa. No recurso, o Tribunal de Contas considerou vinculativa a decisão administrativa que afastara a ilegalidade invocada. Uma declaração de voto acompanhou o resultado, mas discordou desse fundamento, invocando a impossibilidade de concluir pela culpa. Este processo é distinto da multa por omissões contabilísticas.",
+    "affiliation": "Manuel Baeta de Castro exerceu a presidência da Câmara da Calheta, na Madeira. Os mapas oficiais de 2005 e 2009 identificam a sua eleição pelo PPD/PSD.",
+    "finality": "Absolvição mantida pelo Plenário em 28-01-2016. Não foi obtida certidão do trânsito deste acórdão. O trânsito em 10-11-2015 mencionado no texto respeita à sentença do TAF do Funchal, não a este acórdão.",
+    "penalty": "Sem multa ou reposição decretada neste processo. Os 153.490,44 euros eram o montante de reposição pedido pelo Ministério Público, do qual Baeta foi absolvido.",
+    "amount": null,
+    "caseNumber": "Acórdão n.º 5/2016 · Processo n.º 2-RO-SRM/2015 · origem n.º 6/2014-JRF-SRMTC",
+    "court": "Tribunal de Contas · Plenário da 3.ª Secção",
+    "location": "Calheta, Madeira",
+    "topic": "Progressões remuneratórias por opção gestionária",
+    "procedureType": "Responsabilidade financeira sancionatória e reintegratória",
+    "reference": "Tribunal de Contas · Acórdão n.º 5/2016, de 28-01-2016",
+    "sourceName": "Tribunal de Contas",
+    "source": {
+      "label": "Tribunal de Contas · Acórdão n.º 5/2016, de 28-01-2016",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/acordaos/3s/Documents/2016/ac005-2016-3s.pdf"
+    },
+    "checkedAt": "2026-11-26",
+    "researchBatch": "history-madeira-2026-11-26",
+    "related": ["calheta-baeta-contabilizacao-valor-ambiente"],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "manuel-baeta-de-castro",
+        "name": "Manuel Baeta de Castro",
+        "fullName": "",
+        "role": "Antigo presidente da Câmara da Calheta, eleito pelo PPD/PSD. Absolvido dos pedidos de multa e reposição neste processo.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2009-01-14",
+        "dateLabel": "2009-01-14",
+        "datePrecision": "day",
+        "text": "Despacho sobre progressões remuneratórias, posteriormente discutido no processo."
+      },
+      {
+        "date": "2015-09-15",
+        "dateLabel": "2015-09-15",
+        "datePrecision": "day",
+        "text": "Sentença do TAF do Funchal sobre a legalidade administrativa, documentada no acórdão do Tribunal de Contas."
+      },
+      {
+        "date": "2015-11-10",
+        "dateLabel": "2015-11-10",
+        "datePrecision": "day",
+        "text": "Trânsito da sentença do TAF do Funchal, segundo o acórdão."
+      },
+      {
+        "date": "2016-01-28",
+        "dateLabel": "2016-01-28",
+        "datePrecision": "day",
+        "text": "Tribunal de Contas nega provimento ao recurso do Ministério Público e mantém a absolvição."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Tribunal de Contas · Acórdão n.º 5/2016, de 28-01-2016",
+        "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/acordaos/3s/Documents/2016/ac005-2016-3s.pdf",
+        "kind": "Documento primário"
+      },
+      {
+        "label": "CNE · eleitos de 2005, DR de 06-02-2006, página 910-(723)",
+        "href": "https://www.cne.pt/sites/default/files/dl/resultados_al_2005.pdf",
+        "kind": "Documento primário"
+      },
+      {
+        "label": "CNE · eleitos de 2009, DR de 11-03-2010, página 726-(1046)",
+        "href": "https://www.cne.pt/sites/default/files/dl/resultados_al_2009.pdf",
+        "kind": "Documento primário"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
   }
 ]

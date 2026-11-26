@@ -1,0 +1,41 @@
+# Required status check on `main` (ruleset "protect-main").
+#
+# Passes when every file a PR changes lives in a content path: a story, an
+# infografia, a special project, its images or the docs. Fails otherwise, with
+# the list of files, so that a PR touching application code cannot be merged
+# by a contributor on their own. Repository admins bypass the ruleset, so a
+# red result here never blocks a maintainer; it only says the PR needs one.
+name: Content-only PR
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  content-only:
+    name: content-only
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check that every changed file is a content path
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          allowed='^(src/historias/|src/infografias/|src/app/infografias/|src/projectos/|src/app/projectos/|src/app/projecto/|public/|docs/)'
+          files=$(gh api "repos/$REPO/pulls/$PR/files" --paginate \
+            --jq '.[] | .filename, (.previous_filename // empty)')
+          outside=$(printf '%s\n' "$files" | grep -Ev "$allowed" || true)
+          if [ -z "$outside" ]; then
+            echo "Only content paths changed; the author may merge once Vercel is green."
+            exit 0
+          fi
+          echo "::error::This PR changes files outside the content paths and needs a maintainer to review and merge."
+          echo "Files outside src/historias, src/infografias, src/app/infografias, src/projectos, src/app/projectos, public and docs:"
+          printf '%s\n' "$outside"
+          exit 1
