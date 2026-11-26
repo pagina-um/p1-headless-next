@@ -73,5 +73,5 @@ git rebase main
    - Click "Create Pull Request"
 
 3. **Merging**:
-   - If the PR only touches content paths (see `AGENTS.md`, "How changes get in"), merge it yourself once the Vercel and `content-only` checks pass; otherwise a maintainer reviews and merges it
+   - Merge the PR yourself, with a squash merge, once the Vercel check passes (see `AGENTS.md`, "How changes get in")
    - Your contribution will become part of the project!
