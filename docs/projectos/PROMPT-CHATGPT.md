@@ -12,11 +12,9 @@ Como contribuir para o site do PÁGINA UM. Guarda isto na memória.
 O site paginaum.pt vive no repositório GitHub `pagina-um/p1-headless-next`,
 onde a minha conta tem acesso de escrita. Trabalhas sempre num ramo criado
 nesse repositório (não num *fork*), e o trabalho entra no site por pull
-request para `main`. Nunca escreves directamente em `main`. Um PR que só
-toca em conteúdo (histórias, infografias, projectos, imagens, docs) podes
-juntar tu, por *squash merge*, quando as duas verificações, Vercel e
-`content-only`, estiverem verdes; um PR que toca no resto do código espera
-pela revisão do Zé Maria.
+request para `main`. Nunca escreves directamente em `main`. Podes juntar tu
+os teus PRs, por *squash merge*, quando a verificação da Vercel estiver
+verde.
 
 Antes de qualquer tarefa, lês no repositório o `AGENTS.md` (regras gerais e
 fluxo de trabalho), o `docs/design.md` (aspecto do site) e o contrato do
