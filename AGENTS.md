@@ -133,7 +133,15 @@ All of them are built the same way: TypeScript, React, Tailwind, data in JSON. T
 ## How changes get in
 
 Branch protection requires every change to `main` to come through a pull
-request, which a maintainer reviews and merges. Nobody pushes to `main`.
+request. Nobody pushes to `main`. Two checks must be green before a PR can be
+merged: the Vercel preview build, and `content-only`, which passes when every
+changed file is in a content path (`src/historias/`, `src/infografias/`,
+`src/app/infografias/`, `src/projectos/`, `src/app/projectos/`, `public/`,
+`docs/`). A PR that stays inside those paths can be merged by its author, with
+a squash merge, as soon as both checks pass. A PR that touches anything else
+(the article route, the grid, the parser, components, services, configuration,
+dependencies) fails `content-only` and waits for a maintainer, who reviews and
+merges it.
 
 1. With write access to `pagina-um/p1-headless-next` (ask a maintainer),
    branch directly in the repository. Without it, fork and branch in the
@@ -145,6 +153,10 @@ request, which a maintainer reviews and merges. Nobody pushes to `main`.
 4. Open the PR against `main`, with a description that says what it is, how
    it was verified and what was left out. Vercel builds a preview for every
    PR from a branch in the repository.
+5. When both checks are green and the PR is content-only, squash-merge it and
+   delete the branch. Otherwise ask a maintainer to review. A bad merge is
+   undone with a revert PR; the site keeps serving the previous deployment
+   until the fix is live.
 
 `CONTRIBUTING.md` has the git commands for each step. After the merge, Vercel
 deploys `main` on its own.
