@@ -42670,7 +42670,15 @@
         "name": "Vítor Hugo Salgado",
         "fullName": "",
         "role": "Presidente da Câmara de Vizela, militante do PS e reeleito em 2025 por uma candidatura independente. Acusado pelo Ministério Público; sem condenação documentada.",
-        "proceduralStatus": "Acusado"
+        "proceduralStatus": {
+          "code": "acusado",
+          "label": "Acusado",
+          "asOf": "2026-11-04",
+          "source": {
+            "label": "Diário de Notícias · 06-11-2026",
+            "href": "https://www.dn.pt/sociedade/ministrio-pblico-acusa-autarca-de-vizela-de-violncia-domstica"
+          }
+        }
       }
     ],
     "timeline": [
@@ -42737,7 +42745,7 @@
     "affiliation": "O PCP inclui Vendas Novas e José Filipe Barradas entre as presidências CDU do mandato de 2001–2005. A associação ao PCP corresponde ao contexto eleitoral PCP/CDU e não afirma, por si só, militância individual.",
     "finality": "O Acórdão n.º 11/2010 negou provimento ao recurso, manteve integralmente a condenação e contém a indicação oficial de trânsito em julgado.",
     "penalty": "Reposição de 5.000 euros, acrescida de juros de mora desde 31-12-2005, dentro do limite temporal fixado no acórdão.",
-    "amount": "5.000 euros, mais juros",
+    "amount": null,
     "caseNumber": "Acórdão n.º 11/2010 · Recurso ordinário n.º 4 RO-JC/2010",
     "court": "Tribunal de Contas · Plenário da 3.ª Secção",
     "location": "Vendas Novas",
@@ -42815,7 +42823,7 @@
     "affiliation": "A notícia contemporânea da Lusa/RTP identifica Mário Almeida e Abel Maia como autarcas socialistas. Mário Almeida foi novamente proposto pelo PS para a Câmara de Vila do Conde em 2008.",
     "finality": "O Acórdão n.º 5/2008 negou provimento ao recurso. O exemplar oficial indica trânsito em julgado e decisão mantida em recurso pelo Tribunal Constitucional.",
     "penalty": "Reposição solidária de 20.000 euros, com juros de mora desde Dezembro de 2002.",
-    "amount": "20.000 euros, mais juros",
+    "amount": null,
     "caseNumber": "Acórdão n.º 5/2008 · Processo n.º 1 RO-JRF/2008",
     "court": "Tribunal de Contas · Plenário da 3.ª Secção",
     "location": "Vila do Conde",
@@ -42911,7 +42919,7 @@
     "affiliation": "Mário Almeida e Abel Maia são identificados como autarcas socialistas em notícia contemporânea da Lusa/RTP. O PS voltou a propor Mário Almeida para a presidência da Câmara em 2008.",
     "finality": "O Acórdão n.º 12/2016 confirmou a reposição e contém certificação de trânsito em julgado em 16-06-2016.",
     "penalty": "Reposição solidária de 55.205,21 euros, acrescida de juros de mora à taxa legal desde o último dia da gerência de 2005.",
-    "amount": "55.205,21 euros, mais juros",
+    "amount": null,
     "caseNumber": "Acórdão n.º 12/2016 · Recurso ordinário n.º 6 RO-JC/2015 · Processo n.º 1-JC/2014",
     "court": "Tribunal de Contas · Plenário da 3.ª Secção",
     "location": "Vila do Conde",
@@ -43029,7 +43037,15 @@
         "name": "Henrique Gouveia e Melo",
         "fullName": "Henrique Eduardo Passaláqua de Gouveia e Melo",
         "role": "Ex-candidato independente à Presidência da República. Assistente e recorrente; não foi arguido neste processo.",
-        "proceduralStatus": "Assistente e recorrente"
+        "proceduralStatus": {
+          "code": "assistente-recorrente",
+          "label": "Assistente e recorrente",
+          "asOf": "2026-11-19",
+          "source": {
+            "label": "PÁGINA UM · 23-11-2026",
+            "href": "https://paginaum.pt/2026/11/23/gouveia-e-melo-tribunal-da-relacao-afunda-derradeira-tentativa-de-condenar-o-pagina-um"
+          }
+        }
       }
     ],
     "timeline": [
