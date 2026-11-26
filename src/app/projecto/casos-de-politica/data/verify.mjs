@@ -33,9 +33,9 @@ const cases = read("casos"),
   manifest = read("manifesto");
 const records = [...cases, ...documents];
 const index = buildIndex(records, parties);
-assert.equal(cases.length, 464);
+assert.equal(cases.length, 468);
 assert.equal(documents.length, 1);
-assert.equal(people.length, 535);
+assert.equal(people.length, 545);
 assert.equal(parties.filter((p) => !p.historical).length, 24);
 assert.equal(parties.filter((p) => p.historical).length, 4);
 const ids = new Set(records.map((r) => r.id));
@@ -57,6 +57,10 @@ for (const r of records) {
       parties.some((x) => x.id === p),
       r.id
     );
+  for (const [party, outcome] of Object.entries(r.partyOutcomes)) {
+    assert(r.parties.includes(party), r.id);
+    assert(typeof outcome === "string" && outcome.trim(), r.id);
+  }
   for (const p of r.people)
     assert(
       people.some(
@@ -107,6 +111,33 @@ assert.equal(
 assert.equal(
   filterIndex([ctt], { ...EMPTY_FILTERS, party: "PS", group: "criminal" })
     .length,
+  1
+);
+const calheta = index.find(
+  (r) => r.id === "calheta-baeta-contabilizacao-valor-ambiente"
+);
+assert.equal(
+  filterIndex([calheta], {
+    ...EMPTY_FILTERS,
+    party: "CDS",
+    group: "otherConvictions",
+  }).length,
+  0
+);
+assert.equal(
+  filterIndex([calheta], {
+    ...EMPTY_FILTERS,
+    party: "CDS",
+    group: "favourable",
+  }).length,
+  1
+);
+assert.equal(
+  filterIndex([calheta], {
+    ...EMPTY_FILTERS,
+    party: "PSD",
+    group: "otherConvictions",
+  }).length,
   1
 );
 assert.equal(cases.filter(isInquest).length, 5);

@@ -1,0 +1,159 @@
+{
+  "reviewStatus": "pending_editorial_review",
+  "date": "2026-11-21",
+  "baseCommit": "f04e4feec99fd68df81bce3ebcaba1ba9b34c8ed",
+  "previousReviewCommit": "b96a1d35bb7ef1ceb19c226bedc1ba9a683df94e",
+  "appliedToPublicData": false,
+  "newCases": [
+    {
+      "before": null,
+      "after": {
+        "id": "afurada-antonio-morais-oliveira-peculato-2011",
+        "parties": [
+          "PSD",
+          "PS"
+        ],
+        "category": "Casos",
+        "nature": "Criminal",
+        "phase": "Condenações criminais",
+        "status": "Condenação em primeira instância · recurso anunciado",
+        "date": "2011-10-13",
+        "dateLabel": "2011-10-13",
+        "datePrecision": "day",
+        "dateKind": "Sentença noticiada",
+        "year": 2011,
+        "title": "Afurada: condenação de António Morais Oliveira por peculato",
+        "summary": "O Tribunal de Gaia condenou o antigo presidente da junta a quatro anos e meio de prisão efectiva. A defesa anunciou recurso.",
+        "detail": "A decisão respeita à apropriação de 77.630 euros. O Notícias de Gaia situa os factos entre 2004 e 2006. A confissão e a intenção de restituição alegadas pela defesa não determinaram a suspensão da pena na primeira instância.",
+        "affiliation": "Presidente da junta entre 1977 e 2006, primeiro pelo PS e depois apoiado pelo PSD. O Notícias de Gaia distingue militância no PS de apoio do PSD; não se afirma militância neste último partido. As ligações aqui indicadas descrevem o percurso político.",
+        "finality": "Recurso para a Relação anunciado em 13 de Outubro de 2011. Resultado do recurso e trânsito não localizados nesta pesquisa. Não se afirma que tenha cumprido prisão.",
+        "penalty": "Quatro anos e seis meses de prisão efectiva na primeira instância; indemnização de 77.630 euros e 5.000 euros por danos não patrimoniais.",
+        "amount": null,
+        "caseNumber": "",
+        "court": "2.ª Vara Mista da Comarca de Vila Nova de Gaia",
+        "location": "Afurada, Vila Nova de Gaia",
+        "topic": "",
+        "procedureType": "",
+        "reference": "RTP / Lusa · 13 Outubro 2011",
+        "sourceName": "Imprensa · Lusa",
+        "source": {
+          "label": "RTP / Lusa · 13 Outubro 2011",
+          "href": "https://www.rtp.pt/noticias/pais/antigo-presidente-da-junta-da-afurada-condenado-a-quatro-anos-e-meio-de-prisao-efetiva-por-peculato_n488117"
+        },
+        "checkedAt": "2026-11-21",
+        "researchBatch": "revisao-editorial-2026-11-21-complemento",
+        "related": [],
+        "partyOutcomes": {},
+        "people": [
+          {
+            "id": "antonio-morais-oliveira",
+            "name": "António Morais Oliveira",
+            "fullName": "",
+            "role": "Antigo presidente da Junta de Freguesia da Afurada.",
+            "proceduralStatus": null
+          }
+        ],
+        "timeline": [
+          {
+            "date": "2011-10-13",
+            "dateLabel": "2011-10-13",
+            "datePrecision": "day",
+            "text": "Condenação em primeira instância e recurso anunciado, segundo a RTP/Lusa."
+          }
+        ],
+        "sources": [
+          {
+            "label": "RTP / Lusa · 13 Outubro 2011",
+            "href": "https://www.rtp.pt/noticias/pais/antigo-presidente-da-junta-da-afurada-condenado-a-quatro-anos-e-meio-de-prisao-efetiva-por-peculato_n488117",
+            "kind": "Imprensa · Lusa"
+          },
+          {
+            "label": "JPN · 13 Outubro 2011",
+            "href": "https://www.jpn.up.pt/2011/10/13/ex-presidente-da-junta-da-afurada-condenado-a-4-anos-e-meio-de-prisao/",
+            "kind": "Imprensa regional"
+          },
+          {
+            "label": "Notícias de Gaia · Culpado, Outubro 2011",
+            "href": "https://noticiasdegaia.wordpress.com/tag/junta-de-freguesia-afurada/",
+            "kind": "Imprensa regional"
+          }
+        ],
+        "mandate": null,
+        "entityCases": []
+      }
+    }
+  ],
+  "newPeople": [
+    {
+      "before": null,
+      "after": {
+        "id": "antonio-morais-oliveira",
+        "name": "António Morais Oliveira",
+        "fullNames": [],
+        "recordIds": [
+          "afurada-antonio-morais-oliveira-peculato-2011"
+        ],
+        "source": {
+          "label": "RTP / Lusa · 13 Outubro 2011",
+          "href": "https://www.rtp.pt/noticias/pais/antigo-presidente-da-junta-da-afurada-condenado-a-quatro-anos-e-meio-de-prisao-efetiva-por-peculato_n488117"
+        },
+        "portrait": null
+      }
+    }
+  ],
+  "updates": [],
+  "editorialQuestions": [
+    "Confirmar se a ficha histórica pode entrar enquanto não se localiza o recurso. Não classificar a condenação como definitiva.",
+    "Validar a associação aos dois partidos como percurso; falta apurar documentalmente a data da passagem de PS para apoio PSD.",
+    "Localizar número do processo e decisão da Relação. Não atribuir um acórdão anonimizado por coincidência de valor."
+  ],
+  "sourceAccess": {
+    "consultedAt": "2026-11-21",
+    "openedAndRead": [
+      "https://www.rtp.pt/noticias/pais/antigo-presidente-da-junta-da-afurada-condenado-a-quatro-anos-e-meio-de-prisao-efetiva-por-peculato_n488117",
+      "https://www.jpn.up.pt/2011/10/13/ex-presidente-da-junta-da-afurada-condenado-a-4-anos-e-meio-de-prisao/",
+      "https://noticiasdegaia.wordpress.com/tag/junta-de-freguesia-afurada/"
+    ],
+    "independence": "RTP e JPN remetem para Lusa; não são duas confirmações independentes. Notícias de Gaia contém relato local e declarações."
+  },
+  "researchLog": {
+    "queries": [
+      "político autarca absolvido condenado recurso novembro 2026 (recência: 2 dias)",
+      "perda de mandato 1980 autarca",
+      "perda de mandato 1983 autarca",
+      "autarca condenado 1977",
+      "António Morais Oliveira recurso prisão",
+      "Afurada condenado Relação Oliveira",
+      "Domingos Maia junta mandato",
+      "António Morais Oliveira 2006 2011 peculato",
+      "Afurada Morais Relação 2012",
+      "site.dgsi.pt 77.630 peculato",
+      "António Morais pena suspensa Afurada"
+    ],
+    "scope": "Sobreposição de dois dias para notícias recentes; continuação exploratória 1974–1984. Resultados levaram a uma condenação de 2011 de autarca em funções desde 1977, não a um crime datado de 1977. Cobertura parcial.",
+    "deduplication": "Conferidos casos, pessoas e propostas pendentes por Afurada, António Morais Oliveira e factos/valor. Sem correspondência. Repositório original e ramo remoto novamente consultados, sem novas alterações humanas ou PR pendente.",
+    "historicalLeads": [
+      {
+        "source": "https://www.dgsi.pt/pgrp.nsf/7fc0bd52c6f5cd5a802568c0003fb410/064e06ef7001ff87802582960035bff5",
+        "result": "Parecer PGR 73/1979, de 15-06-1979, aberto e lido. Enquadramento de perda de mandato por faltas; não identifica caso pessoal elegível."
+      },
+      {
+        "source": "https://www.dgsi.pt/jsta.nsf/-/BD1DEEF662F96965802568FC003943BA",
+        "result": "STA 039678, 21-03-1996, aberto e lido. Recurso de Domingos Maia provido em matéria de perda de mandato. Faltam freguesia e identidade completa. Não ligar a homónimos encontrados em Braga ou Taipas."
+      },
+      {
+        "source": "https://www.dgsi.pt/jsta.nsf/-/4C6755A2833CF9E8802568FC00396060",
+        "result": "Pista de pesquisa: falha de descodificação na abertura. Não utilizada como prova."
+      }
+    ],
+    "nextScope": "Completar 1974–1984 em imprensa regional; procurar acórdão de recurso da Afurada e identidade documental no STA 039678.",
+    "recentNews": "Resultados recentes remetem para as duas propostas já guardadas; não duplicadas."
+  },
+  "validation": {
+    "schema": "Chaves da nova ficha e pessoa iguais às entidades existentes; IDs sem duplicação.",
+    "publicData": "Preservados. Verificador corrido novamente.",
+    "typesLintBuild": "Nenhuma alteração de código ou dados consumidos pelo site desde a verificação anterior. Tipos passaram; lint/build impedidos por NEXT_PUBLIC_WP_URL ausente. Não alteradas variáveis ou credenciais.",
+    "pullRequest": "Não aberto até cumprimento do contrato. Proposta persistida no mesmo ramo de revisão.",
+    "publication": "Não publicada."
+  }
+}

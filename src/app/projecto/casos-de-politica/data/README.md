@@ -3,9 +3,9 @@
 Imported on 2026-11-20 from the published prototype, version 21, source commit
 `51afb264c9b2ceabd00f53116a9faa5baea4c877`.
 
-- `casos.json`: 464 cases, including 7 party-account decisions.
+- `casos.json`: 468 cases (464 imported, 4 added in the editorial reviews of 2026-11-25 and 2026-11-26), including 7 party-account decisions.
 - `documentos.json`: 1 reference document, excluded from case totals.
-- `pessoas.json`: 535 people; 27 publicly published portraits with credits/licences.
+- `pessoas.json`: 545 people (535 imported, 10 added in the editorial reviews of 2026-11-25 and 2026-11-26); 27 publicly published portraits with credits/licences.
 - `partidos.json`: 24 current and 4 historical parties, with registration sources and symbol provenance.
 - `manifesto.json`: edition metadata, coverage and the preserved case alias.
 
@@ -60,6 +60,23 @@ The project was reviewed at desktop width and in a 390 px frame, including
 search, party ordering, links between records and people, and JSON/CSV downloads.
 The full application build requires the original site's WordPress, Stripe and KV
 configuration. Local compilation reached prerendering but stopped on the existing
-`/cultura` page because KV credentials were absent. The PR remains a draft until
-the full build succeeds in the configured deployment environment. No production
+`/cultura` page because KV credentials were absent. That was the migration's
+local validation; each editorial PR requires a fresh Vercel build. No production
 credentials or environment files are included in this change.
+
+## Editorial revision prepared on 2026-11-25
+
+Two new acquittal records (Miguel Esteves and Sónia Paixão) and two updates
+(Hernâni Ribeiro and Roberto Silva) are prepared for editorial review. See
+`revisao/2026-11-25.md` and its before/after JSON. This branch is not a
+publication. The original import provenance is retained. The manifest check
+date reflects the latest consulted sources, not a new verification of every
+case. Each record retains its own check date.
+
+## Editorial revision prepared on 2026-11-26
+
+Two separate Calheta financial proceedings are added after checking the official
+judgments and electoral maps. The mixed decision preserves the CDS councillors'
+acquittal in party filters. See `revisao/2026-11-26.md` and its before/after JSON.
+Recent Oeiras reporting remains a research lead pending clarification of the
+inquiry status. Publication and editorial approval are not implied by this review.

@@ -1,0 +1,451 @@
+{
+  "reviewStatus": "pending_editorial_review",
+  "date": "2026-11-23",
+  "baseCommit": "c20af92b25bb577657eb6bf0f48ce640ca453314",
+  "previousReviewCommit": "ff398d3fe70494f84fd164b7c1cc877ee0d8e19c",
+  "appliedToPublicData": false,
+  "newCases": [
+    {
+      "before": null,
+      "after": {
+        "id": "ipdj-sonia-paixao-contas-2018-absolvicao",
+        "parties": [
+          "PS"
+        ],
+        "category": "Casos",
+        "nature": "Financeira",
+        "phase": "Absolvições",
+        "status": "Absolvição financeira de Sónia Paixão · transitada",
+        "date": "2026-04-07",
+        "dateLabel": "2026-04-07",
+        "datePrecision": "day",
+        "dateKind": "Data da sentença do Tribunal de Contas",
+        "year": 2026,
+        "title": "IPDJ: Sónia Paixão absolvida no processo das contas de 2018",
+        "summary": "O Tribunal de Contas absolveu Sónia Paixão das duas infracções financeiras que lhe eram imputadas. A sentença está publicada como transitada.",
+        "detail": "O processo respeita a falhas de controlo interno e de registo de receitas nas contas de 2018. A sentença distingue a situação de quem entrou no final do exercício e não causou as irregularidades. Sónia Paixão corresponde à demandada CC/D3: a tabela nominal de julgamentos do mesmo processo e a sentença coincidem no cargo de vice-presidente e no início em 4 de Setembro de 2018. O dispositivo absolve D3 e D4. Para D2 e D5, o resultado é diferente: condenação com dispensa de multa. Não se estende a esses intervenientes a ligação de Sónia Paixão ao PS.",
+        "affiliation": "PS · a nota curricular municipal documenta a vereação de Loures desde 2013. A Lusa identifica a candidatura pelo PS em 2018, e a página da estrutura partidária identifica Sónia Alexandra Paixão Lopes como secretária-coordenadora da secção de Loures. Não foi apurada a data de inscrição partidária.",
+        "finality": "A capa da sentença 7/2026 assinala trânsito em julgado. A data exacta do trânsito não consta dos elementos consultados.",
+        "penalty": "Sónia Paixão: absolvida dos pedidos de responsabilidade financeira sancionatória e isenta de emolumentos. Sem multa.",
+        "amount": null,
+        "caseNumber": "16/2025-JRF; sentença 7/2026",
+        "court": "Tribunal de Contas, 3.ª Secção",
+        "location": "Lisboa / Loures",
+        "topic": "",
+        "procedureType": "",
+        "reference": "Tribunal de Contas · sentença 7/2026, de 7 de Abril",
+        "sourceName": "Decisão judicial",
+        "source": {
+          "label": "Tribunal de Contas · sentença 7/2026, de 7 de Abril",
+          "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/3s/Documents/2026/st007-2026-3s.pdf"
+        },
+        "checkedAt": "2026-11-23",
+        "researchBatch": "cruzamento-tdc-2026-11-23",
+        "related": [],
+        "partyOutcomes": {
+          "PS": "Absolvições"
+        },
+        "people": [
+          {
+            "id": "sonia-paixao",
+            "name": "Sónia Paixão",
+            "fullName": "Sónia Alexandra da Silva Paixão dos Santos Bernardo Lopes",
+            "role": "Vereadora de Loures e vice-presidente do IPDJ desde Setembro de 2018. Demandada absolvida no processo relativo à conta de 2018.",
+            "proceduralStatus": null
+          }
+        ],
+        "timeline": [
+          {
+            "date": "2018-09-04",
+            "dateLabel": "2018-09-04",
+            "datePrecision": "day",
+            "text": "Início das funções de vice-presidente do IPDJ, segundo a tabela nominal e a sentença."
+          },
+          {
+            "date": "2026-02-11",
+            "dateLabel": "2026-02-11",
+            "datePrecision": "day",
+            "text": "Audiência inscrita na tabela pública do Tribunal de Contas para o processo 16/2025-JRF."
+          },
+          {
+            "date": "2026-04-07",
+            "dateLabel": "2026-04-07",
+            "datePrecision": "day",
+            "text": "Sentença: absolvição de Sónia Paixão; desfechos individualizados para os restantes demandados."
+          }
+        ],
+        "sources": [
+          {
+            "label": "Tribunal de Contas · sentença 7/2026, de 7 de Abril",
+            "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/3s/Documents/2026/st007-2026-3s.pdf",
+            "kind": "Decisão judicial"
+          },
+          {
+            "label": "Tribunal de Contas · identificação nominal no processo 16/2025-JRF, audiências de 11 e 13 de Fevereiro de 2026",
+            "href": "https://www.tcontas.pt/pt-pt/Transparencia/TabelasJulgamentos/Paginas/tabelas-de-julgamentos.aspx",
+            "kind": "Registo judicial oficial"
+          },
+          {
+            "label": "Município de Loures · boletim especial de 2 de Dezembro de 2024, nota curricular, página 53 do PDF",
+            "href": "https://cm-loures.pt/media/pdf/PDF20241202161854870.pdf",
+            "kind": "Documento municipal"
+          },
+          {
+            "label": "PS/FAUL · secretária-coordenadora da secção de Loures, consultado em 23 de Novembro de 2026",
+            "href": "https://www.psfaul.pt/concelhia-loures/",
+            "kind": "Fonte partidária"
+          },
+          {
+            "label": "Record/Lusa · nomeação no IPDJ e percurso no PS, 3 de Setembro de 2018",
+            "href": "https://www.record.pt/fora-de-campo/detalhe/vitor-pataco-vai-ser-o-novo-presidente-do-ipdj",
+            "kind": "Imprensa"
+          }
+        ],
+        "mandate": null,
+        "entityCases": [
+          {
+            "name": "Instituto Português do Desporto e Juventude, I.P.",
+            "kind": "institute",
+            "type": "Instituto público",
+            "municipality": "",
+            "people": [
+              "Sónia Paixão"
+            ],
+            "connection": "Exercício anterior e simultâneo de cargo autárquico documentado. A filiação ou ligação política não é deduzida da nomeação no IPDJ.",
+            "entityEvidence": [
+              {
+                "person": "",
+                "party": "",
+                "description": "A sentença e a tabela de julgamentos identificam o IPDJ como entidade cujas contas de 2018 foram examinadas.",
+                "period": "2018",
+                "source": {
+                  "label": "Tribunal de Contas · sentença 7/2026, de 7 de Abril",
+                  "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/3s/Documents/2026/st007-2026-3s.pdf"
+                }
+              }
+            ],
+            "roleEvidence": [
+              {
+                "person": "Sónia Paixão",
+                "party": "",
+                "description": "A tabela nominal liga o nome ao processo 16/2025-JRF e ao cargo de vice-presidente de 04-09-2018 a 31-12-2018, intervalo abrangido pelo exercício auditado.",
+                "period": "2018-09-04 a 2018-12-31",
+                "source": {
+                  "label": "Tribunal de Contas · tabela de julgamentos",
+                  "href": "https://www.tcontas.pt/pt-pt/Transparencia/TabelasJulgamentos/Paginas/tabelas-de-julgamentos.aspx"
+                }
+              }
+            ],
+            "membershipEvidence": [
+              {
+                "person": "Sónia Paixão",
+                "party": "PS",
+                "description": "A página oficial da estrutura do PS identifica Sónia Alexandra Paixão Lopes como secretária-coordenadora da secção de Loures. Não se fixa a data inicial da militância.",
+                "period": "Página sem data própria; consultada em 2026-11-23",
+                "source": {
+                  "label": "PS/FAUL · Loures",
+                  "href": "https://www.psfaul.pt/concelhia-loures/"
+                }
+              }
+            ],
+            "politicalRoleEvidence": [
+              {
+                "person": "Sónia Paixão",
+                "party": "PS",
+                "description": "A nota curricular identifica vereação em Loures de Outubro de 2013 a Outubro de 2021 e a vice-presidência municipal desde 15-10-2021. A associação ao PS é corroborada pela Lusa e pela fonte partidária, não inferida da nota curricular.",
+                "period": "2013–2024, conforme nota publicada em 2024",
+                "source": {
+                  "label": "Município de Loures · nota curricular de Sónia Paixão",
+                  "href": "https://cm-loures.pt/media/pdf/PDF20241202161854870.pdf"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "editorialQuestions": [
+        "Validar o encadeamento nominal: mesmo número de processo, cargo e período de funções, confrontados com a nota curricular municipal. Não é uma identificação fundada apenas no cargo.",
+        "Manter o foco da ficha em Sónia Paixão. A dispensa de multa de outros demandados não é uma absolvição e não lhes transmite filiação partidária."
+      ]
+    }
+  ],
+  "newPeople": [
+    {
+      "before": null,
+      "after": {
+        "id": "sonia-paixao",
+        "name": "Sónia Paixão",
+        "fullNames": [
+          "Sónia Alexandra da Silva Paixão dos Santos Bernardo",
+          "Sónia Alexandra da Silva Paixão dos Santos Bernardo Lopes"
+        ],
+        "recordIds": [
+          "ipdj-sonia-paixao-contas-2018-absolvicao"
+        ],
+        "source": {
+          "label": "Tribunal de Contas · sentença 7/2026, de 7 de Abril",
+          "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/3s/Documents/2026/st007-2026-3s.pdf"
+        },
+        "portrait": null
+      }
+    }
+  ],
+  "updates": [],
+  "supplementsToPendingLeads": [
+    {
+      "id": "vrsa-sgu-reabertura-contas-2016-2018",
+      "previousDossier": "2026-11-22.md",
+      "before": {
+        "identification": "Dois demandados anonimizados; identidade e ligação política por comprovar."
+      },
+      "after": {
+        "caseNumber": "23-A/2025-JRF; sentença 12/2026",
+        "decisionDate": "2026-07-02",
+        "finality": "A capa assinala trânsito em julgado; data exacta não apurada.",
+        "identification": "Tabela nominal do mesmo processo, relatório de auditoria 15/2023, cargos/datas da sentença e notícias permitem identificar os dois demandados.",
+        "people": [
+          {
+            "name": "Renato Sérgio Paulo Figueira",
+            "code": "D1",
+            "role": "Vogal executivo, 24-10-2017 a 10-07-2019",
+            "outcome": "Condenação financeira por negligência",
+            "fineEUR": 2550,
+            "existingPersonId": "renato-sergio-paulo-figueira"
+          },
+          {
+            "name": "Hélia Marina Mestre Valente da Costa Gonçalves",
+            "code": "D2",
+            "role": "Vogal não executiva e não remunerada, 02-01-2019 a 10-07-2019",
+            "outcome": "Condenação financeira por negligência com atenuação especial",
+            "fineEUR": 1275
+          }
+        ],
+        "facts": "Reabertura, em 2019, das contas já aprovadas e encerradas de 2016–2018. Não confundir com os contratos-programa do processo 42/2024-JRF.",
+        "politicalConnection": "Não comprovada para qualquer dos dois nas fontes consultadas. As notas curriculares documentam funções técnicas e de gestão, não filiação partidária.",
+        "sources": [
+          {
+            "label": "TdC · sentença 12/2026",
+            "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/3s/Documents/2026/st012-2026-3s.pdf"
+          },
+          {
+            "label": "TdC · tabela nominal, 25-02-2026",
+            "href": "https://www.tcontas.pt/pt-pt/Transparencia/TabelasJulgamentos/Paginas/tabelas-de-julgamentos.aspx"
+          },
+          {
+            "label": "TdC · relatório 15/2023, página 14",
+            "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Relatorios/RelatoriosAuditoria/Documents/2023/rel015-2023-2s.pdf"
+          },
+          {
+            "label": "DR · aviso 22826/2024/2, 15-10-2024",
+            "href": "https://diariodarepublica.pt/dr/detalhe/aviso-extrato/22826-2024-890875941"
+          },
+          {
+            "label": "DR · aviso 16195/2019, 10-10-2019",
+            "href": "https://files.diariodarepublica.pt/2s/2019/10/195000000/0047800480.pdf"
+          },
+          {
+            "label": "PÁGINA UM · notícia nominal e multas, 22-10-2026",
+            "href": "https://www.paginaum.pt/2026/10/22/responsabilidade-financeira-se-proposta-do-governo-avancar-dois-em-cada-tres-processos-no-tribunal-de-contas-serao-despenalizados"
+          }
+        ]
+      },
+      "holdReason": "Identidade e condenações verificadas. A inclusão como novo caso de políticos aguarda prova de filiação ou cargo político anterior, ou decisão editorial expressa sobre o tratamento de um gestor já mencionado noutro processo. Nenhuma mudança de critério proposta.",
+      "preserve": [
+        "Renato Figueira foi absolvido no distinto processo 42/2024-JRF, já catalogado em vrsa-cabrita-contratos-programa-financeiro. Essa absolvição mantém-se.",
+        "Não atribuir PSD por ter integrado administração designada por executivo daquele partido.",
+        "O quadro do relatório 15/2023 distingue vogal da comissão liquidatária até 06-11-2020 e administrador liquidatário desde 10-05-2021. Não fundir essas funções nem presumir continuidade."
+      ]
+    },
+    {
+      "id": "naturtejo-vic16-2026",
+      "previousDossier": "2026-11-23-complemento.json",
+      "before": {
+        "identification": "Nomes ocultados; sem proposta nominal."
+      },
+      "after": {
+        "process": "4997/2018; VIC 16/2026",
+        "decisionDate": "2026-10-22",
+        "publicationDate": "2026-11-20",
+        "decision": "Recusa de homologação da conta de 2018 e relevação de responsabilidade financeira sancionatória nos pontos 3.1.1, 3.2.2 e 3.2.3.1. Não constitui condenação com multa.",
+        "emolumentsEUR": 1716.4,
+        "namedGovernanceEvidence": {
+          "period": "2021–2025",
+          "president": "Armindo Moreira Palma Jacinto",
+          "members": [
+            "Paulo Jorge Brás Urbano",
+            "João Paulo Amaro Nunes"
+          ],
+          "source": {
+            "label": "Naturtejo · órgãos sociais",
+            "href": "https://www.naturtejo.com/sobre/orgaos-sociais/"
+          },
+          "limit": "Prova cargos no período indicado pela página. Não basta para atribuir a cada pessoa todos os factos de 2013–2025 ou todos os pontos da decisão."
+        },
+        "contracts": [
+          {
+            "baseId": "15318367",
+            "officialURL": "https://www.base.gov.pt/Base4/pt/detalhe/?id=15318367&type=contratos",
+            "supplier": "SFGO, Lda",
+            "amountEUR": 15000,
+            "awardDate": "2026-07-11",
+            "signatureDate": "2026-07-19",
+            "publicationDate": "2026-07-21",
+            "object": "Análise económico-financeira da Naturtejo, incluindo situação de 2018 e confronto das conclusões do TdC com a situação presente.",
+            "access": "Dados lidos em reprodução não oficial; acesso ao detalhe oficial sem conteúdo útil. Confirmar antes de usar como fonte primária.",
+            "source": {
+              "label": "Contribuinte.pt · reprodução do registo BASE",
+              "href": "https://contribuinte.pt/contratos/contrato/15318367/aquisicao-de-servicos-a-presente-contratacao-visa-suprir-a-necessidade-de"
+            }
+          },
+          {
+            "baseId": "15319648",
+            "officialURL": "https://www.base.gov.pt/Base4/pt/detalhe/?id=15319648&type=contratos",
+            "supplier": "Sérvulo & Associados",
+            "amountEUR": 19950,
+            "awardDate": "2026-07-10",
+            "signatureDate": "2026-07-20",
+            "publicationDate": "2026-07-21",
+            "object": "Serviços jurídicos para resposta ao contraditório do Tribunal de Contas.",
+            "access": "Dados lidos em reprodução não oficial; acesso ao detalhe oficial sem conteúdo útil. Confirmar antes de usar como fonte primária.",
+            "source": {
+              "label": "El Vínculo · reprodução do registo BASE",
+              "href": "https://el-vinculo.com/pt/concurso/no-ambito-da-notificacao-enviada-pelo-tribunal-de-contas-para-efeitos-de-exercic-154062"
+            }
+          }
+        ],
+        "sources": [
+          {
+            "label": "TdC · VIC 16/2026, páginas 50–52",
+            "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Relatorios/RelatoriosVerificacaoInternaContas/Documents/2026/vic-dgtc-rel016-2026-2S.pdf"
+          },
+          {
+            "label": "Naturtejo · órgãos sociais",
+            "href": "https://www.naturtejo.com/sobre/orgaos-sociais/"
+          },
+          {
+            "label": "Naturtejo · contas 2020, datadas de 25-06-2021",
+            "href": "https://www.naturtejo.com/uploads/divulgacoes/div_1771608503_699899b7af92a.pdf"
+          },
+          {
+            "label": "Diário Digital Castelo Branco · 06-08-2026",
+            "href": "https://www.diariodigitalcastelobranco.pt/noticia/72404/idanha-a-nova-deputados-municipais-pedem-explicacao-ao-presidente-da-assembleia-municipal-sobre-procedimento-no-tribunal-de-contas-relativo-a-naturtejo"
+          }
+        ],
+        "limit": "A imprensa regional corrobora a contratação das duas sociedades, mas relata uma iniciativa política anterior à decisão. Os contratos são elementos de seguimento e não prova de responsabilidade pessoal."
+      },
+      "holdReason": "Falta fechar a correspondência nominal por acto e período e consultar as actas de designação/autorizações relevantes. A composição de 2021–2025 não substitui a de 2018 ou a da AMNT desde 2013. Não proposta uma ficha de condenação."
+    }
+  ],
+  "otherIndividualOutcomes": [
+    {
+      "process": "16/2025-JRF",
+      "name": "Vítor Manuel Batista Pataco",
+      "code": "BB/D2",
+      "outcome": "Condenação por duas infracções financeiras, com dispensa de multa. Não absolvição.",
+      "politicalConnection": "O currículo oficial refere assessoria à presidência da Câmara de Lisboa, 2009–2012. Não prova, por si, militância ou mandato político eleito. Sem atribuição partidária.",
+      "source": {
+        "label": "DR · despacho 6524/2019, 19-07-2019",
+        "href": "https://diariodarepublica.pt/dr/detalhe/despacho/6524-2019-123326798"
+      }
+    },
+    {
+      "process": "16/2025-JRF",
+      "name": "Carlos Manuel dos Reis Alves Pereira",
+      "code": "EE/D5",
+      "outcome": "Condenação por duas infracções financeiras, com dispensa de multa. Não absolvição.",
+      "politicalConnection": "O currículo documenta assessoria/adjunto em Sintra e Oeiras, sem prova de filiação nas fontes lidas. Não confundir com deputados homónimos.",
+      "source": {
+        "label": "DR/IPDJ · despacho 6563/2019, 22-07-2019",
+        "href": "https://ipdj.gov.pt/documents/20123/47447/Carlos%2BManuel%2BPereira.pdf/d87e6cb5-4292-36c0-2513-07750756159b"
+      }
+    },
+    {
+      "process": "16/2025-JRF",
+      "name": "Sílvia Isabel de Sousa Vermelho",
+      "code": "DD/D4",
+      "outcome": "Absolvição. Entrada como vogal em 01-10-2018 coincide na sentença e na tabela nominal.",
+      "politicalConnection": "Não comprovada. Sem nova ficha pessoal proposta.",
+      "source": {
+        "label": "TdC · tabela nominal do processo 16/2025-JRF",
+        "href": "https://www.tcontas.pt/pt-pt/Transparencia/TabelasJulgamentos/Paginas/tabelas-de-julgamentos.aspx"
+      }
+    }
+  ],
+  "sourceAccess": [
+    {
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/3s/Documents/2026/st007-2026-3s.pdf",
+      "consultedAt": "2026-11-23",
+      "publicationDate": null,
+      "readScope": "Capa, páginas 27, 35–39",
+      "sha256": "251c39e8b64f875e21e7ad682cfed841bd57e4b7a2d6d1caa01c86e47b81c204"
+    },
+    {
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/3s/Documents/2026/st012-2026-3s.pdf",
+      "consultedAt": "2026-11-23",
+      "publicationDate": null,
+      "readScope": "Capa, factos 18–19, fundamentos e dispositivo",
+      "sha256": "0c109005808a2818965128174045cc9bbccfa577c2703cc6a4dd8f40def89ffe"
+    },
+    {
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Relatorios/RelatoriosAuditoria/Documents/2023/rel015-2023-2s.pdf",
+      "consultedAt": "2026-11-23",
+      "publicationDate": null,
+      "readScope": "Página impressa 14, quadro nominal",
+      "sha256": "73667214e32b5e5e674ecf9c20bff4f674b7f54f377abeff42693371bd227872"
+    },
+    {
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Relatorios/RelatoriosVerificacaoInternaContas/Documents/2026/vic-dgtc-rel016-2026-2S.pdf",
+      "consultedAt": "2026-11-23",
+      "publicationDate": "2026-11-20",
+      "readScope": "Páginas 9, 11–19 e 45–52; anexos pesquisados",
+      "sha256": "52c78fd9473a0016ab784e630b580acdf0c15eee888277a1c714fc88e5a9b740"
+    },
+    {
+      "href": "https://cm-loures.pt/media/pdf/PDF20241202161854870.pdf",
+      "consultedAt": "2026-11-23",
+      "publicationDate": "2024-12-02",
+      "readScope": "Página 53 do PDF, conferida visualmente",
+      "sha256": "de533b6a6930c124493477e1acb1ed16c3aad991c6ade1ad870a4cb66107d221"
+    },
+    {
+      "href": "https://www.naturtejo.com/uploads/divulgacoes/div_1771608503_699899b7af92a.pdf",
+      "consultedAt": "2026-11-23",
+      "publicationDate": null,
+      "readScope": "Contas datadas de 25-06-2021; não identifica nominalmente o órgão",
+      "sha256": "ab17399353a164a02e2103e6ae7860803e80f267426b0828a2b6e999f4410ea4"
+    }
+  ],
+  "researchLog": {
+    "scope": "Aprofundamento dirigido de duas pistas já registadas (VRSA-SGU e Naturtejo), alargado ao IPDJ através da tabela nominal do TdC. Factos de 2013–2025 e decisões de 2026. Não constitui varrimento de todos os processos nem dos arquivos de 1974 em diante.",
+    "comparison": "464 casos e 535 pessoas, mais os sete ficheiros pendentes de 21 a 23 de Novembro. Pesquisa de variantes nominais, entidades, números de processo e factos. IPDJ/Sónia Paixão não encontrados. VRSA 42/2024 é distinto de 23-A/2025. Naturtejo é complemento da pista existente.",
+    "queries": [
+      "Tribunal de Contas VRSA Renato Figueira Hélia Gonçalves",
+      "Renato Sérgio Paulo Figueira partido vereador",
+      "Hélia Marina Mestre Valente da Costa Gonçalves partido",
+      "Naturtejo 2018 conselho de administração",
+      "Naturtejo 2017 vogais",
+      "Naturtejo 2018 Paulo Brás Armindo Jacinto",
+      "Naturtejo Tribunal de Contas SFGO Sérvulo",
+      "Vítor Pataco partido vereador deputado",
+      "Carlos Manuel dos Reis Alves Pereira partido vereador",
+      "Sónia Paixão IPDJ Loures PS",
+      "Augusto Dias de Castro Tribunal de Contas"
+    ],
+    "notUsedAsProof": [
+      "Excertos de pesquisa dos documentos BASE 1924454 e 1418617: abertura devolveu erro ou resposta vazia. Não transcritos como prova de identidade.",
+      "Homónimos brasileiros e portugueses sem correspondência de entidade/processo.",
+      "Gazeta do Interior n.º 1518 de 17-01-2018: aberta, mas sem correspondência útil para os responsáveis da Naturtejo.",
+      "EMEC/Barcelos: tabela nominal localizada, mas sem decisão individual confirmada nesta execução. Pista sem proposta."
+    ]
+  },
+  "validation": {
+    "dataVerifier": "passed: 464 cases, 535 people; public dataset unchanged",
+    "proposalSchema": "passed: keys, IDs, relationships, phases, sources and pending-proposal deduplication",
+    "typescript": "passed: npx tsc --noEmit --incremental false",
+    "lint": "blocked: NEXT_PUBLIC_WP_URL missing; ERR_INVALID_URL in next.config.mjs:5",
+    "build": "blocked: NEXT_PUBLIC_WP_URL missing; ERR_INVALID_URL in next.config.mjs:5",
+    "publicDataUnchanged": true,
+    "editorialValidation": "Pendente de Pedro Almeida Vieira; não substituída por verificações técnicas.",
+    "pullRequest": "Não aberto: lint/build impedidos; dossier guardado no ramo de revisão sem alteração dos dados públicos."
+  }
+}
