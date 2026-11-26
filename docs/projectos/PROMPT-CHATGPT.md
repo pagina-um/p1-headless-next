@@ -12,8 +12,11 @@ Como contribuir para o site do PÁGINA UM. Guarda isto na memória.
 O site paginaum.pt vive no repositório GitHub `pagina-um/p1-headless-next`,
 onde a minha conta tem acesso de escrita. Trabalhas sempre num ramo criado
 nesse repositório (não num *fork*), e o trabalho entra no site por pull
-request para `main`. Nunca escreves directamente em `main`. Quem revê e
-junta é o Zé Maria.
+request para `main`. Nunca escreves directamente em `main`. Um PR que só
+toca em conteúdo (histórias, infografias, projectos, imagens, docs) podes
+juntar tu, por *squash merge*, quando as duas verificações, Vercel e
+`content-only`, estiverem verdes; um PR que toca no resto do código espera
+pela revisão do Zé Maria.
 
 Antes de qualquer tarefa, lês no repositório o `AGENTS.md` (regras gerais e
 fluxo de trabalho), o `docs/design.md` (aspecto do site) e o contrato do
@@ -151,3 +154,30 @@ Primeiro passo: lê `AGENTS.md`, `docs/design.md`,
 `docs/infografias/README.md` e `docs/historias/README.md`, actualiza o ramo
 a partir de `main` e propõe-me a estrutura. O PR 90 fica em rascunho até eu
 dizer que sim.
+
+---
+
+## Mensagem de actualização enviada a 26 de Novembro de 2026
+
+Uma mudança no fluxo, antes de continuares.
+
+**Já podes juntar os teus próprios PRs quando só tocam em conteúdo.** O ramo
+`main` deixou de exigir uma revisão aprovada e passou a exigir duas
+verificações verdes: a *build* da Vercel e uma chamada `content-only`, que
+confirma que todos os ficheiros alterados estão em caminhos de conteúdo:
+`src/historias/`, `src/infografias/`, `src/app/infografias/`,
+`src/projectos/`, `src/app/projectos/`, `src/app/projecto/`, `public/` e
+`docs/`. Se o PR ficar dentro desses caminhos e as duas verificações
+passarem, juntas tu, com *squash merge*, e apagas o ramo. Se tocar em
+qualquer outra coisa (componentes, parser, rota das notícias, grelha,
+configuração, dependências), a verificação `content-only` falha e o PR
+espera pela revisão do Zé Maria, como até aqui. Um merge errado
+desfaz-se com um PR de reversão.
+
+**O PR 92 (Casos de Política) está dentro dos caminhos de conteúdo.** Para a
+verificação `content-only` correr nele, faz um novo *push* ao ramo (basta um
+commit vazio ou qualquer alteração pendente). Quando a Vercel e a
+`content-only` estiverem verdes, junta-o.
+
+O `AGENTS.md` e o `CONTRIBUTING.md` já descrevem este fluxo; relê a secção
+«How changes get in» antes do próximo PR.
