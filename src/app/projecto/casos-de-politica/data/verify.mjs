@@ -19,6 +19,7 @@ const {
   filterIndex,
   EMPTY_FILTERS,
   isInquest,
+  formatDate,
   toCSV,
 } = await import(
   `data:text/javascript;base64,${Buffer.from(archiveModule).toString("base64")}`
@@ -33,6 +34,43 @@ const cases = read("casos"),
   manifest = read("manifesto");
 const records = [...cases, ...documents];
 const index = buildIndex(records, parties);
+
+function verifyDisplayDate(value, field) {
+  assert.match(
+    value,
+    /^(?:\d{4}(?:-\d{2}(?:-\d{2})?)?)?$/,
+    `${field}: expected YYYY, YYYY-MM, YYYY-MM-DD or an empty label`
+  );
+  if (value.length >= 7) {
+    const day = value.length === 7 ? `${value}-01` : value;
+    const parsed = new Date(`${day}T12:00:00Z`);
+    assert(
+      Number.isFinite(parsed.getTime()) &&
+        parsed.toISOString().slice(0, 10) === day,
+      `${field}: invalid calendar date ${value}`
+    );
+  }
+  assert.doesNotThrow(() => formatDate(value), `${field}: ${value}`);
+}
+
+function verifyDated({ date, dateLabel, datePrecision }, field) {
+  verifyDisplayDate(dateLabel, `${field}.dateLabel`);
+  const precision = { 0: null, 4: "year", 7: "month", 10: "day" }[
+    dateLabel.length
+  ];
+  assert.equal(datePrecision, precision, `${field}.datePrecision`);
+  assert.equal(date, precision === "day" ? dateLabel : null, `${field}.date`);
+}
+
+verifyDisplayDate(manifest.checkedAt, "manifest.checkedAt");
+verifyDisplayDate(manifest.extractedAt, "manifest.extractedAt");
+for (const party of parties) {
+  if (party.registered !== null)
+    verifyDisplayDate(party.registered, `${party.id}.registered`);
+  if (party.extinguished !== null)
+    verifyDisplayDate(party.extinguished, `${party.id}.extinguished`);
+}
+
 assert.equal(cases.length, 473);
 assert.equal(documents.length, 1);
 assert.equal(people.length, 550);
@@ -48,6 +86,8 @@ for (const dataset of [cases, documents, people, parties]) {
   }
 }
 for (const r of records) {
+  verifyDated(r, r.id);
+  verifyDisplayDate(r.checkedAt, `${r.id}.checkedAt`);
   assert(
     r.amount === null ||
       (typeof r.amount === "number" && Number.isFinite(r.amount)),
@@ -63,12 +103,12 @@ for (const r of records) {
     assert(typeof status.code === "string" && status.code.trim(), r.id);
     assert(typeof status.label === "string" && status.label.trim(), r.id);
     assert(/^\d{4}-\d{2}-\d{2}$/.test(status.asOf), r.id);
+    verifyDisplayDate(status.asOf, `${r.id} / ${p.id}.proceduralStatus.asOf`);
     assert(
       status.source?.label && /^https?:\/\//.test(status.source?.href),
       `${r.id}: missing procedural source`
     );
   }
-  assert(!r.date || /^\d{4}-\d{2}-\d{2}$/.test(r.date), r.id);
   assert(r.sources.length > 0, r.id);
   for (const s of r.sources)
     assert(s.label && /^https?:\/\//.test(s.href), r.id);
@@ -89,9 +129,15 @@ for (const r of records) {
       r.id
     );
   for (const id of r.related) assert(ids.has(id) && id !== r.id, r.id);
-  for (const e of r.timeline)
-    assert(!e.date || /^\d{4}-\d{2}-\d{2}$/.test(e.date), r.id);
-  if (r.dateLabel && r.dateLabel.length < 10) assert.equal(r.date, null, r.id);
+  for (const [i, event] of r.timeline.entries())
+    verifyDated(event, `${r.id}.timeline[${i}]`);
+  if (Array.isArray(r.mandate?.proceedings)) {
+    for (const [i, proceeding] of r.mandate.proceedings.entries())
+      verifyDisplayDate(
+        proceeding.decisionDate ?? "",
+        `${r.id}.mandate.proceedings[${i}].decisionDate`
+      );
+  }
   if (r.phase === "Perdas de mandato")
     assert(["decreed", "effective"].includes(r.mandate?.outcome), r.id);
   if (
