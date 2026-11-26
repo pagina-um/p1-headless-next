@@ -1,0 +1,96 @@
+{
+  "preparedAt": "2026-11-26",
+  "baselineCommit": "9c137ee4f800468227492c47507e1f7e2ae26cad",
+  "editorialStatus": "Preparado para validação editorial num novo ramo. Não publicado.",
+  "countsBefore": {
+    "cases": 468,
+    "people": 545
+  },
+  "countsAfter": {
+    "cases": 473,
+    "people": 550
+  },
+  "changes": [
+    {
+      "id": "vizela-victor-hugo-salgado-acusacao-violencia-domestica",
+      "before": null,
+      "after": {
+        "title": "Vizela: Vítor Hugo Salgado acusado de violência doméstica",
+        "date": "2026-11-04",
+        "nature": "Criminal",
+        "phase": "Acusações e julgamentos",
+        "status": "Acusação do Ministério Público",
+        "personIds": ["vitor-hugo-salgado"]
+      },
+      "editorialCaution": "Acusação não equivale a condenação; o mérito não foi julgado."
+    },
+    {
+      "id": "vendas-novas-barradas-pagamentos-aposentados",
+      "before": null,
+      "after": {
+        "title": "Vendas Novas: Barradas condenado a repor cinco mil euros por pagamentos a aposentados",
+        "date": "2010-11-17",
+        "nature": "Financeira",
+        "phase": "Condenações financeiras",
+        "status": "Reposição confirmada em recurso · transitada",
+        "personIds": ["jose-filipe-godinho-barradas"]
+      },
+      "editorialCaution": "A associação ao PCP descreve o contexto PCP/CDU e não prova militância."
+    },
+    {
+      "id": "gouveia-e-melo-pagina-um-absolvicao-relacao-2026",
+      "before": null,
+      "after": {
+        "title": "Gouveia e Melo: Relação confirma absolvição de Pedro Almeida Vieira",
+        "date": "2026-11-19",
+        "nature": "Criminal",
+        "phase": "Absolvições",
+        "status": "Absolvição confirmada pela Relação",
+        "personIds": ["henrique-gouveia-e-melo"]
+      },
+      "editorialCaution": "Gouveia e Melo foi assistente e recorrente, não arguido; trânsito autónomo não certificado."
+    },
+    {
+      "id": "vila-do-conde-almeida-maia-pagamentos-aposentados-2008",
+      "before": null,
+      "after": {
+        "title": "Vila do Conde: Almeida e Maia condenados a repor 20 mil euros por pagamentos a aposentados",
+        "date": "2008-07-09",
+        "nature": "Financeira",
+        "phase": "Condenações financeiras",
+        "status": "Reposição confirmada em recurso · transitada",
+        "personIds": [
+          "mario-hermenegildo-moreira-de-almeida",
+          "abel-manuel-barbosa-maia"
+        ]
+      },
+      "editorialCaution": "A ficha cobre apenas a reposição conjunta destes dois responsáveis."
+    },
+    {
+      "id": "vila-do-conde-almeida-maia-pagamentos-aposentados-2016",
+      "before": null,
+      "after": {
+        "title": "Vila do Conde: Almeida e Maia condenados a repor 55 mil euros por novos pagamentos a aposentados",
+        "date": "2016-06-01",
+        "nature": "Financeira",
+        "phase": "Condenações financeiras",
+        "status": "Reposição confirmada em recurso · transitada",
+        "personIds": [
+          "mario-hermenegildo-moreira-de-almeida",
+          "abel-manuel-barbosa-maia"
+        ]
+      },
+      "editorialCaution": "Processo autónomo, relativo a pagamentos de 2003 a 2005."
+    }
+  ],
+  "excludedLeads": [
+    {
+      "subject": "Oeiras / Purechoice",
+      "reason": "Estado do alegado novo inquérito contraditório e sem esclarecimento da PGR."
+    },
+    {
+      "subject": "Viseu / Sentença n.º 36/2024",
+      "reason": "Ligação partidária individual e desfecho recursório ainda não confirmados para todos os responsáveis."
+    }
+  ]
+}

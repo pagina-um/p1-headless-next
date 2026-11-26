@@ -6532,5 +6532,66 @@
       "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/srmtc/Documents/2014/st047-2014-srmtc.pdf"
     },
     "portrait": null
+  },
+  {
+    "id": "vitor-hugo-salgado",
+    "name": "Vítor Hugo Salgado",
+    "fullNames": [],
+    "recordIds": ["vizela-victor-hugo-salgado-acusacao-violencia-domestica"],
+    "source": {
+      "label": "Diário de Notícias · 09-11-2026",
+      "href": "https://www.dn.pt/pol%C3%ADtica/caso-de-violncia-domstica-de-victor-hugo-salgado-no-vai-ainda-comisso-nacional-de-jurisdio-do-ps"
+    },
+    "portrait": null
+  },
+  {
+    "id": "jose-filipe-godinho-barradas",
+    "name": "José Filipe Godinho Barradas",
+    "fullNames": [],
+    "recordIds": ["vendas-novas-barradas-pagamentos-aposentados"],
+    "source": {
+      "label": "Tribunal de Contas · Acórdão n.º 11/2010, de 17-11-2010",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/acordaos/3s/Documents/2010/ac011-2010-3s.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "mario-hermenegildo-moreira-de-almeida",
+    "name": "Mário Almeida",
+    "fullNames": ["Mário Hermenegildo Moreira de Almeida"],
+    "recordIds": [
+      "vila-do-conde-almeida-maia-pagamentos-aposentados-2008",
+      "vila-do-conde-almeida-maia-pagamentos-aposentados-2016"
+    ],
+    "source": {
+      "label": "Tribunal de Contas · Acórdão n.º 12/2016, de 01-06-2016",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/acordaos/3s/Documents/2016/ac012-2016-3s.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "abel-manuel-barbosa-maia",
+    "name": "Abel Maia",
+    "fullNames": ["Abel Manuel Barbosa Maia"],
+    "recordIds": [
+      "vila-do-conde-almeida-maia-pagamentos-aposentados-2008",
+      "vila-do-conde-almeida-maia-pagamentos-aposentados-2016"
+    ],
+    "source": {
+      "label": "Tribunal de Contas · Acórdão n.º 12/2016, de 01-06-2016",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/acordaos/3s/Documents/2016/ac012-2016-3s.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "henrique-gouveia-e-melo",
+    "name": "Henrique Gouveia e Melo",
+    "fullNames": ["Henrique Eduardo Passaláqua de Gouveia e Melo"],
+    "recordIds": ["gouveia-e-melo-pagina-um-absolvicao-relacao-2026"],
+    "source": {
+      "label": "PÁGINA UM · 23-11-2026",
+      "href": "https://paginaum.pt/2026/11/23/gouveia-e-melo-tribunal-da-relacao-afunda-derradeira-tentativa-de-condenar-o-pagina-um"
+    },
+    "portrait": null
   }
 ]
