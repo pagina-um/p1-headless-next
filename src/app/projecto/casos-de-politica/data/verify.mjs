@@ -33,9 +33,9 @@ const cases = read("casos"),
   manifest = read("manifesto");
 const records = [...cases, ...documents];
 const index = buildIndex(records, parties);
-assert.equal(cases.length, 468);
+assert.equal(cases.length, 473);
 assert.equal(documents.length, 1);
-assert.equal(people.length, 545);
+assert.equal(people.length, 550);
 assert.equal(parties.filter((p) => !p.historical).length, 24);
 assert.equal(parties.filter((p) => p.historical).length, 4);
 const ids = new Set(records.map((r) => r.id));
@@ -48,6 +48,26 @@ for (const dataset of [cases, documents, people, parties]) {
   }
 }
 for (const r of records) {
+  assert(
+    r.amount === null ||
+      (typeof r.amount === "number" && Number.isFinite(r.amount)),
+    `${r.id}: amount must be numeric or null`
+  );
+  for (const p of r.people) {
+    const status = p.proceduralStatus;
+    if (status === null) continue;
+    assert(
+      status && typeof status === "object",
+      `${r.id}: invalid procedural status for ${p.id}`
+    );
+    assert(typeof status.code === "string" && status.code.trim(), r.id);
+    assert(typeof status.label === "string" && status.label.trim(), r.id);
+    assert(/^\d{4}-\d{2}-\d{2}$/.test(status.asOf), r.id);
+    assert(
+      status.source?.label && /^https?:\/\//.test(status.source?.href),
+      `${r.id}: missing procedural source`
+    );
+  }
   assert(!r.date || /^\d{4}-\d{2}-\d{2}$/.test(r.date), r.id);
   assert(r.sources.length > 0, r.id);
   for (const s of r.sources)

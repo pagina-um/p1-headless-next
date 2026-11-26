@@ -10,10 +10,10 @@
   "caseAliases": {
     "alipio-dias-bcp-cmvm": "bcp-cmvm-teixeira-pinto-alipio-dias"
   },
-  "coverage": "Selecção parcial. Revisão até 26-11-2026: quatro fichas novas e duas revistas desde a importação. Os restantes processos conservam as respectivas datas de consulta; não foram todos reverificados.",
-  "cases": 468,
+  "coverage": "Selecção parcial. Revisão até 26-11-2026: nove fichas novas e duas revistas desde a importação. Os restantes processos conservam as respectivas datas de consulta; não foram todos reverificados.",
+  "cases": 473,
   "documents": 1,
-  "people": 545,
+  "people": 550,
   "currentParties": 24,
   "historicalParties": 4,
   "photographs": 27

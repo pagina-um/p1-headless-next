@@ -42629,5 +42629,458 @@
     ],
     "mandate": null,
     "entityCases": []
+  },
+  {
+    "id": "vizela-victor-hugo-salgado-acusacao-violencia-domestica",
+    "parties": ["PS"],
+    "category": "Casos",
+    "nature": "Criminal",
+    "phase": "Acusações e julgamentos",
+    "status": "Acusação do Ministério Público",
+    "date": "2026-11-04",
+    "dateLabel": "2026-11-04",
+    "datePrecision": "day",
+    "dateKind": "Acusação",
+    "year": 2026,
+    "title": "Vizela: Vítor Hugo Salgado acusado de violência doméstica",
+    "summary": "O Ministério Público acusou o presidente da Câmara de Vizela de um crime de violência doméstica contra a mulher. O inquérito tinha sido arquivado em Maio de 2025 e foi reaberto para diligências complementares.",
+    "detail": "A acusação imputa a Vítor Hugo Salgado agressões alegadamente cometidas em 27 de Fevereiro de 2025. A mulher apresentou queixa depois de receber assistência hospitalar, mas desistiu e recusou prestar declarações, seguindo-se o arquivamento do inquérito em 13 de Maio de 2025. O Ministério Público reabriu o processo e deduziu acusação em 4 de Novembro de 2026. Não foi localizada decisão judicial sobre o mérito. As referências aos factos imputados são alegações da acusação e não uma declaração de culpa.",
+    "affiliation": "O Diário de Notícias identificou Salgado como militante do PS à data da acusação. O partido retirara-lhe a confiança política e o autarca foi reeleito em 2025 por uma candidatura independente.",
+    "finality": "Acusação deduzida. Não foi localizada pronúncia, julgamento ou decisão final até 26-11-2026.",
+    "penalty": "Sem pena: não existe condenação documentada.",
+    "amount": null,
+    "caseNumber": "Não publicado nas fontes consultadas",
+    "court": "Ministério Público · DIAP de Braga",
+    "location": "Vizela",
+    "topic": "Violência doméstica",
+    "procedureType": "Processo criminal",
+    "reference": "Diário de Notícias · 09-11-2026",
+    "sourceName": "Diário de Notícias",
+    "source": {
+      "label": "Diário de Notícias · 09-11-2026",
+      "href": "https://www.dn.pt/pol%C3%ADtica/caso-de-violncia-domstica-de-victor-hugo-salgado-no-vai-ainda-comisso-nacional-de-jurisdio-do-ps"
+    },
+    "checkedAt": "2026-11-26",
+    "researchBatch": "recent-and-financial-2026-11-26",
+    "related": [],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "vitor-hugo-salgado",
+        "name": "Vítor Hugo Salgado",
+        "fullName": "",
+        "role": "Presidente da Câmara de Vizela, militante do PS e reeleito em 2025 por uma candidatura independente. Acusado pelo Ministério Público; sem condenação documentada.",
+        "proceduralStatus": {
+          "code": "acusado",
+          "label": "Acusado",
+          "asOf": "2026-11-04",
+          "source": {
+            "label": "Diário de Notícias · 06-11-2026",
+            "href": "https://www.dn.pt/sociedade/ministrio-pblico-acusa-autarca-de-vizela-de-violncia-domstica"
+          }
+        }
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2025-02-27",
+        "dateLabel": "2025-02-27",
+        "datePrecision": "day",
+        "text": "Data dos factos alegados na acusação."
+      },
+      {
+        "date": "2025-05-13",
+        "dateLabel": "2025-05-13",
+        "datePrecision": "day",
+        "text": "Arquivamento inicial do inquérito."
+      },
+      {
+        "date": "2025-07-01",
+        "dateLabel": "2025-07-01",
+        "datePrecision": "day",
+        "text": "A Procuradoria-Geral da República confirma a reabertura para diligências complementares."
+      },
+      {
+        "date": "2026-11-04",
+        "dateLabel": "2026-11-04",
+        "datePrecision": "day",
+        "text": "Dedução da acusação por um crime de violência doméstica."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Diário de Notícias · 09-11-2026",
+        "href": "https://www.dn.pt/pol%C3%ADtica/caso-de-violncia-domstica-de-victor-hugo-salgado-no-vai-ainda-comisso-nacional-de-jurisdio-do-ps",
+        "kind": "Imprensa nacional"
+      },
+      {
+        "label": "Diário de Notícias · 06-11-2026",
+        "href": "https://www.dn.pt/sociedade/ministrio-pblico-acusa-autarca-de-vizela-de-violncia-domstica",
+        "kind": "Imprensa nacional"
+      },
+      {
+        "label": "Renascença · 01-07-2025",
+        "href": "https://rr.pt/noticia/pais/2025/07/01/procuradoria-geral-da-republica-reabre-inquerito-a-vitor-hugo-salgado/431072/",
+        "kind": "Imprensa nacional"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "vendas-novas-barradas-pagamentos-aposentados",
+    "parties": ["PCP"],
+    "category": "Casos",
+    "nature": "Financeira",
+    "phase": "Condenações financeiras",
+    "status": "Reposição confirmada em recurso · transitada",
+    "date": "2010-11-17",
+    "dateLabel": "2010-11-17",
+    "datePrecision": "day",
+    "dateKind": "Acórdão em recurso",
+    "year": 2010,
+    "title": "Vendas Novas: Barradas condenado a repor cinco mil euros por pagamentos a aposentados",
+    "summary": "O Tribunal de Contas manteve a condenação de José Filipe Godinho Barradas a repor cinco mil euros, mais juros, por dois pagamentos indevidos relacionados com a contratação de trabalhadores aposentados.",
+    "detail": "Enquanto presidente da Câmara de Vendas Novas, Barradas adjudicou prestações de serviços a dois antigos trabalhadores municipais que passaram à aposentação. O tribunal considerou que os pagamentos ultrapassaram o limite remuneratório então aplicável e que o autarca não procurou conhecer integralmente o regime legal. A responsabilidade reintegratória foi reduzida para menos de um terço do montante devido.",
+    "affiliation": "O PCP inclui Vendas Novas e José Filipe Barradas entre as presidências CDU do mandato de 2001–2005. A associação ao PCP corresponde ao contexto eleitoral PCP/CDU e não afirma, por si só, militância individual.",
+    "finality": "O Acórdão n.º 11/2010 negou provimento ao recurso, manteve integralmente a condenação e contém a indicação oficial de trânsito em julgado.",
+    "penalty": "Reposição de 5.000 euros, acrescida de juros de mora desde 31-12-2005, dentro do limite temporal fixado no acórdão.",
+    "amount": null,
+    "caseNumber": "Acórdão n.º 11/2010 · Recurso ordinário n.º 4 RO-JC/2010",
+    "court": "Tribunal de Contas · Plenário da 3.ª Secção",
+    "location": "Vendas Novas",
+    "topic": "Pagamentos a trabalhadores aposentados",
+    "procedureType": "Responsabilidade financeira reintegratória",
+    "reference": "Tribunal de Contas · Acórdão n.º 11/2010, de 17-11-2010",
+    "sourceName": "Tribunal de Contas",
+    "source": {
+      "label": "Tribunal de Contas · Acórdão n.º 11/2010, de 17-11-2010",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/acordaos/3s/Documents/2010/ac011-2010-3s.pdf"
+    },
+    "checkedAt": "2026-11-26",
+    "researchBatch": "recent-and-financial-2026-11-26",
+    "related": [],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "jose-filipe-godinho-barradas",
+        "name": "José Filipe Godinho Barradas",
+        "fullName": "",
+        "role": "Presidente da Câmara de Vendas Novas durante os factos, eleito no contexto PCP/CDU. Condenado em responsabilidade financeira reintegratória.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2003-11-03",
+        "dateLabel": "2003-11-03",
+        "datePrecision": "day",
+        "text": "Primeira adjudicação de prestação de serviços posteriormente apreciada pelo tribunal."
+      },
+      {
+        "date": "2010-03-31",
+        "dateLabel": "2010-03-31",
+        "datePrecision": "day",
+        "text": "Sentença de primeira instância condena Barradas a repor cinco mil euros, mais juros."
+      },
+      {
+        "date": "2010-11-17",
+        "dateLabel": "2010-11-17",
+        "datePrecision": "day",
+        "text": "Plenário nega provimento ao recurso e mantém integralmente a condenação."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Tribunal de Contas · Acórdão n.º 11/2010, de 17-11-2010",
+        "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/acordaos/3s/Documents/2010/ac011-2010-3s.pdf",
+        "kind": "Documento primário"
+      },
+      {
+        "label": "PCP · presidências CDU no mandato de 2001–2005",
+        "href": "https://www.pcp.pt/autarq/cm01.html",
+        "kind": "Fonte partidária"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "vila-do-conde-almeida-maia-pagamentos-aposentados-2008",
+    "parties": ["PS"],
+    "category": "Casos",
+    "nature": "Financeira",
+    "phase": "Condenações financeiras",
+    "status": "Reposição confirmada em recurso · transitada",
+    "date": "2008-07-09",
+    "dateLabel": "2008-07-09",
+    "datePrecision": "day",
+    "dateKind": "Acórdão em recurso",
+    "year": 2008,
+    "title": "Vila do Conde: Almeida e Maia condenados a repor 20 mil euros por pagamentos a aposentados",
+    "summary": "O Tribunal de Contas manteve a condenação solidária de Mário Almeida e Abel Maia a repor 20 mil euros por pagamentos acima do limite legal a dois assessores aposentados.",
+    "detail": "O processo incidiu sobre a gerência municipal de 2002. O presidente e o vice-presidente autorizaram pagamentos a dois prestadores aposentados acima do limite de um terço da remuneração, sem a autorização então exigida. O tribunal considerou decisivas as condutas de ambos e manteve a reposição solidária, reduzida em primeira instância face aos 39.157 euros pedidos pelo Ministério Público. Esta ficha não abrange outras infracções e outros demandados apreciados no mesmo acórdão.",
+    "affiliation": "A notícia contemporânea da Lusa/RTP identifica Mário Almeida e Abel Maia como autarcas socialistas. Mário Almeida foi novamente proposto pelo PS para a Câmara de Vila do Conde em 2008.",
+    "finality": "O Acórdão n.º 5/2008 negou provimento ao recurso. O exemplar oficial indica trânsito em julgado e decisão mantida em recurso pelo Tribunal Constitucional.",
+    "penalty": "Reposição solidária de 20.000 euros, com juros de mora desde Dezembro de 2002.",
+    "amount": null,
+    "caseNumber": "Acórdão n.º 5/2008 · Processo n.º 1 RO-JRF/2008",
+    "court": "Tribunal de Contas · Plenário da 3.ª Secção",
+    "location": "Vila do Conde",
+    "topic": "Pagamentos a assessores aposentados",
+    "procedureType": "Responsabilidade financeira reintegratória",
+    "reference": "Tribunal de Contas · Acórdão n.º 5/2008, de 09-07-2008",
+    "sourceName": "Tribunal de Contas",
+    "source": {
+      "label": "Tribunal de Contas · Acórdão n.º 5/2008, de 09-07-2008",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/acordaos/3s/Documents/2008/ac005-2008-3s.pdf"
+    },
+    "checkedAt": "2026-11-26",
+    "researchBatch": "recent-and-financial-2026-11-26",
+    "related": ["vila-do-conde-almeida-maia-pagamentos-aposentados-2016"],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "mario-hermenegildo-moreira-de-almeida",
+        "name": "Mário Almeida",
+        "fullName": "Mário Hermenegildo Moreira de Almeida",
+        "role": "Presidente da Câmara de Vila do Conde e autarca do PS. Condenado solidariamente a repor 20 mil euros neste processo.",
+        "proceduralStatus": null
+      },
+      {
+        "id": "abel-manuel-barbosa-maia",
+        "name": "Abel Maia",
+        "fullName": "Abel Manuel Barbosa Maia",
+        "role": "Vice-presidente da Câmara de Vila do Conde e autarca do PS. Condenado solidariamente a repor 20 mil euros neste processo.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": null,
+        "dateLabel": "2002",
+        "datePrecision": "year",
+        "text": "Gerência municipal a que respeitam os pagamentos apreciados."
+      },
+      {
+        "date": "2007-11-29",
+        "dateLabel": "2007-11-29",
+        "datePrecision": "day",
+        "text": "A Lusa noticia a condenação em primeira instância e o recurso anunciado pelos autarcas."
+      },
+      {
+        "date": "2008-07-09",
+        "dateLabel": "2008-07-09",
+        "datePrecision": "day",
+        "text": "Plenário nega provimento ao recurso e mantém a decisão recorrida."
+      },
+      {
+        "date": "2009-05-27",
+        "dateLabel": "2009-05-27",
+        "datePrecision": "day",
+        "text": "Decisão mantida no recurso identificado pelo Tribunal de Contas para o Tribunal Constitucional."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Tribunal de Contas · Acórdão n.º 5/2008, de 09-07-2008",
+        "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/acordaos/3s/Documents/2008/ac005-2008-3s.pdf",
+        "kind": "Documento primário"
+      },
+      {
+        "label": "RTP/Lusa · 29-11-2007",
+        "href": "https://www.rtp.pt/noticias/pais/tribunal-de-contas-condenou-presidente-e-vice-presidente-da-camara-a-reporem-20-mil-euros-nos-cofres-municipais_n53350",
+        "kind": "Imprensa nacional"
+      },
+      {
+        "label": "RTP/Lusa · 30-12-2008",
+        "href": "https://www.rtp.pt/noticias/pais/psvila-do-conde-recandidata-mario-almeida_n68341",
+        "kind": "Imprensa nacional"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "vila-do-conde-almeida-maia-pagamentos-aposentados-2016",
+    "parties": ["PS"],
+    "category": "Casos",
+    "nature": "Financeira",
+    "phase": "Condenações financeiras",
+    "status": "Reposição confirmada em recurso · transitada",
+    "date": "2016-06-01",
+    "dateLabel": "2016-06-01",
+    "datePrecision": "day",
+    "dateKind": "Acórdão em recurso",
+    "year": 2016,
+    "title": "Vila do Conde: Almeida e Maia condenados a repor 55 mil euros por novos pagamentos a aposentados",
+    "summary": "O Tribunal de Contas confirmou a condenação solidária de Mário Almeida e Abel Maia a repor 55.205,21 euros, mais juros, por pagamentos indevidos efectuados entre 2003 e 2005 a dois prestadores aposentados.",
+    "detail": "O processo apreciou contratos e pagamentos de 2003 a 2005, posteriores aos factos da ficha de 2008. O tribunal concluiu que os prestadores aposentados receberam a totalidade das remunerações ajustadas quando o regime aplicável limitava o pagamento a um terço. A decisão reconheceu que os serviços foram prestados e reduziu em 50% a reposição, mas considerou que o excesso remuneratório causou dano ao erário municipal.",
+    "affiliation": "Mário Almeida e Abel Maia são identificados como autarcas socialistas em notícia contemporânea da Lusa/RTP. O PS voltou a propor Mário Almeida para a presidência da Câmara em 2008.",
+    "finality": "O Acórdão n.º 12/2016 confirmou a reposição e contém certificação de trânsito em julgado em 16-06-2016.",
+    "penalty": "Reposição solidária de 55.205,21 euros, acrescida de juros de mora à taxa legal desde o último dia da gerência de 2005.",
+    "amount": null,
+    "caseNumber": "Acórdão n.º 12/2016 · Recurso ordinário n.º 6 RO-JC/2015 · Processo n.º 1-JC/2014",
+    "court": "Tribunal de Contas · Plenário da 3.ª Secção",
+    "location": "Vila do Conde",
+    "topic": "Pagamentos a prestadores aposentados",
+    "procedureType": "Responsabilidade financeira reintegratória",
+    "reference": "Tribunal de Contas · Acórdão n.º 12/2016, de 01-06-2016",
+    "sourceName": "Tribunal de Contas",
+    "source": {
+      "label": "Tribunal de Contas · Acórdão n.º 12/2016, de 01-06-2016",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/acordaos/3s/Documents/2016/ac012-2016-3s.pdf"
+    },
+    "checkedAt": "2026-11-26",
+    "researchBatch": "recent-and-financial-2026-11-26",
+    "related": ["vila-do-conde-almeida-maia-pagamentos-aposentados-2008"],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "mario-hermenegildo-moreira-de-almeida",
+        "name": "Mário Almeida",
+        "fullName": "Mário Hermenegildo Moreira de Almeida",
+        "role": "Presidente da Câmara de Vila do Conde durante os factos e autarca do PS. Condenado solidariamente à reposição neste processo.",
+        "proceduralStatus": null
+      },
+      {
+        "id": "abel-manuel-barbosa-maia",
+        "name": "Abel Maia",
+        "fullName": "Abel Manuel Barbosa Maia",
+        "role": "Vice-presidente da Câmara de Vila do Conde durante os factos e autarca do PS. Condenado solidariamente à reposição neste processo.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": null,
+        "dateLabel": "2003–2005",
+        "datePrecision": "year",
+        "text": "Período dos pagamentos apreciados no processo."
+      },
+      {
+        "date": "2015-07-15",
+        "dateLabel": "2015-07-15",
+        "datePrecision": "day",
+        "text": "Sentença de primeira instância condena os dois responsáveis a repor 55.205,21 euros, mais juros."
+      },
+      {
+        "date": "2016-06-01",
+        "dateLabel": "2016-06-01",
+        "datePrecision": "day",
+        "text": "Plenário altera matéria de facto, mas confirma a reposição decretada em primeira instância."
+      },
+      {
+        "date": "2016-06-16",
+        "dateLabel": "2016-06-16",
+        "datePrecision": "day",
+        "text": "Trânsito em julgado certificado no exemplar oficial do acórdão."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Tribunal de Contas · Sentença n.º 8/2015, de 15-07-2015",
+        "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/3s/Documents/2015/st008-2015-3s.pdf",
+        "kind": "Documento primário"
+      },
+      {
+        "label": "Tribunal de Contas · Acórdão n.º 12/2016, de 01-06-2016",
+        "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/acordaos/3s/Documents/2016/ac012-2016-3s.pdf",
+        "kind": "Documento primário"
+      },
+      {
+        "label": "RTP/Lusa · 29-11-2007",
+        "href": "https://www.rtp.pt/noticias/pais/tribunal-de-contas-condenou-presidente-e-vice-presidente-da-camara-a-reporem-20-mil-euros-nos-cofres-municipais_n53350",
+        "kind": "Imprensa nacional"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "gouveia-e-melo-pagina-um-absolvicao-relacao-2026",
+    "parties": [],
+    "category": "Casos",
+    "nature": "Criminal",
+    "phase": "Absolvições",
+    "status": "Absolvição confirmada pela Relação",
+    "date": "2026-11-19",
+    "dateLabel": "2026-11-19",
+    "datePrecision": "day",
+    "dateKind": "Acórdão em recurso",
+    "year": 2026,
+    "title": "Gouveia e Melo: Relação confirma absolvição de Pedro Almeida Vieira",
+    "summary": "O Tribunal da Relação de Lisboa rejeitou o recurso de Henrique Gouveia e Melo e confirmou a absolvição de Pedro Almeida Vieira no processo por difamação relativo à investigação sobre a vacinação de médicos em 2021.",
+    "detail": "A primeira instância absolveu o director do PÁGINA UM em 10 de Março de 2026. Gouveia e Melo, assistente no processo, recorreu. A Relação considerou fundamentada a decisão, reconheceu interesse público à matéria e concluiu que a investigação assentava numa base factual séria. A expressão contestada foi tratada como juízo de valor duro e polémico, mas apoiado nos factos relatados. Gouveia e Melo não foi arguido neste processo: interveio como assistente e recorrente.",
+    "affiliation": "Henrique Gouveia e Melo foi candidato independente à Presidência da República em 2026. Não é atribuída filiação partidária.",
+    "finality": "Absolvição confirmada pela Relação em 19-11-2026. A fonte consultada apresenta a decisão como encerramento do recurso, mas não foi obtida certidão autónoma de trânsito em julgado.",
+    "penalty": "Sem condenação de Pedro Almeida Vieira. Custas do recurso, no valor de 530 euros, imputadas ao recorrente segundo a notícia.",
+    "amount": null,
+    "caseNumber": "Processo n.º 1076/22.5T9LSB, apensado ao processo n.º 144/23.0T9LSB",
+    "court": "Tribunal da Relação de Lisboa",
+    "location": "Lisboa",
+    "topic": "Difamação, liberdade de imprensa e vacinação de médicos",
+    "procedureType": "Processo criminal",
+    "reference": "PÁGINA UM · 23-11-2026",
+    "sourceName": "PÁGINA UM",
+    "source": {
+      "label": "PÁGINA UM · 23-11-2026",
+      "href": "https://paginaum.pt/2026/11/23/gouveia-e-melo-tribunal-da-relacao-afunda-derradeira-tentativa-de-condenar-o-pagina-um"
+    },
+    "checkedAt": "2026-11-26",
+    "researchBatch": "recent-and-financial-2026-11-26",
+    "related": [],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "henrique-gouveia-e-melo",
+        "name": "Henrique Gouveia e Melo",
+        "fullName": "Henrique Eduardo Passaláqua de Gouveia e Melo",
+        "role": "Ex-candidato independente à Presidência da República. Assistente e recorrente; não foi arguido neste processo.",
+        "proceduralStatus": {
+          "code": "assistente-recorrente",
+          "label": "Assistente e recorrente",
+          "asOf": "2026-11-19",
+          "source": {
+            "label": "PÁGINA UM · 23-11-2026",
+            "href": "https://paginaum.pt/2026/11/23/gouveia-e-melo-tribunal-da-relacao-afunda-derradeira-tentativa-de-condenar-o-pagina-um"
+          }
+        }
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-03-10",
+        "dateLabel": "2026-03-10",
+        "datePrecision": "day",
+        "text": "Juízo Local Criminal de Lisboa absolve Pedro Almeida Vieira."
+      },
+      {
+        "date": "2026-11-19",
+        "dateLabel": "2026-11-19",
+        "datePrecision": "day",
+        "text": "Tribunal da Relação de Lisboa rejeita o recurso de Gouveia e Melo e confirma a absolvição."
+      },
+      {
+        "date": "2026-11-23",
+        "dateLabel": "2026-11-23",
+        "datePrecision": "day",
+        "text": "Publicação da notícia e disponibilização do resultado do acórdão."
+      }
+    ],
+    "sources": [
+      {
+        "label": "PÁGINA UM · 23-11-2026",
+        "href": "https://paginaum.pt/2026/11/23/gouveia-e-melo-tribunal-da-relacao-afunda-derradeira-tentativa-de-condenar-o-pagina-um",
+        "kind": "Imprensa nacional · consulta do acórdão"
+      },
+      {
+        "label": "PÁGINA UM · 10-05-2026 · sentença de primeira instância",
+        "href": "https://www.paginaum.pt/2026/05/10/pagina-um-revela-sentenca-que-derrotou-gouveia-e-melo-miguel-guimaraes-ordem-dos-medicos-filipe-froes-e-luis-varandas",
+        "kind": "Imprensa nacional · documento judicial"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
   }
 ]

@@ -3,9 +3,9 @@
 Imported on 2026-11-20 from the published prototype, version 21, source commit
 `51afb264c9b2ceabd00f53116a9faa5baea4c877`.
 
-- `casos.json`: 468 cases (464 imported, 4 added in the editorial reviews of 2026-11-25 and 2026-11-26), including 7 party-account decisions.
+- `casos.json`: 473 cases (464 imported, 9 added in the editorial reviews of 2026-11-25 and 2026-11-26), including 7 party-account decisions.
 - `documentos.json`: 1 reference document, excluded from case totals.
-- `pessoas.json`: 545 people (535 imported, 10 added in the editorial reviews of 2026-11-25 and 2026-11-26); 27 publicly published portraits with credits/licences.
+- `pessoas.json`: 550 people (535 imported, 15 added in the editorial reviews of 2026-11-25 and 2026-11-26); 27 publicly published portraits with credits/licences.
 - `partidos.json`: 24 current and 4 historical parties, with registration sources and symbol provenance.
 - `manifesto.json`: edition metadata, coverage and the preserved case alias.
 
@@ -80,3 +80,15 @@ judgments and electoral maps. The mixed decision preserves the CDS councillors'
 acquittal in party filters. See `revisao/2026-11-26.md` and its before/after JSON.
 Recent Oeiras reporting remains a research lead pending clarification of the
 inquiry status. Publication and editorial approval are not implied by this review.
+
+## Second editorial revision prepared on 2026-11-26
+
+Two recent criminal developments involving Vizela and Gouveia e Melo, and three
+historical financial decisions concerning Vendas Novas and Vila do Conde are
+added after checking the decisions, appeal outcomes and political links. The
+two Vila do Conde records concern distinct proceedings and are not merged into
+a single event.
+See `revisao/2026-11-26-noite.md` and its structured change summary. The Oeiras
+reporting remains excluded from the public records because the current status
+of the alleged new inquiry is contradicted by the municipality and had not been
+clarified by the PGR at the time of checking.
