@@ -666,7 +666,10 @@
     "id": "antonio-luis-beites",
     "name": "António Luís Beites",
     "fullNames": [],
-    "recordIds": ["penamacor-prevpap-financeiro"],
+    "recordIds": [
+      "penamacor-prevpap-financeiro",
+      "penamacor-beites-robalo-viagem-turquia"
+    ],
     "source": {
       "label": "Tribunal de Contas · sentença 11/2024",
       "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/3s/Documents/2024/st011-2024-3s.pdf"
@@ -4480,8 +4483,13 @@
   {
     "id": "manuel-robalo",
     "name": "Manuel Robalo",
-    "fullNames": [],
-    "recordIds": ["penamacor-prevpap-financeiro"],
+    "fullNames": [
+      "Manuel Joaquim Robalo"
+    ],
+    "recordIds": [
+      "penamacor-prevpap-financeiro",
+      "penamacor-beites-robalo-viagem-turquia"
+    ],
     "source": {
       "label": "Tribunal de Contas · sentença 11/2024",
       "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/3s/Documents/2024/st011-2024-3s.pdf"
@@ -6724,6 +6732,109 @@
     "source": {
       "label": "Tribunal de Contas · distribuição de processos da 3.ª Secção, Maio de 2026",
       "href": "https://www.tcontas.pt/pt-pt/Transparencia/distribuicao-de-processos/Pages/distribuicao.aspx"
+    },
+    "portrait": null
+  },
+  {
+    "id": "roberto-bogas",
+    "name": "Roberto Bogas",
+    "fullNames": [
+      "Roberto Alexandre Martins Bogas"
+    ],
+    "recordIds": [
+      "manhente-roberto-bogas-acusacao-jogo"
+    ],
+    "source": {
+      "label": "Administração Eleitoral · presidentes de junta eleitos em 2025",
+      "href": "https://www.sg.mai.gov.pt/pt/AdministracaoEleitoral/Autarquias/RegistoEleitosLocais/Documents/Lista%20Eleitos%20Locais/PresidentesJF.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "rui-mesquita",
+    "name": "Rui Mesquita",
+    "fullNames": [],
+    "recordIds": [
+      "areosa-rui-mesquita-adjudicacoes"
+    ],
+    "source": {
+      "label": "Município de Viana do Castelo · acta de 30-09-2022",
+      "href": "https://www.cm-viana-castelo.pt/cmvianadocastelo/uploads/document/file/3664/reuniao_ordinaria_de_30_de_setembro_de_2022__2021_2025__ata_no_4_2022.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "fernando-abel-simoes",
+    "name": "Fernando Abel Simões",
+    "fullNames": [
+      "Fernando Abel Simões"
+    ],
+    "recordIds": [
+      "eiras-fernando-simoes-responsabilidade-financeira"
+    ],
+    "source": {
+      "label": "CNE · resultados oficiais das autárquicas de 2017",
+      "href": "https://www.cne.pt/sites/default/files/dl/al2017_mapa_resultados.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "armindo-jacinto",
+    "name": "Armindo Jacinto",
+    "fullNames": [
+      "Armindo Moreira Palma Jacinto"
+    ],
+    "recordIds": [
+      "idanha-a-nova-armindo-jacinto-viatura"
+    ],
+    "source": {
+      "label": "Administração Eleitoral · presidentes de câmara eleitos em 2021",
+      "href": "https://www.sg.mai.gov.pt/AdministracaoEleitoral/Autarquias/RegistoEleitosLocais/Documents/qry_ListaPresidentesCM-20220311.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "mario-ramos-martins",
+    "name": "Mário Martins",
+    "fullNames": [
+      "Mário Ramos Martins"
+    ],
+    "recordIds": [
+      "travasso-mario-martins-contratacao-filha"
+    ],
+    "source": {
+      "label": "CNE · resultados oficiais das autárquicas de 2013",
+      "href": "https://www.cne.pt/sites/default/files/al_2013_mapa_resultados.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "humberto-silva-fatima",
+    "name": "Humberto Silva",
+    "fullNames": [
+      "Humberto António Figueira da Silva"
+    ],
+    "recordIds": [
+      "fatima-humberto-silva-filstone"
+    ],
+    "source": {
+      "label": "Junta de Freguesia de Fátima · tomada de posse em 2021",
+      "href": "https://www.freguesiadefatima.pt/pt/noticias/assembleia-de-freguesia-toma-posse"
+    },
+    "portrait": null
+  },
+  {
+    "id": "dionisio-mendes",
+    "name": "Dionísio Mendes",
+    "fullNames": [
+      "Dionísio Simão Mendes"
+    ],
+    "recordIds": [
+      "coruche-dionisio-mendes-difamacao-bombeiros"
+    ],
+    "source": {
+      "label": "RTP / Lusa · resultados autárquicos em Coruche, 09-10-2005",
+      "href": "https://www.rtp.pt/noticias/pais/dionisio-mendes-ps-reeleito-presidente-cm-de-coruche_n18383"
     },
     "portrait": null
   }

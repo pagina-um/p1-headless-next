@@ -8517,21 +8517,23 @@
   },
   {
     "id": "barcelos-gprotect",
-    "parties": ["PS"],
+    "parties": [
+      "PS"
+    ],
     "category": "Casos",
     "nature": "Criminal",
     "phase": "Acusações e julgamentos",
-    "status": "Julgamento concluído; decisão adiada",
-    "date": "2026-10-28",
-    "dateLabel": "2026-10-28",
+    "status": "Julgamento concluído · leitura do acórdão adiada",
+    "date": "2026-11-20",
+    "dateLabel": "2026-11-20",
     "datePrecision": "day",
-    "dateKind": "Notícia sobre adiamento da decisão",
+    "dateKind": "Adiamento da leitura do acórdão",
     "year": 2026,
     "title": "Barcelos: sentença do processo GProtect adiada",
-    "summary": "A leitura do acórdão foi novamente adiada depois de o tribunal comunicar uma alteração não substancial dos factos e a defesa pedir prazo de resposta.",
-    "detail": "A acusação sustenta favorecimento da GProtect através de ajustes directos e imputa prevaricação e abuso de poder. A decisão de pronúncia noticiada em 2022 identifica contratos de segurança na Câmara e na Escola de Tecnologia e Gestão, da Empresa Municipal de Educação e Cultura de Barcelos (EMEC), entre 2010 e 2017. Alexandre Maciel, arguido neste processo e antigo vereador, integrou também o conselho de administração da EMEC empossado em 14 de Outubro de 2013, segundo a relação oficial dos órgãos sociais. A documentação consultada não permite imputar-lhe individualmente todos os contratos do processo nem antecipa uma condenação. O caso é distinto dos contratos para eventos, do concurso das luminárias e do processo individual de deslocações de outro antigo presidente da EMEC.",
+    "summary": "A greve dos funcionários judiciais impediu a leitura do acórdão no Tribunal de Braga em 20 de Novembro de 2026. O SETE JORNAL noticiou o adiamento no próprio dia.",
+    "detail": "A acusação sustenta favorecimento da GProtect através de ajustes directos e imputa prevaricação e abuso de poder. A decisão de pronúncia noticiada em 2022 identifica contratos de segurança na Câmara e na Escola de Tecnologia e Gestão, da Empresa Municipal de Educação e Cultura de Barcelos (EMEC), entre 2010 e 2017. Alexandre Maciel, arguido neste processo e antigo vereador, integrou também o conselho de administração da EMEC empossado em 14 de Outubro de 2013, segundo a relação oficial dos órgãos sociais. A documentação consultada não permite imputar-lhe individualmente todos os contratos do processo nem antecipa uma condenação. O caso é distinto dos contratos para eventos, do concurso das luminárias e do processo individual de deslocações de outro antigo presidente da EMEC. Em Outubro de 2026, a leitura já tinha sido adiada após a comunicação de uma alteração não substancial dos factos e um pedido de prazo pela defesa.",
     "affiliation": "Antigos responsáveis do executivo eleito pelo PS, incluindo Costa Gomes, Domingos Pereira, Maria Armandina Saleiro e Alexandre Maciel. A militância pessoal de Alexandre Maciel está comprovada: um comunicado do secretariado concelhio do PS, reproduzido pelo Diário do Minho em 3 de Março de 2021, identifica-o como militante. A fonte de 2021 não fixa a data de inscrição no partido. O acórdão 698/2023 do Tribunal Constitucional identifica Miguel Jorge Costa Gomes como militante do PS e antigo presidente da concelhia; esta prova é histórica e não afirma militância actual após a expulsão discutida nesse acórdão.",
-    "finality": "A última notícia localizada relata adiamento, não condenação. Não foi localizada sentença posterior até 20 de novembro de 2026.",
+    "finality": "Até 27 de Novembro de 2026 ficaram por localizar nova marcação e acórdão posteriores ao adiamento de 20 de Novembro.",
     "penalty": "",
     "amount": null,
     "caseNumber": "",
@@ -8539,14 +8541,14 @@
     "location": "Barcelos",
     "topic": "",
     "procedureType": "",
-    "reference": "O MINHO · 28-10-2026",
+    "reference": "SETE JORNAL · 20-11-2026",
     "sourceName": "Imprensa regional",
     "source": {
-      "label": "O MINHO · 28-10-2026",
-      "href": "https://ominho.pt/adiada-pela-segunda-vez-sentenca-de-ex-presidente-da-camara-de-barcelos-julgado-por-ajustes-diretos-a-uma-empresa-de-seguranca/"
+      "label": "SETE JORNAL · 20-11-2026",
+      "href": "https://setejornal.pt/greve-nos-tribunais-volta-a-adiar-leitura-do-acordao-no-caso-g-protect/"
     },
-    "checkedAt": "2026-11-20",
-    "researchBatch": "democracy-round10-2026-11-20",
+    "checkedAt": "2026-11-27",
+    "researchBatch": "imprensa-local-2026-11-27",
     "related": [
       "pereira-barcelos-envelope",
       "barcelos-contratos-eventos",
@@ -8598,13 +8600,30 @@
         "text": "Noticiado o início previsto do julgamento."
       },
       {
+        "date": "2026-07-10",
+        "dateLabel": "2026-07-10",
+        "datePrecision": "day",
+        "text": "O julgamento termina após 14 sessões, segundo o SETE JORNAL."
+      },
+      {
         "date": "2026-10-28",
         "dateLabel": "2026-10-28",
         "datePrecision": "day",
         "text": "Leitura do acórdão novamente adiada."
+      },
+      {
+        "date": "2026-11-20",
+        "dateLabel": "2026-11-20",
+        "datePrecision": "day",
+        "text": "A greve dos funcionários judiciais impede a leitura do acórdão marcada para esse dia."
       }
     ],
     "sources": [
+      {
+        "label": "SETE JORNAL · 20-11-2026",
+        "href": "https://setejornal.pt/greve-nos-tribunais-volta-a-adiar-leitura-do-acordao-no-caso-g-protect/",
+        "kind": "Imprensa regional"
+      },
       {
         "label": "O MINHO · 28-10-2026",
         "href": "https://ominho.pt/adiada-pela-segunda-vez-sentenca-de-ex-presidente-da-camara-de-barcelos-julgado-por-ajustes-diretos-a-uma-empresa-de-seguranca/",
@@ -8643,7 +8662,9 @@
         "kind": "company",
         "type": "Empresa municipal",
         "municipality": "Barcelos",
-        "people": ["Alexandre Maciel"],
+        "people": [
+          "Alexandre Maciel"
+        ],
         "connection": "A pronúncia abrange contratos de segurança da EMEC/ETG. Maciel exerceu funções na empresa durante parte do período dos contratos; não se presume que tenha intervindo em todos.",
         "entityEvidence": [
           {
@@ -13166,7 +13187,9 @@
   },
   {
     "id": "penamacor-prevpap-financeiro",
-    "parties": ["PS"],
+    "parties": [
+      "PS"
+    ],
     "category": "Casos",
     "nature": "Financeira",
     "phase": "Condenações financeiras",
@@ -13196,7 +13219,9 @@
     },
     "checkedAt": "2026-11-20",
     "researchBatch": "history-2026-11-20",
-    "related": [],
+    "related": [
+      "penamacor-beites-robalo-viagem-turquia"
+    ],
     "partyOutcomes": {},
     "people": [
       {
@@ -43889,6 +43914,755 @@
         "label": "Município do Seixal · sucessão de Joaquim Santos por Paulo Silva, Setembro de 2022",
         "href": "https://www.cm-seixal.pt/noticia/paulo-silva-e-o-novo-presidente-da-camara-do-seixal",
         "kind": "Documento primário"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "manhente-roberto-bogas-acusacao-jogo",
+    "parties": [
+      "PSD",
+      "CDS"
+    ],
+    "category": "Casos",
+    "nature": "Criminal",
+    "phase": "Acusações e julgamentos",
+    "status": "Acusação do Ministério Público noticiada",
+    "date": "2026-09-08",
+    "dateLabel": "2026-09-08",
+    "datePrecision": "day",
+    "dateKind": "Data da acusação indicada pelo SETE JORNAL",
+    "year": 2026,
+    "title": "Manhente: presidente da junta acusado de exploração ilícita de jogo",
+    "summary": "O SETE JORNAL revelou em 21 de Novembro de 2026 que Roberto Bogas foi acusado de exploração ilícita de jogo num processo iniciado com uma fiscalização em 2022, anterior à sua eleição para a junta.",
+    "detail": "Segundo a acusação de 8 de Setembro de 2026, consultada pelo SETE JORNAL, uma fiscalização a 9 de Março de 2022 encontrou uma máquina electrónica de jogos acessível ao público no bar das instalações do Santa Maria FC, em Galegos (Santa Maria). A notícia identifica Roberto Bogas como um dos acusados.",
+    "affiliation": "A Administração Eleitoral regista Roberto Alexandre Martins Bogas como presidente de junta eleito em Manhente em 2025 pela coligação PPD/PSD.CDS-PP. A fonte documenta a candidatura.",
+    "finality": "Até à consulta de 27 de Novembro ficaram por localizar a identificação oficial do processo e uma decisão de instrução ou julgamento.",
+    "penalty": "",
+    "amount": null,
+    "caseNumber": "",
+    "court": "",
+    "location": "Manhente e Galegos (Santa Maria), Barcelos",
+    "topic": "Exploração ilícita de jogo",
+    "procedureType": "Processo penal",
+    "reference": "SETE JORNAL · 21-11-2026",
+    "sourceName": "Imprensa regional",
+    "source": {
+      "label": "SETE JORNAL · 21-11-2026",
+      "href": "https://setejornal.pt/5978-2/"
+    },
+    "checkedAt": "2026-11-27",
+    "researchBatch": "imprensa-local-2026-11-27",
+    "related": [],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "roberto-bogas",
+        "name": "Roberto Bogas",
+        "fullName": "Roberto Alexandre Martins Bogas",
+        "role": "Presidente da Junta de Freguesia de Manhente e acusado no processo relatado pelo SETE JORNAL.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2022-03-09",
+        "dateLabel": "2022-03-09",
+        "datePrecision": "day",
+        "text": "Fiscalização no bar, segundo a data indicada no despacho de acusação descrito na imprensa."
+      },
+      {
+        "date": "2026-09-08",
+        "dateLabel": "2026-09-08",
+        "datePrecision": "day",
+        "text": "Data do despacho de acusação consultado pelo SETE JORNAL."
+      },
+      {
+        "date": "2026-11-21",
+        "dateLabel": "2026-11-21",
+        "datePrecision": "day",
+        "text": "O SETE JORNAL revela a acusação e identifica o presidente da junta entre os acusados."
+      }
+    ],
+    "sources": [
+      {
+        "label": "SETE JORNAL · 21-11-2026",
+        "href": "https://setejornal.pt/5978-2/",
+        "kind": "Imprensa regional"
+      },
+      {
+        "label": "Administração Eleitoral · presidentes de junta eleitos em 2025",
+        "href": "https://www.sg.mai.gov.pt/pt/AdministracaoEleitoral/Autarquias/RegistoEleitosLocais/Documents/Lista%20Eleitos%20Locais/PresidentesJF.pdf",
+        "kind": "Fonte institucional · cargo e eleição"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "areosa-rui-mesquita-adjudicacoes",
+    "parties": [
+      "PS"
+    ],
+    "category": "Casos",
+    "nature": "Criminal",
+    "phase": "Acusações e julgamentos",
+    "status": "Acusação noticiada · abertura do julgamento adiada",
+    "date": "2025-05-07",
+    "dateLabel": "2025-05-07",
+    "datePrecision": "day",
+    "dateKind": "Adiamento do início do julgamento",
+    "year": 2025,
+    "title": "Areosa: adiado julgamento de antigo presidente da junta por adjudicações",
+    "summary": "O julgamento de Rui Mesquita, acusado de prevaricação e participação económica em negócio, foi adiado em 7 de Maio de 2025 após um recurso do Ministério Público sobre o pedido de perda de vantagens a favor do Estado.",
+    "detail": "Segundo a acusação descrita pela Lusa em Março de 2025, a junta adjudicou mais de 270 mil euros em serviços e obras, entre 2013 e 2021, a duas empresas de que Rui Mesquita era sócio-gerente. O antigo autarca afirmou que nunca prejudicou a freguesia e que esperava ser absolvido.",
+    "affiliation": "Rui Mesquita presidiu à Junta de Freguesia de Areosa pelo PS. O cargo e a representação constam de acta municipal.",
+    "finality": "A última notícia localizada relata que o início do julgamento foi adiado sem nova data anunciada. Ficaram por localizar a decisão sobre o recurso e o desfecho do processo.",
+    "penalty": "",
+    "amount": null,
+    "caseNumber": "",
+    "court": "Tribunal de Viana do Castelo",
+    "location": "Areosa, Viana do Castelo",
+    "topic": "Adjudicações pela junta de freguesia",
+    "procedureType": "Processo penal",
+    "reference": "A Aurora do Lima / Lusa · 07-05-2025",
+    "sourceName": "Imprensa regional",
+    "source": {
+      "label": "A Aurora do Lima / Lusa · 07-05-2025",
+      "href": "https://auroradolima.com/featured/julgamento-de-ex-autarca-de-areosa-adiado-sine-die-apos-recurso/"
+    },
+    "checkedAt": "2026-11-27",
+    "researchBatch": "imprensa-local-2026-11-27",
+    "related": [],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "rui-mesquita",
+        "name": "Rui Mesquita",
+        "fullName": "",
+        "role": "Antigo presidente da Junta de Freguesia de Areosa e acusado no processo.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2025-03-11",
+        "dateLabel": "2025-03-11",
+        "datePrecision": "day",
+        "text": "A Lusa noticia a acusação sobre as adjudicações efectuadas entre 2013 e 2021."
+      },
+      {
+        "date": "2025-05-07",
+        "dateLabel": "2025-05-07",
+        "datePrecision": "day",
+        "text": "O início do julgamento é adiado na sequência de recurso do Ministério Público contra a decisão que rejeitou o pedido de declaração de perda de vantagens."
+      }
+    ],
+    "sources": [
+      {
+        "label": "A Aurora do Lima / Lusa · 07-05-2025",
+        "href": "https://auroradolima.com/featured/julgamento-de-ex-autarca-de-areosa-adiado-sine-die-apos-recurso/",
+        "kind": "Imprensa regional"
+      },
+      {
+        "label": "Jornal C / Lusa · 11-03-2025",
+        "href": "https://jornalc.pt/viana-do-castelo-ex-autarca-da-junta-de-areosa-adjudicou-mais-de-270-mil-euros-a-empresas-que-detem/",
+        "kind": "Imprensa regional"
+      },
+      {
+        "label": "Município de Viana do Castelo · acta de 30-09-2022",
+        "href": "https://www.cm-viana-castelo.pt/cmvianadocastelo/uploads/document/file/3664/reuniao_ordinaria_de_30_de_setembro_de_2022__2021_2025__ata_no_4_2022.pdf",
+        "kind": "Fonte institucional · cargo e eleição"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "eiras-fernando-simoes-responsabilidade-financeira",
+    "parties": [
+      "PS"
+    ],
+    "category": "Casos",
+    "nature": "Financeira",
+    "phase": "Acusações e julgamentos",
+    "status": "Processo de responsabilidade financeira distribuído",
+    "date": "2026-09-01",
+    "dateLabel": "2026-09-01",
+    "datePrecision": "day",
+    "dateKind": "Distribuição no Tribunal de Contas",
+    "year": 2026,
+    "title": "Eiras: Tribunal de Contas distribui processo de responsabilidade financeira",
+    "summary": "A 3.ª Secção do Tribunal de Contas regista a distribuição do processo 9/2026-JRF, identificado com Fernando Abel Simões e outros. O Diário de Coimbra relaciona o processo com a acumulação de pensão e remuneração autárquica.",
+    "detail": "Segundo o Diário de Coimbra, a auditoria apurou que foram pagos 109.083,34 euros líquidos de pensão entre 2013 e 2021, enquanto Fernando Abel Simões recebia remuneração como presidente da junta. Nas notícias, o autarca invocou a interpretação transmitida pelos serviços da Segurança Social. A lista pública do tribunal associa o processo ao relatório 24/2023-ARF da 2.ª Secção.",
+    "affiliation": "Fernando Abel Simões foi eleito pelo PS para a União das Freguesias de Eiras e São Paulo de Frades. O mapa da Comissão Nacional de Eleições identifica-o nas autárquicas de 2017.",
+    "finality": "O registo oficial confirma a distribuição. Até 27 de Novembro de 2026 ficou por localizar uma sentença sobre este processo.",
+    "penalty": "",
+    "amount": null,
+    "caseNumber": "9/2026-JRF",
+    "court": "Tribunal de Contas · 3.ª Secção",
+    "location": "Eiras e São Paulo de Frades, Coimbra",
+    "topic": "Acumulação de pensão e remuneração autárquica",
+    "procedureType": "Julgamento de responsabilidade financeira",
+    "reference": "Tribunal de Contas · distribuição do processo 9/2026-JRF",
+    "sourceName": "Fonte oficial · distribuição judicial",
+    "source": {
+      "label": "Tribunal de Contas · distribuição do processo 9/2026-JRF",
+      "href": "https://www.tcontas.pt/pt-pt/Transparencia/distribuicao-de-processos/Pages/distribuicao.aspx"
+    },
+    "checkedAt": "2026-11-27",
+    "researchBatch": "imprensa-local-2026-11-27",
+    "related": [],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "fernando-abel-simoes",
+        "name": "Fernando Abel Simões",
+        "fullName": "Fernando Abel Simões",
+        "role": "Presidente da junta no período tratado na auditoria e identificado na distribuição do processo.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-07-14",
+        "dateLabel": "2026-07-14",
+        "datePrecision": "day",
+        "text": "Data de entrada registada na distribuição pública do processo 9/2026-JRF."
+      },
+      {
+        "date": "2026-09-01",
+        "dateLabel": "2026-09-01",
+        "datePrecision": "day",
+        "text": "Distribuição do processo à 3.ª Secção do Tribunal de Contas."
+      },
+      {
+        "date": "2026-10-27",
+        "dateLabel": "2026-10-27",
+        "datePrecision": "day",
+        "text": "O Diário de Coimbra noticia a acumulação de pensão e remuneração, com base nos elementos da auditoria."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Tribunal de Contas · distribuição do processo 9/2026-JRF",
+        "href": "https://www.tcontas.pt/pt-pt/Transparencia/distribuicao-de-processos/Pages/distribuicao.aspx",
+        "kind": "Fonte oficial · distribuição judicial"
+      },
+      {
+        "label": "Diário de Coimbra · 27-10-2026",
+        "href": "https://www.diariocoimbra.pt/2026/10/27/presidente-de-junta-acumulou-pensao-e-salario-durante-quase-oito-anos/",
+        "kind": "Imprensa regional"
+      },
+      {
+        "label": "Diário de Coimbra · 28-10-2026",
+        "href": "https://www.diariocoimbra.pt/2026/10/28/altos-dirigentes-da-seguranca-social-chamados-a-repor-dinheiro/",
+        "kind": "Imprensa regional"
+      },
+      {
+        "label": "CNE · resultados oficiais das autárquicas de 2017",
+        "href": "https://www.cne.pt/sites/default/files/dl/al2017_mapa_resultados.pdf",
+        "kind": "Fonte institucional · cargo e eleição"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "idanha-a-nova-armindo-jacinto-viatura",
+    "parties": [
+      "PS"
+    ],
+    "category": "Casos",
+    "nature": "Criminal",
+    "phase": "Absolvições",
+    "status": "Absolvição em primeira instância",
+    "date": "2023-10-26",
+    "dateLabel": "2023-10-26",
+    "datePrecision": "day",
+    "dateKind": "Decisão de primeira instância",
+    "year": 2023,
+    "title": "Idanha-a-Nova: Armindo Jacinto absolvido no processo da viatura municipal",
+    "summary": "O Tribunal Judicial de Castelo Branco absolveu Armindo Jacinto das quatro imputações relativas a duas deslocações em viatura municipal.",
+    "detail": "O processo incidiu em viagens a Santarém, em Outubro de 2019, e ao Porto, em Janeiro de 2020. O Reconquista relata que as deslocações incluíram contactos institucionais ou de interesse para o município e reuniões partidárias. O tribunal entendeu que a acusação ficou sem prova suficiente de que as reuniões partidárias fossem o motivo principal das viagens.",
+    "affiliation": "Armindo Moreira Palma Jacinto presidia ao município de Idanha-a-Nova pelo PS, conforme o registo oficial de eleitos.",
+    "finality": "A imprensa consultada documenta a decisão de primeira instância. Ficaram por localizar um eventual recurso e a confirmação do trânsito em julgado.",
+    "penalty": "",
+    "amount": null,
+    "caseNumber": "",
+    "court": "Tribunal Judicial de Castelo Branco",
+    "location": "Idanha-a-Nova, Castelo Branco",
+    "topic": "Utilização de viatura municipal",
+    "procedureType": "Processo penal",
+    "reference": "Reconquista · 26-10-2023",
+    "sourceName": "Imprensa regional",
+    "source": {
+      "label": "Reconquista · 26-10-2023",
+      "href": "https://www.reconquista.pt/articles/idanha-armindo-jacinto-absolvido-no-caso-da-viatura"
+    },
+    "checkedAt": "2026-11-27",
+    "researchBatch": "imprensa-local-2026-11-27",
+    "related": [],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "armindo-jacinto",
+        "name": "Armindo Jacinto",
+        "fullName": "Armindo Moreira Palma Jacinto",
+        "role": "Presidente da Câmara de Idanha-a-Nova e absolvido de dois crimes de peculato e dois de peculato de uso.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": null,
+        "dateLabel": "2019-10",
+        "datePrecision": "month",
+        "text": "Deslocação a Santarém em causa na acusação."
+      },
+      {
+        "date": null,
+        "dateLabel": "2020-01",
+        "datePrecision": "month",
+        "text": "Deslocação ao Porto em causa na acusação."
+      },
+      {
+        "date": "2023-07-04",
+        "dateLabel": "2023-07-04",
+        "datePrecision": "day",
+        "text": "Início do julgamento, segundo o Reconquista."
+      },
+      {
+        "date": "2023-10-26",
+        "dateLabel": "2023-10-26",
+        "datePrecision": "day",
+        "text": "Absolvição das quatro imputações em Castelo Branco."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Reconquista · 26-10-2023",
+        "href": "https://www.reconquista.pt/articles/idanha-armindo-jacinto-absolvido-no-caso-da-viatura",
+        "kind": "Imprensa regional"
+      },
+      {
+        "label": "Administração Eleitoral · presidentes de câmara eleitos em 2021",
+        "href": "https://www.sg.mai.gov.pt/AdministracaoEleitoral/Autarquias/RegistoEleitosLocais/Documents/qry_ListaPresidentesCM-20220311.pdf",
+        "kind": "Fonte institucional · cargo e eleição"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "travasso-mario-martins-contratacao-filha",
+    "parties": [
+      "PS"
+    ],
+    "category": "Casos",
+    "nature": "Criminal",
+    "phase": "Absolvições",
+    "status": "Absolvição em primeira instância",
+    "date": "2020-03-09",
+    "dateLabel": "2020-03-09",
+    "datePrecision": "day",
+    "dateKind": "Decisão de primeira instância",
+    "year": 2020,
+    "title": "Travassô e Óis da Ribeira: ex-presidente da junta absolvido na contratação da filha",
+    "summary": "O Tribunal de Aveiro absolveu Mário Martins da acusação de prevaricação e abuso de poder na contratação da filha para prestar apoio à junta.",
+    "detail": "Segundo Notícias de Aveiro, o tribunal considerou ilegal a contratação da filha para apoio à junta por 150 euros mensais, mas considerou por provar a intenção de a beneficiar ou de prejudicar terceiros. Os 1.500 euros que esta recebeu foram devolvidos. Mário Martins rejeitou em julgamento que a contratação tivesse sido um favor.",
+    "affiliation": "O mapa oficial das autárquicas de 2013 identifica Mário Ramos Martins como eleito pelo PS na União das Freguesias de Travassô e Óis da Ribeira. O registo diz respeito àquele mandato.",
+    "finality": "Absolvição em primeira instância. Ficaram por localizar um eventual recurso e a confirmação do trânsito em julgado.",
+    "penalty": "",
+    "amount": null,
+    "caseNumber": "",
+    "court": "Tribunal de Aveiro",
+    "location": "Travassô e Óis da Ribeira, Águeda",
+    "topic": "Contratação de serviços para a junta de freguesia",
+    "procedureType": "Processo penal",
+    "reference": "Notícias de Aveiro · 09-03-2020",
+    "sourceName": "Imprensa regional",
+    "source": {
+      "label": "Notícias de Aveiro · 09-03-2020",
+      "href": "https://www.noticiasdeaveiro.pt/agueda-ex-autarca-que-contratou-filha-absolvido/"
+    },
+    "checkedAt": "2026-11-27",
+    "researchBatch": "imprensa-local-2026-11-27",
+    "related": [],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "mario-ramos-martins",
+        "name": "Mário Martins",
+        "fullName": "Mário Ramos Martins",
+        "role": "Antigo presidente da Junta da União das Freguesias de Travassô e Óis da Ribeira, absolvido em primeira instância.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2020-03-09",
+        "dateLabel": "2020-03-09",
+        "datePrecision": "day",
+        "text": "O tribunal absolve o antigo presidente da junta dos crimes imputados."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Notícias de Aveiro · 09-03-2020",
+        "href": "https://www.noticiasdeaveiro.pt/agueda-ex-autarca-que-contratou-filha-absolvido/",
+        "kind": "Imprensa regional"
+      },
+      {
+        "label": "Notícias de Aveiro · relato do julgamento",
+        "href": "https://www.noticiasdeaveiro.pt/ex-autarca-afasta-pagamento-de-favor-a-filha/",
+        "kind": "Imprensa regional"
+      },
+      {
+        "label": "CNE · resultados oficiais das autárquicas de 2013",
+        "href": "https://www.cne.pt/sites/default/files/al_2013_mapa_resultados.pdf",
+        "kind": "Fonte institucional · cargo e eleição"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "azurara-tesoureiro-peculato-2309-17",
+    "parties": [],
+    "category": "Casos",
+    "nature": "Criminal",
+    "phase": "Condenações criminais",
+    "status": "Condenação criminal · transitada em julgado",
+    "date": "2024-12-10",
+    "dateLabel": "2024-12-10",
+    "datePrecision": "day",
+    "dateKind": "Data do acórdão",
+    "year": 2024,
+    "title": "Azurara: antigo tesoureiro da junta condenado por peculato",
+    "summary": "O Ministério Público deu conta de um acórdão transitado que condenou um antigo tesoureiro por se apropriar de 79.729,99 euros da junta entre 2013 e 2017. A imprensa identifica a freguesia de Azurara.",
+    "detail": "Segundo o Ministério Público, o antigo tesoureiro apropriou-se de dinheiro público por meio de levantamentos bancários e cheques da junta. O relato da Rádio Onda Viva identifica a autarquia e descreve a mesma decisão sobre a apropriação de fundos, a pena e a condição de suspensão.",
+    "affiliation": "A ficha regista o cargo de tesoureiro. O comunicado do Ministério Público omite o nome e a ligação partidária.",
+    "finality": "O Ministério Público publicou em 31 de Janeiro de 2025 que o acórdão estava transitado em julgado. A data exacta do trânsito ficou por apurar.",
+    "penalty": "Quatro anos e dez meses de prisão, suspensa por igual período sob condição de pagamento de 25.000 euros à junta. Multa de 1.170 euros e pagamento ao Estado de 79.729,99 euros.",
+    "amount": null,
+    "caseNumber": "2309/17.5T9VCD",
+    "court": "Tribunal Judicial da Comarca do Porto · Juízo Central Criminal de Vila do Conde (J9)",
+    "location": "Azurara, Vila do Conde",
+    "topic": "Apropriação de fundos da junta de freguesia",
+    "procedureType": "Processo penal",
+    "reference": "Ministério Público · 31-01-2025 · processo 2309/17.5T9VCD",
+    "sourceName": "Fonte oficial · comunicado sobre condenação transitada",
+    "source": {
+      "label": "Ministério Público · 31-01-2025 · processo 2309/17.5T9VCD",
+      "href": "https://pgreg-porto.ministeriopublico.pt/destaque/peculato-apropriacao-de-quantias-por-tesoureiro-de-junta-de-freguesia-condenacao"
+    },
+    "checkedAt": "2026-11-27",
+    "researchBatch": "imprensa-local-2026-11-27",
+    "related": [],
+    "partyOutcomes": {},
+    "people": [],
+    "timeline": [
+      {
+        "date": "2024-12-10",
+        "dateLabel": "2024-12-10",
+        "datePrecision": "day",
+        "text": "O tribunal condena um antigo tesoureiro da junta por peculato."
+      },
+      {
+        "date": "2025-01-31",
+        "dateLabel": "2025-01-31",
+        "datePrecision": "day",
+        "text": "A Procuradoria-Geral Regional do Porto comunica que a decisão transitou em julgado."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Ministério Público · 31-01-2025 · processo 2309/17.5T9VCD",
+        "href": "https://pgreg-porto.ministeriopublico.pt/destaque/peculato-apropriacao-de-quantias-por-tesoureiro-de-junta-de-freguesia-condenacao",
+        "kind": "Fonte oficial · comunicado sobre condenação transitada"
+      },
+      {
+        "label": "Rádio Onda Viva · semanário n.º 251, Dezembro de 2024",
+        "href": "https://radioondaviva.pt/semanarios/251.pdf",
+        "kind": "Imprensa regional"
+      },
+      {
+        "label": "Renascença / Lusa · 10-12-2024",
+        "href": "https://rr.pt/noticia/pais/2024/12/10/pena-suspensa-para-ex-tesoureiro-da-junta-de-azurara/405286/",
+        "kind": "Imprensa · Lusa"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "fatima-humberto-silva-filstone",
+    "parties": [
+      "PSD",
+      "CDS"
+    ],
+    "category": "Casos",
+    "nature": "Criminal",
+    "phase": "Acusações e julgamentos",
+    "status": "Pronúncia por um crime confirmada em recurso, segundo a imprensa",
+    "date": "2026-06-27",
+    "dateLabel": "2026-06-27",
+    "datePrecision": "day",
+    "dateKind": "Notícia sobre a decisão da Relação de Évora",
+    "year": 2026,
+    "title": "Fátima: confirmada ida a julgamento de ex-presidente da junta no caso Filstone",
+    "summary": "O MIRANTE noticiou que a Relação de Évora confirmou a ida a julgamento de Humberto Silva por um crime de recebimento indevido de vantagem. O processo inclui também o empresário ligado à Filstone.",
+    "detail": "A acusação referida na imprensa abrangia três imputações por recebimento indevido de vantagem e uma por abuso de poder quanto a Humberto Silva. A instrução cingiu o julgamento do ex-autarca ao alegado acesso a instalações e hospitalidade em jogos de futebol. A Relação manteve o âmbito do julgamento, segundo O MIRANTE. Humberto Silva rejeitou ter praticado actos que configurassem favorecimento ao empresário.",
+    "affiliation": "A Junta de Freguesia de Fátima identifica Humberto António Figueira da Silva como presidente empossado em 2021 pela coligação PPD/PSD.CDS-PP. A fonte comprova o cargo e a candidatura.",
+    "finality": "A decisão de levar o caso a julgamento foi noticiada em 27 de Junho de 2026. Ficaram por localizar a data exacta do acórdão da Relação, o início do julgamento e uma sentença.",
+    "penalty": "",
+    "amount": null,
+    "caseNumber": "",
+    "court": "Tribunal da Relação de Évora · recurso da decisão de instrução",
+    "location": "Fátima, Ourém",
+    "topic": "Recebimento indevido de vantagem",
+    "procedureType": "Processo penal",
+    "reference": "O MIRANTE · 27-06-2026",
+    "sourceName": "Imprensa regional",
+    "source": {
+      "label": "O MIRANTE · 27-06-2026",
+      "href": "https://omirante.pt/sociedade/2026-06-27-relacao-confirma-julgamento-das-ligacoes-suspeitas-de-exautarca-de-fatima-com-dono-da-filstone-11ae3a04"
+    },
+    "checkedAt": "2026-11-27",
+    "researchBatch": "imprensa-local-2026-11-27",
+    "related": [],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "humberto-silva-fatima",
+        "name": "Humberto Silva",
+        "fullName": "Humberto António Figueira da Silva",
+        "role": "Antigo presidente da Junta de Freguesia de Fátima pronunciado para julgamento por um crime.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2024-07-24",
+        "dateLabel": "2024-07-24",
+        "datePrecision": "day",
+        "text": "A Renascença noticia a acusação e publica a posição do autarca."
+      },
+      {
+        "date": "2026-01-05",
+        "dateLabel": "2026-01-05",
+        "datePrecision": "day",
+        "text": "O MIRANTE noticia a decisão de instrução e o recurso do Ministério Público."
+      },
+      {
+        "date": "2026-06-27",
+        "dateLabel": "2026-06-27",
+        "datePrecision": "day",
+        "text": "O MIRANTE noticia que a Relação de Évora manteve a ida a julgamento com o âmbito definido na instrução."
+      }
+    ],
+    "sources": [
+      {
+        "label": "O MIRANTE · 27-06-2026",
+        "href": "https://omirante.pt/sociedade/2026-06-27-relacao-confirma-julgamento-das-ligacoes-suspeitas-de-exautarca-de-fatima-com-dono-da-filstone-11ae3a04",
+        "kind": "Imprensa regional"
+      },
+      {
+        "label": "O MIRANTE · 05-01-2026",
+        "href": "https://omirante.pt/sociedade/2026-01-05-ministerio-publico-lamenta-desvalorizacao-de-provas-no-caso-do-ex-presidente-da-junta-de-fatima-e-do-dono-da-filstone-0c798816",
+        "kind": "Imprensa regional"
+      },
+      {
+        "label": "Renascença / Lusa · 24-07-2024",
+        "href": "https://rr.pt/noticia/pais/2024/07/24/autarca-de-fatima-acusado-de-beneficiar-pedreira-para-ver-jogos-do-sporting-e-benfica/387467/",
+        "kind": "Imprensa · Lusa"
+      },
+      {
+        "label": "Junta de Freguesia de Fátima · tomada de posse em 2021",
+        "href": "https://www.freguesiadefatima.pt/pt/noticias/assembleia-de-freguesia-toma-posse",
+        "kind": "Fonte institucional · cargo e eleição"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "penamacor-beites-robalo-viagem-turquia",
+    "parties": [
+      "PS"
+    ],
+    "category": "Casos",
+    "nature": "Criminal",
+    "phase": "Absolvições",
+    "status": "Absolvições confirmadas em recurso",
+    "date": "2023-01-25",
+    "dateLabel": "2023-01-25",
+    "datePrecision": "day",
+    "dateKind": "Data do acórdão da Relação de Coimbra",
+    "year": 2023,
+    "title": "Penamacor: Relação confirma absolvições no processo da viagem à Turquia",
+    "summary": "O Tribunal da Relação de Coimbra manteve as absolvições de António Luís Beites e Manuel Robalo no processo da viagem à Turquia paga por uma empresa fornecedora do município.",
+    "detail": "Os dois autarcas foram julgados por recebimento indevido de vantagem. O administrador da empresa também foi absolvido. Segundo a Lusa, o tribunal de primeira instância concluiu que o contrato entre a empresa ANO e o município antecedeu a viagem e deu por não provado o alegado favorecimento. O Ministério Público recorreu. A Relação alterou parte da matéria de facto e confirmou as absolvições.",
+    "affiliation": "António Luís Beites presidia à Câmara de Penamacor pelo PS. Manuel Joaquim Robalo era o vice-presidente.",
+    "finality": "A absolvição foi confirmada em recurso. Ficou por localizar a confirmação do trânsito em julgado.",
+    "penalty": "",
+    "amount": null,
+    "caseNumber": "",
+    "court": "Tribunal da Relação de Coimbra",
+    "location": "Penamacor, Castelo Branco",
+    "topic": "Viagem paga por empresa fornecedora do município",
+    "procedureType": "Processo penal",
+    "reference": "Diário Digital Castelo Branco / Lusa · 27-01-2023",
+    "sourceName": "Imprensa regional",
+    "source": {
+      "label": "Diário Digital Castelo Branco / Lusa · 27-01-2023",
+      "href": "https://www.diariodigitalcastelobranco.pt/noticia/61964/penamacor-relacao-de-coimbra-mantem-absolvicao-de-luis-beites-no-caso-da-viagem-a-turquia"
+    },
+    "checkedAt": "2026-11-27",
+    "researchBatch": "imprensa-local-2026-11-27",
+    "related": [
+      "penamacor-prevpap-financeiro"
+    ],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "antonio-luis-beites",
+        "name": "António Luís Beites",
+        "fullName": "",
+        "role": "Presidente da Câmara de Penamacor à data dos factos e absolvido no processo.",
+        "proceduralStatus": null
+      },
+      {
+        "id": "manuel-robalo",
+        "name": "Manuel Robalo",
+        "fullName": "Manuel Joaquim Robalo",
+        "role": "Vice-presidente da Câmara de Penamacor à data dos factos e absolvido no processo.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": null,
+        "dateLabel": "2015",
+        "datePrecision": "year",
+        "text": "Viagem à Turquia paga pela empresa ANO, conforme notícia sobre o desfecho em primeira instância."
+      },
+      {
+        "date": "2022-04-01",
+        "dateLabel": "2022-04-01",
+        "datePrecision": "day",
+        "text": "O Tribunal de Castelo Branco absolve os dois autarcas e o empresário."
+      },
+      {
+        "date": "2023-01-25",
+        "dateLabel": "2023-01-25",
+        "datePrecision": "day",
+        "text": "A Relação confirma as absolvições no recurso do Ministério Público."
+      },
+      {
+        "date": "2023-01-27",
+        "dateLabel": "2023-01-27",
+        "datePrecision": "day",
+        "text": "O Diário Digital Castelo Branco publica a notícia da Lusa sobre o acórdão."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Diário Digital Castelo Branco / Lusa · 27-01-2023",
+        "href": "https://www.diariodigitalcastelobranco.pt/noticia/61964/penamacor-relacao-de-coimbra-mantem-absolvicao-de-luis-beites-no-caso-da-viagem-a-turquia",
+        "kind": "Imprensa regional"
+      },
+      {
+        "label": "O Interior · decisão de primeira instância, 01-04-2022",
+        "href": "https://www.ointerior.pt/regiao/autarca-de-penamacor-absolvido-no-caso-da-viagem-a-turquia/",
+        "kind": "Imprensa regional"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "coruche-dionisio-mendes-difamacao-bombeiros",
+    "parties": [
+      "PS"
+    ],
+    "category": "Casos",
+    "nature": "Criminal",
+    "phase": "Condenações criminais",
+    "status": "Condenação em primeira instância · recurso anunciado",
+    "date": "2009-07-30",
+    "dateLabel": "2009-07-30",
+    "datePrecision": "day",
+    "dateKind": "Decisão de primeira instância",
+    "year": 2009,
+    "title": "Coruche: Dionísio Mendes condenado em primeira instância por difamação",
+    "summary": "O Tribunal de Coruche condenou Dionísio Mendes por difamação agravada de um antigo comandante dos bombeiros. O então presidente da câmara anunciou recurso, segundo O MIRANTE.",
+    "detail": "A queixa incidiu sobre declarações publicadas em Abril de 2004, após um inquérito interno aos bombeiros. Segundo O MIRANTE, a defesa invocou o conteúdo do inquérito e atribuiu parte da formulação das notícias à interpretação dos jornais.",
+    "affiliation": "Dionísio Simão Mendes presidia à Câmara de Coruche pelo PS, como documentam o Diário da República e o relato dos resultados autárquicos de 2005.",
+    "finality": "A notícia relata a intenção de recorrer. Ficaram por localizar a interposição efectiva do recurso, o seu desfecho e o trânsito em julgado.",
+    "penalty": "Multa de 5.200 euros e indemnização de 10.000 euros por danos não patrimoniais, na decisão de primeira instância.",
+    "amount": null,
+    "caseNumber": "",
+    "court": "Tribunal de Coruche",
+    "location": "Coruche, Santarém",
+    "topic": "Declarações públicas sobre o comando dos bombeiros",
+    "procedureType": "Processo penal",
+    "reference": "O MIRANTE · 05-08-2009",
+    "sourceName": "Imprensa regional",
+    "source": {
+      "label": "O MIRANTE · 05-08-2009",
+      "href": "https://omirante.pt/semanario/2009-08-06/politica/2009-08-05-presidente-da-camara-de-coruche-condenado-por-difamacao-de-ex-comandante-dos-bombeiros"
+    },
+    "checkedAt": "2026-11-27",
+    "researchBatch": "imprensa-local-2026-11-27",
+    "related": [],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "dionisio-mendes",
+        "name": "Dionísio Mendes",
+        "fullName": "Dionísio Simão Mendes",
+        "role": "Presidente da Câmara de Coruche à data da decisão de primeira instância.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2004-04-08",
+        "dateLabel": "2004-04-08",
+        "datePrecision": "day",
+        "text": "Publicação das declarações que estiveram na origem da acção, segundo O MIRANTE."
+      },
+      {
+        "date": "2009-07-30",
+        "dateLabel": "2009-07-30",
+        "datePrecision": "day",
+        "text": "Tribunal de Coruche condena em primeira instância."
+      },
+      {
+        "date": "2009-08-05",
+        "dateLabel": "2009-08-05",
+        "datePrecision": "day",
+        "text": "O MIRANTE noticia a condenação e a intenção de recorrer."
+      }
+    ],
+    "sources": [
+      {
+        "label": "O MIRANTE · 05-08-2009",
+        "href": "https://omirante.pt/semanario/2009-08-06/politica/2009-08-05-presidente-da-camara-de-coruche-condenado-por-difamacao-de-ex-comandante-dos-bombeiros",
+        "kind": "Imprensa regional"
+      },
+      {
+        "label": "Diário da República · Edital n.º 281/2005, 02-05-2005",
+        "href": "https://diariodarepublica.pt/dr/detalhe/edital/281-2005-3511148",
+        "kind": "Fonte oficial · prova do cargo"
+      },
+      {
+        "label": "RTP / Lusa · resultados autárquicos em Coruche, 09-10-2005",
+        "href": "https://www.rtp.pt/noticias/pais/dionisio-mendes-ps-reeleito-presidente-cm-de-coruche_n18383",
+        "kind": "Imprensa · Lusa · cargo e eleição"
       }
     ],
     "mandate": null,
