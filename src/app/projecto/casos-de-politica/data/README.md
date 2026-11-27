@@ -3,9 +3,9 @@
 Imported on 2026-11-20 from the published prototype, version 21, source commit
 `51afb264c9b2ceabd00f53116a9faa5baea4c877`.
 
-- `casos.json`: 473 cases (464 imported, 9 added in the editorial reviews of 2026-11-25 and 2026-11-26), including 7 party-account decisions.
+- `casos.json`: 481 cases (464 imported and 17 added in subsequent editorial reviews), including 7 party-account decisions.
 - `documentos.json`: 1 reference document, excluded from case totals.
-- `pessoas.json`: 550 people (535 imported, 15 added in the editorial reviews of 2026-11-25 and 2026-11-26); 27 publicly published portraits with credits/licences.
+- `pessoas.json`: 559 people (535 imported and 24 added in subsequent editorial reviews); 27 publicly published portraits with credits/licences.
 - `partidos.json`: 24 current and 4 historical parties, with registration sources and symbol provenance.
 - `manifesto.json`: edition metadata, coverage and the preserved case alias.
 
@@ -92,3 +92,12 @@ See `revisao/2026-11-26-noite.md` and its structured change summary. The Oeiras
 reporting remains excluded from the public records because the current status
 of the alleged new inquiry is contradicted by the municipality and had not been
 clarified by the PGR at the time of checking.
+
+## Editorial review prepared on 2026-11-27
+
+Eight records are proposed for editorial review. They cover a Maia judgment
+dated 19 November, the disclosure of a Calheta non-committal order on
+20 November, and six earlier proceedings. The cases of Oeiras and Seixal use
+the official Tribunal de Contas distribution records for each separate financial
+proceeding. See [the research log](revisao/2026-11-27-varrimento.md) for the
+sources, the dates that could be established and the outstanding questions.

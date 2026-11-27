@@ -2438,7 +2438,12 @@
     "id": "isaltino-morais",
     "name": "Isaltino Morais",
     "fullNames": [],
-    "recordIds": ["isaltino-fiscal", "isaltino-oeiras-refeicoes-2017-2024"],
+    "recordIds": [
+      "isaltino-fiscal",
+      "isaltino-oeiras-refeicoes-2017-2024",
+      "oeiras-isaltino-ppp-mrg",
+      "oeiras-isaltino-dirigentes-tdc"
+    ],
     "source": {
       "label": "RTP / Lusa · liberdade condicional e condenação",
       "href": "https://www.rtp.pt/noticias/pais/isaltino-morais-sai-da-cadeia-e-cumpre-resto-da-pena-em-liberdade-condicional_n747566"
@@ -2990,7 +2995,10 @@
     "id": "joaquim-santos",
     "name": "Joaquim Santos",
     "fullNames": [],
-    "recordIds": ["monteiro-seixal-emprestimos"],
+    "recordIds": [
+      "monteiro-seixal-emprestimos",
+      "seixal-dirigentes-tdc"
+    ],
     "source": {
       "label": "Jornal Económico · processo consultado pelo NOVO",
       "href": "https://jornaleconomico.sapo.pt/noticias/ps-seixal-pede-destituicao-do-presidente-da-assembleia-municipal/"
@@ -5008,7 +5016,8 @@
     "recordIds": [
       "barcelos-contratos-eventos",
       "barcelos-gprotect",
-      "operacao-teia-couto-costa-gomes"
+      "operacao-teia-couto-costa-gomes",
+      "barcelos-costa-gomes-viatura-absolvicao"
     ],
     "source": {
       "label": "E24 · 05-11-2026",
@@ -6460,7 +6469,10 @@
     "id": "carlos-manuel-figueira-de-ornelas-teles",
     "name": "Carlos Manuel Figueira de Ornelas Teles",
     "fullNames": [],
-    "recordIds": ["calheta-baeta-contabilizacao-valor-ambiente"],
+    "recordIds": [
+      "calheta-baeta-contabilizacao-valor-ambiente",
+      "calheta-teles-derrocada-nao-pronuncia"
+    ],
     "source": {
       "label": "Tribunal de Contas · Sentença n.º 47/2014, de 08-07-2014",
       "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/srmtc/Documents/2014/st047-2014-srmtc.pdf"
@@ -6591,6 +6603,127 @@
     "source": {
       "label": "PÁGINA UM · 23-11-2026",
       "href": "https://paginaum.pt/2026/11/23/gouveia-e-melo-tribunal-da-relacao-afunda-derradeira-tentativa-de-condenar-o-pagina-um"
+    },
+    "portrait": null
+  },
+  {
+    "id": "carlos-dos-santos-teixeira",
+    "name": "Carlos Santos Teixeira",
+    "fullNames": [
+      "Carlos dos Santos Teixeira"
+    ],
+    "recordIds": [
+      "maia-zoo-carlos-santos-teixeira"
+    ],
+    "source": {
+      "label": "Diário da República · Aviso n.º 3834/2005, presidente da Junta da Maia",
+      "href": "https://diariodarepublica.pt/dr/detalhe/aviso/3834-2005-2122505"
+    },
+    "portrait": null
+  },
+  {
+    "id": "julia-paula-pires-pereira-da-costa",
+    "name": "Júlia Paula Pires Pereira da Costa",
+    "fullNames": [],
+    "recordIds": [
+      "caminha-acivac-reposicao-2014"
+    ],
+    "source": {
+      "label": "Tribunal de Contas · Acórdão n.º 22/2014, de 14-11-2014",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/acordaos/3s/Documents/2014/ac022-2014-3s.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "paulo-pinto-pereira",
+    "name": "Paulo Pinto Pereira",
+    "fullNames": [],
+    "recordIds": [
+      "caminha-acivac-reposicao-2014"
+    ],
+    "source": {
+      "label": "Tribunal de Contas · Acórdão n.º 22/2014, de 14-11-2014",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/acordaos/3s/Documents/2014/ac022-2014-3s.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "flamiano-goncalves-martins",
+    "name": "Flamiano Gonçalves Martins",
+    "fullNames": [],
+    "recordIds": [
+      "caminha-acivac-reposicao-2014"
+    ],
+    "source": {
+      "label": "Tribunal de Contas · Acórdão n.º 22/2014, de 14-11-2014",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/acordaos/3s/Documents/2014/ac022-2014-3s.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "jose-bento-armada-lourenco-do-chao",
+    "name": "José Bento Armada Lourenço do Chão",
+    "fullNames": [],
+    "recordIds": [
+      "caminha-acivac-reposicao-2014"
+    ],
+    "source": {
+      "label": "Tribunal de Contas · Acórdão n.º 22/2014, de 14-11-2014",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/acordaos/3s/Documents/2014/ac022-2014-3s.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "luis-pedro-portela-saraiva",
+    "name": "Luís Pedro Portela Saraiva",
+    "fullNames": [],
+    "recordIds": [
+      "caminha-acivac-reposicao-2014"
+    ],
+    "source": {
+      "label": "Tribunal de Contas · Acórdão n.º 22/2014, de 14-11-2014",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/acordaos/3s/Documents/2014/ac022-2014-3s.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "jorge-paulo-aires-miranda",
+    "name": "Jorge Paulo Aires Miranda",
+    "fullNames": [],
+    "recordIds": [
+      "caminha-acivac-reposicao-2014"
+    ],
+    "source": {
+      "label": "Tribunal de Contas · Acórdão n.º 22/2014, de 14-11-2014",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/acordaos/3s/Documents/2014/ac022-2014-3s.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "joao-rodrigues-dos-santos",
+    "name": "João Rodrigues dos Santos",
+    "fullNames": [],
+    "recordIds": [
+      "vila-franca-de-xira-joao-santos-remuneracoes"
+    ],
+    "source": {
+      "label": "Assembleia Municipal de Vila Franca de Xira · acta de 19-12-2019",
+      "href": "https://www.cm-vfxira.pt/cmvfxira/uploads/document/file/3976/ata_de_19_12_2019___remeter_am.pdf"
+    },
+    "portrait": null
+  },
+  {
+    "id": "paulo-alexandre-da-conceicao-silva",
+    "name": "Paulo Silva",
+    "fullNames": [
+      "Paulo Alexandre da Conceição Silva"
+    ],
+    "recordIds": [
+      "seixal-dirigentes-tdc"
+    ],
+    "source": {
+      "label": "Tribunal de Contas · distribuição de processos da 3.ª Secção, Maio de 2026",
+      "href": "https://www.tcontas.pt/pt-pt/Transparencia/distribuicao-de-processos/Pages/distribuicao.aspx"
     },
     "portrait": null
   }
