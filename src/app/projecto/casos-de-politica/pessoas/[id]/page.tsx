@@ -69,7 +69,17 @@ export default async function Page({
                 className="rounded-md border border-gray-200 bg-white p-5"
               >
                 <p className="text-sm text-stone-500">
-                  {formatDate(r.dateLabel)} · {r.nature}
+                  {r.dateLabel ? (
+                    <>
+                      {r.dateKind || "Data de referência"} ·{" "}
+                      <time dateTime={r.dateLabel}>
+                        {formatDate(r.dateLabel)}
+                      </time>
+                    </>
+                  ) : (
+                    formatDate(r.dateLabel)
+                  )}{" "}
+                  · {r.nature}
                 </p>
                 <h3>
                   <Link

@@ -43013,7 +43013,7 @@
     "summary": "O Tribunal da Relação de Lisboa rejeitou o recurso de Henrique Gouveia e Melo e confirmou a absolvição de Pedro Almeida Vieira no processo por difamação relativo à investigação sobre a vacinação de médicos em 2021.",
     "detail": "A primeira instância absolveu o director do PÁGINA UM em 10 de Março de 2026. Gouveia e Melo, assistente no processo, recorreu. A Relação considerou fundamentada a decisão, reconheceu interesse público à matéria e concluiu que a investigação assentava numa base factual séria. A expressão contestada foi tratada como juízo de valor duro e polémico, mas apoiado nos factos relatados. Gouveia e Melo não foi arguido neste processo: interveio como assistente e recorrente.",
     "affiliation": "Henrique Gouveia e Melo foi candidato independente à Presidência da República em 2026. Não é atribuída filiação partidária.",
-    "finality": "Absolvição confirmada pela Relação em 19-11-2026. A fonte consultada apresenta a decisão como encerramento do recurso, mas não foi obtida certidão autónoma de trânsito em julgado.",
+    "finality": "A notícia de 23 de Novembro de 2026 indica que a Relação confirmou a absolvição por acórdão datado de 19 de Novembro de 2026. O trânsito em julgado carece de confirmação documental.",
     "penalty": "Sem condenação de Pedro Almeida Vieira. Custas do recurso, no valor de 530 euros, imputadas ao recorrente segundo a notícia.",
     "amount": null,
     "caseNumber": "Processo n.º 1076/22.5T9LSB, apensado ao processo n.º 144/23.0T9LSB",
@@ -43021,13 +43021,13 @@
     "location": "Lisboa",
     "topic": "Difamação, liberdade de imprensa e vacinação de médicos",
     "procedureType": "Processo criminal",
-    "reference": "PÁGINA UM · 23-11-2026",
+    "reference": "PÁGINA UM · notícia de 23-11-2026",
     "sourceName": "PÁGINA UM",
     "source": {
-      "label": "PÁGINA UM · 23-11-2026",
+      "label": "PÁGINA UM · notícia de 23-11-2026",
       "href": "https://paginaum.pt/2026/11/23/gouveia-e-melo-tribunal-da-relacao-afunda-derradeira-tentativa-de-condenar-o-pagina-um"
     },
-    "checkedAt": "2026-11-26",
+    "checkedAt": "2026-11-27",
     "researchBatch": "recent-and-financial-2026-11-26",
     "related": [],
     "partyOutcomes": {},
@@ -43042,13 +43042,25 @@
           "label": "Assistente e recorrente",
           "asOf": "2026-11-19",
           "source": {
-            "label": "PÁGINA UM · 23-11-2026",
+            "label": "PÁGINA UM · notícia de 23-11-2026",
             "href": "https://paginaum.pt/2026/11/23/gouveia-e-melo-tribunal-da-relacao-afunda-derradeira-tentativa-de-condenar-o-pagina-um"
           }
         }
       }
     ],
     "timeline": [
+      {
+        "date": null,
+        "dateLabel": "2021-02",
+        "datePrecision": "month",
+        "text": "A vacinação de médicos referida na investigação decorre em Fevereiro e Março de 2021, segundo os factos provados na sentença de primeira instância."
+      },
+      {
+        "date": "2022-12-15",
+        "dateLabel": "2022-12-15",
+        "datePrecision": "day",
+        "text": "O PÁGINA UM publica a investigação sobre a vacinação de médicos que deu origem ao processo por difamação."
+      },
       {
         "date": "2026-03-10",
         "dateLabel": "2026-03-10",
@@ -43059,20 +43071,26 @@
         "date": "2026-11-19",
         "dateLabel": "2026-11-19",
         "datePrecision": "day",
-        "text": "Tribunal da Relação de Lisboa rejeita o recurso de Gouveia e Melo e confirma a absolvição."
+        "text": "Data do acórdão da Relação de Lisboa que confirmou a absolvição, segundo a notícia do PÁGINA UM."
+      },
+      {
+        "date": "2026-11-20",
+        "dateLabel": "2026-11-20",
+        "datePrecision": "day",
+        "text": "O acórdão foi assinado na sexta-feira anterior à publicação da notícia, segundo o PÁGINA UM."
       },
       {
         "date": "2026-11-23",
         "dateLabel": "2026-11-23",
         "datePrecision": "day",
-        "text": "Publicação da notícia e disponibilização do resultado do acórdão."
+        "text": "O PÁGINA UM noticia a confirmação da absolvição e refere que o acórdão foi disponibilizado nesse dia."
       }
     ],
     "sources": [
       {
-        "label": "PÁGINA UM · 23-11-2026",
+        "label": "PÁGINA UM · notícia de 23-11-2026",
         "href": "https://paginaum.pt/2026/11/23/gouveia-e-melo-tribunal-da-relacao-afunda-derradeira-tentativa-de-condenar-o-pagina-um",
-        "kind": "Imprensa nacional · consulta do acórdão"
+        "kind": "Imprensa nacional"
       },
       {
         "label": "PÁGINA UM · 10-05-2026 · sentença de primeira instância",
