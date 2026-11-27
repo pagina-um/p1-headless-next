@@ -3,9 +3,9 @@
 Imported on 2026-11-20 from the published prototype, version 21, source commit
 `51afb264c9b2ceabd00f53116a9faa5baea4c877`.
 
-- `casos.json`: 481 cases (464 imported and 17 added in subsequent editorial reviews), including 7 party-account decisions.
+- `casos.json`: 490 cases (464 imported and 26 added in subsequent editorial reviews), including 7 party-account decisions.
 - `documentos.json`: 1 reference document, excluded from case totals.
-- `pessoas.json`: 559 people (535 imported and 24 added in subsequent editorial reviews); 27 publicly published portraits with credits/licences.
+- `pessoas.json`: 566 people (535 imported and 31 added in subsequent editorial reviews); 27 publicly published portraits with credits/licences.
 - `partidos.json`: 24 current and 4 historical parties, with registration sources and symbol provenance.
 - `manifesto.json`: edition metadata, coverage and the preserved case alias.
 

@@ -71,9 +71,9 @@ for (const party of parties) {
     verifyDisplayDate(party.extinguished, `${party.id}.extinguished`);
 }
 
-assert.equal(cases.length, 481);
+assert.equal(cases.length, 490);
 assert.equal(documents.length, 1);
-assert.equal(people.length, 559);
+assert.equal(people.length, 566);
 assert.equal(parties.filter((p) => !p.historical).length, 24);
 assert.equal(parties.filter((p) => p.historical).length, 4);
 const ids = new Set(records.map((r) => r.id));
