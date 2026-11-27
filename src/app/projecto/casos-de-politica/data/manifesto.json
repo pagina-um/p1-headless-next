@@ -1,7 +1,7 @@
 {
   "title": "Casos de Política",
   "extractedAt": "2026-11-20",
-  "checkedAt": "2026-11-26",
+  "checkedAt": "2026-11-27",
   "source": {
     "label": "Protótipo Casos de Política · versão 21",
     "href": "https://arquivo-politico-pav.pav-1969.chatgpt.site"
@@ -10,7 +10,7 @@
   "caseAliases": {
     "alipio-dias-bcp-cmvm": "bcp-cmvm-teixeira-pinto-alipio-dias"
   },
-  "coverage": "Selecção parcial. Revisão até 26-11-2026: nove fichas novas e duas revistas desde a importação. Os restantes processos conservam as respectivas datas de consulta; não foram todos reverificados.",
+  "coverage": "Selecção parcial. Até 26-11-2026 foram acrescentadas nove fichas e revistas duas desde a importação. Em 27-11-2026 foi precisada a cronologia da ficha sobre o recurso de Gouveia e Melo. Os restantes processos conservam as respectivas datas de consulta.",
   "cases": 473,
   "documents": 1,
   "people": 550,

@@ -83,7 +83,8 @@ export function ProceduralNote({ person }: { person: Participant }) {
     <div className="mt-3 border-l-2 border-gray-300 pl-4 text-sm">
       <strong>{status.label}</strong>
       <p>
-        Estatuto documentado em {formatDate(status.asOf)}.{" "}
+        Estatuto à data de{" "}
+        <time dateTime={status.asOf}>{formatDate(status.asOf)}</time>.{" "}
         <SourceLink source={status.source} />
       </p>
     </div>
