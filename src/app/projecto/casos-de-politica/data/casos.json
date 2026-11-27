@@ -43082,5 +43082,816 @@
     ],
     "mandate": null,
     "entityCases": []
+  },
+  {
+    "id": "maia-zoo-carlos-santos-teixeira",
+    "parties": [
+      "PSD"
+    ],
+    "category": "Casos",
+    "nature": "Administrativo",
+    "phase": "Decisões administrativas",
+    "status": "Sentença em primeira instância · Junta condenada a pagar",
+    "date": "2026-11-19",
+    "dateLabel": "2026-11-19",
+    "datePrecision": "day",
+    "dateKind": "Data da sentença indicada pelo Maia Hoje",
+    "year": 2026,
+    "title": "Zoo da Maia — Junta condenada a pagar 62.462,24 euros aos herdeiros de Carlos Teixeira",
+    "summary": "O Tribunal Administrativo e Fiscal do Porto condenou a Junta de Freguesia Cidade da Maia a pagar 62.462,24 euros, acrescidos de juros de mora, aos herdeiros do antigo presidente da Junta.",
+    "detail": "O ex-autarca pediu em 2014 a restituição de verbas adiantadas para o Zoo da Maia e compensações pelo exercício do cargo. Segundo o Maia Hoje, que consultou a sentença, o tribunal reconheceu 39.438,30 euros de adiantamentos por reembolsar e 23.023,94 euros de compensações. Julgou improcedente por falta de prova o pedido de pagamento que a Junta tinha apresentado contra o antigo presidente e que prosseguiu contra os herdeiros.",
+    "affiliation": "Carlos dos Santos Teixeira presidiu à antiga Junta da Maia. O mapa eleitoral de 1997 regista a sua eleição pelo PPD/PSD para a Assembleia de Freguesia. O Tribunal Constitucional identifica-o como mandatário do PS nas autárquicas de 2021.",
+    "finality": "Primeira instância. Segundo o Maia Hoje, em 25 de Novembro a Junta ainda avaliava a possibilidade de recurso. Até à consulta de 27 de Novembro, ficou por confirmar a interposição de recurso ou o trânsito em julgado.",
+    "penalty": "",
+    "amount": null,
+    "caseNumber": "",
+    "court": "Tribunal Administrativo e Fiscal do Porto",
+    "location": "Maia, Porto",
+    "topic": "Adiantamentos para o Zoo da Maia e compensação autárquica",
+    "procedureType": "Acção administrativa",
+    "reference": "Maia Hoje · sentença do TAF do Porto, 25-11-2026",
+    "sourceName": "Maia Hoje",
+    "source": {
+      "label": "Maia Hoje · sentença do TAF do Porto, 25-11-2026",
+      "href": "https://www.maiahoje.pt/junta-da-cidade-da-maia-condenada-a-pagar-mais-de-62-mil-euros-a-herdeiros-de-antigo-autarca/"
+    },
+    "checkedAt": "2026-11-27",
+    "researchBatch": "editorial-review-2026-11-27",
+    "related": [],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "carlos-dos-santos-teixeira",
+        "name": "Carlos Santos Teixeira",
+        "fullName": "Carlos dos Santos Teixeira",
+        "role": "Antigo presidente da Junta de Freguesia da Maia e autor da acção. O processo prosseguiu com os seus herdeiros após a sua morte.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": null,
+        "dateLabel": "2014-10",
+        "datePrecision": "month",
+        "text": "O antigo presidente da Junta da Maia dá início à acção administrativa."
+      },
+      {
+        "date": "2026-11-19",
+        "dateLabel": "2026-11-19",
+        "datePrecision": "day",
+        "text": "Segundo o Maia Hoje, o TAF do Porto condena a Junta a pagar aos herdeiros e julga improcedente o pedido reconvencional contra eles."
+      },
+      {
+        "date": "2026-11-25",
+        "dateLabel": "2026-11-25",
+        "datePrecision": "day",
+        "text": "O Maia Hoje publica a decisão e relata que a Junta ainda avalia um eventual recurso."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Maia Hoje · sentença do TAF do Porto, 25-11-2026",
+        "href": "https://www.maiahoje.pt/junta-da-cidade-da-maia-condenada-a-pagar-mais-de-62-mil-euros-a-herdeiros-de-antigo-autarca/",
+        "kind": "Imprensa regional · consulta da sentença"
+      },
+      {
+        "label": "Notícias Primeira Mão · relato de 26-11-2026 baseado no Maia Hoje",
+        "href": "https://noticiasprimeiramao.pt/tribunal-condena-junta-cidade-da-maia-a-pagar-mais-de-62-mil-euros-a-herdeiros-de-carlos-teixeira-em-causa-emprestimo-do-antigo-autarca-para-o-zoo/",
+        "kind": "Imprensa regional"
+      },
+      {
+        "label": "Diário da República · Aviso n.º 3834/2005, presidente da Junta da Maia",
+        "href": "https://diariodarepublica.pt/dr/detalhe/aviso/3834-2005-2122505",
+        "kind": "Documento primário"
+      },
+      {
+        "label": "CNE · eleitos para a Assembleia de Freguesia da Maia em 1997",
+        "href": "https://www.cne.pt/sites/default/files/dl/resultados_al_1997_0.pdf",
+        "kind": "Documento primário"
+      },
+      {
+        "label": "Tribunal Constitucional · Acórdão n.º 698/2021, mandatário do PS",
+        "href": "https://www.tribunalconstitucional.pt/tc/acordaos/20210698.html",
+        "kind": "Documento primário"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "calheta-teles-derrocada-nao-pronuncia",
+    "parties": [
+      "PSD"
+    ],
+    "category": "Casos",
+    "nature": "Criminal",
+    "phase": "Arquivamentos",
+    "status": "Despacho de não pronúncia divulgado",
+    "date": "2026-11-20",
+    "dateLabel": "2026-11-20",
+    "datePrecision": "day",
+    "dateKind": "Divulgação do despacho de não pronúncia",
+    "year": 2026,
+    "title": "Calheta — Carlos Teles não pronunciado no processo da derrocada de 2019",
+    "summary": "O Juízo de Instrução Criminal do Funchal decidiu não enviar Carlos Teles nem os outros dois arguidos a julgamento pelo crime de homicídio por negligência.",
+    "detail": "Em 16 de Fevereiro de 2019, uma derrocada atingiu um restaurante na marginal da Calheta e matou uma trabalhadora. O inquérito foi arquivado em 2021. Segundo o Diário de Notícias da Madeira, o Ministério Público deduziu acusação em 8 de Maio de 2024 contra o então presidente da Câmara e os dois proprietários do imóvel. A instrução requerida pelos três terminou com um despacho de não pronúncia, divulgado em 20 de Novembro de 2026.",
+    "affiliation": "Antigo presidente da Câmara da Calheta. Eleito deputado à Assembleia Legislativa da Região Autónoma da Madeira pelo PPD/PSD em Março de 2025.",
+    "finality": "A fonte identifica a data da divulgação do despacho. A data de assinatura, a interposição de recurso e o trânsito em julgado ficaram por confirmar.",
+    "penalty": "",
+    "amount": null,
+    "caseNumber": "",
+    "court": "Juízo de Instrução Criminal do Funchal",
+    "location": "Calheta, Madeira",
+    "topic": "Derrocada na marginal da Calheta",
+    "procedureType": "Instrução criminal",
+    "reference": "Diário de Notícias da Madeira · despacho divulgado em 20-11-2026",
+    "sourceName": "Diário de Notícias da Madeira",
+    "source": {
+      "label": "Diário de Notícias da Madeira · despacho divulgado em 20-11-2026",
+      "href": "https://www.dnoticias.pt/2026/11/20/513710-carlos-teles-livra-se-de-julgamento-no-caso-da-derrocada-mortal-num-restaurante-da-calheta/"
+    },
+    "checkedAt": "2026-11-27",
+    "researchBatch": "editorial-review-2026-11-27",
+    "related": [
+      "calheta-baeta-contabilizacao-valor-ambiente"
+    ],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "carlos-manuel-figueira-de-ornelas-teles",
+        "name": "Carlos Manuel Figueira de Ornelas Teles",
+        "fullName": "",
+        "role": "Presidente da Câmara da Calheta à data da derrocada. O juízo de instrução decidiu não o enviar a julgamento.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2019-02-16",
+        "dateLabel": "2019-02-16",
+        "datePrecision": "day",
+        "text": "Uma derrocada atinge um restaurante na marginal da Calheta e provoca a morte de uma trabalhadora."
+      },
+      {
+        "date": null,
+        "dateLabel": "2021-06",
+        "datePrecision": "month",
+        "text": "O Ministério Público arquiva o inquérito, segundo o Diário de Notícias da Madeira."
+      },
+      {
+        "date": "2024-05-08",
+        "dateLabel": "2024-05-08",
+        "datePrecision": "day",
+        "text": "O Ministério Público acusa Carlos Teles e dois proprietários do imóvel de homicídio por negligência, segundo a imprensa regional."
+      },
+      {
+        "date": "2026-11-20",
+        "dateLabel": "2026-11-20",
+        "datePrecision": "day",
+        "text": "Divulgação do despacho de não pronúncia dos três arguidos."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Diário de Notícias da Madeira · despacho divulgado em 20-11-2026",
+        "href": "https://www.dnoticias.pt/2026/11/20/513710-carlos-teles-livra-se-de-julgamento-no-caso-da-derrocada-mortal-num-restaurante-da-calheta/",
+        "kind": "Imprensa regional"
+      },
+      {
+        "label": "Jornal da Madeira / NetMadeira · divulgação em 20-11-2026",
+        "href": "https://www.netmadeira.com/noticias/madeira/artigo/619109-carlos-teles-nao-vai-a-julgamento-por-derrocada-mortal-na-calheta",
+        "kind": "Imprensa regional"
+      },
+      {
+        "label": "Diário da República · mapa dos deputados eleitos para a Assembleia Legislativa da Madeira em 2025",
+        "href": "https://files.diariodarepublica.pt/gratuitos/1s/2025/03/06200.pdf",
+        "kind": "Documento primário"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "caminha-acivac-reposicao-2014",
+    "parties": [
+      "PSD",
+      "PS"
+    ],
+    "category": "Casos",
+    "nature": "Financeira",
+    "phase": "Condenações financeiras",
+    "status": "Reposição solidária em recurso · responsabilidade de dois vereadores relevada",
+    "date": "2014-11-14",
+    "dateLabel": "2014-11-14",
+    "datePrecision": "day",
+    "dateKind": "Acórdão do Tribunal de Contas em recurso",
+    "year": 2014,
+    "title": "Caminha — quatro autarcas condenados a repor 48.030 euros por subsídio à ACIVAC",
+    "summary": "O Tribunal de Contas revogou a sentença de primeira instância e condenou a então presidente Júlia Paula Costa e três vereadores do PSD a repor solidariamente 48.030 euros, acrescidos de juros. Relevou a responsabilidade de dois vereadores do PS.",
+    "detail": "O executivo deliberou em 3 de Abril de 2006 subsidiar a Associação Comercial e Industrial dos Vales do Âncora e Coura para liquidar dívidas à Segurança Social e às Finanças. Depois do arquivamento da vertente sancionatória por pagamento das multas, a primeira instância absolveu os seis demandados do pedido de reposição. O plenário da 3.ª Secção deu provimento ao recurso do Ministério Público. Considerou que o pagamento carecia de contraprestação efectiva para o município e condenou os quatro eleitos que votaram a favor. Relevou a responsabilidade dos dois vereadores que se abstiveram.",
+    "affiliation": "Os quatro votos favoráveis foram dos eleitos do PSD. Os dois vereadores do PS demandados abstiveram-se. A ligação é a do mandato autárquico de 2005–2009.",
+    "finality": "O Tribunal de Contas indeferiu os pedidos de aclaração, nulidades e reforma em 2015. Em 24 de Fevereiro de 2016, o Tribunal Constitucional negou provimento ao recurso sobre a admissibilidade de recurso ordinário de revista. Ficaram por apurar a data do trânsito e o pagamento da reposição.",
+    "penalty": "Reposição solidária de 48.030 euros acrescida de juros de mora desde 3 de Abril de 2006.",
+    "amount": null,
+    "caseNumber": "1 JC/2012 · Sentença n.º 13/2014 · Recurso 8 RO-JC/2014 · Acórdão n.º 22/2014",
+    "court": "Tribunal de Contas · Plenário da 3.ª Secção",
+    "location": "Caminha, Viana do Castelo",
+    "topic": "Subsídio municipal à ACIVAC",
+    "procedureType": "Responsabilidade financeira reintegratória",
+    "reference": "Tribunal de Contas · Acórdão n.º 22/2014, de 14-11-2014",
+    "sourceName": "Tribunal de Contas",
+    "source": {
+      "label": "Tribunal de Contas · Acórdão n.º 22/2014, de 14-11-2014",
+      "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/acordaos/3s/Documents/2014/ac022-2014-3s.pdf"
+    },
+    "checkedAt": "2026-11-27",
+    "researchBatch": "editorial-review-2026-11-27",
+    "related": [],
+    "partyOutcomes": {
+      "PSD": "Condenações financeiras",
+      "PS": "Responsabilidade relevada"
+    },
+    "people": [
+      {
+        "id": "julia-paula-pires-pereira-da-costa",
+        "name": "Júlia Paula Pires Pereira da Costa",
+        "fullName": "",
+        "role": "Presidente da Câmara de Caminha pelo PSD. Votou a favor do subsídio e foi condenada em reposição solidária.",
+        "proceduralStatus": null
+      },
+      {
+        "id": "paulo-pinto-pereira",
+        "name": "Paulo Pinto Pereira",
+        "fullName": "",
+        "role": "Vereador do PSD. Votou a favor do subsídio e foi condenado em reposição solidária.",
+        "proceduralStatus": null
+      },
+      {
+        "id": "flamiano-goncalves-martins",
+        "name": "Flamiano Gonçalves Martins",
+        "fullName": "",
+        "role": "Vereador do PSD. Votou a favor do subsídio e foi condenado em reposição solidária.",
+        "proceduralStatus": null
+      },
+      {
+        "id": "jose-bento-armada-lourenco-do-chao",
+        "name": "José Bento Armada Lourenço do Chão",
+        "fullName": "",
+        "role": "Vereador do PSD. Votou a favor do subsídio e foi condenado em reposição solidária.",
+        "proceduralStatus": null
+      },
+      {
+        "id": "luis-pedro-portela-saraiva",
+        "name": "Luís Pedro Portela Saraiva",
+        "fullName": "",
+        "role": "Vereador do PS. Absteve-se na votação. O Tribunal de Contas relevou a sua responsabilidade.",
+        "proceduralStatus": null
+      },
+      {
+        "id": "jorge-paulo-aires-miranda",
+        "name": "Jorge Paulo Aires Miranda",
+        "fullName": "",
+        "role": "Vereador do PS. Absteve-se na votação. O Tribunal de Contas relevou a sua responsabilidade.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2006-04-03",
+        "dateLabel": "2006-04-03",
+        "datePrecision": "day",
+        "text": "A Câmara delibera atribuir o subsídio à ACIVAC."
+      },
+      {
+        "date": "2012-04-10",
+        "dateLabel": "2012-04-10",
+        "datePrecision": "day",
+        "text": "O Ministério Público arquiva a vertente sancionatória após o pagamento das multas."
+      },
+      {
+        "date": "2014-07-11",
+        "dateLabel": "2014-07-11",
+        "datePrecision": "day",
+        "text": "A primeira instância absolve os seis demandados do pedido de reposição."
+      },
+      {
+        "date": "2014-11-14",
+        "dateLabel": "2014-11-14",
+        "datePrecision": "day",
+        "text": "O plenário da 3.ª Secção condena quatro eleitos em reposição solidária e releva a responsabilidade de dois vereadores."
+      },
+      {
+        "date": "2015-02-18",
+        "dateLabel": "2015-02-18",
+        "datePrecision": "day",
+        "text": "A 3.ª Secção indefere pedidos de aclaração, nulidades e reforma."
+      },
+      {
+        "date": "2016-02-24",
+        "dateLabel": "2016-02-24",
+        "datePrecision": "day",
+        "text": "O Tribunal Constitucional nega provimento ao recurso relativo à admissibilidade de revista."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Tribunal de Contas · Acórdão n.º 22/2014, de 14-11-2014",
+        "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/acordaos/3s/Documents/2014/ac022-2014-3s.pdf",
+        "kind": "Documento primário"
+      },
+      {
+        "label": "Tribunal de Contas · Sentença n.º 13/2014, de 11-07-2014",
+        "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Sentencas/3s/Documents/2014/st013-2014-3s.pdf",
+        "kind": "Documento primário"
+      },
+      {
+        "label": "Tribunal Constitucional · Acórdão n.º 127/2016, de 24-02-2016, DR de 03-05-2016",
+        "href": "https://diariodarepublica.pt/dr/detalhe/acordao/127-2016-74338038",
+        "kind": "Documento primário"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "barcelos-costa-gomes-viatura-absolvicao",
+    "parties": [
+      "PS"
+    ],
+    "category": "Casos",
+    "nature": "Criminal",
+    "phase": "Absolvições",
+    "status": "Absolvição em primeira instância",
+    "date": "2022-10-26",
+    "dateLabel": "2022-10-26",
+    "datePrecision": "day",
+    "dateKind": "Data da sentença noticiada pela imprensa regional",
+    "year": 2022,
+    "title": "Barcelos — Miguel Costa Gomes absolvido no processo das viaturas municipais",
+    "summary": "O Tribunal de Barcelos absolveu o antigo presidente da Câmara do crime de peculato de uso. Também julgou improcedente o pedido de pagamento ao Estado.",
+    "detail": "O Ministério Público acusava Miguel Costa Gomes de usar viaturas ao serviço da presidência para deslocações particulares. Segundo O MINHO, a sentença deu como provado que as paragens de natureza pessoal ocorreram no trajecto de deslocações em serviço e considerou que o uso exclusivamente privado não ficou demonstrado. O antigo autarca rejeitou ter usado a viatura municipal em benefício próprio.",
+    "affiliation": "Miguel Costa Gomes presidiu à Câmara de Barcelos pelo PS. O Tribunal Constitucional documenta a ligação histórica ao partido no Acórdão n.º 698/2023.",
+    "finality": "Sentença de primeira instância. Ficaram por confirmar recurso ou trânsito em julgado.",
+    "penalty": "",
+    "amount": null,
+    "caseNumber": "",
+    "court": "Tribunal de Barcelos",
+    "location": "Barcelos, Braga",
+    "topic": "Utilização de viaturas municipais",
+    "procedureType": "Processo criminal",
+    "reference": "O MINHO · absolvição no Tribunal de Barcelos, 26-10-2022",
+    "sourceName": "O MINHO",
+    "source": {
+      "label": "O MINHO · absolvição no Tribunal de Barcelos, 26-10-2022",
+      "href": "https://ominho.pt/ex-autarca-de-barcelos-absolvido-pelo-uso-de-viatura-da-camara-para-fins-pessoais/"
+    },
+    "checkedAt": "2026-11-27",
+    "researchBatch": "editorial-review-2026-11-27",
+    "related": [
+      "barcelos-contratos-eventos",
+      "barcelos-gprotect",
+      "operacao-teia-couto-costa-gomes"
+    ],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "miguel-costa-gomes",
+        "name": "Miguel Costa Gomes",
+        "fullName": "Miguel Jorge Costa Gomes",
+        "role": "Antigo presidente da Câmara de Barcelos. Absolvido do crime de peculato de uso na primeira instância.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2022-10-26",
+        "dateLabel": "2022-10-26",
+        "datePrecision": "day",
+        "text": "O Tribunal de Barcelos absolve Miguel Costa Gomes e julga improcedente o pedido de pagamento ao Estado."
+      }
+    ],
+    "sources": [
+      {
+        "label": "O MINHO · absolvição no Tribunal de Barcelos, 26-10-2022",
+        "href": "https://ominho.pt/ex-autarca-de-barcelos-absolvido-pelo-uso-de-viatura-da-camara-para-fins-pessoais/",
+        "kind": "Imprensa regional · consulta da sentença"
+      },
+      {
+        "label": "Diário do Minho · absolvição noticiada em 26-10-2022",
+        "href": "https://www.diariodominho.pt/noticias/regiao/miguel-costa-gomes-absolvido-no-caso-de-uso-de-viatura-do-municipio-para-fins-pessoais-248660",
+        "kind": "Imprensa regional"
+      },
+      {
+        "label": "Tribunal Constitucional · Acórdão n.º 698/2023, de 19-10-2023, sobre a relação partidária",
+        "href": "https://diariodarepublica.pt/dr/detalhe/acordao/961-2023-879125075",
+        "kind": "Documento primário"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "vila-franca-de-xira-joao-santos-remuneracoes",
+    "parties": [
+      "PS"
+    ],
+    "category": "Casos",
+    "nature": "Financeira",
+    "phase": "Arquivamentos",
+    "status": "Pagamento voluntário · arquivamento noticiado",
+    "date": "2024-07-14",
+    "dateLabel": "2024-07-14",
+    "datePrecision": "day",
+    "dateKind": "Publicação da notícia sobre o arquivamento",
+    "year": 2024,
+    "title": "Vila Franca de Xira — processo sobre remunerações de João Santos arquivado após pagamento voluntário",
+    "summary": "O MIRANTE noticiou que o processo de responsabilidade financeira do antigo presidente da Junta foi arquivado depois de um pagamento voluntário de 18.583 euros, relativos a reposição e multa.",
+    "detail": "Em Dezembro de 2022, o Tribunal de Contas aprovou uma auditoria sobre a acumulação da remuneração integral da presidência da Junta com funções docentes remuneradas. Fixou em 3.619,89 euros os emolumentos a pagar pela Junta e remeteu o relatório para o Ministério Público. Segundo O MIRANTE, o Ministério Público requereu o julgamento e pediu 16.033 euros de reposição e uma multa de 2.550 euros. No prazo de contestação, João Santos efectuou o pagamento voluntário. A notícia atribui ao Ministério Público o arquivamento subsequente.",
+    "affiliation": "João Rodrigues dos Santos foi presidente da Junta de Freguesia de Vila Franca de Xira, eleito pelo PS.",
+    "finality": "Arquivamento reportado por O MIRANTE. O despacho e a data exacta do arquivamento ficaram por localizar.",
+    "penalty": "",
+    "amount": null,
+    "caseNumber": "Processo n.º 12/2022 · Relatório n.º 11/2022 da 2.ª Secção (auditoria)",
+    "court": "Tribunal de Contas",
+    "location": "Vila Franca de Xira, Lisboa",
+    "topic": "Remuneração autárquica acumulada com docência",
+    "procedureType": "Responsabilidade financeira sancionatória e reintegratória",
+    "reference": "O MIRANTE · pagamento e arquivamento noticiados em 14-07-2024",
+    "sourceName": "O MIRANTE",
+    "source": {
+      "label": "O MIRANTE · pagamento e arquivamento noticiados em 14-07-2024",
+      "href": "https://omirante.pt/sociedade/2024-07-14-ex-presidente-da-junta-de-vila-franca-de-xira-paga-18-mil-euros-para-evitar-julgamento-efb6123a"
+    },
+    "checkedAt": "2026-11-27",
+    "researchBatch": "editorial-review-2026-11-27",
+    "related": [],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "joao-rodrigues-dos-santos",
+        "name": "João Rodrigues dos Santos",
+        "fullName": "",
+        "role": "Antigo presidente da Junta pelo PS. Pagamento voluntário e arquivamento subsequente noticiados por O MIRANTE.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2017-10-19",
+        "dateLabel": "2017-10-19",
+        "datePrecision": "day",
+        "text": "Início do período remuneratório analisado pelo Tribunal de Contas."
+      },
+      {
+        "date": "2022-12-13",
+        "dateLabel": "2022-12-13",
+        "datePrecision": "day",
+        "text": "O Tribunal de Contas aprova a auditoria e determina a remessa de cópia ao Ministério Público."
+      },
+      {
+        "date": null,
+        "dateLabel": "2023-06",
+        "datePrecision": "month",
+        "text": "Segundo O MIRANTE, o Ministério Público pede a aplicação de multa e a reposição à Junta."
+      },
+      {
+        "date": "2024-07-14",
+        "dateLabel": "2024-07-14",
+        "datePrecision": "day",
+        "text": "O MIRANTE noticia o pagamento voluntário e o arquivamento."
+      }
+    ],
+    "sources": [
+      {
+        "label": "O MIRANTE · pagamento e arquivamento noticiados em 14-07-2024",
+        "href": "https://omirante.pt/sociedade/2024-07-14-ex-presidente-da-junta-de-vila-franca-de-xira-paga-18-mil-euros-para-evitar-julgamento-efb6123a",
+        "kind": "Imprensa regional"
+      },
+      {
+        "label": "Tribunal de Contas · Relatório n.º 11/2022, de 13-12-2022",
+        "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Relatorios/RelatoriosApuramentoResponsabilidades/Documents/2022/arf-dgtc-rel011-2022-2s.pdf",
+        "kind": "Documento primário"
+      },
+      {
+        "label": "Assembleia Municipal de Vila Franca de Xira · acta de 19-12-2019",
+        "href": "https://www.cm-vfxira.pt/cmvfxira/uploads/document/file/3976/ata_de_19_12_2019___remeter_am.pdf",
+        "kind": "Documento primário"
+      },
+      {
+        "label": "Observador / Lusa · identificação do autarca, 30-01-2023",
+        "href": "https://observador.pt/2023/01/30/junta-de-vila-franca-de-xira-condenada-a-pagar-mais-de-3-mil-euros-devido-a-ilegalidade-de-autarca/",
+        "kind": "Imprensa · Lusa"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "oeiras-isaltino-ppp-mrg",
+    "parties": [
+      "PSD"
+    ],
+    "category": "Casos",
+    "nature": "Criminal",
+    "phase": "Acusações e julgamentos",
+    "status": "Pronúncia confirmada pela defesa · julgamento por marcar",
+    "date": "2026-11-15",
+    "dateLabel": "2026-11-15",
+    "datePrecision": "day",
+    "dateKind": "Notícia que dá conta da pronúncia",
+    "year": 2026,
+    "title": "Oeiras — Isaltino Morais pronunciado no processo das parcerias público-privadas",
+    "summary": "O advogado do presidente da Câmara de Oeiras confirmou ao Observador a pronúncia de Isaltino Morais e disse que o processo aguardava marcação de julgamento.",
+    "detail": "A primeira acusação, de 2022, imputava ao autarca prevaricação de titular de cargo político pelo alegado favorecimento de um consórcio liderado pela construtora MRG. Isaltino Morais afirmou então que a contratação cumprira as regras legais. Em Novembro de 2023, a imprensa deu conta da anulação dessa acusação quanto ao autarca por insuficiências no inquérito. A defesa confirmou em Novembro de 2026 que o Ministério Público deduziu nova acusação e que a instrução terminou com a sua pronúncia.",
+    "affiliation": "Isaltino Morais foi presidente da Câmara de Oeiras pelo PSD e exerceu depois o cargo por candidatura independente. A ligação ao PSD é histórica.",
+    "finality": "Segundo a defesa, a 15 de Novembro de 2026 o julgamento aguardava marcação. O ECO reiterou o ponto de situação em 24 de Novembro. A data exacta da pronúncia e a situação processual actual dos restantes intervenientes na acusação inicial ficaram por confirmar.",
+    "penalty": "",
+    "amount": null,
+    "caseNumber": "",
+    "court": "Tribunal Central de Instrução Criminal (anulação da primeira acusação)",
+    "location": "Oeiras, Lisboa",
+    "topic": "Parcerias público-privadas institucionais e contratação de obras",
+    "procedureType": "Processo criminal",
+    "reference": "Observador · confirmação do advogado da pronúncia, 15-11-2026",
+    "sourceName": "Observador",
+    "source": {
+      "label": "Observador · confirmação do advogado da pronúncia, 15-11-2026",
+      "href": "https://observador.pt/especiais/isaltino-morais-o-novo-partido-os-tres-julgamentos-a-vista-e-uma-longa-historia-de-casos-que-passam-pela-suica-e-pela-prisao/"
+    },
+    "checkedAt": "2026-11-27",
+    "researchBatch": "editorial-review-2026-11-27",
+    "related": [
+      "isaltino-oeiras-refeicoes-2017-2024",
+      "oeiras-isaltino-dirigentes-tdc"
+    ],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "isaltino-morais",
+        "name": "Isaltino Morais",
+        "fullName": "Isaltino Afonso Morais",
+        "role": "Presidente da Câmara de Oeiras. Pronúncia confirmada pelo seu advogado.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": null,
+        "dateLabel": "2022-09",
+        "datePrecision": "month",
+        "text": "O Ministério Público deduz a primeira acusação por prevaricação de titular de cargo político."
+      },
+      {
+        "date": "2023-11-13",
+        "dateLabel": "2023-11-13",
+        "datePrecision": "day",
+        "text": "A Lusa noticia a anulação da acusação quanto a Isaltino Morais pelo Tribunal Central de Instrução Criminal."
+      },
+      {
+        "date": "2026-11-15",
+        "dateLabel": "2026-11-15",
+        "datePrecision": "day",
+        "text": "O Observador publica a confirmação da defesa sobre a nova acusação, a pronúncia e a espera pela marcação do julgamento."
+      },
+      {
+        "date": "2026-11-24",
+        "dateLabel": "2026-11-24",
+        "datePrecision": "day",
+        "text": "O ECO noticia que o processo continua a aguardar marcação do julgamento."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Observador · confirmação do advogado da pronúncia, 15-11-2026",
+        "href": "https://observador.pt/especiais/isaltino-morais-o-novo-partido-os-tres-julgamentos-a-vista-e-uma-longa-historia-de-casos-que-passam-pela-suica-e-pela-prisao/",
+        "kind": "Imprensa nacional · declaração da defesa"
+      },
+      {
+        "label": "Correio da Manhã / Lusa · acusação inicial e resposta do autarca, 28-10-2022",
+        "href": "https://www.cmjornal.pt/portugal/detalhe/20221028-1709-isaltino-morais-garante-que-procedimentos-foram-efetuados-no-cumprimento-das-regras-legais",
+        "kind": "Imprensa · Lusa"
+      },
+      {
+        "label": "ECO / Lusa · anulação da acusação inicial, 13-11-2023",
+        "href": "https://eco.sapo.pt/2023/11/13/juiza-anula-acusacao-do-ministerio-publico-a-isaltino-morais-por-falta-de-interrogatorio/",
+        "kind": "Imprensa · Lusa"
+      },
+      {
+        "label": "ECO · ponto de situação de 24-11-2026",
+        "href": "https://eco.sapo.pt/descodificador/isaltino-tem-novo-inquerito-e-tres-julgamentos-a-vista-o-que-esta-em-causa/",
+        "kind": "Imprensa nacional"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "oeiras-isaltino-dirigentes-tdc",
+    "parties": [
+      "PSD"
+    ],
+    "category": "Casos",
+    "nature": "Financeira",
+    "phase": "Acusações e julgamentos",
+    "status": "Processo de responsabilidade financeira · julgamento por marcar",
+    "date": "2026-05-11",
+    "dateLabel": "2026-05-11",
+    "datePrecision": "day",
+    "dateKind": "Distribuição do processo na 3.ª Secção",
+    "year": 2026,
+    "title": "Oeiras — processo financeiro sobre a nomeação de dirigentes em substituição",
+    "summary": "O Tribunal de Contas distribuiu um processo de julgamento de responsabilidade financeira em que Isaltino Morais é demandado, na sequência de auditoria ao provimento de cargos dirigentes.",
+    "detail": "A auditoria da 2.ª Secção examinou a manutenção de dirigentes em substituição para além do prazo legal sem procedimento concursal. Em Agosto, a imprensa noticiou que o autarca recusou o pagamento voluntário de 2.550 euros. A Câmara atribuiu o recurso à substituição às dificuldades de preenchimento de vagas por concurso. Em 24 de Novembro, o ECO indicava que o caso aguardava julgamento.",
+    "affiliation": "Isaltino Morais exerce o cargo por candidatura independente. A sua ligação ao PSD reporta-se a mandatos anteriores.",
+    "finality": "Processo de julgamento de responsabilidade financeira identificado na distribuição oficial. Até 27 de Novembro de 2026, ficaram por localizar a marcação do julgamento e uma decisão de mérito.",
+    "penalty": "",
+    "amount": null,
+    "caseNumber": "5/2026-JRF · Auditoria n.º 8/2023-ARF da 2.ª Secção",
+    "court": "Tribunal de Contas · 3.ª Secção",
+    "location": "Oeiras, Lisboa",
+    "topic": "Nomeação de dirigentes em regime de substituição",
+    "procedureType": "Julgamento de responsabilidade financeira",
+    "reference": "Tribunal de Contas · distribuição de processos da 3.ª Secção, Maio de 2026",
+    "sourceName": "Tribunal de Contas",
+    "source": {
+      "label": "Tribunal de Contas · distribuição de processos da 3.ª Secção, Maio de 2026",
+      "href": "https://www.tcontas.pt/pt-pt/Transparencia/distribuicao-de-processos/Pages/distribuicao.aspx"
+    },
+    "checkedAt": "2026-11-27",
+    "researchBatch": "editorial-review-2026-11-27",
+    "related": [
+      "oeiras-isaltino-ppp-mrg",
+      "seixal-dirigentes-tdc"
+    ],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "isaltino-morais",
+        "name": "Isaltino Morais",
+        "fullName": "Isaltino Afonso Morais",
+        "role": "Presidente da Câmara de Oeiras. Demandado no processo de julgamento de responsabilidade financeira.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-03-19",
+        "dateLabel": "2026-03-19",
+        "datePrecision": "day",
+        "text": "A 2.ª Secção aprova o relatório de apuramento de responsabilidades financeiras."
+      },
+      {
+        "date": "2026-05-11",
+        "dateLabel": "2026-05-11",
+        "datePrecision": "day",
+        "text": "A 3.ª Secção distribui o processo 5/2026-JRF."
+      },
+      {
+        "date": "2026-08-29",
+        "dateLabel": "2026-08-29",
+        "datePrecision": "day",
+        "text": "A imprensa noticia a recusa de pagamento voluntário e o julgamento por marcar."
+      },
+      {
+        "date": "2026-11-24",
+        "dateLabel": "2026-11-24",
+        "datePrecision": "day",
+        "text": "O ECO noticia que o processo continua a aguardar julgamento."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Tribunal de Contas · distribuição de processos da 3.ª Secção, Maio de 2026",
+        "href": "https://www.tcontas.pt/pt-pt/Transparencia/distribuicao-de-processos/Pages/distribuicao.aspx",
+        "kind": "Documento primário"
+      },
+      {
+        "label": "Tribunal de Contas · Relatório n.º 3/2026, aprovado em 19-03-2026",
+        "href": "https://www.tcontas.pt/pt-pt/ProdutosTC/Relatorios/RelatoriosApuramentoResponsabilidades/Documents/2026/arf-dgtc-rel003-2026_2S.pdf",
+        "kind": "Documento primário"
+      },
+      {
+        "label": "Observador / Público · processos de Oeiras e Seixal, 29-08-2026",
+        "href": "https://observador.pt/2026/08/29/isaltino-morais-julgado-pelo-tribunal-de-contas-por-nomeacao-de-dezenas-de-dirigentes-sem-concurso/",
+        "kind": "Imprensa nacional"
+      },
+      {
+        "label": "Observador · confirmação do advogado da pronúncia, 15-11-2026",
+        "href": "https://observador.pt/especiais/isaltino-morais-o-novo-partido-os-tres-julgamentos-a-vista-e-uma-longa-historia-de-casos-que-passam-pela-suica-e-pela-prisao/",
+        "kind": "Imprensa nacional · declaração da defesa"
+      },
+      {
+        "label": "ECO · ponto de situação de 24-11-2026",
+        "href": "https://eco.sapo.pt/descodificador/isaltino-tem-novo-inquerito-e-tres-julgamentos-a-vista-o-que-esta-em-causa/",
+        "kind": "Imprensa nacional"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
+  },
+  {
+    "id": "seixal-dirigentes-tdc",
+    "parties": [
+      "PCP"
+    ],
+    "category": "Casos",
+    "nature": "Financeira",
+    "phase": "Acusações e julgamentos",
+    "status": "Processo de responsabilidade financeira distribuído",
+    "date": "2026-05-25",
+    "dateLabel": "2026-05-25",
+    "datePrecision": "day",
+    "dateKind": "Distribuição do processo na 3.ª Secção",
+    "year": 2026,
+    "title": "Seixal — processo financeiro sobre a nomeação de dirigentes em substituição",
+    "summary": "O Tribunal de Contas distribuiu um processo de julgamento de responsabilidade financeira que identifica o presidente Paulo Silva e o seu antecessor Joaquim Santos como demandados.",
+    "detail": "Na auditoria ao Município do Seixal, a 2.ª Secção apontou o prolongamento de nomeações em regime de substituição para cargos dirigentes. O relatório n.º 4/2026 foi publicado em Maio. Paulo Silva atribuiu o recurso a esse regime a dificuldades na constituição de júris para concursos. A distribuição oficial identifica um processo próprio do Seixal.",
+    "affiliation": "Paulo Silva e Joaquim Santos chefiaram executivos eleitos pela CDU, coligação que inclui o PCP.",
+    "finality": "Processo de julgamento de responsabilidade financeira identificado na distribuição oficial. Até 27 de Novembro de 2026, ficaram por localizar a marcação do julgamento e uma decisão de mérito.",
+    "penalty": "",
+    "amount": null,
+    "caseNumber": "6/2026-JRF · Auditoria n.º 16/2025-ARF da 2.ª Secção",
+    "court": "Tribunal de Contas · 3.ª Secção",
+    "location": "Seixal, Setúbal",
+    "topic": "Nomeação de dirigentes em regime de substituição",
+    "procedureType": "Julgamento de responsabilidade financeira",
+    "reference": "Tribunal de Contas · distribuição de processos da 3.ª Secção, Maio de 2026",
+    "sourceName": "Tribunal de Contas",
+    "source": {
+      "label": "Tribunal de Contas · distribuição de processos da 3.ª Secção, Maio de 2026",
+      "href": "https://www.tcontas.pt/pt-pt/Transparencia/distribuicao-de-processos/Pages/distribuicao.aspx"
+    },
+    "checkedAt": "2026-11-27",
+    "researchBatch": "editorial-review-2026-11-27",
+    "related": [
+      "oeiras-isaltino-dirigentes-tdc",
+      "monteiro-seixal-emprestimos"
+    ],
+    "partyOutcomes": {},
+    "people": [
+      {
+        "id": "paulo-alexandre-da-conceicao-silva",
+        "name": "Paulo Silva",
+        "fullName": "Paulo Alexandre da Conceição Silva",
+        "role": "Presidente da Câmara do Seixal. Demandado no processo de julgamento de responsabilidade financeira.",
+        "proceduralStatus": null
+      },
+      {
+        "id": "joaquim-santos",
+        "name": "Joaquim Santos",
+        "fullName": "Joaquim Cesário Cardador dos Santos",
+        "role": "Anterior presidente da Câmara do Seixal. Demandado no processo de julgamento de responsabilidade financeira.",
+        "proceduralStatus": null
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-05-11",
+        "dateLabel": "2026-05-11",
+        "datePrecision": "day",
+        "text": "O Tribunal de Contas anuncia a publicação do relatório sobre o Seixal."
+      },
+      {
+        "date": "2026-05-25",
+        "dateLabel": "2026-05-25",
+        "datePrecision": "day",
+        "text": "A 3.ª Secção distribui o processo 6/2026-JRF, identificando os dois demandados."
+      },
+      {
+        "date": "2026-08-29",
+        "dateLabel": "2026-08-29",
+        "datePrecision": "day",
+        "text": "A imprensa noticia a perspectiva de julgamento e a resposta do presidente da Câmara."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Tribunal de Contas · distribuição de processos da 3.ª Secção, Maio de 2026",
+        "href": "https://www.tcontas.pt/pt-pt/Transparencia/distribuicao-de-processos/Pages/distribuicao.aspx",
+        "kind": "Documento primário"
+      },
+      {
+        "label": "Tribunal de Contas · Comunicado n.º 22/2026 sobre os relatórios de Oeiras e Seixal",
+        "href": "https://www.tcontas.pt/pt-pt/MenuSecundario/Imprensa/Documents/COMUNICADO_DE_IMPRENSA_N22_2026.pdf",
+        "kind": "Documento primário"
+      },
+      {
+        "label": "ECO · relatórios das auditorias de Oeiras e Seixal, 11-05-2026",
+        "href": "https://eco.sapo.pt/2026/05/11/tribunal-de-contas-revela-detalhes-da-acusacao-a-oeiras-e-seixal-na-nomeacao-de-chefias/",
+        "kind": "Imprensa nacional"
+      },
+      {
+        "label": "Observador / Público · processos de Oeiras e Seixal, 29-08-2026",
+        "href": "https://observador.pt/2026/08/29/isaltino-morais-julgado-pelo-tribunal-de-contas-por-nomeacao-de-dezenas-de-dirigentes-sem-concurso/",
+        "kind": "Imprensa nacional"
+      },
+      {
+        "label": "Município do Seixal · sucessão de Joaquim Santos por Paulo Silva, Setembro de 2022",
+        "href": "https://www.cm-seixal.pt/noticia/paulo-silva-e-o-novo-presidente-da-camara-do-seixal",
+        "kind": "Documento primário"
+      }
+    ],
+    "mandate": null,
+    "entityCases": []
   }
 ]
